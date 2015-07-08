@@ -33,11 +33,12 @@ All of repositories are located within our main GitHub [page](https://github.com
 
 [RancherOS Vagrant Repo]: We've created an easy way to spin up RancherOS using [Vagrant]({{site.baseurl}}/os/getting-started/docs). 
 
-If you have any updates to our documentation, please make any PRs to our [docs repo](https://github.com/rancherio/rancherio.github.io). 
 
 ### Bugs
 
 If you find any bugs or are having any trouble, please contact us by filing an [issue](https://github.com/rancherio/os/issues/new). 
+
+If you have any updates to our documentation, please make any PRs to our [docs repo](https://github.com/rancherio/rancherio.github.io).
 
 <br>
 <br>

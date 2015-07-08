@@ -23,11 +23,11 @@ All of repositories are located within our main GitHub [page](https://github.com
 
 [UI Repo](https://github.com/rancherio/ui): This repo is where all the UI for Rancher is developed. 
 
-If you have any updates to our documentation, please make any PRs to our [docs repo](https://github.com/rancherio/rancherio.github.io). 
 
 ### Bugs
 
 If you find any bugs or are having any trouble, please contact us by filing an [issue](https://github.com/rancherio/rancher/issues/new). Though we have many repositories related to Rancher, we want the majority of the bugs in the Rancher repo so we won't miss them!
 
+If you have any updates to our documentation, please make any PRs to our [docs repo](https://github.com/rancherio/rancherio.github.io). 
 <br>
 <br>
