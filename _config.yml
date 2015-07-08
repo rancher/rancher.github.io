@@ -1,7 +1,7 @@
 name: Rancher Documentation
 description: Documentation for Rancher
 
-URL: http://deniseschannon.github.io
+URL: http://rancherlabs.github.io
 baseurl: ""
 
 markdown: redcarpet
