@@ -1,5 +1,5 @@
 ---
-title: RancherOS Documentation
+title: Contributing to RancherOS
 layout: os-default
 
 ---
@@ -33,7 +33,7 @@ All of repositories are located within our main GitHub [page](https://github.com
 
 [RancherOS Vagrant Repo]: We've created an easy way to spin up RancherOS using [Vagrant]({{site.baseurl}}/os/getting-started/docs). 
 
-If you have any updates to our documentation, please fork the `gh-pages` branch in our main [RancherOS Repo](https://github.com/rancherio/os) and contribute to that branch. 
+If you have any updates to our documentation, please make any PRs to our [docs repo](https://github.com/rancherio/rancherio.github.io). 
 
 ### Bugs
 
