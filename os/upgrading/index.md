@@ -10,7 +10,7 @@ RancherOS has released a new version and you want to learn how to upgrade your O
 
 _In v0.3.1+, we changed the command from `rancherctl` to `ros`._
 
-To see all of our releases, please visit our [release page](https://github.com/rancherio/os/releases) in GitHub.
+To see all of our releases, please visit our [release page](https://github.com/rancher/os/releases) in GitHub.
 
 ### Version Control
 

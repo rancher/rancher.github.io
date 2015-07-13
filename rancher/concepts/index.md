@@ -11,15 +11,15 @@ In this section we introduce the key concepts in Rancher. You should be familiar
 
 ### Users
 
-Users govern who has the access rights to view and manage Rancher resources within their project.  Rancher allows access for a single tenant but multi-user support can be enabled by integrating with GitHub's OAuth support for authorization.
+Users govern who has the access rights to view and manage Rancher resources within their Environment.  Rancher allows access for a single tenant but multi-user support can be enabled by integrating with GitHub's OAuth support for authorization.
 
 Please read about [access control]({{site.baseurl}}/rancher/configuration/access-control/) to enable GitHub authentication.
 
-### Projects
+### Environments
 
-All hosts and any Rancher resources (i.e. containers, load balancers, etc.) are created and belong to an project.  Access control to who can view and manage these resources are then defined by the owner of the project.  Rancher currently supports the capability for each user to manage and invite other users to their project and allows for the ability to create multiple projects for different workloads.  For example, you may want to create a "dev" project and a separate "production" project with its own set of resources and limited user access for your application deployment.
+All hosts and any Rancher resources (i.e. containers, load balancers, etc.) are created and belong to an environment.  Access control to who can view and manage these resources are then defined by the owner of the environment.  Rancher currently supports the capability for each user to manage and invite other users to their environment and allows for the ability to create multiple environments for different workloads.  For example, you may want to create a "dev" environment and a separate "production" environment with its own set of resources and limited user access for your application deployment.
 
-[Access control]({{site.baseurl}}/rancher/configuration/access-control/) will need to be set up before being able to [share projects]({{site.baseurl}}/rancher/configuration/projects/) with users. 
+[Access control]({{site.baseurl}}/rancher/configuration/access-control/) will need to be set up before being able to [share environments]({{site.baseurl}}/rancher/configuration/environments/) with users. 
 
 <a id="host"></a>
 
@@ -29,7 +29,7 @@ Hosts are the most basic unit of resource within Rancher and is represented as a
 
 * Any modern Linux distribution that supports Docker 1.6+.
 * Must be able to communicate with the Rancher server via http or https through the pre-configured port (Default is 8080).
-* Must be routable to any other hosts belonging to the same project to leverage Rancher's cross-host networking for Docker containers.
+* Must be routable to any other hosts belonging to the same environment to leverage Rancher's cross-host networking for Docker containers.
 
 Rancher also supports Docker Machine and allows you to add your host via any of its supported drivers.
 
@@ -39,7 +39,7 @@ Read the following to [add your first host]({{site.baseurl}}/rancher/rancher-ui/
 
 Rancher supports cross-host container communication by implementing a simple and secure overlay network using IPsec tunneling.  To leverage this capability, a container launched through Rancher must select "Managed" for its network mode or if launched through Docker, provide an extra label "--label io.rancher.container.network=true".  Most of Rancher's network features such as a load balancer or DNS service require the container to be in the managed network.
 
-Under Rancher's network, a container will be assigned both a Docker bridge IP (172.17.0.0/16) and a Rancher managed IP (10.42.0.0/16) on the default docker0 bridge.  Containers within the same project are then routable and reachable via the managed network.
+Under Rancher's network, a container will be assigned both a Docker bridge IP (172.17.0.0/16) and a Rancher managed IP (10.42.0.0/16) on the default docker0 bridge.  Containers within the same environment are then routable and reachable via the managed network.
 
 **_Note:_** _The Rancher managed IP address will be not present in Docker meta-data and as such will not appear in the result of a Docker "inspect." This sometimes causes incompatibilities with certain tools that require a Docker bridge IP. We are already working with the Docker community to make sure a future version of Docker can handle overlay networks more cleanly._
 
@@ -49,17 +49,15 @@ Rancher adopts the standard Docker Compose terminology for services and defines 
 
 * Service HA - the ability to have Rancher automatically monitor container states and maintain a service's desired scale.
 * Health Monitoring - the ability to set basic monitoring thresholds for container health.
-* Add Balancer Services - the ability to add a simple load balancer service for your services using HAProxy
+* Add Load Balancers - the ability to add a simple load balancer for your services using HAProxy
 * Add External Services - the ability to add any-IP as a service to be discovered
 * Add Service Alias - the ability to add a DNS record for your services to be discovered
 
-Read more about [adding services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/), [adding balancer services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-balancers/), [adding external services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-external-services/) or [adding service alias]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-service-alias/).
+Read more about [adding services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/), [adding load balancers]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-balancers/), [adding external services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-external-services/) or [adding service alias]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-service-alias/).
 
 ### Load Balancer
 
-Rancher implements a managed load balancer service using HAProxy that can be manually scaled to multiple hosts.  A load balancer can be used to distribute network and application traffic to individual containers by directly adding them or "linked" to a basic service.  A basic service that is "linked" will have all its underlying containers automatically registered as load balancer targets by Rancher.
-
-Read more about our [load balancers]({{site.baseurl}}/rancher/rancher-ui/infrastructure/load-balancers/) and the [load balancer configurations]({{site.baseurl}}/rancher/rancher-ui/infrastructure/balancer-configs/) that are used with load balancers.
+Rancher implements a managed load balancer using HAProxy that can be manually scaled to multiple hosts.  A load balancer can be used to distribute network and application traffic to individual containers by directly adding them or "linked" to a basic service.  A basic service that is "linked" will have all its underlying containers automatically registered as load balancer targets by Rancher.
 
 ### Distributed DNS Service
 

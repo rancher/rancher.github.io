@@ -19,4 +19,4 @@ The resulting files should be placed into `/var/lib/docker/preload` or `/var/lib
 
 Pre-loading process only reads each new archive once, so it won't take time on subsequent boots (`<archive>.done` files are created to mark the read archives). If you update the archive (place a newer archive with the same name) it'll get read on the next boot as well.
  
-Pre-packing docker images is handy when you're customizing your RancherOS distribution (perhaps, building cloud VM images for your infrastructure). You might be interested in [os-installer](https://github.com/rancherio/os-installer) for this purpose.
+Pre-packing docker images is handy when you're customizing your RancherOS distribution (perhaps, building cloud VM images for your infrastructure). You might be interested in [os-installer](https://github.com/rancher/os-installer) for this purpose.

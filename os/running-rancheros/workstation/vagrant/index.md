@@ -7,14 +7,14 @@ layout: os-default
 ## Running RancherOS on Vagrant
 ---
 
-We have created a [RancherOS Vagrant project](https://github.com/rancherio/os-vagrant) that allows you to quickly test out RancherOS.
+We have created a [RancherOS Vagrant project](https://github.com/rancher/os-vagrant) that allows you to quickly test out RancherOS.
 
 Vagrant can be downloaded and installed from [here](http://www.vagrantup.com/downloads.html).
 
-After installing Vagrant, you should clone the [RancherOS Vagrant repository](https://github.com/rancherio/os-vagrant). From the command line, go to the directory that you want to clone the repo into. Clone the repo and go into the newly cloned directory.
+After installing Vagrant, you should clone the [RancherOS Vagrant repository](https://github.com/rancher/os-vagrant). From the command line, go to the directory that you want to clone the repo into. Clone the repo and go into the newly cloned directory.
 
 ```bash
-$ git clone https://github.com/rancherio/os-vagrant.git
+$ git clone https://github.com/rancher/os-vagrant.git
 $ cd os-vagrant
 ```
 
@@ -39,7 +39,7 @@ $vb_gui = false
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure(2) do |config|
-    config.vm.box   = "rancherio/rancheros"
+    config.vm.box   = "rancher/rancheros"
     config.vm.box_version = ">=0.2.0"
 
     (1..$number_of_nodes).each do |i|

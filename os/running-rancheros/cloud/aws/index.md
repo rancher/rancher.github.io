@@ -13,7 +13,7 @@ If you haven't installed the AWS CLI, follow the instructions on the [AWS CLI pa
 
 Once you've installed your AWS CLI, use this command to launch an EC2 instance with the RancherOS AMI. You will need to know your SSH key name and security group name for the _region_ that you are configured for. These can be found from the AWS console.
 
-Note: Check the RancherOS [README](https://github.com/rancherio/os/blob/master/README.md) for AMI names for each region. We support PV and HVM types of AMIs. 
+Note: Check the RancherOS [README](https://github.com/rancher/os/blob/master/README.md) for AMI names for each region. We support PV and HVM types of AMIs. 
 
 ```bash
 $ aws ec2 run-instances --image-id ami-ID# --count 1 --instance-type t1.micro --key-name MySSHKeyName --security-groups sg-name
@@ -64,7 +64,7 @@ $ ssh -v -i /Directory/of/MySSHKeyName.pem rancher@<ip-of-ec2-instance>
 ## Latest AMI Releases 
 ----
 
-Please check the [README](https://github.com/rancherio/os/blob/master/README.md) in our RancherOS repository for our latest AMIs.
+Please check the [README](https://github.com/rancher/os/blob/master/README.md) in our RancherOS repository for our latest AMIs.
 
 
 

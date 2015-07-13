@@ -98,11 +98,11 @@ The label `io.rancher.container.network` enables us to pass a hint through the D
 
 We have shown you how to create individual containers and connect them to a cross-host network. Most real-world applications, however, are made out of multiple services, with each service made up of multiple containers. A WordPress application, for example, could consist of the following services:
 
-1. A load balancer service. The load balancer redirects Internet traffic to the WordPress application.
+1. A load balancer. The load balancer redirects Internet traffic to the WordPress application.
 2. A WordPress service consisting of two WordPress containers.
 3. A database service consisting of one MySQL container.
 
-The load balancer service links to the WordPress service, and the WordPress service links to the MySQL service.
+The load balancer links to the WordPress service, and the WordPress service links to the MySQL service.
 
 In this section, we will walk through how to create and deploy the WordPress application in Rancher.
 
@@ -112,7 +112,7 @@ You will immediately be able to add a service. First, we'll create a database se
 
 Next, click on the **Add Service** to add another service. We'll add a WordPress service and link to the mysql service. Let's use the name, _mywordpress_, and use the wordpress image. We'll move the slider to have the scale of the service be 2 containers. In the **Service Links**, add the _database_ service and provide the name _mysql_. Just like in Docker, Rancher will link the necessary environment variables in the WordPress image from the linked database when you select the name as _mysql_. Click **Create**. After the service is created, click on **Start** in the service and you will see 2 containers being launched for this service.
 
-Finally, we'll create our load balancer. Click on the dropdown menu icon next to the **Add Service** button. Select **Add Balancer Service**. Provide a name like _wordpresslb_ and select the target. The target will be _mywordpress_ service. Finally, set the public port on the host that you'll use to access the wordpress application and set the target port as `80`. Click **Create**. After the service is created, click on **Start** in the service.
+Finally, we'll create our load balancer. Click on the dropdown menu icon next to the **Add Service** button. Select **Add Load Balancer**. Provide a name like _wordpresslb_ and select pubilc port on the host that you'll use to access the wordpress application. Select the target and target port. The target will be _mywordpress_ service and set the target port as `80`. Click **Create**. After the load balancer is created, click on **Start** in the load balancer.
 
 Our multi-service application is now complete! Find the IP of the host that the load balancer is on. Open a browser to the `host_IP:public_port` and you should see the wordpress application.
 
