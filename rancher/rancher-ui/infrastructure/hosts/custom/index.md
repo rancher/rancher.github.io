@@ -8,9 +8,9 @@ layout: rancher-default
 
 If you already have Linux machines deployed and just want to add them into Rancher, click on the **Custom** icon. In the UI, you will be provided a docker command to run on any host. The `docker` command launches the _rancher-agent_ container on the host. 
 
-If you are using different [projects]({{site.baseurl}}/rancher/configuration/projects/), the command provided through the UI will be unique to whatever **project** that you are in.
+If you are using different [environments]({{site.baseurl}}/rancher/configuration/environments/), the command provided through the UI will be unique to whatever **environment** that you are in.
 
-Please make sure that you are in the project that you want to add hosts to. The project is displayed in the upper right corner next to the account dropdown. When you first login to the Rancher instance, you are in the **Default** project.
+Please make sure that you are in the environment that you want to add hosts to. The environment is displayed in the upper right corner next to the account dropdown. When you first login to the Rancher instance, you are in the **Default** environment.
 
 For any hosts that are added, please make sure that any security groups or firewalls allow traffic. If these are not enabled, then the functionality of Rancher will be limited.
 

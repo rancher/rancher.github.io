@@ -45,7 +45,7 @@ By default, the install type will be generic.
 
 #### Version
 
-The `-v` option will indicate which version of RancherOS to install. To see the most recent versions of RancherOS, please vist the RancherOS GitHub page of [releases](https://github.com/rancherio/os/releases).
+The `-v` option will indicate which version of RancherOS to install. To see the most recent versions of RancherOS, please vist the RancherOS GitHub page of [releases](https://github.com/rancher/os/releases).
 
 By default, the version installed will be version that RancherOS is currently running.
 

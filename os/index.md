@@ -32,7 +32,7 @@ To find out more about installing RancherOS, jump to our [Quick Start Guide]({{s
 
 ### Latest Release
 ---
-Please check our repository for the latest release in our [README](https://github.com/rancherio/os/blob/master/README.md). 
+Please check our repository for the latest release in our [README](https://github.com/rancher/os/blob/master/README.md). 
 
 <br>
 <br>

@@ -6,9 +6,9 @@ layout: rancher-default
 ## Registries 
 ---
 
-With Rancher, you can add credentials to access private registries from DockerHub, Quay.io, or any address that you have a private registry. By having the ability to access your private registries, it enables Rancher to use your private images. In each [project]({{site.baseurl}}/rancher/configuration/projects/), you can only use one credential per registry address. This makes it a simple request to launch images from private addresses. If you have added multiple credentials for the same address, Rancher will always use the most recently added one. 
+With Rancher, you can add credentials to access private registries from DockerHub, Quay.io, or any address that you have a private registry. By having the ability to access your private registries, it enables Rancher to use your private images. In each [environment]({{site.baseurl}}/rancher/configuration/environments/), you can only use one credential per registry address. This makes it a simple request to launch images from private addresses. If you have added multiple credentials for the same address, Rancher will always use the most recently added one. 
 
-At any time, you can view all the registries and the respective credentials. Click on the account icon in the upper right hand corner. A dropdown menu will appear with the different Rancher configuration settings. Within the **Settings** section, click on **Registries**. For the project that you are in, all registries that have been added will be listed in this Registries page. You can review your project by looking at the folder in the upper right corner of the page. 
+At any time, you can view all the registries and the respective credentials. Click on the account icon in the upper right hand corner. A dropdown menu will appear with the different Rancher configuration settings. Within the **Settings** section, click on **Registries**. For the environment that you are in, all registries that have been added will be listed in this Registries page. You can review your environment by looking at the folder in the upper right corner of the page. 
 
 ### Adding Registries
 
@@ -62,7 +62,7 @@ All options for a registry are accessible through the dropdown menu on the right
 
 For any **Active** registry, you can **Deactivate** the registry, which would prohibit access to the registry. No new containers can be launched with any images in that registry.
 
-For any **Deactivated** registry, you have two options. You can **Activate** the registry, which will allow containers to access images from those registries. Any members of your project will be able to activate your credential without needing to re-input the password. If you don't want anyone using your credential, you should **Delete** the registry, which will remove the credentials from the project.
+For any **Deactivated** registry, you have two options. You can **Activate** the registry, which will allow containers to access images from those registries. Any members of your environment will be able to activate your credential without needing to re-input the password. If you don't want anyone using your credential, you should **Delete** the registry, which will remove the credentials from the environment.
 
 You can **Edit** any registry, which allows you to change the credentials to the registry address. You will not be able to change the registry address. The password is not saved in the "Edit" page, so you will need to re-input it in order to save any changes.
 

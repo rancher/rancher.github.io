@@ -13,7 +13,7 @@ Note: If you create a RancherOS instance using `docker-machine`, you will not be
 
 ### Downloading RancherOS
 
-Get the latest `machine-rancheros.iso` artifact from the RancherOS [releases](https://github.com/rancherio/os/releases). There are two ISO files in our releases. Please make sure you choose the `machine-rancheros.iso`. This ISO has been built with a special configuration for `docker-machine`.
+Get the latest `machine-rancheros.iso` artifact from the RancherOS [releases](https://github.com/rancher/os/releases). There are two ISO files in our releases. Please make sure you choose the `machine-rancheros.iso`. This ISO has been built with a special configuration for `docker-machine`.
 
 ### Using Docker Machine  
 
@@ -32,7 +32,7 @@ $ docker-machine create -d virtualbox --virtualbox-boot2docker-url <LOCATION-OF-
 Example with RancherOS v0.3.2:
 
 ```bash
-$ docker-machine create -d virtualbox --virtualbox-boot2docker-url https://github.com/rancherio/os/releases/download/v0.3.2/machine-rancheros.iso MyRancherOSMachine
+$ docker-machine create -d virtualbox --virtualbox-boot2docker-url https://github.com/rancher/os/releases/download/v0.3.2/machine-rancheros.iso MyRancherOSMachine
 ```
 
 That's it! You should now have a RancherOS host running on VirtualBox. You can verify that you have a VirtualBox VM running on your host.

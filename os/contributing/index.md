@@ -25,20 +25,20 @@ When the build is done, the ISO should be in `dist/artifacts`.
 
 ### Repositories
 
-All of repositories are located within our main GitHub [page](https://github.com/rancherio). 
+All of repositories are located within our main GitHub [page](https://github.com/rancher). 
 
-[RancherOS Repo](https://github.com/rancherio/os): This repo contains the bulk of the RancherOS code.
+[RancherOS Repo](https://github.com/rancher/os): This repo contains the bulk of the RancherOS code.
 
-[RancherOS Services Repo](https://github.com/rancherio/os-services): This repo is where any [system-services]({{site.baseurl}}/os/system-services/) can be contributed.
+[RancherOS Services Repo](https://github.com/rancher/os-services): This repo is where any [system-services]({{site.baseurl}}/os/system-services/) can be contributed.
 
 [RancherOS Vagrant Repo]: We've created an easy way to spin up RancherOS using [Vagrant]({{site.baseurl}}/os/getting-started/docs). 
 
 
 ### Bugs
 
-If you find any bugs or are having any trouble, please contact us by filing an [issue](https://github.com/rancherio/os/issues/new). 
+If you find any bugs or are having any trouble, please contact us by filing an [issue](https://github.com/rancher/os/issues/new). 
 
-If you have any updates to our documentation, please make any PRs to our [docs repo](https://github.com/rancherio/rancherio.github.io).
+If you have any updates to our documentation, please make any PRs to our [docs repo](https://github.com/rancher/rancher.github.io).
 
 <br>
 <br>

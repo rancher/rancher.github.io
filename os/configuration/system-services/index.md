@@ -8,7 +8,7 @@ layout: os-default
 
 _Available as of v0.3.0_
 
-A system service is a container that can be run in either system-docker or user docker. Rancher provides services that are already available in RancherOS by adding them to the [os-services repo](https://github.com/rancherio/os-services). Anything in the `index.yml` file from the repo will be an option shown when using the `ros service list` command. This command will list all system services and whether they are enabled or disabled.
+A system service is a container that can be run in either system-docker or user docker. Rancher provides services that are already available in RancherOS by adding them to the [os-services repo](https://github.com/rancher/os-services). Anything in the `index.yml` file from the repo will be an option shown when using the `ros service list` command. This command will list all system services and whether they are enabled or disabled.
 
 You can also create your own system service in the [docker compose](https://docs.docker.com/compose/) format. Rancher uses `rancher-compose`, which supports almost any key that `docker-compose` supports. The only ones that we don't support are env_file and external_links. The file that creates the system service can either be added directly into RancherOS or hosted at a URL. RancherOS can enable the service from either placement.
 
@@ -47,7 +47,7 @@ $ sudo ros service enable http://mydomain.com/example.yml
 
 #### Rancher-Compose 
 
-RancherOS uses [rancher-compose](https://github.com/rancherio/rancher-compose) to create docker containers. Rancher-Compose is based off of docker-compose and expects the same yaml formats as docker-compose.
+RancherOS uses [rancher-compose](https://github.com/rancher/rancher-compose) to create docker containers. Rancher-Compose is based off of docker-compose and expects the same yaml formats as docker-compose.
 
 **System-Docker vs. User Docker**
 
@@ -108,7 +108,7 @@ If you set the net to your host, then the `hostname` key will not be set for the
 
 #### Contributing to OS-Services
 ---
-If you're interested in adding more services to RancherOS, please contribute to our [repo](https://github.com/rancherio/os-services). 
+If you're interested in adding more services to RancherOS, please contribute to our [repo](https://github.com/rancher/os-services). 
 
 <br>
 <br>

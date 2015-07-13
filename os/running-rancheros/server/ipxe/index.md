@@ -18,7 +18,7 @@ initrd ${base-url}/initrd
 boot
 ```
 
-Valid [datasources](https://github.com/rancherio/os/blob/3338c4ac63597940bcde7e6005f1cc09287062a2/cmd/cloudinit/cloudinit.go#L378) are:
+Valid [datasources](https://github.com/rancher/os/blob/3338c4ac63597940bcde7e6005f1cc09287062a2/cmd/cloudinit/cloudinit.go#L378) are:
 
 | type | default |  
 |---|---|

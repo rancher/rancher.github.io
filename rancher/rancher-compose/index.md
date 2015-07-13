@@ -22,7 +22,7 @@ $ export RANCHER_ACCESS_KEY=<username_of_key>
 $ export RANCHER_SECRET_KEY=<password_of_key>
 ```
 
-Now, you can create run any `docker-compose.yml` file using `rancher-compose`. The containers will automatically be launched in your Rancher instance in the [project]({{site.baseurl}}/rancher/configuration/projects/) that the API key is located in.
+Now, you can create run any `docker-compose.yml` file using `rancher-compose`. The containers will automatically be launched in your Rancher instance in the [environment]({{site.baseurl}}/rancher/configuration/environments/) that the API key is located in.
 
 ### Commands
 

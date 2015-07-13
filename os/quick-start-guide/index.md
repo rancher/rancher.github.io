@@ -11,15 +11,15 @@ If you have a specific RanchersOS machine requirements, please check out our [gu
 
 ### Launching RancherOS using Vagrant
 
-We have created a [RancherOS Vagrant project](https://github.com/rancherio/os-vagrant) that allows you to quickly launch RancherOS on your local machine. We have a more detailed guide on [Vagrant].
+We have created a [RancherOS Vagrant project](https://github.com/rancher/os-vagrant) that allows you to quickly launch RancherOS on your local machine. We have a more detailed guide on [Vagrant].
 
 1. Vagrant must be installed on your local machine. Vagrant can be downloaded and installed from [here](http://www.vagrantup.com/downloads.html).
 
-2. Clone the [RancherOS Vagrant repository](https://github.com/rancherio/os-vagrant). Clone the repo and go into the newly cloned directory.
+2. Clone the [RancherOS Vagrant repository](https://github.com/rancher/os-vagrant). Clone the repo and go into the newly cloned directory.
 
 
 ```bash
-$ git clone https://github.com/rancherio/os-vagrant.git
+$ git clone https://github.com/rancher/os-vagrant.git
 $ cd os-vagrant
 ```
 
@@ -222,5 +222,5 @@ You can now start to deploy your Docker containers on RancherOS using the Ranche
 
 ### Conclusion
 
-RancherOS is a simple Linux distribution ideal for running Docker.  By embracing containerization of system services and leveraging Docker for management, RancherOS hopes to provide a very reliable, and easy to manage OS for running containers.  To stay up to date, please follow the RancherOS [GitHub site](https://github.com/rancherio/os).  
+RancherOS is a simple Linux distribution ideal for running Docker.  By embracing containerization of system services and leveraging Docker for management, RancherOS hopes to provide a very reliable, and easy to manage OS for running containers.  To stay up to date, please follow the RancherOS [GitHub site](https://github.com/rancher/os).  
 

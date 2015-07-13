@@ -10,7 +10,7 @@ With Rancher, you can add multiple services in a stack to make an application. W
 
 We'll walk through how to create a Wordpress application linked to a MySQL database. Inside your stack, you add a service by clicking the **Add Service** button. Alternatively, if you are viewing the stacks at the stack level, the same **Add Service** button is visible for each specific stack. 
 
-You will need to provide a **Name** and if desired, **Description** of the service. In the **Scale** section, you can use the slider for the specific number of containers you want launched for a service. Alternatively, you can select **Always run one instance of this container on every host**. With this option, your service will scale for any additional hosts that are added to your [project]({{site.baseurl}}/rancher/configuration/projects/). Additionally, if you have scheduling rules in the **Advanced Options** -> **Scheduling**, Rancher will only start containers on the hosts that meet the host labels rules. If you add a host to your project that doesn't meet the scheduling rules, a container will not be started on the host.
+You will need to provide a **Name** and if desired, **Description** of the service. In the **Scale** section, you can use the slider for the specific number of containers you want launched for a service. Alternatively, you can select **Always run one instance of this container on every host**. With this option, your service will scale for any additional hosts that are added to your [environment]({{site.baseurl}}/rancher/configuration/environments/). Additionally, if you have scheduling rules in the **Advanced Options** -> **Scheduling**, Rancher will only start containers on the hosts that meet the host labels rules. If you add a host to your environment that doesn't meet the scheduling rules, a container will not be started on the host.
 
 Provide the **Image** to use. You can use any image on [DockerHub](https://hub.docker.com/) as well as any [registries]({{site.baseurl}}/rancher/configuration/registries) that have been added to Rancher. The syntax for image name would match any `docker run` commands. 
 
@@ -73,4 +73,4 @@ There are several ways to start services. You can immediately start it after cre
 
 ### Load Balancing Services
 
-At this point, it would make sense to load balance our Wordpress service. Let's move on to how to [add a balancer service]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-balancers/) into our stack.
+At this point, it would make sense to load balance our Wordpress service. Let's move on to how to [add a load balancer]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-balancers/) into our stack.
