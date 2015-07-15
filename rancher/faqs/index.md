@@ -156,3 +156,5 @@ Rows matched: 1  Changed: 1  Warnings: 0
 ```
 
 After the subnet table has been updated, you can add hosts/containers to the Rancher server and it will use the new subnet ID for the containers.
+
+> **Note:** For every [environment]({{site.baseurl}}/rancher/configuration/environments/), a new entry is created in the subnet table. This entry will default to the `10.42.x.x` subnet and you will need to update the entry in the table for each new environment.
