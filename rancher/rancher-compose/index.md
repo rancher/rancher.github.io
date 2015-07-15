@@ -94,13 +94,22 @@ Sample configuration `docker-compose.yml`
 lb:
   image: rancher/load-balancer-service
   ports:
-  # Load Balancer public port 80 to private port 81 using HTTP
-  - 80:81
-  # Load Balancer public port 9999 to private port 8888 using tcp
-  - 9999:8888/tcp
+  # Load Balancer should listen on public port 80
+  - 80
+  # Load Balancer public port 82 and by default forward private port 81 using HTTP
+  - 82:81
+  # Load Balancer public port 9999 using TCP and not HTTP
+  - 9999/tcp
   labels:
     # Put load balancer containers on hosts with label lb=true
     - "io.rancher.scheduler.affinity:host_label=lb=true"
+    # Requests to http://app.example.com/foo should be routed to web over port 8000
+    - "io.rancher.loadbalancer.target.web=8000:app.example.com/foo"
+    # Requests to http://app.example.com should be routed to web2 over port 8000
+    - "io.rancher.loadbalancer.target.web2=8000:app.example.com"
+    # Requests routed to web2 should go to port 8000, overriding the default configuration
+    # of 80:81
+    - "io.rancher.loadbalancer.target.web3=80"
 ```
 
 Sample `rancher-compose.yml`
@@ -119,14 +128,7 @@ lb:
       request_learn: true
       timeout: 3600000
       mode: path_parameters
-    # Health check configurations
-    health_check:
-      port: 80
-      interval: 2000
-      unhealthy_threshold: 3
-      request_line: GET /index.html HTTP/1.0
-      healthy_threshold: 2
-      response_timeout: 2000
+    # Health check configurations is taken from the target service
 ```
 
 #### External Service
