@@ -80,7 +80,7 @@ With services, you may want to have your service use `volumes_from` and `net` to
 
 Another time that you may want to define the sidekick relationship is if you have multiple services that always need to be deployed on the same host.
 
-To set a sidekick relationship, you add a label to one of the services. The key of the label will be `io.rancher.sidekicks` and the value will be the service(s). If you have multiple services to add as sidekicks, they can be separated with commas. Example: `io.rancher.sidekicks: sidekick1, sidekick2, sidekick3` 
+To set a sidekick relationship, you add a label to one of the services. The key of the label will be `io.rancher.sidekicks` and the value will be the service(s). If you have multiple services to add as sidekicks, they should be separated with commas. Example: `io.rancher.sidekicks: sidekick1, sidekick2, sidekick3` 
 
 > **Note:** Whichever service contains the sidekick label is considered the primary service. The scale of the primary service will be used as the scale for all services in the sidekicks label. If your scale among all your services are different, then the scale of the primary service will be used for all services.
 
