@@ -74,6 +74,47 @@ Docker builds are supported in two ways.  First is to set `build:` to a git or H
 
 For S3 based builds to work you must [setup AWS credentials](https://github.com/aws/aws-sdk-go/#configuring-credentials).
 
+### Sidekicks
+
+With services, you may want to have your service use `volumes_from` and `net` to point to another service. In order for these to work, you need to set up a sidekick relationship. The sidekick relationship is how Rancher scales and schedules these services as one unit. Example: B is a sidekick of A, so the services will always deploy as a pair and scale of the services will always be the same. 
+
+Another time that you may want to define the sidekick relationship is if you have multiple services that always need to be deployed on the same host.
+
+To set a sidekick relationship, you add a label to one of the services. The key of the label will be `io.rancher.sidekicks` and the value will be the service(s). If you have multiple services to add as sidekicks, they can be separated with commas. Example: `io.rancher.sidekicks: sidekick1, sidekick2, sidekick3` 
+
+> **Note:** Whichever service contains the sidekick label is considered the primary service. The scale of the primary service will be used as the scale for all services in the sidekicks label. If your scale among all your services are different, then the scale of the primary service will be used for all services.
+
+#### Example of Sidekicks in Rancher-Compose:
+
+Sample configuration `docker-compose.yml` 
+
+```yaml
+test:
+  tty: true
+  image: ubuntu:14.04.2
+  stdin_open: true
+  volumes_from:
+  - test-data
+  labels:
+    io.rancher.sidekicks: test-data
+test-data:
+  tty: true
+  command:
+  - cat
+  image: ubuntu:14.04.2
+  stdin_open: true
+```
+
+Sample `rancher-compose.yml`
+
+```yaml
+test:
+  scale: 2
+test-data:
+  scale: 2
+```
+
+
 ### Custom Rancher Services
 
 Custom Rancher services are configured by using a special image name in the compose template.  The image name is how rancher-compose knows to set up a Rancher service versus a normal service.

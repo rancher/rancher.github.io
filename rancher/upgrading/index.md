@@ -20,7 +20,7 @@ Use the original Rancher Server container to be your DB server. Any changes that
 2. Create a rancher-data container. Since we start the rancher server container with `--restart=always`, any reboot will restart the old container. Note: This step can be skipped if you have already upgraded in the past and are upgrading to a newer version.
     
     ```bash
-    $ docker create --volumes-from <container_name_of_original_server> --name rancher-data rancher/server
+    $ docker create --volumes-from <container_name_of_original_server> --name rancher-data rancher/server:<tag_of_previous_rancher_server>
     ```
 
 3. Pull the most recent image of Rancher Server. Note: If you skip this step and try to run the latest image, it will not automatically pull an updated image.
