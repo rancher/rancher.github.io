@@ -56,6 +56,7 @@ Within the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have 
 You'll need to add in environment variables in order for the Rancher agent to use the proxy.
 
 Potential Environment Variables to Set:
+
 * http_proxy
 * https_proxy
 * NO_PROXY (must be capitalized)
