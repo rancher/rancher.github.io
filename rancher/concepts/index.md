@@ -112,8 +112,8 @@ In addition, Rancher supports scheduling service triggers that allow users to sp
 
 Read more about scheduling with [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/scheduling/), in the UI with [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#scheduling-services), or in the UI with individual [containers]({{site.baseurl}}/rancher/rancher-ui/infrastructure/containers/#scheduling-containers).
 
-<!--
 ### Sidekicks
 
-Rancher implements a special scheduling directive for the sidekick pattern. If service A is a sidekick to service B, they must be scheduled and scaled in lock step. A service can have multiple sidekicks. The volumes-from directive only works between sidekicks. Sidekicks is somewhat similar to Kubernetes pods although it is limited to scheduling and does not imply namespace sharing. (Alena to review and add more details)
--->
+Rancher supports the colocation, scheduling, and lock step scaling of a set of services by allowing users to group these services using the notion of sidekicks.  A service with one or more sidekicks is typically created to support shared volumes (i.e. `--volumes_from`) and/or networking (i.e. `--net=container`) between containers.
+
+ Read more about using sidekicks with [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/#sidekicks).
