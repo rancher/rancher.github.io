@@ -30,39 +30,66 @@ Now, you can create run any `docker-compose.yml` file using `rancher-compose`. T
 
 Name | Description
 ----|-----
-create	| Create all services but do not start
-up		| Bring all services up
-start	| Start services
-logs	| 	Get service logs
-restart	| Restart services
-stop, down |	Stop services
-scale	| Scale services
-rm		| Delete services
-help, h	| Shows a list of commands or help for one command
+`create`	| Create all services but do not start
+`up`		| Bring all services up
+`start`	| Start services
+`logs`	| 	Get service logs
+`restart`	| Restart services
+`stop`, `down` |	Stop services
+`scale`	| Scale services
+`rm`		| Delete services
+`help`, `h`	| Shows a list of commands or help for one command
 
-
-### Options
+### Rancher-Compose Options
 
 Whenever you use the `rancher-compose` command, there are different options that you can use. 
 
 Name | Description
 --- | ---
---debug	|		
---url 			|	Specify the Rancher API endpoint URL [$RANCHER_URL]
---access-key 	|		Specify Rancher API access key [$RANCHER_ACCESS_KEY]
---secret-key 	|		Specify Rancher API secret key [$RANCHER_SECRET_KEY]
---file, -f "docker-compose.yml"	| Specify an alternate compose file (default: docker-compose.yml)
---rancher-file, -r 		|	Specify an alternate Rancher compose file (default: rancher-compose.yml)
---project-name, -p 		|	Specify an alternate [stack]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/) name (default: directory name)
---help, -h			|	show help
---version, -v		|	print the version
+`--verbose`, `--debug`	|		
+`--file`, `-f` `"docker-compose.yml"`|	Specify an alternate compose file (default: docker-compose.yml) [$COMPOSE_FILE]
+`--project-name`, `-p` 		|	Specify an alternate project name (default: directory name)
+`--url` 				| Specify the Rancher API endpoint URL [$RANCHER_URL]
+`--access-key` 			| Specify Rancher API access key [$RANCHER_ACCESS_KEY]
+`--secret-key` 		|	Specify Rancher API secret key [$RANCHER_SECRET_KEY]
+`--rancher-file`, `-r` 	|		Specify an alternate Rancher compose file (default: rancher-compose.yml)
+`--help`, `-h`			|	show help
+`--version`, `-v`		|	print the version
 
+### Command Options
+
+#### Up Command
+
+When you run the `up` command with `rancher-compose`, after all the tasks are complete, the process continues to run. If you want the process to exit, you'll need to add in the `-d` option, which is to not block and log. 
+
+Name | Description
+---|----
+   `-d` |	Do not block and log
+
+#### Logs Command
+
+Name | Description
+---|----
+   `--lines "100"` |	number of lines to tail
+
+#### Restart/Stop/Down Command
+
+Name | Description
+---|----
+   `--timeout`, `-t` `"10"` |	Specify a shutdown timeout in seconds.
+
+#### Rm Command
+
+Name | Description
+---|----
+`--force`, `-f`	| Allow deletion of all services
 
 ### Compose Compatibility
 
 `rancher-compose` strives to be completely compatible with Docker Compose.  Since `rancher-compose` is largely focused on running production workloads some behaviors between Docker Compose and Rancher Compose are different.
 
 We support anything that can be created in a standard [docker-compose.yml](https://docs.docker.com/compose/yml/) file. There are a couple of differences in the behavior of rancher-compose that are documented below.
+
 
 #### Deleting Services/Container
 
