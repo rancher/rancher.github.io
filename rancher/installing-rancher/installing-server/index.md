@@ -57,11 +57,11 @@ After the database and user is created, you can run the command to launch ranche
 
 ```bash
 sudo docker run -d --restart=always -p 8080:8080 \
-    -e CATTLE_DB_CATTLE_MYSQL_HOST: <hostname or IP of MySQL instance> \
-    -e CATTLE_DB_CATTLE_MYSQL_PORT: <port> \
-    -e CATTLE_DB_CATTLE_MYSQL_NAME: <Name of Database> \
-    -e CATTLE_DB_CATTLE_USERNAME: <Username> \
-    -e CATTLE_DB_CATTLE_PASSWORD: <Password> \
+    -e CATTLE_DB_CATTLE_MYSQL_HOST=<hostname or IP of MySQL instance> \
+    -e CATTLE_DB_CATTLE_MYSQL_PORT=<port> \
+    -e CATTLE_DB_CATTLE_MYSQL_NAME=<Name of Database> \
+    -e CATTLE_DB_CATTLE_USERNAME=<Username> \
+    -e CATTLE_DB_CATTLE_PASSWORD=<Password> \
     rancher/server
 ```
 

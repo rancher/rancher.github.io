@@ -64,7 +64,7 @@ When you run the `up` command with `rancher-compose`, after all the tasks are co
 
 Name | Description
 ---|----
-   `-d` |	Do not block and log
+`-d` |	Do not block and log
 
 #### Logs Command
 
