@@ -12,12 +12,12 @@ Inside your stack, you add an external service by clicking on the dropdown icon 
 
 You will need to provide a **Name** and if desired, **Description** of the service. 
 
-Add the target(s) that you want. The target will be an external IP. Finally, click **Create**.
+Add the target(s) that you want. You can select either an external IP or a hostname (i.e. CNAME). Finally, click **Create**.
 
-The list of IPs that the alias is serving is shown in the service. Just like our services, you will need to have the service alias started before it is working.
+The external service IPs and hostnames will be shown in the service. Just like our services, you will need to start the external services.
 
 ### Adding/Removing targets
 
-At any time, you can edit the targets in an external service. Click on the **Edit** within the service's dropdown menu. You will have the ability to add more targets or remove existing targets.
+At any time, you can edit the targets in an external service. Click on the **Edit** within the external service's dropdown menu. You will have the ability to add more targets or remove existing targets.
 
 
