@@ -10,7 +10,7 @@ With Rancher, you can add multiple services in a stack to make an application. W
 
 We'll walk through how to create a Wordpress application linked to a MySQL database. Inside your stack, you add a service by clicking the **Add Service** button. Alternatively, if you are viewing the stacks at the stack level, the same **Add Service** button is visible for each specific stack. 
 
-You will need to provide a **Name** and if desired, **Description** of the service. In the **Scale** section, you can use the slider for the specific number of containers you want launched for a service. Alternatively, you can select **Always run one instance of this container on every host**. With this option, your service will scale for any additional hosts that are added to your [environment]({{site.baseurl}}/rancher/configuration/environments/). Additionally, if you have scheduling rules in the **Advanced Options** -> **Scheduling**, Rancher will only start containers on the hosts that meet the host labels rules. If you add a host to your environment that doesn't meet the scheduling rules, a container will not be started on the host.
+You will need to provide a **Name** and if desired, **Description** of the service. In the **Scale** section, you can use the slider for the specific number of containers you want launched for a service. Alternatively, you can select **Always run one instance of this container on every host**. With this option, your service will scale for any additional hosts that are added to your [environment]({{site.baseurl}}/rancher/configuration/environments/). If you have scheduling rules in the **Advanced Options** -> **Scheduling**, Rancher will only start containers on the hosts that meet the host labels rules. If you add a host to your environment that doesn't meet the scheduling rules, a container will not be started on the host.
 
 Provide the **Image** to use. You can use any image on [DockerHub](https://hub.docker.com/) as well as any [registries]({{site.baseurl}}/rancher/configuration/registries) that have been added to Rancher. The syntax for image name would match any `docker run` commands. 
 
@@ -35,9 +35,9 @@ For the MySQL service, we'll need to add the `MYSQL_ROOT_PASSWORD` as an environ
 <a id="scheduling-services"></a>
 ### Labels/Scheduling 
 
-By adding labels to a service, every container in the service will receive that label, which is a key value pair. In Rancher, we use container labels to help define scheduling rules. You can create as many labels on a container as you'd like. By default, Rancher already adds system related labels on every container. 
+By adding labels to a service, every container in the service will receive that label, which is a key value pair. In Rancher, we use container labels to help define scheduling rules. You can create as many labels on a service as you'd like. By default, Rancher already adds system related labels on every container. 
 
-In a service, you might want to decide which hosts to have your containers started on. This can be accomplished by creating a set of scheduling rules to the service. To add scheduling rules, open the **Advanced Options** -> **Scheduling** section. 
+In a service, you might want to pick specific hosts to have your containers started on. This can be accomplished by creating a set of scheduling rules for the service. To add scheduling rules, open the **Advanced Options** -> **Scheduling** section. 
 
 **Option 1: Run _all_ containers on a specific host**
 By selecting this option, all containers in your service will be started on the same host. If your host goes down, then the service will also go down as there won't be any containers on any other hosts. 
@@ -46,6 +46,8 @@ By selecting this option, all containers in your service will be started on the 
 By selecting this option, you have the flexibility to choose your scheduling rules. Any host that follows all the rules is a host that could have the containers started on. You can add rules by clicking on the **+** button. 
 
 For each rule, you select a **condition** of the rule. There are 4 different conditions, which define how strict the rule must be followed. The **field** determines which field you want the rule to be applied to. The **key** and **value** are the values which you want the field to be checked against. Rancher will spread the distribution of containers on the applicable hosts based on the load of each host. Depending on the condition chosen will determine what the applicable hosts are.
+
+> **Note:** If you have selected the **Always run one instance of this container on every host**, then only the host labels will appear as a possible field.
 
 _Conditions_
 
