@@ -28,7 +28,7 @@ $ docker exec -it <container_id> bash
 
 # Navigate to the location of the cattle logs
 $ cd /var/lib/cattle/logs/
-$ cat cattle_debug.log
+$ cat cattle-debug.log
 ```
 
 Inside this folder, there will be `cattle_debug.log` and `cattle_error.log`. If you have been using Rancher server for many days, you will find a log file for each day as we create a new file for each day. 
