@@ -12,6 +12,16 @@ If you are using different [environments]({{site.baseurl}}/rancher/configuration
 
 Please make sure that you are in the environment that you want to add hosts to. The environment is displayed in the upper right corner next to the account dropdown. When you first login to the Rancher instance, you are in the **Default** environment.
 
+Once your hosts are added to Rancher, they are available for [our services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/).
+
+### Host Labels
+
+With each host, you have the ability to add labels to help you organize your hosts. The labels are a key/value pair and the keys must be unique identifiers. If you added two keys with different values, we'll take the last inputted value to use as the key/value pair.
+
+By adding labels to hosts, you can use these labels when [schedule services/load balancers/services]({{site.baseurl}}/rancher/rancher-ui/scheduling/) and create a whitelist or blacklist of hosts for your [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/) to run on. 
+
+### Security Groups/Firewalls 
+
 For any hosts that are added, please make sure that any security groups or firewalls allow traffic. If these are not enabled, then the functionality of Rancher will be limited.
 
 * From and To all other hosts on UDP ports `500` and `4500` (for IPsec networking)
@@ -19,8 +29,6 @@ For any hosts that are added, please make sure that any security groups or firew
 As of our Beta release (v0.24.0), we no longer require any additional TCP ports. But if you are using a version prior to Beta, then you will need to add the following ports:
 
 * From the internet to TCP ports `9345` and `9346` (for UI hosts stats/graphs) 
-
-Once your hosts are added to Rancher, they are available for [our services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/).
 
 <a id="samehost"></a>
 ### Adding Hosts to the same machine as Rancher Server
