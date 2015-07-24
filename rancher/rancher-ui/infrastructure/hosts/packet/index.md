@@ -35,7 +35,7 @@ Now that we've found our **Token**, we are ready to launch our Packet host(s). U
 5. Select the **Image**. Whatever `docker machine` supports for Packet is also supported by Rancher.
 5. Select the **Size** of the image. 
 6. Select the **Region** that you want to launch in. 
-7. (Optional) Add **[labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#labels)** to hosts to help organize your hosts and to [schedule services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#scheduling-services).
+7. (Optional) Add **[labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#labels)** to hosts to help organize your hosts and to [schedule services/load balancers/services]({{site.baseurl}}/rancher/rancher-ui/scheduling/).
 8. When complete, click **Create**. 
 
 Once you click on create, Rancher will create the Packet and launch the _rancher-agent_ container. In a minute or two, the host will be active and available for [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/).

@@ -27,7 +27,7 @@ Now that we've found our **API Key**, we are ready to launch our Rackspace host(
 4. Provide the **API Key** that we found associated with your username.
 5. Pick the **Region** that you want to launch your host in.
 6. Pick the **Flavor** of the host.
-7. (Optional) Add **[labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#labels)** to hosts to help organize your hosts and to [schedule services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#scheduling-services).
+7. (Optional) Add **[labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#labels)** to hosts to help organize your hosts and to [schedule services/load balancers/services]({{site.baseurl}}/rancher/rancher-ui/scheduling/).
 8. When complete, click **Create**. 
 
-Once you click on create, Rancher will create the Rackspace server and launch the _rancher-agent_ container in the droplet. In a couple of minutes, the host will be active and available for [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/).
+Once you click on create, Rancher will create the Rackspace server and launch the _rancher-agent_ container in the server. In a couple of minutes, the host will be active and available for [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/).

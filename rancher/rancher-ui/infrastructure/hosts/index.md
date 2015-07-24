@@ -5,32 +5,37 @@ layout: rancher-default
 
 ## Getting Started with Hosts
 ---
-Within Rancher, we provide easy instructions to add your host from the Cloud providers that are supported directly from our UI as well as instructions to add your own host if your Cloud provider is not supported yet.
+Within Rancher, we provide easy instructions to add your host from the Cloud providers that are supported directly from our UI as well as instructions to add your own host if your Cloud provider is not supported yet. From the **Hosts** tab within the **Infrastructure** tab, click on **Add Host**.
+
+### Hosts Requirements
+
+* Any modern Linux distribution that supports Docker 1.6+. (Ubuntu, RHEL/CentOS 6/7 are more heavily tested.) 
+* 1GB RAM 
+* Recommended CPU w/ AES-NI 
 
 <a id="addhost"></a>
 ## Adding a Host
 ---
 
-From the **Hosts** tab within the Infrastructure tab, you click on **Add Host**.
-
 The first time that you add a host, you may be required to set up the [Host Registration]({{site.baseurl}}/rancher/configuration/host-registration/). This setup determines what DNS name or IP address, and port that your hosts will be connected to the Rancher API. By default, we have selected the management server IP and port `8080`.  If you choose to change the address, please make sure to specify the port that should be used to connect to the Rancher API. At any time, you can update the [Host Registration]({{site.baseurl}}/rancher/configuration/host-registration/). After setting up your host registration, click on **Save**.
 
 We support adding hosts directly from cloud providers or adding a host that's already been provisioned. Select which host type you want to add:
 
-* [Adding DigitalOcean Droplet Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/digitalocean/)
 * [Adding Amazon EC2 Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/amazon/)
+* [Adding DigitalOcean Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/digitalocean/)
+* [Adding Exoscale Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/exoscale/)
 * [Adding Packet Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/packet/)
 * [Adding Rackspace Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/rackspace/)
 * [Adding Custom Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/)
 
-When a host is added to Rancher, an agent container is launched on the host. Rancher will automatically pull the correct image version tag for the `rancher/agent` and run the required version. The agent version is tagged specifically to each Rancher server version.
+When a host is added to Rancher, a rancher agent container is launched on the host. Rancher will automatically pull the correct image version tag for the `rancher/agent` and run the required version. The agent version is tagged specifically to each Rancher server version.
 
 <a id="labels"></a>
 ### Host Labels
 
 With each host, you have the ability to add labels to help you organize your hosts. The labels are a key/value pair and the keys must be unique identifiers. If you added two keys with different values, we'll take the last inputted value to use as the key/value pair.
 
-By adding labels to hosts, you can use these labels when [scheduling services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#scheduling-services) and create a whitelist or blacklist of hosts for your [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/) to run on. 
+By adding labels to hosts, you can use these labels when [schedule services/load balancers/services]({{site.baseurl}}/rancher/rancher-ui/scheduling/) and create a whitelist or blacklist of hosts for your [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/) to run on. 
 
 <a id="machine-config"></a>
 ### Host Access for Hosts created by Rancher

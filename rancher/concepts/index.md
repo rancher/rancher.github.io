@@ -110,7 +110,9 @@ Rancher supports container scheduling policies that are modeled closely after Do
 
 In addition, Rancher supports scheduling service triggers that allow users to specify rules such as on "host add" or "host label" to automatically scale services onto hosts with specific labels.
 
-Read more about scheduling with [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/scheduling/), in the UI with [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#scheduling-services), or in the UI with individual [containers]({{site.baseurl}}/rancher/rancher-ui/infrastructure/containers/#scheduling-containers).
+Read more about how to use scheduling with [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/scheduling/), or in the [UI]({{site.baseurl}}/rancher/rancher-ui/scheduling/).
+
+Read more about the [differences/similarities]({{site.baseurl}}/rancher/concepts/scheduling/) between Rancher's scheduling and Docker Swarm.
 
 ### Sidekicks
 
