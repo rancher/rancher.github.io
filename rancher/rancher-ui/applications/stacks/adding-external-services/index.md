@@ -14,7 +14,7 @@ You will need to provide a **Name** and if desired, **Description** of the servi
 
 Add the target(s) that you want. You can select either an external IP or a hostname (i.e. CNAME). Finally, click **Create**.
 
-The external service IPs and hostnames will be shown in the service. Just like our services, you will need to start the external services.
+The external service IPs and hostname will be shown in the service. Just like our services, you will need to start the external services.
 
 ### Adding/Removing targets
 

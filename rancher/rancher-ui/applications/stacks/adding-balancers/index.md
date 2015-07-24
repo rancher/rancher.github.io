@@ -32,20 +32,20 @@ Our load balancer has HAProxy software installed on the load balancer agent cont
 
 ### Internal Load Balancers
 
-With Rancher, you have the ability to create an internal load balancer by setting the listening port(s) to `Internal`. When the listening port is set to internal, then the source port of the load balancer will not be exposed on the host. Therefore, for any internal load balancer on a host, only services on the same host will be able to access this load balancer. Any services on a different host will **not** be able to access the load balancer.
+With Rancher, you have the ability to create an internal load balancer by setting the listening port(s) to `Internal`. When the listening port is set to internal, then the source port of the load balancer will not be published on the host. Therefore, for any internal load balancer on a host, only services on the same host will be able to access this load balancer. Any services on a different host will **not** be able to access the load balancer.
 
 ### Basic Load Balancing
 
-In the most basic use case, we can select as many listening ports and services as we'd like. We've made the assumption that the access is set as `public` for every listening ports. The source port(s) of the load balancer will use the round robin algorithm to forward traffic to any service(s) on the target port(s). 
+In the most basic use case, we can select as many listening ports and services as we'd like. We've made the assumption that the access is set as `public` for every listening ports. The source port(s) of the load balancer will use the round robin algorithm to forward traffic to any service(s) on the target port mapped to the particular source port. 
 
 **Example:**
 
 When we set up 2 listening ports and 3 services, the load balancer will direct traffic on both listening ports across all services.
 
-Source Port| Listening Port
+Source Port| Target Port
 ---|---
-80 | 80
-443 | 
+80 | 81
+8090 | 
 <br>
 
 | Target Services|
@@ -55,7 +55,7 @@ Source Port| Listening Port
 |Service3 |
 
 <br>
-In our example, any traffic directed to port `80` on the host of the load balancer would alternate between Service1, Service2 and Service3 on the target port `80`. Any traffic directed to port `443` on the host of the load balancer would alternate between Service1, Service2 and Service3 on port `443`. 
+In our example, any traffic directed to port `80` on the host of the load balancer would get round robin-ed to  Service1, Service2, Service3 on the target port `81`. Any traffic directed to port `8090` on the host of the load balancer would get round robin-ed to Service1, Service2, Service3 on port `8090`. Since no target port was set for the listening port `8090`, the target port will be the same as the source port.
 
 With our basic load balancing, it should solve the most basic use cases. There are limitations within the basic load balancing. If you want to load balance different services (i.e. virtual hosting) or listen using host headers/paths/ports, you can use our advanced routing options for more flexibility.
 
@@ -75,7 +75,7 @@ domain2.com -> Service2
 domain3.com -> Service1 <br>
 domain3.com/admin -> Service2
 
-If no ports are defined for the service, then the source port and target port of the listening ports will be used to direct traffic based on the request. You can also specify the source ports and target ports for each request and the traffic would use the specified ports for the request.
+If no ports are defined for the service, then the source port and target port of all the listening ports will be used to direct traffic based on the request. If a particular source port is defined, traffic coming to a specific host header/path will need to match a specific rule in order to be directed to the target.
 
 #### Target Port
 
@@ -91,10 +91,10 @@ Source Port| Default Target Port
 |Target Services| Target Ports|
 |---| ---|
 |Service1| None|
-|Service2 | `443`|
+|Service2 | `90`|
 
 <br>
-In our example above, the load balancer will direct traffic to different ports depending on the service. Since the load balancer is using a round robin algorithm, any traffic to the source port `80` will be directed alternatively between the services. When traffic is being directed to Service1, it will use the default target port `80`. When traffic is directed to Service2, it will use the target port `443`, that was defined with Service2.
+In our example above, the load balancer will direct traffic to different ports depending on the service. Since the load balancer is using a round robin algorithm, any traffic to the source port `80` will be directed alternatively between the services. When traffic is being directed to Service1, it will use the default target port `80`. When traffic is directed to Service2, it will use the target port `90`, that was defined with Service2.
 
 #### Source Port 
 

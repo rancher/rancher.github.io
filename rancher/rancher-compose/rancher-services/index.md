@@ -20,9 +20,9 @@ A load balancer can be scheduled like any other service. Read more about [schedu
 
 Load balancing using the basic use case of load balancers is simply adding ports and linking services. Any traffic directed to a source port will be sent to the private port of the linked services.
 
-We go into more detail on [advanced routing options]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-balancers/#advanced-routing-optons) for load balancers in our UI section, but anything that we can create in Rancher can be created using `rancher-compose`.
+We also support advanced routing options, which include using host headers, host paths and specific target ports. We go into more detail on [advanced routing options]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-balancers/#advanced-routing-optons) for load balancers in our UI section, but anything that we can create in Rancher can be created using `rancher-compose`.
 
-Advanced routing options use `labels` in the `docker-compose.yml` file. Here's the basic syntax for applying the label. You would only use this label if you were going to do some advanced routing rules.
+Advanced routing options use `labels` in the `docker-compose.yml` file. Here's the basic syntax for applying the label. You would only use this label if you were going to do some advanced routing rules. Advanced routing rules are optional and all of the fields  are optional as well. This syntax shows if you were to use all the options.
 
 Label Key | Label Value
 ---| ---
@@ -30,15 +30,15 @@ Label Key | Label Value
 
 > **Note:** If you use a source port with the advanced routing options, the source port must also be listed in `ports` section of the `docker-compose.yml`
 
-Here is the syntax for all combinations using request host, source port, path and target port. 
+Since the fields are optional, we support all combinations of the fields. Here is the syntax for all combinations using request host, source port, path and target port. 
 
 Request Host | Source Port | Path | Target Port | Label Value
 ---|---|---|---| ---
 example.com | 80 | path | 81 | `example.com:80/path=81`
-example.com | 80 | path | | `example.com:80/path`
+example.com | 80 | path/a | | `example.com:80/path/a`
 example.com | 80||81 | `example.com:80=81`
 example.com |80 | | | `example.com:80`
-example.com | | path | 81 | `example.com/path=81`
+example.com | | path/b/c | 81 | `example.com/path/b/c=81`
 example.com | | path | | `example.com/path`
 example.com| | | 81 | `example.com=81`
 example.com | | | | `example.com`
@@ -51,6 +51,8 @@ example.com | | | | `example.com`
 
 <br>
 **Note:** It is assumed that if you have only a port in the label, then the port is for the target port of the service. 
+
+In `rancher-compose`, you can configure multiple hostname routing rules to the same service by separating each rule with a comma. See example below for service `web2`.
 
 **Load Balancer Sample configuration** `docker-compose.yml`
 
@@ -71,14 +73,15 @@ lb:
   - web3:web3
   labels:
     # Put load balancer containers on hosts with label lb=true
-    - "io.rancher.scheduler.affinity:host_label=lb=true"
+    io.rancher.scheduler.affinity:host_label: lb=true
     # Requests to http://app.example.com/foo:80 should be routed to web1 over port 8000
-    - "io.rancher.loadbalancer.target.web1=app.example.com:80/foo=8000"
-    # Requests to http://app.example.com should be routed to web2 over port 8000
-    - "io.rancher.loadbalancer.target.web2=app.example.com=8000"
-    # Requests routed to web3 should go to port 8000, overriding the default configuration
+    io.rancher.loadbalancer.target.web1: app.example.com:80/foo=8000
+    # Requests to http://app.example.com/foo should be routed to web2 over port 8000 
+    # and http://app.example.com/foo/bar over port 8001
+    io.rancher.loadbalancer.target.web2: app.example.com/foo=8000,app.example.com/foo/bar=8001
+    # Requests routed to web3 go to port 8000, overriding the default configuration
     # of 82:81
-    - "io.rancher.loadbalancer.target.web3=82=8000"
+    io.rancher.loadbalancer.target.web3: 82=8000
 ```
 
 **Sample** `rancher-compose.yml`
@@ -132,7 +135,7 @@ web1:
 
 ### External Service
 
-In external services, you can set either external IPs or domain names.
+In external services, you can set either external IP(s)s or a domain name. With external services, you can only set either an external IP(s) OR a domain name. 
 
 **Sample configuration** `docker-compose.yml`
 
