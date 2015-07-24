@@ -34,23 +34,23 @@ Since the fields are optional, we support all combinations of the fields. Here i
 
 Request Host | Source Port | Path | Target Port | Label Value
 ---|---|---|---| ---
-example.com | 80 | path | 81 | `example.com:80/path=81`
-example.com | 80 | path/a | | `example.com:80/path/a`
+example.com | 80 | /path | 81 | `example.com:80/path=81`
+example.com | 80 | /path/a | | `example.com:80/path/a`
 example.com | 80||81 | `example.com:80=81`
 example.com |80 | | | `example.com:80`
-example.com | | path/b/c | 81 | `example.com/path/b/c=81`
-example.com | | path | | `example.com/path`
+example.com | | /path/b/c | 81 | `example.com/path/b/c=81`
+example.com | | /path | | `example.com/path`
 example.com| | | 81 | `example.com=81`
 example.com | | | | `example.com`
- | 80| path | 81 | `80/path=81`
- | 80 |path | | `80/path` 
+ | 80| /path | 81 | `80/path=81`
+ | 80 |/path | | `80/path` 
  |80 | | 81 | `80=81`
- | | path | 81| `/path=81`
- | | path | | `/path`
- | | | 81 | `81` *See Note 
+ | | /path | 81| `/path=81`
+ | | /path | | `/path`
+ | | | 81 | `'81'` *See Note 
 
 <br>
-**Note:** It is assumed that if you have only a port in the label, then the port is for the target port of the service. 
+**Note:** It is assumed that if you have only a port in the label, then the port is for the target port of the service. When using only a target port, it must be surrounded by single quotes.
 
 In `rancher-compose`, you can configure multiple hostname routing rules to the same service by separating each rule with a comma. See example below for service `web2`.
 
