@@ -30,13 +30,9 @@ It's that easy to set up a load balancer with Rancher!
 
 Our load balancer has HAProxy software installed on the load balancer agent containers. The load balancer uses a round robin algorithm from HAProxy to select the target services. 
 
-### Internal Load Balancers
-
-With Rancher, you have the ability to create an internal load balancer by setting the listening port(s) to `Internal`. When the listening port is set to internal, then the source port of the load balancer will not be published on the host. Therefore, for any internal load balancer on a host, only services on the same host will be able to access this load balancer. Any services on a different host will **not** be able to access the load balancer.
-
 ### Basic Load Balancing
 
-In the most basic use case, we can select as many listening ports and services as we'd like. We've made the assumption that the access is set as `public` for every listening ports. The source port(s) of the load balancer will use the round robin algorithm to forward traffic to any service(s) on the target port mapped to the particular source port. 
+Rancher supports L4 load balancing by simply adding listening ports and linking target services. We can add as many listening ports and services as we'd like. We've made the assumption that the access is set as `public` for every listening ports. The source port(s) of the load balancer will use the round robin algorithm to forward traffic to any service(s) on the target port mapped to the particular source port. 
 
 **Example:**
 
@@ -57,11 +53,13 @@ Source Port| Target Port
 <br>
 In our example, any traffic directed to port `80` on the host of the load balancer would get round robin-ed to  Service1, Service2, Service3 on the target port `81`. Any traffic directed to port `8090` on the host of the load balancer would get round robin-ed to Service1, Service2, Service3 on port `8090`. Since no target port was set for the listening port `8090`, the target port will be the same as the source port.
 
-With our basic load balancing, it should solve the most basic use cases. There are limitations within the basic load balancing. If you want to load balance different services (i.e. virtual hosting) or listen using host headers/paths/ports, you can use our advanced routing options for more flexibility.
+### Internal Load Balancing
+
+You will have the option to no longer publish source ports to the host by setting the access level of each individual “Listening Port” to `Internal`.  All internal ports can only be accessed by services within the same environment.
 
 ### Advanced Routing Options
 
-To expand the advanced options, click on the **Show advanced routing options**. When using the advanced options, the only required field is **Target Service**, which would mimic the basic load balancing examples. All of the other fields in the advanced section are optional. For each option, we cover some basic examples, but you can use all or some of these options together to define exactly how you want your load balancer to direct traffic to your services.
+Rancher supports L7 load balancing with our advanced routing options. To expand the advanced options, click on the **Show advanced routing options**. The only required field is **Target Service**, which would be L4 load balancing. All of the other fields for L7 load balancing are optional. Since all the fields are optional, the listening ports are default when adding host/request paths, and the ports will be overriden if you specify source/target ports for a service. For each option, we cover some basic examples, but you can use all or some of these options together to define exactly how you want your load balancer to direct traffic to your services.
 
 #### Request Host/Request Path 
 
@@ -75,7 +73,7 @@ domain2.com -> Service2
 domain3.com -> Service1 <br>
 domain3.com/admin -> Service2
 
-If no ports are defined for the service, then the source port and target port of all the listening ports will be used to direct traffic based on the request. If a particular source port is defined, traffic coming to a specific host header/path will need to match a specific rule in order to be directed to the target.
+Since source/target ports are optional, the listening ports are used as defaults to direct traffic based on the request. If a source port is defined, traffic coming to a specific host header/path will need to match a specific rule in order to be directed to the target.
 
 #### Target Port
 

@@ -18,9 +18,9 @@ Alias/DNS Service | rancher/dns-service
 
 A load balancer can be scheduled like any other service. Read more about [scheduling]({{site.baseurl}}/rancher/rancher-compose/scheduling/) services and load balancers using `rancher-compose`.
 
-Load balancing using the basic use case of load balancers is simply adding ports and linking services. Any traffic directed to a source port will be sent to the private port of the linked services.
+Rancher supports L4 load balancing by adding ports and linking services. Any traffic directed to any of source port(s) will be sent to the private port(s) of the linked service(s).
 
-We also support advanced routing options, which include using host headers, host paths and specific target ports. We go into more detail on [advanced routing options]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-balancers/#advanced-routing-optons) for load balancers in our UI section, but anything that we can create in Rancher can be created using `rancher-compose`.
+We also support L7 load balancing with advanced routing options, which include using host headers, host paths and specific target ports. We go into more detail on [advanced routing options]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-balancers/#advanced-routing-optons) for load balancers in our UI section, but anything that we can create in Rancher can be created using `rancher-compose`.
 
 Advanced routing options use `labels` in the `docker-compose.yml` file. Here's the basic syntax for applying the label. You would only use this label if you were going to do some advanced routing rules. Advanced routing rules are optional and all of the fields  are optional as well. This syntax shows if you were to use all the options.
 
