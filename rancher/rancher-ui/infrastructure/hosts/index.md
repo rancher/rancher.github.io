@@ -11,7 +11,15 @@ Within Rancher, we provide easy instructions to add your host from the Cloud pro
 
 * Any modern Linux distribution that supports Docker 1.6+. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
 * 1GB RAM 
-* Recommended CPU w/ AES-NI 
+* Recommended CPU w/ AES-NI
+
+### How do Hosts work?
+
+A host gets connected to Rancher server when the rancher agent container is started on the host. The registration token, which is the long URL in  the **Add Host** -> **Custom** screen, is used by the rancher agent to connect to the server for the first time. Upon connection, it generates an agent account and API key pair in Rancher server. The key pair is then used for all subsequent communication using the same authentication and authorization logic as there is for other kinds of accounts, like environment API keys.
+
+The design is that the agent is untrusted because it is running on the outside and potentially hostile (to the server) hardware. The agent accounts have access to only the resources they need in the API, replies to events are checked that the event was actually sent to that agent, etc. There is not as much in the opposite direction for the agent to verify the host, so you can also set up TLS and the certificate will be verified. 
+
+The IPSec key is per [environment]({{site.baseurl}}/rancher/configuration/environments/). It is generated on the server, stored in the database, and sent to the host as part of the agent registration with the API key pair. The connections are point to point between hosts and AES encrypted, which is accelerated by most modern CPUs.
 
 <a id="addhost"></a>
 ## Adding a Host
@@ -54,7 +62,8 @@ To SSH into your host, go to your terminal/command prompt. Navigate to the folde
 $ ssh -i id_rsa root@<IP_OF_HOST>
 ```
 
-### Cloning a Host
+## Cloning a Host
+---
 
 Since launching hosts on cloud providers requires using an access key, you might want to easily create another host without needing to input all the credentials again. Rancher provides the ability to clone these credentials to spin up a new host. Select **Clone** from the host's drop down menu. It will bring up an **Add Host** page with the credentials of the cloned host populated.
 
@@ -71,7 +80,8 @@ Deactivating the host will put the host into an _Inactive_ state. In this state,
 
 When a host is in the _Inactive_ state, you can bring the host back into an _Active_ state by clicking on **Activate** from the host's dropdown menu.
 
-### Removing Hosts
+## Removing Hosts
+---
 
 In order to remove a host from the server, you will need to do a couple of steps from the dropdown menu.
 
