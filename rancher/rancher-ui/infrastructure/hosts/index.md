@@ -9,7 +9,7 @@ Within Rancher, we provide easy instructions to add your host from the Cloud pro
 
 ### Hosts Requirements
 
-* Any modern Linux distribution that supports Docker 1.6+. (Ubuntu, RHEL/CentOS 6/7 are more heavily tested.) 
+* Any modern Linux distribution that supports Docker 1.6+. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
 * 1GB RAM 
 * Recommended CPU w/ AES-NI 
 
@@ -19,14 +19,16 @@ Within Rancher, we provide easy instructions to add your host from the Cloud pro
 
 The first time that you add a host, you may be required to set up the [Host Registration]({{site.baseurl}}/rancher/configuration/host-registration/). This setup determines what DNS name or IP address, and port that your hosts will be connected to the Rancher API. By default, we have selected the management server IP and port `8080`.  If you choose to change the address, please make sure to specify the port that should be used to connect to the Rancher API. At any time, you can update the [Host Registration]({{site.baseurl}}/rancher/configuration/host-registration/). After setting up your host registration, click on **Save**.
 
-We support adding hosts directly from cloud providers or adding a host that's already been provisioned. Select which host type you want to add:
+We support adding hosts directly from cloud providers or adding a host that's already been provisioned. For cloud providers, we provision using `docker-machine` and support any images that `docker-machine` supports. 
 
+Select which host type you want to add:
+
+* [Adding Custom Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/)
 * [Adding Amazon EC2 Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/amazon/)
 * [Adding DigitalOcean Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/digitalocean/)
 * [Adding Exoscale Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/exoscale/)
 * [Adding Packet Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/packet/)
 * [Adding Rackspace Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/rackspace/)
-* [Adding Custom Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/)
 
 When a host is added to Rancher, a rancher agent container is launched on the host. Rancher will automatically pull the correct image version tag for the `rancher/agent` and run the required version. The agent version is tagged specifically to each Rancher server version.
 
@@ -37,8 +39,12 @@ With each host, you have the ability to add labels to help you organize your hos
 
 By adding labels to hosts, you can use these labels when [schedule services/load balancers/services]({{site.baseurl}}/rancher/rancher-ui/scheduling/) and create a whitelist or blacklist of hosts for your [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/) to run on. 
 
+### Hosts behind a Proxy
+
+To support hosts behind a proxy, you'll need to edit the Docker daemon to point to the proxy. The detailed instructions are listed within our [adding custom host page]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/#hosts-behind-a-proxy).
+
 <a id="machine-config"></a>
-### Host Access for Hosts created by Rancher
+### Accessing hosts from the Cloud Providers 
 
 After Rancher launches the host, you may want to be able to access the host. We provide all the certificates generated when launching the machine in an easy to download file. Click on **Machine Config** in the host's dropdown menu. It will download a tar.gz file that has all the certificates.
 

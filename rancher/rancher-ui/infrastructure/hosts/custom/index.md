@@ -41,16 +41,6 @@ sudo docker run -d -e CATTLE_AGENT_IP=<IP_OF_RANCHER_SERVER> -v /var/run/docker.
 
 If you have added a host onto the same host as Rancher server, please note that you will not be able to create any containers on the host that binds to port `8080`. Since the UI of the Rancher server relies on the `8080` port, there will be a port conflict and Rancher will stop working. If you require using port `8080` for your containers, you could launch Rancher server using a different port. 
 
-### VMs with Private and Public IP Addresses
-
-By default, the IP of a VM with a private IP and public IP will be set to the public IP. If you wanted to change the IP address to the private one, you'll need to edit the command provided from the UI. In order for the _rancher-agent_  container to be launched correctly, you will need to set the `CATTLE_AGENT_IP` environment variable to the private IP address.
-
-```bash
-sudo docker run -d -e CATTLE_AGENT_IP=<PRIVATE_IP> -v /var/run/docker....
-```
-
-> **Note**: When setting the private IP address, any existing containers in Rancher will not be part of the same managed network. 
-
 ### Hosts behind a Proxy
 
 In order to set up a HTTP proxy, you'll need to edit the Docker daemon to point to the proxy. Before attempting to add the custom host, you'll need to edit the `/etc/default/docker` file to point to your proxy and restart Docker.
@@ -72,3 +62,14 @@ Potential Environment Variables to Set:
 ```bash
 $ sudo docker run -d -e http_proxy=<proxyURL> -e https_proxy=<proxyURL> -e NO_PROXY=<proxyURL> -v /var/run/docker....
 ```
+
+### VMs with Private and Public IP Addresses
+
+By default, the IP of a VM with a private IP and public IP will be set to the public IP. If you wanted to change the IP address to the private one, you'll need to edit the command provided from the UI. In order for the _rancher-agent_  container to be launched correctly, you will need to set the `CATTLE_AGENT_IP` environment variable to the private IP address.
+
+```bash
+sudo docker run -d -e CATTLE_AGENT_IP=<PRIVATE_IP> -v /var/run/docker....
+```
+
+> **Note**: When setting the private IP address, any existing containers in Rancher will not be part of the same managed network. 
+

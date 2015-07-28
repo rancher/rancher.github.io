@@ -40,6 +40,7 @@ Name | Description
 `stop`, `down` |	Stop services
 `scale`	| Scale services
 `rm`		| Delete services
+`upgrade`	| Perform rolling upgrade between services
 `help`, `h`	| Shows a list of commands or help for one command
 
 ### Rancher-Compose Options
@@ -85,6 +86,18 @@ Name | Description
 Name | Description
 ---|----
 `--force`, `-f`	| Allow deletion of all services
+
+#### Upgrade Command
+
+Rancher supports upgrades to services using `rancher-compose`. Please read more about when and how to [upgrade your services]({{site.baseurl}}/rancher/rancher-compose/upgrading/).
+
+Name | Description
+---|----
+`--batch-size` `"2"`	| Number of containers to upgrade at once
+`--scale` `"-1"`		| Final number of running containers
+`--interval` `"2000"`	 | Update interval in milliseconds
+`--update-links`	| Update inbound links on target service
+`--wait`, `-w`		| Wait for upgrade to complete
 
 ### Compose Compatibility
 
@@ -141,108 +154,4 @@ test:
   scale: 2
 test-data:
   scale: 2
-```
-
-
-### Custom Rancher Services
-
-Custom Rancher services are configured by using a special image name in the compose template.  The image name is how rancher-compose knows to set up a Rancher service versus a normal service.
-
-Service | Image Name
---------|-----------
-Load Balancer | rancher/load-balancer-service
-External Service | rancher/external-service
-Alias/DNS Service | rancher/dns-service
-
-
-#### Load Balancer
-
-Sample configuration `docker-compose.yml`
-
-
-```yaml
-lb:
-  image: rancher/load-balancer-service
-  ports:
-  # Load Balancer should listen on public port 80
-  - 80
-  # Load Balancer public port 82 and by default forward private port 81 using HTTP
-  - 82:81
-  # Load Balancer public port 9999 using TCP and not HTTP
-  - 9999/tcp
-  labels:
-    # Put load balancer containers on hosts with label lb=true
-    - "io.rancher.scheduler.affinity:host_label=lb=true"
-    # Requests to http://app.example.com/foo should be routed to web over port 8000
-    - "io.rancher.loadbalancer.target.web=8000:app.example.com/foo"
-    # Requests to http://app.example.com should be routed to web2 over port 8000
-    - "io.rancher.loadbalancer.target.web2=8000:app.example.com"
-    # Requests routed to web2 should go to port 8000, overriding the default configuration
-    # of 80:81
-    - "io.rancher.loadbalancer.target.web3=80"
-```
-
-Sample `rancher-compose.yml`
-
-```yaml
-lb:
-  # Two load balancer containers
-  scale: 2
-  load_balancer_config:
-    name: lb config
-    # Cookie policy configurations
-    app_cookie_stickiness_policy: 
-      cookie: cookiename
-      max_length: 1024
-      prefix: false
-      request_learn: true
-      timeout: 3600000
-      mode: path_parameters
-    # Health check configurations is taken from the target service
-```
-
-#### External Service
-
-Sample configuration `docker-compose.yml`
-
-```yaml
-db:
-  image: rancher/external-service
-
-redis:
-  image: redis
-```
-
-Sample `rancher-compose.yml`
-
-```yaml
-db:
-  external_ips:
-  - 1.1.1.1
-  - 2.2.2.2
-
-# Override any service to become an external service
-redis:
-  image: redis
-  external_ips:
-  - 1.1.1.1
-  - 2.2.2.2
-```
-
-#### Service Alias/DNS service
-
-Sample configuration `docker-compose.yml`
-
-```yaml
-web:
-  image: rancher/dns-service
-  links:
-  - web1
-  - web2
-
-web1:
-  image: nginx
-
-web2:
-  image: nginx
 ```

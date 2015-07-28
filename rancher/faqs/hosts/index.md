@@ -10,6 +10,10 @@ layout: rancher-default
 
 If you have added your host on the same server as Rancher server, then you will need to edit the custom command. Please review the following [notes]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/#samehost) about using the same host for Rancher server and Rancher agent. 
 
+### How do I setup my hosts behind a Proxy? 
+
+To support hosts behind a proxy, you’ll need to edit the Docker daemon to point to the proxy. The detailed instructions are listed within our [adding custom host page]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/#hosts-behind-a-proxy).
+
 ### How does the host determine IP address and how can I change it?
 
 When the agent connects to Rancher server, it auto detects the IP of the agent. Sometimes, the IP that is selected is not the IP that you want to use. You can override this setting and set the host IP to what you want. 
