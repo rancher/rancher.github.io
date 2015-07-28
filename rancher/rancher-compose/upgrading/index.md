@@ -7,9 +7,9 @@ layout: rancher-default
 ## Upgrading Services with Rancher Compose
 ---
 
-In Rancher, services can be upgraded from one version to another version using `rancher-compose`. With the `upgrade` command, as the new version of a service is deployed, the old version is removed from Rancher. 
+In Rancher, a rolling upgrade can be provided for services using `rancher-compose`. With the `upgrade` command in `rancher-compose`, as the new service is started, the containers in the old service are stopped from Rancher. 
 
-The command to upgrade to a new service is easy:  
+The command to perform a rolling upgrade to a new service is easy:  
 
 ```bash
 $ rancher-compose upgrade service1 service2 
@@ -25,13 +25,13 @@ Inside the `docker-compose.yml`, both names of the services will need to be incl
 service1:
 # Nothing needs to actually be placed in the file as the service is already running
 service2:
-image: wordpress
-links: 
-# Define any outbound links to other services in the stack
-- db:mysql
+  image: wordpress
+  links: 
+  # Define any outbound links to other services in the stack
+  - db:mysql
 ```
 
-> **Note:** There is no `rancher-compose.yml` file used while upgrading services. By default, the scale of the new service is based on the scale of the old service. You can override this scale by passing in the `--scale` option. 
+> **Note:** There is no need for a `rancher-compose.yml` file used while upgrading services. By default, the scale of the new service is based on the scale of the old service. You can override this scale by passing in the `--scale` option. 
 
 ### Scaling during an Upgrade
 
@@ -39,11 +39,11 @@ Containers are not removed from the old service until the sum of containers from
 
 **Example:**
 
-`service1` has a scale of 2 containers and is upgrading to `service2`, which will eventually have 5 containers.
-
 ```bash
 $ rancher-compose upgrade service1 service2 --scale 5
 ```
+
+`service1` has a scale of 2 containers and is upgrading to `service2`, which will eventually have 5 containers.
 
 `service1` | `service2` | Notes
 ---|---|---
@@ -61,7 +61,7 @@ With the `upgrade` command, there are several options that can be passed in to c
 
 ### Final Scale
 
-By default, the scale of a new service is based on the scale of the old service. You can change the scale of the new service by passing in `--scale` and a number. The number defines the final number of running containers you want in the new service. 
+By default, the scale of a new service is based on the scale of the old service. You can change the scale of the new service by passing in `--scale` and a number. The number defines the final scale of running containers you want in the new service. 
 
 ```bash
 # Setting the scale of service2 to 8 containers
@@ -101,7 +101,7 @@ $ rancher-compose upgrade service1 service2 --update-links="false"
 
 ### Waiting for Upgrade to Complete
 
-By default, `rancher-compose` will exit after the upgrade has been passed to Rancher, but the upgrade may not have been completed. By passing in the `--wait` or `-w` to the `upgrade` command, `rancher-compose` will not exit until after the new service has completely started and the old service has been removed.
+By default, `rancher-compose` will exit after the upgrade has been passed to Rancher, but the upgrade process may not have been completed. By passing in the `--wait` or `-w` to the `upgrade` command, `rancher-compose` will not exit until after the new service has completely started and the old service has been stopped.
 
 ```bash
 # Wait for the upgrade to be completed
