@@ -155,3 +155,20 @@ test:
 test-data:
   scale: 2
 ```
+
+### Cross-Stack Linking
+
+In Rancher, we allow linking of services across stacks, which is easy to represent in the `docker-compose.yml` file.
+
+Services in other stacks will be linked in `external_links`.
+
+Sample configuration `docker-compose.yml`
+
+```
+wordpress:
+  image: wordpress
+  external_links:
+    - alldbs/db1:mysql
+```
+
+In this example, the `alldbs` stack has a `db1` service that the wordpress service will link to.
