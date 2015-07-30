@@ -42,7 +42,9 @@ From the dropdown of a container, you can select different actions to perform on
 
 You can always click on the container name, which will bring you to the container details page. On that page, the dropdown menu is located in the upper right hand corner next to the state of the container.
 
-When you select **Edit** from the dropdown menu, you will be able to change the name and description of the container. 
+When you select **Edit** from the dropdown menu, you will be only able to change the name and description of the container. Docker containers are immutable (not changeable) after creation. The only things you can edit are things that we store that aren't really part of the Docker container. This includes restarting, it's still the same container if you stop and start it. You will need to remove and recreate a container to change anything else. 
+
+You can **Clone**, which will pre-fill the **Add Container** screen with all the setttings from an existing container. If you forget one thing, you can clone the container, change it, and then delete the old container. 
 
 ### Changing the Container States
 
