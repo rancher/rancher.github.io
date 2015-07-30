@@ -37,6 +37,8 @@ Typically, when you first boot the server, you'd pass in the cloud config file t
 
 RancherOS currently supports a small number of cloud config directives.
 
+> **Note:** Currently, RancherOS doesn't support adding other users to RancherOS. If this is in your cloud config file, RancherOS will not boot up. 
+
 #### SSH Keys
 
 You can add SSH keys to the default `rancher` user.
