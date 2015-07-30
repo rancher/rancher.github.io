@@ -135,7 +135,7 @@ web1:
 
 ### External Service
 
-In external services, you can set either external IP(s)s or a domain name. With external services, you can only set either an external IP(s) OR a domain name. 
+In external services, you can set either external IP(s) or a domain name. With external services, you can only set either an external IP(s) OR a domain name. 
 
 **Sample configuration** `docker-compose.yml`
 
