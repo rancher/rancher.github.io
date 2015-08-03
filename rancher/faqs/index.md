@@ -48,30 +48,14 @@ Within the Rancher server VM, you will need to follow these steps to update the 
 
 ```bash
 $ docker exec -it SERVER_CONTAINER_ID bash
-SERVER_CONTAINER_ID$ mysql
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 12
-Server version: 5.5.41-0ubuntu0.14.04.1 (Ubuntu)
-
-Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql>
+# Access mysql
+root@container_id:/# mysql
 ```
 
-Get the cattle databases.
+Get the cattle database.
 
 ```bash
 mysql> use cattle;
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
-Database changed
 ```
 
 Confirm that you have access to the subnet table.

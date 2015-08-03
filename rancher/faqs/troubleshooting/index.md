@@ -68,3 +68,45 @@ If you want to see the configuration of the Rancher DNS setup, you will need to 
 ```bash
 $ cat /var/lib/cattle/etc/cattle/dns/answers.json
 ```
+
+<a id="manually-turn-off-github"></a>
+
+### Help! I turned on [Access Control]({{site.baseurl}}/rancher/configuration/access-control/) and can no longer access Rancher. How do I reset Rancher to disable Access Control?
+
+If something goes wrong with your authentication (like your GitHub authentication getting corrupted), then you may be locked out of Rancher. To re-gain access to Rancher, you'll need to turn off Access Control in the database. In order to do so, you'll need access to the machine that is running Rancher Server. 
+
+```bash
+$ docker exec -it <rancher_server_container_ID> bash
+```
+
+> **Note:** The `<rancher_server_container_ID>` will be the container that has the Rancher database. If you [upgraded]({{site.baseurl}}/rancher/upgrading/) and created a Rancher data container, you'll need to use the ID of the Rancher data container instead of the Rancher server container. 
+
+```bash
+root@container_id:/# mysql
+```
+
+Access the cattle database.
+
+```bash
+mysql> use cattle
+```
+
+Review the `setting` table.
+
+```bash
+mysql> select * from setting;  
+```
+
+Update the `api.security.enabled` to `false`. This change will turn off access control and anyone can access Rancher server with the UI/API.
+
+```bash
+mysql> update setting set value='false' where name='api.security.enabled';
+```
+
+Confirm the update has been changed in the `setting` table.
+
+```bash
+mysql> select * from setting;  
+```
+
+It may take ~1 minute before the authentication will be turned off in the UI, but you will be able to refresh the webpage and access Rancher with access control turned off. 
