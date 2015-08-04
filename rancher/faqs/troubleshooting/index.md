@@ -100,10 +100,18 @@ mysql> select * from setting;
 Update the `api.security.enabled` to `false`. This change will turn off access control and anyone can access Rancher server with the UI/API.
 
 ```bash
-mysql> update setting set value='false' where name='api.security.enabled';
+mysql> update setting set value="false" where name="api.security.enabled";
 ```
 
-Confirm the update has been changed in the `setting` table.
+Delete the client ID and secret key for GitHub.
+
+```bash
+mysql> update setting set value="" where name="api.auth.github.client.id";
+mysql> update setting set value="" where name="api.auth.github.client.secret";
+```
+
+
+Confirm the chagnes have been made in the `setting` table.
 
 ```bash
 mysql> select * from setting;  
