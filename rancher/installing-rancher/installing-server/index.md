@@ -30,6 +30,16 @@ Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/ran
 
 <a id="external-db"></a>
 
+### Bind Mount MySQL Volume
+
+If you would like to persist the database inside your container to a volume on your host, you can launch the container:
+
+```bash
+sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=always -p 8080:8080 rancher/server
+```
+
+This will persist the database on the host. 
+
 ### Using an external Database
 
 If you require using an external database to run Rancher server, please follow these instructions to connect Rancher server to the database. Your database will already need to be created, but does not need any schemas created. Rancher will automatically create all the schemas related to Rancher.
