@@ -63,11 +63,13 @@ Potential Environment Variables to Set:
 >Note: `NO_PROXY` must be set to the Rancher server IP address and localhost (i.e. 127.0.0.1) in order for Rancher agents to communicate directly to Rancher server. Communication between Rancher server and Rancher agents cannot go through the proxy. 
 
 ```bash
-$ sudo docker run -d 
-    -e http_proxy=<proxyURL> /
-    -e https_proxy=<proxyURL> /
-    -e NO_PROXY=127.0.0.1,<Rancher_Server_IP> /
-    -v /var/run/docker... rest of URL from the UI
+$ sudo docker run -d \
+    -e http_proxy=<proxyURL> \
+    -e https_proxy=<proxyURL> \
+    -e NO_PROXY=127.0.0.1,<Rancher_Server_IP> \
+    --privileged \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+      rancher/agent:<agent_version> <URL provided from UI>
 ```
 
 ### VMs with Private and Public IP Addresses
