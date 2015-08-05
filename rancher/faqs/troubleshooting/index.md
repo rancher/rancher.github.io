@@ -31,7 +31,7 @@ $ cd /var/lib/cattle/logs/
 $ cat cattle-debug.log
 ```
 
-Inside this folder, there will be `cattle_debug.log` and `cattle_error.log`. If you have been using Rancher server for many days, you will find a log file for each day as we create a new file for each day. 
+Inside this folder, there will be `cattle-debug.log` and `cattle-error.log`. If you have been using Rancher server for many days, you will find a log file for each day as we create a new file for each day. 
 
 <a id="agent-logs"></a>
 
