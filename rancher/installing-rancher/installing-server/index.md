@@ -28,8 +28,6 @@ You can access the UI by going to the following URL. The `server_ip` is the publ
 
 Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/). After the hosts are setup, you can start adding [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/).
 
-<a id="external-db"></a>
-
 ### Bind Mount MySQL Volume
 
 If you would like to persist the database inside your container to a volume on your host, you can launch the container:
@@ -39,6 +37,8 @@ sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=always -p 8080:8080 ra
 ```
 
 This will persist the database on the host. 
+
+<a id="external-db"></a>
 
 ### Using an external Database
 
