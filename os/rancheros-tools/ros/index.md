@@ -27,7 +27,7 @@ If you want to check what version you are on, just use the `-v` option.
 
 ```sh
 $ sudo ros -v
-ros version v0.2.1
+ros version v0.3.1
 ```
 
 ### Help

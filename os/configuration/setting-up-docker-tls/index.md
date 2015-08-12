@@ -29,7 +29,7 @@ $ sudo ros tls generate -s --hostname myserver.example.com --hostname localhost 
 As of v0.3.1+, we have re-named `userdocker` to `docker`. Therefore, to restart docker in any versions prior to v0.3.1, you'll need to replace `docker` with `userdocker`.
 
 ```bash
-$ sudo ros config set user_docker.tls true
+$ sudo ros config set rancher.user_docker.tls true
 $ sudo system-docker restart docker
 ```
 

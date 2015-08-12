@@ -30,4 +30,4 @@ Valid [datasources](https://github.com/rancher/os/blob/3338c4ac63597940bcde7e600
 | digitalocean | DefaultAddress |
 | gce |  |
 
-And an example cloud config can be found [here](http://os.docs.rancher.com/os/cloud-config/).
+And an example cloud config can be found [here]({{site.baseurl}}/os/cloud-config/).

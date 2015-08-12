@@ -20,43 +20,6 @@ Command | Description
 `ros` | Control and configure RancherOS
 
 
-### How can I customize the console?
-
-Since RancherOS is so small the default console is based off of Busybox.  This it not always the best experience.  The intention with RancherOS is to allow you to swap out different consoles with something like Ubuntu, Fedora, or CentOS.  Currently we have Ubuntu configured but we will add more.  
-
-**With v0.3.0+**, we have updated to use the `service` command within `ros` and removed `addon`. 
-**With v0.3.1+**, we have updated to use `ros` instead of `rancherctl`.
-
-To enable the Ubuntu console do the following.
-
-```bash
-$ sudo ros service enable ubuntu-console;
-$ sudo reboot
-```
-
-Run the above but with `disable` to turn it off.  Currently, you have to reboot the system to enable the new console.  In the future, it will be dynamic and just require you to log out and back in.
-
-```bash
-$ sudo ros service disable ubuntu-console;
-$ sudo reboot
-```
-
-**Versions prior to v0.3.0**, can follow these directions for the `addon` command.
-
-To enable the Ubuntu console do the following.
-
-```bash
-$ sudo ros addon enable ubuntu-console;
-$ sudo reboot
-```
-
-Run the above but with `disable` to turn it off.  Currently, you have to reboot the system to enable the new console.  In the future, it will be dynamic and just require you to log out and back in.
-
-```bash
-$ sudo ros addon disable ubuntu-console;
-$ sudo reboot
-```
-
 ### Why are my changes to the console being lost?
 
 The console and all system containers are ephemeral.  This means on each reboot of the system all changes to the console are lost.  Any changes in `/home` or `/opt` will be persisted though.  Additionally, on startup of the console container, if `/opt/rancher/bin/start.sh` exists, it will be executed.  You can add anything to that script to configure your console the way you want it.

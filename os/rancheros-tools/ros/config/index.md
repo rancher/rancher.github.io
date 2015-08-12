@@ -8,11 +8,11 @@ layout: os-default
 ---
 _In v0.3.1+, we changed the command from `rancherctl` to `ros`._
 
-RancherOS state is controlled by simple document. `ros config` is used to manipulate the configuration of RancherOS stored in **/var/lib/rancher/conf/rancher.yml**.  You are free to edit the file directly, but by using `ros config`, it is safer and often more convenient.
+RancherOS state is controlled by a cloud config file. `ros config` is used to manipulate the configuration of the `rancher` section of the cloud config file. With v0.4.0+, we simplified the configuration of RancherOS to only run off of a cloud config file. In order to make changes using `ros config`, you must prefix changes with `rancher`. Prior to v0.4.0, `rancher` is not needed as a prefix.
 
 Remember, all `ros` commands needs to be used with `sudo`. 
 
-For all changes to your configuration, you must reboot for them to take effect.
+**For all changes to your configuration, you must reboot for them to take effect.**
 
 ### Sub commands
 ---
@@ -31,7 +31,7 @@ For all changes to your configuration, you must reboot for them to take effect.
 The `get` command gets a value from the `rancher.yml` file. Let's see how easy it is to get the DNS configuration of the system.
 
 ```sh
-$ sudo ros config get network.dns.nameservers
+$ sudo ros config get rancher.network.dns.nameservers
 - 8.8.8.8
 - 8.8.4.4
 ```
@@ -43,13 +43,13 @@ The `set` command can set values in the `rancher.yml` file.
 Setting a list in the `rancher.yml`
 
 ```bash
-$ sudo ros config set network.dns.nameservers '[8.8.8.8,8.8.4.4]'
+$ sudo ros config set rancher.network.dns.nameservers '[8.8.8.8,8.8.4.4]'
 ```
 
 Setting a simple value in the `rancher.yml`
 
 ```bash
-$ sudo ros config set user_docker.tls true
+$ sudo ros config set rancher.user_docker.tls true
 ```
 
 ### Import
@@ -133,11 +133,12 @@ The `merge` command will merge in parts of a configuration fragment to the exist
 
 ```bash
 $ sudo ros config merge << "EOF"
-network:
-dns:
-nameservers:
-- 8.8.8.8
-- 8.8.4.4
+rancher: 
+  network:
+    dns:
+      nameservers:
+       - 8.8.8.8
+       - 8.8.4.4
 EOF
 ```
 

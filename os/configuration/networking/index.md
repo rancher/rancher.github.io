@@ -17,11 +17,11 @@ We'll provide some examples using both the `ros config` or setting it through th
 
 ### DNS
 
-Using `ros config`, you can set the `nameserver`, `search`, and `domain`, which directly map to the fields of the same name in `/etc/resolv.conf`.
+Using `ros config`, you can set the `nameserver`, `search`, and `domain`, which directly map to the fields of the same name in `/etc/resolv.conf`. With v0.4.0+, you need to prefix the config values with `rancher` as we are updating the cloud config file. 
 
 ```bash
-$ sudo ros config set network.dns.domain myexampledomain.com
-$ sudo ros config get network.dns.domain
+$ sudo ros config set rancher.network.dns.domain myexampledomain.com
+$ sudo ros config get rancher.network.dns.domain
 myexampledomain.com
 ```
 
@@ -42,10 +42,10 @@ rancher:
 Using `ros config`, you can configure specific interfaces. Wildcard globbing is supported so `eth*` will match `eth1` and `eth2`.  The available options you can configure are `address`, `gateway`, `mtu`, and `dhcp`.
 
 ```bash
-$ sudo ros config set network.interfaces.eth1.address 172.68.1.100/24
-$ sudo ros config set network.interfaces.eth1.gateway 172.68.1.1
-$ sudo ros config set network.interfaces.eth1.mtu 1500
-$ sudo ros config set network.interfaces.eth1.dhcp false
+$ sudo ros config set rancher.network.interfaces.eth1.address 172.68.1.100/24
+$ sudo ros config set rancher.network.interfaces.eth1.gateway 172.68.1.1
+$ sudo ros config set rancher.network.interfaces.eth1.mtu 1500
+$ sudo ros config set rancher.network.interfaces.eth1.dhcp false
 ```
 
 If you wanted to configure the interfaces through the cloud config file, you'll need to place interface configurations within the `rancher` key.
@@ -71,7 +71,7 @@ If you want to configure one of multiple network interfaces, you can specify the
 Using `ros config`, you can specify the MAC address of the NIC you want to configure as follows:
 
 ```bash
-$ sudo ros config set network.interfaces.”mac=ea:34:71:66:90:12:01”.dhcp true
+$ sudo ros config set rancher.network.interfaces.”mac=ea:34:71:66:90:12:01”.dhcp true
 ```
 
 Alternatively, you can place the MAC address selection in your cloud config file as follows:
