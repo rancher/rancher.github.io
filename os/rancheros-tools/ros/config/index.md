@@ -28,7 +28,7 @@ Remember, all `ros` commands needs to be used with `sudo`.
 
 ### Get
 ---
-The `get` command gets a value from the `rancher.yml` file. Let's see how easy it is to get the DNS configuration of the system.
+The `get` command gets a value from the `cloud-config-local.yml` file. Let's see how easy it is to get the DNS configuration of the system.
 
 ```sh
 $ sudo ros config get rancher.network.dns.nameservers
@@ -38,15 +38,15 @@ $ sudo ros config get rancher.network.dns.nameservers
 
 ### Set
 ---
-The `set` command can set values in the `rancher.yml` file. 
+The `set` command can set values in the `cloud-config-local.yml` file. 
 
-Setting a list in the `rancher.yml`
+Setting a list in the `cloud-config-local.yml`
 
 ```bash
 $ sudo ros config set rancher.network.dns.nameservers '[8.8.8.8,8.8.4.4]'
 ```
 
-Setting a simple value in the `rancher.yml`
+Setting a simple value in the `cloud-config-local.yml`
 
 ```bash
 $ sudo ros config set rancher.user_docker.tls true
@@ -67,12 +67,12 @@ The `import` command allows you to import configurations from a standard in or a
 THe `-i` or `--input` option must be set in order for the command to work. This option determines where to find the file that you want to import.
 
 ```bash
-$ sudo ros config import -i local-rancher.yml
+$ sudo ros config import -i localcloudconfig.yml
 ```
 
 ### Export
 ---
-The `export` command allows you to export your existing configuration from rancher.yml. By default, only changes from the default values will be exported. 
+The `export` command allows you to export your existing configuration from `cloud-config-local.yml`. By default, only changes from the default values will be exported. 
 
 If you run the command without any options, it will output into the shell what is in the config file.
 
@@ -108,7 +108,7 @@ user_docker:
 The `-o` or `--output` option will define the name and location of where you want the file to be exported.
 
 ```bash
-$ sudo ros config export -o local-rancher.yml
+$ sudo ros config export -o localcloudconfig.yml
 ```
 
 #### Private

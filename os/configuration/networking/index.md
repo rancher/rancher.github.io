@@ -9,11 +9,11 @@ layout: os-default
 
 There are two ways to configure networking on RancherOS.
 
-You can change the networking settings by using `ros config` to set different keys within the network key. Anything set using this command will have its change saved in the `rancher.yml` file. Changes will only take affect after you reboot. To learn more information about configuring the networking settings by using `ros config`, please refer to our [`ros config`]({{site.baseurl}}/os/rancheros-tools/ros/config) docs. 
+You can change the networking settings by using `ros config` to set different keys within the network key. Anything set using this command will have its change saved in the `cloud-config-local.yml` file. Changes will only take affect after you reboot. To learn more information about configuring the networking settings by using `ros config`, please refer to our [`ros config`]({{site.baseurl}}/os/rancheros-tools/ros/config) docs. 
 
 Alternatively, you can use a [cloud config]({{site.baseurl}}/os/cloud-config) file to set up how the network is configured. Cloud config is applied to the RancherOS instance when RancherOS starts.
 
-We'll provide some examples using both the `ros config` or setting it through the cloud config file.
+We'll provide some examples using both the `ros config` or setting it through the `cloud-config.yml` file.
 
 ### DNS
 
