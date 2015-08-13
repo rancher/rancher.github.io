@@ -17,8 +17,9 @@ Key | Value |Description
 `io.rancher.scheduler.affinity:host_label` | Key Value Pair of Host Label| Used to schedule containers on hosts based on [host label]({{site.baseurl}}/rancher/rancher-compose/scheduling/#finding-hosts-with-host-labels) 
 `io.rancher.scheduler.affinity:container_label` | Key Value Pair of Any Container Label | Used to schedule containers on hosts based on [container label or service name]({{site.baseurl}}/rancher/rancher-compose/scheduling/#finding-hosts-with-container-labels) 
 `io.rancher.scheduler.affinity:container` | Name of Container | Used to schedule containers on hosts based on [container name]({{site.baseurl}}/rancher/rancher-compose/scheduling/#finding-hosts-with-container-names)
+`io.rancher.container.network` | Service Name |  By default (i.e. without this label), service is running on the managed network. Used to define the network of the service will come from another service's network.
 `io.rancher.container.dns`| `true` | Service is able to use Rancher DNS based service discovery and network will be the host network.
-`io.rancher.container.network` | |  
+
 
 > **Note:** For the scheduling labels, there are slight variations based on your affinity choice. More details can be found [here]({{site.baseurl}}/rancher/rancher-compose/scheduling/#table-of-scheduling-labels).
 
