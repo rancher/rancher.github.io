@@ -1,10 +1,10 @@
 ---
-title: Rancher Compose
+title: Labels in Rancher
 layout: rancher-default
 
 ---
 
-## Labels in Rancher
+## Rancher-Compose Labels 
 ---
 
 Labels are used to help Rancher start up services and leverage the features of Rancher. This index of labels are used to help users create services using `rancher-compose`. 
@@ -17,7 +17,6 @@ Key | Value |Description
 `io.rancher.scheduler.affinity:host_label` | Key Value Pair of Host Label| Used to schedule containers on hosts based on [host label]({{site.baseurl}}/rancher/rancher-compose/scheduling/#finding-hosts-with-host-labels) 
 `io.rancher.scheduler.affinity:container_label` | Key Value Pair of Any Container Label | Used to schedule containers on hosts based on [container label or service name]({{site.baseurl}}/rancher/rancher-compose/scheduling/#finding-hosts-with-container-labels) 
 `io.rancher.scheduler.affinity:container` | Name of Container | Used to schedule containers on hosts based on [container name]({{site.baseurl}}/rancher/rancher-compose/scheduling/#finding-hosts-with-container-names)
-`io.rancher.container.network` | Service Name |  By default (i.e. without this label), service is running on the managed network. Used to define the network of the service will come from another service's network.
 `io.rancher.container.dns`| `true` | Service is able to use Rancher DNS based service discovery and network will be the host network.
 
 
@@ -35,3 +34,8 @@ Key | Description
 `io.rancher.service.deployment.unit` |  Used to define the deployments for sidekicked services.
 `io.rancher.service.launch.config` |   Used to define configurations for side kicked services.
 `io.rancher.service.requested.host.id` |  Used by the scheduler to know which host it was scheduled on
+
+
+## Native Docker Labels
+
+`io.rancher.container.network` | `true`|  Add this label to a `docker run` command to add Rancher networking to the container
