@@ -21,7 +21,7 @@ Example: Notice how both are indented underneath `ssh-authorized-keys`.
 #cloud-config
 ssh_authorized_keys:
   - ssh-rsa AAA...ZZZ example1@rancher
-  - ssh-rsa BBB...ZZZ example1@rancher
+  - ssh-rsa BBB...ZZZ example2@rancher
 ```
 
 In our example above, we have our `#cloud-config` line to indicate it's a cloud config file. We have 1 top-level key, `ssh_authorized_keys`. The values of the keys are the indented lines after the key.

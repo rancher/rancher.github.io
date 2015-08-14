@@ -6,7 +6,6 @@ layout: os-default
 
 ## ROS Service
 ---
-_Available as of v0.3.0._
 
 _In v0.3.1+, we changed the command from `rancherctl` to `ros`._
 

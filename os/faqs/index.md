@@ -17,7 +17,7 @@ Command | Description
 --------|------------
 `docker`| Good old Docker, use that to run stuff.
 `system-docker` | The docker instance running the system containers.  Must run as root or using `sudo`
-`ros` | Control and configure RancherOS
+`ros` | [Control and configure RancherOS]({{site.baseurl}}/os/rancheros-tools/ros/)
 
 
 ### Why are my changes to the console being lost?

@@ -22,7 +22,7 @@ Remember, all `ros` commands needs to be used with `sudo`.
 | `set`      | Sets a value                                     |
 | `import`  | Import configuration from standard in or a file |
 | `export`   | Export configuration                            |
-| `merge`    | Merge configuration from stdin                  |
+| `merge`    | Merge configuration from standard in                 |
 
 
 
@@ -54,7 +54,7 @@ $ sudo ros config set rancher.user_docker.tls true
 
 ### Import
 ---
-The `import` command allows you to import configurations from a standard in or a file. 
+The `import` command allows you to import configurations from a standard in or a file. When using `import`, the existing configuration in `cloud-config-local.yml` will be overridden. If you want to add information to the file, you'd need to use `ros config merge`.
 
 #### Import Options
 
@@ -74,14 +74,15 @@ $ sudo ros config import -i localcloudconfig.yml
 ---
 The `export` command allows you to export your existing configuration from `cloud-config-local.yml`. By default, only changes from the default values will be exported. 
 
-If you run the command without any options, it will output into the shell what is in the config file.
+If you run the command without any options, it will output into the shell what is in the `cloud-config-local.yml` file.
 
 ```bash
 $ sudo ros config export
-cloud_init:
-    datasources:
-    - file:/var/lib/rancher/conf/user_config.yml
-network:
+ssh_authorized_keys: []
+write_files: []
+hostname: ""
+rancher:
+  network:
     interfaces:
         eth*: {}
         eth0:
@@ -91,7 +92,7 @@ network:
             address: 172.19.8.101/24
         lo:
             address: 127.0.0.1/8
-user_docker:
+  user_docker:
     tls: true
 ```
 #### Export Options
@@ -121,7 +122,7 @@ $ sudo ros config export --private
 
 #### Full
 
-Add the `-f` or `--full` option to include the full configuration. This export would include the certificates and private keys as well as the internal and default settings.
+Add the `-f` or `--full` option to include the full configuration. The full configuration will be anything in the default OS configuration, the `cloud-config.yml` and the `cloud-config-local.yml` files. None of the certificates or private keys will be shown unless the `-p` flag is included.
 
 ```bash
 $ sudo ros config export --full
