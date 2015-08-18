@@ -36,7 +36,7 @@ It will take a couple of minutes for Rancher server to start up. When the logs s
 
 Our UI is exposed on port `8080`, so in order to view the UI, go to http://server_ip:8080. If you are running your browser on the same host running Rancher server, you will need to use the host’s real IP, like http://192.168.1.100:8080 and not http://localhost:8080 or http://127.0.0.1:8080.
 
-> **Note:** Rancher will not have access control configured and your UI and API will be available to anyone who has access to your IP. We recommend configuring [access control]]({{site.baseurl}}/rancher/configuration/access-control/).
+> **Note:** Rancher will not have access control configured and your UI and API will be available to anyone who has access to your IP. We recommend configuring [access control]({{site.baseurl}}/rancher/configuration/access-control/).
 
 ### Add Hosts
 
