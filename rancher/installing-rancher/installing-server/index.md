@@ -20,9 +20,41 @@ On your Linux machine with Docker installed, the command to start Rancher is sim
 sudo docker run -d --restart=always -p 8080:8080 rancher/server
 ```
 
+<a id="ldap"></a>
+
+#### Enabling LDAP Capabilities
+
+In order to enable LDAP for Rancher server, the Rancher server container will need need to be started with the  certificate passed to the server. On your Linux machine with Docker installed, place the certificate in `/some/dir`. 
+
+Start Rancher by bind mount the volume that has the certificate. 
+
+```bash
+sudo docker run -d --restart=always -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server
+```
+
+You can check that the `ca.crt` was passed to Rancher server container successfully by checking the logs of the rancher server container.
+
+```bash
+$ docker logs <server_container_id>
+```
+
+In the beginning of the logs, you should see confirmation that `ldap.crt` was added correctly.
+
+```bash
+DEFAULT_CATTLE_RANCHER_COMPOSE_WINDOWS_URL=https://releases.rancher.com/compose/beta/latest/rancher-compose-windows-386.zip
+Adding ca.crt to Certs.
+Updating certificates in /etc/ssl/certs... 1 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d....
+done.
+done.
+[BOOTSTRAP] Starting Cattle
+```
+
+#### Rancher UI
+
 The UI and API will be available on the exposed port `8080`. After the docker image is downloaded, it will take a minute or two before Rancher has successfully started. The IP of the machine will need to be public and accessible from the internet in order for Rancher to work.
 
-You can access the UI by going to the following URL. The `server_ip` is the public IP address of the host that is running Rancher server.
+You can access the UI by going to the following URL: `http://server_ip:8080`. The `server_ip` is the public IP address of the host that is running Rancher server.
 
 `http://server_ip:8080`
 
@@ -30,13 +62,13 @@ Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/ran
 
 ### Bind Mount MySQL Volume
 
-If you would like to persist the database inside your container to a volume on your host, you can launch the container:
+If you would like to persist the database inside your container to a volume on your host, you can launch Rancher server by bind mounting the MySQL volume.
 
 ```bash
-sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=always -p 8080:8080 rancher/server
+$ sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=always -p 8080:8080 rancher/server
 ```
 
-This will persist the database on the host. 
+With this command, the database will persist on the host. 
 
 <a id="external-db"></a>
 

@@ -59,11 +59,23 @@ Name | Description
 `--help`, `-h`			|	show help
 `--version`, `-v`		|	print the version
 
+
+Examples:
+
+```bash
+# Starting a service without environment variables and picking a stack
+$ rancher-compose --url URL_of_Rancher --access-key username_of_API_key --secret-key password_of_API_key -p stack1 up
+# To change the scale of an existing service
+$ rancher-compose -p stack1 scale web=3
+```
+
+> **Note:** If you don't pass in `-p STACK_NAME`, the stack name will be the directory that you are running the `rancher-compose` command in.
+
 ### Command Options
 
 #### Up Command
 
-When you run the `up` command with `rancher-compose`, after all the tasks are complete, the process continues to run. If you want the process to exit, you'll need to add in the `-d` option, which is to not block and log. 
+When you run the `up` command with `rancher-compose`, after all the tasks are complete, the process continues to run. If you want the process to exit after completion, you'll need to add in the `-d` option, which is to not block and log. 
 
 Name | Description
 ---|----
@@ -73,13 +85,13 @@ Name | Description
 
 Name | Description
 ---|----
-   `--lines "100"` |	number of lines to tail
+`--lines "100"` |	number of lines to tail
 
 #### Restart/Stop/Down Command
 
 Name | Description
 ---|----
-   `--timeout`, `-t` `"10"` |	Specify a shutdown timeout in seconds.
+`--timeout`, `-t` `"10"` |	Specify a shutdown timeout in seconds.
 
 #### Rm Command
 

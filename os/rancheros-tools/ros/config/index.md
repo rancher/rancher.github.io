@@ -64,7 +64,7 @@ The `import` command allows you to import configurations from a standard in or a
 
 #### Input
 
-THe `-i` or `--input` option must be set in order for the command to work. This option determines where to find the file that you want to import.
+The `-i` or `--input` option must be set in order for the command to work. This option determines where to find the file that you want to import.
 
 ```bash
 $ sudo ros config import -i local-rancher.yml
