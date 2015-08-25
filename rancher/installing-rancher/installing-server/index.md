@@ -107,7 +107,9 @@ sudo docker run -d --restart=always -p 8080:8080 \
     rancher/server
 ```
 
-<!--### Launching Rancher Server behind a proxy
+<a id="http-proxy"></a>
+
+### Launching Rancher Server behind a HTTP proxy
 
 In order to set up a HTTP proxy, you'll need to edit the Docker daemon to point to the proxy. Before attempting to start Rancher server, you'll need to edit the `/etc/default/docker` file to point to your proxy and restart Docker.
 
@@ -117,14 +119,6 @@ $ sudo vi /etc/default/docker
 
 Within the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it point to your proxy. Save your changes and then restart docker. Restarting Docker is different on every OS. 
 
-You'll need to add in environment variables in order for the Rancher server to use the proxy.
+After you've configured the proxy in your Docker daemon, just run your Rancher server command.
 
-Potential Environment Variables to Set:
-* http_proxy
-* https_proxy
-* no_proxy
-
-```bash
-$ sudo docker run -d -e http_proxy=<proxyURL> -e https_proxy=<proxyURL> -e NO_PROXY=<proxyURL> --restart=always -p 8080:8080 rancher/server
-```
--->
+In order to add hosts to Rancher behind a proxy, please read about [adding custom hosts behind a proxy]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/#hosts-behind-a-proxy).

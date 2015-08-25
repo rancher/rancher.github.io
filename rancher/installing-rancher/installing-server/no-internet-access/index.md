@@ -95,7 +95,7 @@ Within the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have 
 
 ### Launching Rancher Server 
 
-As of v0.34.0+, Rancher server does not need to be launched using environment variables when using a proxy. Therefore, the command to start Rancher server will be the same as a regular installation.
+Rancher server does not need to be launched using any environment variables when using a proxy. Therefore, the command to start Rancher server will be the same as a regular installation.
 
 ```bash
 sudo docker run -d --restart=always -p 8080:8080 rancher/server
@@ -110,7 +110,7 @@ After accessing the UI, you can click on the **Add Host** button. This will imme
 
 The cloud providers will not work as Rancher uses `docker-machine` to provision the hosts through the cloud providers. Click on the **Custom** icon to add the host. 
 
-The command from the UI can be used on any machine that has Docker configured to use HTTP proxy.
+The command from the UI can be used on any machine that has Docker configured to use HTTP proxy. As of v0.34.0+, no environment variables are needed to start Rancher agents when using a proxy.
 
 
 
