@@ -24,7 +24,7 @@ For each release of Rancher server, the corresponding Rancher agent and Rancher 
 
 **Commands to Push Images to Private Registry**
 
-These examples are for v0.34.0 Release. We recommend tagging the version of the images in your private registry as the same version. 
+These examples are for v0.34.0 Release using a machine that has access to both DockerHub and your private registry. We recommend tagging the version of the images in your private registry as the same version. 
 
 ```bash
 # rancher/server 
@@ -41,11 +41,6 @@ $ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.1
 $ docker pull rancher/agent-instance:v0.4.0
 $ docker tag rancher/agent-instance:v0.4.0 localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.4.0
 $ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.4.0
-
-# any images needed for Rancher
-$ docker pull nginx:latest
-$ docker tag nginx:latest localhost:5000/<NAME_OF_IMAGE>
-$ docker push localhost:5000/<NAME_OF_IMAGE>
 ```
 
 ### Launching Rancher Server with Private Registry
