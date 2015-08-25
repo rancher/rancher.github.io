@@ -13,7 +13,7 @@ RancherOS supports adding SSH keys through the [cloud-config]({{site.baseurl}}/o
 #cloud-config
 ssh_authorized_keys:
   - ssh-rsa AAA...ZZZ example1@rancher
-  - ssh-rsa BBB...ZZZ example1@rancher
+  - ssh-rsa BBB...ZZZ example2@rancher
 ```
 
 When we pass the cloud-config file during the `rancheros-install` command, it will allow these ssh keys to be associated with the **rancher** user. You can ssh into RancherOS using the key.
@@ -21,3 +21,4 @@ When we pass the cloud-config file during the `rancheros-install` command, it wi
 ```bash
 $ ssh -i /path/to/private/key rancher@<ip-address>
 ```
+
