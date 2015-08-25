@@ -20,9 +20,41 @@ On your Linux machine with Docker installed, the command to start Rancher is sim
 sudo docker run -d --restart=always -p 8080:8080 rancher/server
 ```
 
+<a id="ldap"></a>
+
+#### Enabling LDAP Capabilities
+
+In order to enable LDAP for Rancher server, the Rancher server container will need need to be started with the  certificate passed to the server. On your Linux machine with Docker installed, place the certificate in `/some/dir`. 
+
+Start Rancher by bind mount the volume that has the certificate. 
+
+```bash
+sudo docker run -d --restart=always -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server
+```
+
+You can check that the `ca.crt` was passed to Rancher server container successfully by checking the logs of the rancher server container.
+
+```bash
+$ docker logs <server_container_id>
+```
+
+In the beginning of the logs, you should see confirmation that `ldap.crt` was added correctly.
+
+```bash
+DEFAULT_CATTLE_RANCHER_COMPOSE_WINDOWS_URL=https://releases.rancher.com/compose/beta/latest/rancher-compose-windows-386.zip
+Adding ca.crt to Certs.
+Updating certificates in /etc/ssl/certs... 1 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d....
+done.
+done.
+[BOOTSTRAP] Starting Cattle
+```
+
+#### Rancher UI
+
 The UI and API will be available on the exposed port `8080`. After the docker image is downloaded, it will take a minute or two before Rancher has successfully started. The IP of the machine will need to be public and accessible from the internet in order for Rancher to work.
 
-You can access the UI by going to the following URL. The `server_ip` is the public IP address of the host that is running Rancher server.
+You can access the UI by going to the following URL: `http://server_ip:8080`. The `server_ip` is the public IP address of the host that is running Rancher server.
 
 `http://server_ip:8080`
 
@@ -30,13 +62,13 @@ Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/ran
 
 ### Bind Mount MySQL Volume
 
-If you would like to persist the database inside your container to a volume on your host, you can launch the container:
+If you would like to persist the database inside your container to a volume on your host, you can launch Rancher server by bind mounting the MySQL volume.
 
 ```bash
-sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=always -p 8080:8080 rancher/server
+$ sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=always -p 8080:8080 rancher/server
 ```
 
-This will persist the database on the host. 
+With this command, the database will persist on the host. 
 
 <a id="external-db"></a>
 
@@ -75,7 +107,9 @@ sudo docker run -d --restart=always -p 8080:8080 \
     rancher/server
 ```
 
-<!--### Launching Rancher Server behind a proxy
+<a id="http-proxy"></a>
+
+### Launching Rancher Server behind a HTTP proxy
 
 In order to set up a HTTP proxy, you'll need to edit the Docker daemon to point to the proxy. Before attempting to start Rancher server, you'll need to edit the `/etc/default/docker` file to point to your proxy and restart Docker.
 
@@ -85,14 +119,6 @@ $ sudo vi /etc/default/docker
 
 Within the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it point to your proxy. Save your changes and then restart docker. Restarting Docker is different on every OS. 
 
-You'll need to add in environment variables in order for the Rancher server to use the proxy.
+After you've configured the proxy in your Docker daemon, just run your Rancher server command.
 
-Potential Environment Variables to Set:
-* http_proxy
-* https_proxy
-* no_proxy
-
-```bash
-$ sudo docker run -d -e http_proxy=<proxyURL> -e https_proxy=<proxyURL> -e NO_PROXY=<proxyURL> --restart=always -p 8080:8080 rancher/server
-```
--->
+In order to add hosts to Rancher behind a proxy, please read about [adding custom hosts behind a proxy]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/#hosts-behind-a-proxy).

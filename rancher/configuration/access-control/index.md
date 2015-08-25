@@ -16,13 +16,25 @@ The first account that authenticates with Rancher will become the **admin** of t
 
 In the account dropdown menu, click on **Access Control** within the Administration section or click on the **Settings** link in the red banner.
 
-Follow the directions to register Rancher as a GitHub application. After authenticating your Rancher instance with GitHub, access control will be enabled. With access control enabled, you will be able to manage different [environments]({{site.baseurl}}/rancher/configuration/environments/) and share them with different groups of people.
+Currently, Rancher supports two methods of authentication, GitHub and LDAP. Click on the icons to switch between the two methods. After authenticating your Rancher instance, access control will be enabled. With access control enabled, you will be able to manage different [environments]({{site.baseurl}}/rancher/configuration/environments/) and share them with different groups of people. 
+
+#### GitHub
+
+Select the **GitHub** icon and follow the directions in the UI to register Rancher as a GitHub application. 
+
+#### LDAP
+
+_Available as of v0.34.0+_
+
+Select the **LDAP** icon. You will need to make sure that you have [started Rancher server with the appropriate certificates]({{site.baseurl}}/rancher/installing-rancher/installing-server/#ldap). Fill in the sections and authenticate Rancher. 
 
 ### Site Access
 
 Anyone who is a member or owner of an environment will have also access to the Rancher instance. Alternatively, you can also invite members to access the Rancher instance, but when they log in, they will have their own environment. These members who are added using the **Site Access** will not be able to see other environments until they are added as a member to them.
 
 Anyone with permissions to view the Rancher instance will be given user permissions. They will not be able to view Access Control or Host Registration. The users will only be able to view environments that they are added to. 
+
+#### GitHub
 
 If you wanted to add users to Rancher without sharing your environment, you can add them in the **Site Access** section. Click on the **Customize** button.
 
@@ -36,6 +48,12 @@ By clicking on the dropdown menu icon next to the **+** button, you'll see the l
 
 **Reminder: Save your configuration!**
 For either option, you must click on the **Save authorization configuration** button in order for any changes to take affect. If you leave the page before clicking on save, your changes will be lost and those added to the site will still not have access.
+
+#### LDAP
+
+_Available as of v0.34.0+_
+
+Once LDAP is enabled, any LDAP user will be able to access the Rancher site. We will be adding in the ability to restrict to specific users and group members. Rancher will still have [environments]({{site.baseurl}}/rancher/configuration/environments/) to keep resources protected from other users and groups, but anyone part of your company will be able to access Rancher.
 
 ### Disabling Access Control
 

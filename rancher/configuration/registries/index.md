@@ -22,7 +22,7 @@ If you add a credential for an address that already exists, Rancher will start u
 
 In order to access an insecure registry, you'll need to configure your daemon docker on your host(s). `DOMAIN` and `PORT` are the domain and port where the private registry is hosted.
 
-> **Note:** Whenever you restart docker on the host, you may encounter issues with Network Agent being stuck in _Starting_ state. To workaround the issue, please reboot the issue.
+> **Note:** Whenever you restart docker on the host, you may encounter issues with Network Agent being stuck in _Starting_ state. To workaround the issue, please reboot the host.
 
 ```bash
 # Edit the config file "/etc/default/docker"

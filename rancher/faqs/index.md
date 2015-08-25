@@ -14,7 +14,7 @@ If clicking on the cow doesn't work, then you have a version prior to Beta. We r
 
 ### How do I run Rancher and my hosts behind a proxy?
 
-In order to set up a HTTP proxy, you'll need to edit the Docker daemon to point to the proxy. You will need to update this for your server and any hosts added to Rancher. You'll need to edit the `/etc/default/docker` file to point to your proxy and restart Docker.
+For the Rancher server and any hosts, you'll need to configure the Docker deamon to point to the HTTP proxy. This configuration will need to occur before running any Docker commands. You'll need to edit the `/etc/default/docker` file to point to your proxy and restart Docker.
 
 ```bash
 $ sudo vi /etc/default/docker
@@ -22,16 +22,10 @@ $ sudo vi /etc/default/docker
 
 Within the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it point to your proxy. Save your changes and then restart docker. Restarting Docker is different on every OS. 
 
-You'll need to add in environment variables in order for the Rancher agent to use the proxy.
+For Rancher server, you only need to launch Rancher server after the Docker daemon is configured.
 
-Potential Environment Variables to Set:
-* http_proxy
-* https_proxy
-* NO_PROXY (must be capitalized)
+For Rancher agents, for versions after v0.34.0, you can launch your rancher agents normally. For versions prior to v0.34.0, please review our[custom hosts section]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/#hosts-behind-a-proxy) for instructions.
 
-```bash
-$ sudo docker run -d -e http_proxy=<proxyURL> -e https_proxy=<proxyURL> -e NO_PROXY=<proxyURL> --restart=always -p 8080:8080 rancher/server
-```
 ### How do linked containers/services work in Rancher?
 
 In Docker, linked containers (using `--link` in `docker run`) shows up in the /etc/hosts of the container it's linked to. In Rancher, we don't edit the /etc/hosts. Instead we run a DNS server that makes links work across hosts. The DNS server would respond with the correct IP.
