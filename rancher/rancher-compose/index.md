@@ -140,7 +140,7 @@ When defining a sidekick to a service, you do not need to link the services in `
 
 #### Primary Service
 
-Whichever service contains the sidekick label is considered the primary service. The scale of the primary service will be used as the scale for all services in the sidekicks label. If your scale among all your services are different, then the scale of the primary service will be used for all services.
+Whichever service contains the sidekick label is considered the primary service, and the sidekicks are considered secondary services. The scale of the primary service will be used as the scale for all services in the sidekicks label. If your scale among all your services are different, then the scale of the primary service will be used for all services.
 
 When using [load balancers]({{site.baseurl}}/rancher/rancher-compose/rancher-services/#load-balancer) with services that have sidekicks, you need to use the primary service as the target of the load balancer. A sidekick **can not** be the target.
 
