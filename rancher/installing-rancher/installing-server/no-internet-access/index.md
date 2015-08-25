@@ -18,7 +18,7 @@ It is assumed you either have your own private registry or other means of distri
 
 ### Pushing Images to Private Registry 
 
-It is **very important** that all images (i.e. rancher/server, rancher/agent, rancher/agent-instance) are distributed before attempting to upgrade Rancher Server. If these versions are not available in your private registry, Rancher server will become instable. You will also need to ensure that all images required for your applications will have an image.
+It is **very important** that all images (i.e. rancher/server, rancher/agent, rancher/agent-instance) are distributed before attempting to install/upgrade Rancher Server. If these versions are not available in your private registry, Rancher Server will become unstable. 
 
 For each release of Rancher server, the corresponding Rancher agent and Rancher agent instance versions will be available in the release notes. 
 
@@ -33,9 +33,9 @@ $ docker tag rancher/server:v0.34.0 localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER
 $ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v0.34.0 
 
 # rancher/agent
-$ docker pull rancher/agent:v0.8.0
-$ docker tag rancher/agent:v0.8.0 localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.0
-$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.0
+$ docker pull rancher/agent:v0.8.1
+$ docker tag rancher/agent:v0.8.1 localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.1
+$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.1
 
 # rancher/agent-instance
 $ docker pull rancher/agent-instance:v0.4.0
@@ -56,7 +56,7 @@ Using the v0.34.0 example:
 
 ```bash
 $ sudo docker run -d --restart=always -p 8080:8080 \
-    -e CATTLE_BOOTSTRAP_REQUIRED_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.0 \
+    -e CATTLE_BOOTSTRAP_REQUIRED_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.1 \
     -e CATTLE_AGENT_INSTANCE_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.4.0 \
     <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v0.34.0
 ```
@@ -76,7 +76,7 @@ The command from the UI will be configured to use the private registry image for
 **Example Add Custom Host Command**
 
 ```bash
-$ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.0 http://<server_ip>:8080/v1/scripts/<security_credentials>
+$ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.1 http://<server_ip>:8080/v1/scripts/<security_credentials>
 ```
 
 ## Using HTTP Proxy 
