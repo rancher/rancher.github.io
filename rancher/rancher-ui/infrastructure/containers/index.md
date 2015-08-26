@@ -25,6 +25,8 @@ These options will bring you to the **Add Container** page. Any options that `do
 
     `[registry-name]/[namespace]/[imagename]:[version]`
 
+    <a id="port-mapping"></a>
+
 3. If desired, set up port mapping for your host to container relationship. Assuming that your host is using its public IP, when we are mapping ports, we are creating the ability to access the container through the host IP. In the **Port Map** section, you will define the public ports that will be used to communicate with the container. You will also be defining which port will be exposed on the container. When mapping ports for a container to a host, Rancher will check to see if there are any port conflicts. 
 
 4. In the **Advanced Options** section, all options available in Docker are available for Rancher. By default, we have set the `-i -t`. 
