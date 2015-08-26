@@ -12,6 +12,14 @@ Docker containers are immutable (not changeable) after creation. The only things
 
 You can **Clone**, which will pre-fill the **Add Container** screen with all the setttings from an existing container. If you forget one thing, you can clone the container, change it, and then delete the old container. 
 
+<a id="container-access"></a>
+
+### Help! I cannot execute the shell or view logs of the container from the UI. How does Rancher access the shell/logs of a container? 
+
+Since the agent is potentially open to the public internet, requests to the agent for a shell (or logs, etc) of a container aren't automatically trusted. The request from Rancher Server includes a JWT (JSON Web Token) and that JWT is signed by the server and can be verified by the agent to have actually come from the server. Part of that includes an expiration time, which is 5 minutes from when it is issued. This prevents a token from being used for long periods of time if it were to be intercepted, which is particularly important if not using SSL.
+
+If you run `docker logs -f rancher-agent` and the logs show messages about an expired token, then please check that the date/time of the Rancher Server host and Rancher Agent host are in sync.
+
 ### What are my options with a container?
 
 If you hover over the container, a drop down will appear on the right hand side.
