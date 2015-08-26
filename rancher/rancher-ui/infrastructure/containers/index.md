@@ -60,4 +60,3 @@ When you select **Execute Shell**, it brings you into the container shell prompt
 
 It's always useful to see what is going on with the logs of a container. Clicking **View Logs** provides the equivalent of `docker logs <CONTAINER_ID>` on the host.
 
-
