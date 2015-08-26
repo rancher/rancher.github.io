@@ -35,6 +35,9 @@ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock –
 ```
 > **Note:** When override the IP address, if there are existing containers in the rancher server, those hosts will no longer to be able to ping the host with the new IP. We are working to fix this issue, but please update the IP address with caution.
 
+### What happens if my host is deleted outside of Rancher?
+
+If your host is deleted outside of Rancher, then Rancher server will continue to show the host until it’s removed. Typically, these hosts will show up in a _Reconnecting_ state and never be able to reconnect. You will be able to **Delete** these hosts to remove them from the UI. 
 
 ### What are all the different states that my host can display?
 
@@ -49,10 +52,6 @@ There are many states shown for a host as we are trying to provide as much detai
 * _Removed_: The host has been deleted by the user. This is the state that will show up on the UI until Rancher has completed the necessary actions. 
 * _Purged_: The host is only in this state for a couple of seconds before disappearing from the UI. 
 * _Reconnecting_: The host has lost its connection with Rancher. Rancher will attempt to restart the communication.
-
-### What happens if my host is deleted outside of Rancher?
-
-If your host is deleted outside of Rancher, then Rancher server will continue to show the host until it’s removed. Typically, these hosts will show up in a _Reconnecting_ state and never be able to reconnect. You will be able to **Delete** these hosts to remove them from the UI. 
 
 ### Why does my host have this weird name (e.g. 1ph7)?
 
