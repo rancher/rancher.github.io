@@ -113,7 +113,7 @@ rancher:
 
 **DNS**
 
-In the DNS section, you can set the `nameserver`, `search`, and `domain`, which directly map to the fields of the same name in `/etc/resolv.conf`.
+In the DNS section, you can set the `nameserver`, and `search`, which directly map to the fields of the same name in `/etc/resolv.conf`.
 
 **Interfaces**
 
