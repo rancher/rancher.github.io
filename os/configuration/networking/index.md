@@ -17,12 +17,13 @@ We'll provide some examples using both the `ros config` or setting it through th
 
 ### DNS
 
-Using `ros config`, you can set the `nameserver`, `search`, and `domain`, which directly map to the fields of the same name in `/etc/resolv.conf`. With v0.4.0+, you need to prefix the config values with `rancher` as we are updating the cloud config file. 
+Using `ros config`, you can set the `nameserver`, and `search`, which directly map to the fields of the same name in `/etc/resolv.conf`. With v0.4.0+, you need to prefix the config values with `rancher` as we are updating the cloud config file. 
 
 ```bash
-$ sudo ros config set rancher.network.dns.domain myexampledomain.com
-$ sudo ros config get rancher.network.dns.domain
-myexampledomain.com
+$ sudo ros config set rancher.network.dns.search [mydomain.com,example.com]
+$ sudo ros config get rancher.network.dns.search
+- mydomain.com
+- example.com
 ```
 
 If you wanted to configure the DNS through the cloud config file, you'll need to place DNS configurations within the `rancher` key.
@@ -34,7 +35,9 @@ If you wanted to configure the DNS through the cloud config file, you'll need to
 rancher:
   network:
     dns:
-      domain: myexampledomain.com
+      search: 
+        - mydomain.com
+        - example.com
 ```
 
 ### Interfaces
