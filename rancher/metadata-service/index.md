@@ -58,7 +58,6 @@ Host that container is deployed on | `http://rancher-metadata/latest/self/host`
 `links` | List of linked services. Format for links is `stack_name/service_name:service_alias`. If the service is in the same stack, there will be no `stack_name`.
 `ports` | List of [Ports used in the Service]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#service-options). Format for ports is `host:public:private`.
 `labels` | List of [Labels on Service]({{site.baseurl}}/rancher/rancher-ui/scheduling/#labels). Format for labels is `key:value`.
-`create_index` | The order number of which the container was launched in the service, i.e. 2 means it was the second container launched in the service.
 
 ### Stack
 
