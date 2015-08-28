@@ -57,6 +57,12 @@ In our example, any traffic directed to port `80` on the host of the load balanc
 
 You will have the option to no longer publish source ports to the host by setting the access level of each individual “Listening Port” to `Internal`.  All internal ports can only be accessed by services within the same environment.
 
+### SSL Termination
+
+To add SSL termination to your load balancer, you can select the **SSL** checkbox. When you enable the checkbox, the **SSL Termination** tab will provide the ability to add certificates. In the **Certificate** dropdown, you can select the main certificate for the load balancers. 
+
+SSL Termination applies only to listeners with the `https` or `ssl` protocol selected. Additional Certificates will be used by clients that support SNI. Clients that do not support SNI will always use the main Certificate.
+
 ### Advanced Routing Options
 
 Rancher supports L7 load balancing with our advanced routing options. To expand the advanced options, click on the **Show advanced routing options**. The only required field is **Target Service**, which would be L4 load balancing. All of the other fields for L7 load balancing are optional. Since all the fields are optional, the listening ports are default when adding host/request paths, and the ports will be overriden if you specify source/target ports for a service. For each option, we cover some basic examples, but you can use all or some of these options together to define exactly how you want your load balancer to direct traffic to your services.

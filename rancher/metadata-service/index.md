@@ -6,7 +6,7 @@ layout: rancher-default
 
 ## Metadata Service
 
-With Rancher's metadata service, you can exec into any container and retrieve information about the container. The metada could be related to the container, the service  or stack that the container is part of, or the host that the container is on. The metada is in a JSON format. 
+With Rancher's metadata service, you can exec into any container and retrieve information about containers in Rancher. The metada could be related to the container, the service or stack that the container is part of, or the host that the container is on. The metada is in a JSON format. 
 
 ## How to Get the Metadata 
 
@@ -17,18 +17,23 @@ Run this command inside the container:
 ```bash
 # If curl is not installed, install it
 $ apt-get install curl
-# Retrieve the metadata
+# Retrieve the metadata for the container that you are in
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/latest/self/stack' 
+# Retrieve the metadata for another service in the stack
+$ curl --header 'Accept: application/json' 'http://rancher-metadata/latest/services/<service-name>' 
 ```
 
 The `http` can be changed depending on what metadata you want to retrieve.
 
-Metadata |  http
-----|----
-Container | `http://rancher-metadata/latest/self/container`
-Stack that container is part of | `http://rancher-metadata/latest/self/stack`
-Service that container is part of | `http://rancher-metadata/latest/self/service`
-Host that container is deployed on | `http://rancher-metadata/latest/self/host`
+Metadata | Description | http
+----|---- | ---
+Container | `http://rancher-metadata/latest/self/container` | Provides metadata on the container that you are executing the command in 
+Service that container is part of | `http://rancher-metadata/latest/self/service` | Provides metadata on the service of the container that you are executing the command in 
+Stack that container is part of | `http://rancher-metadata/latest/self/stack` | Provides metadata on the stack of the container that you are executing the command in 
+Host that container is deployed on | Provides  `http://rancher-metadata/latest/self/host` | Provides metadata on the host of the container that you are executing the command in
+Other Containers | `http://rancher-metadata/latest/containers/<container-name>` | Provides metadata on another container in the environment based on the `<container-name>`
+Other Services | `http://rancher-metadata/latest/services/<service-name>` | Provides metadata on another service in the environment based on the `<service-name>`
+Other Stacks | `http://rancher-metadata/latest/stacks/<stack-name>` | Provides metadata on another stack in environment based on the `<stack-name>`
 
 ## Metadata Fields 
 
