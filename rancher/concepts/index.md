@@ -122,6 +122,6 @@ Read more about using sidekicks with [rancher-compose]({{site.baseurl}}/rancher/
 
 ### Metadata Services
 
-Rancher provides a metadata service to allow containers to get information about themselves or other components in Rancher.
+Rancher offers data for both your services and containers that can be used to configure or manage your running Docker instances in the form of a metadata service that can be accessed directly through a HTTP based API.  These data can include both static information when creating your Docker containers or Rancher Services or runtime data such as the managed IP address assigned or information about your peer containers within the same service.
 
-Read more about how to use the [metadata service]({{site.baseurl}}/rancher/metadata-services/).
+Read more about how to use our [metadata service]({{site.baseurl}}/rancher/metadata-services/).
