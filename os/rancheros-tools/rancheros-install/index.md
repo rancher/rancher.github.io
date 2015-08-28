@@ -21,7 +21,7 @@ The `rancheros-install` command is used to install RancherOS to hard disk. Pleas
 
 #### Cloud-Config
 
-The `-c` option provides the location of the cloud config file. Read more about [cloud config files]({{site.baseurl}}/os/cloud-config)
+The `-c` option provides the location of the cloud config file. Read more about [cloud config files]({{site.baseurl}}/os/cloud-config).
 
 #### Device
 
@@ -53,12 +53,8 @@ You can use the [ros os]({{site.baseurl}}/os/rancheros-tools/ros/os/) commands t
 
 ```bash
 $ sudo ros os list
-rancher/os:v0.1.2 remote
-rancher/os:v0.2.0-rc1 remote
-rancher/os:v0.2.0-rc2 remote
-rancher/os:v0.2.0-rc3 remote
-rancher/os:v0.2.0 remote
-rancher/os:v0.2.1 remote
-rancher/os:v0.3.0-rc1 remote
+rancher/os:v0.3.0 remote
+rancher/os:v0.3.1 remote
+rancher/os:v0.3.3 local
 ```
 

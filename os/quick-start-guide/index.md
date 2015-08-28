@@ -18,27 +18,27 @@ We have created a [RancherOS Vagrant project](https://github.com/rancher/os-vagr
 2. Clone the [RancherOS Vagrant repository](https://github.com/rancher/os-vagrant). Clone the repo and go into the newly cloned directory.
 
 
-```bash
-$ git clone https://github.com/rancher/os-vagrant.git
-$ cd os-vagrant
-```
+    ```bash
+    $ git clone https://github.com/rancher/os-vagrant.git
+    $ cd os-vagrant
+    ```
 
 3. Startup your VM with `vagrant up`.  
 
-```bash
-$ vagrant up
-Bringing machine 'rancher-01' up with 'virtualbox' provider...
-…
-…
-==> rancher-01: Machine booted and ready!
-==> rancher-01: Configuring and enabling network interfaces...
-```
+    ```bash
+    $ vagrant up
+    Bringing machine 'rancher-01' up with 'virtualbox' provider...
+    …
+    …
+    ==> rancher-01: Machine booted and ready!
+    ==> rancher-01: Configuring and enabling network interfaces...
+    ```
 
 4. Log into your VM with `vagrant ssh`. 
 
-```bash
-$ vagrant ssh
-```
+    ```bash
+    $ vagrant ssh
+    ```
 
 With those simple commands, you're up and running a RancherOS instance.
 
@@ -71,7 +71,7 @@ REPOSITORY   TAG	IMAGE ID	CREATED	VIRTUAL SIZE
 
 At this point, there are no containers running on the `docker` daemon. However, if you run the same command against the `system-docker` instance you’ll see a number of system services that are shipped with RancherOS. 
 
-Note: `system-docker` can only be used by root, so it is necessary to use the `sudo` command whenever you want to interact with `system-docker`
+> **Note:** `system-docker` can only be used by root, so it is necessary to use the `sudo` command whenever you want to interact with `system-docker`.
 
 ```bash
 $ sudo system-docker images
@@ -121,7 +121,7 @@ CONTAINER ID        IMAGE                           COMMAND             CREATED 
 be2a3c972b75        husseingalal/nginxbusy:latest   "/usr/sbin/nginx"   3 seconds ago       Up 2 seconds        0.0.0.0:8000->80/tcp   nginx
 ```
 
-Note: The rancher user belongs to docker group, which is why we're able to use docker without sudo privileges.
+> **Note:** The `rancher` user belongs to docker group, which is why we're able to use docker without sudo privileges.
 
 ### Deploying A System Service Container
 
@@ -160,9 +160,8 @@ $ sudo echo “sudo system-docker start busydash” >> /opt/rancher/bin/start.sh
 $ sudo chmod 755 /opt/rancher/bin/start.sh
 ```
 
-TODO: Show how to launch system container using Rancher Compose.
-
 ### Using [ROS]({{site.baseurl}}/os/rancheros-tools/ros/)
+
 Another useful command that can be used with RancherOS is `ros` which can be used to control and configure the system. 
 
 _In v0.3.1+, we changed the command from `rancherctl` to `ros`._
@@ -172,28 +171,22 @@ $ ros -v
 ros version 0.0.1
 ```
 
-RancherOS state is controlled by simple document, which is **/var/lib/rancher/conf/rancher.yml**. `ros` is used to edit the configuration of the system, to see for example the dns configuration of the system:
+RancherOS state is controlled by a cloud config file. `ros` is used to edit the configuration of the system, to see for example the dns configuration of the system:
 
 ```sh
-$ sudo ros config get dns
+$ sudo ros config get rancher.dns
 - 8.8.8.8
 - 8.8.4.4
 ```
 
-You can use ros to customize the console and replace the native Busybox console with the consoles from other Linux distributions.  Initially, RancherOS only supports the Ubuntu console, but other console support will be coming soon. In order to enable the Ubuntu console use the following command:
+You can use `ros` to customize the console and replace the native Busybox console with the consoles from other Linux distributions. Supported consoles are available in the [os-services repository](https://github.com/rancher/os-services). In order to enable the Ubuntu console use the following command:
 
 ```sh
-$ sudo ros addon enable ubuntu-console;
+$ sudo ros service enable ubuntu-console
 $ sudo reboot
 ```
 
-After that you will be able to use Ubuntu console, to turn it off use disable instead of enable, and then reboot.
-
-```sh
-$ sudo ros addon disable ubuntu-console;
-```
-
-Note that any changes to the console or the system containers will be lost after reboots, any changes to `/home` or `/opt` will be persistent. The console always executes **/opt/rancher/bin/start.sh** at each startup. 
+Any changes to the console or the system containers will be lost after reboots, any changes to `/home` or `/opt` will be persistent. The console always executes **/opt/rancher/bin/start.sh** at each startup. 
 
 
 ### Using Rancher Management platform with RancherOS
@@ -206,19 +199,11 @@ $ sudo docker run -d --restart=always -p 8080:8080 rancher/server
 
 You can access the Rancher server by going to the `http://SERVER_IP:8080`. It might take a couple of minutes before it is available.
 
-Note: If you are trying to use an EC2 instance, you will need to make sure the TCP port 8080 has been enabled in order to view the Rancher server UI. To do this enablement, check the security group of the EC2 instance and update the Inbound tab to add this port 8080.
+> **Note:** If you are trying to use an EC2 instance, you will need to make sure that the security group for your EC2 instance has TCP port `8080` has been enabled in order to view the UI. You will need to make sure UDP ports `500` and `4500` are enabled for IPsec networking, which is how Rancher communicates to other hosts.
+ 
+The next step is to register a RancherOS machine with Rancher platform. Click on **Infrastructure** -> **Hosts** -> **Add Host** button. Select the **Custom** option and get the `docker` command to run in your RancherOS. Typically, we recommend having the Rancher server and hosts be on separate VMs, but in our example, we will use the same RancherOS instance. 
 
-![Rancher Platform 1]({{site.baseurl}}/img/os/Rancher_platform1.png)
-
-The next step is to register a RancherOS machine with Rancher platform by following the UI in the Rancher server. Select the **Custom** option and get the `docker` command to run in your RancherOS. Typically, we recommend having the Rancher server and hosts be on separate VMs, but in our example, we will use the same RancherOS instance.
-
-Note: If you are trying to use an EC2 instance, you will need to make sure the TCP ports 9345 and 9346 are enabled as well as UDP ports 500 and 4500. To do this enablement, check the security group of the EC2 instance and update the Inbound tab to add these ports.
-
-You should see the RancherOS machine on the management platform:
-
-![Rancher Platform 2]({{site.baseurl}}/img/os/Rancher_platform2.png)
-
-You can now start to deploy your Docker containers on RancherOS using the Rancher management platform, pretty cool, right?
+Once your host shows up, you can start to deploy your Docker containers on RancherOS using the Rancher management platform, pretty cool, right?
 
 ### Conclusion
 

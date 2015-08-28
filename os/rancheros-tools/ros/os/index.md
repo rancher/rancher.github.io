@@ -27,7 +27,7 @@ Besides using `ros -v`, you can also find the current version with the `version`
 
 ```bash
 $ sudo ros os version
-v0.2.1
+v0.3.0
 ```
 
 ### List
@@ -36,13 +36,9 @@ It's easy to see all the current available versions using the `list` command.
 
 ```bash
 $ sudo ros os list
-rancher/os:v0.1.2 remote
-rancher/os:v0.2.0-rc1 remote
-rancher/os:v0.2.0-rc2 remote
-rancher/os:v0.2.0-rc3 remote
-rancher/os:v0.2.0 local
-rancher/os:v0.2.1 remote
-rancher/os:v0.3.0-rc1 remote
+rancher/os:v0.3.0 remote
+rancher/os:v0.3.1 local
+rancher/os:v0.3.3 remote
 ```
 
 ### Upgrade
@@ -63,16 +59,16 @@ Our [upgrading]({{site.baseurl}}/os/upgrading/) page provides more details on st
 The `-i` or `--image` option uses an image name to upgrade to the specific version. If no image is specified, the command will automatically use the current version.
 
 ```bash
-$ sudo ros os upgrade -i rancher/os:v0.2.0    
+$ sudo ros os upgrade -i rancher/os:v0.3.0    
 Pulling repository rancher/os
-Pulling image (v0.2.0) from rancher/os
-Pulling image (v0.2.0) from rancher/os, endpoint: https://registry-1.docker.io/v1/
+Pulling image (v0.3.0) from rancher/os
+Pulling image (v0.3.0) from rancher/os, endpoint: https://registry-1.docker.io/v1/
 ...
 ...
 ...
 Download complete
-Status: Downloaded newer image for rancher/os:v0.2.0
-Upgrading to rancher/os:v0.2.0
+Status: Downloaded newer image for rancher/os:v0.3.0
+Upgrading to rancher/os:v0.3.0
 Continue [y/N]: y
 Continue with reboot [y/N] y
 INFO[0004] Rebooting 
@@ -83,13 +79,13 @@ INFO[0004] Rebooting
 The `-s` or `--stage` option is used to stage the specific template instead of immediately installing it. 
 
 ```bash
-$ sudo ros os upgrade -s -i rancher/os:v0.2.1
-Pulling image (v0.2.1) from rancher/os
-Pulling image (v0.2.1) from rancher/os, endpoint: https://registry-1.docker.io/v1/
+$ sudo ros os upgrade -s -i rancher/os:v0.3.1
+Pulling image (v0.3.1) from rancher/os
+Pulling image (v0.3.1) from rancher/os, endpoint: https://registry-1.docker.io/v1/
 ...
 ...
 ...
-Status: Downloaded newer image for rancher/os:v0.2.1
+Status: Downloaded newer image for rancher/os:v0.3.1
 ```
 
 

@@ -6,19 +6,13 @@ layout: os-default
 
 ## Configuring RancherOS
 ---
-The configuration of RancherOS is derived from three sources.
+The configuration of RancherOS is derived from 2 sources.
 
-1. RancherOS ships with a default configuration. Default configuration is hard coded into RancherOS binary. The default configuration cannot be changed, but it can be extended or overwritten by cloud-config and `rancher.yml`.
+1. RancherOS ships with a default configuration. Default configuration is hard coded into RancherOS binary. The default configuration cannot be changed, but it can be extended or overwritten by [cloud-config file]({{site.baseurl}}/os/cloud-config).
 
-2. Cloud config extends and overwrites RancherOS default config. Cloud config itself is derived from several sources by the `cloud-init` program running as a system container inside RancherOS. The details of cloud config can be found in more detail [here]({{site.baseurl}}/os/cloud-config). 
+2. A [cloud config file]({{site.baseurl}}/os/cloud-config) extends and overwrites RancherOS default config. Cloud config itself is derived from several sources by the `cloud-init` program running as a system container inside RancherOS. 
 
-3. Finally, `rancher.yml` file extends and overwrites the result of cloud config. More details of the `rancher.yml` file can be found [here]({{site.baseurl}}/os/rancher-yml).
-
-The following diagram illustrates how RancherOS is configured from three sources: the default configuration, cloud config, and `rancher.yml` file.
-
-![Configuration of RancherOS]({{site.baseurl}}/img/os/cloud-config.png)
-
-You can see the RancherOs configuration in its entirety by typing `sudo ros config export --full`.
+You can view the entire RancherOS configuration in its entirety by typing `sudo ros config export --full`.
 
 The following is a list of topics on RancherOS configuration:
 

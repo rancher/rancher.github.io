@@ -11,9 +11,9 @@ RancherOS comes with a simple installer that will install RancherOS on a given t
 
 The `rancheros-install` command orchestrates the installation from the `rancher/os` container. You will need to have already created a cloud config file and found the target disk.
 
-##### Cloud Config
+#### Cloud Config
 
-The easiest way to log in is to pass a `cloud-config.yml` file containing your public SSH keys. To learn more about what's supported in our cloud-config, please read this [doc]({{site.baseurl}}/os/cloud-config/). 
+The easiest way to log in is to pass a `cloud-config.yml` file containing your public SSH keys. To learn more about what's supported in our cloud-config, please read our [documentation]({{site.baseurl}}/os/cloud-config/). 
 
 The `rancheros-install` command will process your `cloud-config.yml` file specified with the `-c` flag. This file will also be placed onto the disk and installed to `/var/lib/rancher/conf/`. It will be evaluated on every boot and be converted to `/var/lib/rancher/conf/cloud-config-processed.yml`. 
 
@@ -57,7 +57,7 @@ Downloaded newer image for rancher/os:v0.2.1
 ...
 RancherOS has been installed. Please reboot...
 ```
-After you install RancherOS to disk, the rancher/rancher user/password will no longer be valid and you'll need to have added in SSH keys or another user within your [cloud config file]({{site.baseurl}}/os/cloud-config/).
+After you install RancherOS to disk, the rancher/rancher user/password will no longer be valid and you'll need to have added in SSH keys within your [cloud config file]({{site.baseurl}}/os/cloud-config/).
 
 ### SSH into RancherOS
 
