@@ -162,7 +162,7 @@ Since this is a hard anti-affinity rule, we may run into problems if the scale i
 
 ```yaml
 labels: 
-io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=${stack_name}/${service_name}
+  io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=${stack_name}/${service_name}
 ```
 
 #### Example 2:
