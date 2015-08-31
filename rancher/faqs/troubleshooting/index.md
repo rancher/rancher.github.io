@@ -33,6 +33,14 @@ $ cat cattle-debug.log
 
 Inside this folder, there will be `cattle-debug.log` and `cattle-error.log`. If you have been using Rancher server for many days, you will find a log file for each day as we create a new file for each day. 
 
+#### Copying Rancher Server logs to the Host 
+
+Here's the command to copy the Rancher server logs from the container to the host.
+
+```bash
+$ docker cp <container_uuid>:/var/lib/cattle/logs /local/path
+```
+
 <a id="agent-logs"></a>
 
 ### Where can I find detailed logs of the Rancher Agent container?
@@ -46,6 +54,14 @@ $ cat agent.log
 ```
 
 `agent.log` will be the most recent list of logs. We create a new file for logging after the log file has reached a certain size or a new rancher agent has been launched.
+
+#### Copying Rancher Agent logs to the Host 
+
+Here's the command to copy the Rancher agent logs from the container to the host.
+
+```bash
+$ docker cp <container_uuid>:/var/log/rancher /local/path
+```
 
 <a id="lb-config"></a>
 
