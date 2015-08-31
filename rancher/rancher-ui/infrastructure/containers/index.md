@@ -12,18 +12,20 @@ Typically, we recommend that people add containers using [services]({{site.baseu
 
 There are a couple of ways to add a container to Rancher.
 
-Option 1: In the **Infrastructure** -> **Container** page, click on the **Add Container**.
+Option 1: In the **Infrastructure** -> **Container** page, click on **Add Container**.
 
 Option 2: On a specific host, you can click on the **+ Add Container** image within the list of containers on the host. 
 
 These options will bring you to the **Add Container** page. Any options that `docker run` supports when creating containers is also supported in Rancher.
 
-1. Provide a **Name** and if desired, **Description** for the host.
+1. Provide a **Name** and if desired, **Description** for the container.
 2. Provide the **Image** to use. You can use any image on [DockerHub](https://hub.docker.com/) as well as any [registries]({{site.baseurl}}/rancher/configuration/registries) that have been added to Rancher. The syntax for image name would match any `docker run` commands. 
 
     Syntax of image names. By default, we pull from the docker registry. If no tag is specified, we will pull the latest tag. 
 
     `[registry-name]/[namespace]/[imagename]:[version]`
+
+    <a id="port-mapping"></a>
 
 3. If desired, set up port mapping for your host to container relationship. Assuming that your host is using its public IP, when we are mapping ports, we are creating the ability to access the container through the host IP. In the **Port Map** section, you will define the public ports that will be used to communicate with the container. You will also be defining which port will be exposed on the container. When mapping ports for a container to a host, Rancher will check to see if there are any port conflicts. 
 
