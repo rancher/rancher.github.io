@@ -6,6 +6,8 @@ layout: rancher-default
 
 ## Metadata Service
 
+_Available as of v0.35.0+_
+
 With Rancher's metadata service, you can exec into any container and retrieve information about containers in Rancher. The metadata could be related to the container, the service or stack that the container is part of, or the host that the container is on. The metadata is in a JSON format. 
 
 ## How to Get the Metadata 
