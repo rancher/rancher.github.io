@@ -118,4 +118,10 @@ Read more about the [differences/similarities]({{site.baseurl}}/rancher/concepts
 
 Rancher supports the colocation, scheduling, and lock step scaling of a set of services by allowing users to group these services using the notion of sidekicks.  A service with one or more sidekicks is typically created to support shared volumes (i.e. `--volumes_from`) and/or networking (i.e. `--net=container`) between containers.
 
- Read more about using sidekicks with [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/#sidekicks).
+Read more about using sidekicks with [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/#sidekicks).
+
+### Metadata Services
+
+Rancher offers data for both your services and containers that can be used to configure or manage your running Docker instances in the form of a metadata service that can be accessed directly through a HTTP based API.  These data can include both static information when creating your Docker containers or Rancher Services or runtime data such as the managed IP address assigned or information about your peer containers within the same service.
+
+Read more about how to use our [metadata service]({{site.baseurl}}/rancher/metadata-services/).
