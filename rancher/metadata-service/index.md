@@ -12,9 +12,9 @@ With Rancher's metadata service, you can exec into any container and retrieve in
 
 ## How to Get the Metadata 
 
-From the Rancher UI, you can exec into the container by selecting **Execute Shell** from the drop down of the container. The drop down of the container can be found by hovering over the container. 
+From the Rancher UI, you can execute into shell of the container by selecting **Execute Shell** from the drop down of the container. The drop down can be found by hovering over the container. 
 
-To obtain the metadata, you'll run a curl command inside your container. 
+To obtain the metadata, you'll run a curl command.
 
 ```bash
 # If curl is not installed, install it
@@ -24,19 +24,19 @@ $ curl http://rancher-metadata/{version}/{path}
 ```
 The path can be changed depending on what metadata you want to retrieve as well as the response format.
 
-Metadata | Description | http
+Metadata | http path  | Description
 ----|---- | ---
 Container | `http://rancher-metadata/2015-07-25/self/container` | Provides metadata on the container that you are executing the command in 
 Service that container is part of | `http://rancher-metadata/2015-07-25/self/service` | Provides metadata on the service of the container that you are executing the command in 
 Stack that container is part of | `http://rancher-metadata/2015-07-25/self/stack` | Provides metadata on the stack of the container that you are executing the command in 
 Host that container is deployed on | `http://rancher-metadata/2015-07-25/self/host` | Provides metadata on the host of the container that you are executing the command in
-Other Containers | `http://rancher-metadata/2015-07-25/containers | Provides metadata on all containers. In plaintext, it provides an indexed response of all containers. In JSON format, it provides all the metadata for all  containers. Using either the index number or name in the path, you can obtain  metadata on a specific container. 
+Other Containers | `http://rancher-metadata/2015-07-25/containers` | Provides metadata on all containers. In plaintext, it provides an indexed response of all containers. In JSON format, it provides all the metadata for all  containers. Using either the index number or name in the path, you can obtain  metadata on a specific container. 
 Other Services | `http://rancher-metadata/2015-07-25/services` | Provides metadata on all services. In plaintext, it provides an indexed response of all services. In JSON format, it provides all the metadata for all services. Using either the index number or name in the path, you can obtain metadata on a specific service.
 Other Stacks | `http://rancher-metadata/2015-07-25/stacks/<stack-name>` | Provides metadata on all stacks. In plaintext, it provides an indexed response of all stacks. In JSON format, it provides all the metadata for all stacks. Using either the index number or name in the path, you can obtain metadata on a specific stack.
 
 ### Versioning of Metadata
 
-In the `curl` commands, we recommend using a specific version, but you can choose `latest`. As we make changes and push to `latest`, the data returned may change in any release and become incompatible with your code. 
+In the `curl` commands, we strongly recommend using a specific version, but you could also choose `latest`. As we make changes to our `latest` version, the data returned may change in any release and become incompatible with your code. 
 
 The version of the metadata service is based on date. 
 
@@ -46,11 +46,11 @@ Available Versions |
 
 ### Plaintext vs JSON 
 
-The metadata can be returned in either JSON format or plaintext. Depending on how you want to use your metadata, you can pick either format. 
+The metadata can be returned in either plaintext or JSON format. Depending on how you want to use your metadata, you can pick either format. 
 
 #### Plaintext
 
-When executing the curl command, you'll receive plaintext for the path that was requested. You can start at the top level of the path to find the exact path to get a single value.
+When executing the curl command, you'll receive plaintext for the path that was requested. You can start at the top level of the path and continue to update the path based on available keys until your metadata service provides the data you were looking for. 
 
 ```bash
 $ curl 'http://rancher-metadata/2015-07-25/self/container'
@@ -64,15 +64,15 @@ service_name
 stack_name
 $ curl 'http://rancher-metadata/2015-07-25/self/container/name'
 # Note: Curl will not provide a new line, so the value will be on same line as the command prompt
-Default_Example_1root@abcdefg$
+Default_Example_1$
 $ curl 'http://rancher-metadata/2015-07-25/self/container/label/io.rancher.stack.name'
-Defaultroot@abcdefg$
+Default$
 # Arrays can use either the index or name to go get the values
 $ curl 'http://rancher-metadata/2015-07-25/services'
 0=Example
 # You can either user the index or name as a path
 $ curl 'http://rancher-metadata/2015-07-25/services/0'
-$ curl 'http://rancher-metadata/2015-07-25/services/Example1'
+$ curl 'http://rancher-metadata/2015-07-25/services/Example'
 ```
 
 #### JSON
@@ -81,9 +81,7 @@ The JSON format can be retrieved by adding an `Accept: application/json` header 
 
 ```bash
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-07-25/self/container' 
-
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-07-25/self/stack' 
-
 # Retrieve the metadata for another service in the stack
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-07-25/services/<service-name>' 
 ```
