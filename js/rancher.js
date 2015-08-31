@@ -43,14 +43,24 @@ jQuery(document).ready(function () {
                                                     var content_height = $(".col-sm-9").height();
                                                     $(".col-sm-3").css("min-height", content_height + "px");
                                                     });
-                                              })
+                                              linkAnchors();
+                                              });
+                       linkAnchors();
                        });
+
+function linkAnchors() {
+  $('.content-container H3[id], .content-container H4[id], .content-container H5[id], .content-container H6[id]').each(function(idx, el) {
+    $(el).append($('<a />').addClass('header-anchor').attr('href', '#' + el.id).html('<i class="fa fa-link" aria-hidden="true"></i>'));
+  });
+}
+
 function changeUrl(title, url) {
     if (typeof (history.pushState) != "undefined") {
         var obj = {Title: title, Url: url};
         history.pushState(obj, obj.Title, obj.Url);
     }
 }
+
 function checkActiveState() {
     var url = window.location.pathname;
     $(".col-sm-3 ul .active").removeClass("active");
