@@ -84,7 +84,7 @@ When launching rancher server, the following environment variables will need to 
    * download the Public Key to verify host tokens:
      * `curl -X GET -O http(s)://<rancher>/v1/scripts/api.crt`
    * Bring up websocket-proxy running on the host. (Do not use localhost)
-     * `docker run -d --net=host -v $(pwd)/api.crt:/api.crt rancher/server websocket-proxy -jwt-public-key-file=/api.crt -listen-address=<ip:port>` 
+     * `docker run -d -p <port>:<port> -v $(pwd)/api.crt:/api.crt rancher/server websocket-proxy -jwt-public-key-file=/api.crt -listen-address=0.0.0.0:<port>` 
 9. Bring up `go-machine-service`
    * Create a service account and API keys:
       * Visit `http(s)://<rancher_server/v1/accounts` in a web browser.
