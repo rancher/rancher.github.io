@@ -257,7 +257,9 @@ wordpress:
     # Interval is measured in milliseconds
     interval: 2000
     unhealthy_threshold: 3
-    # For TCP, request_line needs to be empty
+    # For TCP, request_line needs to be ''
+    # TCP Example: 
+    # request_line: ''
     request_line: GET /healthcheck HTTP/1.0
     healthy_threshold: 2
     # Response timeout is measured in milliseconds
