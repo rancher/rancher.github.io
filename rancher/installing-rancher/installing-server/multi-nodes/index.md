@@ -69,6 +69,7 @@ When launching rancher server, the following environment variables will need to 
         -e CATTLE_DB_CATTLE_MYSQL_NAME=<Name of Database> \
         -e CATTLE_DB_CATTLE_USERNAME=<Username> \
         -e CATTLE_DB_CATTLE_PASSWORD=<Password> \
+        -e DEFAULT_CATTLE_MACHINE_EXECUTE=false \
         -e CATTLE_HOST_API_PROXY_MODE="ha" \
         -e CATTLE_HOST_API_PROXY_HOST="<host:port>" \
         -e CATTLE_ZOOKEEPER_CONNECTION_STRING=<comma separated list of zookeeper IPs ie. 10.0.1.2,10.0.1.3> \
@@ -83,4 +84,27 @@ When launching rancher server, the following environment variables will need to 
    * download the Public Key to verify host tokens:
      * `curl -X GET -O http(s)://<rancher>/v1/scripts/api.crt`
    * Bring up websocket-proxy running on the host. (Do not use localhost)
-     * `docker run -d --net=host -v $(pwd)/api.crt:/api.crt rancher/websocket-proxy /websocket-proxy -jwt-public-key-file=/api.crt -listen-address=<ip:port>` 
+     * `docker run -d --net=host -v $(pwd)/api.crt:/api.crt rancher/server websocket-proxy -jwt-public-key-file=/api.crt -listen-address=<ip:port>` 
+9. Bring up `go-machine-service`
+   * Create a service account and API keys:
+      * Visit `http(s)://<rancher_server/v1/accounts` in a web browser.
+      * Click `+Create` button.
+          - kind: service
+          - name: RemoteMachineService
+          - uuid: RemoteMachineService
+      * Click `Show Request` then `Send Request`
+      * Click `Follow Self Link`
+      * In the body there is a links section with a credentials link, click it.
+      * Click `+Create`
+      * Click `Show Request`
+      * Click `Follow Self Link`
+      * Make note of publicValue and secretValue.
+   * Launch `go-machine-service` with this command:
+      
+      ```bash
+      sudo docker run -d --restart=always \
+        -e CATTLE_URL=http(s)://<Rancher URL>/v1 \
+        -e CATTLE_ACCESS_KEY=<Service accounts publicValue> \
+        -e CATTLE_SECRET_KEY=<Service accounts secretValue> \
+        rancher/server go-machine-service
+	  ```	
