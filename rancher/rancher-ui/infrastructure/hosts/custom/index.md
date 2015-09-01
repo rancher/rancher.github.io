@@ -53,6 +53,8 @@ $ sudo vi /etc/default/docker
 
 Within the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it point to your proxy. Save your changes and then restart docker. Restarting Docker is different on every OS. 
 
+> **Note:** If running Docker with systemd, please follow Docker's [instructions](https://docs.docker.com/articles/systemd/#http-proxy) on how to configure the HTTP proxy. 
+
 #### Versions starting with v0.34.0 and later
 
 As of v0.34.0, no additional environment variables need to be added to the command to launch Rancher agents. Just make sure your Docker dameon is configured. 

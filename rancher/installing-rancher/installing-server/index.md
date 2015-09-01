@@ -119,6 +119,8 @@ $ sudo vi /etc/default/docker
 
 Within the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it point to your proxy. Save your changes and then restart docker. Restarting Docker is different on every OS. 
 
+> **Note:** If running Docker with systemd, please follow Docker's [instructions](https://docs.docker.com/articles/systemd/#http-proxy) on how to configure the HTTP proxy. 
+
 After you've configured the proxy in your Docker daemon, just run your Rancher server command.
 
 In order to add hosts to Rancher behind a proxy, please read about [adding custom hosts behind a proxy]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/#hosts-behind-a-proxy).
