@@ -244,3 +244,23 @@ web1:
 web2:
   image: nginx
 ```
+
+## Health Check for Services
+
+Rancher provides health checks on services by using the `rancher-compose.yml` file.
+
+```yaml
+wordpress:
+  scale: 1
+  health_check:
+    port: 80
+    # Interval is measured in milliseconds
+    interval: 2000
+    unhealthy_threshold: 3
+    # For TCP, request_line needs to be empty
+    request_line: GET /healthcheck HTTP/1.0
+    healthy_threshold: 2
+    # Response timeout is measured in milliseconds
+    response_timeout: 2000
+```
+
