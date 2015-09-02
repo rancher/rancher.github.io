@@ -75,32 +75,32 @@ Here is an Apache configuration. You'll need to launch an Apache container and d
 
 ```
 <VirtualHost *:80>
-ServerName <server_name>
-Redirect / https://<server_name>/
+  ServerName <server_name>
+  Redirect / https://<server_name>/
 </VirtualHost>
 
 <VirtualHost *:443>
-ServerName <server_name>
+  ServerName <server_name>
 
-SSLEngine on
-SSLCertificateFile </path/to/ssl/cert_file>
-SSLCertificateKeyFile </path/to/ssl/key_file>
+  SSLEngine on
+  SSLCertificateFile </path/to/ssl/cert_file>
+  SSLCertificateKeyFile </path/to/ssl/key_file>
 
-ProxyRequests Off
-ProxyPreserveHost On
+  ProxyRequests Off
+  ProxyPreserveHost On
 
-RewriteEngine On
-RewriteCond %{HTTP:Connection} Upgrade [NC]
-RewriteCond %{HTTP:Upgrade} websocket [NC]
-RewriteRule /(.*) ws://rancher:8080/$1 [P,L]
+  RewriteEngine On
+  RewriteCond %{HTTP:Connection} Upgrade [NC]
+  RewriteCond %{HTTP:Upgrade} websocket [NC]
+  RewriteRule /(.*) ws://rancher:8080/$1 [P,L]
 
-RequestHeader set X-Forwarded-Proto "https"
-RequestHeader set X-Forwarded-Port "443"
+  RequestHeader set X-Forwarded-Proto "https"
+  RequestHeader set X-Forwarded-Port "443"
 
-<Location />
-ProxyPass "http://rancher:8080/"
-ProxyPassReverse "http://rancher:8080/"
-</Location>
+  <Location />
+    ProxyPass "http://rancher:8080/"
+    ProxyPassReverse "http://rancher:8080/"
+  </Location>
 
 </VirtualHost>
 ```
