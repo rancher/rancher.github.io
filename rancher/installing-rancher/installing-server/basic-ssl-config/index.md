@@ -75,16 +75,16 @@ Here is an Apache configuration. You'll need to launch an Apache container and d
 
 ```
 <VirtualHost *:80>
-ServerName myhost.rancher.io
-Redirect / https://myhost.rancher.io/
+ServerName <server_name>
+Redirect / https://<server_name>/
 </VirtualHost>
 
 <VirtualHost *:443>
-ServerName myhost.rancher.io
+ServerName <server_name>
 
 SSLEngine on
-SSLCertificateFile /etc/ssl/certs/loadtest.rancher.io.crt
-SSLCertificateKeyFile /etc/ssl/certs/loadtest.rancher.io.key
+SSLCertificateFile </path/to/ssl/cert_file>
+SSLCertificateKeyFile </path/to/ssl/key_file>
 
 ProxyRequests Off
 ProxyPreserveHost On
