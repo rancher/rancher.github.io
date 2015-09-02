@@ -66,7 +66,48 @@ server {
 **Important Setting Notes:**
 
 * `rancher-server` is the name of your rancher server container. In other words, you must start your rancher server container with `--name=rancher-server` and your nginx container with `--link=rancher-server` for this exact configuration to work.
-* `<server>` can be any arbirtray name, but the same name should be used for both the http and https servers.
+* `<server>` can be any arbitrary name, but the same name should be used for both the http and https servers.
+
+
+## Apache Configuration
+
+Here is an Apache configuration. You'll need to launch an Apache container and do a docker link to provide DNS resolution for Rancher. 
+
+```
+<VirtualHost *:80>
+ServerName myhost.rancher.io
+Redirect / https://myhost.rancher.io/
+</VirtualHost>
+
+<VirtualHost *:443>
+ServerName myhost.rancher.io
+
+SSLEngine on
+SSLCertificateFile /etc/ssl/certs/loadtest.rancher.io.crt
+SSLCertificateKeyFile /etc/ssl/certs/loadtest.rancher.io.key
+
+ProxyRequests Off
+ProxyPreserveHost On
+
+RewriteEngine On
+RewriteCond %{HTTP:Connection} Upgrade [NC]
+RewriteCond %{HTTP:Upgrade} websocket [NC]
+RewriteRule /(.*) ws://rancher:8080/$1 [P,L]
+
+RequestHeader set X-Forwarded-Proto "https"
+RequestHeader set X-Forwarded-Port "443"
+
+<Location />
+ProxyPass "http://rancher:8080/"
+ProxyPassReverse "http://rancher:8080/"
+</Location>
+
+</VirtualHost>
+```
+
+**Important Setting Notes:**
+
+* In the proxy settings, you'll need to substitute `rancher` for your configuration.
 
 ## Host Registration
 After Rancher is launched with these settings, the UI will be up and running at `https://<your domain>/`.
