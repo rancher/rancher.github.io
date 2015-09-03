@@ -89,7 +89,7 @@ Read more about how to use [rancher-compose]({{site.baseurl}}/rancher/rancher-co
 
 ### Stacks
 
-A Rancher stack mirrors the same concept as a docker-compose project.  It also defines the scope of service discovery when linking services to one another and represents a group of services that make up a typical application or workload.
+A Rancher stack mirrors the same concept as a docker-compose project.  It represents a group of services that make up a typical application or workload.
 
 <!--
 ```bash
