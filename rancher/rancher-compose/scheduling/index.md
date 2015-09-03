@@ -110,8 +110,8 @@ labels:
   # Host SHOULD NOT have a container with the label `key4=value4
   io.rancher.scheduler.affinity:container_label_soft_ne: key4=value4
 ```
-**Service Name**
 
+**Service Name**
 When `rancher-compose` starts containers for a service, it also automatically creates several container labels. Since checking for a specific container label is looking for a `key=value`, we can use these system labels as the key of our rules. Here are the system labels created on the containers when Rancher starts a service: 
 
 Label | Value
