@@ -20,6 +20,10 @@ Since the agent is potentially open to the public internet, requests to the agen
 
 If you run `docker logs -f rancher-agent` and the logs show messages about an expired token, then please check that the date/time of the Rancher Server host and Rancher Agent host are in sync.
 
+### Why aren't the ports being updated on a container in `docker ps`?
+
+When ports are exposed in Rancher, it will not show up in `docker ps` as Rancher manages the iptable rules to make the ports fully dynamic.
+
 ### What are my options with a container?
 
 If you hover over the container, a drop down will appear on the right hand side.
