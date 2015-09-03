@@ -59,8 +59,8 @@ Name | Description
 `--help`, `-h`			|	show help
 `--version`, `-v`		|	print the version
 
-
-Examples:
+<br>
+**Examples:**
 
 ```bash
 # Starting a service without environment variables and picking a stack
