@@ -23,9 +23,9 @@ This will expand to show you any services within the stack as well as all the co
 ## Stack Configuration
 ---
 
-As services are created, we simultaneously create a `docker-compose.yml` and `rancher-compose.yml` file of your stack. The `docker-compose` yaml file could be used outside of Rancher to start the same set of services using the `docker-compose` commands. Read [here](https://docs.docker.com/compose/) for more information on `docker-compose`. 
+As services are created, we simultaneously create a `docker-compose.yml` and `rancher.yml` file of your stack. The `docker-compose` yaml file could be used outside of Rancher to start the same set of services using the `docker-compose` commands. Read [here](https://docs.docker.com/compose/) for more information on `docker-compose`. 
 
-The `rancher-compose.yml` file is used to manage the additional information used by Rancher to start services. These fields are not supported inside the docker-compose file.
+The `rancher.yml` file is used to manage the additional information used by Rancher to start services. These fields are not supported inside the docker-compose file.
 
 With these files, you can also use `rancher-compose` to start services that will be included in Rancher. For more details, please read about [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/).
 
