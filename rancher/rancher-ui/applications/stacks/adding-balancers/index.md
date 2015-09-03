@@ -20,6 +20,8 @@ We'll define the listening ports on the load balancer. The source port is the po
 
 Let's use a source port of `8090`, target port of `80`, select `Public` access and select the `http` protocol. Next, let's add our target. We will select our wordpress service. Click on **Create**. 
 
+> **Note:** When ports are exposed in Rancher, it will not show up in `docker ps` as Rancher manages the iptable rules to make the ports fully dynamic. 
+
 Just like with services, the load balancer is not started until the user starts the service. You can individually start the load balancer by clicking **Start** or selecting **Start** in the dropdown menu. 
 
 Now, let's see the load balancer in action. Click on a container name inside the load balancer. This will bring you to a detailed container page of the load balancer. Copy the IP address of the host, paste the IP into the web browser of your choice and add `:8090`. The Wordpress application will come up in the browser. 
