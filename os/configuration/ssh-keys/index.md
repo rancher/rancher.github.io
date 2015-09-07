@@ -16,7 +16,7 @@ ssh_authorized_keys:
   - ssh-rsa BBB...ZZZ example2@rancher
 ```
 
-When we pass the cloud-config file during the `rancheros-install` command, it will allow these ssh keys to be associated with the **rancher** user. You can ssh into RancherOS using the key.
+When we pass the cloud-config file during the `ros install` command, it will allow these ssh keys to be associated with the **rancher** user. You can ssh into RancherOS using the key.
 
 ```bash
 $ ssh -i /path/to/private/key rancher@<ip-address>

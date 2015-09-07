@@ -11,14 +11,15 @@ A useful command that can be used with RancherOS is `ros` which can be used to c
 
 ### Sub Commands
 ---
-| Command  | Description                                     |
-|----------|-------------------------------------------------|
-|`config`, `c`  |	[Configure Settings]({{site.baseurl}}/os/rancheros-tools/ros/config/)                       |
+| Command       | Description                                                                                   |
+|---------------|-----------------------------------------------------------------------------------------------|
+|`config`, `c`  | [Configure Settings]({{site.baseurl}}/os/rancheros-tools/ros/config/)                         |
 |`env`, `e`     | [Run a command with RancherOS environment]({{site.baseurl}}/os/rancheros-tools/ros/env/)      |
-|`service`, `s`   |	[Service Settings]({{site.baseurl}}/os/rancheros-tools/ros/service/)                          |
-|`os`           |   [Operating System Upgrade/Downgrade]({{site.baseurl}}/os/rancheros-tools/ros/os/)      |
-|`tls`          |	[Setup TLS configuration]({{site.baseurl}}/os/rancheros-tools/ros/tls/)                 |
-|`help`, `h`    |	Shows a list of commands or help for one command |
+|`service`, `s` | [Service Settings]({{site.baseurl}}/os/rancheros-tools/ros/service/)                          |
+|`os`           | [Operating System Upgrade/Downgrade]({{site.baseurl}}/os/rancheros-tools/ros/os/)             |
+|`tls`          | [Setup TLS configuration]({{site.baseurl}}/os/rancheros-tools/ros/tls/)                       |
+|`install`      | [Install RancherOS to Disk]({{site.baseurl}}/os/rancheros-tools/ros/install/)                 |
+|`help`, `h`    | Shows a list of commands or help for one command                                              |
 
 
 ### RancherOS Version
@@ -27,7 +28,7 @@ If you want to check what version you are on, just use the `-v` option.
 
 ```sh
 $ sudo ros -v
-ros version v0.3.1
+ros version v0.4.0
 ```
 
 ### Help
@@ -51,9 +52,10 @@ AUTHOR(S):
 COMMANDS:
     config, c   configure settings
     env, e      env command
-    service, s	service settings
+    service, s  service settings
     os          operating system upgrade/downgrade
     tls         setup tls configuration
+    install     install RancherOS to disk
     help, h     Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
