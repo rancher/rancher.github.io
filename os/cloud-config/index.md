@@ -169,11 +169,11 @@ rancher:
 
 #### User Docker Configuration
 
-The `user_docker` key configures the docker arguments and TLS settings.
+The `docker` key configures the docker arguments and TLS settings.
 
 ```yaml
 rancher:
-  user_docker:
+  docker:
     tls: false
     tls_args: [--tlsverify, --tlscacert=ca.pem, --tlscert=server-cert.pem, --tlskey=server-key.pem,
       '-H=0.0.0.0:2376']

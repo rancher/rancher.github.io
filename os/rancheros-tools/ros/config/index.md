@@ -49,7 +49,7 @@ $ sudo ros config set rancher.network.dns.nameservers '[8.8.8.8,8.8.4.4]'
 Setting a simple value in the `cloud-config-local.yml`
 
 ```bash
-$ sudo ros config set rancher.user_docker.tls true
+$ sudo ros config set rancher.docker.tls true
 ```
 
 ### Import
@@ -92,7 +92,7 @@ rancher:
             address: 172.19.8.101/24
         lo:
             address: 127.0.0.1/8
-  user_docker:
+  docker:
     tls: true
 ```
 #### Export Options
