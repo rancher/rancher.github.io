@@ -1,19 +1,19 @@
 ---
-title: Cloud Config
+title: Cloud-Config
 layout: os-default
 
 ---
 
-## Configure RancherOS through Cloud Config
+## Configure RancherOS with Cloud-Config
 ---
 
-Cloud config is a declarative configuration file supported by many Linux distributions. A Linux OS supporting cloud config will invoke a `cloud-init` process during startup to parse the cloud config file and configure the operating system.
+Cloud-config is a declarative configuration file format supported by many Linux distributions and is the primary configuration mechanism for RancherOS. 
 
-RancherOS runs its own `cloud-init` process in a system container. The `cloud-init` process will attempt to retrieve the cloud config file from a variety of data sources. Once `cloud-init` obtains a cloud config file, it configures the Linux OS according to the content of the cloud config file.
+A Linux OS supporting cloud-config will invoke a cloud-init process during startup to parse the cloud-config file and configure the operating system. RancherOS runs its own cloud-init process in a system container. The cloud-init process will attempt to retrieve a cloud-config file from a variety of data sources. Once cloud-init obtains a cloud-config file, it configures the Linux OS according to the content of the cloud-config file.
 
-When you create a RancherOS instance on AWS, for example, you can optionally specify a cloud config file. The cloud config file is then passed to the RancherOS instance as `user-data`. Inside the RanchreOS instance, the `cloud-init` process will retrieve the content of the cloud config file through the AWS cloud config data source: which simply extracts the content of `user-data` received by the VM instance. If the file starts with "`#cloud-config`", `cloud-init` will interpret that file as a cloud config file. If the file starts with `#!<interpreter>` (e.g., `#!/bin/sh`), `cloud-init` will simply execute that file. You can place any configuration commands in the file as scripts.
+When you create a RancherOS instance on AWS, for example, you can optionally provide cloud-config (as User-Data field). Inside the RancherOS instance, cloud-init process will retrieve the cloud-config content through its AWS cloud-config data source: which simply extracts the content of user-data received by the VM instance. If the file starts with "`#cloud-config`", cloud-init will interpret that file as a cloud-config file. If the file starts with `#!<interpreter>` (e.g., `#!/bin/sh`), cloud-init will simply execute that file. You can place any configuration commands in the file as scripts.
 
-A cloud config file uses a YAML format. YAML is easy to understand and easy to parse. For more information on YAML, please go [here](http://www.yaml.org/start.html). The most important formatting principle is indentation or whitespace. This indentation indicates relationships of the items to one another. If something is indented more than the previous line, it is a sub-item of the top item that is less indented.
+A cloud-config file uses a YAML format. YAML is easy to understand and easy to parse. For more information on YAML, please go [here](http://www.yaml.org/start.html). The most important formatting principle is indentation or whitespace. This indentation indicates relationships of the items to one another. If something is indented more than the previous line, it is a sub-item of the top item that is less indented.
 
 Example: Notice how both are indented underneath `ssh-authorized-keys`.
 
@@ -24,27 +24,27 @@ ssh_authorized_keys:
   - ssh-rsa BBB...ZZZ example2@rancher
 ```
 
-In our example above, we have our `#cloud-config` line to indicate it's a cloud config file. We have 1 top-level key, `ssh_authorized_keys`. The values of the keys are the indented lines after the key.
+In our example above, we have our `#cloud-config` line to indicate it's a cloud-config file. We have 1 top-level property, `ssh_authorized_keys`. Its value is a list of public keys that are represented as a dashed list under `ssh_authorized_keys:`.
 
-## How RancherOS Applies Cloud Config
+## How RancherOS Applies Cloud-Config
 
-RancherOS comes with a default configuration. The cloud config file processed by `cloud-init` will extend and overwrite the default configuration and be saved as `cloud-config.yml` in `/var/lib/rancher/conf`. Finally, the `cloud-config-local.yml` file will extend and overwrite the result from the `cloud-config.yml` passed in the installation. You should not edit `cloud-config-local.yml` file directly. The `ros config` command allows you to change the content of the `cloud-config-local.yml` file.
+RancherOS comes with a default configuration (also in cloud-config format). The cloud-config file processed by cloud-init will extend and override the default configuration and be saved as `cloud-config.yml` in `/var/lib/rancher/conf`. Finally, the `cloud-config-local.yml` file will extend and override the result from the `cloud-config.yml` passed in the installation. You should not edit `cloud-config-local.yml` file directly. The `ros config` command allows you to change the content of the `cloud-config-local.yml` file.
 
-Typically, when you first boot the server, you pass in the cloud config file to configure the initialization of the server. After the first boot, if you have any changes for the configuration, it's recommended that you use `ros config` commands to set the `rancher` key in the configuration. Any changes will be saved in the `cloud-config-local.yml` file.
+Typically, when you first boot the server, you pass in the cloud-config file to configure the initialization of the server. After the first boot, if you have any changes for the configuration, it's recommended that you use `ros config` CLI to set the necessary configuration properties. Any changes will be saved in the `cloud-config-local.yml` file.
 
-## Updating Cloud Config After RancherOS has booted
+## Updating Cloud-Config After RancherOS has booted
 
 `ros config` is the main command to interact with RancherOS configuration, here's the link to the [full ros config command docs]({{site.baseurl}}/os/rancheros-tools/ros/config/). With these commands, you can get and set values in the `cloud-config-local.yml` file as well as import/export configurations.
 
-You can view the content of `cloud-config-local.yml` file by issuing the `ros config export` command. Another command `ros config export --full` prints the current effective configuration of RancherOS, taking into account the initial default configuration and the impact of cloud config.
+You can view the content of `cloud-config-local.yml` file by issuing the `ros config export` command. Another command `ros config export --full` prints the current effective configuration of RancherOS, taking into account the initial default configuration and the impact of cloud-config.
 
 _In v0.3.1+, we changed the command from `rancherctl` to `ros`._
 
-## Supported Cloud Config Directives
+## Supported Cloud-Config Directives
 
-RancherOS currently supports a small number of cloud config directives.
+RancherOS currently supports a small number of cloud-config directives.
 
-> **Note:** Currently, RancherOS doesn't support adding other users to RancherOS. If this is in your cloud config file, RancherOS will not boot up. 
+> **Note:** Currently, RancherOS doesn't support adding other users to RancherOS.
 
 ### SSH Keys
 
@@ -78,9 +78,9 @@ You can set the hostname of the host using cloud-config. The example below shows
 hostname: myhost
 ``` 
 
-### Rancher Configurations 
+### RancherOS Specific Configuration 
 
-To configure other parts of RancherOS, the cloud config information must be within the `rancher` key in the cloud config file.
+To configure other parts of RancherOS, the cloud-config information must be within the `rancher` key in the cloud-config file.
 
 
 #### Network Configuration
@@ -130,7 +130,7 @@ You can configure which data sources to use for cloud-init.  Multiple data sourc
 1. `url:URL` - Download `URL` and use that as the user data
 1. `cmdline:URL` - Look for `cloud-config-url=URL` in `/proc/cmdline` and download `URL` as user data
 
-Within the `cloud-init` key, you can define the data sources.
+Within the cloud-init key, you can define the data sources.
 
 ```yaml
 rancher:
@@ -164,7 +164,7 @@ In the `upgrade` key, the `url` is used to find the list of available and curren
 ```yaml
 rancher:
   upgrade:
-    url: https://releases.rancher.com/rancheros/versions.yml
+    url: https://releases.rancher.com/os/releases.yml
     image: rancher/os
 ```
 
@@ -184,7 +184,7 @@ rancher:
 
 #### System Docker Configuration
 
-The `system docker` key configures the system-docker arguments.
+The `system_docker` key configures the system-docker arguments.
 
 ```yaml
 rancher:
