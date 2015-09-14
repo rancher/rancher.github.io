@@ -247,7 +247,11 @@ web2:
 
 ## Health Check for Services
 
-Rancher provides health checks on services by using the `rancher-compose.yml` file.
+Rancher implements a distributed health monitoring system by running an HAProxy instance on every host for the sole purpose of providing health checks to containers.  When health checks are enabled either on an individual container or a service,  each container is then monitored by up to three HAProxy instances running on different hosts. The container is considered healthy if at least one HAProxy instance reports a "passed" health check.
+
+Rancher’s approach handles network partitions and is more efficient than client-based health checks. By using HAProxy to perform health checks, Rancher enables users to specify the same health check policy for DNS service and for load balancers.
+
+To enable health checks for services, we add the health check in the `rancher-compose.yml` file.
 
 ```yaml
 wordpress:

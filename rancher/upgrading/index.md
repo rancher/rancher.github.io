@@ -39,7 +39,7 @@ If you have launched Rancher server **without** using an [external DB]({{site.ba
     $ docker run -d --volumes-from rancher-data --restart=always -p 8080:8080 rancher/server:latest
     ```
 
-    > **Note:** If you set any environment variables in your original Rancher server setup, you'll need to add those environment variables in the command.
+    > **Note:** If you set any environment variables or passed in a [LDAP certificate]{{site.baseurl}}/rancher/installing-rancher/installing-server/#enabling-ldap-capabilities-for-tls) in your original Rancher server setup, you'll need to add those environment variables or certificate in the command. 
 
 5. Remove the old Rancher server container. Note: If you only stop the container, the container will be restarted if your machine is rebooted due to the `--restart=always`. We recommend removing the container after your upgrade has been successful.
 
