@@ -7,13 +7,17 @@ layout: rancher-default
 ## Rancher Compose
 ---
 
-The `rancher-compose` tool works just like the popular `docker-compose` and supports any `docker-compose.yml` file. When we launch a service in rancher-compose, it will show up in the specified Rancher server instance. We also have a `rancher-compose.yml` which extends and overwrites `docker-compose.yml.` The rancher-compose yaml file are attributes only supported in Rancher, for example, scale of a service.
+The `rancher-compose` tool is like a multi-host version of `docker-compose`. It operates within the scope of a [stack]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/) in the Rancher UI, which belongs to one [environment]({{site.baseurl}}/rancher/configuration/access-control/) and has many [hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/). The containers started by `rancher-compose` will go onto any of the hosts in the environment that meet the [scheduling rules]({{site.baseurl}}/rancher/rancher-compose/scheduling/), just like the containers would start the UI as they are calling the same API.
+
+The `rancher-compose` tool works just like the popular `docker-compose` and supports any `docker-compose.yml` file. There is also a `rancher-compose.yml` which extends and overwrites `docker-compose.yml.` The rancher-compose yaml file are attributes only supported in Rancher, for example, scale of a service.
+
+ 
 
 The documentation for `rancher-compose` expects users to have an understanding of `docker-compose`. Please read through the [docker-compose documentation](https://docs.docker.com/compose/) before starting to work with `rancher-compose`.
 
 The binary can be downloaded directly from the UI. The link can be found on the **Applications** -> **Stacks** page in the upper right corner. We have binaries for Windows, Mac, and Linux.
 
-To enable `rancher-compose` to launch services in a Rancher instance, you'll need to set a couple of environment variables:`RANCHER_URL`, `RANCHER_ACCESS_KEY`, and `RANCHER_SECRET_KEY`. The access key and secret key will be an [API key]({{site.baseurl}}/rancher/configuration/api-keys/). 
+To enable `rancher-compose` to launch services in a Rancher instance, you'll need to set a couple of environment variables or pass them into the `rancher-compose command` as an option:`RANCHER_URL`, `RANCHER_ACCESS_KEY`, and `RANCHER_SECRET_KEY`. The access key and secret key will be an [API key]({{site.baseurl}}/rancher/configuration/api-keys/). 
 
 ```bash
 # Set the url that Rancher is on
