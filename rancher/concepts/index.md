@@ -7,13 +7,13 @@ layout: rancher-default
 ## Concepts
 ---
 
-In this section we introduce the key concepts in Rancher. You should be familiar with these concepts before attempting to use Rancher.
+In this section, we introduce the key concepts in Rancher. You should be familiar with these concepts before attempting to use Rancher.
 
 ### Users
 
-Users govern who has the access rights to view and manage Rancher resources within their Environment.  Rancher allows access for a single tenant but multi-user support can be enabled by integrating with GitHub's OAuth support for authorization.
+Users govern who has the access rights to view and manage Rancher resources within their Environment.  Rancher allows access for a single tenant but multi-user support can be enabled.
 
-Please read about [access control]({{site.baseurl}}/rancher/configuration/access-control/) to enable GitHub authentication.
+Please read about [access control]({{site.baseurl}}/rancher/configuration/access-control/) to enable authentication.
 
 ### Environments
 
@@ -73,6 +73,8 @@ Rancher’s approach handles network partitions and is more efficient than clien
 
 Depending on the result of health checks, a container is either in a green or red state. A service is in green (or "up") state if all containers implementing that service are in a green state and alternatively, in a red (or "down") state if all containers are subsequently in a red state.  A service is in yellow (or "degraded") state if Rancher has detected that at least one of the containers is either in a red state or in the process of returning it to a green state.
 
+Read more about how to set up health checks using [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/rancher-services/#health-check-for-services) or in the [UI]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#health-checks).
+
 ### Service HA
 
 Rancher constantly monitors the state of your containers within a service and actively manages to ensure the desired scale of the service.  This can be triggered when there are fewer (or even more) healthy containers than the desired scale of your service, a host becomes unavailable, a container fails, or being unable to meet a health check.
@@ -118,10 +120,10 @@ Read more about the [differences/similarities]({{site.baseurl}}/rancher/concepts
 
 Rancher supports the colocation, scheduling, and lock step scaling of a set of services by allowing users to group these services using the notion of sidekicks.  A service with one or more sidekicks is typically created to support shared volumes (i.e. `--volumes_from`) and/or networking (i.e. `--net=container`) between containers.
 
-Read more about using sidekicks with [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/#sidekicks).
+Read more about using [sidekicks with rancher-compose]({{site.baseurl}}/rancher/rancher-compose/#sidekicks).
 
 ### Metadata Services
 
 Rancher offers data for both your services and containers that can be used to manage your running Docker instances in the form of a metadata service accessed directly through a HTTP based API.  These data can include static information when creating your Docker containers/Rancher Services, or runtime data such as discovery information about peer containers within the same service.
 
-Read more about how to use our [metadata service]({{site.baseurl}}/rancher/metadata-services/).
+Read more about how to use our [metadata service]({{site.baseurl}}/rancher/metadata-service/).
