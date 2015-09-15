@@ -19,7 +19,7 @@ The `ros install` command will process your `cloud-config.yml` file specified wi
 
 Create a cloud config file with a SSH key, this allows you to SSH into the box as the rancher user. The yml file would look like this:
 
-```yml
+```yaml
 #cloud-config
 ssh_authorized_keys:
   - ssh-rsa AAA...
