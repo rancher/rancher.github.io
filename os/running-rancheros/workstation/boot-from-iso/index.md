@@ -16,14 +16,17 @@ After you boot RancherOS from ISO, you can follow the instructions [here]({{site
 ### Persisting State
 ---
 If you are running from the ISO, RancherOS will be running from memory. All downloaded Docker images, for example, will be stored in a ramdisk and will be lost after the server is rebooted. You can 
-create a file system with the label `RANCHER_STATE` to instruct RancherOS to use that partition to store state. Suppose you have a disk partition on the server called /dev/sda, the following command formats that partition and labels it `RANCHER_STATE`
+create a file system with the label `RANCHER_STATE` to instruct RancherOS to use that partition to store state. Suppose you have a disk partition on the server called `/dev/sda`, the following command formats that partition and labels it `RANCHER_STATE`
 
 ```bash
 $ sudo mkfs.ext4 -L RANCHER_STATE /dev/sda
+# Reboot afterwards in order for the changes to start being saved.
+$ sudo reboot
 ```
 
-After you reboot the server RancherOS will use /dev/sda as the state partition.
+After you reboot, the server RancherOS will use `/dev/sda` as the state partition.
 
+> **Note:** If you are installing RancherOS to disk, you do not need to run this command.
 
 
 <!----

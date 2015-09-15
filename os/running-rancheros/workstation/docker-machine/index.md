@@ -13,7 +13,9 @@ Note: If you create a RancherOS instance using `docker-machine`, you will not be
 
 ### Downloading RancherOS
 
-Get the latest `machine-rancheros.iso` artifact from the RancherOS [releases](https://github.com/rancher/os/releases). There are two ISO files in our releases. Please make sure you choose the `machine-rancheros.iso`. This ISO has been built with a special configuration for `docker-machine`.
+Get the latest `rancheros.iso` artifact from the RancherOS [releases](https://github.com/rancher/os/releases). 
+
+> **Note:** As of v0.4.0, the `rancheros.iso` can be used for `docker-machine`. Prior to v0.4.0, you must use the `machine-rancheros.iso`. 
 
 ### Using Docker Machine  
 
@@ -24,15 +26,15 @@ You can use `docker-machine` to launch VMs for various providers. Currently only
 Before moving forward, you'll need to have VirtualBox installed. Download it directly from [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Once you have VirtualBox and Docker Machine installed, it's just one command to get RancherOS running. 
 
 ```bash
-$ docker-machine create -d virtualbox --virtualbox-boot2docker-url <LOCATION-OF-MACHINE-RANCHEROS-ISO> <MACHINE-NAME>
+$ docker-machine create -d virtualbox --virtualbox-boot2docker-url <LOCATION-OF-RANCHEROS-ISO> <MACHINE-NAME>
 ```
 
-> **Note:** Instead of downloading the ISO, you can also directly use the URL for the `machine-rancheros.iso`. 
+> **Note:** Instead of downloading the ISO, you can directly use the URL for the `rancheros.iso`. 
 
 Example with RancherOS v0.3.2:
 
 ```bash
-$ docker-machine create -d virtualbox --virtualbox-boot2docker-url https://github.com/rancher/os/releases/download/v0.3.2/machine-rancheros.iso MyRancherOSMachine
+$ docker-machine create -d virtualbox --virtualbox-boot2docker-url https://github.com/rancher/os/releases/download/v0.4.0/rancheros.iso MyRancherOSMachine
 ```
 
 That's it! You should now have a RancherOS host running on VirtualBox. You can verify that you have a VirtualBox VM running on your host.
@@ -42,10 +44,6 @@ $ VBoxManage list runningvms | grep <MACHINE-NAME>
 ```
 
 This command will print out the newly created machine. If not, something went wrong with the provisioning step.
-
-#### Using Docker Machine on AWS
-
-More information coming soon!
 
 ### Logging into RancherOS
 

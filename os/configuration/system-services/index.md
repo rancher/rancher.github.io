@@ -45,11 +45,11 @@ If the file is saved at a http(s) url, just use the http(s) url when enabling/di
 $ sudo ros service enable http://mydomain.com/example.yml
 ```
 
-#### Rancher-Compose 
+## Using Rancher-Compose for System Services
 
 RancherOS uses [rancher-compose](https://github.com/rancher/rancher-compose) to create docker containers. Rancher-Compose is based off of docker-compose and expects the same yaml formats as docker-compose.
 
-**System-Docker vs. User Docker**
+### System-Docker vs. User Docker
 
 RancherOS uses labels to determine if the container should be deployed in system-docker. By default without the label, the container will be deployed in user docker.
 
@@ -58,27 +58,23 @@ labels:
   - io.rancher.os.scope=system
 ```
 
-**Links**
+### Labels
 
-We use [links](https://docs.docker.com/compose/yml/#links) to create dependency between containers. In our `ubuntu-console.yml`, we link the container with `cloud-init`, so that the console is able to use `cloud-init`. This also means that the `ubuntu-console` container would start after the `cloud-init` container was started.
+We use labels to determine how to handle the service containers.
 
-```yaml
-links:
-  - cloud-init
-```
+Key | Value |Description
+----|-----|---
+`io.rancher.os.detach` | Default: `true` | Equivalent of `docker run -d`. If set to `false`, equivalent of `docker run --detach=false`
+`io.rancher.os.scope` | `system` | Use this label to have the container deployed in system-docker instead of docker.
+`io.rancher.os.before`/`io.rancher.os.after` | Service Names (Comma separated list is accepted) | Used to determine order of when containers should be started
+`io.rancher.os.createonly` | Default: `false` | When set to `true`, only a `docker create` will be performed and not a `docker start`.
+`io.rancher.os.reloadconfig` | Default: `false`| When set to `true`, it reloads the configuration. 
 
-Other examples of `links`, which use `network`, to get access to the networking container.
+### Environment
 
-```yaml
-links:
-  - network
-```
+With [environment](https://docs.docker.com/compose/yml/#environment) in the yaml file, if the environment is not set (i.e. it doesn't have an `=`), then RancherOS looks up the value in the [cloud config file]({{site.baseurl}}/os/cloud-config). 
 
-**Environment**
-
-With [environment](https://docs.docker.com/compose/yml/#environment) in the yaml file, if the environment is not set (i.e. it doesn't have an `=`), then RancherOS looks up the value in the `rancher.yml` file. 
-
-We support worldwide globbing, so in our example below, the services.yml file will find ETCD_DISCOVERY in the `rancher.yml` file and set the environment to `https://discovery.etcd.io/d1cd18f5ee1c1e2223aed6a1734719f7` for the service. 
+We support worldwide globbing, so in our example below, the services.yml file will find ETCD_DISCOVERY in the `cloud-config.yml` file and set the environment to `https://discovery.etcd.io/d1cd18f5ee1c1e2223aed6a1734719f7` for the service. 
 
 `services.yml` File:
 
@@ -88,7 +84,7 @@ etcd:
     - ETCD_*
 ```
 
-`rancher.yml` File:
+`cloud-config.yml` File:
 
 ```yaml
 rancher:
@@ -96,7 +92,7 @@ rancher:
     ETCD_DISCOVERY: https://discovery.etcd.io/d1cd18f5ee1c1e2223aed6a1734719f7
 ```
 
-**Unsupported Keys in RancherOS**
+### Unsupported Keys in RancherOS
 
 RancherOS doesn't support some rancher-compose keys as it isn't relevant to RancherOS.
 
@@ -106,8 +102,8 @@ RancherOS doesn't support some rancher-compose keys as it isn't relevant to Ranc
 
 If you set the net to your host, then the `hostname` key will not be set for the container. Instead, it will be automatically set to `rancher`.
 
-#### Contributing to OS-Services
----
+## Contributing to OS-Services
+
 If you're interested in adding more services to RancherOS, please contribute to our [repo](https://github.com/rancher/os-services). 
 
 <br>
