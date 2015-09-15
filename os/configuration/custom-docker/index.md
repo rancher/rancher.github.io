@@ -61,9 +61,9 @@ Server:
 
 If you haven't touched `/usr/bin/docker` symlink, `system-docker` will still use the bundled docker from the OS image.
 
-### Custom Docker and System-Docker by building a new `iso`
+### Custom Docker and Custom System-Docker 
 
-In order to swap out your Docker version in `docker` and `system-docker`, you'll need to clone the RancherOS repository, replace the docker binary and build a new `iso` to use.
+In order to change the Docker version in `docker` and `system-docker`, you'll be [building your own custom RancherOS ISO]({{site.baseurl}}/os/configuration/custom-rancheros-iso/).
 
 1. Create a clone of the the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`. 
 
@@ -77,7 +77,7 @@ In order to swap out your Docker version in `docker` and `system-docker`, you'll
 
      ```
      IMAGE_NAME=rancher/os
-     VERSION=v0.4.0-dev
+     VERSION=v0.4.0
 
      # Update the URL to your preferred Docker version
      DOCKER_BINARY_URL=https://github.com/rancher/docker/releases/download/v1.8.2-ros1/docker-1.8.2
@@ -97,6 +97,6 @@ In order to swap out your Docker version in `docker` and `system-docker`, you'll
      iso-checksums.txt	vmlinuz
      ```
 
-Use the `rancheros.iso` to launch a new RancherOS instance with your own Docker version running in `docker` and `system-docker`.
+The `rancheros.iso` is ready to be used to [boot RancherOS from ISO]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso/) or [launch RancherOS using docker-machine]({{site.baseurl}}/os/running-rancheros/workstation/docker-machine). The new ISO will be running your custom Docker version in `docker` and `system-docker`. 
 
 
