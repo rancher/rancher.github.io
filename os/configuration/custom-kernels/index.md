@@ -6,20 +6,78 @@ layout: os-default
 
 ## Custom Kernels
 
-You can build your own RancherOS images with a custom Linux kernel. Currently, Linux v3.19 - v4.2 are known to work, and other versions might work as well. Here's a quick how-to:
+### Changing the Kernel in RancherOS
 
- 1. Git clone https://github.com/rancher/os repo to a directory on your disk.
+Currently, RancherOS ships with Linux 3.19.2 kernel. Starting with v0.4.0+, the kernel in RancherOS can be swapped out to your own version. In order to swap out your kernel, you'll need to clone the RancherOS repository, replace the kernel and build a new image.
 
- 2. Edit the [build.conf](https://github.com/rancher/os/blob/master/build.conf) file (in the root of the repo):
-    Replace the COMPILED_KERNEL_URL value with a (preferably, https) download URL of your compiled custom kernel tarball, 
-    e.g. "https://github.com/imikushin/os-kernel/releases/download/4.2/linux-4.2.0-rancher-x86.tar.gz".
-    
- 3. Run `./build.sh` in the repo root directory. You need to have `bash`, `make` and `docker` (docker version >= 1.8.0).
-    In a couple minutes you'll have ./dist/artifacts dir with the custom built RancherOS release files. 
+ 1. Create a clone of the the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`. 
 
-COMPILED_KERNEL_URL should point to a Linux kernel, compiled and packaged in a specific way. 
+    ```bash
+    $ git clone https://github.com/rancher/os.git
+    ```
 
-We build the kernel for RancherOS here: https://github.com/rancher/os-kernel. To build your own, clone the [os-kernel](https://github.com/rancher/os-kernel) repo, replace KERNEL_URL and KERNEL_SHA1 values in [./scripts/build-common](https://github.com/rancher/os-kernel/blob/master/scripts/build-common) file and run `./build.sh`: the freshly built kernel tarball (and headers) will show up in ./dist/kernel in a few minutes. 
+ 2. In the root of the repository, the `build.conf` file will need to be updated. Using your favorite editor, replace the `COMPILED_KERNEL_URL` value with a URL of your compiled custom kernel tarball. Ideally, the URL will be pre-fixed with `https`.
 
-KERNEL_URL should point to Linux kernel sources archive, packaged as '.tar.gz' or '.tar.xz'.
-KERNEL_SHA1 is the SHA1 sum of the kernel sources archive.
+     `build.conf` file
+
+     ```
+     IMAGE_NAME=rancher/os
+     VERSION=v0.4.0-dev
+ 
+     DOCKER_BINARY_URL=https://github.com/rancher/docker/releases/download/v1.8.2-ros1/docker-1.8.2
+     # Update the URL to your own custom kernel tarball
+     COMPILED_KERNEL_URL=https://github.com/rancher/os-kernel/releases/download/Ubuntu-3.19.0-27.29-ros1/linux-3.19.8-ckt5-rancher-x86.tar.gz
+     DFS_IMAGE=rancher/docker:1.8.2
+     ```
+
+     > **Note:** `COMPILED_KERNEL_URL` should point to a Linux kernel, compiled and packaged in a specific way. You can use the [os-kernel repository](https://github.com/rancher/os-kernel) to package your own kernel.
+  
+ 3. After you've replaced the URL with your custom kernel, run `./build.sh` in the root directory. After the build has completed, a `./dist/artifacts` directory will be created with the custom built RancherOS release files. 
+
+     Build Requirements: `bash`, `make`, `docker` (docker version >= 1.8.0)
+     
+     ```bash
+     $ ./build.sh
+     $ cd dist/artifacts
+     $ ls
+     initrd             rancheros.iso
+     iso-checksums.txt	vmlinuz
+     ```
+
+Use the `rancheros.iso` to launch a new RancherOS instance with your custom kernel. 
+
+### Packaging a Kernel to be used in RancherOS
+
+We build the kernel for RancherOS at the [os-kernel repository](https://github.com/rancher/os-kernel). You can use this repository to help package your own custom kernel to be used in RancherOS.
+
+
+1. Create a clone of the the [os-kernel](https://github.com/rancher/os-kernel) repository to your local machine using `git clone`.
+
+     ```bash
+     $ git clone https://github.com/rancher/os-kernel.git
+     ```
+
+2. In the `./scripts/build-common` file, update the `KERNEL_URL` and `KERNEL_SHA1`. `KERNEL_URL` points to Linux kernel sources archive, packaged as `.tar.gz` or `.tar.xz`. `KERNEL_SHA1` is the `SHA1` sum of the kernel sources archive.
+
+     `./scripts/build-common` file
+
+     ```     #!/bin/bash
+     set -e
+
+     : ${KERNEL_URL:="https://github.com/rancher/linux/archive/Ubuntu-3.19.0-27.29.tar.gz"}
+     : ${KERNEL_SHA1:="84b9bc53bbb4dd465b97ea54a71a9805e27ae4f2"}
+     : ${ARTIFACTS:=$(pwd)/assets}
+     : ${BUILD:=$(pwd)/build}
+     : ${CONFIG:=$(pwd)/config}
+     : ${DIST:=$(pwd)/dist}
+
+     ```
+
+3. After you've replaced the `KERNEL_URL` and `KERNEL_SHA1`, run `./build.sh` in the root `os-kernel` directory. After the build is completed, a `./dist/kernel` directory will be created with the freshly built kernel tarball and headers. 
+
+     ```bash
+     $ ./build.sh
+     $ cd dist/kernel
+     $ ls
+     headers    <name_of_kernel>.tar.gz
+     ```
