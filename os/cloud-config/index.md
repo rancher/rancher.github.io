@@ -174,11 +174,9 @@ The `docker` key configures the docker arguments and TLS settings.
 ```yaml
 rancher:
   docker:
-    tls: false
     tls_args: [--tlsverify, --tlscacert=ca.pem, --tlscert=server-cert.pem, --tlskey=server-key.pem,
       '-H=0.0.0.0:2376']
-    args: [docker, -d, -s, overlay, -G, docker, -H, 'unix:///var/run/docker.sock']
-
+    args: [daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -s, overlay, -G, docker, -H, 'unix:///var/run/docker.sock', --userland-proxy=false]
 ```
 
 #### System Docker Configuration
@@ -188,7 +186,8 @@ The `system_docker` key configures the system-docker arguments.
 ```yaml
 rancher:
   system_docker:
-    args: [docker, -d, --log-driver, syslog, -s, overlay, -b, docker-sys, --fixed-cidr,
-      172.18.42.1/16, --restart=false, -g, /var/lib/system-docker, -G, root, -H, 'unix:///var/run/system-docker.sock']
+    args: [daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -s, overlay, -b, docker-sys,
+      --fixed-cidr, 172.18.42.1/16, --restart=false, -g, /var/lib/system-docker, -G, root,
+      -H, 'unix:///var/run/system-docker.sock', --userland-proxy=false]
 ```
 
