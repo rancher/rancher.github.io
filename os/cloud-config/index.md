@@ -108,12 +108,11 @@ rancher:
       nameservers:
         - 8.8.8.8
         - 8.8.4.4
-
 ```
 
 **DNS**
 
-In the DNS section, you can set the `nameserver`, and `search`, which directly map to the fields of the same name in `/etc/resolv.conf`.
+In the DNS section, you can set the `nameservers`, and `search`, which directly map to the fields of the same name in `/etc/resolv.conf`.
 
 **Interfaces**
 
@@ -155,7 +154,7 @@ rancher:
 
 **Auto formatting**
 
-You can specify a list of devices to check to format on boot.  If the state partition is already found, RancherOS will not try to auto format a partition.  If the device specified in `autoformat` starts with 1 megabyte of zeros, RancherOS will autoformat the partition to ext4.  Auto-formatting is off by default.
+You can specify a list of devices to check to format on boot.  If the state partition is already found, RancherOS will not try to auto format a partition.  If the device specified in `autoformat` contains a boot2docker magic string or starts with 1 megabyte of zeros (and `rancher.state.formatzero` is true), RancherOS will autoformat the partition to ext4.  Auto-formatting is off by default.
 
 #### Upgrades
 
@@ -170,16 +169,14 @@ rancher:
 
 #### User Docker Configuration
 
-The `user_docker` key configures the docker arguments and TLS settings.
+The `docker` key configures the docker arguments and TLS settings.
 
 ```yaml
 rancher:
-  user_docker:
-    tls: false
+  docker:
     tls_args: [--tlsverify, --tlscacert=ca.pem, --tlscert=server-cert.pem, --tlskey=server-key.pem,
       '-H=0.0.0.0:2376']
-    args: [docker, -d, -s, overlay, -G, docker, -H, 'unix:///var/run/docker.sock']
-
+    args: [daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -s, overlay, -G, docker, -H, 'unix:///var/run/docker.sock', --userland-proxy=false]
 ```
 
 #### System Docker Configuration
@@ -189,7 +186,8 @@ The `system_docker` key configures the system-docker arguments.
 ```yaml
 rancher:
   system_docker:
-    args: [docker, -d, --log-driver, syslog, -s, overlay, -b, docker-sys, --fixed-cidr,
-      172.18.42.1/16, --restart=false, -g, /var/lib/system-docker, -G, root, -H, 'unix:///var/run/system-docker.sock']
+    args: [daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -s, overlay, -b, docker-sys,
+      --fixed-cidr, 172.18.42.1/16, --restart=false, -g, /var/lib/system-docker, -G, root,
+      -H, 'unix:///var/run/system-docker.sock', --userland-proxy=false]
 ```
 
