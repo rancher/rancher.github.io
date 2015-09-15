@@ -9,13 +9,11 @@ layout: os-default
 
 Before we get started, you'll need to make sure that you have docker machine installed. Download it directly from the docker machine [releases](https://github.com/docker/machine/releases). The version must be at least [v0.3.0-rc1](https://github.com/docker/machine/releases/tag/v0.3.0-rc1) or greater. 
 
-Note: If you create a RancherOS instance using `docker-machine`, you will not be able to upgrade your version of RancherOS.
+> **Note:** If you create a RancherOS instance using `docker-machine`, you will not be able to upgrade your version of RancherOS.
 
 ### Downloading RancherOS
 
-Get the latest `rancheros.iso` artifact from the RancherOS [releases](https://github.com/rancher/os/releases). 
-
-> **Note:** As of v0.4.0, the `rancheros.iso` can be used for `docker-machine`. Prior to v0.4.0, you must use the `machine-rancheros.iso`. 
+Get the latest `rancheros.iso` artifact from the RancherOS [releases](https://github.com/rancher/os/releases).  As of v0.4.0, the `rancheros.iso` can be used for `docker-machine`. Prior to v0.4.0, you must select the `machine-rancheros.iso`. 
 
 ### Using Docker Machine  
 
@@ -31,7 +29,7 @@ $ docker-machine create -d virtualbox --virtualbox-boot2docker-url <LOCATION-OF-
 
 > **Note:** Instead of downloading the ISO, you can directly use the URL for the `rancheros.iso`. 
 
-Example with RancherOS v0.3.2:
+Example with RancherOS v0.4.0 link:
 
 ```bash
 $ docker-machine create -d virtualbox --virtualbox-boot2docker-url https://github.com/rancher/os/releases/download/v0.4.0/rancheros.iso MyRancherOSMachine
