@@ -108,12 +108,11 @@ rancher:
       nameservers:
         - 8.8.8.8
         - 8.8.4.4
-
 ```
 
 **DNS**
 
-In the DNS section, you can set the `nameserver`, and `search`, which directly map to the fields of the same name in `/etc/resolv.conf`.
+In the DNS section, you can set the `nameservers`, and `search`, which directly map to the fields of the same name in `/etc/resolv.conf`.
 
 **Interfaces**
 
@@ -155,7 +154,7 @@ rancher:
 
 **Auto formatting**
 
-You can specify a list of devices to check to format on boot.  If the state partition is already found, RancherOS will not try to auto format a partition.  If the device specified in `autoformat` starts with 1 megabyte of zeros, RancherOS will autoformat the partition to ext4.  Auto-formatting is off by default.
+You can specify a list of devices to check to format on boot.  If the state partition is already found, RancherOS will not try to auto format a partition.  If the device specified in `autoformat` contains a boot2docker magic string or starts with 1 megabyte of zeros (and `rancher.state.formatzero` is true), RancherOS will autoformat the partition to ext4.  Auto-formatting is off by default.
 
 #### Upgrades
 
