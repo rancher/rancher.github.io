@@ -7,6 +7,8 @@ layout: os-default
 ---
 RancherOS comes with a simple installer that will install RancherOS on a given target disk. To install RancherOS on a new disk, you can use the `ros install` [command]({{site.baseurl}}/os/rancheros-tools/ros/install). Before installing, you'll need to have already [booted RancherOS from iso]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso). Please be sure to pick the `rancheros.iso` from our release [page](https://github.com/rancher/os/releases).
 
+> **Note:** Prior to v0.4.0, `ros install` was called `rancheros-install`. `rancheros-install` has been deprecated. 
+
 ### Using `ros install` to Install RancherOS 
 
 The `ros install` command orchestrates the installation from the `rancher/os` container. You will need to have already created a cloud config file and found the target disk.
@@ -25,7 +27,7 @@ ssh_authorized_keys:
   - ssh-rsa AAA...
 ```
 
-> **Note:** Currently, RancherOS doesn't support adding other users to RancherOS. If this is in your cloud config file, RancherOS might not boot up. 
+> **Note:** Currently, RancherOS doesn't support adding other users to RancherOS. If this is in your cloud config file, RancherOS will not boot up. 
 
 You can generate a new SSH key for `cloud-config.yml` file by following this [article](https://help.github.com/articles/generating-ssh-keys/). 
 
@@ -42,7 +44,7 @@ Continue [y/N]:
 
 You will be prompted to see if you want to continue. Type **y**.
 
-```
+```bash
 Unable to find image 'rancher/os:v0.4.0' locally
 v0.4.0: Pulling from rancher/os
 ...
@@ -56,6 +58,7 @@ Status: Downloaded newer image for rancher/os:v0.4.0
 + umount /mnt/new_img
 Continue with reboot [y/N]:
 ```
+
 After you install RancherOS to disk, the rancher/rancher user/password will no longer be valid, unless you've booted off the ISO again, and you'll need to have added in SSH keys within your [cloud config file]({{site.baseurl}}/os/cloud-config/).
 
 ### SSH into RancherOS

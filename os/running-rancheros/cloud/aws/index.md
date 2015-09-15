@@ -13,13 +13,13 @@ If you haven't installed the AWS CLI, follow the instructions on the [AWS CLI pa
 
 Once you've installed your AWS CLI, use this command to launch an EC2 instance with the RancherOS AMI. You will need to know your SSH key name and security group name for the _region_ that you are configured for. These can be found from the AWS console.
 
-Note: Check the RancherOS [README](https://github.com/rancher/os/blob/master/README.md) for AMI names for each region. We support PV and HVM types of AMIs. 
+> **Note:** Check the RancherOS [README](https://github.com/rancher/os/blob/master/README.md) for AMI names for each region. We support PV and HVM types of AMIs. 
 
 ```bash
 $ aws ec2 run-instances --image-id ami-ID# --count 1 --instance-type t1.micro --key-name MySSHKeyName --security-groups sg-name
 ```
 
-Your instance is now running!
+Your EC2 instance is now running RancherOS!
 
 ### Launching RancherOS through the AWS Console
 
@@ -34,7 +34,11 @@ Let’s walk through how to import and create a RancherOS on EC2 machine using t
 
     ![RancherOS on AWS 2]({{site.baseurl}}/img/os/Rancher_aws2.png)
 
-3. Go through the steps of creating the instance type through the AWS console. Choose your instance type, configure instance, add storage, tag instance, configure security group, and review. After you click on **Launch**, either create a new key pair or choose an existing key pair to be used with the EC2 instance. If you have created a new key pair, download the key pair. If you have chosen an existing key pair, make sure you have the key pair accessible. Click on **Launch Instances**. 
+3. Go through the steps of creating the instance type through the AWS console. If you want to pass in a [cloud-config]({{site.baseurl}}/os/cloud-config/) file during boot of RancherOS, you'd pass in the file as **User data** by expanding the **Advanced Details** in **Step 3: Configure Instance Details**. You can pass in the data as text or as a file. 
+    
+    ![RancherOS on AWS 6]({{site.baseurl}}/img/os/Rancher_aws6.png)
+
+     After going through all the steps, you finally click on **Launch**, and either create a new key pair or choose an existing key pair to be used with the EC2 instance. If you have created a new key pair, download the key pair. If you have chosen an existing key pair, make sure you have the key pair accessible. Click on **Launch Instances**. 
 
     ![RancherOS on AWS 3]({{site.baseurl}}/img/os/Rancher_aws3.png)
 
