@@ -9,7 +9,7 @@ layout: os-default
 
 ### Developing
 
-Development is easiest done with QEMU on Linux. OS X works too, although QEMU doesn't have KVM support then. If you are running Linux in a virtual machine, then we recommend you run VMWare Fusion/Workstation and enable VT-x support.  Then QEMU will have KVM support and run sufficiently fast inside your Linux VM.
+Development is easiest done with QEMU on Linux. OS X works too, although QEMU doesn't have KVM support. If you are running Linux in a virtual machine, then we recommend you run VMWare Fusion/Workstation and enable VT-x support.  Then, QEMU will have KVM support and run sufficiently fast inside your Linux VM.
 
 #### Building
 
@@ -19,7 +19,7 @@ Bash, Docker 1.8+ and Make required.
 $ ./build.sh
 ```
 
-The build will run in a docker container named "ros-build". When the build is done, the ISO, vmlinuz and initrd should be in `dist/artifacts`. 
+The build will run in a docker container named `ros-build`. When the build is done, the ISO, vmlinuz and initrd should be in `dist/artifacts`. 
 
 Run `./build.sh` (or `make all`) to perform the full build.  After that, if you only make changes to the Go code, just run `make`. Otherwise (e.g. on changes to make files, 'build.conf' or 'os-config.yml'), run the full build again.
 

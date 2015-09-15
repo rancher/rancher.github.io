@@ -8,7 +8,7 @@ layout: os-default
 
 ### Changing the Kernel in RancherOS 
 
-Currently, RancherOS ships with Linux 3.19.2 kernel. Starting with v0.4.0+, the kernel in RancherOS can be swapped out to your own version. In order to swap out your kernel, you'll need to clone the RancherOS repository, replace the kernel and build a new `iso` to use.
+Currently, RancherOS ships with Linux 3.19.2 kernel. Starting with v0.4.0+, the kernel in RancherOS can be swapped out to your own version by [building your own custom RancherOS ISO]({{site.baseurl}}/os/configuration/custom-rancheros-iso/).
 
  1. Create a clone of the the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`. 
 
@@ -22,7 +22,7 @@ Currently, RancherOS ships with Linux 3.19.2 kernel. Starting with v0.4.0+, the 
 
      ```
      IMAGE_NAME=rancher/os
-     VERSION=v0.4.0-dev
+     VERSION=v0.4.0
  
      DOCKER_BINARY_URL=https://github.com/rancher/docker/releases/download/v1.8.2-ros1/docker-1.8.2
      # Update the URL to your own custom kernel tarball
@@ -44,7 +44,7 @@ Currently, RancherOS ships with Linux 3.19.2 kernel. Starting with v0.4.0+, the 
      iso-checksums.txt	vmlinuz
      ```
 
-Use the `rancheros.iso` to launch a new RancherOS instance with your custom kernel. 
+The `rancheros.iso` is ready to be used to [boot RancherOS from ISO]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso/) or [launch RancherOS using docker-machine]({{site.baseurl}}/os/running-rancheros/workstation/docker-machine). The new ISO and will be running with your custom kernel. 
 
 ### Packaging a Kernel to be used in RancherOS
 

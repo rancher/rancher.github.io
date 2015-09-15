@@ -26,9 +26,7 @@ $ sudo ros tls generate -s --hostname myserver.example.com --hostname localhost 
 
 #### Enable TLS for Docker
 
-Note: as of v0.3.1+, we have re-named `userdocker` to `docker`. Therefore, to restart docker in any versions prior to v0.3.1, you'll need to replace `docker` with `userdocker`.
-
-Note: as of v0.4.0+, we have re-named `rancher.user_docker` to `rancher.docker`. Therefore, in versions prior to v0.4.0, you'll need to use `rancher.user_docker` instead of `rancher.docker`.
+> **Note:** As of v0.4.0+, we have re-named `rancher.user_docker` to `rancher.docker`. In versions prior to v0.4.0, you'll need to use `rancher.user_docker` instead of `rancher.docker`.
 
 ```bash
 $ sudo ros config set rancher.docker.tls true

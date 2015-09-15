@@ -7,11 +7,12 @@ layout: os-default
 ## Custom Console OS
 ---
 
-By default, RancherOS starts with the default (busybox based) console. This is a [system service]({{site.baseurl}}/os/configuration/system-services) that has been enabled in RancherOS default configuration.
+When [booting from the ISO]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso/), RancherOS starts with the default console, which is based on busybox. If you are running RancherOS through a cloud provider, RancherOS is enabled to start with the ubuntu console. The console is considered a [system service]({{site.baseurl}}/os/configuration/system-services).
 
-RancherOS also comes with a ubuntu and debian console. You can select which console you want enabled using [cloud-config]({{site.baseurl}}/os/cloud-config/) or you can change it after RancherOS has started using `ros config` CLI. 
+Currently, RancherOS supports three different consoles, busybox, ubuntu and debian console. You can select which console you want RancherOS to start with using [cloud-config]({{site.baseurl}}/os/cloud-config/). If multiple consoles are enabled, the first console that starts will be the console that is used in RancherOS, so it's important to disable any consoles that you don't want to use. 
 
-When multiple consoles are enabled, the first console that starts will be the console that is used in RancherOS, so it's important to disable any consoles that you don't want to use. 
+> **Note**: With v0.4.0, ubuntu and debian are [persistent consoles]({{site.baseurl}}/os/custom-console/#console-persistence). If you have already started RancherOS in a persistent console, you will not be able to switch the other persistent console.
+
 
 ### Enabling Consoles using Cloud Config 
 
@@ -48,18 +49,25 @@ $ sudo reboot
 
 ### Console persistence
 
-To enable debian or ubuntu console, you'll need to enable it in the services list. You'll want to make sure all other consoles are either disabled or not listed. 
+As of v0.4.0, debian and ubuntu consoles are persistent, while the default (busybox) console is ephemeral. Persistent console means that the console container will remain the same and preserves changes made to its filesystem across reboots. 
 
-Debian and ubuntu consoles are persistent, while the default (busybox) console is ephemeral. Persistent console means that the console container stays the same and preserves changes made to its filesystem across reboots. 
-
-**Note:** Currently, if you want to change from debian to ubuntu console (or vice versa), you need to change to the default console first (and reboot), and make the change to ubuntu console from there.
+> **Note:** Currently, if you want to switch between debian/ubuntu consoles, you will need to change RancherOS to be running the default console before making switches to the other persistent console. 
 
 ```bash
+# Currently running ubuntu console
 $ sudo ros service list
 disabled debian-console 
 enabled ubuntu-console
-$ sudo ros service disable debian-console
+# Disable ubuntu console
+$ sudo ros service disable ubuntu-console
+# Both consoles are disabled and RancherOS will start the default busybox console
+$ sudo ros service list
+disabled debian-console 
+disabled ubuntu-console
+# Reboot
 $ sudo reboot
-$ sudo ros service enable ubuntu-console
+# Log back in the default busybox console, enable the debian console
+$ sudo ros service enable debian-console
+# Reboot and log back in to be running the debian console
 $ sudo reboot
 ```

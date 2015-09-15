@@ -154,7 +154,12 @@ rancher:
 
 **Auto formatting**
 
-You can specify a list of devices to check to format on boot.  If the state partition is already found, RancherOS will not try to auto format a partition.  If the device specified in `autoformat` contains a boot2docker magic string or starts with 1 megabyte of zeros (and `rancher.state.formatzero` is true), RancherOS will autoformat the partition to ext4.  Auto-formatting is off by default.
+You can specify a list of devices to check to format on boot.  If the state partition is already found, RancherOS will not try to auto format a partition. By default, auto-formatting is off.
+
+RancherOS will autoformat the partition to ext4 if the device specified in `autoformat`:
+
+* Contains a boot2docker magic string
+* Starts with 1 megabyte of zeros and `rancher.state.formatzero` is true 
 
 #### Upgrades
 
@@ -167,7 +172,7 @@ rancher:
     image: rancher/os
 ```
 
-#### User Docker Configuration
+#### Docker Configuration
 
 The `docker` key configures the docker arguments and TLS settings.
 
@@ -179,7 +184,7 @@ rancher:
     args: [daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -s, overlay, -G, docker, -H, 'unix:///var/run/docker.sock', --userland-proxy=false]
 ```
 
-#### System Docker Configuration
+#### System-Docker Configuration
 
 The `system_docker` key configures the system-docker arguments.
 
