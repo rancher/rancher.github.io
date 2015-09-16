@@ -178,6 +178,34 @@ test-data:
   scale: 2
 ```
 
+#### Example of Sidekicks in Rancher-Compose: Multiple services using the same service for `volumes_from`
+
+If you have multiple services that will be using the same container to do a `volumes_from`, you'd want to make the data container is the primary service and the other services are the sidekicks (i.e. secondary services). 
+
+```yaml
+test-data:
+  tty: true
+  command:
+  - cat
+  image: ubuntu:14.04.2
+  stdin_open: true
+  labels:
+    io.rancher.sidekicks: test1, test2
+test1:
+  tty: true
+  image: ubuntu:14.04.2
+  stdin_open: true
+  volumes_from:
+  - test-data
+test2:
+  tty: true
+  image: ubuntu:14.04.2
+  stdin_open: true
+  volumes_from:
+  - test-data
+
+```
+
 ### Cross-Stack Linking
 
 In Rancher, we allow linking of services across stacks, which is easy to represent in the `docker-compose.yml` file.
