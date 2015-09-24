@@ -11,8 +11,6 @@ The `rancher-compose` tool is like a multi-host version of `docker-compose`. It 
 
 The `rancher-compose` tool works just like the popular `docker-compose` and supports any `docker-compose.yml` file. There is also a `rancher-compose.yml` which extends and overwrites `docker-compose.yml.` The rancher-compose yaml file are attributes only supported in Rancher, for example, scale of a service.
 
- 
-
 The documentation for `rancher-compose` expects users to have an understanding of `docker-compose`. Please read through the [docker-compose documentation](https://docs.docker.com/compose/) before starting to work with `rancher-compose`.
 
 The binary can be downloaded directly from the UI. The link can be found on the **Applications** -> **Stacks** page in the upper right corner. We have binaries for Windows, Mac, and Linux.
@@ -32,105 +30,26 @@ Now, you can create run any `docker-compose.yml` file using `rancher-compose`. T
 
 ### Commands
 
-`rancher-compose` supports any command that `docker-compose` supports.
+To read more about the different commands and options, please read our [rancher-compose command]({{site.baseurl}}/rancher/rancher-compose/commands/) documentation. 
 
-Name | Description
-----|-----
-`create`	| Create all services but do not start
-`up`		| Bring all services up
-`start`	| Start services
-`logs`	| 	Get service logs
-`restart`	| Restart services
-`stop`, `down` |	Stop services
-`scale`	| Scale services
-`rm`		| Delete services
-`upgrade`	| Perform rolling upgrade between services
-`help`, `h`	| Shows a list of commands or help for one command
-
-### Rancher-Compose Options
-
-Whenever you use the `rancher-compose` command, there are different options that you can use. 
-
-Name | Description
---- | ---
-`--verbose`, `--debug`	|		
-`--file`, `-f` `"docker-compose.yml"`|	Specify an alternate compose file (default: docker-compose.yml) [$COMPOSE_FILE]
-`--project-name`, `-p` 		|	Specify an alternate project name (default: directory name)
-`--url` 				| Specify the Rancher API endpoint URL [$RANCHER_URL]
-`--access-key` 			| Specify Rancher API access key [$RANCHER_ACCESS_KEY]
-`--secret-key` 		|	Specify Rancher API secret key [$RANCHER_SECRET_KEY]
-`--rancher-file`, `-r` 	|		Specify an alternate Rancher compose file (default: rancher-compose.yml)
-`--help`, `-h`			|	show help
-`--version`, `-v`		|	print the version
-
-<br>
-**Examples:**
+#### Command Examples
 
 ```bash
-# Starting a service without environment variables and picking a stack
+# Creating and starting a service without environment variables and picking a stack
 $ rancher-compose --url URL_of_Rancher --access-key username_of_API_key --secret-key password_of_API_key -p stack1 up
 # To change the scale of an existing service
 $ rancher-compose -p stack1 scale web=3
 ```
 
-> **Note:** If you don't pass in `-p STACK_NAME`, the stack name will be the directory that you are running the `rancher-compose` command in.
-
-### Command Options
-
-#### Up Command
-
-When you run the `up` command with `rancher-compose`, after all the tasks are complete, the process continues to run. If you want the process to exit after completion, you'll need to add in the `-d` option, which is to not block and log. 
-
-Name | Description
----|----
-`-d` |	Do not block and log
-
-#### Logs Command
-
-Name | Description
----|----
-`--lines "100"` |	number of lines to tail
-
-#### Restart/Stop/Down Command
-
-Name | Description
----|----
-`--timeout`, `-t` `"10"` |	Specify a shutdown timeout in seconds.
-
-#### Rm Command
-
-Name | Description
----|----
-`--force`, `-f`	| Allow deletion of all services
-
-#### Upgrade Command
-
-Rancher supports upgrades to services using `rancher-compose`. Please read more about when and how to [upgrade your services]({{site.baseurl}}/rancher/rancher-compose/upgrading/).
-
-Name | Description
----|----
-`--batch-size` `"2"`	| Number of containers to upgrade at once
-`--scale` `"-1"`		| Final number of running containers
-`--interval` `"2000"`	 | Update interval in milliseconds
-`--update-links`	| Update inbound links on target service
-`--wait`, `-w`		| Wait for upgrade to complete
-
-### Compose Compatibility
-
-`rancher-compose` strives to be completely compatible with Docker Compose.  Since `rancher-compose` is largely focused on running production workloads some behaviors between Docker Compose and Rancher Compose are different.
-
-We support anything that can be created in a standard [docker-compose.yml](https://docs.docker.com/compose/yml/) file. There are a couple of differences in the behavior of rancher-compose that are documented below.
-
-
 #### Deleting Services/Container
 
 `rancher-compose` will not delete things by default.  This means that if you do two `up` commands in a row, the second `up` will do nothing.  This is because the first up will create everything and leave it running.  Even if you do not pass `-d` to `up`, `rancher-compose` will not delete your services.  To delete a service you must use `rm`.
 
-#### Builds
+### Builds
 
-Docker builds are supported in two ways.  First is to set `build:` to a git or HTTP URL that is compatible with the remote parameter in https://docs.docker.com/reference/api/docker_remote_api_v1.18/#build-image-from-a-dockerfile.  The second approach is to set `build:` to a local directory and the build context will be uploaded to S3 and then built on demand on each node.
+Docker builds are supported in two ways.  First is to set `build:` to a git or HTTP URL that is compatible with the remote parameter in the [Docker Remote API](https://docs.docker.com/reference/api/docker_remote_api_v1.18/#build-image-from-a-dockerfile).  The second approach is to set `build:` to a local directory and the build context will be uploaded to S3 and then built on demand on each node.
 
-For S3 based builds to work you must [setup AWS credentials](https://github.com/aws/aws-sdk-go/#configuring-credentials).
+For S3 based builds to work you must [setup AWS credentials](https://github.com/aws/aws-sdk-go/#configuring-credentials). We've provided a [detailed example]({{site.baseurl}}/rancher/rancher-compose/build/) of how to build in rancher-compose.
 
 ### Sidekicks
 
@@ -203,7 +122,6 @@ test2:
   stdin_open: true
   volumes_from:
   - test-data
-
 ```
 
 ### Cross-Stack Linking
