@@ -113,3 +113,11 @@ Here is an Apache configuration. You'll need to launch an Apache container and d
 After Rancher is launched with these settings, the UI will be up and running at `https://<your domain>/`.
 
 In the UI, you'll need to properly configure Host Registration for SSL. See the [Host Registration ]({{site.baseurl}}/rancher/configuration/host-registration) section for more details.
+
+## Running Rancher Server Behind an ELB in AWS with SSL
+
+By default, ELB in HTTP/HTTPS mode does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher's websockets to work. 
+
+Configuration Requirements for ELB to enable Rancher:
+ * Enabling [proxy protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) mode
+ * Configuring TLS/SSL for the frontend and TCP for the backend

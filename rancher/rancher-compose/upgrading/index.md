@@ -107,3 +107,21 @@ By default, `rancher-compose` will exit after the upgrade has been passed to Ran
 # Wait for the upgrade to be completed
 $ rancher-compose upgrade service1 service2 --wait
 ```
+
+### Pulling a new Image
+
+By default, `rancher-compose` will not pull an image if the image already exists on the host. By passing in the `--pull` or `-p` to the `upgrade` command, `rancher-compose` will pull the image again even if the image is already on the host. 
+
+```bash
+# Pull a new image even if image already exists
+$ rancher-compose upgrade service1 service2 --pull
+```
+
+### Cleanup Original Service
+
+By default, the original service will remain in Rancher with a scale of 0 after the upgrade is complete. If you are positive that you will not need to rollback or save the original service definition, you can pass in the `--cleanup` or `-c` option with the `upgrade` command. This option implies that `--wait` as the `rancher-compose` will wait for the upgrade to be completed before removing the service from Rancher. 
+
+```bash
+# Cleanup service1 from Rancher after upgrade is complete
+$ rancher-compose upgrade service1 service2 --cleanup
+```
