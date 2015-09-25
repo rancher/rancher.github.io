@@ -33,7 +33,7 @@ For each member (i.e. individual, team, or organization), you can define the rol
 
 Click on **Create** and the environment will immediately be available to all members and owners. At this point, anyone, that the environment is shared with, can start adding [services]({{site.baseurl}}/rancher/services/)!. adding [hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/) and anything else that a member can do.
 
-### Editing Environments
+### Deactivating and Deleting Environments
 
 After creating environments, owners might want to deactivate or delete the environment. 
 
@@ -41,7 +41,7 @@ Deactivating an environment will remove the viewing ability from any members of 
 
 In order to delete an environment, you will need to first deactivate it. All registries, balancers and API keys created in the environment will be removed from Rancher.
 
-> **Note:** When deleting an environment, the hosts will not be removed from the cloud providers, so please make sure to check your cloud provider after deleting an environment. 
+> **Note:** When deleting an environment, as of v0.37.0, the hosts **will** be removed from the cloud providers. Prior to v0.37.0, the hosts were **not** removed, so please make sure to check your cloud provider after deleting an environment.
 
 ### Editing Members
 
