@@ -65,6 +65,16 @@ Rancher implements a distributed DNS service using our own light-weight DNS serv
 
 Because Rancher’s overlay networking provides each container with a distinct IP address, we do not need to deal with port mappings and do not need to handle situations like duplicated services listening on different ports. As a result, a simple DNS service is adequate for handling service discovery.
 
+### Health Checks
+
+Rancher implements a health monitoring system by running managed network agent’s across it’s hosts to co-ordinate the distributed health checking of containers and services. These network agents internally utilize HAProxy to validate the health status of your applications. When health checks are enabled either on an individual container or a service, each container is then monitored by up to three network agents running on hosts seperate to that containers parent host. The container is considered healthy if at least one HAProxy instance reports a “passed” health check.
+
+> **Note:** The only exception to this model is when your environment contains a single host, in this instance the health checks will be performed by the same host.
+
+Rancher’s approach handles network partitions and is more efficient than client-based health checks. By using HAProxy to perform health checks, Rancher enables users to specify the same health check policy across applications and load balancers.
+
+Read more [details]({{site.baseurl}}/rancher/concepts/health-checks/) including example failure scenarios and how Rancher displays services. You can also read more about how to set up health checks using [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/rancher-services/#health-check-for-services) or in the [UI]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#health-checks).
+
 ### Service HA
 
 Rancher constantly monitors the state of your containers within a service and actively manages to ensure the desired scale of the service.  This can be triggered when there are fewer (or even more) healthy containers than the desired scale of your service, a host becomes unavailable, a container fails, or being unable to meet a health check.
