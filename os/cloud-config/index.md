@@ -11,9 +11,9 @@ Cloud-config is a declarative configuration file format supported by many Linux 
 
 A Linux OS supporting cloud-config will invoke a cloud-init process during startup to parse the cloud-config file and configure the operating system. RancherOS runs its own cloud-init process in a system container. The cloud-init process will attempt to retrieve a cloud-config file from a variety of data sources. Once cloud-init obtains a cloud-config file, it configures the Linux OS according to the content of the cloud-config file.
 
-When you create a RancherOS instance on AWS, for example, you can optionally provide cloud-config (as User-Data field). Inside the RancherOS instance, cloud-init process will retrieve the cloud-config content through its AWS cloud-config data source: which simply extracts the content of user-data received by the VM instance. If the file starts with "`#cloud-config`", cloud-init will interpret that file as a cloud-config file. If the file starts with `#!<interpreter>` (e.g., `#!/bin/sh`), cloud-init will simply execute that file. You can place any configuration commands in the file as scripts.
+When you create a RancherOS instance on AWS, for example, you can optionally provide cloud-config passed in the `user-data` field. Inside the RancherOS instance, cloud-init process will retrieve the cloud-config content through its AWS cloud-config data source, which simply extracts the content of user-data received by the VM instance. If the file starts with "`#cloud-config`", cloud-init will interpret that file as a cloud-config file. If the file starts with `#!<interpreter>` (e.g., `#!/bin/sh`), cloud-init will simply execute that file. You can place any configuration commands in the file as scripts.
 
-A cloud-config file uses a YAML format. YAML is easy to understand and easy to parse. For more information on YAML, please go [here](http://www.yaml.org/start.html). The most important formatting principle is indentation or whitespace. This indentation indicates relationships of the items to one another. If something is indented more than the previous line, it is a sub-item of the top item that is less indented.
+A cloud-config file uses the YAML format. YAML is easy to understand and easy to parse. For more information on YAML, please read more at the [YAML site](http://www.yaml.org/start.html). The most important formatting principle is indentation or whitespace. This indentation indicates relationships of the items to one another. If something is indented more than the previous line, it is a sub-item of the top item that is less indented.
 
 Example: Notice how both are indented underneath `ssh-authorized-keys`.
 
@@ -28,15 +28,15 @@ In our example above, we have our `#cloud-config` line to indicate it's a cloud-
 
 ## How RancherOS Applies Cloud-Config
 
-RancherOS comes with a default configuration (also in cloud-config format). The cloud-config file processed by cloud-init will extend and override the default configuration and be saved as `cloud-config.yml` in `/var/lib/rancher/conf`. Finally, the `cloud-config-local.yml` file will extend and override the result from the `cloud-config.yml` passed in the installation. You should not edit `cloud-config-local.yml` file directly. The `ros config` command allows you to change the content of the `cloud-config-local.yml` file.
+RancherOS comes with a default configuration, which is also in cloud-config format. The cloud-config file processed by cloud-init will extend and override the default configuration and be saved as `boot.yml` in `/var/lib/rancher/conf/cloud-config.d`. Finally, the `cloud-config.yml` file will extend and override the `boot.yml` file. You should not edit `cloud-config.yml` file directly. The `ros config` command allows you to change the content of the `cloud-config.yml` file.
 
-Typically, when you first boot the server, you pass in the cloud-config file to configure the initialization of the server. After the first boot, if you have any changes for the configuration, it's recommended that you use `ros config` CLI to set the necessary configuration properties. Any changes will be saved in the `cloud-config-local.yml` file.
+Typically, when you first boot the server, you pass in the cloud-config file to configure the initialization of the server. After the first boot, if you have any changes for the configuration, it's recommended that you use `ros config` to set the necessary configuration properties. Any changes will be saved in the `cloud-config.yml` file and need to be re-booted in order to take effect.
 
 ## Updating Cloud-Config After RancherOS has booted
 
-`ros config` is the main command to interact with RancherOS configuration, here's the link to the [full ros config command docs]({{site.baseurl}}/os/rancheros-tools/ros/config/). With these commands, you can get and set values in the `cloud-config-local.yml` file as well as import/export configurations.
+`ros config` is the main command to interact with RancherOS configuration, here's the link to the [full ros config command docs]({{site.baseurl}}/os/rancheros-tools/ros/config/). With these commands, you can get and set values in the `cloud-config.yml` file as well as import/export configurations.
 
-You can view the content of `cloud-config-local.yml` file by issuing the `ros config export` command. Another command `ros config export --full` prints the current effective configuration of RancherOS, taking into account the initial default configuration and the impact of cloud-config.
+You can view the content of `cloud-config.yml` file by issuing the `ros config export` command. Another command `ros config export --full` prints the current effective configuration of RancherOS, taking into account the initial default configuration and the impact of `cloud-config.yml`.
 
 _In v0.3.1+, we changed the command from `rancherctl` to `ros`._
 
@@ -81,7 +81,6 @@ hostname: myhost
 ### RancherOS Specific Configuration 
 
 To configure other parts of RancherOS, the cloud-config information must be within the `rancher` key in the cloud-config file.
-
 
 #### Network Configuration
 
