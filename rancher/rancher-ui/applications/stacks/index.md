@@ -12,7 +12,9 @@ In the **Applications** -> **Stacks** page, click on **Add Stack**. You will nee
 
 You will immediately be brought to the stack and can begin [adding services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/), [adding load balancers]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-balancers/), [adding service aliases]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-service-alias), or [adding external services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-external-services).
 
-> **Note:** Before deploying any services, you'll need to have a least 1 host launched in Rancher. Please follow our [documentation]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts) to learn how to add hosts to Rancher.
+> **Note:** Before starting any services, you'll need to have a least 1 host launched in Rancher. Please follow our [documentation]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts) to learn how to add hosts to Rancher.
+
+We also provide the option to import `compose` files. The `docker-compose.yml` and `rancher-compose.yml` files can be imported directly into the creation of a stack. Files can either be uploaded into Rancher or pasted directly into the textbox. After the **Create** button is created, the stack is created with the associated services. The services from the `docker-compose.yml` will be created, but not started. A user will have to start them individually. 
 
 ### Viewing Services in a Stack 
 
