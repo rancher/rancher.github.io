@@ -8,9 +8,9 @@ layout: rancher-default
 
 _Available as of v0.34.0+_
 
-Rancher Server is able to run without internet, but the web browser accessing the UI will need access to both the internet and the private network. 
+Rancher Server is able to run without internet, but the web browser accessing the UI will need access only to the private network. 
 
-Rancher can be configured with either a private registry or with a http proxy. 
+Rancher can be configured with either a private registry or with a HTTP proxy. 
 
 ## Using Private Registry
 
@@ -24,36 +24,36 @@ For each release of Rancher server, the corresponding Rancher agent and Rancher 
 
 **Commands to Push Images to Private Registry**
 
-These examples are for v0.34.0 Release using a machine that has access to both DockerHub and your private registry. We recommend tagging the version of the images in your private registry as the same version. 
+These examples are for v0.39.0 Release using a machine that has access to both DockerHub and your private registry. We recommend tagging the version of the images in your private registry as the same version. 
 
 ```bash
 # rancher/server 
-$ docker pull rancher/server:v0.34.0
-$ docker tag rancher/server:v0.34.0 localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v0.34.0
-$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v0.34.0 
+$ docker pull rancher/server:v0.39.0
+$ docker tag rancher/server:v0.39.0 localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v0.39.0
+$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v0.39.0 
 
 # rancher/agent
-$ docker pull rancher/agent:v0.8.1
-$ docker tag rancher/agent:v0.8.1 localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.1
-$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.1
+$ docker pull rancher/agent:v0.8.2
+$ docker tag rancher/agent:v0.8.2 localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.2
+$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.2
 
 # rancher/agent-instance
-$ docker pull rancher/agent-instance:v0.4.0
-$ docker tag rancher/agent-instance:v0.4.0 localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.4.0
-$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.4.0
+$ docker pull rancher/agent-instance:v0.4.1
+$ docker tag rancher/agent-instance:v0.4.1 localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.4.1
+$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.4.1
 ```
 
 ### Launching Rancher Server with Private Registry
 
 On your machine, start Rancher server to use the specific rancher images. We recommend using specific version tags instead of the `latest` tag to ensure you are working with the correct versions. 
 
-Using the v0.34.0 example:
+Using the v0.39.0 example:
 
 ```bash
 $ sudo docker run -d --restart=always -p 8080:8080 \
-    -e CATTLE_BOOTSTRAP_REQUIRED_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.1 \
-    -e CATTLE_AGENT_INSTANCE_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.4.0 \
-    <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v0.34.0
+    -e CATTLE_BOOTSTRAP_REQUIRED_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.2 \
+    -e CATTLE_AGENT_INSTANCE_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.4.1 \
+    <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v0.39.0
 ```
 
 #### Rancher UI
@@ -76,7 +76,7 @@ $ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock <
 
 ## Using HTTP Proxy 
 
-Reminder, in this setup, the web browser accessing the UI will need access to both the internet and the private network. 
+Reminder, in this setup, the web browser accessing the UI will need access only the private network. 
 
 ### Configuring Docker to use a HTTP Proxy
 
@@ -109,8 +109,3 @@ The cloud providers will not work as Rancher uses `docker-machine` to provision 
 
 The command from the UI can be used on any machine that has Docker configured to use HTTP proxy. As of v0.34.0+, no environment variables are needed to start Rancher agents when using a proxy.
 
-
-
-
-
- 
