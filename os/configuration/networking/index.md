@@ -9,15 +9,15 @@ layout: os-default
 
 There are two ways to configure networking on RancherOS.
 
-You can change the networking settings by using `ros config` to set different keys within the `rancher.network` key. Anything set using this command will have its change saved in the `cloud-config-local.yml` file. Changes will only take affect after you reboot. To learn more information about configuring the networking settings by using `ros config`, please refer to our [`ros config`]({{site.baseurl}}/os/rancheros-tools/ros/config) docs. 
+You can change the networking settings by using `ros config` to set different keys within the `rancher.network` key. Anything set using this command will have its change saved in the `/var/lib/rancher/conf/cloud-config.yml` file. Changes will only take affect after you reboot. To learn more information about configuring the networking settings by using `ros config`, please refer to our [`ros config`]({{site.baseurl}}/os/rancheros-tools/ros/config) docs. 
 
-Alternatively, you can use a [cloud config]({{site.baseurl}}/os/cloud-config) file to set up how the network is configured. Cloud config is applied to the RancherOS instance when RancherOS starts. If you need to make changes to the networking after you've passed the cloud config file, you can use `ros config` to make changes.
+Alternatively, you can use a [cloud config]({{site.baseurl}}/os/cloud-config) file to set up how the network is configured. Cloud config is applied to the RancherOS instance when RancherOS starts. If you need to make changes to the networking after you've already passed the cloud config file, you can use `ros config` to make changes.
 
-We'll provide some examples using both the `ros config` or setting it through the `cloud-config.yml` file.
+We'll provide some examples using both the `ros config` or setting it through the `/var/lib/rancher/conf/cloud-config.yml` file.
 
 ### DNS
 
-Using `ros config`, you can set the `nameserver`, and `search`, which directly map to the fields of the same name in `/etc/resolv.conf`. With v0.4.0+, you need to prefix the config values with `rancher` as we are updating the cloud config file. 
+Using `ros config`, you can set the `nameservers`, and `search`, which directly map to the fields of the same name in `/etc/resolv.conf`. With v0.4.0+, you need to prefix the config values with `rancher` as we are updating the cloud config file. 
 
 ```bash
 $ sudo ros config set rancher.network.dns.search [mydomain.com,example.com]
