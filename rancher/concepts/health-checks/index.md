@@ -4,7 +4,7 @@ layout: rancher-default
 
 ---
 
-#### Health Checks
+## Health Checks
 
 Rancher implements a health monitoring system by running managed network agent's across it's hosts to co-ordinate the distributed health checking of containers and services. These network agents internally utilize HAProxy to validate the health status of your applications. When health checks are enabled either on an individual container or a service, each container is then monitored by up to three network agents running on hosts seperate to that containers parent host. The container is considered healthy if at least one HAProxy instance reports a "passed" health check.
 
