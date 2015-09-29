@@ -34,7 +34,10 @@ When launching rancher server, the following environment variables will need to 
 
 * Websocket proxy settings:
   * CATTLE_HOST_API_PROXY_MODE: "ha"
-  * CATTLE_HOST_API_PROXY_HOST: "<host:port>" //This will need to be accessible to ALL compute nodes
+  * CATTLE_HOST_API_PROXY_HOST: "<host_IP:port>" //This will need to be accessible from your browser AND to ALL compute nodes
+
+   > **Note:** The IP that you configure for the websocket proxy needs be accessible from your browser and from the hosts. The hosts make outbound connections to it and browsers connect directly to it as well. `CATTLE_HOST_API_PROXY_HOST` for rancher/server would need to have the public IP of the server running the websocket proxy and the websocket proxy's -listen-address=<ip:port> param would need to be `0.0.0.0:<port>`.
+
 * Database:
   * CATTLE_DB_CATTLE_MYSQL_HOST: `hostname or IP of MySQL instance`
   * CATTLE_DB_CATTLE_MYSQL_PORT: `3306`
