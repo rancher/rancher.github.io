@@ -101,10 +101,13 @@ Name | Description
 <br>
 
 ```bash
+# Pulls new images for all services located in the docker-compose.yml file on ALL hosts in the environment
 $ rancher-compose pull
+# Pulls new images for all services located in docker-compose.yml file on hosts that already have the image
+$ rancher-compose pull --cached
 ```
 
-The `docker-compose.yml` file will contain the services and image names that should be pulled on all hosts in the environment.
+> **Note:** Unlike `docker-compose pull`, you will not be specifying which service to pull. Rancher-compose looks at all services in the `docker-compose.yml` and pulls images for all services found in the file. 
 
 #### Upgrade Command
 
