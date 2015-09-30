@@ -8,6 +8,8 @@ layout: rancher-default
 
 When trying to troubleshoot Rancher, here are some ways to get Rancher specific logs. If you open an issue, it would also be helpful to include the related logs. 
 
+## Rancher Server
+
 <a id="version"></a>
 
 ### What version of Rancher am I running?
@@ -43,6 +45,8 @@ $ docker cp <container_uuid>:/var/lib/cattle/logs /local/path
 
 <a id="agent-logs"></a>
 
+## Rancher Agent
+
 ### Where can I find detailed logs of the Rancher Agent container?
 
 Running `docker logs` will on the Rancher agent container will provide a set of basic logs. To get more detailed logs of rancher agent, you will need to have SSH into your host. In the host, you will navigate to the logs for rancher. 
@@ -63,7 +67,51 @@ Here's the command to copy the Rancher agent logs from the container to the host
 $ docker cp <container_uuid>:/var/log/rancher /local/path
 ```
 
+
+### How to check your host registration is set correctly? 
+
+If you're having issues with Rancher Agents connect to Rancher Server, please check that your hosts are set up.
+
+
+
+## Cross Host Communication
+
+If containers on different hosts cannot ping each other, there are some common scenarios that could be the issue. 
+
+### Are the IPs of the hosts correct in the UI?
+
+Every so often, the IP of the host will accidentally pick up the docker bridge IP instead of the actual IP. These are typically `172.17.42.1` or starting with `172.17.x.x`. If this is the case, you need to re-register your host with the correct IP by explicitly setting the `CATTLE_AGENT_IP` environment variable in the `docker run` command.
+
+```bash
+$ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock \
+    -e CATTLE_AGENT_IP=<HOST_IP> \
+    rancher/agent:v0.8.2 http://SERVER_IP:8080/v1/scripts/xxxx
+```
+
+### Have you confirmed that the UDP ports `500` and `4500` are open? 
+
+In order for IPsec tunneling to work between the hosts, the UDP ports `500` and `4500` must be open. 
+
+```bash
+$ nc -v -u -z -w 3bnbh nbnbbnb hb
+```
+
+## Network Agents
+
+<a id="dns-config"></a>
+
+### How can I see if my DNS is set up correctly?
+
+If you want to see the configuration of the Rancher DNS setup, you will need to exec into any network agent in your setup. You can use the UI and select **Execute Shell** on the container. 
+
+```bash
+$ cat /var/lib/cattle/etc/cattle/dns/answers.json
+```
+
+
 <a id="lb-config"></a>
+
+## Load Balancer
 
 ### How can I see the configuration of my Load Balancer?
 
@@ -75,15 +123,12 @@ $ cat /etc/haproxy/haproxy.cfg
 
 This file will provide all the configuration details of the load balancer. 
 
-<a id="dns-config"></a>
 
-### How can I see if my DNS is set up correctly?
 
-If you want to see the configuration of the Rancher DNS setup, you will need to exec into any network agent in your setup. You can use the UI and select **Execute Shell** on the container. 
 
-```bash
-$ cat /var/lib/cattle/etc/cattle/dns/answers.json
-```
+
+
+## Authentication
 
 <a id="manually-turn-off-github"></a>
 
@@ -125,7 +170,6 @@ Delete the client ID and secret key for GitHub.
 mysql> update setting set value="" where name="api.auth.github.client.id";
 mysql> update setting set value="" where name="api.auth.github.client.secret";
 ```
-
 
 Confirm the chagnes have been made in the `setting` table.
 
