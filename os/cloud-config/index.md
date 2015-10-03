@@ -63,7 +63,7 @@ You can write files to the disk using the `write_files` directive.
 ```yaml
 write_files:
   - path: /opt/rancher/bin/start.sh
-    permissions: 0755
+    permissions: "0755"
     owner: root
     content: |
       #!/bin/bash
