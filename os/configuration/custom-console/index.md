@@ -11,7 +11,7 @@ When [booting from the ISO]({{site.baseurl}}/os/running-rancheros/workstation/bo
 
 Currently, RancherOS supports three different consoles, busybox, ubuntu and debian console. You can select which console you want RancherOS to start with using [cloud-config]({{site.baseurl}}/os/cloud-config/). If multiple consoles are enabled, the first console that starts will be the console that is used in RancherOS, so it's important to disable any consoles that you don't want to use. 
 
-> **Note**: With v0.4.0, ubuntu and debian are [persistent consoles]({{site.baseurl}}/os/custom-console/#console-persistence). If you have already started RancherOS in a persistent console, you will not be able to switch directly to the other persistent console.
+> **Note**: With v0.4.0, ubuntu and debian are [persistent consoles]({{site.baseurl}}/os/custom-console/#console-persistence). If you have already started RancherOS in a persistent console, you will not be able to switch directly to the other persistent console.  You must first switch back to the default busybox console, and then switch to the new persistent console.
 
 
 ### Enabling Consoles using Cloud Config 

@@ -13,6 +13,12 @@ Like other minimalist Linux distributions, RancherOS boots incredibly quickly, g
 
 Docker is an open-source platform designed for developers, system admins, and DevOps, it is used to build, ship, and run containers, using simple yet powerful CLI (Command Line Interface), you can get started with Docker from [Docker user guide](https://docs.docker.com/userguide/).
 
+### Hardware Requirements
+---
+
+* x86_64 server with at least 512MB of RAM.
+
+
 ### How this works
 ---
 
@@ -28,7 +34,6 @@ System Docker runs a special container called **User Docker**, which is another 
 ### Running RancherOS
 ---
 To find out more about installing RancherOS, jump to our [Quick Start Guide]({{site.baseurl}}/os/quick-start-guide/).
-
 
 ### Latest Release
 ---
