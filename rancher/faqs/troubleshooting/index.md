@@ -43,9 +43,18 @@ Here's the command to copy the Rancher server logs from the container to the hos
 $ docker cp <container_uuid>:/var/lib/cattle/logs /local/path
 ```
 
-<a id="agent-logs"></a>
+Why is Go-Machine-Service continually restarting in my logs? What should I do?
+
+Why is event-router restarting in my logs? What should I do? 
+
 
 ## Rancher Agent
+
+### Why did Rancher agent failed to start? 
+
+If you edited the `docker run .... rancher/agent...` command from the UI to add in `--name rancher-agent`, then Rancher agent will fail to start. Rancher agent launches 3 different containers after the initial run. There will be 1 running container and 2 stopped containers. The containers named `rancher-agent` and `rancher-agent-state` are required for the Rancher agent to successfully connect with Rancher server. The third container with the defaulted Docker name can be removed. 
+
+<a id="agent-logs"></a>
 
 ### Where can I find detailed logs of the Rancher Agent container?
 
@@ -90,10 +99,10 @@ $ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock \
 
 ### Have you confirmed that the UDP ports `500` and `4500` are open? 
 
-In order for IPsec tunneling to work between the hosts, the UDP ports `500` and `4500` must be open. 
+In order for IPsec tunneling to work between the hosts, the UDP ports `500` and `4500` must be open. Use the following commands to ping between the different hosts.
 
 ```bash
-$ nc -v -u -z -w 3bnbh nbnbbnb hb
+$ 
 ```
 
 ## Network Agents
