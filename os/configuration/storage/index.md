@@ -6,7 +6,7 @@ layout: os-default
 
 ## Configuring Storage
 
-By default User Docker runs in the console container.  This means that it will for the most part act and behave like Docker on any other standard Linux distribution.  Customizing the storage that is available to Docker is largely a matter of installing components into the console.  There is a second option in which you can create a dedicated container to provide storage.
+By default, User Docker runs in the console container, which means that it will for the most part act and behave like Docker on any other standard Linux distribution. Customizing the storage that is available to Docker is largely a matter of installing components into the console. There is a second option in which you can create a dedicated container to provide storage.
 
 ### Modifying Console
 

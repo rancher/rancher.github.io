@@ -7,7 +7,7 @@ layout: os-default
 ## Loading Kernel Modules
 ---
 
-Privileged containers can load kernel modules.  In RancherOS we have the kernel modules in the standard `/lib/modules/$(uname -r)` folder.  If you want to be able to run `modprobe` from a container just bind mount `/lib/modules` into your container.  For example
+Privileged containers can load kernel modules. In RancherOS, the kernel modules are in the standard `/lib/modules/$(uname -r)` folder.  If you want to be able to run `modprobe` from a container, you will need to bind mount the `/lib/modules` into your container.   
 
 ```yaml
 myservice:
@@ -17,4 +17,4 @@ myservice:
   - /lib/modules:/lib/modules
 ```
 
-The `/lib/modules` folder is already available in the console by default.
+By default, the `/lib/modules` folder is already available in the console.
