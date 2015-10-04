@@ -4,7 +4,7 @@ layout: os-default
 
 ---
 
-## Configuring Docker
+## Configuring Docker or System-Docker
 
 In RancherOS, you can configure `system-docker` and `docker` daemons by using [cloud-config]({{site.baseurl}}/os/cloud-config/). 
 
@@ -58,7 +58,7 @@ Key | Value | Default | Description
 
 ### Proxy settings
 
-Docker uses the standard `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables to configure proxy support.  These can be set in the `docker` section of the Cloud Config as follows:
+Docker uses the standard `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables to configure proxy support. Within the `rancher` key of the [Cloud Config]({{site.baseurl}}/os/cloud-config/), the environment variables for proxy can be set in the `docker` section.
 
 ```yaml
 #cloud-config
@@ -72,7 +72,7 @@ rancher:
 
 ### Certificates for Private Registries
 
-Certificates can be stored in the standard locations in `/etc/docker/certs.d` following the [Docker documentation](https://docs.docker.com/registry/insecure).  This can be done in the Cloud Config with write files.
+Certificates can be stored in the standard locations (i.e. `/etc/docker/certs.d`) following the [Docker documentation](https://docs.docker.com/registry/insecure). By using the `write_files` directive of the [Cloud Config]({{site.baseurl}}/os/cloud-config/), the certificates can be written directly into `/etc/docker/certs.d`.
 
 ```yaml
 #cloud-config
