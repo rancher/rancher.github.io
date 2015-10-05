@@ -17,6 +17,7 @@ Key | Value |Description
 `io.rancher.container.hostname_override` | `container_name` | Used to set the hostname of the container to the name of the container (e.g. StackName_ServiceName_CreateIndex)
 `io.rancher.container.start_once` |`true` | Used to run a container once and have it remain in stopped state while the service remains in `active` state
 `io.rancher.container.pull_image` | `always` | Used to always pull a new image before deploying container. 
+`io.rancher.container.requested_ip` | An IP from the 10.42.0.0/16 address space | Allows you to pick a specific IP for a container
 `io.rancher.service.selector.container` |  [Selector Format]({{site.baseurl}}/rancher/labels/#selector-format) | Used on a service so that new standalone containers can be selected to join the service DNS. Note: As standalone containers, none of the service actions will affect the standalone container (i.e. deactivate/delete service, restart container, healthcheck, etc). 
 `io.rancher.service.selector.link` | [Selector Format]({{site.baseurl}}/rancher/labels/#selector-format) | Used on a service to allow new services to be linked to the service based on service labels. Example: Service1 has a label `io.rancher.service.selector.link: foo=bar`. Any services that are added to Rancher that have a `foo=bar` label will automatically be linked to Service1. 
 `io.rancher.scheduler.global` | `true` | Used to set [global services]({{site.baseurl}}/rancher/rancher-compose/scheduling/#global-service)
