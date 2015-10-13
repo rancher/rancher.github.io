@@ -17,6 +17,8 @@ Key | Value |Description
 `io.rancher.container.hostname_override` | `container_name` | Used to set the hostname of the container to the name of the container (e.g. StackName_ServiceName_CreateIndex)
 `io.rancher.container.start_once` |`true` | Used to run a container once and have it remain in stopped state while the service remains in `active` state
 `io.rancher.container.pull_image` | `always` | Used to always pull a new image before deploying container. 
+`io.rancher.service.selector.container` |  [Selector Format]({{site.baseurl}}/rancher/labels/#selector-format) | Used on a service so that new standalone containers can be selected to join the service DNS. Note: As standalone containers, none of the service actions will affect the standalone container (i.e. deactivate/delete service, restart container, healthcheck, etc). 
+`io.rancher.service.selector.link` | [Selector Format]({{site.baseurl}}/rancher/labels/#selector-format) | Used on a service to allow new services to be linked to the service based on service labels. Example: Service1 has a label `io.rancher.service.selector.link: foo=bar`. Any services that are added to Rancher that have a `foo=bar` label will automatically be linked to Service1. 
 `io.rancher.scheduler.global` | `true` | Used to set [global services]({{site.baseurl}}/rancher/rancher-compose/scheduling/#global-service)
 `io.rancher.scheduler.affinity:host_label` | Key Value Pair of Host Label| Used to schedule containers on hosts based on [host label]({{site.baseurl}}/rancher/rancher-compose/scheduling/#finding-hosts-with-host-labels) 
 `io.rancher.scheduler.affinity:container_label` | Key Value Pair of Any Container Label | Used to schedule containers on hosts based on [container label or service name]({{site.baseurl}}/rancher/rancher-compose/scheduling/#finding-hosts-with-container-labels) 
@@ -24,6 +26,30 @@ Key | Value |Description
 
 > **Note:** For the labels prefixed with `io.rancher.scheduler.affinity`, there are slight variations based on your how want to match (i.e. equal or not equal, hard or soft rules). More details can be found [here]({{site.baseurl}}/rancher/rancher-compose/scheduling/#table-of-scheduling-labels).
 
+### Selector Format 
+
+The values for selector labels (i.e. `io.rancher.service.selector.link`, `io.rancher.service.selector.container`) can be in multiple formats to be able to select services/containers based on their labels. 
+
+```
+# Label could be key=value1 OR key=value2
+key in (value1, value2)
+# Label cannot be key=value1 OR key=value2
+key notin (value1, value2)
+# Label is only the key (no matching value needed)
+key
+# Label must have key=value
+key = value
+# Labels must not have key=value 
+key != value
+```
+
+Any combination of the formats can be used togetehr in a comma separated list. 
+
+```
+key != value, key in (value1, value2), key=value3
+```
+
+> **Note:** If there is a label with a value that contains a comma in it, the selector will not be able to match with the label due to the ability to select on `key` alone. Example:  `io.rancher.service.selector.link: foo=bar1,bar2` would translate to any containers that have labels, key of `foo` with value `bar1` or key of `bar2` would join the service. It would NOT pick up a service that has `foo=bar1,bar2` as a label. 
 
 ## System Labels
 
