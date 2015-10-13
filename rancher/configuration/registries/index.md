@@ -50,6 +50,7 @@ $ sudo service docker restart
 ```
 
 ### Using Registries
+
 As soon as the registry is created, you will be able to use these private registries when launching services and containers. The syntax for the image name is the same as what you would use for the `docker run` command.
 
 `[registry-name]/[namespace]/[imagename]:[version]`
