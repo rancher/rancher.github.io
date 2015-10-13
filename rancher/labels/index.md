@@ -18,7 +18,7 @@ Key | Value |Description
 `io.rancher.container.start_once` |`true` | Used to run a container once and have it remain in stopped state while the service remains in `active` state
 `io.rancher.container.pull_image` | `always` | Used to always pull a new image before deploying container. 
 `io.rancher.container.requested_ip` | An IP from the 10.42.0.0/16 address space | Allows you to pick a specific IP for a container
-`io.rancher.service.selector.container` |  [_Selector Label_ Values]({{site.baseurl}}/rancher/labels/#selector-labels) | Used on a service so that new standalone containers can be selected to join the service DNS. Note: As standalone containers, none of the service actions will affect the standalone container (i.e. deactivate/delete service, restart container, healthcheck, etc). 
+`io.rancher.service.selector.container` |  [_Selector Label_ Values]({{site.baseurl}}/rancher/labels/#selector-labels) | Used on a service so that new standalone containers can be selected to join the service DNS. Note: As standalone containers, none of the service actions will affect the standalone container (i.e. deactivate/delete service, restart service, healthcheck, etc). 
 `io.rancher.service.selector.link` | [_Selector Label_ Values]({{site.baseurl}}/rancher/labels/#selector-labels) | Used on a service to allow new services to be linked to the service based on service labels. Example: Service1 has a label `io.rancher.service.selector.link: foo=bar`. Any services that are added to Rancher that have a `foo=bar` label will automatically be linked to Service1. 
 `io.rancher.scheduler.global` | `true` | Used to set [global services]({{site.baseurl}}/rancher/rancher-compose/scheduling/#global-service)
 `io.rancher.scheduler.affinity:host_label` | Key Value Pair of Host Label| Used to schedule containers on hosts based on [host label]({{site.baseurl}}/rancher/rancher-compose/scheduling/#finding-hosts-with-host-labels) 
@@ -34,7 +34,7 @@ Using a _selector label_ (i.e. `io.rancher.service.selector.link`, `io.rancher.s
 ```
 # One of the container labels must be key equal to `foo1` and value equal to `bar1`
 foo1 = bar1
-# None of the container labels can be key equal to `foo2` and value equal to `bar2` 
+# Any container label that has a key equal to `foo2` with a value that is not `bar2` 
 foo2 != bar2
 # Any container label that has a key equal to `foo3` 
 foo3
@@ -43,7 +43,6 @@ foo4 in (bar1, bar2)
 # Any container label with key equal to `foo5` and value other than `bar3` OR `bar4`
 foo5 notin (bar3, bar4)
 ```
-
 
 > **Note:** If there is a label with a value that contains a comma in it, the selector will not be able to match with the label as the _selector label_ can match on any key with no associated value. Example: A label of `io.rancher.service.selector.link: foo=bar1,bar2` would translate to any service that have one label must be key equals to `foo` and value equal to `bar1` **AND** another label with key equal to `bar2`. It would NOT pick up a service that has a label with key equal to `foo` and value equal to `bar1,bar2`. 
 
@@ -58,9 +57,9 @@ service1:
 
 In this example, the service that would be linked to `service1` would need to satisfy all of the following conditions:
 
-* No label can have key equal to `hello` and value equal to `world`
-* A label must exist where key equal to `hello1` can have either value equal to `world1` or `world2`
-* A label must exist where key equal to `foo` and value equal to `bar`
+* A label with key equal to `hello` and value NOT equal to `world`
+* A label with key equal to `hello1` can have either value equal to `world1` or `world2`
+* A label with key equal to `foo` and value equal to `bar`
 
 
 With the example below, `service2` would automatically link to `service1` when deployed.
@@ -68,6 +67,7 @@ With the example below, `service2` would automatically link to `service1` when d
 ```
 service2:
    labels:
+      hello: test
       hello1: world2
       foo: bar
 ```
