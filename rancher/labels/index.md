@@ -32,15 +32,15 @@ Key | Value |Description
 Using a _selector label_ (i.e. `io.rancher.service.selector.link`, `io.rancher.service.selector.container`), Rancher can identify services/containers by their labels and have them automatically linked to the service when they are started. A _selector label_ can be made of multiple requirements, which are comma separated. If there are multiple requirements, all requirements must be satisfied so the comma separator acts as an **AND** logical operator. 
 
 ```
-# One of the container labels must be key equal to `foo1` and value equal to `bar1`
+# One of the container labels must have a key equal to `foo1` and value equal to `bar1`
 foo1 = bar1
-# Any container label that has a key equal to `foo2` with a value that is not `bar2` 
+# One of the container labels must have a key equal to `foo2` with a value not equal to `bar2` 
 foo2 != bar2
-# Any container label that has a key equal to `foo3` 
+# One of the container labels must have a key equal to `foo3`, value of the label does not matter
 foo3
-# Any container label with key equal to `foo4` and value equal to `bar1` OR `bar2`
+# One of the container labels must have a key equal to `foo4` and value equal to `bar1` OR `bar2`
 foo4 in (bar1, bar2)
-# Any container label with key equal to `foo5` and value other than `bar3` OR `bar4`
+# One of the container labels must have a key equal to `foo5` and value other than `bar3` OR `bar4`
 foo5 notin (bar3, bar4)
 ```
 
