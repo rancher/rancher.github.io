@@ -4,7 +4,7 @@ layout: rancher-default
 
 ---
 
-## Rancher Compose - Environment Interpolation 
+## Environment Interpolation 
 ---
 
 Using `rancher-compose`, environment variables from the machine running `rancher-compose` can be used within the `docker-compose.yml` file. This is only supported in rancher-compose commands and not in the Rancher UI.  
