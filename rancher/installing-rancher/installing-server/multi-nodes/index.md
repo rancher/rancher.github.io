@@ -74,12 +74,13 @@ When launching rancher server, the following environment variables will need to 
         -e CATTLE_DB_CATTLE_PASSWORD=<Password> \
         -e DEFAULT_CATTLE_MACHINE_EXECUTE=false \
         -e CATTLE_HOST_API_PROXY_MODE="ha" \
-        -e CATTLE_HOST_API_PROXY_HOST="<host:port>" \
+        -e CATTLE_HOST_API_PROXY_HOST="<host:port>" //This will need to be accessible from your browser AND to ALL compute nodes \
         -e CATTLE_ZOOKEEPER_CONNECTION_STRING=<comma separated list of zookeeper IPs ie. 10.0.1.2,10.0.1.3> \
         -e CATTLE_REDIS_HOSTS=<comma separated list of host:port server ips. ie 10.0.1.3:6379,10.0.1.4:6379> \
         -e CATTLE_REDIS_PASSWORD=<optional Redis password> \
         rancher/server
       ```  
+       > **Note:** Rancher server needs to be started with the `CATTLE_HOST_API_PROXY_MODE` and `CATTLE_HOST_API_PROXY_HOST` variables to be able to use websocket-proxy, but in order to start websocket-proxy, Rancher server needs to be up and running. 
       
 6. Point your load balancer at the server targets
 7. Go to new installation ip: `http://<LB ip>:<port>`
