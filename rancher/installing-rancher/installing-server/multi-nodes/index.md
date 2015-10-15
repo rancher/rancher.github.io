@@ -80,7 +80,7 @@ When launching rancher server, the following environment variables will need to 
         -e CATTLE_REDIS_PASSWORD=<optional Redis password> \
         rancher/server
       ```  
-       > **Note:** Rancher server needs to be started with the `CATTLE_HOST_API_PROXY_MODE` and `CATTLE_HOST_API_PROXY_HOST` variables to be able to use websocket-proxy, but in order to start websocket-proxy, Rancher server needs to be up and running. 
+       > **Note:** In order to start websocket-proxy, Rancher server needs to be up and running. Therefore, Rancher server needs to be started with the `CATTLE_HOST_API_PROXY_MODE` and `CATTLE_HOST_API_PROXY_HOST` variables to be able to use websocket-proxy.
       
 6. Point your load balancer at the server targets
 7. Go to new installation ip: `http://<LB ip>:<port>`
