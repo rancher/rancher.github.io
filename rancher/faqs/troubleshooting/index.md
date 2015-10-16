@@ -70,11 +70,35 @@ If the curl command fails, then you have a connectivity issue between go-machine
 
 If the curl command does not fail, the problem could be related to the fact that go-machine-service is attempting to establish a websocket connection, not a normal http connection. If you have a proxy or load balancer between go-machine-service and your Rancher API server, verify that it is configured to allow websocket connections.
 
+### Rancher server was working and has now slowed down tremendously. How can I recover?
+
+Most likely there are some tasks that are stuck running for some reason. If you are able to look at the **Admin** -> **Processes** tab in the UI, you'd be able to see what is stuck in `Running`. If these tasks have been running (and failing) for a long time, Rancher ends up using too much memory to track the tasks. Essentially creates a running out of memory situation for Rancher server. 
+
+In order to get your server into a responsive state, you'll need to add more memory. Typically, 4GB is more than sufficient. 
+
+If you run the Rancher server command again, just add an additional option, `-e JAVA_OPTS="-Xmx4096m"` to the command. 
+
+```bash
+$ docker run -d -p 8080:8080 --restart=always -e JAVA_OPTS="-Xmx4096m" rancher/server
+```
+
+Depending on how the MySQL database is setup, you may need to do an [upgrade]({{site.baseurl}}/rancher/upgrading/) to add the additional command. 
+
+If you were unable to see the **Admin** -> **Processes** tab due to the lack of memory, after starting Rancher server again with more memory, you should be able to see the tab and start troubleshooting the processes that have been running the longest.
+
 ## Rancher Agent
 
-### Why did Rancher agent failed to start? 
+### What are reasons why Rancher agent would fail to start? 
+
+#### Adding in `--name rancher-agent`
 
 If you edited the `docker run .... rancher/agent...` command from the UI to add in `--name rancher-agent`, then Rancher agent will fail to start. Rancher agent launches 3 different containers after the initial run. There will be 1 running container and 2 stopped containers. The containers named `rancher-agent` and `rancher-agent-state` are required for the Rancher agent to successfully connect with Rancher server. The third container with the defaulted Docker name can be removed. 
+
+#### Using a cloned VM 
+
+IF you cloned a VM and attempting to register the cloned VM, it will not work and throw an error in the rancher-agent logs. `ERROR: Please re-register this agent.` The unique ID that rancher saves in `/var/lib/rancher/state` will be the same for cloned VMs and unable to re-register. 
+
+The workaround is to `rm -rf /var/lib/rancher/state; docker rm -fv rancher-agent; docker rm-fv rancher-agent-state` and register again.
 
 <a id="agent-logs"></a>
 
