@@ -6,7 +6,7 @@ layout: rancher-default
 ## Adding Service Alias
 ---
 
-By adding a service alias, it provides easier flexibility when upgrading services. In our example, we could have an application, which is version 1. We'll name the service `AppV1`. We can create a service alias named `AppName` and link it to the `AppV1` service. If you have an updated application, you can create a `AppV2` service and add it to `AppName`. When you have completed all your testing of `AppV2`, you can then stop and eventually delete the `AppV2` service. Since the service alias is in place, there is no disruption to your application and you have easily upgraded your service without having to re-configure anything linking to the `AppName` service!
+By adding a service alias, it provides easier flexibility when upgrading services. In our example, we could have an application, which is version 1. We'll name the service `AppV1`. We can create a service alias named `AppName` and link it to the `AppV1` service. If you have an updated application, you can create a `AppV2` service and add it to `AppName`. When you have completed all your testing of `AppV2`, you can then stop and eventually delete the `AppV1` service. Since the service alias is in place, there is no disruption to your application and you have easily upgraded your service without having to re-configure anything linking to the `AppName` service!
 
 Inside your stack, you add a service alias by clicking on the dropdown icon next to the **Add Service** button. Select **Service Alias**. Alternatively, if you are viewing the stacks at the stack level, the same **Add Service** dropdown is visible for each specific stack.
 
