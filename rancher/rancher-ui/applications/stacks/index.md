@@ -66,7 +66,7 @@ For services and load balancers, you can quickly increase the number of containe
 You can also increase or decrease the number of containers in a service by selecting **Edit** on the dropdown menu for the service. The dropdown menu is visible when hovering over the service. Move the slider for **Scale** to change the number containers in the service.
 
 ### Editing 
-There are limited options for editing a service as Docker containers are immutable (not changeable) after creation. Rhe only things you can edit are things that we store that aren't really part of the Docker container. This includes restarting, it's still the same container if you stop and start it. You will need to remove and recreate a service to change anything else. An easy way to make changes to a service is to **Clone** the service. 
+There are limited options for editing a service as Docker containers are immutable (not changeable) after creation. The only things you can edit are things that we store that aren't really part of the Docker container. This includes restarting, it's still the same container if you stop and start it. You will need to remove and recreate a service to change anything else. An easy way to make changes to a service is to **Clone** the service. 
 
 To see what you can change, you select **Edit** on the dropdown menu of the service. The name, description and scale can be changed for all services. If you forgot to link your service when you had set it up, you will have the ability to link services through this option for any of our services (i.e. services, load balancers, service alias and external service).
 
