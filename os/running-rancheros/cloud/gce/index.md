@@ -16,17 +16,17 @@ RancherOS is available as an image in GCE, and can be easily run in Google Compu
 
     ![RancherOS on GCE 1]({{site.baseurl}}/img/os/Rancher_gce1.png)
 
-2. Follow Google's instructions on how to [upload the image](https://cloud.google.com/compute/os/tutorials/building-images#publishingimage). The image must be uploaded into a Google Cloud Storage bucket before it can be added to a project. 
+2. Follow Google's instructions on how to [upload the image](https://cloud.google.com/compute/docs/tutorials/building-images#publishingimage). The image must be uploaded into a Google Cloud Storage bucket before it can be added to a project. 
 
-3. Follow Google's instructions on how to [import a RAW image](https://cloud.google.com/compute/os/images#use_saved_image). 
+3. Follow Google's instructions on how to [import a RAW image](https://cloud.google.com/compute/docs/creating-custom-image#use_saved_image). 
 
 4. Once the image is added to Compute Engine, we can start creating new instances!
 
 ### Launching RancherOS using `gcloud compute`
 
-After the image is uploaded, we can use the `gcloud compute` [command-line tool](https://cloud.google.com/compute/os/gcloud-compute/) to start a new instance. It automatically merges the SSH keys from the project and adds the keys to the **rancher** user. If you don't have any project level SSH keys, go to the _Adding SSH Keys_ section to learn more about adding SSH keys. 
+After the image is uploaded, we can use the `gcloud compute` [command-line tool](https://cloud.google.com/compute/docs/gcloud-compute/) to start a new instance. It automatically merges the SSH keys from the project and adds the keys to the **rancher** user. If you don't have any project level SSH keys, go to the _Adding SSH Keys_ section to learn more about adding SSH keys. 
 
-Since the image is private, we need to follow Google's [instructions](https://cloud.google.com/compute/os/images#start_an_instance_from_a_private_image). 
+Since the image is private, we need to follow Google's [instructions](https://cloud.google.com/compute/docs/creating-custom-image#start_an_instance_from_a_custom_image). 
 
 ```bash
 $ gcloud compute instances create --project <PROJECT_ID> --zone <ZONE_TO_CREATE_INSTANCE> <INSTANCE_NAME> --image <PRIVATE_IMAGE_NAME>
