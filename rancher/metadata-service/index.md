@@ -71,10 +71,10 @@ primary_ip
 service_name
 stack_name
 $ curl 'http://rancher-metadata/2015-07-25/self/container/name'
-# Note: Curl will not provide a new line, so the value will be on same line as the command prompt
-Default_Example_1$
+# Note: Curl will not provide a new line, so single values will be on same line as the command prompt
+Default_Example_1$root@<container_id>
 $ curl 'http://rancher-metadata/2015-07-25/self/container/label/io.rancher.stack.name'
-Default$
+Default$root@<container_id>
 # Arrays can use either the index or name to go get the values
 $ curl 'http://rancher-metadata/2015-07-25/services'
 0=Example
@@ -100,28 +100,32 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-07-25/s
 
 | Fields | Description |
 | ----| ----|
-| `name` | Name of Container 
-| `primary_ip` | IP of container
+| `create_index` | The order number of which the container was launched in the service, i.e. 2 means it was the second container launched in the service.
+| `host_uuid` | Unique host identifier that Rancher server assigns to hosts
 | `ips` | When multiple NICs are supported, it will be the list of IPs.
+| `labels` | List of [Labels on Container]({{site.baseurl}}/rancher/rancher-ui/scheduling/#labels). Format for labels is `key`:`value`.
+| `name` | Name of Container 
 | `ports` | List of [Ports used in the container]({{site.baseurl}}/rancher/rancher-ui/infrastructure/containers/#port-mapping). Format for ports is `host:public:private`.
+| `primary_ip` | IP of container
 | `service_name` | Name of service (if applicable)
 | `stack_name` | Name of stack that the service is in (if applicable)
-| `labels` | List of [Labels on Container]({{site.baseurl}}/rancher/rancher-ui/scheduling/#labels). Format for labels is `key`:`value`.
-| `create_index` | The order number of which the container was launched in the service, i.e. 2 means it was the second container launched in the service.
+
 
 ### Service
 
  Fields | Description
 ----|----
-`name` | Name of Service
-`kind` | Type of Rancher Service 
-`hostname` | CNAME for [External Services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-external-services/)
-`external_ips` | List of External IPs for [External Services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-external-services/)
-`sidekicks` | List of service names that are [sidekicks]({{site.baseurl}}/rancher/rancher-compose/#sidekicks)
 `containers` | List of container names in the service
-`links` | List of linked services. Format for links is `stack_name/service_name:service_alias`. If the service is in the same stack, there will be no `stack_name`.
-`ports` | List of [Ports used in the Service]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#service-options). Format for ports is `host:public:private`.
+`external_ips` | List of External IPs for [External Services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-external-services/)
+`hostname` | CNAME for [External Services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-external-services/)
+`kind` | Type of Rancher Service 
 `labels` | List of [Labels on Service]({{site.baseurl}}/rancher/rancher-ui/scheduling/#labels). Format for labels is `key:value`.
+`links` | List of linked services. Format for links is `stack_name/service_name:service_alias`. If the service is in the same stack, there will be no `stack_name`.
+`metadata` | [User added metadata]({{site.baseurl}}/rancher/metadata-service/#adding-user-metadata-to-a-service) to a service in the JSON format.
+`name` | Name of Service
+`ports` | List of [Ports used in the Service]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#service-options). Format for ports is `host:public:private`.
+`sidekicks` | List of service names that are [sidekicks]({{site.baseurl}}/rancher/rancher-compose/#sidekicks)
+`stack_name` | Name of stack the service is part of
 
 ### Stack
 
@@ -136,6 +140,40 @@ Fields | Description
 Fields | Description
 ----|----
 `agent_ip` | IP of the Rancher Agent, i.e. the value of the `CATTLE_AGENT_IP` environment variable.
-`name` | Name of [Host]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/)
 `labels` | List of [Host Labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#host-labels). Format for labels is `key:value`.
+`name` | Name of [Host]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/)
+`uuid` | Unique host identifier that Rancher server assigns to hosts
 
+## Adding User Metadata To a Service
+
+As of v0.42.0+, Rancher allows users to add in their own metadata to a service. Currently, this is only supported through [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/) and the metadata is part of the `rancher-compose.yml` file. In the `metadata` key, the yaml will be parsed into JSON format to be used by the metadata-service.
+
+Example `rancher-compose.yml` 
+
+```yaml
+service:
+  # Scale of service
+  scale: 3
+  # User added metadata
+  metadata:
+    example:
+      name: hello
+      value: world
+```
+
+After the service is up, you can find metadata using the metadata service in `.../self/service/metadata` or in `.../services/<service_id>/metadata`.
+
+```bash
+# In the shell of the container
+$ curl 'http://rancher-metadata/latest/self/service/metadata'
+example/
+$ curl 'http://rancher-metadata/latest/self/service/metadata/example'
+name
+value
+$ curl 'http://rancher-metadata/latest/self/service/metadata/example/name'
+# Note: Curl will not provide a new line, so single values will be on same line as the command prompt
+hello$root@<container_id>
+
+```
+
+     
