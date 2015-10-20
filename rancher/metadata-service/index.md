@@ -121,7 +121,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-07-25/s
 `kind` | Type of Rancher Service 
 `labels` | List of [Labels on Service]({{site.baseurl}}/rancher/rancher-ui/scheduling/#labels). Format for labels is `key:value`.
 `links` | List of linked services. Format for links is `stack_name/service_name:service_alias`. If the service is in the same stack, there will be no `stack_name`.
-`metadata` | [User added metadata]({{site.baseurl}}/rancher/metadata-service/#adding-user-metadata-to-a-service) to a service in the JSON format.
+`metadata` | [User added metadata]({{site.baseurl}}/rancher/metadata-service/#adding-user-metadata-to-a-service) 
 `name` | Name of Service
 `ports` | List of [Ports used in the Service]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#service-options). Format for ports is `host:public:private`.
 `sidekicks` | List of service names that are [sidekicks]({{site.baseurl}}/rancher/rancher-compose/#sidekicks)
@@ -159,12 +159,25 @@ service:
     example:
       name: hello
       value: world
+    example2:
+      foo: bar
+
 ```
 
-After the service is up, you can find metadata using the metadata service in `.../self/service/metadata` or in `.../services/<service_id>/metadata`.
+After the service is up, you can find metadata using the metadata service in `.../self/service/metadata` or in `.../services/<service_id>/metadata`. 
+
+
+### JSON Query
 
 ```bash
-# In the shell of the container
+$ curl --header 'Accept: application/json' 'http://rancher-metadata/latest/self/service/metadata'
+{"example":{"name":"hello","value":"world"},"example2":{"foo":"bar"}}
+
+```
+
+### Plaintext Queries
+
+```bash
 $ curl 'http://rancher-metadata/latest/self/service/metadata'
 example/
 $ curl 'http://rancher-metadata/latest/self/service/metadata/example'
@@ -173,7 +186,6 @@ value
 $ curl 'http://rancher-metadata/latest/self/service/metadata/example/name'
 # Note: Curl will not provide a new line, so single values will be on same line as the command prompt
 hello$root@<container_id>
-
 ```
 
      
