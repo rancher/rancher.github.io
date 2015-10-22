@@ -24,7 +24,7 @@ $ ./rkt help
 $ sudo ./rkt metadata &
 ```
 
-### Runing a container
+### Running a container
 
 ```sh
 $ sudo ./rkt run coreos.com/etcd:v2.0.4
