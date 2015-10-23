@@ -20,6 +20,8 @@ We'll define the listening ports on the load balancer. The source port is the po
 
 Let's use a source port of `8090`, target port of `80`, select `Public` access and select the `http` protocol. Next, let's add our target. We will select our wordpress service. Click on **Create**. 
 
+> **Note:** When ports are exposed in Rancher, it will not show up in `docker ps` as Rancher manages the iptable rules to make the ports fully dynamic. 
+
 Just like with services, the load balancer is not started until the user starts the service. You can individually start the load balancer by clicking **Start** or selecting **Start** in the dropdown menu. 
 
 Now, let's see the load balancer in action. Click on a container name inside the load balancer. This will bring you to a detailed container page of the load balancer. Copy the IP address of the host, paste the IP into the web browser of your choice and add `:8090`. The Wordpress application will come up in the browser. 
@@ -56,6 +58,12 @@ In our example, any traffic directed to port `80` on the host of the load balanc
 ### Internal Load Balancing
 
 You will have the option to no longer publish source ports to the host by setting the access level of each individual “Listening Port” to `Internal`.  All internal ports can only be accessed by services within the same environment.
+
+### SSL Termination
+
+To add SSL termination to your load balancer, you can select the **SSL** checkbox. When you enable the checkbox, the **SSL Termination** tab will provide the ability to add certificates. In the **Certificate** dropdown, you can select the main certificate for the load balancers. 
+
+To add a certificate to Rancher, please read about [how to add certificates in the **Infrastructure** tab]({{site.baseurl}}/rancher/rancher-ui/infrastructure/certificates/).
 
 ### Advanced Routing Options
 

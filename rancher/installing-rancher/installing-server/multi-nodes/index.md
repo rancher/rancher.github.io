@@ -34,7 +34,10 @@ When launching rancher server, the following environment variables will need to 
 
 * Websocket proxy settings:
   * CATTLE_HOST_API_PROXY_MODE: "ha"
-  * CATTLE_HOST_API_PROXY_HOST: "<host:port>" //This will need to be accessible to ALL compute nodes
+  * CATTLE_HOST_API_PROXY_HOST: "<host_IP:port>" //This will need to be accessible from your browser AND to ALL compute nodes
+
+   > **Note:** The IP that you configure for the websocket proxy needs be accessible from your browser and from the hosts. The hosts make outbound connections to it and browsers connect directly to it as well. `CATTLE_HOST_API_PROXY_HOST` for rancher/server would need to have the public IP of the server running the websocket proxy and the websocket proxy's -listen-address=<ip:port> param would need to be `0.0.0.0:<port>`.
+
 * Database:
   * CATTLE_DB_CATTLE_MYSQL_HOST: `hostname or IP of MySQL instance`
   * CATTLE_DB_CATTLE_MYSQL_PORT: `3306`
@@ -69,13 +72,15 @@ When launching rancher server, the following environment variables will need to 
         -e CATTLE_DB_CATTLE_MYSQL_NAME=<Name of Database> \
         -e CATTLE_DB_CATTLE_USERNAME=<Username> \
         -e CATTLE_DB_CATTLE_PASSWORD=<Password> \
+        -e DEFAULT_CATTLE_MACHINE_EXECUTE=false \
         -e CATTLE_HOST_API_PROXY_MODE="ha" \
-        -e CATTLE_HOST_API_PROXY_HOST="<host:port>" \
+        -e CATTLE_HOST_API_PROXY_HOST="<host:port>" //This will need to be accessible from your browser AND to ALL compute nodes. It also cannot be the same address:port as rancher server \
         -e CATTLE_ZOOKEEPER_CONNECTION_STRING=<comma separated list of zookeeper IPs ie. 10.0.1.2,10.0.1.3> \
         -e CATTLE_REDIS_HOSTS=<comma separated list of host:port server ips. ie 10.0.1.3:6379,10.0.1.4:6379> \
         -e CATTLE_REDIS_PASSWORD=<optional Redis password> \
         rancher/server
       ```  
+       > **Note:** In order to start websocket-proxy, Rancher server needs to be up and running. Therefore, Rancher server needs to be started with the `CATTLE_HOST_API_PROXY_MODE` and `CATTLE_HOST_API_PROXY_HOST` variables to be able to use websocket-proxy.
       
 6. Point your load balancer at the server targets
 7. Go to new installation ip: `http://<LB ip>:<port>`
@@ -83,4 +88,27 @@ When launching rancher server, the following environment variables will need to 
    * download the Public Key to verify host tokens:
      * `curl -X GET -O http(s)://<rancher>/v1/scripts/api.crt`
    * Bring up websocket-proxy running on the host. (Do not use localhost)
-     * `docker run -d --net=host -v $(pwd)/api.crt:/api.crt rancher/websocket-proxy /websocket-proxy -jwt-public-key-file=/api.crt -listen-address=<ip:port>` 
+     * `docker run -d -p <port>:<port> -v $(pwd)/api.crt:/api.crt rancher/server websocket-proxy -jwt-public-key-file=/api.crt -listen-address=0.0.0.0:<port>` 
+9. Bring up `go-machine-service`
+   * Create a service account and API keys:
+      * Visit `http(s)://<rancher_server/v1/accounts` in a web browser.
+      * Click `+Create` button.
+          - kind: service
+          - name: RemoteMachineService
+          - uuid: RemoteMachineService
+      * Click `Show Request` then `Send Request`
+      * Click `Follow Self Link`
+      * In the body there is a links section with a credentials link, click it.
+      * Click `+Create`
+      * Click `Show Request`
+      * Click `Follow Self Link`
+      * Make note of publicValue and secretValue.
+   * Launch `go-machine-service` with this command:
+      
+      ```bash
+      sudo docker run -d --restart=always \
+        -e CATTLE_URL=http(s)://<Rancher URL>/v1 \
+        -e CATTLE_ACCESS_KEY=<Service accounts publicValue> \
+        -e CATTLE_SECRET_KEY=<Service accounts secretValue> \
+        rancher/server go-machine-service
+	  ```	

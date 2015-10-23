@@ -53,6 +53,8 @@ server {
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
+        # This allows the ability for the execute shell window to remain open for up to 15 minutes. Without this parameter, the default is 1 minute and will automatically close.
+        proxy_read_timeout 900s;
     }
 }
 
@@ -66,9 +68,58 @@ server {
 **Important Setting Notes:**
 
 * `rancher-server` is the name of your rancher server container. In other words, you must start your rancher server container with `--name=rancher-server` and your nginx container with `--link=rancher-server` for this exact configuration to work.
-* `<server>` can be any arbirtray name, but the same name should be used for both the http and https servers.
+* `<server>` can be any arbitrary name, but the same name should be used for both the http and https servers.
+
+
+## Apache Configuration
+
+Here is an Apache configuration. You'll need to launch an Apache container and do a docker link to provide DNS resolution for Rancher. 
+
+```
+<VirtualHost *:80>
+  ServerName <server_name>
+  Redirect / https://<server_name>/
+</VirtualHost>
+
+<VirtualHost *:443>
+  ServerName <server_name>
+
+  SSLEngine on
+  SSLCertificateFile </path/to/ssl/cert_file>
+  SSLCertificateKeyFile </path/to/ssl/key_file>
+
+  ProxyRequests Off
+  ProxyPreserveHost On
+
+  RewriteEngine On
+  RewriteCond %{HTTP:Connection} Upgrade [NC]
+  RewriteCond %{HTTP:Upgrade} websocket [NC]
+  RewriteRule /(.*) ws://rancher:8080/$1 [P,L]
+
+  RequestHeader set X-Forwarded-Proto "https"
+  RequestHeader set X-Forwarded-Port "443"
+
+  <Location />
+    ProxyPass "http://rancher:8080/"
+    ProxyPassReverse "http://rancher:8080/"
+  </Location>
+
+</VirtualHost>
+```
+
+**Important Setting Notes:**
+
+* In the proxy settings, you'll need to substitute `rancher` for your configuration.
 
 ## Host Registration
 After Rancher is launched with these settings, the UI will be up and running at `https://<your domain>/`.
 
 In the UI, you'll need to properly configure Host Registration for SSL. See the [Host Registration ]({{site.baseurl}}/rancher/configuration/host-registration) section for more details.
+
+## Running Rancher Server Behind an ELB in AWS with SSL
+
+By default, ELB in HTTP/HTTPS mode does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher's websockets to work. 
+
+Configuration Requirements for ELB to enable Rancher:
+ * Enabling [proxy protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) mode
+ * Configuring TLS/SSL for the frontend and TCP for the backend

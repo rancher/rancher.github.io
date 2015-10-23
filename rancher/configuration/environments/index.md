@@ -23,17 +23,17 @@ To add new environments, you'll need to navigate to the **Manage Environments** 
 
 After navigating to the **Environments** page, you will see a list of environments.
 
-Click on **Add Environment**. Each environment will have its own name, description, and members. The members can be any individual GitHub user, a GitHub organization, or a GitHub team. 
+Click on **Add Environment**. Each environment will have its own name, description, and members. Depending on the authentication type, the members can be any individual user. 
 
 > **Note:** If you have not configured [Access Control]({{site.baseurl}}/rancher/configuration/access-control/), all environments will be available to anyone accessing Rancher. There will be no restriction of membership for any environments.
 
-There are two ways to add members to an environment. Provide the GitHub user or organization name. Click on the **+** to add the name to the list of members. If the name is not on the list, then they will not be added to the environment. Alternatively, there is a dropdown button on the right side of the **+** button. Rancher has automatically populated all the GitHub organizations and teams that your GitHub account is linked to. By selecting one of the organizations/teams, it will automatically add them to the list of members. 
+There are two ways to add members to an environment. Provide username for the authentication. Click on the **+** to add the name to the list of members. If the name is not on the list, then they will not be added to the environment. Alternatively, there is a dropdown button on the right side of the **+** button, which will show organizations/teams for certain authentication types. 
 
-For each member (i.e. individual, team, or organization), you can define the role to be either an owner or a member. By default, they are added to the list as a member. You can change their role in the dropdown next to their name. As an owner, you can always change the list of members and their roles at any time, but members do not have the ability to change the membership of the environment.
+For each member (i.e. individual, team, or organization), you can define the role to be either an owner, a member or read only user. By default, they are added to the list as a member. You can change their role in the dropdown next to their name. As an owner, you can always change the list of members and their roles at any time, but only owners have the ability to change the membership and membership roles of the environment.
 
 Click on **Create** and the environment will immediately be available to all members and owners. At this point, anyone, that the environment is shared with, can start adding [services]({{site.baseurl}}/rancher/services/)!. adding [hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/) and anything else that a member can do.
 
-### Editing Environments
+### Deactivating and Deleting Environments
 
 After creating environments, owners might want to deactivate or delete the environment. 
 
@@ -41,14 +41,31 @@ Deactivating an environment will remove the viewing ability from any members of 
 
 In order to delete an environment, you will need to first deactivate it. All registries, balancers and API keys created in the environment will be removed from Rancher.
 
-> **Note:** When deleting an environment, the hosts will not be removed from the cloud providers, so please make sure to check your cloud provider after deleting an environment. 
+> **Note:** When deleting an environment, as of v0.37.0, the hosts **will** be removed from the cloud providers. Prior to v0.37.0, the hosts were **not** removed, so please make sure to check your cloud provider after deleting an environment.
 
 ### Editing Members
 
-Owners can change the membership to an environment at any time. If an environment is a deactivated state, owners can still edit the membership of it. In the **Manage Environments** page, they will be able to **Edit** the environment. In the edit page, they will be able to add additional members by finding their names and clicking on the **+** button or selecting a name from the dropdown menu. 
+Only owners can change the membership to an environment at any time. If an environment is a deactivated state, owners can still edit the membership of it. In the **Manage Environments** page, they will be able to **Edit** the environment. In the edit page, they will be able to add additional members by finding their names and clicking on the **+** button or selecting a name from the dropdown menu. 
 
 If there are any members that you want to delete, click on the **X** next to their name in the list of members. Remember that if you delete an individual user, they could still have access to the environment if they are part of a team or organization that is a member of the environment.  
 
 Owners can also change the roles of anyone on the member list. Just select the role that you want for the particular user.
+
+### Membership Roles 
+
+#### Owners
+
+An owner of an environment has the ability to change the status of an environment and change the membership of an environment. Within the membership list, the owner can also change the roles of other members of the environment. 
+
+Any actions available within the **Applications** or **Infrastructure** tabs are available to owners. 
+
+#### Members
+
+A member of an environment can perform any action available within the **Applications** or **Infrastructure** tabs. They cannot change anything related to the environment.
+
+#### Read Only 
+
+A read only member has access to an environment, but cannot perform any actions. They can view all the applications and resources of the environment, but will be unable to make any changes. 
+
 
 

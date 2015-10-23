@@ -65,7 +65,7 @@ If you haven't touched `/usr/bin/docker` symlink, `system-docker` will still use
 
 In order to change the Docker version in `docker` and `system-docker`, you'll be [building your own custom RancherOS ISO]({{site.baseurl}}/os/configuration/custom-rancheros-iso/).
 
-1. Create a clone of the the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`. 
+1. Create a clone of the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`. 
 
      ```bash
      $ git clone https://github.com/rancher/os.git

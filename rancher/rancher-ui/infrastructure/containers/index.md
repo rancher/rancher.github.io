@@ -12,20 +12,24 @@ Typically, we recommend that people add containers using [services]({{site.baseu
 
 There are a couple of ways to add a container to Rancher.
 
-Option 1: In the **Infrastructure** -> **Container** page, click on the **Add Container**.
+Option 1: In the **Infrastructure** -> **Container** page, click on **Add Container**.
 
 Option 2: On a specific host, you can click on the **+ Add Container** image within the list of containers on the host. 
 
 These options will bring you to the **Add Container** page. Any options that `docker run` supports when creating containers is also supported in Rancher.
 
-1. Provide a **Name** and if desired, **Description** for the host.
+1. Provide a **Name** and if desired, **Description** for the container.
 2. Provide the **Image** to use. You can use any image on [DockerHub](https://hub.docker.com/) as well as any [registries]({{site.baseurl}}/rancher/configuration/registries) that have been added to Rancher. The syntax for image name would match any `docker run` commands. 
 
     Syntax of image names. By default, we pull from the docker registry. If no tag is specified, we will pull the latest tag. 
 
     `[registry-name]/[namespace]/[imagename]:[version]`
 
+    <a id="port-mapping"></a>
+
 3. If desired, set up port mapping for your host to container relationship. Assuming that your host is using its public IP, when we are mapping ports, we are creating the ability to access the container through the host IP. In the **Port Map** section, you will define the public ports that will be used to communicate with the container. You will also be defining which port will be exposed on the container. When mapping ports for a container to a host, Rancher will check to see if there are any port conflicts. 
+
+    > **Note:** When ports are exposed in Rancher, it will not show up in `docker ps` as Rancher manages the iptable rules to make the ports fully dynamic. 
 
 4. In the **Advanced Options** section, all options available in Docker are available for Rancher. By default, we have set the `-i -t`. 
   
@@ -44,6 +48,8 @@ You can always click on the container name, which will bring you to the containe
 
 When you select **Edit** from the dropdown menu, you will be only able to change the name and description of the container. Docker containers are immutable (not changeable) after creation. The only things you can edit are things that we store that aren't really part of the Docker container. This includes restarting, it's still the same container if you stop and start it. You will need to remove and recreate a container to change anything else. 
 
+> **Note:** When ports are exposed in Rancher, it will not show up in `docker ps` as Rancher manages the iptable rules to make the ports fully dynamic. 
+
 You can **Clone**, which will pre-fill the **Add Container** screen with all the setttings from an existing container. If you forget one thing, you can clone the container, change it, and then delete the old container. 
 
 ### Changing the Container States
@@ -59,5 +65,4 @@ When you select **Execute Shell**, it brings you into the container shell prompt
 ### Viewing Logs
 
 It's always useful to see what is going on with the logs of a container. Clicking **View Logs** provides the equivalent of `docker logs <CONTAINER_ID>` on the host.
-
 

@@ -112,6 +112,7 @@ labels:
 ```
 
 **Service Name**
+
 When `rancher-compose` starts containers for a service, it also automatically creates several container labels. Since checking for a specific container label is looking for a `key=value`, we can use these system labels as the key of our rules. Here are the system labels created on the containers when Rancher starts a service: 
 
 Label | Value
@@ -162,7 +163,7 @@ Since this is a hard anti-affinity rule, we may run into problems if the scale i
 
 ```yaml
 labels: 
-io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=${stack_name}/${service_name}
+  io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=${stack_name}/${service_name}
 ```
 
 #### Example 2:

@@ -10,7 +10,7 @@ layout: os-default
 
 Currently, RancherOS ships with Linux 3.19.2 kernel. Starting with v0.4.0+, the kernel in RancherOS can be swapped out to your own version by [building your own custom RancherOS ISO]({{site.baseurl}}/os/configuration/custom-rancheros-iso/).
 
- 1. Create a clone of the the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`. 
+ 1. Create a clone of the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`. 
 
     ```bash
     $ git clone https://github.com/rancher/os.git
@@ -51,7 +51,7 @@ The `rancheros.iso` is ready to be used to [boot RancherOS from ISO]({{site.base
 We build the kernel for RancherOS at the [os-kernel repository](https://github.com/rancher/os-kernel). You can use this repository to help package your own custom kernel to be used in RancherOS.
 
 
-1. Create a clone of the the [os-kernel](https://github.com/rancher/os-kernel) repository to your local machine using `git clone`.
+1. Create a clone of the [os-kernel](https://github.com/rancher/os-kernel) repository to your local machine using `git clone`.
 
      ```bash
      $ git clone https://github.com/rancher/os-kernel.git

@@ -464,3 +464,18 @@ ul li a[aria-expanded=true]{
         float:right;
     }
 }
+
+.header-anchor {
+  font-size: 14px;
+  visibility: hidden;
+  position: relative;
+  top: -3px;
+  left: 5px;
+}
+
+H3:hover .header-anchor,
+H4:hover .header-anchor,
+H5:hover .header-anchor,
+H6:hover .header-anchor {
+  visibility: visible;
+}

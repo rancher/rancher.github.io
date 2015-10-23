@@ -14,11 +14,13 @@ Please make sure that you are in the environment that you want to add hosts to. 
 
 Once your hosts are added to Rancher, they are available for [our services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/).
 
+> **Note:** You will need to ensure that the time stamp of your host on your server and hosts are the same ensure access to the containers on the host. Read more about how [Rancher accesses the shell/logs of a container]({{site.baseurl}}/rancher/faqs/containers/#container-access). 
+
 ### Host Labels
 
 With each host, you have the ability to add labels to help you organize your hosts. The labels are a key/value pair and the keys must be unique identifiers. If you added two keys with different values, we'll take the last inputted value to use as the key/value pair.
 
-By adding labels to hosts, you can use these labels when [schedule services/load balancers/services]({{site.baseurl}}/rancher/rancher-ui/scheduling/) and create a whitelist or blacklist of hosts for your [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/) to run on. 
+By adding labels to hosts, you can use these labels when [schedule services/load balancers]({{site.baseurl}}/rancher/rancher-ui/scheduling/) and create a whitelist or blacklist of hosts for your [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/) to run on. 
 
 ### Security Groups/Firewalls 
 
@@ -50,6 +52,8 @@ $ sudo vi /etc/default/docker
 ```
 
 Within the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it point to your proxy. Save your changes and then restart docker. Restarting Docker is different on every OS. 
+
+> **Note:** If running Docker with systemd, please follow Docker's [instructions](https://docs.docker.com/articles/systemd/#http-proxy) on how to configure the HTTP proxy. 
 
 #### Versions starting with v0.34.0 and later
 

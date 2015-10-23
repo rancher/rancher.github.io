@@ -9,8 +9,9 @@ Rancher is deployed as a set of Docker containers. Running Rancher is a simple a
 
 ### Requirements
 
-* Any modern Linux distribution that supports Docker 1.6+. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested. 
+* Any modern Linux distribution that supports Docker 1.8+. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested. 
 * 1GB RAM 
+* MySQL server should have a max_connections setting > 150
 
 ### Launching Rancher Server 
 
@@ -20,11 +21,21 @@ On your Linux machine with Docker installed, the command to start Rancher is sim
 sudo docker run -d --restart=always -p 8080:8080 rancher/server
 ```
 
+#### Rancher UI
+
+The UI and API will be available on the exposed port `8080`. After the docker image is downloaded, it will take a minute or two before Rancher has successfully started. The IP of the machine will need to be public and accessible from the internet in order for Rancher to work.
+
+You can access the UI by going to the following URL: `http://server_ip:8080`. The `server_ip` is the public IP address of the host that is running Rancher server.
+
+`http://server_ip:8080`
+
+Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/). After the hosts are setup, you can start adding [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/).
+
 <a id="ldap"></a>
 
-#### Enabling LDAP Capabilities
+### Enabling LDAP Capabilities for TLS
 
-In order to enable LDAP for Rancher server, the Rancher server container will need need to be started with the  certificate passed to the server. On your Linux machine with Docker installed, place the certificate in `/some/dir`. 
+In order to enable LDAP for Rancher server with TLS, the Rancher server container will need need to be started with the  certificate passed to the server. On your Linux machine with Docker installed, place the certificate in `/some/dir`. 
 
 Start Rancher by bind mount the volume that has the certificate. 
 
@@ -49,16 +60,6 @@ done.
 done.
 [BOOTSTRAP] Starting Cattle
 ```
-
-#### Rancher UI
-
-The UI and API will be available on the exposed port `8080`. After the docker image is downloaded, it will take a minute or two before Rancher has successfully started. The IP of the machine will need to be public and accessible from the internet in order for Rancher to work.
-
-You can access the UI by going to the following URL: `http://server_ip:8080`. The `server_ip` is the public IP address of the host that is running Rancher server.
-
-`http://server_ip:8080`
-
-Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/). After the hosts are setup, you can start adding [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/).
 
 ### Bind Mount MySQL Volume
 
@@ -118,6 +119,8 @@ $ sudo vi /etc/default/docker
 ```
 
 Within the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it point to your proxy. Save your changes and then restart docker. Restarting Docker is different on every OS. 
+
+> **Note:** If running Docker with systemd, please follow Docker's [instructions](https://docs.docker.com/articles/systemd/#http-proxy) on how to configure the HTTP proxy. 
 
 After you've configured the proxy in your Docker daemon, just run your Rancher server command.
 

@@ -20,19 +20,43 @@ Syntax of image names. By default, we pull from the docker registry. If no tag i
 
 We'll start by creating our MySQL database service with only 1 container.
 
-### Service Options
+### Options
 
 Just like adding individual [containers]({{site.baseurl}}/rancher/rancher-ui/infrastructure/containers/), any options that `docker run` supports, Rancher also supports! Port mapping and service links are shown on the main page, but other options are within the **Advanced Options** section. 
 
-Assuming that your host is using its public IP, when we are mapping ports, we are creating the ability to access the container through the host IP. In the **Port Map** section, you will define the public ports that will be used to communicate with the container. You will also be defining which port will be exposed on the container. When mapping ports for a container to a host, Rancher will check to see if there are any port conflicts. 
+#### Port Mapping
 
-When using port mapping, if the scale of your service is more than the number of hosts with the available port, your service will be stuck in an activating state. The service will continue to try and if host/port becomes available, the container will start and finish activating.
+When we are mapping ports, we are creating the ability to access the container through the host IP. In the **Port Map** section, you will define the public ports that will be used to connect to the container. You  also define the port will be exposed on the container. When mapping ports for a container to a host, Rancher will check to see if there are any port conflicts before launching the container.
 
-If other services have already been created, you can add links to the service. Linking services will link all containers in one service to all containers in another service. It acts just like the `--link` functionality in a `docker run` command. 
+When using port mapping, if the scale of your service is more than the number of hosts with available port(s), your service will become stuck in an activating state. The service will continue to try and if a host/port(s) becomes available, the service will continue to launch containers. 
 
-For the MySQL service, we'll need to add the `MYSQL_ROOT_PASSWORD` as an environment variable and provide the key and value. This field is located in the **Advanced Options**.
+> **Note:** When ports are exposed in Rancher, it will not show up in `docker ps` as Rancher manages the iptable rules to make the ports fully dynamic. 
 
-There is also the ability to add labels to every container in a service as well as apply scheduling rules. More details about labels and scheduling can be read [here]({{{{site.baseurl}}/rancher/rancher-ui/scheduling/).
+#### Linking Services 
+
+If other services have already been created, you can add links to the service. Linking services will link all containers in a service to all containers in another service. Linking services acts like the `--link` functionality in a `docker run` command.
+
+#### Environment Variables 
+
+When expanding the **Advanced Options**, you have the ability to add the environment variables, which is located in the **Command** tab. For the MySQL service, we'll need to add the `MYSQL_ROOT_PASSWORD` as an environment variable and provide the key and value. This environment variable requirement follows the required parameters for launching a `mysql` image in DockerHub.
+
+### Rancher Options
+
+Besides providing all the options that `docker run` support, Rancher provides additional concepts available in the UI.
+
+#### Health Checks
+
+Rancher implements a distributed health monitoring system by running an HAProxy instance on every host for the sole purpose of providing health checks to containers.  When health checks are enabled either on an individual container or a service,  each container is then monitored by up to three HAProxy instances running on different hosts. The container is considered healthy if at least one HAProxy instance reports a "passed" health check.
+
+Rancher’s approach handles network partitions and is more efficient than client-based health checks. By using HAProxy to perform health checks, Rancher enables users to specify the same health check policy for DNS service and for load balancers.
+
+In the **Advanced Options** section, the **Health Check** tab allows you to check TCP connections or HTTP responses for services. 
+
+#### Labels/Scheduling 
+
+In the **Labels** tab, Rancher allows you to add any labels to containers in a service. Labels are very useful to be used when creating scheduling rules. In the **Scheduling** tab, you can use the [host labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#host-labels), container/service labels, and container/service names to create where you want the containers of your service to be scheduled. 
+
+More details about labels and scheduling can be read [here]({{{{site.baseurl}}/rancher/rancher-ui/scheduling/).
 
 ### Starting Services
 
