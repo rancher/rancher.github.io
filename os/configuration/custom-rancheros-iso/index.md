@@ -8,7 +8,7 @@ layout: os-default
 
 It's easy to build your own RancherOS ISO.
 
-1. Create a clone of the the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`. 
+1. Create a clone of the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`. 
 
      ```bash
      $ git clone https://github.com/rancher/os.git

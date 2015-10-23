@@ -22,7 +22,7 @@ rancher:
 
 write_files:
   # /opt/rancher/bin/start.sh is executed on start before User Docker starts
-  # /etc/rc.local is also executed on start but not guarenteed to be ran before User Docker
+  # /etc/rc.local is also executed on start but not guaranteed to be ran before User Docker
   - path: /opt/rancher/bin/start.sh
     permissions: "0755"
     owner: root
@@ -168,7 +168,7 @@ $ sudo system-docker stop docker
 $ sudo system-docker start docker
 ```
 
-After customizing the Docker daemon paramaeters and restarting the user Docker service, ZFS should work for Docker. 
+After customizing the Docker daemon parameters and restarting the user Docker service, ZFS should work for Docker. 
 
 ```bash
 $ docker info
