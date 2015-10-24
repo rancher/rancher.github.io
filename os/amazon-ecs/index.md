@@ -32,5 +32,18 @@ rancher:
 # you'll need to enable the system-service for the ECS agent.
   services_include:
     amazon-ecs-agent: true
-
 ```
+
+### Amazon ECS enabled AMIs
+
+Region | Type | AMI
+---|--- | ---
+ap-northeast-1 | HVM - ECS Enabled |  [ami-e4137fe4](https://console.aws.amazon.com/ec2/home?region=ap-northeast-1#launchInstanceWizard:ami=ami-e4137fe4)
+ap-southeast-1 | HVM - ECS Enabled |  [ami-62b7a430](https://console.aws.amazon.com/ec2/home?region=ap-southeast-1#launchInstanceWizard:ami=ami-62b7a430)
+ap-southeast-2 | HVM - ECS Enabled |  [ami-35f8b20f](https://console.aws.amazon.com/ec2/home?region=ap-southeast-2#launchInstanceWizard:ami=ami-35f8b20f)
+eu-central-1 | HVM - ECS Enabled |  [ami-48828e55](https://console.aws.amazon.com/ec2/home?region=eu-central-1#launchInstanceWizard:ami=ami-48828e55)
+eu-west-1 | HVM - ECS Enabled |  [ami-cd5967ba](https://console.aws.amazon.com/ec2/home?region=eu-west-1#launchInstanceWizard:ami=ami-cd5967ba)
+sa-east-1 | HVM - ECS Enabled |  [ami-b68a32da](https://console.aws.amazon.com/ec2/home?region=sa-east-1#launchInstanceWizard:ami=ami-b68a32da)
+us-east-1 | HVM - ECS Enabled |  [ami-75f8a710](https://console.aws.amazon.com/ec2/home?region=us-east-1#launchInstanceWizard:ami=ami-75f8a710)
+us-west-1 | HVM - ECS Enabled |  [ami-7f1edd3b](https://console.aws.amazon.com/ec2/home?region=us-west-1#launchInstanceWizard:ami=ami-7f1edd3b)
+us-west-2 | HVM - ECS Enabled |  [ami-3c08ea0f](https://console.aws.amazon.com/ec2/home?region=us-west-2#launchInstanceWizard:ami=ami-3c08ea0f)
