@@ -6,7 +6,6 @@ layout: os-default
 
 ## ROS Service
 ---
-_Available as of v0.3.0._
 
 _In v0.3.1+, we changed the command from `rancherctl` to `ros`._
 
@@ -23,7 +22,7 @@ _In v0.3.1+, we changed the command from `rancherctl` to `ros`._
 
 ### List
 ---
-The `list` command will provide you a list of all services available in the [os-services repository](https://github.com/rancher/os-services) as well as any service that was added by the user to `rancher.yml`. The command will also show the state that each service is in.
+The `list` command will provide you a list of all services available in the [os-services repository](https://github.com/rancher/os-services) as well as any service that was added by the user to `/var/lib/rancher/conf/cloud-config.yml`. The command will also show the state that each service is in.
 
 ```bash
 $ sudo ros service list
@@ -32,7 +31,7 @@ disabled ubuntu-console
 
 ### Enable
 ---
-The `enable` command turns on a service. This service can either be a http(s) url, location to a yaml file (file must be located in `/var/lib/rancher/conf/`), or  a service that is already in the [os-services repository](https://github.com/rancher/os-services). For anything outside of the os-services repo, an additional item will be added to the `rancher.yml` file. In order for the change to take effect, you must reboot. In the future, the reboot will be dynamic.
+The `enable` command turns on a service. This service can either be a http(s) url, location to a yaml file (file must be located in `/var/lib/rancher/conf/`), or  a service that is already in the [os-services repository](https://github.com/rancher/os-services). For anything outside of the os-services repo, an additional item will be added to the `/var/lib/rancher/conf/cloud-config.yml` file. In order for the change to take effect, you must reboot. In the future, the reboot will be dynamic.
 
 Note: If you are using the location of a yaml file to enable, the system-service-name should be the entire location of the file. Therefore, if you were enabling an `example.yml` file, you will be enabling `/var/lib/rancher/conf/example.yml`.
 

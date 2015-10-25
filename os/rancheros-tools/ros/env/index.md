@@ -17,7 +17,7 @@ Remember all `ros` commands needs to be used with `sudo` (or as `root` user).
 Suppose there are a few environment entries in `rancher.environment`: 
 
 ```sh
-$ sudo ros config get environment 
+$ sudo ros config get rancher.environment 
 ETCD_DISCOVERY: https://discovery.etcd.io/a65ee41d4a85795676f8c2d564697dcf
 FLANNEL_NETWORK: 10.244.0.0/16
 NODE_IP: 10.0.2.15
@@ -36,7 +36,7 @@ Normally, running `sh -c 'echo $ETCD_DISCOVERY'` wouldn't print anything
 Let's try something else:
 
 ```sh
-$ sudo ros config set environment.ETCD_NAME RancherOS_etcd_node
+$ sudo ros config set rancher.environment.ETCD_NAME RancherOS_etcd_node
 $ sudo ros env sh -c 'echo $ETCD_NAME'
 RancherOS_etcd_node
 ```
