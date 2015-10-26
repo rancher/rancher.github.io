@@ -7,7 +7,53 @@ layout: rancher-default
 ## Upgrading Services with Rancher Compose
 ---
 
-In Rancher, a rolling upgrade can be provided for services using `rancher-compose`. With the `upgrade` command in `rancher-compose`, as the new service is started, the containers in the old service are stopped from Rancher. 
+With `rancher-compose`, there are two methods of upgrades supported. With the `rancher-compose up --upgrade`, the containers in existing services are upgraded to the provided `docker-compose.yml` and the existing containers in the service are removed.  With the `rancher-compose upgrade`, a [rolling upgrade]({{site.baseurl}}/rancher/rancher-compose/upgrading/#rolling-upgrade) can be performed. A new service will be deployed, and as it's deployed, the containers in the old service are stopped.
+
+## In-Service Upgrade
+
+For in-service upgrades, the commands are just options passed in during a `rancher-compose up` command. By adding the `--upgrade` option, the  `docker-compose.yml` will upgrade any services, that have the same name, in the stack. The in-service upgrade is a two step process as we require the user to confirm the upgrade is okay. 
+
+### Step 1: Performing the Upgrade
+
+For an upgrade, you can upgrade an entire stack or specific services within the `docker-compose.yml`
+
+```bash
+# Upgrades all services in the stack (i.e. docker-compose.yml)
+$ rancher-compose up --upgrade
+# Upgrade specific services (i.e. service1 and service2)
+$ rancher-compose up --upgrade service1 service2
+# Force an upgrade even though the docker-compose.yml for the services didn't change
+$ rancher-compose up --force-upgrade
+```
+
+#### Upgrade Options
+
+During your upgrade, you can also perform a `docker pull` before the images are deployed. Since the hosts would typically have your image already cached, you might want to add in the `--pull` option to pull the most up-to-date images on your hosts.
+
+```bash
+# During upgrade, force a pull to the host for latest images
+$ rancher-compose up --upgrade --pull
+```
+
+### Step 2: Confirming the upgrade
+
+Once you have verified the upgrade passes your validation, you will need to confirm that the upgrade is complete. The confirmation is required as it allows users to rollback to their old versions if necessary. **Once you have confirmed the upgrade, rolling back to the old version is no longer possible.**
+
+```bash
+# Confirm that the upgrade is complete and successful
+$ rancher-compose up --upgrade --confirm-upgrade
+```
+
+#### Rolling Back 
+
+After performing an upgrade, if your upgraded services have issues, Rancher provides the ability to roll back to your old service. This can only be accomplished if you have **not** confirmed your upgrade. 
+
+```bash
+# Roll back to previous version
+$ rancher-compose up --upgrade --rollback
+```
+
+## Rolling Upgrade 
 
 The command to perform a rolling upgrade to a new service is easy:  
 
@@ -125,3 +171,8 @@ By default, the original service will remain in Rancher with a scale of 0 after 
 # Cleanup service1 from Rancher after upgrade is complete
 $ rancher-compose upgrade service1 service2 --cleanup
 ```
+
+
+
+
+
