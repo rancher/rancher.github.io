@@ -77,7 +77,7 @@ Read more [details]({{site.baseurl}}/rancher/concepts/health-checks/) including 
 
 ### Service HA
 
-Rancher constantly monitors the state of your containers within a service and actively manages to ensure the desired scale of the service.  This can be triggered when there are fewer (or even more) healthy containers than the desired scale of your service, a host becomes unavailable, a container fails, or being unable to meet a health check.
+Rancher constantly monitors the state of your containers within a service and actively manages to ensure the desired scale of the service.  This can be triggered when there are fewer (or even more) healthy containers than the desired scale of your service, a host becomes unavailable, a container fails, or is unable to meet a health check.
 
 ### Service Upgrade
 
