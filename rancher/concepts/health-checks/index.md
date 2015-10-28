@@ -12,18 +12,38 @@ Rancher implements a health monitoring system by running managed network agents 
 
 Rancher’s approach handles network partitions and is more efficient than client-based health checks. By using HAProxy to perform health checks, Rancher enables users to specify the same health check policy across applications and load balancers.
 
+### Configuration
+
+The following options can be set to configure the Health Checks:
+
+**Check type**: There are two types of checks - _TCP Connection Opens_ (only verifies that the port is open) and _HTTP Responds 2xx/3xx_ (performs an HTTP request and ensures a good response is received). 
+
+**HTTP request**: If the check is of type _HTTP Responds 2xx/3xx_, you must specify a URL path to be queried. You can select the request method (`GET`, `POST`, etc) as well as the HTTP version (`HTTP/1.0`, `HTTP/1.1`).
+
+**Port**: The port to perform the check against.
+
+**Check interval**: The number of milliseconds between checks.
+
+**Timeout**: The number of milliseconds before a check without response times out.
+
+**Healthy threshold**: The number of successful check responses before a (currently marked unhealthy) container is considered healthy again.
+
+**Unhealthy threshold**: The number of failed check responses before a (currently marked healthy) container is considered unhealthy.
+
 ### Failure Scenarios
 
 Scenario | Response
 ----|----
-The container being monitored stops responding to health checks. | All active HAProxy instances monitoring the container would detect the failure and mark the container as "unhealthy". If the container is part of a service then rancher will restore the service to its pre-defined scale through its service HA functionality.
-A host running containers with health checks enabled, loses network connectivity or the agent on that host. | When network connectivity is lost to a host, the connection to the agent is lost from the rancher server. Since the agent is not accessible, the host is marked as "reconnecting". At this time all that's known is that rancher server can't connect to the host agent for that host. Health checking in rancher is done against the container itself and not the host; as a result the container would be uncontactable by all of its active HAProxy instances. If the container is part of a service then rancher will restore the service to its pre-defined scale through its service HA functionality.
-A host running containers with health checks enabled, has a complete failure. | When a host suffers a complete failure such as a power outage, the connection to the agent is lost from the rancher server. Since the agent is not accessible, the host is marked as "reconnecting". At this time all that's known is that rancher server can't connect to the host agent for that host. Health checking in rancher is done against the container itself and not the host; as a result the container would be uncontactable by all of its active HAProxy instances. If the container is part of a service then rancher will restore the service to its pre-defined scale through its service HA functionality.
-A Host's agent fails but host remains online and the containers are running and are passing health checks. | In this instance, as above, the connection to the agent is lost from the rancher server. Since the agent is not accessible, the host is marked as "reconnecting". At this time all that's known is that rancher server can't connect to the host agent for that host. Health checking in rancher is done against the container itself and not the host; as a result the container would be uncontactable by all of its active HAProxy instances. If the container is part of a service then rancher will restore the service to its pre-defined scale through its service HA functionality.
+The container being monitored stops responding to health checks. | All active HAProxy instances monitoring the container would detect the failure and mark the container as "unhealthy". If the container is part of a service then Rancher will restore the service to its pre-defined scale through its service HA functionality.
+A host running containers with health checks enabled, loses network connectivity or the agent on that host. | When network connectivity is lost to a host, the connection to the agent is lost from the Rancher server. Since the agent is not accessible, the host is marked as "reconnecting". At this time all that's known is that Rancher server can't connect to the host agent for that host. Health checking in Rancher is done against the container itself and not the host; as a result the container would be uncontactable by all of its active HAProxy instances. If the container is part of a service then Rancher will restore the service to its pre-defined scale through its service HA functionality.
+A host running containers with health checks enabled, has a complete failure. | When a host suffers a complete failure such as a power outage, the connection to the agent is lost from the Rancher server. Since the agent is not accessible, the host is marked as "reconnecting". At this time all that's known is that Rancher server can't connect to the host agent for that host. Health checking in Rancher is done against the container itself and not the host; as a result the container would be uncontactable by all of its active HAProxy instances. If the container is part of a service then Rancher will restore the service to its pre-defined scale through its service HA functionality.
+A Host's agent fails but host remains online and the containers are running and are passing health checks. | In this instance, as above, the connection to the agent is lost from the Rancher server. Since the agent is not accessible, the host is marked as "reconnecting". At this time all that's known is that Rancher server can't connect to the host agent for that host. Health checking in Rancher is done against the container itself and not the host; as a result the container would be uncontactable by all of its active HAProxy instances. If the container is part of a service then Rancher will restore the service to its pre-defined scale through its service HA functionality.
 
 <br>
 Depending on the result of health checks, a container is either in a green or red state. A service is in green (or "up") state if all containers implementing that service are in a green state and alternatively, in a red (or "down") state if all containers are subsequently in a red state.  A service is in yellow (or "degraded") state if Rancher has detected that at least one of the containers is either in a red state or in the process of returning it to a green state.
 
 The time taken to detect a failure is controlled through the 'interval' value, this is defined when creating the health check through either compose or the UI.
+
+> **Note:** The failure recovery actions are only executed after the container has become _green_. I.e. if a service has a long start up time, the container won't be immediately restarted because the service takes longer than 2000ms to start. The Health Check first need to turn the container green before actions are taken.
 
 Read more about how to set up health checks using [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/rancher-services/#health-check-for-services) or in the [UI]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#health-checks).
