@@ -270,3 +270,4 @@ wordpress:
     response_timeout: 2000
 ```
 
+More details about Health Checks can be read in the [concept section]({{site.baseurl}}/rancher/concepts/health-checks/).
