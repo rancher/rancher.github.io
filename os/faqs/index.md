@@ -20,8 +20,4 @@ Command | Description
 `ros` | [Control and configure RancherOS]({{site.baseurl}}/os/rancheros-tools/ros/)
 
 
-### Why are my changes to the console being lost?
 
-The console and all system containers are ephemeral.  This means on each reboot of the system all changes to the console are lost.  Any changes in `/home` or `/opt` will be persisted though.  Additionally, on startup of the console container, if `/opt/rancher/bin/start.sh` exists, it will be executed.  You can add anything to that script to configure your console the way you want it.
-
-In the future, we will allow one to provide a custom image for the console container, but we just haven't gotten around yet to enabling that.
