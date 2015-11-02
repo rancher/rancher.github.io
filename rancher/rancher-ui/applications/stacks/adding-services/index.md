@@ -52,11 +52,13 @@ Rancher’s approach handles network partitions and is more efficient than clien
 
 In the **Advanced Options** section, the **Health Check** tab allows you to check TCP connections or HTTP responses for services. 
 
+More details about Health Checks can be read in the [concept section]({{site.baseurl}}/rancher/concepts/health-checks/).
+
 #### Labels/Scheduling 
 
 In the **Labels** tab, Rancher allows you to add any labels to containers in a service. Labels are very useful to be used when creating scheduling rules. In the **Scheduling** tab, you can use the [host labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#host-labels), container/service labels, and container/service names to create where you want the containers of your service to be scheduled. 
 
-More details about labels and scheduling can be read [here]({{{{site.baseurl}}/rancher/rancher-ui/scheduling/).
+More details about labels and scheduling can be read [here]({{site.baseurl}}/rancher/rancher-ui/scheduling/).
 
 ### Starting Services
 
