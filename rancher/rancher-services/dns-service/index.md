@@ -12,7 +12,7 @@ As part of the [Rancher catalog]({{site.baseurl}}/rancher/rancher-ui/application
 
 ### Best Practices
 
-* There should be one `route53` service of scale 1 for every environment in your Rancher setup.
+* For every environment in your Rancher setup, there should be a `route53` service of scale 1.
 * Multiple Rancher instances should not share the same `hosted zone`. 
 
 ### Launching Route53 Service
@@ -31,6 +31,7 @@ AWS Secret Key | Secret key to your AWS API
 AWS Region | Region name in AWS. We suggest setting the region to the one closest to your geo location. It will get translated to the AWS API endpoint to which Rancher Route53 will be sending the updated DNS requests.
 Hosted Zone | Route53 hosted zone. This has to pre-created on your Route53 instance.
 
+<br>
 After filling in the form, click on **Create**. The stack will be created with the `route53` service and you only need to start the service!
 
 
@@ -42,13 +43,12 @@ The `route53` service will generate DNS records for only services that have port
 fqdn=<serviceName>.<stackName>.<environmentName>.<yourHostedZoneName>
 ```
 
-On Route53 in AWS, it will get represented as a Record Set with name=fqdn and value=[ip addresses of the host(s) where service is deployed]. Rancher Route53 service will manage only Record Sets that end with <environmentName>.<yourHostedZoneName>.
+On Route 53 in AWS, it will get represented as a Record Set with name=fqdn and value=[ip address of the host(s) where the service is deployed]. Rancher `route53` service will manage only Record Sets that end with <environmentName>.<yourHostedZoneName>. Currently, the default TTL is 300 seconds. 
 
-Once DNS record is set on Route53 on AWS, the generated fqdn will get propagated back to Rancher, and will be set on the `service.fqdn` field. You can find the fqdn field by using the **View in API** from the drop down menu of the service and searching for `fqdn`.
+Once DNS record is set on Route 53 on AWS, the generated fqdn will get propagated back to Rancher, and will be set on the **service.fqdn** field. You can find the fqdn field by using the **View in API** from the drop down menu of the service and searching for **fqdn**.
 
-When using the `fqdn` in a browser, it will be directed to one of the containers in the service. If the host IP of a container changes, it will automatically be updated in AWS Route53. There will be no changes from the user perspective.
+When using the fqdn in a browser, it will be directed to one of the containers in the service. If there are any changes to the IPs associated with the containers in a service, these changes will update the value in AWS Route 53. There will be no changes from the user perspective as the user will always be using the fqdn.
 
-
-
+> **Note:** After the `route53` service is launched, any services with a host port already deployed will also receive a fqdn. 
 
 
