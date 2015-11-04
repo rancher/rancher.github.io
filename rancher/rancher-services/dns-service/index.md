@@ -46,6 +46,8 @@ On Route53 in AWS, it will get represented as a Record Set with name=fqdn and va
 
 Once DNS record is set on Route53 on AWS, the generated fqdn will get propagated back to Rancher, and will be set on the `service.fqdn` field. You can find the fqdn field by using the **View in API** from the drop down menu of the service and searching for `fqdn`.
 
+When using the `fqdn` in a browser, it will be directed to one of the containers in the service. If the host IP of a container changes, it will automatically be updated in AWS Route53. There will be no changes from the user perspective.
+
 
 
 
