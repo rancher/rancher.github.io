@@ -201,6 +201,16 @@ If you want to see the configuration of the Rancher DNS setup, you will need to 
 $ cat /var/lib/cattle/etc/cattle/dns/answers.json
 ```
 
+## Networking
+
+### CentOS
+
+#### Why are my containers unable to connect to network?
+
+If you run a container on the host (i.e. `docker run -it ubuntu`) and the container cannot talk to the internet or anything outside the host, then you might have hit a networking issue. 
+
+CentOS will by default set /proc/sys/net/ipv4/ip_forward to 0, which will essentially bork all networking for Docker.  Docker sets this value to 1 but if you run `service restart networking` on CentOS it sets it back to 0.
+
 <a id="lb-config"></a>
 
 ## Load Balancer
