@@ -12,6 +12,8 @@ Rancher implements a health monitoring system by running managed network agents 
 
 Rancher’s approach handles network partitions and is more efficient than client-based health checks. By using HAProxy to perform health checks, Rancher enables users to specify the same health check policy across applications and load balancers.
 
+> **Note:** Health checks will only work for services that are using the managed network. If you select any other network choice, it will **not** be monitored.
+
 ### Configuration
 
 The following options can be set to configure the Health Checks:
