@@ -22,6 +22,8 @@ Rancher supports L4 load balancing by adding ports and linking target services. 
 
 When working with services that contains [sidekicks]({{site.baseurl}}/rancher/rancher-compose/#sidekicks), you need to link the [primary service]({{site.baseurl}}/rancher/rancher-compose/#primary-service), which is the service that contains the `sidekick` label. 
 
+> **Note:** Load balancers will only work for services that are using the managed network. If you select any other network choice for your target services, it will **not** work with the load balancer.
+
 ### Load Balancer Example (L4)
 
 **Sample configuration** `docker-compose.yml`
