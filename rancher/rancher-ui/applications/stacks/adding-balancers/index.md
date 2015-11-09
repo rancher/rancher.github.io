@@ -32,6 +32,8 @@ It's that easy to set up a load balancer with Rancher!
 
 Our load balancer has HAProxy software installed on the load balancer agent containers. The load balancer uses a round robin algorithm from HAProxy to select the target services. 
 
+> **Note:** Load balancers will only work for services that are using the managed network. If you select any other network choice for your target services, it will **not** work with the load balancer.
+
 ### Basic Load Balancing
 
 Rancher supports L4 load balancing by simply adding listening ports and linking target services. We can add as many listening ports and services as we'd like. We've made the assumption that the access is set as `public` for every listening ports. The source port(s) of the load balancer will use the round robin algorithm to forward traffic to any service(s) on the target port mapped to the particular source port. 
