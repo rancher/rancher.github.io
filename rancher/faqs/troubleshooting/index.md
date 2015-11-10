@@ -96,7 +96,7 @@ If you edited the `docker run .... rancher/agent...` command from the UI to add 
 
 #### Using a cloned VM 
 
-IF you cloned a VM and attempting to register the cloned VM, it will not work and throw an error in the rancher-agent logs. `ERROR: Please re-register this agent.` The unique ID that rancher saves in `/var/lib/rancher/state` will be the same for cloned VMs and unable to re-register. 
+If you cloned a VM and attempting to register the cloned VM, it will not work and throw an error in the rancher-agent logs. `ERROR: Please re-register this agent.` The unique ID that rancher saves in `/var/lib/rancher/state` will be the same for cloned VMs and unable to re-register. 
 
 The workaround is to `rm -rf /var/lib/rancher/state; docker rm -fv rancher-agent; docker rm-fv rancher-agent-state` and register again.
 
@@ -189,6 +189,14 @@ The first rule is an example of a rule for a user-defined container in which the
 
 If it seems that you are missing rules, try deploying another container from the Rancher UI and specify a port mapping. When the container is deployed, all rules will be synced up with the Rancher database. This obviously is not a permanent fix to the problem, but is useful for debugging and short-term fixes.
 
+### Running Ubuntu, and containers are unable to communicate with each other.
+
+If you have `UFW` enabled, you can either disable `UFW` OR change `/etc/default/ufw` to:
+
+```
+DEFAULT_FORWARD_POLICY="ACCEPT"
+```
+
 ## Network Agents
 
 <a id="dns-config"></a>
@@ -209,7 +217,7 @@ $ cat /var/lib/cattle/etc/cattle/dns/answers.json
 
 If you run a container on the host (i.e. `docker run -it ubuntu`) and the container cannot talk to the internet or anything outside the host, then you might have hit a networking issue. 
 
-CentOS will by default set /proc/sys/net/ipv4/ip_forward to 0, which will essentially bork all networking for Docker.  Docker sets this value to 1 but if you run `service restart networking` on CentOS it sets it back to 0.
+CentOS will by default set `/proc/sys/net/ipv4/ip_forward` to `0`, which will essentially bork all networking for Docker.  Docker sets this value to `1` but if you run `service restart networking` on CentOS it sets it back to `0`.
 
 <a id="lb-config"></a>
 
