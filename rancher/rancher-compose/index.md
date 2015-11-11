@@ -99,7 +99,7 @@ test-data:
 
 #### Example of Sidekicks in Rancher-Compose: Multiple services using the same service for `volumes_from`
 
-If you have multiple services that will be using the same container to do a `volumes_from`, you'd want to make the data container is the primary service and the other services are the sidekicks (i.e. secondary services). 
+If you have multiple services that will be using the same container to do a `volumes_from`, you can add the second service as a sidekick of the primary service and use the same data container. Only a primary service can be a target of a load balancer, so please make sure the correct service is chosen as the primary service (i.e. the one with the sidekick labels). 
 
 ```yaml
 test-data:
@@ -108,12 +108,12 @@ test-data:
   - cat
   image: ubuntu:14.04.2
   stdin_open: true
-  labels:
-    io.rancher.sidekicks: test1, test2
 test1:
   tty: true
   image: ubuntu:14.04.2
   stdin_open: true
+  labels:
+    io.rancher.sidekicks: test-data, test2
   volumes_from:
   - test-data
 test2:
