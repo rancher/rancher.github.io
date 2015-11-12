@@ -134,6 +134,10 @@ You should get a json response. If authentication is turned on, the response cod
 
 > **Note:** Both normal HTTP connections and websocket connections (ws://) are used. If this URL points to a proxy or load balancer, make sure it is configured to handle websocket connections.
 
+### What do I do if the IP of my host has changed (due to reboot)? 
+
+If you are using a cloud provider and end up with a new IP after a reboot, the IP of your host in Rancher will no longer match up. Your containers will no longer have access to the managed network. To get the host and all containers back into the managed network, just re-run the command to [add in a custom host]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/). Do not stop or remove the existing agent on the host!
+
 ## Cross Host Communication
 
 If containers on different hosts cannot ping each other, there are some common scenarios that could be the issue. 
