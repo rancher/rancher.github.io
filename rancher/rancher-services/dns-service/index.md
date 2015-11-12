@@ -49,6 +49,12 @@ Once DNS record is set on Route 53 on AWS, the generated fqdn will get propagate
 
 When using the fqdn in a browser, it will be directed to one of the containers in the service. If there are any changes to the IPs associated with the containers in a service, these changes will update the value in AWS Route 53. There will be no changes from the user perspective as the user will always be using the fqdn.
 
-> **Note:** After the `route53` service is launched, any services with a host port already deployed will also receive a fqdn. 
+> **Note:** After the `route53` service is launched, any services with a host port already deployed will also receive a fqdn.
+
+
+### Removing Route53 Service
+
+When the `route53` service is removed from Rancher, the record sets in Amazon Route 53 is **NOT** removed. Those will need to be manually removed by yourself in your Amazon account. 
+
 
 
