@@ -16,5 +16,3 @@ kramdown:
   input: GFM
 permalink: pretty
 
-gems:
-  - jekyll-redirect-from
