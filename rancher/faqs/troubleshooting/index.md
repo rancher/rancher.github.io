@@ -86,6 +86,48 @@ Depending on how the MySQL database is setup, you may need to do an [upgrade]({{
 
 If you were unable to see the **Admin** -> **Processes** tab due to the lack of memory, after starting Rancher server again with more memory, you should be able to see the tab and start troubleshooting the processes that have been running the longest.
 
+<div id="databaselock">
+
+### Why is Rancher Server frozen? OR Why could my upgrade have failed?
+
+If you are starting Rancher and it freezes forever, there might be a liquibase database lock. On startup, liquibase does a schema migration. There is a race condition where it might leave a lock entry, which will prevent subsequent boots. 
+
+If you have just upgraded and in the Rancher server logs, there can be a log lock on the MySQL database that has not been released. 
+
+```bash
+....liquibase.exception.LockException: Could not acquire change log lock. Currently locked by <container_ID>
+```
+
+#### Releasing the database lock
+
+If you had created the data container for Rancher server per the [upgrading documentation]({{site.baseurl}}/rancher/upgrading/), you'll need to `exec` into the `rancher-data` container to update the  `DATABASECHANGELOGLOCK` table and remove the lock. If you hadn't created the data container, you can `exec` into the container that has your database.
+
+```bash
+$ sudo docker exec -it <container_id> mysql
+```
+
+Once you are in MySQL database, you'll need to access the `cattle` database.
+
+```bash
+mysql> use cattle;
+
+# Check that there is a lock in the table
+mysql> select * from DATABASECHANGELOGLOCK;
+
+# Update to remove the lock by the container
+mysql> update DATABASECHANGELOGLOCK set LOCKED="", LOCKGRANTED=null, LOCKEDBY=null where ID=1;
+
+
+# Check that the lock has been removed
+mysql> select * from DATABASECHANGELOGLOCK;
++----+--------+-------------+----------+
+| ID | LOCKED | LOCKGRANTED | LOCKEDBY |
++----+--------+-------------+----------+
+|  1 |        | NULL        | NULL     |
++----+--------+-------------+----------+
+1 row in set (0.00 sec)
+```
+
 ## Rancher Agent
 
 ### What are reasons why Rancher agent would fail to start? 
@@ -236,45 +278,6 @@ $ cat /etc/haproxy/haproxy.cfg
 ```
 
 This file will provide all the configuration details of the load balancer. 
-
-
-## Upgrading
-
-### Why didn't my upgrade succeed?
-
-If in the Rancher server logs, there may be a log lock on the MySQL database that has not been released. 
-
-```bash
-....liquibase.exception.LockException: Could not acquire change log lock. Currently locked by <container_ID>
-```
-
-If you had created the data container for Rancher server per the [upgrading documentation]({{site.baseurl}}/rancher/upgrading/), you'll need to `exec` into the `rancher-data` container to update the  `DATABASECHANGELOGLOCK` table and remove the lock. If you hadn't created the data container, you can `exec` into the container that has your database.
-
-```bash
-$ sudo docker exec -it <container_id> mysql
-```
-
-Once you are in MySQL database, you'll need to access the `cattle` database.
-
-```bash
-mysql> use cattle;
-
-# Check that there is a lock in the table
-mysql> select * from DATABASECHANGELOGLOCK;
-
-# Update to remove the lock by the container
-mysql> update DATABASECHANGELOGLOCK set LOCKED="", LOCKGRANTED=null, LOCKEDBY=null where ID=1;
-
-
-# Check that the lock has been removed
-mysql> select * from DATABASECHANGELOGLOCK;
-+----+--------+-------------+----------+
-| ID | LOCKED | LOCKGRANTED | LOCKEDBY |
-+----+--------+-------------+----------+
-|  1 |        | NULL        | NULL     |
-+----+--------+-------------+----------+
-1 row in set (0.00 sec)
-```
 
 ## Authentication
 
