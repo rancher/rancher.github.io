@@ -38,103 +38,18 @@ This means that any images that rely on populating environment variables from th
 
 ### The subnet used by Rancher is already used in my network. How do I change the subnet?
 
-In order for Rancher to work with a new subnet, you will need to start with a fresh install of Rancher. Before adding any hosts, you will need to update the subnet table with the new subnet IDs.
+In order for Rancher to work with a new subnet, you will need to update a setting in the API and create new environments. None of the existing environments in Rancher server (including the Default one) will use the new subnet after changing the setting. 
 
-Within the Rancher server VM, you will need to follow these steps to update the subnet tables.
+To change the setting in your API, you need to go to the following API page:
 
-```bash
-$ docker exec -it SERVER_CONTAINER_ID bash
-# Access mysql
-root@container_id:/# mysql
+```
+http://<rancher_server_ip>:8080/v1/settings/docker.network.subnet.cidr
 ```
 
-Get the cattle database.
+Click on the **Edit** under the **Operations** section. Update the value from `10.42.0.0/16` to a subnet that works for you. 
 
-```bash
-mysql> use cattle;
-```
+Click on **Show Request** and finally **Send Request**. After the request is sent, you can click on **Reload** and see that the value has been updated in the API. 
 
-Confirm that you have access to the subnet table.
+After the value is updated, you'll need to create new environments to have containers start using the new subnet for the managed network. 
 
-```bash
-mysql> show tables; 
-+-----------------------------------------------+
-| Tables_in_cattle                              |
-+-----------------------------------------------+
-| DATABASECHANGELOG                             |
-| DATABASECHANGELOGLOCK                         |
-| account                                       |
-| agent                                         |
-| agent_group                                   |
-| certificate                                   |
-| cluster_host_map                              |
-| config_item                                   |
-| config_item_status                            |
-| credential                                    |
-| credential_instance_map                       |
-| data                                          |
-| environment                                   |
-| external_handler                              |
-| external_handler_external_handler_process_map |
-| external_handler_process                      |
-| generic_object                                |
-| global_load_balancer                          |
-| host                                          |
-| host_ip_address_map                           |
-| host_vnet_map                                 |
-| image                                         |
-| image_storage_pool_map                        |
-| instance                                      |
-| instance_host_map                             |
-| instance_link                                 |
-| ip_address                                    |
-| ip_address_nic_map                            |
-| ip_association                                |
-| ip_pool                                       |
-| load_balancer                                 |
-| load_balancer_config                          |
-| load_balancer_config_listener_map             |
-| load_balancer_host_map                        |
-| load_balancer_listener                        |
-| load_balancer_target                          |
-| mount                                         |
-| network                                       |
-| network_service                               |
-| network_service_provider                      |
-| network_service_provider_instance_map         |
-| nic                                           |
-| offering                                      |
-| physical_host                                 |
-| port                                          |
-| process_execution                             |
-| process_instance                              |
-| resource_pool                                 |
-| service                                       |
-| service_consume_map                           |
-| service_expose_map                            |
-| setting                                       |
-| storage_pool                                  |
-| storage_pool_host_map                         |
-| subnet                                        |
-| subnet_vnet_map                               |
-| task                                          |
-| task_instance                                 |
-| vnet                                          |
-| volume                                        |
-| volume_storage_pool_map                       |
-| zone                                          |
-+-----------------------------------------------+
-62 rows in set (0.00 sec)
-```
-
-Update the subnet table. 
-
-```bash
-mysql> update subnet set network_address='10.41.0.0', start_address='10.41.0.2', end_address='10.41.255.250', gateway='10.41.0.1' where id=1;                             
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-```
-
-After the subnet table has been updated, you can add hosts/containers to the Rancher server and it will use the new subnet ID for the containers.
-
-> **Note:** For every [environment]({{site.baseurl}}/rancher/configuration/environments/), a new entry is created in the subnet table. This entry will default to the `10.42.x.x` subnet and you will need to update the entry in the table for each new environment.
+> **Note:** Any existing environment prior to the API change will not be updated to use the new subnet. 
