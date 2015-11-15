@@ -56,10 +56,10 @@ After you have made necessary changes to the documentation and are ready to cont
     
 Now initiate a Pull request on GitHub:
 
-1.Navigate your browser to your forked repository: <https://github.com/YOUR_ACCOUNT/rancher.github.io.git>.
-2.Click the *Compare & pull request*  button on the upper side of the forked repository.
-3.Enter a clear description for the changes you have made.
-4.Click *Send Pull Request*
+    1 Navigate your browser to your forked repository: <https://github.com/YOUR_ACCOUNT/rancher.github.io.git>.
+    2 Click the *Compare & pull request*  button on the upper side of the forked repository.
+    3 Enter a clear description for the changes you have made.
+    4 Click *Send Pull Request*
 If you are asked to make modifications to your proposed changes, make the changes locally on your dev branch, push the changes, and submit the pull request again.
 
 ### Cleaning up the Local Repository
