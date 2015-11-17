@@ -20,6 +20,8 @@ A load balancer can be scheduled like any other service. Read more about [schedu
 
 Rancher supports L4 load balancing by adding ports and linking target services. Any traffic directed to any of source port(s) will be sent to the private port(s) of the linked service(s).
 
+> **Note:**  Port `42` cannot be used as a source port for load balancers as we use internally use this port for [health checks]({{site.baseurl}}/rancher/concepts/health-checks). 
+
 When working with services that contains [sidekicks]({{site.baseurl}}/rancher/rancher-compose/#sidekicks), you need to link the [primary service]({{site.baseurl}}/rancher/rancher-compose/#primary-service), which is the service that contains the `sidekick` label. 
 
 ### Load Balancer Example (L4)
