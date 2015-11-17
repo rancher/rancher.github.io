@@ -28,11 +28,45 @@ $ rancher-compose up --force-upgrade
 
 #### Upgrade Options
 
+Option | Description
+---|---
+--pull, -p			|	Before doing the upgrade do an image pull on all hosts that have the image already
+-d			|		Do not block and log
+--upgrade, -u, --recreate		| Upgrade if service has changed
+--force-upgrade, --force-recreate |	Upgrade regardless if service has changed
+--confirm-upgrade, -c |		Confirm that the upgrade was success and delete old containers
+--rollback, -r		|	Rollback to the previous deployed version
+--batch-size "2"	|		Number of containers to upgrade at once
+--interval "1000"	|		Update interval in milliseconds
+<br>
+**Pull** 
+
 During your upgrade, you can also perform a `docker pull` before the images are deployed. Since the hosts would typically have your image already cached, you might want to add in the `--pull` option to pull the most up-to-date images on your hosts.
 
 ```bash
 # During upgrade, force a pull to the host for latest images
 $ rancher-compose up --upgrade --pull
+```
+
+**Batch Size**
+
+By default, containers of the new service are started 2 at a time during an upgrade. You can change how many containers you want upgraded at a time, by passing in `--batch-size` and a number. This number is how many containers will be started in the new service during the upgrade process. 
+
+```bash
+# Containers of service2 will be started in batches of 3 
+# until the scale of the service2 is reached
+$ rancher-compose up --upgrade --batch-size 3
+```
+
+**Interval**
+
+By default, during the upgrade, there is a 2 second wait between when containers on the new service have started and when containers on the old service are removed. You can override this interval by passing in `--interval` and the number of milliseconds for the interval.
+
+```bash
+# Set the interval to 30 seconds, which is the time between 
+# when the containers of the new service have started and 
+# when the containers of the old service are removed
+$ rancher-compose upgrade service1 service2 --interval "30000"
 ```
 
 ### Step 2: Confirming the upgrade
@@ -101,20 +135,21 @@ $ rancher-compose upgrade service1 service2 --scale 5
 0 | 5 | `service1` removes the last running container.
 
 
-## Options with the Upgrade
+### Options with the `Upgrade` Command
 
 With the `upgrade` command, there are several options that can be passed in to customize your upgrade.
 
-### Final Scale
+Options | Description
+---|---
+--batch-size "2" |	Number of containers to upgrade at once
+--scale "-1"	|		Final number of running containers
+--interval "2000" |		Update interval in milliseconds
+--update-links	Update inbound links on target service
+--wait, -w	|		Wait for upgrade to complete
+--pull, -p	|		Before doing the upgrade do an image pull on all hosts that have the image already
+--cleanup, -c |		Remove the original service definition once upgraded, implies --wait
 
-By default, the scale of a new service is based on the scale of the old service. You can change the scale of the new service by passing in `--scale` and a number. The number defines the final scale of running containers you want in the new service. 
-
-```bash
-# Setting the scale of service2 to 8 containers
-$ rancher-compose upgrade service1 service2 --scale 8
-```
-
-### Batch Size
+#### Batch Size
 
 By default, containers of the new service are started 2 at a time during an upgrade. You can change how many containers you want upgraded at a time, by passing in `--batch-size` and a number. This number is how many containers will be started in the new service during the upgrade process. 
 
@@ -123,10 +158,18 @@ By default, containers of the new service are started 2 at a time during an upgr
 # until the scale of the service2 is reached
 $ rancher-compose upgrade service1 service2 --batch-size 3
 ```
+#### Final Scale
+
+By default, the scale of a new service is based on the scale of the old service. You can change the scale of the new service by passing in `--scale` and a number. The number defines the final scale of running containers you want in the new service. 
+
+```bash
+# Setting the scale of service2 to 8 containers
+$ rancher-compose upgrade service1 service2 --scale 8
+```
 
 > **Note:** The containers of the old service will not be removed based on batch size. After the containers are launched in a particular batch, containers of the old service are stopped and removed when the sum of containers in the old and new service exceed the final scale of the new service.
 
-### Interval
+#### Interval
 
 By default, during the upgrade, there is a 2 second wait between when containers on the new service have started and when containers on the old service are removed. You can override this interval by passing in `--interval` and the number of milliseconds for the interval.
 
@@ -136,7 +179,8 @@ By default, during the upgrade, there is a 2 second wait between when containers
 # when the containers of the old service are removed
 $ rancher-compose upgrade service1 service2 --interval "30000"
 ```
-### Updating Inbound Links
+
+#### Updating Inbound Links
 
 By default, any services that were linked **TO** the old service are also linked to the new service. If you don't want any of these services to be linked to the new service, you can pass in `--update-links="false"` so that there will be no links to the new service. 
 
@@ -145,7 +189,7 @@ By default, any services that were linked **TO** the old service are also linked
 $ rancher-compose upgrade service1 service2 --update-links="false"
 ```
 
-### Waiting for Upgrade to Complete
+#### Waiting for Upgrade to Complete
 
 By default, `rancher-compose` will exit after the upgrade has been passed to Rancher, but the upgrade process may not have been completed. By passing in the `--wait` or `-w` to the `upgrade` command, `rancher-compose` will not exit until after the new service has completely started and the old service has been stopped.
 
@@ -154,7 +198,7 @@ By default, `rancher-compose` will exit after the upgrade has been passed to Ran
 $ rancher-compose upgrade service1 service2 --wait
 ```
 
-### Pulling a new Image
+#### Pulling a new Image
 
 By default, `rancher-compose` will not pull an image if the image already exists on the host. By passing in the `--pull` or `-p` to the `upgrade` command, `rancher-compose` will pull the image again even if the image is already on the host. 
 
@@ -163,7 +207,7 @@ By default, `rancher-compose` will not pull an image if the image already exists
 $ rancher-compose upgrade service1 service2 --pull
 ```
 
-### Cleanup Original Service
+#### Cleanup Original Service
 
 By default, the original service will remain in Rancher with a scale of 0 after the upgrade is complete. If you are positive that you will not need to rollback or save the original service definition, you can pass in the `--cleanup` or `-c` option with the `upgrade` command. This option implies that `--wait` as the `rancher-compose` will wait for the upgrade to be completed before removing the service from Rancher. 
 
@@ -171,8 +215,3 @@ By default, the original service will remain in Rancher with a scale of 0 after 
 # Cleanup service1 from Rancher after upgrade is complete
 $ rancher-compose upgrade service1 service2 --cleanup
 ```
-
-
-
-
-
