@@ -30,14 +30,14 @@ $ rancher-compose up --force-upgrade
 
 Option | Description
 ---|---
---pull, -p			|	Before doing the upgrade do an image pull on all hosts that have the image already
--d			|		Do not block and log
---upgrade, -u, --recreate		| Upgrade if service has changed
---force-upgrade, --force-recreate |	Upgrade regardless if service has changed
---confirm-upgrade, -c |		Confirm that the upgrade was success and delete old containers
---rollback, -r		|	Rollback to the previous deployed version
---batch-size "2"	|		Number of containers to upgrade at once
---interval "1000"	|		Update interval in milliseconds
+`--pull`, `-p`			|	Before doing the upgrade do an image pull on all hosts that have the image already
+`-d`			|		Do not block and log
+`--upgrade`, `-u`, `--recreate`		| Upgrade if service has changed
+`--force-upgrade`, `--force-recreate` |	Upgrade regardless if service has changed
+`--confirm-upgrade`, `-c` |		Confirm that the upgrade was success and delete old containers
+`--rollback`, `-r`		|	Rollback to the previous deployed version
+`--batch-size` "2"	|		Number of containers to upgrade at once
+`--interval` "1000"	|		Update interval in milliseconds
 <br>
 **Pull** 
 
@@ -141,13 +141,13 @@ With the `upgrade` command, there are several options that can be passed in to c
 
 Options | Description
 ---|---
---batch-size "2" |	Number of containers to upgrade at once
---scale "-1"	|		Final number of running containers
---interval "2000" |		Update interval in milliseconds
---update-links	Update inbound links on target service
---wait, -w	|		Wait for upgrade to complete
---pull, -p	|		Before doing the upgrade do an image pull on all hosts that have the image already
---cleanup, -c |		Remove the original service definition once upgraded, implies --wait
+`--batch-size` "2" |	Number of containers to upgrade at once
+`--scale` "-1"	|		Final number of running containers
+`--interval` "2000" |		Update interval in milliseconds
+`--update-links` |	Update inbound links on target service
+`--wait`, `-w`	|		Wait for upgrade to complete
+`--pull`, `-p`	|		Before doing the upgrade do an image pull on all hosts that have the image already
+`--cleanup`, `-c` |		Remove the original service definition once upgraded, implies --wait
 
 #### Batch Size
 
