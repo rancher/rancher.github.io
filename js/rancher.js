@@ -43,7 +43,9 @@ jQuery(document).ready(function () {
                                                     var content_height = $(".col-sm-9").height();
                                                     $(".col-sm-3").css("min-height", content_height + "px");
                                                     });
-                                              linkAnchors();
+                                                    setTimeout(function() {
+                                                      linkAnchors();
+                                                    },250);
                                               });
                        linkAnchors();
                        });
