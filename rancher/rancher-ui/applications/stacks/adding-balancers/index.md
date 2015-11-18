@@ -18,7 +18,7 @@ In our example from the [adding services section]({{site.baseurl}}/rancher/ranch
 
 We'll define the listening ports on the load balancer. The source port is the port that the load balancer is listening on the host. You can decide if this source port will be accessible publicly (i.e. accessible outside of the host) or internally on the host. You can also choose the target port of the load balancer. The target port is the private port that traffic will be directed to the services. If no target port is defined, the source port will also be used as the target port. You can select the protocol for each listening port. 
 
-> **Note:** Port `42` cannot be used as a source port for load balancers as we use internally use this port for [health checks]({{site.baseurl}}/rancher/concepts/health-checks).  
+> **Note:** Port `42` cannot be used as a source port for load balancers because it's internally used for [health checks]({{site.baseurl}}/rancher/concepts/health-checks).  
 
 Let's use a source port of `8090`, target port of `80`, select `Public` access and select the `http` protocol. Next, let's add our target. We will select our wordpress service. Click on **Create**. 
 
