@@ -1,0 +1,21 @@
+---
+title: API
+layout: rancher-default
+---
+
+## <no value>
+
+Description of API Input from yaml file. 
+​​
+### Resource Fields
+
+Field | Type | Required | Default | Description
+---|---|---|---|---
+batchSize | int | false | 1 | The batch size to upgrade a service (i.e. how many containers to launch at a time)
+intervalMillis | int | false | 2000 | The number of milliseconds between upgrading
+launchConfig | launchConfig | false | <no value> | Configuration of a container
+previousLaunchConfig | launchConfig | false | <no value> | ALENA
+previousSecondaryLaunchConfigs | array[secondaryLaunchConfig] | false | <no value> | The previousSecondaryLaunchConfigs for the inServiceUpgradeStrategy
+secondaryLaunchConfigs | array[secondaryLaunchConfig] | false | <no value> | The list of services that are sidekicks to the service.
+startFirst | boolean | false | false | ALENA
+

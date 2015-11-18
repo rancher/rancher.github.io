@@ -1,0 +1,15 @@
+---
+title: API
+layout: rancher-default
+---
+
+## <no value>
+
+Description of API Input from yaml file. 
+​​
+### Resource Fields
+
+Field | Type | Required | Default | Description
+---|---|---|---|---
+serviceLink | loadBalancerServiceLink | true | <no value> | The serviceLink for the addRemoveLoadBalancerServiceLinkInput
+
