@@ -15,6 +15,6 @@ cookie | string | true | <no value> |
 maxLength | int | true | <no value> | 
 mode | enum | false | <no value> | 
 prefix | boolean | false | <no value> | 
-requestLearn | boolean | false | <no value> | ALENA
+requestLearn | boolean | false | <no value> | 
 timeout | int | true | <no value> | 
 

@@ -26,7 +26,7 @@ scale | int | Optional | Yes | 1 |
 secondaryLaunchConfigs | array[secondaryLaunchConfig] | Optional | - | - | The list of services that are sidekicks to the service.
 selectorContainer | string | Optional | - | - | The labels on containers to be linked to a service
 selectorLink | string | Optional | - | - | 
-serviceSchemas | map[schema] | Optional | - | - | ALENA
+serviceSchemas | map[schema] | Optional | - | - | 
 upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/api/serviceUpgrade/) | - | - | - | 
 vip | string | Optional | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
@@ -607,8 +607,8 @@ To upgrade the service
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-inServiceStrategy | inServiceUpgradeStrategy | No | <no value> | ALENA
-toServiceStrategy | toServiceUpgradeStrategy | No | <no value> | ALENA
+inServiceStrategy | inServiceUpgradeStrategy | No | <no value> | 
+toServiceStrategy | toServiceUpgradeStrategy | No | <no value> | 
 
 
 <br>

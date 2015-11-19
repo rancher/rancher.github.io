@@ -5,7 +5,7 @@ layout: rancher-default
 
 ## registryCredential
 
-Collection Test Description
+A registry credential is used to authenticate against a [registry]({{site.baseurl}}/rancher/api/registry).
 
 ​
 ### Resource Fields

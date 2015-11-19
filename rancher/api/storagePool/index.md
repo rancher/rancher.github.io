@@ -5,7 +5,7 @@ layout: rancher-default
 
 ## storagePool
 
-Collection Test Description
+A storage pool is a list of hosts that can participate in shared storage.
 
 ​
 ### Resource Fields

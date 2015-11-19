@@ -9,7 +9,7 @@ layout: rancher-default
 
 [account]({{site.baseurl}}/rancher/api/account/)|
 ---|
-Collection Test Description |
+All resources in Rancher are owned or created by an account. |
 
 <br><br>
 <br>
@@ -170,7 +170,7 @@ Collection Test Description |
 
 [identity]({{site.baseurl}}/rancher/api/identity/)|
 ---|
-Collection Test Description |
+An identity is Rancher's representation of an object(i.e. `ldap_group`, `github_user`) when Rancher has turned on [access control]({{site.baseurl}}/rancher/configuration/access-control/). The `externalId` in an identity is the unique identifier in the authentication system that represents the object. The role of an identity is always null unless it is being returned as the identity of a [projectMember]({{site.baseurl}}/rancher/api/projectMember/). |
 
 <br><br>
 <br>
@@ -261,14 +261,14 @@ Collection Test Description |
 
 [machine]({{site.baseurl}}/rancher/api/machine/)|
 ---|
- |
+Machines are created whenever Rancher uses `docker-machine` to create hosts in Rancher. Adding any type of host through the UI that is not the custom command option is calling `docker-machine` and a machine entry will be created as well as a [host]({{site.baseurl}}/rancher/api/host). |
 
 <br><br>
 <br>
 
 [mount]({{site.baseurl}}/rancher/api/mount/)|
 ---|
-Collection Test Description |
+A mount is the relationship of a volume and the directory location inside the container. |
 
 <br><br>
 <br>
@@ -303,14 +303,14 @@ Collection Test Description |
 
 [project]({{site.baseurl}}/rancher/api/project/)|
 ---|
-A "project" in the API is referred to as an environment in the UI and the Rancher documentation. In the API documentation, we'll use the UI terminology.  All hosts and any Rancher resources (i.e. containers, load balancers, etc.) are created and belong to an [environment]({{site.baseurl}}/rancher/configuration/environments/).  Access control to who can view and manage these resources are then defined by the owner of the environment.  Rancher currently supports the capability for each user to manage and invite other users to their environment and allows for the ability to create multiple environments for different workloads.  For example, you may want to create a "dev" environment and a separate "production" environment with its own set of resources and limited user access for your application deployment. |
+A "project" in the API is referred to as an environment in the UI and Rancher documentation. In the API documentation, we'll use the UI terminology.  All hosts and any Rancher resources (i.e. containers, load balancers, etc.) are created and belong to an [environment]({{site.baseurl}}/rancher/configuration/environments/).  Access control to who can view and manage these resources are then defined by the owner of the environment.  Rancher currently supports the capability for each user to manage and invite other users to their environment and allows for the ability to create multiple environments for different workloads.  For example, you may want to create a "dev" environment and a separate "production" environment with its own set of resources and limited user access for your application deployment. |
 
 <br><br>
 <br>
 
 [projectMember]({{site.baseurl}}/rancher/api/projectMember/)|
 ---|
-An environment member is how a user can be a part of an environment. |
+A "project member" in the API is referred to as an environment members in the UI and Rancher documentation. An environment member is a list of all of the members of the  environment. An environment member is an [identity]({{site.baseurl}}/rancher/api/identity). |
 
 <br><br>
 <br>
@@ -345,7 +345,7 @@ A registry is where image repositories are hosted. The repository can be either 
 
 [registryCredential]({{site.baseurl}}/rancher/api/registryCredential/)|
 ---|
-Collection Test Description |
+A registry credential is used to authenticate against a [registry]({{site.baseurl}}/rancher/api/registry). |
 
 <br><br>
 <br>
@@ -408,7 +408,7 @@ Collection Test Description |
 
 [storagePool]({{site.baseurl}}/rancher/api/storagePool/)|
 ---|
-Collection Test Description |
+A storage pool is a list of hosts that can participate in shared storage. |
 
 <br><br>
 <br>
@@ -429,7 +429,7 @@ Collection Test Description |
 
 [volume]({{site.baseurl}}/rancher/api/volume/)|
 ---|
-Collection Test Description |
+A volume can be associated to containers or storage pools. <br><br> * A container can have many volumes and containers are mapped to volumes the [mount]({{site.baseurl}}/rancher/api/mount/) link on a container. <br> * A storage pool owns many volues. The volume is only available to containers deployed on hostst that are part of the storage pool. When a volume is being created, you do not directly associate it to a storage pool. You will only need to specify a driver and during allocation, Rancher will resolve it to a storage pool. |
 
 <br><br>
 

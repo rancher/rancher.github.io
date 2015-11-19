@@ -5,7 +5,7 @@ layout: rancher-default
 
 ## account
 
-Collection Test Description
+All resources in Rancher are owned or created by an account.
 
 ​
 ### Resource Fields

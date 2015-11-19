@@ -16,7 +16,7 @@ id | int | - | - | - | The unique identifier for the ipAddress
 kind | string | - | - | - | 
 name | string | Optional | Yes | - | 
 state | enum | - | - | - | The current state of the ipAddress. The options are [activating, active, associated, associating, deactivating, disassociating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
-address | string | - | - | - | ALENA
+address | string | - | - | - | 
 networkId | [network]({{site.baseurl}}/rancher/api/network/) | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the ipAddress was created.
@@ -79,7 +79,7 @@ To associate the ipAddress
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-ipAddressId | reference[ipAddress] | No | <no value> | ALENA
+ipAddressId | reference[ipAddress] | No | <no value> | 
 
 
 <br>

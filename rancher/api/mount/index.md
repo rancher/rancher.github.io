@@ -5,7 +5,7 @@ layout: rancher-default
 
 ## mount
 
-Collection Test Description
+A mount is the relationship of a volume and the directory location inside the container.
 
 ​
 ### Resource Fields
@@ -17,8 +17,8 @@ kind | string | - | - | - |
 name | string | Optional | Yes | - | 
 state | enum | - | - | - | The current state of the mount. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 instanceId | [instance]({{site.baseurl}}/rancher/api/instance/) | - | - | - | The unique identifier for the associated instance
-path | string | - | - | - | MOUNT
-permissions | string | - | - | - | MOUNT
+path | string | - | - | - | 
+permissions | string | - | - | - | 
 volumeId | [volume]({{site.baseurl}}/rancher/api/volume/) | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the mount was created.

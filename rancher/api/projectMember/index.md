@@ -5,7 +5,7 @@ layout: rancher-default
 
 ## projectMember
 
-An environment member is how a user can be a part of an environment.
+A "project member" in the API is referred to as an environment members in the UI and Rancher documentation. An environment member is a list of all of the members of the  environment. An environment member is an [identity]({{site.baseurl}}/rancher/api/identity).
 
 ​
 ### Resource Fields

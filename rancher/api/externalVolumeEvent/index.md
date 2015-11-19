@@ -18,7 +18,7 @@ state | enum | - | - | - | The current state of the externalVolumeEvent. The opt
 eventType | string | - | - | - | 
 externalId | string | - | - | - | 
 reportedAccountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | 
-volume | [volume]({{site.baseurl}}/rancher/api/volume/) | - | - | - | SID
+volume | [volume]({{site.baseurl}}/rancher/api/volume/) | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the externalVolumeEvent was created.
 transitioning | enum | - | - | - | Whether or not the externalVolumeEvent is in a transitioning state

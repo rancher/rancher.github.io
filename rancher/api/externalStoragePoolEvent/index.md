@@ -19,7 +19,7 @@ eventType | string | - | - | - |
 externalId | string | - | - | - | 
 hostUuids | array[string] | - | - | - | 
 reportedAccountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | 
-storagePool | [storagePool]({{site.baseurl}}/rancher/api/storagePool/) | - | - | - | SID
+storagePool | [storagePool]({{site.baseurl}}/rancher/api/storagePool/) | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the externalStoragePoolEvent was created.
 transitioning | enum | - | - | - | Whether or not the externalStoragePoolEvent is in a transitioning state

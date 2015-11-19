@@ -5,7 +5,7 @@ layout: rancher-default
 
 ## volume
 
-Collection Test Description
+A volume can be associated to containers or storage pools. <br><br> * A container can have many volumes and containers are mapped to volumes the [mount]({{site.baseurl}}/rancher/api/mount/) link on a container. <br> * A storage pool owns many volues. The volume is only available to containers deployed on hostst that are part of the storage pool. When a volume is being created, you do not directly associate it to a storage pool. You will only need to specify a driver and during allocation, Rancher will resolve it to a storage pool.
 
 ​
 ### Resource Fields
@@ -17,7 +17,7 @@ kind | string | - | - | - |
 name | string | Yes | - | - | 
 state | enum | - | - | - | The current state of the volume. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 driver | string | Yes | - | - | 
-driverOpts | map[string] | Optional | - | - | SID
+driverOpts | map[string] | Optional | - | - | 
 externalId | string | - | - | - | 
 imageId | [image]({{site.baseurl}}/rancher/api/image/) | - | - | - | The ID of the image that will be used for the machine
 instanceId | [instance]({{site.baseurl}}/rancher/api/instance/) | - | - | - | The unique identifier for the associated instance

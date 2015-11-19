@@ -692,8 +692,8 @@ To upgrade the loadBalancerService
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-inServiceStrategy | inServiceUpgradeStrategy | No | <no value> | ALENA
-toServiceStrategy | toServiceUpgradeStrategy | No | <no value> | ALENA
+inServiceStrategy | inServiceUpgradeStrategy | No | <no value> | 
+toServiceStrategy | toServiceUpgradeStrategy | No | <no value> | 
 
 
 <br>

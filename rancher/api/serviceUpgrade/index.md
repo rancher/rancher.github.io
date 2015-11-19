@@ -11,6 +11,6 @@ Description of API Input from yaml file.
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-inServiceStrategy | inServiceUpgradeStrategy | false | <no value> | ALENA
-toServiceStrategy | toServiceUpgradeStrategy | false | <no value> | ALENA
+inServiceStrategy | inServiceUpgradeStrategy | false | <no value> | 
+toServiceStrategy | toServiceUpgradeStrategy | false | <no value> | 
 

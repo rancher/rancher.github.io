@@ -16,9 +16,9 @@ id | int | - | - | - | The unique identifier for the loadBalancerConfig
 kind | string | - | - | - | 
 name | string | Optional | Yes | - | 
 state | enum | - | - | - | The current state of the loadBalancerConfig. The options are [activating, active, removed, removing, requested, updating-active].
-appCookieStickinessPolicy | [loadBalancerAppCookieStickinessPolicy]({{site.baseurl}}/rancher/api/loadBalancerAppCookieStickinessPolicy/) | Optional | Yes | - | ALENA
+appCookieStickinessPolicy | [loadBalancerAppCookieStickinessPolicy]({{site.baseurl}}/rancher/api/loadBalancerAppCookieStickinessPolicy/) | Optional | Yes | - | 
 healthCheck | [loadBalancerHealthCheck]({{site.baseurl}}/rancher/api/loadBalancerHealthCheck/) | Optional | Yes | - | 
-lbCookieStickinessPolicy | [loadBalancerCookieStickinessPolicy]({{site.baseurl}}/rancher/api/loadBalancerCookieStickinessPolicy/) | Optional | Yes | - | ALENA
+lbCookieStickinessPolicy | [loadBalancerCookieStickinessPolicy]({{site.baseurl}}/rancher/api/loadBalancerCookieStickinessPolicy/) | Optional | Yes | - | 
 serviceId | [service]({{site.baseurl}}/rancher/api/service/) | - | - | - | The unique identifier of the associated service
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the loadBalancerConfig was created.

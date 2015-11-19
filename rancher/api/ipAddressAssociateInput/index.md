@@ -11,5 +11,5 @@ Description of API Input from yaml file.
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-ipAddressId | reference[ipAddress] | false | <no value> | ALENA
+ipAddressId | reference[ipAddress] | false | <no value> | 
 

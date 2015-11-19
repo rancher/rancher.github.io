@@ -19,10 +19,10 @@ dockerPort | string | false | <no value> | The port to use for the Docker daemon
 edgegateway | string | false | <no value> | The organization edge gateway
 memorySize | string | false | <no value> | The size of memory for Docker VM (in MB) and added as `2048`
 orgvdcnetwork | string | false | <no value> | The organization VDC network to attach
-password | string | false | <no value> | 
+password | string | false | <no value> | <strong>required</strong>Your vCloud Air Password
 provision | boolean | false | <no value> | Whether or not to install Docker binaries
 publicip | string | false | <no value> | The  organization public IP to use
 sshPort | string | false | <no value> | The port to ssh into the host
-username | string | false | <no value> | 
-vdcid | string | false | <no value> | The Virtiual Data Center ID
+username | string | false | <no value> | <strong>required</strong> Your vCloud Air username
+vdcid | string | false | <no value> | The Virtual Data Center ID
 

@@ -5,7 +5,7 @@ layout: rancher-default
 
 ## machine
 
-
+Machines are created whenever Rancher uses `docker-machine` to create hosts in Rancher. Adding any type of host through the UI that is not the custom command option is calling `docker-machine` and a machine entry will be created as well as a [host]({{site.baseurl}}/rancher/api/host).
 
 ​
 ### Resource Fields
@@ -17,8 +17,8 @@ kind | string | - | - | - |
 name | string | Yes | Yes | - | 
 state | enum | - | - | - | The current state of the machine. The options are [active, bootstrapping, created, creating, error, erroring, removed, removing, requested, updating].
 amazonec2Config | [amazonec2Config]({{site.baseurl}}/rancher/api/amazonec2Config/) | Optional | - | - | Configuration for launching a host in Amazon EC2
-authCertificateAuthority | string | Optional | - | - | VINCENT
-authKey | string | Optional | - | - | SID
+authCertificateAuthority | string | Optional | - | - | 
+authKey | string | Optional | - | - | 
 azureConfig | [azureConfig]({{site.baseurl}}/rancher/api/azureConfig/) | Optional | - | - | Configuration for launching a host in Microsoft Azure
 digitaloceanConfig | [digitaloceanConfig]({{site.baseurl}}/rancher/api/digitaloceanConfig/) | Optional | - | - | Configuration for launching a host in DigitalOcean
 dockerVersion | string | Optional | - | - | 
