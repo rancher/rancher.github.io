@@ -6,29 +6,22 @@ layout: rancher-default
 ## globalLoadBalancer
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-globalLoadBalancerHealthCheck | array[globalLoadBalancerHealthCheck] | Optional | - | - | The globalLoadBalancerHealthCheck for the globalLoadBalancer
-globalLoadBalancerPolicy | array[globalLoadBalancerPolicy] | Optional | - | - | The globalLoadBalancerPolicy for the globalLoadBalancer
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the globalLoadBalancer
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the globalLoadBalancer. The options are [activating, active, removed, removing, requested, updating-active].
+globalLoadBalancerHealthCheck | array[globalLoadBalancerHealthCheck] | Optional | - | - | 
+globalLoadBalancerPolicy | array[globalLoadBalancerPolicy] | Optional | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the globalLoadBalancer was created.
-description | string | Optional | Yes | - | The description for the globalLoadBalancer
-id | int | - | - | - | The unique identifier for the globalLoadBalancer
-kind | string | - | - | - | The kind for the globalLoadBalancer
-name | string | Optional | Yes | - | The name for the globalLoadBalancer
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the globalLoadBalancer was removed
-state | enum | - | - | - | The current state of the globalLoadBalancer. The options are [activating, active, removed, removing, requested, updating-active].
 transitioning | enum | - | - | - | Whether or not the globalLoadBalancer is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the globalLoadBalancer
@@ -37,7 +30,8 @@ uuid | string | - | - | - | The universally unique identifier for the globalLoad
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -62,8 +56,6 @@ Create
 {% endhighlight %}
 </div>
 </span>
-
-
 
 
 
@@ -117,7 +109,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -132,10 +126,10 @@ To addloadbalancer the globalLoadBalancer
 <strong>Input:</strong>​​​ addLoadBalancerInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-loadBalancerId | reference[loadBalancer] | Yes | <no value> | The loadBalancerId for the addLoadBalancerInput
-weight | int | Yes | <no value> | The weight for the addLoadBalancerInput
+loadBalancerId | reference[loadBalancer] | Yes | <no value> | 
+weight | int | Yes | <no value> | 
 
 
 <br>
@@ -169,7 +163,6 @@ To remove the globalLoadBalancer
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -194,9 +187,9 @@ To removeloadbalancer the globalLoadBalancer
 <strong>Input:</strong>​​​ removeLoadBalancerInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-loadBalancerId | reference[loadBalancer] | Yes | <no value> | The loadBalancerId for the removeLoadBalancerInput
+loadBalancerId | reference[loadBalancer] | Yes | <no value> | 
 
 
 <br>

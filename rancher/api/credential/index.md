@@ -6,29 +6,22 @@ layout: rancher-default
 ## credential
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the credential
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the credential. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
 publicValue | string | - | - | - | The public value of the credential
 secretValue | string | - | - | - | The secret value of the credential
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the credential was created.
-description | string | Optional | Yes | - | The description for the credential
-id | int | - | - | - | The unique identifier for the credential
-kind | string | - | - | - | The kind for the credential
-name | string | Optional | Yes | - | The name for the credential
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the credential was removed
-state | enum | - | - | - | The current state of the credential. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the credential is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the credential
@@ -37,8 +30,6 @@ uuid | string | - | - | - | The universally unique identifier for the credential
 
 
 
-### Actions
-
 
 
 
@@ -48,6 +39,7 @@ uuid | string | - | - | - | The universally unique identifier for the credential
 
 
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -61,7 +53,6 @@ To activate the credential
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -85,7 +76,6 @@ To deactivate the credential
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -109,7 +99,6 @@ To purge the credential
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -133,7 +122,6 @@ To remove the credential
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

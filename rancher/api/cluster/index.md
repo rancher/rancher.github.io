@@ -6,34 +6,27 @@ layout: rancher-default
 ## cluster
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the cluster
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the cluster. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 agentState | string | - | - | - | The state of the agent
-computeTotal | int | - | - | - | The computeTotal for the cluster
-discoverySpec | string | - | - | - | The discoverySpec for the cluster
-info | json | - | - | - | The info for the cluster
-labels | map[string] | - | Yes | - | The labels for the cluster
-physicalHostId | [physicalHost]({{site.baseurl}}/rancher/api/physicalHost/) | - | - | - | The physicalHostId for the cluster
-port | int | Optional | Yes | - | The port for the cluster
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+computeTotal | int | - | - | - | 
+discoverySpec | string | - | - | - | 
+info | json | - | - | - | 
+labels | map[string] | - | Yes | - | 
+physicalHostId | [physicalHost]({{site.baseurl}}/rancher/api/physicalHost/) | - | - | - | 
+port | int | Optional | Yes | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the cluster was created.
-description | string | Optional | Yes | - | The description for the cluster
-id | int | - | - | - | The unique identifier for the cluster
-kind | string | - | - | - | The kind for the cluster
-name | string | Optional | Yes | - | The name for the cluster
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the cluster was removed
-state | enum | - | - | - | The current state of the cluster. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the cluster is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the cluster
@@ -42,7 +35,8 @@ uuid | string | - | - | - | The universally unique identifier for the cluster. T
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -65,8 +59,6 @@ Create
 {% endhighlight %}
 </div>
 </span>
-
-
 
 
 
@@ -124,7 +116,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -138,7 +132,6 @@ To activate the cluster
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -163,7 +156,7 @@ To addhost the cluster
 <strong>Input:</strong>​​​ addRemoveClusterHostInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 hostId | reference[host] | No | <no value> | The unique identifier for the associated host
 
@@ -197,7 +190,6 @@ To deactivate the cluster
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -221,7 +213,6 @@ To dockersocket the cluster
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -245,7 +236,6 @@ To purge the cluster
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -269,7 +259,6 @@ To remove the cluster
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -294,7 +283,7 @@ To removehost the cluster
 <strong>Input:</strong>​​​ addRemoveClusterHostInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 hostId | reference[host] | No | <no value> | The unique identifier for the associated host
 
@@ -328,7 +317,6 @@ To restore the cluster
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

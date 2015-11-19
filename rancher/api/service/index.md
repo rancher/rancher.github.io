@@ -6,40 +6,33 @@ layout: rancher-default
 ## service
 
 Rancher adopts the standard Docker Compose terminology for services and defines a basic service as one or more containers created from the same Docker image.  Once a service (consumer) is linked to another service (producer) within the same stack, a DNS record mapped to each container instance is automatically created and discoverable by containers from the "consuming" service. Other benefits of creating a service under Rancher include":" <br><br> * Service HA - the ability to have Rancher automatically monitor container states and maintain a service's desired scale. <br> * Health Monitoring - the ability to set basic monitoring thresholds for container health.
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-createIndex | int | - | - | - | The createIndex for the service
-environmentId | [environment]({{site.baseurl}}/rancher/api/environment/) | Yes | - | - | The environmentId for the service
-externalId | string | - | - | - | The externalId for the service
-fqdn | string | - | - | - | The fqdn for the service
+id | int | - | - | - | The unique identifier for the service
+kind | string | - | - | - | 
+name | string | Yes | Yes | - | 
+state | enum | - | - | - | The current state of the service. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+createIndex | int | - | - | - | 
+environmentId | [environment]({{site.baseurl}}/rancher/api/environment/) | Yes | - | - | 
+externalId | string | - | - | - | 
+fqdn | string | - | - | - | 
 launchConfig | [launchConfig]({{site.baseurl}}/rancher/api/launchConfig/) | Optional | - | - | Configuration of a container
-metadata | map[json] | Optional | Yes | - | The metadata for the service
-scale | int | Optional | Yes | 1 | The scale for the service
+metadata | map[json] | Optional | Yes | - | 
+scale | int | Optional | Yes | 1 | 
 secondaryLaunchConfigs | array[secondaryLaunchConfig] | Optional | - | - | The list of services that are sidekicks to the service.
 selectorContainer | string | Optional | - | - | The labels on containers to be linked to a service
-selectorLink | string | Optional | - | - | The selectorLink for the service
+selectorLink | string | Optional | - | - | 
 serviceSchemas | map[schema] | Optional | - | - | ALENA
-upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/api/serviceUpgrade/) | - | - | - | The upgrade for the service
-vip | string | Optional | - | - | The vip for the service
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/api/serviceUpgrade/) | - | - | - | 
+vip | string | Optional | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the service was created.
-description | string | Optional | Yes | - | The description for the service
-id | int | - | - | - | The unique identifier for the service
-kind | string | - | - | - | The kind for the service
-name | string | Yes | Yes | - | The name for the service
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the service was removed
-state | enum | - | - | - | The current state of the service. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
 transitioning | enum | - | - | - | Whether or not the service is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the service
@@ -48,7 +41,8 @@ uuid | string | - | - | - | The universally unique identifier for the service. T
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -272,8 +266,6 @@ Create
 
 
 
-
-
 <span class="action">
 <span class="header">
 Update
@@ -318,7 +310,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -332,7 +326,6 @@ To activate the service
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -357,9 +350,9 @@ To addservicelink the service
 <strong>Input:</strong>​​​ addRemoveServiceLinkInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLink | serviceLink | Yes | <no value> | The serviceLink for the addRemoveServiceLinkInput
+serviceLink | serviceLink | Yes | <no value> | 
 
 
 <br>
@@ -397,7 +390,6 @@ To cancelrollback the service
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -421,7 +413,6 @@ To cancelupgrade the service
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -445,7 +436,6 @@ To deactivate the service
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -469,7 +459,6 @@ To finishupgrade the service
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -493,7 +482,6 @@ To remove the service
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -518,9 +506,9 @@ To removeservicelink the service
 <strong>Input:</strong>​​​ addRemoveServiceLinkInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLink | serviceLink | Yes | <no value> | The serviceLink for the addRemoveServiceLinkInput
+serviceLink | serviceLink | Yes | <no value> | 
 
 
 <br>
@@ -558,7 +546,6 @@ To rollback the service
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -583,7 +570,7 @@ To setservicelinks the service
 <strong>Input:</strong>​​​ setServiceLinksInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 serviceLinks | array[serviceLink] | No | <no value> | The list of services linked
 
@@ -618,7 +605,7 @@ To upgrade the service
 <strong>Input:</strong>​​​ serviceUpgrade
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 inServiceStrategy | inServiceUpgradeStrategy | No | <no value> | ALENA
 toServiceStrategy | toServiceUpgradeStrategy | No | <no value> | ALENA

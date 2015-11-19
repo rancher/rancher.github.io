@@ -6,46 +6,39 @@ layout: rancher-default
 ## machine
 
 
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the machine
+kind | string | - | - | - | 
+name | string | Yes | Yes | - | 
+state | enum | - | - | - | The current state of the machine. The options are [active, bootstrapping, created, creating, error, erroring, removed, removing, requested, updating].
 amazonec2Config | [amazonec2Config]({{site.baseurl}}/rancher/api/amazonec2Config/) | Optional | - | - | Configuration for launching a host in Amazon EC2
 authCertificateAuthority | string | Optional | - | - | VINCENT
 authKey | string | Optional | - | - | SID
 azureConfig | [azureConfig]({{site.baseurl}}/rancher/api/azureConfig/) | Optional | - | - | Configuration for launching a host in Microsoft Azure
 digitaloceanConfig | [digitaloceanConfig]({{site.baseurl}}/rancher/api/digitaloceanConfig/) | Optional | - | - | Configuration for launching a host in DigitalOcean
-dockerVersion | string | Optional | - | - | The dockerVersion for the machine
-driver | string | - | - | - | The driver for the machine
-engineOpts | array[string] | Optional | - | - | The engineOpts for the machine
+dockerVersion | string | Optional | - | - | 
+driver | string | - | - | - | 
+engineOpts | array[string] | Optional | - | - | 
 exoscaleConfig | [exoscaleConfig]({{site.baseurl}}/rancher/api/exoscaleConfig/) | Optional | - | - | Configuration for launching a host in exoscale
-externalId | string | - | - | - | The externalId for the machine
-labels | map[string] | Optional | - | - | The labels for the machine
+externalId | string | - | - | - | 
+labels | map[string] | Optional | - | - | 
 openstackConfig | [openstackConfig]({{site.baseurl}}/rancher/api/openstackConfig/) | Optional | - | - | Configuration for launching a host in OpenStack
 packetConfig | [packetConfig]({{site.baseurl}}/rancher/api/packetConfig/) | Optional | - | - | Configuration for launching a host in Packet
 rackspaceConfig | [rackspaceConfig]({{site.baseurl}}/rancher/api/rackspaceConfig/) | Optional | - | - | Configuration for launching a host in Rackspace
 softlayerConfig | [softlayerConfig]({{site.baseurl}}/rancher/api/softlayerConfig/) | Optional | - | - | Configuration for launching a host in IBM Softlayer
-ubiquityConfig | [ubiquityConfig]({{site.baseurl}}/rancher/api/ubiquityConfig/) | Optional | - | - | The ubiquityConfig for the machine
+ubiquityConfig | [ubiquityConfig]({{site.baseurl}}/rancher/api/ubiquityConfig/) | Optional | - | - | 
 virtualboxConfig | [virtualboxConfig]({{site.baseurl}}/rancher/api/virtualboxConfig/) | Optional | - | - | Configuration for launching a host in Oracle VirtualBox
 vmwarevcloudairConfig | [vmwarevcloudairConfig]({{site.baseurl}}/rancher/api/vmwarevcloudairConfig/) | Optional | - | - | Configuration for launching a host in VMware vCloud Air
 vmwarevsphereConfig | [vmwarevsphereConfig]({{site.baseurl}}/rancher/api/vmwarevsphereConfig/) | Optional | - | - | Configuration for launching a host in VMware vSphere
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the machine was created.
-description | string | Optional | Yes | - | The description for the machine
-id | int | - | - | - | The unique identifier for the machine
-kind | string | - | - | - | The kind for the machine
-name | string | Yes | Yes | - | The name for the machine
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the machine was removed
-state | enum | - | - | - | The current state of the machine. The options are [active, bootstrapping, created, creating, error, erroring, removed, removing, requested, updating].
 transitioning | enum | - | - | - | Whether or not the machine is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the machine
@@ -54,7 +47,8 @@ uuid | string | - | - | - | The universally unique identifier for the machine. T
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -418,8 +412,6 @@ Create
 
 
 
-
-
 <span class="action">
 <span class="header">
 Delete
@@ -434,7 +426,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -448,7 +442,6 @@ To bootstrap the machine
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -472,7 +465,6 @@ To error the machine
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -496,7 +488,6 @@ To remove the machine
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

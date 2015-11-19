@@ -6,22 +6,22 @@ layout: rancher-default
 ## environmentUpgrade
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 dockerCompose | string | Optional | - | - | The docker-compose.yml file for the stack
-environment | map[string] | Optional | - | - | The environment for the environmentUpgrade
-externalId | string | Optional | - | - | The externalId for the environmentUpgrade
+environment | map[string] | Optional | - | - | 
+externalId | string | Optional | - | - | 
 rancherCompose | string | Optional | - | - | The rancher-compose.yml file for the stack
 
 
 
 
 
-
-### Actions
+### Operations
 
 
 
@@ -46,7 +46,6 @@ Create
 {% endhighlight %}
 </div>
 </span>
-
 
 
 

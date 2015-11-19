@@ -6,31 +6,24 @@ layout: rancher-default
 ## loadBalancerConfig
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the loadBalancerConfig
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the loadBalancerConfig. The options are [activating, active, removed, removing, requested, updating-active].
 appCookieStickinessPolicy | [loadBalancerAppCookieStickinessPolicy]({{site.baseurl}}/rancher/api/loadBalancerAppCookieStickinessPolicy/) | Optional | Yes | - | ALENA
-healthCheck | [loadBalancerHealthCheck]({{site.baseurl}}/rancher/api/loadBalancerHealthCheck/) | Optional | Yes | - | The healthCheck for the loadBalancerConfig
+healthCheck | [loadBalancerHealthCheck]({{site.baseurl}}/rancher/api/loadBalancerHealthCheck/) | Optional | Yes | - | 
 lbCookieStickinessPolicy | [loadBalancerCookieStickinessPolicy]({{site.baseurl}}/rancher/api/loadBalancerCookieStickinessPolicy/) | Optional | Yes | - | ALENA
 serviceId | [service]({{site.baseurl}}/rancher/api/service/) | - | - | - | The unique identifier of the associated service
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the loadBalancerConfig was created.
-description | string | Optional | Yes | - | The description for the loadBalancerConfig
-id | int | - | - | - | The unique identifier for the loadBalancerConfig
-kind | string | - | - | - | The kind for the loadBalancerConfig
-name | string | Optional | Yes | - | The name for the loadBalancerConfig
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the loadBalancerConfig was removed
-state | enum | - | - | - | The current state of the loadBalancerConfig. The options are [activating, active, removed, removing, requested, updating-active].
 transitioning | enum | - | - | - | Whether or not the loadBalancerConfig is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the loadBalancerConfig
@@ -39,7 +32,8 @@ uuid | string | - | - | - | The universally unique identifier for the loadBalanc
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -114,8 +108,6 @@ Create
 {% endhighlight %}
 </div>
 </span>
-
-
 
 
 
@@ -223,7 +215,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -238,9 +232,9 @@ To addlistener the loadBalancerConfig
 <strong>Input:</strong>​​​ addRemoveLoadBalancerListenerInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-loadBalancerListenerId | reference[loadBalancerListener] | Yes | <no value> | The loadBalancerListenerId for the addRemoveLoadBalancerListenerInput
+loadBalancerListenerId | reference[loadBalancerListener] | Yes | <no value> | 
 
 
 <br>
@@ -272,7 +266,6 @@ To remove the loadBalancerConfig
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -297,9 +290,9 @@ To removelistener the loadBalancerConfig
 <strong>Input:</strong>​​​ addRemoveLoadBalancerListenerInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-loadBalancerListenerId | reference[loadBalancerListener] | Yes | <no value> | The loadBalancerListenerId for the addRemoveLoadBalancerListenerInput
+loadBalancerListenerId | reference[loadBalancerListener] | Yes | <no value> | 
 
 
 <br>
@@ -332,9 +325,9 @@ To setlisteners the loadBalancerConfig
 <strong>Input:</strong>​​​ setLoadBalancerListenersInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-loadBalancerListenerIds | array[reference[loadBalancerListener]] | No | <no value> | The loadBalancerListenerIds for the setLoadBalancerListenersInput
+loadBalancerListenerIds | array[reference[loadBalancerListener]] | No | <no value> | 
 
 
 <br>

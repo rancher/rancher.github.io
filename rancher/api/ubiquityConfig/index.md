@@ -11,10 +11,10 @@ Description of API Input from yaml file.
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-apiToken | string | false | <no value> | The apiToken for the ubiquityConfig
-apiUsername | string | false | <no value> | The apiUsername for the ubiquityConfig
-clientId | string | false | <no value> | The clientId for the ubiquityConfig
-flavorId | string | false | <no value> | The flavorId for the ubiquityConfig
-imageId | string | false | <no value> | The imageId for the ubiquityConfig
-zoneId | string | false | <no value> | The zoneId for the ubiquityConfig
+apiToken | string | false | <no value> | 
+apiUsername | string | false | <no value> | 
+clientId | string | false | <no value> | 
+flavorId | string | false | <no value> | 
+imageId | string | false | <no value> | 
+zoneId | string | false | <no value> | 
 

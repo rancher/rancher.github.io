@@ -6,34 +6,27 @@ layout: rancher-default
 ## volume
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-driver | string | Yes | - | - | The driver for the volume
+id | int | - | - | - | The unique identifier for the volume
+kind | string | - | - | - | 
+name | string | Yes | - | - | 
+state | enum | - | - | - | The current state of the volume. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+driver | string | Yes | - | - | 
 driverOpts | map[string] | Optional | - | - | SID
-externalId | string | - | - | - | The externalId for the volume
+externalId | string | - | - | - | 
 imageId | [image]({{site.baseurl}}/rancher/api/image/) | - | - | - | The ID of the image that will be used for the machine
 instanceId | [instance]({{site.baseurl}}/rancher/api/instance/) | - | - | - | The unique identifier for the associated instance
 isHostPath | boolean | - | - | - | Whether or not the path of the volume is on the host
-uri | string | - | - | - | The uri for the volume
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+uri | string | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the volume was created.
-description | string | Optional | Yes | - | The description for the volume
-id | int | - | - | - | The unique identifier for the volume
-kind | string | - | - | - | The kind for the volume
-name | string | Yes | - | - | The name for the volume
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the volume was removed
-state | enum | - | - | - | The current state of the volume. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the volume is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the volume
@@ -42,7 +35,8 @@ uuid | string | - | - | - | The universally unique identifier for the volume. Th
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -82,8 +76,6 @@ Create
 
 
 
-
-
 <span class="action">
 <span class="header">
 Delete
@@ -98,7 +90,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -112,7 +106,6 @@ To allocate the volume
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -136,7 +129,6 @@ To deactivate the volume
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -160,7 +152,6 @@ To deallocate the volume
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -184,7 +175,6 @@ To purge the volume
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -208,7 +198,6 @@ To remove the volume
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -232,7 +221,6 @@ To restore the volume
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

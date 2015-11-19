@@ -11,5 +11,5 @@ Description of API Input from yaml file.
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-loadBalancerTarget | loadBalancerTarget | true | <no value> | The loadBalancerTarget for the addRemoveLoadBalancerTargetInput
+loadBalancerTarget | loadBalancerTarget | true | <no value> | 
 

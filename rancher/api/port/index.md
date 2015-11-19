@@ -6,33 +6,26 @@ layout: rancher-default
 ## port
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the port
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the port. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 instanceId | [instance]({{site.baseurl}}/rancher/api/instance/) | - | - | - | The unique identifier for the associated instance
 privateIpAddressId | [ipAddress]({{site.baseurl}}/rancher/api/ipAddress/) | - | - | - | The unique identifier of the private IP address
 privatePort | int | - | - | - | The private port
-protocol | string | - | - | - | The protocol for the port
+protocol | string | - | - | - | 
 publicIpAddressId | [ipAddress]({{site.baseurl}}/rancher/api/ipAddress/) | - | - | - | The unique identifier of the public IP address
-publicPort | int | - | Yes | - | The publicPort for the port
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+publicPort | int | - | Yes | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the port was created.
-description | string | Optional | Yes | - | The description for the port
-id | int | - | - | - | The unique identifier for the port
-kind | string | - | - | - | The kind for the port
-name | string | Optional | Yes | - | The name for the port
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the port was removed
-state | enum | - | - | - | The current state of the port. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the port is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the port
@@ -41,9 +34,8 @@ uuid | string | - | - | - | The universally unique identifier for the port. This
 
 
 
-### Actions
 
-
+### Operations
 
 
 
@@ -77,7 +69,9 @@ Update
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -91,7 +85,6 @@ To activate the port
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -115,7 +108,6 @@ To deactivate the port
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -139,7 +131,6 @@ To purge the port
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -163,7 +154,6 @@ To remove the port
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -187,7 +177,6 @@ To restore the port
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

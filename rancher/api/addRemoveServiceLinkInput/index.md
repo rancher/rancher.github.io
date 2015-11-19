@@ -11,5 +11,5 @@ Description of API Input from yaml file.
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-serviceLink | serviceLink | true | <no value> | The serviceLink for the addRemoveServiceLinkInput
+serviceLink | serviceLink | true | <no value> | 
 

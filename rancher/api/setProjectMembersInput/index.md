@@ -11,5 +11,5 @@ Description of API Input from yaml file.
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-members | array[projectMember] | true | <no value> | The members for the setProjectMembersInput
+members | array[projectMember] | true | <no value> | 
 

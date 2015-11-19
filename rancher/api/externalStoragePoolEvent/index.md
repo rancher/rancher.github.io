@@ -6,29 +6,22 @@ layout: rancher-default
 ## externalStoragePoolEvent
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-eventType | string | - | - | - | The eventType for the externalStoragePoolEvent
-externalId | string | - | - | - | The externalId for the externalStoragePoolEvent
-hostUuids | array[string] | - | - | - | The hostUuids for the externalStoragePoolEvent
-reportedAccountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The reportedAccountId for the externalStoragePoolEvent
+id | int | - | - | - | The unique identifier for the externalStoragePoolEvent
+kind | string | - | - | - | 
+state | enum | - | - | - | The current state of the externalStoragePoolEvent. The options are [created, creating, removed, removing, requested].
+eventType | string | - | - | - | 
+externalId | string | - | - | - | 
+hostUuids | array[string] | - | - | - | 
+reportedAccountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | 
 storagePool | [storagePool]({{site.baseurl}}/rancher/api/storagePool/) | - | - | - | SID
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the externalStoragePoolEvent was created.
-id | int | - | - | - | The unique identifier for the externalStoragePoolEvent
-kind | string | - | - | - | The kind for the externalStoragePoolEvent
-state | enum | - | - | - | The current state of the externalStoragePoolEvent. The options are [created, creating, removed, removing, requested].
 transitioning | enum | - | - | - | Whether or not the externalStoragePoolEvent is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the externalStoragePoolEvent
@@ -37,8 +30,6 @@ uuid | string | - | - | - | The universally unique identifier for the externalSt
 
 
 
-### Actions
-
 
 
 
@@ -48,6 +39,7 @@ uuid | string | - | - | - | The universally unique identifier for the externalSt
 
 
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -61,7 +53,6 @@ To remove the externalStoragePoolEvent
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

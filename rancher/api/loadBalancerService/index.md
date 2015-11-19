@@ -6,39 +6,32 @@ layout: rancher-default
 ## loadBalancerService
 
 Rancher implements a managed load balancer using HAProxy that can be manually scaled to multiple hosts.  A load balancer can be used to distribute network and application traffic to individual containers by directly adding them or "linked" to a basic service.  A basic service that is "linked" will have all its underlying containers automatically registered as load balancer targets by Rancher.
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the loadBalancerService
+kind | string | - | - | - | 
+name | string | Yes | Yes | - | 
+state | enum | - | - | - | The current state of the loadBalancerService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
 certificateIds | array[[certificate]({{site.baseurl}}/rancher/api/certificate/)] | Optional | Yes | - | The ID of a certificate
 defaultCertificateId | [certificate]({{site.baseurl}}/rancher/api/certificate/) | Optional | Yes | - | The ID of a default certificate
-environmentId | [environment]({{site.baseurl}}/rancher/api/environment/) | Yes | - | - | The environmentId for the loadBalancerService
-externalId | string | - | - | - | The externalId for the loadBalancerService
-fqdn | string | - | - | - | The fqdn for the loadBalancerService
+environmentId | [environment]({{site.baseurl}}/rancher/api/environment/) | Yes | - | - | 
+externalId | string | - | - | - | 
+fqdn | string | - | - | - | 
 launchConfig | [launchConfig]({{site.baseurl}}/rancher/api/launchConfig/) | Optional | - | - | Configuration of a container
 loadBalancerConfig | [loadBalancerConfig]({{site.baseurl}}/rancher/api/loadBalancerConfig/) | Optional | - | - | Configuration of a load balancer
-metadata | map[json] | Optional | Yes | - | The metadata for the loadBalancerService
-scale | int | Optional | Yes | 1 | The scale for the loadBalancerService
-selectorLink | string | Optional | - | - | The selectorLink for the loadBalancerService
-upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/api/serviceUpgrade/) | - | - | - | The upgrade for the loadBalancerService
-vip | string | Optional | - | - | The vip for the loadBalancerService
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+metadata | map[json] | Optional | Yes | - | 
+scale | int | Optional | Yes | 1 | 
+selectorLink | string | Optional | - | - | 
+upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/api/serviceUpgrade/) | - | - | - | 
+vip | string | Optional | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the loadBalancerService was created.
-description | string | Optional | Yes | - | The description for the loadBalancerService
-id | int | - | - | - | The unique identifier for the loadBalancerService
-kind | string | - | - | - | The kind for the loadBalancerService
-name | string | Yes | Yes | - | The name for the loadBalancerService
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the loadBalancerService was removed
-state | enum | - | - | - | The current state of the loadBalancerService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
 transitioning | enum | - | - | - | Whether or not the loadBalancerService is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the loadBalancerService
@@ -47,7 +40,8 @@ uuid | string | - | - | - | The universally unique identifier for the loadBalanc
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -353,8 +347,6 @@ Create
 
 
 
-
-
 <span class="action">
 <span class="header">
 Update
@@ -403,7 +395,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -417,7 +411,6 @@ To activate the loadBalancerService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -442,9 +435,9 @@ To addservicelink the loadBalancerService
 <strong>Input:</strong>​​​ addRemoveLoadBalancerServiceLinkInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLink | loadBalancerServiceLink | Yes | <no value> | The serviceLink for the addRemoveLoadBalancerServiceLinkInput
+serviceLink | loadBalancerServiceLink | Yes | <no value> | 
 
 
 <br>
@@ -482,7 +475,6 @@ To cancelrollback the loadBalancerService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -506,7 +498,6 @@ To cancelupgrade the loadBalancerService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -530,7 +521,6 @@ To deactivate the loadBalancerService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -554,7 +544,6 @@ To finishupgrade the loadBalancerService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -578,7 +567,6 @@ To remove the loadBalancerService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -603,9 +591,9 @@ To removeservicelink the loadBalancerService
 <strong>Input:</strong>​​​ addRemoveLoadBalancerServiceLinkInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLink | loadBalancerServiceLink | Yes | <no value> | The serviceLink for the addRemoveLoadBalancerServiceLinkInput
+serviceLink | loadBalancerServiceLink | Yes | <no value> | 
 
 
 <br>
@@ -643,7 +631,6 @@ To rollback the loadBalancerService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -668,7 +655,7 @@ To setservicelinks the loadBalancerService
 <strong>Input:</strong>​​​ setLoadBalancerServiceLinksInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 serviceLinks | array[loadBalancerServiceLink] | No | <no value> | The list of services linked
 
@@ -703,7 +690,7 @@ To upgrade the loadBalancerService
 <strong>Input:</strong>​​​ serviceUpgrade
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 inServiceStrategy | inServiceUpgradeStrategy | No | <no value> | ALENA
 toServiceStrategy | toServiceUpgradeStrategy | No | <no value> | ALENA

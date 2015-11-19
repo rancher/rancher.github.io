@@ -6,34 +6,27 @@ layout: rancher-default
 ## environment
 
 An "environment" in the API is referred to as a stack in the UI and the Rancher documentation. In the API documentation, we'll use the UI terminology. A Rancher stack mirrors the same concept as a docker-compose project.  It represents a group of services that make up a typical application or workload.
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the environment
+kind | string | - | - | - | 
+name | string | Yes | Yes | - | 
+state | enum | - | - | - | The current state of the environment. The options are [activating, active, canceled-upgrade, canceling-rollback, canceling-upgrade, error, erroring, finishing-upgrade, removed, removing, requested, rolling-back, updating-active, upgraded, upgrading].
 dockerCompose | string | Optional | - | - | The docker-compose.yml file for the stack
-environment | map[string] | Optional | - | - | The environment for the environment
-externalId | string | Optional | Yes | - | The externalId for the environment
-outputs | map[string] | Optional | Yes | - | The outputs for the environment
-previousExternalId | string | Optional | Yes | - | The previousExternalId for the environment
+environment | map[string] | Optional | - | - | 
+externalId | string | Optional | Yes | - | 
+outputs | map[string] | Optional | Yes | - | 
+previousExternalId | string | Optional | Yes | - | 
 rancherCompose | string | Optional | - | - | The rancher-compose.yml file for the stack
-startOnCreate | boolean | Optional | - | - | The startOnCreate for the environment
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+startOnCreate | boolean | Optional | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the environment was created.
-description | string | Optional | Yes | - | The description for the environment
-id | int | - | - | - | The unique identifier for the environment
-kind | string | - | - | - | The kind for the environment
-name | string | Yes | Yes | - | The name for the environment
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the environment was removed
-state | enum | - | - | - | The current state of the environment. The options are [activating, active, canceled-upgrade, canceling-rollback, canceling-upgrade, error, erroring, finishing-upgrade, removed, removing, requested, rolling-back, updating-active, upgraded, upgrading].
 transitioning | enum | - | - | - | Whether or not the environment is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the environment
@@ -42,7 +35,8 @@ uuid | string | - | - | - | The universally unique identifier for the environmen
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -77,8 +71,6 @@ Create
 {% endhighlight %}
 </div>
 </span>
-
-
 
 
 
@@ -138,7 +130,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -152,7 +146,6 @@ To activateservices the environment
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -177,9 +170,9 @@ To addoutputs the environment
 <strong>Input:</strong>​​​ addOutputsInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-outputs | map[string] | Yes | <no value> | The outputs for the addOutputsInput
+outputs | map[string] | Yes | <no value> | 
 
 
 <br>
@@ -211,7 +204,6 @@ To cancelrollback the environment
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -235,7 +227,6 @@ To cancelupgrade the environment
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -259,7 +250,6 @@ To deactivateservices the environment
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -283,7 +273,6 @@ To error the environment
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -308,7 +297,7 @@ To exportconfig the environment
 <strong>Input:</strong>​​​ composeConfigInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 serviceIds | array[reference[service]] | No | <no value> | The list of Service IDs in the `docker-compose.yml`
 
@@ -342,7 +331,6 @@ To finishupgrade the environment
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -366,7 +354,6 @@ To remove the environment
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -390,7 +377,6 @@ To rollback the environment
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -415,11 +401,11 @@ To upgrade the environment
 <strong>Input:</strong>​​​ environmentUpgrade
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 dockerCompose | string | No | <no value> | The docker-compose.yml file for the stack
-environment | map[string] | No | <no value> | The environment for the environmentUpgrade
-externalId | string | No | <no value> | The externalId for the environmentUpgrade
+environment | map[string] | No | <no value> | 
+externalId | string | No | <no value> | 
 rancherCompose | string | No | <no value> | The rancher-compose.yml file for the stack
 
 

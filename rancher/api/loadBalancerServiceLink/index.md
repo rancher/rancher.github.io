@@ -11,6 +11,6 @@ Description of API Input from yaml file.
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-ports | array[string] | false | <no value> | The ports for the loadBalancerServiceLink
+ports | array[string] | false | <no value> | 
 serviceId | reference[service] | true | <no value> | The unique identifier of the associated service
 

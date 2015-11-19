@@ -6,31 +6,24 @@ layout: rancher-default
 ## registryCredential
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the registryCredential
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the registryCredential. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
 email | string | Yes | Yes | - | The email address of the credential to use with a registry
 publicValue | string | Optional | Yes | - | The public value of the registryCredential
 registryId | [registry]({{site.baseurl}}/rancher/api/registry/) | Yes | - | - | The unique identifier of a registry
 secretValue | string | Optional | Yes | - | The secret value of the registryCredential
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the registryCredential was created.
-description | string | Optional | Yes | - | The description for the registryCredential
-id | int | - | - | - | The unique identifier for the registryCredential
-kind | string | - | - | - | The kind for the registryCredential
-name | string | Optional | Yes | - | The name for the registryCredential
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the registryCredential was removed
-state | enum | - | - | - | The current state of the registryCredential. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the registryCredential is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the registryCredential
@@ -39,7 +32,8 @@ uuid | string | - | - | - | The universally unique identifier for the registryCr
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -68,8 +62,6 @@ Create
 {% endhighlight %}
 </div>
 </span>
-
-
 
 
 
@@ -129,7 +121,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -143,7 +137,6 @@ To activate the registryCredential
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -167,7 +160,6 @@ To deactivate the registryCredential
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -191,7 +183,6 @@ To purge the registryCredential
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -215,7 +206,6 @@ To remove the registryCredential
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

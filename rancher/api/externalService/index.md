@@ -6,37 +6,30 @@ layout: rancher-default
 ## externalService
 
 An external service allows the ability to add any IP or hostname as a service to be discovered as a service.
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-environmentId | [environment]({{site.baseurl}}/rancher/api/environment/) | Yes | - | - | The environmentId for the externalService
-externalId | string | - | - | - | The externalId for the externalService
+id | int | - | - | - | The unique identifier for the externalService
+kind | string | - | - | - | 
+name | string | Yes | Yes | - | 
+state | enum | - | - | - | The current state of the externalService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+environmentId | [environment]({{site.baseurl}}/rancher/api/environment/) | Yes | - | - | 
+externalId | string | - | - | - | 
 externalIpAddresses | array[string] | Optional | Yes | - | The external IP address used for an external service
-fqdn | string | - | - | - | The fqdn for the externalService
-healthCheck | [instanceHealthCheck]({{site.baseurl}}/rancher/api/instanceHealthCheck/) | Optional | - | - | The healthCheck for the externalService
-hostname | string | Optional | Yes | - | The hostname for the externalService
+fqdn | string | - | - | - | 
+healthCheck | [instanceHealthCheck]({{site.baseurl}}/rancher/api/instanceHealthCheck/) | Optional | - | - | 
+hostname | string | Optional | Yes | - | 
 launchConfig | [launchConfig]({{site.baseurl}}/rancher/api/launchConfig/) | Optional | - | - | Configuration of a container
-metadata | map[json] | Optional | Yes | - | The metadata for the externalService
-selectorLink | string | Optional | - | - | The selectorLink for the externalService
-upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/api/serviceUpgrade/) | - | - | - | The upgrade for the externalService
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+metadata | map[json] | Optional | Yes | - | 
+selectorLink | string | Optional | - | - | 
+upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/api/serviceUpgrade/) | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the externalService was created.
-description | string | Optional | Yes | - | The description for the externalService
-id | int | - | - | - | The unique identifier for the externalService
-kind | string | - | - | - | The kind for the externalService
-name | string | Yes | Yes | - | The name for the externalService
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the externalService was removed
-state | enum | - | - | - | The current state of the externalService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
 transitioning | enum | - | - | - | Whether or not the externalService is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the externalService
@@ -45,7 +38,8 @@ uuid | string | - | - | - | The universally unique identifier for the externalSe
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -281,8 +275,6 @@ Create
 
 
 
-
-
 <span class="action">
 <span class="header">
 Update
@@ -329,7 +321,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -343,7 +337,6 @@ To activate the externalService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -368,9 +361,9 @@ To addservicelink the externalService
 <strong>Input:</strong>​​​ addRemoveServiceLinkInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLink | serviceLink | Yes | <no value> | The serviceLink for the addRemoveServiceLinkInput
+serviceLink | serviceLink | Yes | <no value> | 
 
 
 <br>
@@ -408,7 +401,6 @@ To cancelrollback the externalService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -432,7 +424,6 @@ To cancelupgrade the externalService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -456,7 +447,6 @@ To deactivate the externalService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -480,7 +470,6 @@ To finishupgrade the externalService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -504,7 +493,6 @@ To remove the externalService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -529,9 +517,9 @@ To removeservicelink the externalService
 <strong>Input:</strong>​​​ addRemoveServiceLinkInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLink | serviceLink | Yes | <no value> | The serviceLink for the addRemoveServiceLinkInput
+serviceLink | serviceLink | Yes | <no value> | 
 
 
 <br>
@@ -569,7 +557,6 @@ To rollback the externalService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -594,7 +581,7 @@ To setservicelinks the externalService
 <strong>Input:</strong>​​​ setServiceLinksInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 serviceLinks | array[serviceLink] | No | <no value> | The list of services linked
 
@@ -629,7 +616,7 @@ To upgrade the externalService
 <strong>Input:</strong>​​​ serviceUpgrade
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 inServiceStrategy | inServiceUpgradeStrategy | No | <no value> | ALENA
 toServiceStrategy | toServiceUpgradeStrategy | No | <no value> | ALENA

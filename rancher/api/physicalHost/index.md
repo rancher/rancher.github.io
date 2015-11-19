@@ -6,21 +6,20 @@ layout: rancher-default
 ## physicalHost
 
 Collection Test Description
+
 ​
+### Resource Fields
 
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the physicalHost
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the physicalHost. The options are [active, bootstrapping, created, creating, error, erroring, removed, removing, requested, updating].
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the physicalHost was created.
-description | string | Optional | Yes | - | The description for the physicalHost
-id | int | - | - | - | The unique identifier for the physicalHost
-kind | string | - | - | - | The kind for the physicalHost
-name | string | Optional | Yes | - | The name for the physicalHost
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the physicalHost was removed
-state | enum | - | - | - | The current state of the physicalHost. The options are [active, bootstrapping, created, creating, error, erroring, removed, removing, requested, updating].
 transitioning | enum | - | - | - | Whether or not the physicalHost is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the physicalHost
@@ -29,8 +28,6 @@ uuid | string | - | - | - | The universally unique identifier for the physicalHo
 
 
 
-### Actions
-
 
 
 
@@ -40,6 +37,7 @@ uuid | string | - | - | - | The universally unique identifier for the physicalHo
 
 
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -53,7 +51,6 @@ To bootstrap the physicalHost
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -77,7 +74,6 @@ To error the physicalHost
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -101,7 +97,6 @@ To remove the physicalHost
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

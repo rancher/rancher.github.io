@@ -6,30 +6,23 @@ layout: rancher-default
 ## register
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-accessKey | string | - | - | - | The accessKey for the register
-key | string | Yes | - | - | The key for the register
-secretKey | string | - | - | - | The secretKey for the register
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the register
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the register. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+accessKey | string | - | - | - | 
+key | string | Yes | - | - | 
+secretKey | string | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the register was created.
-description | string | Optional | Yes | - | The description for the register
-id | int | - | - | - | The unique identifier for the register
-kind | string | - | - | - | The kind for the register
-name | string | Optional | Yes | - | The name for the register
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the register was removed
-state | enum | - | - | - | The current state of the register. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the register is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the register
@@ -38,7 +31,8 @@ uuid | string | - | - | - | The universally unique identifier for the register. 
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -73,8 +67,8 @@ Create
 
 
 
-
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -88,7 +82,6 @@ To activate the register
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -112,7 +105,6 @@ To deactivate the register
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -136,7 +128,6 @@ To purge the register
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -160,7 +151,6 @@ To remove the register
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -184,7 +174,6 @@ To restore the register
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -209,10 +198,10 @@ To stop the register
 <strong>Input:</strong>​​​ instanceStop
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-remove | boolean | No | <no value> | The remove for the instanceStop
-timeout | int | No | <no value> | The timeout for the instanceStop
+remove | boolean | No | <no value> | 
+timeout | int | No | <no value> | 
 
 
 <br>

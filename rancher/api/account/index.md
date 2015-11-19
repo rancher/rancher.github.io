@@ -6,20 +6,19 @@ layout: rancher-default
 ## account
 
 Collection Test Description
+
 ​
+### Resource Fields
 
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-created | date | - | - | - | The date of when the account was created.
-description | string | Optional | Yes | - | The description for the account
 id | int | - | - | - | The unique identifier for the account
-kind | string | - | - | user | The kind for the account
-name | string | Optional | Yes | - | The name for the account
-removed | date | - | - | - | The date of when the account was removed
+kind | string | - | - | user | 
+name | string | Optional | Yes | - | 
 state | enum | - | - | - | The current state of the account. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+created | date | - | - | - | The date of when the account was created.
+description | string | Optional | Yes | - | 
+removed | date | - | - | - | The date of when the account was removed
 transitioning | enum | - | - | - | Whether or not the account is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the account
@@ -28,8 +27,6 @@ uuid | string | - | - | - | The universally unique identifier for the account. T
 
 
 
-### Actions
-
 
 
 
@@ -39,6 +36,7 @@ uuid | string | - | - | - | The universally unique identifier for the account. T
 
 
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -52,7 +50,6 @@ To activate the account
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -76,7 +73,6 @@ To deactivate the account
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -100,7 +96,6 @@ To purge the account
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -124,7 +119,6 @@ To remove the account
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -148,7 +142,6 @@ To restore the account
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

@@ -6,29 +6,22 @@ layout: rancher-default
 ## apiKey
 
 An API Key provides access to the Rancher API if access control has been turned on. The access key and secret key pair are created per environment and can be used to directly call the API or used with [rancher-compose]({{site.baseurl}}/rancher/rancher-compose).
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the apiKey
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the apiKey. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
 publicValue | string | - | - | - | The public value of the apiKey
 secretValue | string | - | - | - | The secret value of the apiKey
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the apiKey was created.
-description | string | Optional | Yes | - | The description for the apiKey
-id | int | - | - | - | The unique identifier for the apiKey
-kind | string | - | - | - | The kind for the apiKey
-name | string | Optional | Yes | - | The name for the apiKey
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the apiKey was removed
-state | enum | - | - | - | The current state of the apiKey. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the apiKey is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the apiKey
@@ -37,7 +30,8 @@ uuid | string | - | - | - | The universally unique identifier for the apiKey. Th
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -58,8 +52,6 @@ Create
 {% endhighlight %}
 </div>
 </span>
-
-
 
 
 
@@ -113,7 +105,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -127,7 +121,6 @@ To activate the apiKey
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -151,7 +144,6 @@ To deactivate the apiKey
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -175,7 +167,6 @@ To purge the apiKey
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -199,7 +190,6 @@ To remove the apiKey
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

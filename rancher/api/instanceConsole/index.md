@@ -11,6 +11,6 @@ Description of API Input from yaml file.
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-password | string | false | <no value> | The password for the instanceConsole
-url | string | false | <no value> | The url for the instanceConsole
+password | string | false | <no value> | 
+url | string | false | <no value> | 
 

@@ -6,29 +6,22 @@ layout: rancher-default
 ## ipAddress
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the ipAddress
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the ipAddress. The options are [activating, active, associated, associating, deactivating, disassociating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 address | string | - | - | - | ALENA
-networkId | [network]({{site.baseurl}}/rancher/api/network/) | - | - | - | The networkId for the ipAddress
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+networkId | [network]({{site.baseurl}}/rancher/api/network/) | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the ipAddress was created.
-description | string | Optional | Yes | - | The description for the ipAddress
-id | int | - | - | - | The unique identifier for the ipAddress
-kind | string | - | - | - | The kind for the ipAddress
-name | string | Optional | Yes | - | The name for the ipAddress
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the ipAddress was removed
-state | enum | - | - | - | The current state of the ipAddress. The options are [activating, active, associated, associating, deactivating, disassociating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the ipAddress is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the ipAddress
@@ -37,8 +30,6 @@ uuid | string | - | - | - | The universally unique identifier for the ipAddress.
 
 
 
-### Actions
-
 
 
 
@@ -48,6 +39,7 @@ uuid | string | - | - | - | The universally unique identifier for the ipAddress.
 
 
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -61,7 +53,6 @@ To activate the ipAddress
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -86,7 +77,7 @@ To associate the ipAddress
 <strong>Input:</strong>​​​ ipAddressAssociateInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 ipAddressId | reference[ipAddress] | No | <no value> | ALENA
 
@@ -120,7 +111,6 @@ To deactivate the ipAddress
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -144,7 +134,6 @@ To disassociate the ipAddress
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -168,7 +157,6 @@ To purge the ipAddress
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -192,7 +180,6 @@ To remove the ipAddress
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -216,7 +203,6 @@ To restore the ipAddress
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

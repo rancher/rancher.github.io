@@ -6,31 +6,24 @@ layout: rancher-default
 ## pullTask
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-image | string | Yes | - | - | The image for the pullTask
-labels | map[string] | Optional | - | - | The labels for the pullTask
-mode | enum | Yes | - | all | The mode for the pullTask
-status | map[string] | - | - | - | The status for the pullTask
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the pullTask
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the pullTask. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+image | string | Yes | - | - | 
+labels | map[string] | Optional | - | - | 
+mode | enum | Yes | - | all | 
+status | map[string] | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the pullTask was created.
-description | string | Optional | Yes | - | The description for the pullTask
-id | int | - | - | - | The unique identifier for the pullTask
-kind | string | - | - | - | The kind for the pullTask
-name | string | Optional | Yes | - | The name for the pullTask
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the pullTask was removed
-state | enum | - | - | - | The current state of the pullTask. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the pullTask is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the pullTask
@@ -39,7 +32,8 @@ uuid | string | - | - | - | The universally unique identifier for the pullTask. 
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -78,8 +72,8 @@ Create
 
 
 
-
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -93,7 +87,6 @@ To activate the pullTask
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -117,7 +110,6 @@ To deactivate the pullTask
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -141,7 +133,6 @@ To purge the pullTask
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -165,7 +156,6 @@ To remove the pullTask
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -189,7 +179,6 @@ To restore the pullTask
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

@@ -6,34 +6,27 @@ layout: rancher-default
 ## dnsService
 
 A "dnsService" in the API is referred to as a Service Alias in the UI and the Rancher documentation. In the API documentation, we'll use the UI terminology. A service alias allows the ability to add a DNS record for your services to be discovered.
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-environmentId | [environment]({{site.baseurl}}/rancher/api/environment/) | Yes | - | - | The environmentId for the dnsService
-externalId | string | - | - | - | The externalId for the dnsService
-fqdn | string | - | - | - | The fqdn for the dnsService
+id | int | - | - | - | The unique identifier for the dnsService
+kind | string | - | - | - | 
+name | string | Yes | Yes | - | 
+state | enum | - | - | - | The current state of the dnsService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+environmentId | [environment]({{site.baseurl}}/rancher/api/environment/) | Yes | - | - | 
+externalId | string | - | - | - | 
+fqdn | string | - | - | - | 
 launchConfig | [launchConfig]({{site.baseurl}}/rancher/api/launchConfig/) | Optional | - | - | Configuration of a container
-metadata | map[json] | Optional | Yes | - | The metadata for the dnsService
-selectorLink | string | Optional | - | - | The selectorLink for the dnsService
-upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/api/serviceUpgrade/) | - | - | - | The upgrade for the dnsService
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+metadata | map[json] | Optional | Yes | - | 
+selectorLink | string | Optional | - | - | 
+upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/api/serviceUpgrade/) | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the dnsService was created.
-description | string | Optional | Yes | - | The description for the dnsService
-id | int | - | - | - | The unique identifier for the dnsService
-kind | string | - | - | - | The kind for the dnsService
-name | string | Yes | Yes | - | The name for the dnsService
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the dnsService was removed
-state | enum | - | - | - | The current state of the dnsService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
 transitioning | enum | - | - | - | Whether or not the dnsService is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the dnsService
@@ -42,7 +35,8 @@ uuid | string | - | - | - | The universally unique identifier for the dnsService
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -256,8 +250,6 @@ Create
 
 
 
-
-
 <span class="action">
 <span class="header">
 Update
@@ -300,7 +292,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -314,7 +308,6 @@ To activate the dnsService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -339,9 +332,9 @@ To addservicelink the dnsService
 <strong>Input:</strong>​​​ addRemoveServiceLinkInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLink | serviceLink | Yes | <no value> | The serviceLink for the addRemoveServiceLinkInput
+serviceLink | serviceLink | Yes | <no value> | 
 
 
 <br>
@@ -379,7 +372,6 @@ To cancelrollback the dnsService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -403,7 +395,6 @@ To cancelupgrade the dnsService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -427,7 +418,6 @@ To deactivate the dnsService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -451,7 +441,6 @@ To finishupgrade the dnsService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -475,7 +464,6 @@ To remove the dnsService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -500,9 +488,9 @@ To removeservicelink the dnsService
 <strong>Input:</strong>​​​ addRemoveServiceLinkInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLink | serviceLink | Yes | <no value> | The serviceLink for the addRemoveServiceLinkInput
+serviceLink | serviceLink | Yes | <no value> | 
 
 
 <br>
@@ -540,7 +528,6 @@ To rollback the dnsService
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -565,7 +552,7 @@ To setservicelinks the dnsService
 <strong>Input:</strong>​​​ setServiceLinksInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 serviceLinks | array[serviceLink] | No | <no value> | The list of services linked
 
@@ -600,7 +587,7 @@ To upgrade the dnsService
 <strong>Input:</strong>​​​ serviceUpgrade
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 inServiceStrategy | inServiceUpgradeStrategy | No | <no value> | ALENA
 toServiceStrategy | toServiceUpgradeStrategy | No | <no value> | ALENA

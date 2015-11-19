@@ -6,31 +6,24 @@ layout: rancher-default
 ## containerEvent
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-dockerInspect | json | - | - | - | The dockerInspect for the containerEvent
-externalFrom | string | - | - | - | The externalFrom for the containerEvent
-externalId | string | - | - | - | The externalId for the containerEvent
-externalStatus | string | - | - | - | The externalStatus for the containerEvent
-externalTimestamp | int | - | - | - | The externalTimestamp for the containerEvent
+id | int | - | - | - | The unique identifier for the containerEvent
+kind | string | - | - | - | 
+state | enum | - | - | - | The current state of the containerEvent. The options are [created, creating, removed, removing, requested].
+dockerInspect | json | - | - | - | 
+externalFrom | string | - | - | - | 
+externalId | string | - | - | - | 
+externalStatus | string | - | - | - | 
+externalTimestamp | int | - | - | - | 
 hostId | [host]({{site.baseurl}}/rancher/api/host/) | - | - | - | The unique identifier for the associated host
-reportedHostUuid | string | - | - | - | The reportedHostUuid for the containerEvent
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+reportedHostUuid | string | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the containerEvent was created.
-id | int | - | - | - | The unique identifier for the containerEvent
-kind | string | - | - | - | The kind for the containerEvent
-state | enum | - | - | - | The current state of the containerEvent. The options are [created, creating, removed, removing, requested].
 transitioning | enum | - | - | - | Whether or not the containerEvent is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the containerEvent
@@ -38,8 +31,6 @@ transitioningProgress | int | - | - | - | The percentage remaining in the transi
 
 
 
-### Actions
-
 
 
 
@@ -49,6 +40,7 @@ transitioningProgress | int | - | - | - | The percentage remaining in the transi
 
 
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -62,7 +54,6 @@ To remove the containerEvent
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

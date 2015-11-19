@@ -6,34 +6,27 @@ layout: rancher-default
 ## loadBalancerListener
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-algorithm | enum | Optional | - | roundrobin | The algorithm for the loadBalancerListener
+id | int | - | - | - | The unique identifier for the loadBalancerListener
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the loadBalancerListener. The options are [activating, active, removed, removing, requested].
+algorithm | enum | Optional | - | roundrobin | 
 privatePort | int | Optional | - | - | The private port
 serviceId | [service]({{site.baseurl}}/rancher/api/service/) | - | - | - | The unique identifier of the associated service
-sourcePort | int | Optional | - | - | The sourcePort for the loadBalancerListener
-sourceProtocol | enum | Yes | - | - | The sourceProtocol for the loadBalancerListener
-targetPort | int | - | - | - | The targetPort for the loadBalancerListener
-targetProtocol | enum | - | - | - | The targetProtocol for the loadBalancerListener
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+sourcePort | int | Optional | - | - | 
+sourceProtocol | enum | Yes | - | - | 
+targetPort | int | - | - | - | 
+targetProtocol | enum | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the loadBalancerListener was created.
-description | string | Optional | Yes | - | The description for the loadBalancerListener
-id | int | - | - | - | The unique identifier for the loadBalancerListener
-kind | string | - | - | - | The kind for the loadBalancerListener
-name | string | Optional | Yes | - | The name for the loadBalancerListener
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the loadBalancerListener was removed
-state | enum | - | - | - | The current state of the loadBalancerListener. The options are [activating, active, removed, removing, requested].
 transitioning | enum | - | - | - | Whether or not the loadBalancerListener is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the loadBalancerListener
@@ -42,7 +35,8 @@ uuid | string | - | - | - | The universally unique identifier for the loadBalanc
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -71,8 +65,6 @@ Create
 {% endhighlight %}
 </div>
 </span>
-
-
 
 
 
@@ -126,7 +118,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -140,7 +134,6 @@ To remove the loadBalancerListener
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

@@ -11,5 +11,5 @@ Description of API Input from yaml file.
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-loadBalancerListenerId | reference[loadBalancerListener] | true | <no value> | The loadBalancerListenerId for the addRemoveLoadBalancerListenerInput
+loadBalancerListenerId | reference[loadBalancerListener] | true | <no value> | 
 

@@ -11,6 +11,6 @@ Description of API Input from yaml file.
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-follow | boolean | false | true | The follow for the containerLogs
-lines | int | false | 100 | The lines for the containerLogs
+follow | boolean | false | true | 
+lines | int | false | 100 | 
 

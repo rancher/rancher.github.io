@@ -6,29 +6,22 @@ layout: rancher-default
 ## snapshot
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the snapshot
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the snapshot. The options are [backed-up, backing-up, created, creating, removed, removing, requested].
 managedVolumeUUID | string | - | - | - | The unique identifier of the managed volume
-volumeId | [volume]({{site.baseurl}}/rancher/api/volume/) | Yes | - | - | The volumeId for the snapshot
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+volumeId | [volume]({{site.baseurl}}/rancher/api/volume/) | Yes | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the snapshot was created.
-description | string | Optional | Yes | - | The description for the snapshot
-id | int | - | - | - | The unique identifier for the snapshot
-kind | string | - | - | - | The kind for the snapshot
-name | string | Optional | Yes | - | The name for the snapshot
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the snapshot was removed
-state | enum | - | - | - | The current state of the snapshot. The options are [backed-up, backing-up, created, creating, removed, removing, requested].
 transitioning | enum | - | - | - | Whether or not the snapshot is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the snapshot
@@ -37,7 +30,8 @@ uuid | string | - | - | - | The universally unique identifier for the snapshot. 
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -72,8 +66,8 @@ Create
 
 
 
-
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -87,7 +81,6 @@ To backup the snapshot
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -111,7 +104,6 @@ To remove the snapshot
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

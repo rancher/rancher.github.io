@@ -6,29 +6,22 @@ layout: rancher-default
 ## label
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-key | string | - | - | - | The key for the label
-value | string | - | - | - | The value for the label
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the label
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the label. The options are [created, creating, removed, removing, requested].
+key | string | - | - | - | 
+value | string | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the label was created.
-description | string | Optional | Yes | - | The description for the label
-id | int | - | - | - | The unique identifier for the label
-kind | string | - | - | - | The kind for the label
-name | string | Optional | Yes | - | The name for the label
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the label was removed
-state | enum | - | - | - | The current state of the label. The options are [created, creating, removed, removing, requested].
 transitioning | enum | - | - | - | Whether or not the label is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the label
@@ -37,8 +30,6 @@ uuid | string | - | - | - | The universally unique identifier for the label. Thi
 
 
 
-### Actions
-
 
 
 
@@ -48,6 +39,7 @@ uuid | string | - | - | - | The universally unique identifier for the label. Thi
 
 
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -61,7 +53,6 @@ To remove the label
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

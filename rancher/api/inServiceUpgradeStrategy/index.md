@@ -15,7 +15,7 @@ batchSize | int | false | 1 | The batch size to upgrade a service (i.e. how many
 intervalMillis | int | false | 2000 | The number of milliseconds between upgrading
 launchConfig | launchConfig | false | <no value> | Configuration of a container
 previousLaunchConfig | launchConfig | false | <no value> | ALENA
-previousSecondaryLaunchConfigs | array[secondaryLaunchConfig] | false | <no value> | The previousSecondaryLaunchConfigs for the inServiceUpgradeStrategy
+previousSecondaryLaunchConfigs | array[secondaryLaunchConfig] | false | <no value> | 
 secondaryLaunchConfigs | array[secondaryLaunchConfig] | false | <no value> | The list of services that are sidekicks to the service.
 startFirst | boolean | false | false | ALENA
 

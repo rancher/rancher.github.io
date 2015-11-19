@@ -6,29 +6,22 @@ layout: rancher-default
 ## password
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the password
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the password. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
 publicValue | string | Optional | - | - | The public value of the password
 secretValue | string | Optional | - | - | The secret value of the password
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the password was created.
-description | string | Optional | Yes | - | The description for the password
-id | int | - | - | - | The unique identifier for the password
-kind | string | - | - | - | The kind for the password
-name | string | Optional | Yes | - | The name for the password
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the password was removed
-state | enum | - | - | - | The current state of the password. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the password is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the password
@@ -37,7 +30,8 @@ uuid | string | - | - | - | The universally unique identifier for the password. 
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -62,8 +56,6 @@ Create
 {% endhighlight %}
 </div>
 </span>
-
-
 
 
 
@@ -117,7 +109,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -131,7 +125,6 @@ To activate the password
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -156,7 +149,7 @@ To changesecret the password
 <strong>Input:</strong>​​​ changeSecretInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 newSecret | string | Yes | <no value> | Value of the new secret
 oldSecret | string | Yes | <no value> | Value of the old secret
@@ -193,7 +186,6 @@ To deactivate the password
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -217,7 +209,6 @@ To purge the password
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -241,7 +232,6 @@ To remove the password
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

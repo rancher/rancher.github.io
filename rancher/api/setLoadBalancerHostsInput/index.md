@@ -11,5 +11,5 @@ Description of API Input from yaml file.
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-hostIds | array[reference[host]] | false | <no value> | The hostIds for the setLoadBalancerHostsInput
+hostIds | array[reference[host]] | false | <no value> | 
 

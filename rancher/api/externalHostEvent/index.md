@@ -6,30 +6,23 @@ layout: rancher-default
 ## externalHostEvent
 
 
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-deleteHost | boolean | Optional | - | - | The deleteHost for the externalHostEvent
-eventType | string | Optional | - | - | The eventType for the externalHostEvent
-externalId | string | - | - | - | The externalId for the externalHostEvent
+id | int | - | - | - | The unique identifier for the externalHostEvent
+kind | string | - | - | - | 
+state | enum | - | - | - | The current state of the externalHostEvent. The options are [created, creating, removed, removing, requested].
+deleteHost | boolean | Optional | - | - | 
+eventType | string | Optional | - | - | 
+externalId | string | - | - | - | 
 hostId | [host]({{site.baseurl}}/rancher/api/host/) | Optional | - | - | The unique identifier for the associated host
-hostLabel | string | Optional | - | - | The hostLabel for the externalHostEvent
-reportedAccountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The reportedAccountId for the externalHostEvent
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+hostLabel | string | Optional | - | - | 
+reportedAccountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the externalHostEvent was created.
-id | int | - | - | - | The unique identifier for the externalHostEvent
-kind | string | - | - | - | The kind for the externalHostEvent
-state | enum | - | - | - | The current state of the externalHostEvent. The options are [created, creating, removed, removing, requested].
 transitioning | enum | - | - | - | Whether or not the externalHostEvent is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the externalHostEvent
@@ -38,7 +31,8 @@ uuid | string | - | - | - | The universally unique identifier for the externalHo
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -75,8 +69,8 @@ Create
 
 
 
-
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -90,7 +84,6 @@ To remove the externalHostEvent
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

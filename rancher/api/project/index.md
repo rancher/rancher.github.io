@@ -6,29 +6,22 @@ layout: rancher-default
 ## project
 
 A "project" in the API is referred to as an environment in the UI and the Rancher documentation. In the API documentation, we'll use the UI terminology.  All hosts and any Rancher resources (i.e. containers, load balancers, etc.) are created and belong to an [environment]({{site.baseurl}}/rancher/configuration/environments/).  Access control to who can view and manage these resources are then defined by the owner of the environment.  Rancher currently supports the capability for each user to manage and invite other users to their environment and allows for the ability to create multiple environments for different workloads.  For example, you may want to create a "dev" environment and a separate "production" environment with its own set of resources and limited user access for your application deployment.
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-kubernetes | boolean | Optional | Yes | - | The kubernetes for the project
-members | array[projectMember] | Optional | - | - | The members for the project
-swarm | boolean | Optional | Yes | - | The swarm for the project
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
-created | date | - | - | - | The date of when the project was created.
-description | string | Optional | Yes | - | The description for the project
 id | int | - | - | - | The unique identifier for the project
-kind | string | - | - | user | The kind for the project
-name | string | Optional | Yes | - | The name for the project
-removed | date | - | - | - | The date of when the project was removed
+kind | string | - | - | user | 
+name | string | Optional | Yes | - | 
 state | enum | - | - | - | The current state of the project. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+kubernetes | boolean | Optional | Yes | - | 
+members | array[projectMember] | Optional | - | - | 
+swarm | boolean | Optional | Yes | - | 
+created | date | - | - | - | The date of when the project was created.
+description | string | Optional | Yes | - | 
+removed | date | - | - | - | The date of when the project was removed
 transitioning | enum | - | - | - | Whether or not the project is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the project
@@ -37,8 +30,6 @@ uuid | string | - | - | - | The universally unique identifier for the project. T
 
 
 
-### Actions
-
 
 
 
@@ -48,6 +39,7 @@ uuid | string | - | - | - | The universally unique identifier for the project. T
 
 
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -61,7 +53,6 @@ To activate the project
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -85,7 +76,6 @@ To deactivate the project
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -109,7 +99,6 @@ To purge the project
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -133,7 +122,6 @@ To remove the project
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -157,7 +145,6 @@ To restore the project
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -182,9 +169,9 @@ To setmembers the project
 <strong>Input:</strong>​​​ setProjectMembersInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-members | array[projectMember] | Yes | <no value> | The members for the setProjectMembersInput
+members | array[projectMember] | Yes | <no value> | 
 
 
 <br>

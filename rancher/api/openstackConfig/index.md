@@ -12,9 +12,9 @@ Description of API Input from yaml file.
 Field | Type | Required | Default | Description
 ---|---|---|---|---
 authUrl | string | false | <no value> | The ksystone service base URL
-availabilityZone | string | false | <no value> | The availabilityZone for the openstackConfig
+availabilityZone | string | false | <no value> | 
 domainId | string | false | <no value> | The ID of the domain to use for authentication (Keystone v3 only)
-domainName | string | false | <no value> | The domainName for the openstackConfig
+domainName | string | false | <no value> | 
 endpointType | string | false | <no value> | Endpoint type can be `internalURL`, `adminURL`, or` publicURL`. If is a helper for the driver to choose the right URL in the OpenStack service catalog. If not provided the default id `publicURL`
 flavorId | string | false | <no value> | The ID of the flavor that will be used for the machine
 flavorName | string | false | <no value> | The name of the flavor that will be used for the machine
@@ -24,12 +24,12 @@ imageName | string | false | <no value> | The name of the image that will be use
 insecure | boolean | false | <no value> | Explicitly allow openstack driver to perform “insecure” SSL (https) requests. The server’s certificate will not be verified against any certificate authorities. This option should be used with caution.
 netId | string | false | <no value> | The ID of the private network the machine will be connected on. If your OpenStack project project contains only one private network it will be use automatically.
 netName | string | false | <no value> | The name of the private network the machine will be connected on. If your OpenStack project project contains only one private network it will be use automatically.
-password | string | false | <no value> | The password for the openstackConfig
+password | string | false | <no value> | 
 region | string | false | <no value> | The region to use when launching the host
 secGroups | string | false | <no value> | If security groups are available on your OpenStack you can specify a comma separated list to use for the machine (e.g. `secgrp001`,`secgrp002`)
 sshPort | string | false | <no value> | The port to ssh into the host
 sshUser | string | false | <no value> | The ssh username to use to ssh into the host
 tenantId | string | false | <no value> | The ID of the tenant in which the machine will be created
 tenantName | string | false | <no value> | The name of the tenant in which the machine will be created
-username | string | false | <no value> | The username for the openstackConfig
+username | string | false | <no value> | 
 

@@ -6,28 +6,21 @@ layout: rancher-default
 ## externalVolumeEvent
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-eventType | string | - | - | - | The eventType for the externalVolumeEvent
-externalId | string | - | - | - | The externalId for the externalVolumeEvent
-reportedAccountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The reportedAccountId for the externalVolumeEvent
+id | int | - | - | - | The unique identifier for the externalVolumeEvent
+kind | string | - | - | - | 
+state | enum | - | - | - | The current state of the externalVolumeEvent. The options are [created, creating, removed, removing, requested].
+eventType | string | - | - | - | 
+externalId | string | - | - | - | 
+reportedAccountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | 
 volume | [volume]({{site.baseurl}}/rancher/api/volume/) | - | - | - | SID
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the externalVolumeEvent was created.
-id | int | - | - | - | The unique identifier for the externalVolumeEvent
-kind | string | - | - | - | The kind for the externalVolumeEvent
-state | enum | - | - | - | The current state of the externalVolumeEvent. The options are [created, creating, removed, removing, requested].
 transitioning | enum | - | - | - | Whether or not the externalVolumeEvent is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the externalVolumeEvent
@@ -36,8 +29,6 @@ uuid | string | - | - | - | The universally unique identifier for the externalVo
 
 
 
-### Actions
-
 
 
 
@@ -47,6 +38,7 @@ uuid | string | - | - | - | The universally unique identifier for the externalVo
 
 
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -60,7 +52,6 @@ To remove the externalVolumeEvent
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

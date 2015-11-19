@@ -6,33 +6,26 @@ layout: rancher-default
 ## loadBalancer
 
 
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the loadBalancer
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the loadBalancer. The options are [activating, active, deactivating, inactive, removed, removing, requested, updating-active].
 certificateIds | array[[certificate]({{site.baseurl}}/rancher/api/certificate/)] | Optional | Yes | - | The ID of a certificate
 defaultCertificateId | [certificate]({{site.baseurl}}/rancher/api/certificate/) | Optional | Yes | - | The ID of a default certificate
-globalLoadBalancerId | [globalLoadBalancer]({{site.baseurl}}/rancher/api/globalLoadBalancer/) | - | - | - | The globalLoadBalancerId for the loadBalancer
-loadBalancerConfigId | [loadBalancerConfig]({{site.baseurl}}/rancher/api/loadBalancerConfig/) | Yes | - | - | The loadBalancerConfigId for the loadBalancer
+globalLoadBalancerId | [globalLoadBalancer]({{site.baseurl}}/rancher/api/globalLoadBalancer/) | - | - | - | 
+loadBalancerConfigId | [loadBalancerConfig]({{site.baseurl}}/rancher/api/loadBalancerConfig/) | Yes | - | - | 
 serviceId | [service]({{site.baseurl}}/rancher/api/service/) | - | - | - | The unique identifier of the associated service
-weight | int | - | - | - | The weight for the loadBalancer
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+weight | int | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the loadBalancer was created.
-description | string | Optional | Yes | - | The description for the loadBalancer
-id | int | - | - | - | The unique identifier for the loadBalancer
-kind | string | - | - | - | The kind for the loadBalancer
-name | string | Optional | Yes | - | The name for the loadBalancer
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the loadBalancer was removed
-state | enum | - | - | - | The current state of the loadBalancer. The options are [activating, active, deactivating, inactive, removed, removing, requested, updating-active].
 transitioning | enum | - | - | - | Whether or not the loadBalancer is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the loadBalancer
@@ -41,7 +34,8 @@ uuid | string | - | - | - | The universally unique identifier for the loadBalanc
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -68,8 +62,6 @@ Create
 {% endhighlight %}
 </div>
 </span>
-
-
 
 
 
@@ -127,7 +119,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -141,7 +135,6 @@ To activate the loadBalancer
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -166,7 +159,7 @@ To addhost the loadBalancer
 <strong>Input:</strong>​​​ addRemoveLoadBalancerHostInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 hostId | reference[host] | Yes | <no value> | The unique identifier for the associated host
 
@@ -201,9 +194,9 @@ To addtarget the loadBalancer
 <strong>Input:</strong>​​​ addRemoveLoadBalancerTargetInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-loadBalancerTarget | loadBalancerTarget | Yes | <no value> | The loadBalancerTarget for the addRemoveLoadBalancerTargetInput
+loadBalancerTarget | loadBalancerTarget | Yes | <no value> | 
 
 
 <br>
@@ -269,7 +262,6 @@ To deactivate the loadBalancer
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -293,7 +285,6 @@ To remove the loadBalancer
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -318,7 +309,7 @@ To removehost the loadBalancer
 <strong>Input:</strong>​​​ addRemoveLoadBalancerHostInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
 hostId | reference[host] | Yes | <no value> | The unique identifier for the associated host
 
@@ -353,9 +344,9 @@ To removetarget the loadBalancer
 <strong>Input:</strong>​​​ addRemoveLoadBalancerTargetInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-loadBalancerTarget | loadBalancerTarget | Yes | <no value> | The loadBalancerTarget for the addRemoveLoadBalancerTargetInput
+loadBalancerTarget | loadBalancerTarget | Yes | <no value> | 
 
 
 <br>
@@ -422,9 +413,9 @@ To sethosts the loadBalancer
 <strong>Input:</strong>​​​ setLoadBalancerHostsInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-hostIds | array[reference[host]] | No | <no value> | The hostIds for the setLoadBalancerHostsInput
+hostIds | array[reference[host]] | No | <no value> | 
 
 
 <br>
@@ -457,9 +448,9 @@ To settargets the loadBalancer
 <strong>Input:</strong>​​​ setLoadBalancerTargetsInput
 
 
-Field | Type | Required | Default | Description
+Field | Type | Required | Default | Notes
 ---|---|---|---|---
-loadBalancerTargets | array[loadBalancerTarget] | No | <no value> | The loadBalancerTargets for the setLoadBalancerTargetsInput
+loadBalancerTargets | array[loadBalancerTarget] | No | <no value> | 
 
 
 <br>

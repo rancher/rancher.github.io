@@ -11,5 +11,5 @@ Description of API Input from yaml file.
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-labels | json | false | <no value> | The labels for the setLabelsInput
+labels | json | false | <no value> | 
 

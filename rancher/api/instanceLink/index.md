@@ -6,30 +6,23 @@ layout: rancher-default
 ## instanceLink
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the instanceLink
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the instanceLink. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 instanceId | [instance]({{site.baseurl}}/rancher/api/instance/) | - | - | - | The unique identifier for the associated instance
-linkName | string | - | - | - | The linkName for the instanceLink
-targetInstanceId | [instance]({{site.baseurl}}/rancher/api/instance/) | - | Yes | - | The targetInstanceId for the instanceLink
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+linkName | string | - | - | - | 
+targetInstanceId | [instance]({{site.baseurl}}/rancher/api/instance/) | - | Yes | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the instanceLink was created.
-description | string | Optional | Yes | - | The description for the instanceLink
-id | int | - | - | - | The unique identifier for the instanceLink
-kind | string | - | - | - | The kind for the instanceLink
-name | string | Optional | Yes | - | The name for the instanceLink
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the instanceLink was removed
-state | enum | - | - | - | The current state of the instanceLink. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the instanceLink is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the instanceLink
@@ -38,9 +31,8 @@ uuid | string | - | - | - | The universally unique identifier for the instanceLi
 
 
 
-### Actions
 
-
+### Operations
 
 
 
@@ -74,7 +66,9 @@ Update
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -88,7 +82,6 @@ To activate the instanceLink
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -112,7 +105,6 @@ To deactivate the instanceLink
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -136,7 +128,6 @@ To purge the instanceLink
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -160,7 +151,6 @@ To remove the instanceLink
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -184,7 +174,6 @@ To restore the instanceLink
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

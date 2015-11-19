@@ -6,22 +6,22 @@ layout: rancher-default
 ## containerExec
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-attachStdin | boolean | Optional | - | true | The attachStdin for the containerExec
-attachStdout | boolean | Optional | - | true | The attachStdout for the containerExec
-command | array[string] | Yes | - | - | The command for the containerExec
-tty | boolean | Optional | - | true | The tty for the containerExec
+attachStdin | boolean | Optional | - | true | 
+attachStdout | boolean | Optional | - | true | 
+command | array[string] | Yes | - | - | 
+tty | boolean | Optional | - | true | 
 
 
 
 
 
-
-### Actions
+### Operations
 
 
 
@@ -46,7 +46,6 @@ Create
 {% endhighlight %}
 </div>
 </span>
-
 
 
 

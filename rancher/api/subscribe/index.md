@@ -6,19 +6,19 @@ layout: rancher-default
 ## subscribe
 
 
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-eventNames | array[string] | Optional | - | - | The eventNames for the subscribe
+eventNames | array[string] | Optional | - | - | 
 
 
 
 
 
-
-### Actions
+### Operations
 
 
 
@@ -37,7 +37,6 @@ Create
 {% endhighlight %}
 </div>
 </span>
-
 
 
 

@@ -6,30 +6,23 @@ layout: rancher-default
 ## registry
 
 A registry is where image repositories are hosted. The repository can be either from DockerHub, Quay.io, or a custom private registry.
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-driverName | string | - | - | - | The driverName for the registry
-externalId | string | - | - | - | The externalId for the registry
+id | int | - | - | - | The unique identifier for the registry
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the registry. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+driverName | string | - | - | - | 
+externalId | string | - | - | - | 
 serverAddress | string | Yes | - | - | The address of the registry to use
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the registry was created.
-description | string | Optional | Yes | - | The description for the registry
-id | int | - | - | - | The unique identifier for the registry
-kind | string | - | - | - | The kind for the registry
-name | string | Optional | Yes | - | The name for the registry
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the registry was removed
-state | enum | - | - | - | The current state of the registry. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the registry is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the registry
@@ -38,7 +31,8 @@ uuid | string | - | - | - | The universally unique identifier for the registry. 
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -61,8 +55,6 @@ Create
 {% endhighlight %}
 </div>
 </span>
-
-
 
 
 
@@ -116,7 +108,9 @@ Delete
 
 
 
+
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -130,7 +124,6 @@ To activate the registry
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -154,7 +147,6 @@ To deactivate the registry
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -178,7 +170,6 @@ To purge the registry
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -202,7 +193,6 @@ To remove the registry
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -226,7 +216,6 @@ To restore the registry
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

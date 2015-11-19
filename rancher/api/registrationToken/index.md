@@ -6,31 +6,24 @@ layout: rancher-default
 ## registrationToken
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-command | string | - | - | - | The command for the registrationToken
-image | string | - | - | - | The image for the registrationToken
+id | int | - | - | - | The unique identifier for the registrationToken
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the registrationToken. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
+command | string | - | - | - | 
+image | string | - | - | - | 
 registrationUrl | string | - | - | - | The registration URL of the registration token
-token | string | - | - | - | The token for the registrationToken
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+token | string | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the registrationToken was created.
-description | string | Optional | Yes | - | The description for the registrationToken
-id | int | - | - | - | The unique identifier for the registrationToken
-kind | string | - | - | - | The kind for the registrationToken
-name | string | Optional | Yes | - | The name for the registrationToken
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the registrationToken was removed
-state | enum | - | - | - | The current state of the registrationToken. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the registrationToken is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the registrationToken
@@ -39,7 +32,8 @@ uuid | string | - | - | - | The universally unique identifier for the registrati
 
 
 
-### Actions
+
+### Operations
 
 
 
@@ -72,8 +66,8 @@ Create
 
 
 
-
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -87,7 +81,6 @@ To activate the registrationToken
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -111,7 +104,6 @@ To deactivate the registrationToken
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -135,7 +127,6 @@ To purge the registrationToken
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -159,7 +150,6 @@ To remove the registrationToken
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

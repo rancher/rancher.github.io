@@ -6,31 +6,24 @@ layout: rancher-default
 ## mount
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the mount
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the mount. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 instanceId | [instance]({{site.baseurl}}/rancher/api/instance/) | - | - | - | The unique identifier for the associated instance
 path | string | - | - | - | MOUNT
 permissions | string | - | - | - | MOUNT
-volumeId | [volume]({{site.baseurl}}/rancher/api/volume/) | - | - | - | The volumeId for the mount
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+volumeId | [volume]({{site.baseurl}}/rancher/api/volume/) | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the mount was created.
-description | string | Optional | Yes | - | The description for the mount
-id | int | - | - | - | The unique identifier for the mount
-kind | string | - | - | - | The kind for the mount
-name | string | Optional | Yes | - | The name for the mount
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the mount was removed
-state | enum | - | - | - | The current state of the mount. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the mount is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the mount
@@ -39,8 +32,6 @@ uuid | string | - | - | - | The universally unique identifier for the mount. Thi
 
 
 
-### Actions
-
 
 
 
@@ -50,6 +41,7 @@ uuid | string | - | - | - | The universally unique identifier for the mount. Thi
 
 
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -63,7 +55,6 @@ To activate the mount
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -87,7 +78,6 @@ To deactivate the mount
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -111,7 +101,6 @@ To purge the mount
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -135,7 +124,6 @@ To remove the mount
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -159,7 +147,6 @@ To restore the mount
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

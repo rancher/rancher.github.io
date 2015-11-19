@@ -6,21 +6,20 @@ layout: rancher-default
 ## network
 
 Collection Test Description
+
 ​
+### Resource Fields
 
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the network
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the network. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the network was created.
-description | string | Optional | Yes | - | The description for the network
-id | int | - | - | - | The unique identifier for the network
-kind | string | - | - | - | The kind for the network
-name | string | Optional | Yes | - | The name for the network
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the network was removed
-state | enum | - | - | - | The current state of the network. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the network is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the network
@@ -29,8 +28,6 @@ uuid | string | - | - | - | The universally unique identifier for the network. T
 
 
 
-### Actions
-
 
 
 
@@ -40,6 +37,7 @@ uuid | string | - | - | - | The universally unique identifier for the network. T
 
 
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -53,7 +51,6 @@ To activate the network
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -77,7 +74,6 @@ To deactivate the network
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -101,7 +97,6 @@ To purge the network
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -125,7 +120,6 @@ To remove the network
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -149,7 +143,6 @@ To restore the network
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>

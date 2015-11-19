@@ -6,29 +6,22 @@ layout: rancher-default
 ## storagePool
 
 Collection Test Description
+
 ​
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Description
+Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-driverName | string | - | - | - | The driverName for the storagePool
-externalId | string | - | - | - | The externalId for the storagePool
-
-
-
-
-### Common Resource Fields
-
-Field | Type | Create | Update | Default | Description
----|---|---|---|---|---
+id | int | - | - | - | The unique identifier for the storagePool
+kind | string | - | - | - | 
+name | string | Optional | Yes | - | 
+state | enum | - | - | - | The current state of the storagePool. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+driverName | string | - | - | - | 
+externalId | string | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the storagePool was created.
-description | string | Optional | Yes | - | The description for the storagePool
-id | int | - | - | - | The unique identifier for the storagePool
-kind | string | - | - | - | The kind for the storagePool
-name | string | Optional | Yes | - | The name for the storagePool
+description | string | Optional | Yes | - | 
 removed | date | - | - | - | The date of when the storagePool was removed
-state | enum | - | - | - | The current state of the storagePool. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 transitioning | enum | - | - | - | Whether or not the storagePool is in a transitioning state
 transitioningMessage | string | - | - | - | The message to show while in a transitioning state
 transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the storagePool
@@ -37,8 +30,6 @@ uuid | string | - | - | - | The universally unique identifier for the storagePoo
 
 
 
-### Actions
-
 
 
 
@@ -48,6 +39,7 @@ uuid | string | - | - | - | The universally unique identifier for the storagePoo
 
 
 ​
+### Actions
 
 <span class="action">
 <span class="header">
@@ -61,7 +53,6 @@ To activate the storagePool
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -85,7 +76,6 @@ To deactivate the storagePool
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -109,7 +99,6 @@ To purge the storagePool
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -133,7 +122,6 @@ To remove the storagePool
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
@@ -157,7 +145,6 @@ To restore the storagePool
 <span class="input">
 <strong>Input:</strong>This action has no inputs
 <br>
-{% highlight json %}{}{% endhighlight %}
 
 <br>
 </span>
