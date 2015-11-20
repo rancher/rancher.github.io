@@ -3,9 +3,11 @@ title: API
 layout: rancher-default
 ---
 
-## <no value>
+## ubiquityConfig
 
-Description of API Input from yaml file. 
+
+The configuration to launch a server in Ubiquity Hosting.
+
 ​​
 ### Resource Fields
 

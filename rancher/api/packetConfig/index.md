@@ -3,9 +3,11 @@ title: API
 layout: rancher-default
 ---
 
-## <no value>
+## packetConfig
 
-Description of API Input from yaml file. 
+
+The configuration to launch an instance in Packet.
+
 ​​
 ### Resource Fields
 

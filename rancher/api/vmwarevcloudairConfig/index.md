@@ -3,9 +3,11 @@ title: API
 layout: rancher-default
 ---
 
-## <no value>
+## vmwarevcloudairConfig
 
-Description of API Input from yaml file. 
+
+The configuration to launch a machine in vCloudAir. Rancher is just calling `docker-machine`, so any available options in `docker-machine` are exposed in Rancher. The default fields from `docker-machine` are not listed in the Rancher API, and they can be found in the `docker-machine` documentation.
+
 ​​
 ### Resource Fields
 

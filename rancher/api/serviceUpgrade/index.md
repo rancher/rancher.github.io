@@ -3,9 +3,11 @@ title: API
 layout: rancher-default
 ---
 
-## <no value>
+## serviceUpgrade
 
-Description of API Input from yaml file. 
+
+
+
 ​​
 ### Resource Fields
 

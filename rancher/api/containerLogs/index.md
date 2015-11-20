@@ -3,9 +3,11 @@ title: API
 layout: rancher-default
 ---
 
-## <no value>
+## containerLogs
 
-Description of API Input from yaml file. 
+
+
+
 ​​
 ### Resource Fields
 

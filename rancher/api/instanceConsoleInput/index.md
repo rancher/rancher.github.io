@@ -3,7 +3,9 @@ title: API
 layout: rancher-default
 ---
 
-## <no value>
+## instanceConsoleInput
 
-Description of API Input from yaml file. 
+
+
+
 ​​

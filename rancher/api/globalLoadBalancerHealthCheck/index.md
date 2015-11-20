@@ -3,7 +3,9 @@ title: API
 layout: rancher-default
 ---
 
-## <no value>
+## globalLoadBalancerHealthCheck
 
-Description of API Input from yaml file. 
+
+
+
 ​​
