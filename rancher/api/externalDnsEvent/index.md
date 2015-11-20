@@ -17,7 +17,7 @@ kind | string | - | - | - |
 state | enum | - | - | - | The current state of the externalDnsEvent. The options are [created, creating, removed, removing, requested].
 eventType | string | - | - | - | 
 externalId | string | - | - | - | 
-fqdn | string | - | - | - | 
+fqdn | string | - | - | - | The fqdn of a service when the [Route 53 DNS service]({{site.baseurl}}/rancher/rancher-services/dns-service/) has started. The format will be `<serviceName>.<stackName>.<environmentName>.<yourHostedZoneName>`.
 reportedAccountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | 
 serviceName | string | - | - | - | 
 stackName | string | - | - | - | 

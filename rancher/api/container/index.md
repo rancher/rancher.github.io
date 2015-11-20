@@ -17,60 +17,60 @@ kind | string | - | - | - |
 name | string | Optional | Yes | - | 
 state | enum | - | - | - | The current state of the container. The options are [creating, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped].
 build | [dockerBuild]({{site.baseurl}}/rancher/api/dockerBuild/) | Optional | - | - | 
-capAdd | array[enum] | Optional | - | - | 
-capDrop | array[enum] | Optional | - | - | 
-command | array[string] | Optional | - | - | 
+capAdd | array[enum] | Optional | - | - | Add Linux capabilities. <code>--cap-add</code> in a <code>docker run</code> command
+capDrop | array[enum] | Optional | - | - | Drop Linux capabilities. <code>--cap-drop</code> in a <code>docker run</code> command
+command | array[string] | Optional | - | - | Overwrite the default commands set by the image
 count | int | Optional | - | - | 
-cpuSet | string | Optional | - | - | 
-cpuShares | int | Optional | - | - | 
-createIndex | int | - | - | - | 
+cpuSet | string | Optional | - | - | CPUs in which to allow execution (0-3, 0,1). <code>--cpuset</code> in a <code>docker run</code> command
+cpuShares | int | Optional | - | - | CPU shares (relative weight). <code>--cpu-shares</code> in a <code>docker run</code> command
+createIndex | int | - | - | - | The order that the container was created in a service.
 dataVolumeMounts | map[[volume]({{site.baseurl}}/rancher/api/volume/)] | Optional | - | - | 
 dataVolumes | array[string] | Optional | - | - | 
 dataVolumesFrom | array[[container]({{site.baseurl}}/rancher/api/container/)] | Optional | - | - | 
 deploymentUnitUuid | string | - | - | - | 
-devices | array[string] | Optional | - | - | 
-dns | array[string] | Optional | - | - | 
+devices | array[string] | Optional | - | - | Allows you to run devices inside the container without the <code>--privileged</code> flag
+dns | array[string] | Optional | - | - | Set custom dns servers for the container. <code>--dns</code> in a <code>docker run</code> command
 dnsSearch | array[string] | Optional | - | - | 
 domainName | string | Optional | - | - | 
-entryPoint | array[string] | Optional | - | - | 
+entryPoint | array[string] | Optional | - | - | Overwrite the default entrypoint set by the image. <code>--entrypoint</code> in a <code>docker run</code> command
 environment | map[string] | Optional | - | - | 
 expose | array[string] | Optional | - | - | 
 externalId | string | - | - | - | 
 extraHosts | array[string] | Optional | - | - | 
 firstRunning | date | - | - | - | 
-healthCheck | [instanceHealthCheck]({{site.baseurl}}/rancher/api/instanceHealthCheck/) | Optional | - | - | 
+healthCheck | [instanceHealthCheck]({{site.baseurl}}/rancher/api/instanceHealthCheck/) | Optional | - | - | The configuration of the health monitoring for managed network services
 healthState | enum | - | - | - | 
 hostname | string | Optional | - | - | 
 imageUuid | string | Optional | - | - | 
 instanceLinks | map[[instance]({{site.baseurl}}/rancher/api/instance/)] | Optional | - | - | 
 labels | map[string] | Optional | - | - | 
-logConfig | [logConfig]({{site.baseurl}}/rancher/api/logConfig/) | Optional | - | - | 
-lxcConf | map[string] | Optional | - | - | 
+logConfig | [logConfig]({{site.baseurl}}/rancher/api/logConfig/) | Optional | - | - | The logging configuration. <code>--log-driver</code> in a <code>docker run</code> command
+lxcConf | map[string] | Optional | - | - | Add custom lxc options. <code>--lxc-conf</code> in a <code>docker run</code> command
 memory | int | Optional | - | - | 
-memorySwap | int | Optional | - | - | 
+memorySwap | int | Optional | - | - | Total memory limit (memory + swap, `<number>[<unit>]`, where unit = b, k, m or g). <code>--memory-swap</code> in a <code>docker run</code> command
 nativeContainer | boolean | - | - | - | 
 networkContainerId | [container]({{site.baseurl}}/rancher/api/container/) | Optional | - | - | 
 networkIds | array[[network]({{site.baseurl}}/rancher/api/network/)] | Optional | - | - | 
-networkMode | enum | Optional | - | managed | 
-pidMode | enum | Optional | - | - | 
+networkMode | enum | Optional | - | managed | Set the Network mode for the container. <code>--net</code> in a <code>docker run</code> command <br> `bridge` - creates a new network stack for the container on the docker bridge<br> `none` -no networking for this container<br> `container<colon><name|id>` - reuses another container network stack<br> `host` - use the host network stack inside the container
+pidMode | enum | Optional | - | - | Set the PID (Process) Namespace mode for the container. `host` - use the host's PID namespace inside the container.  <code>--pid</code> in a <code>docker run</code> command
 ports | array[string] | Optional | - | - | 
 primaryIpAddress | string | - | - | - | 
-privileged | boolean | Optional | - | - | 
-publishAllPorts | boolean | Optional | - | - | 
+privileged | boolean | Optional | - | - | Give extended privileges to this container. <code>--privileged</code> in a <code>docker run</code> command
+publishAllPorts | boolean | Optional | - | - | Publish all exposed ports to the host interfaces
 readOnly | boolean | Optional | - | - | 
 registryCredentialId | [registryCredential]({{site.baseurl}}/rancher/api/registryCredential/) | Optional | - | - | 
 requestedHostId | [host]({{site.baseurl}}/rancher/api/host/) | Optional | - | - | 
-restartPolicy | [restartPolicy]({{site.baseurl}}/rancher/api/restartPolicy/) | Optional | - | - | 
-securityOpt | array[string] | Optional | - | - | 
+restartPolicy | [restartPolicy]({{site.baseurl}}/rancher/api/restartPolicy/) | Optional | - | - | Specify a restart policy for how a container should or should not be restarted on exit.
+securityOpt | array[string] | Optional | - | - | Override the default labeling scheme for each container. <code>--security-opt</code> in a <code>docker run</code> command
 startCount | int | - | - | - | 
-startOnCreate | boolean | Optional | - | true | 
-stdinOpen | boolean | Optional | - | - | 
+startOnCreate | boolean | Optional | - | true | Whether or not the services in the stack should be started after creation
+stdinOpen | boolean | Optional | - | - | Keep STDIN open even if not attached. <code>-i</code> in a <code>docker run</code> command
 systemContainer | enum | - | - | - | 
-tty | boolean | Optional | - | - | 
+tty | boolean | Optional | - | - | Allocate a pseudo-tty. <code>-t</code> in a <code>docker run</code> command
 user | string | Optional | - | - | 
 version | string | - | - | 0 | 
 volumeDriver | string | Optional | - | - | 
-workingDir | string | Optional | - | - | 
+workingDir | string | Optional | - | - | The working directory inside the container
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the container was created.
 description | string | Optional | Yes | - | 
@@ -380,10 +380,10 @@ To execute the container
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-attachStdin | boolean | No | true | 
-attachStdout | boolean | No | true | 
-command | array[string] | Yes | <no value> | 
-tty | boolean | No | true | 
+attachStdin | boolean | No | true | Attach to standard in stream. <code>-a stdin</code> in a <code>docker run</code> command
+attachStdout | boolean | No | true | Attach to standard out stream. <code>-a stdout</code> in a <code>docker run</code> command
+command | array[string] | Yes | <no value> | Overwrite the default commands set by the image
+tty | boolean | No | true | Allocate a pseudo-tty. <code>-t</code> in a <code>docker run</code> command
 
 
 <br>

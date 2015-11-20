@@ -16,16 +16,16 @@ id | int | - | - | - | The unique identifier for the service
 kind | string | - | - | - | 
 name | string | Yes | Yes | - | 
 state | enum | - | - | - | The current state of the service. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
-createIndex | int | - | - | - | 
-environmentId | [environment]({{site.baseurl}}/rancher/api/environment/) | Yes | - | - | 
+createIndex | int | - | - | - | The order that the container was created in a service.
+environmentId | [environment]({{site.baseurl}}/rancher/api/environment/) | Yes | - | - | The identifier of which stack the service belongs to
 externalId | string | - | - | - | 
-fqdn | string | - | - | - | 
-launchConfig | [launchConfig]({{site.baseurl}}/rancher/api/launchConfig/) | Optional | - | - | Configuration of a container
-metadata | map[json] | Optional | Yes | - | 
-scale | int | Optional | Yes | 1 | 
+fqdn | string | - | - | - | The fqdn of a service when the [Route 53 DNS service]({{site.baseurl}}/rancher/rancher-services/dns-service/) has started. The format will be `<serviceName>.<stackName>.<environmentName>.<yourHostedZoneName>`.
+launchConfig | [launchConfig]({{site.baseurl}}/rancher/api/launchConfig/) | Optional | - | - | The Docker run configuration of a container
+metadata | map[json] | Optional | Yes | - | The user added [metadata]({{site.baseurl}}/rancher/metadata-service/#adding-user-metadata-to-a-service) to a service.
+scale | int | Optional | Yes | 1 | The number of containers to deploy as part of a service
 secondaryLaunchConfigs | array[secondaryLaunchConfig] | Optional | - | - | The list of services that are sidekicks to the service.
-selectorContainer | string | Optional | - | - | The labels on containers to be linked to a service
-selectorLink | string | Optional | - | - | 
+selectorContainer | string | Optional | - | - | The [selector value]({{site.baseurl}}/rancher/labels/#selector-labels) used to select a [container]({{site.baseurl}}/rancher/api/container/) to link to the service based on a service's labels.
+selectorLink | string | Optional | - | - | The [selector value]({{site.baseurl}}/rancher/labels/#selector-labels) used to select a [service]({{site.baseurl}}/rancher/api/service/) to link to the service based on a service's labels.
 serviceSchemas | map[schema] | Optional | - | - | 
 upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/api/serviceUpgrade/) | - | - | - | 
 vip | string | Optional | - | - | 

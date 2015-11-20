@@ -16,12 +16,12 @@ id | int | - | - | - | The unique identifier for the dnsService
 kind | string | - | - | - | 
 name | string | Yes | Yes | - | 
 state | enum | - | - | - | The current state of the dnsService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
-environmentId | [environment]({{site.baseurl}}/rancher/api/environment/) | Yes | - | - | 
+environmentId | [environment]({{site.baseurl}}/rancher/api/environment/) | Yes | - | - | The identifier of which stack the service belongs to
 externalId | string | - | - | - | 
-fqdn | string | - | - | - | 
-launchConfig | [launchConfig]({{site.baseurl}}/rancher/api/launchConfig/) | Optional | - | - | Configuration of a container
-metadata | map[json] | Optional | Yes | - | 
-selectorLink | string | Optional | - | - | 
+fqdn | string | - | - | - | The fqdn of a service when the [Route 53 DNS service]({{site.baseurl}}/rancher/rancher-services/dns-service/) has started. The format will be `<serviceName>.<stackName>.<environmentName>.<yourHostedZoneName>`.
+launchConfig | [launchConfig]({{site.baseurl}}/rancher/api/launchConfig/) | Optional | - | - | The Docker run configuration of a container
+metadata | map[json] | Optional | Yes | - | The user added [metadata]({{site.baseurl}}/rancher/metadata-service/#adding-user-metadata-to-a-service) to a service.
+selectorLink | string | Optional | - | - | The [selector value]({{site.baseurl}}/rancher/labels/#selector-labels) used to select a [service]({{site.baseurl}}/rancher/api/service/) to link to the service based on a service's labels.
 upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/api/serviceUpgrade/) | - | - | - | 
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the dnsService was created.

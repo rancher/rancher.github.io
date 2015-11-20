@@ -20,7 +20,7 @@ agentState | string | - | - | - | The state of the agent
 computeTotal | int | - | - | - | 
 info | json | - | - | - | 
 labels | map[string] | - | Yes | - | 
-physicalHostId | [physicalHost]({{site.baseurl}}/rancher/api/physicalHost/) | - | - | - | 
+physicalHostId | [physicalHost]({{site.baseurl}}/rancher/api/physicalHost/) | - | - | - | The unique identifier of the physical host
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the host was created.
 description | string | Optional | Yes | - | 

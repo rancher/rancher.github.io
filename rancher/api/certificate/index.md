@@ -18,12 +18,12 @@ name | string | Yes | Yes | - |
 state | enum | - | - | - | The current state of the certificate. The options are [activating, active, removed, removing, requested].
 CN | string | - | - | - | The common name
 algorithm | string | - | - | - | 
-cert | string | Yes | Yes | - | The certificate
+cert | string | Yes | Yes | - | 
 certChain | string | Optional | Yes | - | 
 certFingerprint | string | - | - | - | 
-expiresAt | string | - | - | - | 
-issuedAt | string | - | - | - | 
-issuer | string | - | - | - | 
+expiresAt | string | - | - | - | The date that the certificate expires at
+issuedAt | string | - | - | - | The date that the certificate was issued
+issuer | string | - | - | - | The issuer of the certificate
 key | string | Yes | - | - | 
 keySize | int | - | - | - | 
 serialNumber | string | - | - | - | 

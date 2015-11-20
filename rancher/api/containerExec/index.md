@@ -12,10 +12,10 @@ Collection Test Description
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-attachStdin | boolean | Optional | - | true | 
-attachStdout | boolean | Optional | - | true | 
-command | array[string] | Yes | - | - | 
-tty | boolean | Optional | - | true | 
+attachStdin | boolean | Optional | - | true | Attach to standard in stream. <code>-a stdin</code> in a <code>docker run</code> command
+attachStdout | boolean | Optional | - | true | Attach to standard out stream. <code>-a stdout</code> in a <code>docker run</code> command
+command | array[string] | Yes | - | - | Overwrite the default commands set by the image
+tty | boolean | Optional | - | true | Allocate a pseudo-tty. <code>-t</code> in a <code>docker run</code> command
 
 
 

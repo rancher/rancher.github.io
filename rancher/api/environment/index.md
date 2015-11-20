@@ -22,7 +22,7 @@ externalId | string | Optional | Yes | - |
 outputs | map[string] | Optional | Yes | - | 
 previousExternalId | string | Optional | Yes | - | 
 rancherCompose | string | Optional | - | - | The rancher-compose.yml file for the stack
-startOnCreate | boolean | Optional | - | - | 
+startOnCreate | boolean | Optional | - | - | Whether or not the services in the stack should be started after creation
 accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
 created | date | - | - | - | The date of when the environment was created.
 description | string | Optional | Yes | - | 
