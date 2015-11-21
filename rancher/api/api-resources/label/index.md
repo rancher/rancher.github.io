@@ -12,24 +12,16 @@ Collection Test Description
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the label
-kind | string | - | - | - | 
-name | string | Optional | Yes | - | 
-state | enum | - | - | - | The current state of the label. The options are [created, creating, removed, removing, requested].
-key | string | - | - | - | 
-value | string | - | - | - | 
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the label was created.
 description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the label was removed
-transitioning | enum | - | - | - | Whether or not the label is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the label
-uuid | string | - | - | - | The universally unique identifier for the label. This will always be unique across Rancher installations.
+id | int | - | - | - | The unique identifier for the label
+key | string | - | - | - | 
+name | string | Optional | Yes | - | 
+value | string | - | - | - | 
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 
 
@@ -44,7 +36,7 @@ uuid | string | - | - | - | The universally unique identifier for the label. Thi
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the label
@@ -57,7 +49,7 @@ To remove the label
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/label/">label</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/label/">label</a> resource
 </span>
 </div>
 </span>

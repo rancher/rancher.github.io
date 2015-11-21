@@ -12,24 +12,16 @@ Collection Test Description
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the loadBalancerConfigListenerMap
-kind | string | - | - | - | 
-name | string | Optional | Yes | - | 
-state | enum | - | - | - | The current state of the loadBalancerConfigListenerMap. The options are [activating, active, removed, removing, requested].
-loadBalancerConfigId | [loadBalancerConfig]({{site.baseurl}}/rancher/api/loadBalancerConfig/) | - | - | - | 
-loadBalancerListenerId | [loadBalancerListener]({{site.baseurl}}/rancher/api/loadBalancerListener/) | - | - | - | 
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the loadBalancerConfigListenerMap was created.
 description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the loadBalancerConfigListenerMap was removed
-transitioning | enum | - | - | - | Whether or not the loadBalancerConfigListenerMap is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the loadBalancerConfigListenerMap
-uuid | string | - | - | - | The universally unique identifier for the loadBalancerConfigListenerMap. This will always be unique across Rancher installations.
+id | int | - | - | - | The unique identifier for the loadBalancerConfigListenerMap
+loadBalancerConfigId | [loadBalancerConfig]({{site.baseurl}}/rancher/api/api-resources/loadBalancerConfig/) | - | - | - | 
+loadBalancerListenerId | [loadBalancerListener]({{site.baseurl}}/rancher/api/api-resources/loadBalancerListener/) | - | - | - | 
+name | string | Optional | Yes | - | 
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 
 
@@ -44,7 +36,7 @@ uuid | string | - | - | - | The universally unique identifier for the loadBalanc
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the loadBalancerConfigListenerMap
@@ -57,7 +49,7 @@ To remove the loadBalancerConfigListenerMap
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/loadBalancerConfigListenerMap/">loadBalancerConfigListenerMap</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/loadBalancerConfigListenerMap/">loadBalancerConfigListenerMap</a> resource
 </span>
 </div>
 </span>

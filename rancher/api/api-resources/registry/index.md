@@ -12,25 +12,17 @@ A registry is where image repositories are hosted. The repository can be either 
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the registry
-kind | string | - | - | - | 
-name | string | Optional | Yes | - | 
-state | enum | - | - | - | The current state of the registry. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+description | string | Optional | Yes | - | 
 driverName | string | - | - | - | 
 externalId | string | - | - | - | 
+id | int | - | - | - | The unique identifier for the registry
+name | string | Optional | Yes | - | 
 serverAddress | string | Yes | - | - | The address of the registry to use
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the registry was created.
-description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the registry was removed
-transitioning | enum | - | - | - | Whether or not the registry is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the registry
-uuid | string | - | - | - | The universally unique identifier for the registry. This will always be unique across Rancher installations.
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 ### Operations
 
@@ -39,7 +31,7 @@ uuid | string | - | - | - | The universally unique identifier for the registry. 
 <span class="action">
 <span class="header">
 Create
-<span class="headerright">POST:  <code>${links.self}</code></span>
+<span class="headerright">POST:  <code>/v1/registry</code></span>
 </span>
 <div class="action-contents">
 {% highlight json %} 
@@ -115,7 +107,7 @@ Delete
 <span class="action">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>${action.activate}</code></span>
+<span class="headerright">POST:  <code>${actions.activate}</code></span>
 </span>
 <div class="action-contents">
 To activate the registry
@@ -128,7 +120,7 @@ To activate the registry
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/storagePool/">storagePool</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/storagePool/">storagePool</a> resource
 </span>
 </div>
 </span>
@@ -138,7 +130,7 @@ To activate the registry
 <span class="action">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>${action.deactivate}</code></span>
+<span class="headerright">POST:  <code>${actions.deactivate}</code></span>
 </span>
 <div class="action-contents">
 To deactivate the registry
@@ -151,7 +143,7 @@ To deactivate the registry
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/storagePool/">storagePool</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/storagePool/">storagePool</a> resource
 </span>
 </div>
 </span>
@@ -161,7 +153,7 @@ To deactivate the registry
 <span class="action">
 <span class="header">
 purge
-<span class="headerright">POST:  <code>${action.purge}</code></span>
+<span class="headerright">POST:  <code>${actions.purge}</code></span>
 </span>
 <div class="action-contents">
 To purge the registry
@@ -174,7 +166,7 @@ To purge the registry
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/storagePool/">storagePool</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/storagePool/">storagePool</a> resource
 </span>
 </div>
 </span>
@@ -184,7 +176,7 @@ To purge the registry
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the registry
@@ -197,7 +189,7 @@ To remove the registry
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/storagePool/">storagePool</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/storagePool/">storagePool</a> resource
 </span>
 </div>
 </span>
@@ -207,7 +199,7 @@ To remove the registry
 <span class="action">
 <span class="header">
 restore
-<span class="headerright">POST:  <code>${action.restore}</code></span>
+<span class="headerright">POST:  <code>${actions.restore}</code></span>
 </span>
 <div class="action-contents">
 To restore the registry
@@ -220,7 +212,7 @@ To restore the registry
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/storagePool/">storagePool</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/storagePool/">storagePool</a> resource
 </span>
 </div>
 </span>

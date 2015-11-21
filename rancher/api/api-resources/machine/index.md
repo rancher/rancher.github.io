@@ -5,48 +5,40 @@ layout: rancher-default
 
 ## machine
 
-Machines are created whenever Rancher uses `docker-machine` to create hosts in Rancher. Adding any type of host through the UI that is not the custom command option is calling `docker-machine` and a machine entry will be created as well as a [host]({{site.baseurl}}/rancher/api/host).
+Machines are created whenever Rancher uses `docker-machine` to create hosts in Rancher. Adding any type of host through the UI that is not the custom command option is calling `docker-machine` and a machine entry will be created as well as a [host]({{site.baseurl}}/rancher/api/api-resources/host).
 
 ​
 ### Resource Fields
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the machine
-kind | string | - | - | - | 
-name | string | Yes | Yes | - | 
-state | enum | - | - | - | The current state of the machine. The options are [active, bootstrapping, created, creating, error, erroring, removed, removing, requested, updating].
-amazonec2Config | [amazonec2Config]({{site.baseurl}}/rancher/api/amazonec2Config/) | Optional | - | - | Configuration for launching a host in Amazon EC2
+amazonec2Config | [amazonec2Config]({{site.baseurl}}/rancher/api/api-resources/amazonec2Config/) | Optional | - | - | Configuration for launching a host in Amazon EC2
 authCertificateAuthority | string | Optional | - | - | 
 authKey | string | Optional | - | - | 
-azureConfig | [azureConfig]({{site.baseurl}}/rancher/api/azureConfig/) | Optional | - | - | Configuration for launching a host in Microsoft Azure
-digitaloceanConfig | [digitaloceanConfig]({{site.baseurl}}/rancher/api/digitaloceanConfig/) | Optional | - | - | Configuration for launching a host in DigitalOcean
+azureConfig | [azureConfig]({{site.baseurl}}/rancher/api/api-resources/azureConfig/) | Optional | - | - | Configuration for launching a host in Microsoft Azure
+description | string | Optional | Yes | - | 
+digitaloceanConfig | [digitaloceanConfig]({{site.baseurl}}/rancher/api/api-resources/digitaloceanConfig/) | Optional | - | - | Configuration for launching a host in DigitalOcean
 dockerVersion | string | Optional | - | - | 
 driver | string | - | - | - | 
 engineOpts | array[string] | Optional | - | - | 
-exoscaleConfig | [exoscaleConfig]({{site.baseurl}}/rancher/api/exoscaleConfig/) | Optional | - | - | Configuration for launching a host in exoscale
+exoscaleConfig | [exoscaleConfig]({{site.baseurl}}/rancher/api/api-resources/exoscaleConfig/) | Optional | - | - | Configuration for launching a host in exoscale
 externalId | string | - | - | - | 
+id | int | - | - | - | The unique identifier for the machine
 labels | map[string] | Optional | - | - | 
-openstackConfig | [openstackConfig]({{site.baseurl}}/rancher/api/openstackConfig/) | Optional | - | - | Configuration for launching a host in OpenStack
-packetConfig | [packetConfig]({{site.baseurl}}/rancher/api/packetConfig/) | Optional | - | - | Configuration for launching a host in Packet
-rackspaceConfig | [rackspaceConfig]({{site.baseurl}}/rancher/api/rackspaceConfig/) | Optional | - | - | Configuration for launching a host in Rackspace
-softlayerConfig | [softlayerConfig]({{site.baseurl}}/rancher/api/softlayerConfig/) | Optional | - | - | Configuration for launching a host in IBM Softlayer
-ubiquityConfig | [ubiquityConfig]({{site.baseurl}}/rancher/api/ubiquityConfig/) | Optional | - | - | 
-virtualboxConfig | [virtualboxConfig]({{site.baseurl}}/rancher/api/virtualboxConfig/) | Optional | - | - | Configuration for launching a host in Oracle VirtualBox
-vmwarevcloudairConfig | [vmwarevcloudairConfig]({{site.baseurl}}/rancher/api/vmwarevcloudairConfig/) | Optional | - | - | Configuration for launching a host in VMware vCloud Air
-vmwarevsphereConfig | [vmwarevsphereConfig]({{site.baseurl}}/rancher/api/vmwarevsphereConfig/) | Optional | - | - | Configuration for launching a host in VMware vSphere
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the machine was created.
-description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the machine was removed
-transitioning | enum | - | - | - | Whether or not the machine is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the machine
-uuid | string | - | - | - | The universally unique identifier for the machine. This will always be unique across Rancher installations.
+name | string | Yes | Yes | - | 
+openstackConfig | [openstackConfig]({{site.baseurl}}/rancher/api/api-resources/openstackConfig/) | Optional | - | - | Configuration for launching a host in OpenStack
+packetConfig | [packetConfig]({{site.baseurl}}/rancher/api/api-resources/packetConfig/) | Optional | - | - | Configuration for launching a host in Packet
+rackspaceConfig | [rackspaceConfig]({{site.baseurl}}/rancher/api/api-resources/rackspaceConfig/) | Optional | - | - | Configuration for launching a host in Rackspace
+softlayerConfig | [softlayerConfig]({{site.baseurl}}/rancher/api/api-resources/softlayerConfig/) | Optional | - | - | Configuration for launching a host in IBM Softlayer
+ubiquityConfig | [ubiquityConfig]({{site.baseurl}}/rancher/api/api-resources/ubiquityConfig/) | Optional | - | - | 
+virtualboxConfig | [virtualboxConfig]({{site.baseurl}}/rancher/api/api-resources/virtualboxConfig/) | Optional | - | - | Configuration for launching a host in Oracle VirtualBox
+vmwarevcloudairConfig | [vmwarevcloudairConfig]({{site.baseurl}}/rancher/api/api-resources/vmwarevcloudairConfig/) | Optional | - | - | Configuration for launching a host in VMware vCloud Air
+vmwarevsphereConfig | [vmwarevsphereConfig]({{site.baseurl}}/rancher/api/api-resources/vmwarevsphereConfig/) | Optional | - | - | Configuration for launching a host in VMware vSphere
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 ### Operations
 
@@ -55,7 +47,7 @@ uuid | string | - | - | - | The universally unique identifier for the machine. T
 <span class="action">
 <span class="header">
 Create
-<span class="headerright">POST:  <code>${links.self}</code></span>
+<span class="headerright">POST:  <code>/v1/machine</code></span>
 </span>
 <div class="action-contents">
 {% highlight json %} 
@@ -155,7 +147,15 @@ Create
 
 	"dockerVersion": "string",
 
-	"engineOpts": "[string, string, string...]",
+	"engineOpts": [
+
+		"string1",
+
+		"string2",
+
+		"...stringN"
+
+	],
 
 	"exoscaleConfig": {
 
@@ -171,13 +171,29 @@ Create
 
 		"instanceProfile": "string",
 
-		"securityGroup": "[string, string, string...]",
+		"securityGroup": [
+
+			"string1",
+
+			"string2",
+
+			"...stringN"
+
+		],
 
 		"url": "string"
 
 	},
 
-	"labels": "map[string]",
+	"labels": {
+
+		"key1": "value1",
+
+		"key2": "value2",
+
+		"keyN": "valueN"
+
+	},
 
 	"name": "string",
 
@@ -433,7 +449,7 @@ Delete
 <span class="action">
 <span class="header">
 bootstrap
-<span class="headerright">POST:  <code>${action.bootstrap}</code></span>
+<span class="headerright">POST:  <code>${actions.bootstrap}</code></span>
 </span>
 <div class="action-contents">
 To bootstrap the machine
@@ -446,7 +462,7 @@ To bootstrap the machine
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/physicalHost/">physicalHost</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/physicalHost/">physicalHost</a> resource
 </span>
 </div>
 </span>
@@ -456,7 +472,7 @@ To bootstrap the machine
 <span class="action">
 <span class="header">
 error
-<span class="headerright">POST:  <code>${action.error}</code></span>
+<span class="headerright">POST:  <code>${actions.error}</code></span>
 </span>
 <div class="action-contents">
 To error the machine
@@ -469,7 +485,7 @@ To error the machine
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/physicalHost/">physicalHost</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/physicalHost/">physicalHost</a> resource
 </span>
 </div>
 </span>
@@ -479,7 +495,7 @@ To error the machine
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the machine
@@ -492,7 +508,7 @@ To remove the machine
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/physicalHost/">physicalHost</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/physicalHost/">physicalHost</a> resource
 </span>
 </div>
 </span>

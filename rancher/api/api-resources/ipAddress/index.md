@@ -12,24 +12,16 @@ Collection Test Description
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the ipAddress
-kind | string | - | - | - | 
-name | string | Optional | Yes | - | 
-state | enum | - | - | - | The current state of the ipAddress. The options are [activating, active, associated, associating, deactivating, disassociating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 address | string | - | - | - | 
-networkId | [network]({{site.baseurl}}/rancher/api/network/) | - | - | - | 
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the ipAddress was created.
 description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the ipAddress was removed
-transitioning | enum | - | - | - | Whether or not the ipAddress is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the ipAddress
-uuid | string | - | - | - | The universally unique identifier for the ipAddress. This will always be unique across Rancher installations.
+id | int | - | - | - | The unique identifier for the ipAddress
+name | string | Optional | Yes | - | 
+networkId | [network]({{site.baseurl}}/rancher/api/api-resources/network/) | - | - | - | 
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 
 
@@ -44,7 +36,7 @@ uuid | string | - | - | - | The universally unique identifier for the ipAddress.
 <span class="action">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>${action.activate}</code></span>
+<span class="headerright">POST:  <code>${actions.activate}</code></span>
 </span>
 <div class="action-contents">
 To activate the ipAddress
@@ -57,7 +49,7 @@ To activate the ipAddress
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/ipAddress/">ipAddress</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/ipAddress/">ipAddress</a> resource
 </span>
 </div>
 </span>
@@ -67,7 +59,7 @@ To activate the ipAddress
 <span class="action">
 <span class="header">
 associate
-<span class="headerright">POST:  <code>${action.associate}</code></span>
+<span class="headerright">POST:  <code>${actions.associate}</code></span>
 </span>
 <div class="action-contents">
 To associate the ipAddress
@@ -92,7 +84,7 @@ ipAddressId | reference[ipAddress] | No | <no value> |
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/ipPool/">ipPool</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/ipPool/">ipPool</a> resource
 </span>
 </div>
 </span>
@@ -102,7 +94,7 @@ ipAddressId | reference[ipAddress] | No | <no value> |
 <span class="action">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>${action.deactivate}</code></span>
+<span class="headerright">POST:  <code>${actions.deactivate}</code></span>
 </span>
 <div class="action-contents">
 To deactivate the ipAddress
@@ -115,7 +107,7 @@ To deactivate the ipAddress
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/ipAddress/">ipAddress</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/ipAddress/">ipAddress</a> resource
 </span>
 </div>
 </span>
@@ -125,7 +117,7 @@ To deactivate the ipAddress
 <span class="action">
 <span class="header">
 disassociate
-<span class="headerright">POST:  <code>${action.disassociate}</code></span>
+<span class="headerright">POST:  <code>${actions.disassociate}</code></span>
 </span>
 <div class="action-contents">
 To disassociate the ipAddress
@@ -138,7 +130,7 @@ To disassociate the ipAddress
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/ipAddress/">ipAddress</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/ipAddress/">ipAddress</a> resource
 </span>
 </div>
 </span>
@@ -148,7 +140,7 @@ To disassociate the ipAddress
 <span class="action">
 <span class="header">
 purge
-<span class="headerright">POST:  <code>${action.purge}</code></span>
+<span class="headerright">POST:  <code>${actions.purge}</code></span>
 </span>
 <div class="action-contents">
 To purge the ipAddress
@@ -161,7 +153,7 @@ To purge the ipAddress
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/ipAddress/">ipAddress</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/ipAddress/">ipAddress</a> resource
 </span>
 </div>
 </span>
@@ -171,7 +163,7 @@ To purge the ipAddress
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the ipAddress
@@ -184,7 +176,7 @@ To remove the ipAddress
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/ipAddress/">ipAddress</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/ipAddress/">ipAddress</a> resource
 </span>
 </div>
 </span>
@@ -194,7 +186,7 @@ To remove the ipAddress
 <span class="action">
 <span class="header">
 restore
-<span class="headerright">POST:  <code>${action.restore}</code></span>
+<span class="headerright">POST:  <code>${actions.restore}</code></span>
 </span>
 <div class="action-contents">
 To restore the ipAddress
@@ -207,7 +199,7 @@ To restore the ipAddress
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/ipAddress/">ipAddress</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/ipAddress/">ipAddress</a> resource
 </span>
 </div>
 </span>

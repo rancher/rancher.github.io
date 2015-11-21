@@ -12,24 +12,16 @@ An API Key provides access to the Rancher API if access control has been turned 
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+description | string | Optional | Yes | - | 
 id | int | - | - | - | The unique identifier for the apiKey
-kind | string | - | - | - | 
 name | string | Optional | Yes | - | 
-state | enum | - | - | - | The current state of the apiKey. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
 publicValue | string | - | - | - | The public value of the apiKey
 secretValue | string | - | - | - | The secret value of the apiKey
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the apiKey was created.
-description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the apiKey was removed
-transitioning | enum | - | - | - | Whether or not the apiKey is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the apiKey
-uuid | string | - | - | - | The universally unique identifier for the apiKey. This will always be unique across Rancher installations.
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 ### Operations
 
@@ -38,7 +30,7 @@ uuid | string | - | - | - | The universally unique identifier for the apiKey. Th
 <span class="action">
 <span class="header">
 Create
-<span class="headerright">POST:  <code>${links.self}</code></span>
+<span class="headerright">POST:  <code>/v1/apiKey</code></span>
 </span>
 <div class="action-contents">
 {% highlight json %} 
@@ -112,7 +104,7 @@ Delete
 <span class="action">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>${action.activate}</code></span>
+<span class="headerright">POST:  <code>${actions.activate}</code></span>
 </span>
 <div class="action-contents">
 To activate the apiKey
@@ -125,7 +117,7 @@ To activate the apiKey
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/credential/">credential</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource
 </span>
 </div>
 </span>
@@ -135,7 +127,7 @@ To activate the apiKey
 <span class="action">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>${action.deactivate}</code></span>
+<span class="headerright">POST:  <code>${actions.deactivate}</code></span>
 </span>
 <div class="action-contents">
 To deactivate the apiKey
@@ -148,7 +140,7 @@ To deactivate the apiKey
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/credential/">credential</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource
 </span>
 </div>
 </span>
@@ -158,7 +150,7 @@ To deactivate the apiKey
 <span class="action">
 <span class="header">
 purge
-<span class="headerright">POST:  <code>${action.purge}</code></span>
+<span class="headerright">POST:  <code>${actions.purge}</code></span>
 </span>
 <div class="action-contents">
 To purge the apiKey
@@ -171,7 +163,7 @@ To purge the apiKey
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/credential/">credential</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource
 </span>
 </div>
 </span>
@@ -181,7 +173,7 @@ To purge the apiKey
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the apiKey
@@ -194,7 +186,7 @@ To remove the apiKey
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/credential/">credential</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource
 </span>
 </div>
 </span>

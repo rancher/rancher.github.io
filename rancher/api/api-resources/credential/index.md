@@ -12,24 +12,16 @@ Collection Test Description
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+description | string | Optional | Yes | - | 
 id | int | - | - | - | The unique identifier for the credential
-kind | string | - | - | - | 
 name | string | Optional | Yes | - | 
-state | enum | - | - | - | The current state of the credential. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
 publicValue | string | - | - | - | The public value of the credential
 secretValue | string | - | - | - | The secret value of the credential
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the credential was created.
-description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the credential was removed
-transitioning | enum | - | - | - | Whether or not the credential is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the credential
-uuid | string | - | - | - | The universally unique identifier for the credential. This will always be unique across Rancher installations.
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 
 
@@ -44,7 +36,7 @@ uuid | string | - | - | - | The universally unique identifier for the credential
 <span class="action">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>${action.activate}</code></span>
+<span class="headerright">POST:  <code>${actions.activate}</code></span>
 </span>
 <div class="action-contents">
 To activate the credential
@@ -57,7 +49,7 @@ To activate the credential
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/credential/">credential</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource
 </span>
 </div>
 </span>
@@ -67,7 +59,7 @@ To activate the credential
 <span class="action">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>${action.deactivate}</code></span>
+<span class="headerright">POST:  <code>${actions.deactivate}</code></span>
 </span>
 <div class="action-contents">
 To deactivate the credential
@@ -80,7 +72,7 @@ To deactivate the credential
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/credential/">credential</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource
 </span>
 </div>
 </span>
@@ -90,7 +82,7 @@ To deactivate the credential
 <span class="action">
 <span class="header">
 purge
-<span class="headerright">POST:  <code>${action.purge}</code></span>
+<span class="headerright">POST:  <code>${actions.purge}</code></span>
 </span>
 <div class="action-contents">
 To purge the credential
@@ -103,7 +95,7 @@ To purge the credential
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/credential/">credential</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource
 </span>
 </div>
 </span>
@@ -113,7 +105,7 @@ To purge the credential
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the credential
@@ -126,7 +118,7 @@ To remove the credential
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/credential/">credential</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource
 </span>
 </div>
 </span>

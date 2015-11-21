@@ -12,23 +12,16 @@ Collection Test Description
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the externalVolumeEvent
-kind | string | - | - | - | 
-state | enum | - | - | - | The current state of the externalVolumeEvent. The options are [created, creating, removed, removing, requested].
 eventType | string | - | - | - | 
 externalId | string | - | - | - | 
-reportedAccountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | 
-volume | [volume]({{site.baseurl}}/rancher/api/volume/) | - | - | - | 
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the externalVolumeEvent was created.
-transitioning | enum | - | - | - | Whether or not the externalVolumeEvent is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the externalVolumeEvent
-uuid | string | - | - | - | The universally unique identifier for the externalVolumeEvent. This will always be unique across Rancher installations.
+id | int | - | - | - | The unique identifier for the externalVolumeEvent
+reportedAccountId | [account]({{site.baseurl}}/rancher/api/api-resources/account/) | - | - | - | 
+volume | [volume]({{site.baseurl}}/rancher/api/api-resources/volume/) | - | - | - | 
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 
 
@@ -43,7 +36,7 @@ uuid | string | - | - | - | The universally unique identifier for the externalVo
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the externalVolumeEvent
@@ -56,7 +49,7 @@ To remove the externalVolumeEvent
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/externalEvent/">externalEvent</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/externalEvent/">externalEvent</a> resource
 </span>
 </div>
 </span>

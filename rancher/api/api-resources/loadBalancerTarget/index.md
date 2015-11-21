@@ -12,26 +12,18 @@ Collection Test Description
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the loadBalancerTarget
-kind | string | - | - | - | 
-name | string | Optional | Yes | - | 
-state | enum | - | - | - | The current state of the loadBalancerTarget. The options are [activating, active, removed, removing, requested, updating-active].
-instanceId | [instance]({{site.baseurl}}/rancher/api/instance/) | Optional | - | - | The unique identifier for the associated instance
-ipAddress | string | Optional | - | - | The ip address for an external service
-loadBalancerId | [loadBalancer]({{site.baseurl}}/rancher/api/loadBalancer/) | - | - | - | 
-ports | array[string] | Yes | - | - | 
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the loadBalancerTarget was created.
 description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the loadBalancerTarget was removed
-transitioning | enum | - | - | - | Whether or not the loadBalancerTarget is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the loadBalancerTarget
-uuid | string | - | - | - | The universally unique identifier for the loadBalancerTarget. This will always be unique across Rancher installations.
+id | int | - | - | - | The unique identifier for the loadBalancerTarget
+instanceId | [instance]({{site.baseurl}}/rancher/api/api-resources/instance/) | Optional | - | - | The unique identifier for the associated instance
+ipAddress | string | Optional | - | - | The ip address for an external service
+loadBalancerId | [loadBalancer]({{site.baseurl}}/rancher/api/api-resources/loadBalancer/) | - | - | - | 
+name | string | Optional | Yes | - | 
+ports | array[string] | Yes | - | - | 
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 
 
@@ -46,7 +38,7 @@ uuid | string | - | - | - | The universally unique identifier for the loadBalanc
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the loadBalancerTarget
@@ -59,7 +51,7 @@ To remove the loadBalancerTarget
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/loadBalancerTarget/">loadBalancerTarget</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/loadBalancerTarget/">loadBalancerTarget</a> resource
 </span>
 </div>
 </span>

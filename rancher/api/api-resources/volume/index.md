@@ -5,36 +5,28 @@ layout: rancher-default
 
 ## volume
 
-A volume can be associated to containers or storage pools. <br><br> * A container can have many volumes and containers are mapped to volumes the [mount]({{site.baseurl}}/rancher/api/mount/) link on a container. <br> * A storage pool owns many volues. The volume is only available to containers deployed on hostst that are part of the storage pool. When a volume is being created, you do not directly associate it to a storage pool. You will only need to specify a driver and during allocation, Rancher will resolve it to a storage pool.
+A volume can be associated to containers or storage pools. <br><br> * A container can have many volumes and containers are mapped to volumes the [mount]({{site.baseurl}}/rancher/api/api-resources/mount/) link on a container. <br> * A storage pool owns many volues. The volume is only available to containers deployed on hostst that are part of the storage pool. When a volume is being created, you do not directly associate it to a storage pool. You will only need to specify a driver and during allocation, Rancher will resolve it to a storage pool.
 
 ​
 ### Resource Fields
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the volume
-kind | string | - | - | - | 
-name | string | Yes | - | - | 
-state | enum | - | - | - | The current state of the volume. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+description | string | Optional | Yes | - | 
 driver | string | Yes | - | - | 
 driverOpts | map[string] | Optional | - | - | 
 externalId | string | - | - | - | 
-imageId | [image]({{site.baseurl}}/rancher/api/image/) | - | - | - | The ID of the image that will be used for the machine
-instanceId | [instance]({{site.baseurl}}/rancher/api/instance/) | - | - | - | The unique identifier for the associated instance
+id | int | - | - | - | The unique identifier for the volume
+imageId | [image]({{site.baseurl}}/rancher/api/api-resources/image/) | - | - | - | The ID of the image that will be used for the machine
+instanceId | [instance]({{site.baseurl}}/rancher/api/api-resources/instance/) | - | - | - | The unique identifier for the associated instance
 isHostPath | boolean | - | - | - | Whether or not the path of the volume is on the host
+name | string | Yes | - | - | 
 uri | string | - | - | - | 
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the volume was created.
-description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the volume was removed
-transitioning | enum | - | - | - | Whether or not the volume is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the volume
-uuid | string | - | - | - | The universally unique identifier for the volume. This will always be unique across Rancher installations.
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 ### Operations
 
@@ -43,7 +35,7 @@ uuid | string | - | - | - | The universally unique identifier for the volume. Th
 <span class="action">
 <span class="header">
 Create
-<span class="headerright">POST:  <code>${links.self}</code></span>
+<span class="headerright">POST:  <code>/v1/volume</code></span>
 </span>
 <div class="action-contents">
 {% highlight json %} 
@@ -53,7 +45,15 @@ Create
 
 	"driver": "string",
 
-	"driverOpts": "map[string]",
+	"driverOpts": {
+
+		"key1": "value1",
+
+		"key2": "value2",
+
+		"keyN": "valueN"
+
+	},
 
 	"name": "string"
 
@@ -97,7 +97,7 @@ Delete
 <span class="action">
 <span class="header">
 allocate
-<span class="headerright">POST:  <code>${action.allocate}</code></span>
+<span class="headerright">POST:  <code>${actions.allocate}</code></span>
 </span>
 <div class="action-contents">
 To allocate the volume
@@ -110,7 +110,7 @@ To allocate the volume
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/volume/">volume</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/volume/">volume</a> resource
 </span>
 </div>
 </span>
@@ -120,7 +120,7 @@ To allocate the volume
 <span class="action">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>${action.deactivate}</code></span>
+<span class="headerright">POST:  <code>${actions.deactivate}</code></span>
 </span>
 <div class="action-contents">
 To deactivate the volume
@@ -133,7 +133,7 @@ To deactivate the volume
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/volume/">volume</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/volume/">volume</a> resource
 </span>
 </div>
 </span>
@@ -143,7 +143,7 @@ To deactivate the volume
 <span class="action">
 <span class="header">
 deallocate
-<span class="headerright">POST:  <code>${action.deallocate}</code></span>
+<span class="headerright">POST:  <code>${actions.deallocate}</code></span>
 </span>
 <div class="action-contents">
 To deallocate the volume
@@ -156,7 +156,7 @@ To deallocate the volume
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/volume/">volume</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/volume/">volume</a> resource
 </span>
 </div>
 </span>
@@ -166,7 +166,7 @@ To deallocate the volume
 <span class="action">
 <span class="header">
 purge
-<span class="headerright">POST:  <code>${action.purge}</code></span>
+<span class="headerright">POST:  <code>${actions.purge}</code></span>
 </span>
 <div class="action-contents">
 To purge the volume
@@ -179,7 +179,7 @@ To purge the volume
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/volume/">volume</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/volume/">volume</a> resource
 </span>
 </div>
 </span>
@@ -189,7 +189,7 @@ To purge the volume
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the volume
@@ -202,7 +202,7 @@ To remove the volume
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/volume/">volume</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/volume/">volume</a> resource
 </span>
 </div>
 </span>
@@ -212,7 +212,7 @@ To remove the volume
 <span class="action">
 <span class="header">
 restore
-<span class="headerright">POST:  <code>${action.restore}</code></span>
+<span class="headerright">POST:  <code>${actions.restore}</code></span>
 </span>
 <div class="action-contents">
 To restore the volume
@@ -225,7 +225,7 @@ To restore the volume
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/volume/">volume</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/volume/">volume</a> resource
 </span>
 </div>
 </span>

@@ -12,28 +12,20 @@ layout: rancher-default
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the loadBalancer
-kind | string | - | - | - | 
-name | string | Optional | Yes | - | 
-state | enum | - | - | - | The current state of the loadBalancer. The options are [activating, active, deactivating, inactive, removed, removing, requested, updating-active].
-certificateIds | array[[certificate]({{site.baseurl}}/rancher/api/certificate/)] | Optional | Yes | - | The ID of a certificate
-defaultCertificateId | [certificate]({{site.baseurl}}/rancher/api/certificate/) | Optional | Yes | - | The ID of a default certificate
-globalLoadBalancerId | [globalLoadBalancer]({{site.baseurl}}/rancher/api/globalLoadBalancer/) | - | - | - | 
-loadBalancerConfigId | [loadBalancerConfig]({{site.baseurl}}/rancher/api/loadBalancerConfig/) | Yes | - | - | 
-serviceId | [service]({{site.baseurl}}/rancher/api/service/) | - | - | - | The unique identifier of the associated service
-weight | int | - | - | - | 
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the loadBalancer was created.
+certificateIds | array[[certificate]({{site.baseurl}}/rancher/api/api-resources/certificate/)] | Optional | Yes | - | The ID of a certificate
+defaultCertificateId | [certificate]({{site.baseurl}}/rancher/api/api-resources/certificate/) | Optional | Yes | - | The ID of a default certificate
 description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the loadBalancer was removed
-transitioning | enum | - | - | - | Whether or not the loadBalancer is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the loadBalancer
-uuid | string | - | - | - | The universally unique identifier for the loadBalancer. This will always be unique across Rancher installations.
+globalLoadBalancerId | [globalLoadBalancer]({{site.baseurl}}/rancher/api/api-resources/globalLoadBalancer/) | - | - | - | 
+id | int | - | - | - | The unique identifier for the loadBalancer
+loadBalancerConfigId | [loadBalancerConfig]({{site.baseurl}}/rancher/api/api-resources/loadBalancerConfig/) | Yes | - | - | 
+name | string | Optional | Yes | - | 
+serviceId | [service]({{site.baseurl}}/rancher/api/api-resources/service/) | - | - | - | The unique identifier of the associated service
+weight | int | - | - | - | 
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 ### Operations
 
@@ -42,7 +34,7 @@ uuid | string | - | - | - | The universally unique identifier for the loadBalanc
 <span class="action">
 <span class="header">
 Create
-<span class="headerright">POST:  <code>${links.self}</code></span>
+<span class="headerright">POST:  <code>/v1/loadBalancer</code></span>
 </span>
 <div class="action-contents">
 {% highlight json %} 
@@ -126,7 +118,7 @@ Delete
 <span class="action">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>${action.activate}</code></span>
+<span class="headerright">POST:  <code>${actions.activate}</code></span>
 </span>
 <div class="action-contents">
 To activate the loadBalancer
@@ -139,7 +131,7 @@ To activate the loadBalancer
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/loadBalancer/">loadBalancer</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/loadBalancer/">loadBalancer</a> resource
 </span>
 </div>
 </span>
@@ -149,7 +141,7 @@ To activate the loadBalancer
 <span class="action">
 <span class="header">
 addhost
-<span class="headerright">POST:  <code>${action.addhost}</code></span>
+<span class="headerright">POST:  <code>${actions.addhost}</code></span>
 </span>
 <div class="action-contents">
 To addhost the loadBalancer
@@ -174,7 +166,7 @@ hostId | reference[host] | Yes | <no value> | The unique identifier for the asso
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/loadBalancer/">loadBalancer</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/loadBalancer/">loadBalancer</a> resource
 </span>
 </div>
 </span>
@@ -184,7 +176,7 @@ hostId | reference[host] | Yes | <no value> | The unique identifier for the asso
 <span class="action">
 <span class="header">
 addtarget
-<span class="headerright">POST:  <code>${action.addtarget}</code></span>
+<span class="headerright">POST:  <code>${actions.addtarget}</code></span>
 </span>
 <div class="action-contents">
 To addtarget the loadBalancer
@@ -222,7 +214,15 @@ loadBalancerTarget | loadBalancerTarget | Yes | <no value> |
 
 		"name": "string",
 
-		"ports": "[string, string, string...]",
+		"ports": [
+
+			"string1",
+
+			"string2",
+
+			"...stringN"
+
+		],
 
 		"removed": "date",
 
@@ -243,7 +243,7 @@ loadBalancerTarget | loadBalancerTarget | Yes | <no value> |
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/loadBalancer/">loadBalancer</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/loadBalancer/">loadBalancer</a> resource
 </span>
 </div>
 </span>
@@ -253,7 +253,7 @@ loadBalancerTarget | loadBalancerTarget | Yes | <no value> |
 <span class="action">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>${action.deactivate}</code></span>
+<span class="headerright">POST:  <code>${actions.deactivate}</code></span>
 </span>
 <div class="action-contents">
 To deactivate the loadBalancer
@@ -266,7 +266,7 @@ To deactivate the loadBalancer
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/loadBalancer/">loadBalancer</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/loadBalancer/">loadBalancer</a> resource
 </span>
 </div>
 </span>
@@ -276,7 +276,7 @@ To deactivate the loadBalancer
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the loadBalancer
@@ -289,7 +289,7 @@ To remove the loadBalancer
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/loadBalancer/">loadBalancer</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/loadBalancer/">loadBalancer</a> resource
 </span>
 </div>
 </span>
@@ -299,7 +299,7 @@ To remove the loadBalancer
 <span class="action">
 <span class="header">
 removehost
-<span class="headerright">POST:  <code>${action.removehost}</code></span>
+<span class="headerright">POST:  <code>${actions.removehost}</code></span>
 </span>
 <div class="action-contents">
 To removehost the loadBalancer
@@ -324,7 +324,7 @@ hostId | reference[host] | Yes | <no value> | The unique identifier for the asso
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/loadBalancer/">loadBalancer</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/loadBalancer/">loadBalancer</a> resource
 </span>
 </div>
 </span>
@@ -334,7 +334,7 @@ hostId | reference[host] | Yes | <no value> | The unique identifier for the asso
 <span class="action">
 <span class="header">
 removetarget
-<span class="headerright">POST:  <code>${action.removetarget}</code></span>
+<span class="headerright">POST:  <code>${actions.removetarget}</code></span>
 </span>
 <div class="action-contents">
 To removetarget the loadBalancer
@@ -372,7 +372,15 @@ loadBalancerTarget | loadBalancerTarget | Yes | <no value> |
 
 		"name": "string",
 
-		"ports": "[string, string, string...]",
+		"ports": [
+
+			"string1",
+
+			"string2",
+
+			"...stringN"
+
+		],
 
 		"removed": "date",
 
@@ -393,7 +401,7 @@ loadBalancerTarget | loadBalancerTarget | Yes | <no value> |
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/loadBalancer/">loadBalancer</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/loadBalancer/">loadBalancer</a> resource
 </span>
 </div>
 </span>
@@ -403,7 +411,7 @@ loadBalancerTarget | loadBalancerTarget | Yes | <no value> |
 <span class="action">
 <span class="header">
 sethosts
-<span class="headerright">POST:  <code>${action.sethosts}</code></span>
+<span class="headerright">POST:  <code>${actions.sethosts}</code></span>
 </span>
 <div class="action-contents">
 To sethosts the loadBalancer
@@ -428,7 +436,7 @@ hostIds | array[reference[host]] | No | <no value> |
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/loadBalancer/">loadBalancer</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/loadBalancer/">loadBalancer</a> resource
 </span>
 </div>
 </span>
@@ -438,7 +446,7 @@ hostIds | array[reference[host]] | No | <no value> |
 <span class="action">
 <span class="header">
 settargets
-<span class="headerright">POST:  <code>${action.settargets}</code></span>
+<span class="headerright">POST:  <code>${actions.settargets}</code></span>
 </span>
 <div class="action-contents">
 To settargets the loadBalancer
@@ -463,7 +471,7 @@ loadBalancerTargets | array[loadBalancerTarget] | No | <no value> |
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/loadBalancer/">loadBalancer</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/loadBalancer/">loadBalancer</a> resource
 </span>
 </div>
 </span>

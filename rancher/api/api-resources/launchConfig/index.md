@@ -26,6 +26,7 @@ dataVolumes | array[string] | false | <no value> |
 dataVolumesFrom | array[reference[container]] | false | <no value> | 
 dataVolumesFromLaunchConfigs | array[string] | false | <no value> | 
 deploymentUnitUuid | string | false | <no value> | 
+description | string | false | <no value> | 
 devices | array[string] | false | <no value> | Allows you to run devices inside the container without the <code>--privileged</code> flag
 dns | array[string] | false | <no value> | Set custom dns servers for the container. <code>--dns</code> in a <code>docker run</code> command
 dnsSearch | array[string] | false | <no value> | 
@@ -39,6 +40,7 @@ firstRunning | date | false | <no value> |
 healthCheck | instanceHealthCheck | false | <no value> | The configuration of the health monitoring for managed network services
 healthState | enum | false | <no value> | 
 hostname | string | false | <no value> | 
+id | int | false | <no value> | The unique identifier for the launchConfig
 imageUuid | string | false | <no value> | 
 instanceLinks | map[reference[instance]] | false | <no value> | 
 labels | map[string] | false | <no value> | 

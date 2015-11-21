@@ -12,29 +12,21 @@ Collection Test Description
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the cluster
-kind | string | - | - | - | 
-name | string | Optional | Yes | - | 
-state | enum | - | - | - | The current state of the cluster. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
 agentState | string | - | - | - | The state of the agent
 computeTotal | int | - | - | - | 
+description | string | Optional | Yes | - | 
 discoverySpec | string | - | - | - | 
+id | int | - | - | - | The unique identifier for the cluster
 info | json | - | - | - | 
 labels | map[string] | - | Yes | - | 
-physicalHostId | [physicalHost]({{site.baseurl}}/rancher/api/physicalHost/) | - | - | - | The unique identifier of the physical host
+name | string | Optional | Yes | - | 
+physicalHostId | [physicalHost]({{site.baseurl}}/rancher/api/api-resources/physicalHost/) | - | - | - | The unique identifier of the physical host
 port | int | Optional | Yes | - | 
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the cluster was created.
-description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the cluster was removed
-transitioning | enum | - | - | - | Whether or not the cluster is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the cluster
-uuid | string | - | - | - | The universally unique identifier for the cluster. This will always be unique across Rancher installations.
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 ### Operations
 
@@ -43,7 +35,7 @@ uuid | string | - | - | - | The universally unique identifier for the cluster. T
 <span class="action">
 <span class="header">
 Create
-<span class="headerright">POST:  <code>${links.self}</code></span>
+<span class="headerright">POST:  <code>/v1/cluster</code></span>
 </span>
 <div class="action-contents">
 {% highlight json %} 
@@ -83,7 +75,15 @@ Update
 
 	"description": "string",
 
-	"labels": "map[string]",
+	"labels": {
+
+		"key1": "value1",
+
+		"key2": "value2",
+
+		"keyN": "valueN"
+
+	},
 
 	"name": "string",
 
@@ -123,7 +123,7 @@ Delete
 <span class="action">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>${action.activate}</code></span>
+<span class="headerright">POST:  <code>${actions.activate}</code></span>
 </span>
 <div class="action-contents">
 To activate the cluster
@@ -136,7 +136,7 @@ To activate the cluster
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/host/">host</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/host/">host</a> resource
 </span>
 </div>
 </span>
@@ -146,7 +146,7 @@ To activate the cluster
 <span class="action">
 <span class="header">
 addhost
-<span class="headerright">POST:  <code>${action.addhost}</code></span>
+<span class="headerright">POST:  <code>${actions.addhost}</code></span>
 </span>
 <div class="action-contents">
 To addhost the cluster
@@ -171,7 +171,7 @@ hostId | reference[host] | No | <no value> | The unique identifier for the assoc
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/cluster/">cluster</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/cluster/">cluster</a> resource
 </span>
 </div>
 </span>
@@ -181,7 +181,7 @@ hostId | reference[host] | No | <no value> | The unique identifier for the assoc
 <span class="action">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>${action.deactivate}</code></span>
+<span class="headerright">POST:  <code>${actions.deactivate}</code></span>
 </span>
 <div class="action-contents">
 To deactivate the cluster
@@ -194,7 +194,7 @@ To deactivate the cluster
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/host/">host</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/host/">host</a> resource
 </span>
 </div>
 </span>
@@ -204,7 +204,7 @@ To deactivate the cluster
 <span class="action">
 <span class="header">
 dockersocket
-<span class="headerright">POST:  <code>${action.dockersocket}</code></span>
+<span class="headerright">POST:  <code>${actions.dockersocket}</code></span>
 </span>
 <div class="action-contents">
 To dockersocket the cluster
@@ -217,7 +217,7 @@ To dockersocket the cluster
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/hostAccess/">hostAccess</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/hostAccess/">hostAccess</a> resource
 </span>
 </div>
 </span>
@@ -227,7 +227,7 @@ To dockersocket the cluster
 <span class="action">
 <span class="header">
 purge
-<span class="headerright">POST:  <code>${action.purge}</code></span>
+<span class="headerright">POST:  <code>${actions.purge}</code></span>
 </span>
 <div class="action-contents">
 To purge the cluster
@@ -240,7 +240,7 @@ To purge the cluster
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/host/">host</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/host/">host</a> resource
 </span>
 </div>
 </span>
@@ -250,7 +250,7 @@ To purge the cluster
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the cluster
@@ -263,7 +263,7 @@ To remove the cluster
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/host/">host</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/host/">host</a> resource
 </span>
 </div>
 </span>
@@ -273,7 +273,7 @@ To remove the cluster
 <span class="action">
 <span class="header">
 removehost
-<span class="headerright">POST:  <code>${action.removehost}</code></span>
+<span class="headerright">POST:  <code>${actions.removehost}</code></span>
 </span>
 <div class="action-contents">
 To removehost the cluster
@@ -298,7 +298,7 @@ hostId | reference[host] | No | <no value> | The unique identifier for the assoc
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/cluster/">cluster</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/cluster/">cluster</a> resource
 </span>
 </div>
 </span>
@@ -308,7 +308,7 @@ hostId | reference[host] | No | <no value> | The unique identifier for the assoc
 <span class="action">
 <span class="header">
 restore
-<span class="headerright">POST:  <code>${action.restore}</code></span>
+<span class="headerright">POST:  <code>${actions.restore}</code></span>
 </span>
 <div class="action-contents">
 To restore the cluster
@@ -321,7 +321,7 @@ To restore the cluster
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/host/">host</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/host/">host</a> resource
 </span>
 </div>
 </span>

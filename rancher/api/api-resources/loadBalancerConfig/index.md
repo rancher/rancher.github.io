@@ -12,26 +12,18 @@ Collection Test Description
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the loadBalancerConfig
-kind | string | - | - | - | 
-name | string | Optional | Yes | - | 
-state | enum | - | - | - | The current state of the loadBalancerConfig. The options are [activating, active, removed, removing, requested, updating-active].
-appCookieStickinessPolicy | [loadBalancerAppCookieStickinessPolicy]({{site.baseurl}}/rancher/api/loadBalancerAppCookieStickinessPolicy/) | Optional | Yes | - | 
-healthCheck | [loadBalancerHealthCheck]({{site.baseurl}}/rancher/api/loadBalancerHealthCheck/) | Optional | Yes | - | The configuration of the health monitoring for managed network services
-lbCookieStickinessPolicy | [loadBalancerCookieStickinessPolicy]({{site.baseurl}}/rancher/api/loadBalancerCookieStickinessPolicy/) | Optional | Yes | - | 
-serviceId | [service]({{site.baseurl}}/rancher/api/service/) | - | - | - | The unique identifier of the associated service
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the loadBalancerConfig was created.
+appCookieStickinessPolicy | [loadBalancerAppCookieStickinessPolicy]({{site.baseurl}}/rancher/api/api-resources/loadBalancerAppCookieStickinessPolicy/) | Optional | Yes | - | 
 description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the loadBalancerConfig was removed
-transitioning | enum | - | - | - | Whether or not the loadBalancerConfig is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the loadBalancerConfig
-uuid | string | - | - | - | The universally unique identifier for the loadBalancerConfig. This will always be unique across Rancher installations.
+healthCheck | [loadBalancerHealthCheck]({{site.baseurl}}/rancher/api/api-resources/loadBalancerHealthCheck/) | Optional | Yes | - | The configuration of the health monitoring for managed network services
+id | int | - | - | - | The unique identifier for the loadBalancerConfig
+lbCookieStickinessPolicy | [loadBalancerCookieStickinessPolicy]({{site.baseurl}}/rancher/api/api-resources/loadBalancerCookieStickinessPolicy/) | Optional | Yes | - | 
+name | string | Optional | Yes | - | 
+serviceId | [service]({{site.baseurl}}/rancher/api/api-resources/service/) | - | - | - | The unique identifier of the associated service
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 ### Operations
 
@@ -40,7 +32,7 @@ uuid | string | - | - | - | The universally unique identifier for the loadBalanc
 <span class="action">
 <span class="header">
 Create
-<span class="headerright">POST:  <code>${links.self}</code></span>
+<span class="headerright">POST:  <code>/v1/loadBalancerConfig</code></span>
 </span>
 <div class="action-contents">
 {% highlight json %} 
@@ -222,7 +214,7 @@ Delete
 <span class="action">
 <span class="header">
 addlistener
-<span class="headerright">POST:  <code>${action.addlistener}</code></span>
+<span class="headerright">POST:  <code>${actions.addlistener}</code></span>
 </span>
 <div class="action-contents">
 To addlistener the loadBalancerConfig
@@ -247,7 +239,7 @@ loadBalancerListenerId | reference[loadBalancerListener] | Yes | <no value> |
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/loadBalancerConfig/">loadBalancerConfig</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/loadBalancerConfig/">loadBalancerConfig</a> resource
 </span>
 </div>
 </span>
@@ -257,7 +249,7 @@ loadBalancerListenerId | reference[loadBalancerListener] | Yes | <no value> |
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the loadBalancerConfig
@@ -270,7 +262,7 @@ To remove the loadBalancerConfig
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/loadBalancerConfig/">loadBalancerConfig</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/loadBalancerConfig/">loadBalancerConfig</a> resource
 </span>
 </div>
 </span>
@@ -280,7 +272,7 @@ To remove the loadBalancerConfig
 <span class="action">
 <span class="header">
 removelistener
-<span class="headerright">POST:  <code>${action.removelistener}</code></span>
+<span class="headerright">POST:  <code>${actions.removelistener}</code></span>
 </span>
 <div class="action-contents">
 To removelistener the loadBalancerConfig
@@ -305,7 +297,7 @@ loadBalancerListenerId | reference[loadBalancerListener] | Yes | <no value> |
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/loadBalancerConfig/">loadBalancerConfig</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/loadBalancerConfig/">loadBalancerConfig</a> resource
 </span>
 </div>
 </span>
@@ -315,7 +307,7 @@ loadBalancerListenerId | reference[loadBalancerListener] | Yes | <no value> |
 <span class="action">
 <span class="header">
 setlisteners
-<span class="headerright">POST:  <code>${action.setlisteners}</code></span>
+<span class="headerright">POST:  <code>${actions.setlisteners}</code></span>
 </span>
 <div class="action-contents">
 To setlisteners the loadBalancerConfig
@@ -340,7 +332,7 @@ loadBalancerListenerIds | array[reference[loadBalancerListener]] | No | <no valu
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/loadBalancerConfig/">loadBalancerConfig</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/loadBalancerConfig/">loadBalancerConfig</a> resource
 </span>
 </div>
 </span>

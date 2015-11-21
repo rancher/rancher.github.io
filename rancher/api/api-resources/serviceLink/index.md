@@ -13,5 +13,6 @@ layout: rancher-default
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
+name | string | false | <no value> | 
 serviceId | reference[service] | true | <no value> | The unique identifier of the associated service
 

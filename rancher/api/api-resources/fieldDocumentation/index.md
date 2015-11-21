@@ -9,3 +9,9 @@ layout: rancher-default
 
 
 ​​
+### Resource Fields
+
+Field | Type | Required | Default | Description
+---|---|---|---|---
+description | string | false | <no value> | 
+

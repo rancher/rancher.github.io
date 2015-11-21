@@ -12,29 +12,21 @@ A "dnsService" in the API is referred to as a Service Alias in the UI and the Ra
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the dnsService
-kind | string | - | - | - | 
-name | string | Yes | Yes | - | 
-state | enum | - | - | - | The current state of the dnsService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
-environmentId | [environment]({{site.baseurl}}/rancher/api/environment/) | Yes | - | - | The identifier of which stack the service belongs to
+description | string | Optional | Yes | - | 
+environmentId | [environment]({{site.baseurl}}/rancher/api/api-resources/environment/) | Yes | - | - | The identifier of which stack the service belongs to
 externalId | string | - | - | - | 
 fqdn | string | - | - | - | The fqdn of a service when the [Route 53 DNS service]({{site.baseurl}}/rancher/rancher-services/dns-service/) has started. The format will be `<serviceName>.<stackName>.<environmentName>.<yourHostedZoneName>`.
-launchConfig | [launchConfig]({{site.baseurl}}/rancher/api/launchConfig/) | Optional | - | - | The Docker run configuration of a container
+id | int | - | - | - | The unique identifier for the dnsService
+launchConfig | [launchConfig]({{site.baseurl}}/rancher/api/api-resources/launchConfig/) | Optional | - | - | The Docker run configuration of a container
 metadata | map[json] | Optional | Yes | - | The user added [metadata]({{site.baseurl}}/rancher/metadata-service/#adding-user-metadata-to-a-service) to a service.
-selectorLink | string | Optional | - | - | The [selector value]({{site.baseurl}}/rancher/labels/#selector-labels) used to select a [service]({{site.baseurl}}/rancher/api/service/) to link to the service based on a service's labels.
-upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/api/serviceUpgrade/) | - | - | - | 
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the dnsService was created.
-description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the dnsService was removed
-transitioning | enum | - | - | - | Whether or not the dnsService is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the dnsService
-uuid | string | - | - | - | The universally unique identifier for the dnsService. This will always be unique across Rancher installations.
+name | string | Yes | Yes | - | 
+selectorLink | string | Optional | - | - | The [selector value]({{site.baseurl}}/rancher/labels/#selector-labels) used to select a [service]({{site.baseurl}}/rancher/api/api-resources/service/) to link to the service based on a service's labels.
+upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/api/api-resources/serviceUpgrade/) | - | - | - | 
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 ### Operations
 
@@ -43,7 +35,7 @@ uuid | string | - | - | - | The universally unique identifier for the dnsService
 <span class="action">
 <span class="header">
 Create
-<span class="headerright">POST:  <code>${links.self}</code></span>
+<span class="headerright">POST:  <code>/v1/dnsService</code></span>
 </span>
 <div class="action-contents">
 {% highlight json %} 
@@ -77,7 +69,15 @@ Create
 
 		"capDrop": "array[enum]",
 
-		"command": "[string, string, string...]",
+		"command": [
+
+			"string1",
+
+			"string2",
+
+			"...stringN"
+
+		],
 
 		"count": 0,
 
@@ -91,33 +91,105 @@ Create
 
 		"dataVolumeMounts": "map[reference[volume]]",
 
-		"dataVolumes": "[string, string, string...]",
+		"dataVolumes": [
+
+			"string1",
+
+			"string2",
+
+			"...stringN"
+
+		],
 
 		"dataVolumesFrom": "array[reference[container]]",
 
-		"dataVolumesFromLaunchConfigs": "[string, string, string...]",
+		"dataVolumesFromLaunchConfigs": [
+
+			"string1",
+
+			"string2",
+
+			"...stringN"
+
+		],
 
 		"deploymentUnitUuid": "string",
 
 		"description": "string",
 
-		"devices": "[string, string, string...]",
+		"devices": [
 
-		"dns": "[string, string, string...]",
+			"string1",
 
-		"dnsSearch": "[string, string, string...]",
+			"string2",
+
+			"...stringN"
+
+		],
+
+		"dns": [
+
+			"string1",
+
+			"string2",
+
+			"...stringN"
+
+		],
+
+		"dnsSearch": [
+
+			"string1",
+
+			"string2",
+
+			"...stringN"
+
+		],
 
 		"domainName": "string",
 
-		"entryPoint": "[string, string, string...]",
+		"entryPoint": [
 
-		"environment": "map[string]",
+			"string1",
 
-		"expose": "[string, string, string...]",
+			"string2",
+
+			"...stringN"
+
+		],
+
+		"environment": {
+
+			"key1": "value1",
+
+			"key2": "value2",
+
+			"keyN": "valueN"
+
+		},
+
+		"expose": [
+
+			"string1",
+
+			"string2",
+
+			"...stringN"
+
+		],
 
 		"externalId": "string",
 
-		"extraHosts": "[string, string, string...]",
+		"extraHosts": [
+
+			"string1",
+
+			"string2",
+
+			"...stringN"
+
+		],
 
 		"firstRunning": "date",
 
@@ -151,17 +223,41 @@ Create
 
 		"kind": "string",
 
-		"labels": "map[string]",
+		"labels": {
+
+			"key1": "value1",
+
+			"key2": "value2",
+
+			"keyN": "valueN"
+
+		},
 
 		"logConfig": {
 
-			"config": "map[string]",
+			"config": {
+
+				"key1": "value1",
+
+				"key2": "value2",
+
+				"keyN": "valueN"
+
+			},
 
 			"driver": "string"
 
 		},
 
-		"lxcConf": "map[string]",
+		"lxcConf": {
+
+			"key1": "value1",
+
+			"key2": "value2",
+
+			"keyN": "valueN"
+
+		},
 
 		"memory": 0,
 
@@ -179,7 +275,15 @@ Create
 
 		"pidMode": "enum",
 
-		"ports": "[string, string, string...]",
+		"ports": [
+
+			"string1",
+
+			"string2",
+
+			"...stringN"
+
+		],
 
 		"primaryIpAddress": "string",
 
@@ -195,7 +299,15 @@ Create
 
 		"requestedHostId": "reference[host]",
 
-		"securityOpt": "[string, string, string...]",
+		"securityOpt": [
+
+			"string1",
+
+			"string2",
+
+			"...stringN"
+
+		],
 
 		"startCount": 0,
 
@@ -299,7 +411,7 @@ Delete
 <span class="action">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>${action.activate}</code></span>
+<span class="headerright">POST:  <code>${actions.activate}</code></span>
 </span>
 <div class="action-contents">
 To activate the dnsService
@@ -312,7 +424,7 @@ To activate the dnsService
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/service/">service</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource
 </span>
 </div>
 </span>
@@ -322,7 +434,7 @@ To activate the dnsService
 <span class="action">
 <span class="header">
 addservicelink
-<span class="headerright">POST:  <code>${action.addservicelink}</code></span>
+<span class="headerright">POST:  <code>${actions.addservicelink}</code></span>
 </span>
 <div class="action-contents">
 To addservicelink the dnsService
@@ -353,7 +465,7 @@ serviceLink | serviceLink | Yes | <no value> |
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/service/">service</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource
 </span>
 </div>
 </span>
@@ -363,7 +475,7 @@ serviceLink | serviceLink | Yes | <no value> |
 <span class="action">
 <span class="header">
 cancelrollback
-<span class="headerright">POST:  <code>${action.cancelrollback}</code></span>
+<span class="headerright">POST:  <code>${actions.cancelrollback}</code></span>
 </span>
 <div class="action-contents">
 To cancelrollback the dnsService
@@ -376,7 +488,7 @@ To cancelrollback the dnsService
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/service/">service</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource
 </span>
 </div>
 </span>
@@ -386,7 +498,7 @@ To cancelrollback the dnsService
 <span class="action">
 <span class="header">
 cancelupgrade
-<span class="headerright">POST:  <code>${action.cancelupgrade}</code></span>
+<span class="headerright">POST:  <code>${actions.cancelupgrade}</code></span>
 </span>
 <div class="action-contents">
 To cancelupgrade the dnsService
@@ -399,7 +511,7 @@ To cancelupgrade the dnsService
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/service/">service</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource
 </span>
 </div>
 </span>
@@ -409,7 +521,7 @@ To cancelupgrade the dnsService
 <span class="action">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>${action.deactivate}</code></span>
+<span class="headerright">POST:  <code>${actions.deactivate}</code></span>
 </span>
 <div class="action-contents">
 To deactivate the dnsService
@@ -422,7 +534,7 @@ To deactivate the dnsService
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/service/">service</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource
 </span>
 </div>
 </span>
@@ -432,7 +544,7 @@ To deactivate the dnsService
 <span class="action">
 <span class="header">
 finishupgrade
-<span class="headerright">POST:  <code>${action.finishupgrade}</code></span>
+<span class="headerright">POST:  <code>${actions.finishupgrade}</code></span>
 </span>
 <div class="action-contents">
 To finishupgrade the dnsService
@@ -445,7 +557,7 @@ To finishupgrade the dnsService
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/service/">service</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource
 </span>
 </div>
 </span>
@@ -455,7 +567,7 @@ To finishupgrade the dnsService
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the dnsService
@@ -468,7 +580,7 @@ To remove the dnsService
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/service/">service</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource
 </span>
 </div>
 </span>
@@ -478,7 +590,7 @@ To remove the dnsService
 <span class="action">
 <span class="header">
 removeservicelink
-<span class="headerright">POST:  <code>${action.removeservicelink}</code></span>
+<span class="headerright">POST:  <code>${actions.removeservicelink}</code></span>
 </span>
 <div class="action-contents">
 To removeservicelink the dnsService
@@ -509,7 +621,7 @@ serviceLink | serviceLink | Yes | <no value> |
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/service/">service</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource
 </span>
 </div>
 </span>
@@ -519,7 +631,7 @@ serviceLink | serviceLink | Yes | <no value> |
 <span class="action">
 <span class="header">
 rollback
-<span class="headerright">POST:  <code>${action.rollback}</code></span>
+<span class="headerright">POST:  <code>${actions.rollback}</code></span>
 </span>
 <div class="action-contents">
 To rollback the dnsService
@@ -532,7 +644,7 @@ To rollback the dnsService
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/service/">service</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource
 </span>
 </div>
 </span>
@@ -542,7 +654,7 @@ To rollback the dnsService
 <span class="action">
 <span class="header">
 setservicelinks
-<span class="headerright">POST:  <code>${action.setservicelinks}</code></span>
+<span class="headerright">POST:  <code>${actions.setservicelinks}</code></span>
 </span>
 <div class="action-contents">
 To setservicelinks the dnsService
@@ -567,7 +679,7 @@ serviceLinks | array[serviceLink] | No | <no value> | The list of services linke
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/service/">service</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource
 </span>
 </div>
 </span>
@@ -577,7 +689,7 @@ serviceLinks | array[serviceLink] | No | <no value> | The list of services linke
 <span class="action">
 <span class="header">
 upgrade
-<span class="headerright">POST:  <code>${action.upgrade}</code></span>
+<span class="headerright">POST:  <code>${actions.upgrade}</code></span>
 </span>
 <div class="action-contents">
 To upgrade the dnsService
@@ -626,7 +738,15 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"capDrop": "array[enum]",
 
-			"command": "[string, string, string...]",
+			"command": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"count": 0,
 
@@ -640,33 +760,105 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"dataVolumeMounts": "map[reference[volume]]",
 
-			"dataVolumes": "[string, string, string...]",
+			"dataVolumes": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"dataVolumesFrom": "array[reference[container]]",
 
-			"dataVolumesFromLaunchConfigs": "[string, string, string...]",
+			"dataVolumesFromLaunchConfigs": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"deploymentUnitUuid": "string",
 
 			"description": "string",
 
-			"devices": "[string, string, string...]",
+			"devices": [
 
-			"dns": "[string, string, string...]",
+				"string1",
 
-			"dnsSearch": "[string, string, string...]",
+				"string2",
+
+				"...stringN"
+
+			],
+
+			"dns": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
+
+			"dnsSearch": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"domainName": "string",
 
-			"entryPoint": "[string, string, string...]",
+			"entryPoint": [
 
-			"environment": "map[string]",
+				"string1",
 
-			"expose": "[string, string, string...]",
+				"string2",
+
+				"...stringN"
+
+			],
+
+			"environment": {
+
+				"key1": "value1",
+
+				"key2": "value2",
+
+				"keyN": "valueN"
+
+			},
+
+			"expose": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"externalId": "string",
 
-			"extraHosts": "[string, string, string...]",
+			"extraHosts": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"firstRunning": "date",
 
@@ -700,17 +892,41 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"kind": "string",
 
-			"labels": "map[string]",
+			"labels": {
+
+				"key1": "value1",
+
+				"key2": "value2",
+
+				"keyN": "valueN"
+
+			},
 
 			"logConfig": {
 
-				"config": "map[string]",
+				"config": {
+
+					"key1": "value1",
+
+					"key2": "value2",
+
+					"keyN": "valueN"
+
+				},
 
 				"driver": "string"
 
 			},
 
-			"lxcConf": "map[string]",
+			"lxcConf": {
+
+				"key1": "value1",
+
+				"key2": "value2",
+
+				"keyN": "valueN"
+
+			},
 
 			"memory": 0,
 
@@ -728,7 +944,15 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"pidMode": "enum",
 
-			"ports": "[string, string, string...]",
+			"ports": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"primaryIpAddress": "string",
 
@@ -744,7 +968,15 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"requestedHostId": "reference[host]",
 
-			"securityOpt": "[string, string, string...]",
+			"securityOpt": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"startCount": 0,
 
@@ -800,7 +1032,15 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"capDrop": "array[enum]",
 
-			"command": "[string, string, string...]",
+			"command": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"count": 0,
 
@@ -814,33 +1054,105 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"dataVolumeMounts": "map[reference[volume]]",
 
-			"dataVolumes": "[string, string, string...]",
+			"dataVolumes": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"dataVolumesFrom": "array[reference[container]]",
 
-			"dataVolumesFromLaunchConfigs": "[string, string, string...]",
+			"dataVolumesFromLaunchConfigs": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"deploymentUnitUuid": "string",
 
 			"description": "string",
 
-			"devices": "[string, string, string...]",
+			"devices": [
 
-			"dns": "[string, string, string...]",
+				"string1",
 
-			"dnsSearch": "[string, string, string...]",
+				"string2",
+
+				"...stringN"
+
+			],
+
+			"dns": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
+
+			"dnsSearch": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"domainName": "string",
 
-			"entryPoint": "[string, string, string...]",
+			"entryPoint": [
 
-			"environment": "map[string]",
+				"string1",
 
-			"expose": "[string, string, string...]",
+				"string2",
+
+				"...stringN"
+
+			],
+
+			"environment": {
+
+				"key1": "value1",
+
+				"key2": "value2",
+
+				"keyN": "valueN"
+
+			},
+
+			"expose": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"externalId": "string",
 
-			"extraHosts": "[string, string, string...]",
+			"extraHosts": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"firstRunning": "date",
 
@@ -874,17 +1186,41 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"kind": "string",
 
-			"labels": "map[string]",
+			"labels": {
+
+				"key1": "value1",
+
+				"key2": "value2",
+
+				"keyN": "valueN"
+
+			},
 
 			"logConfig": {
 
-				"config": "map[string]",
+				"config": {
+
+					"key1": "value1",
+
+					"key2": "value2",
+
+					"keyN": "valueN"
+
+				},
 
 				"driver": "string"
 
 			},
 
-			"lxcConf": "map[string]",
+			"lxcConf": {
+
+				"key1": "value1",
+
+				"key2": "value2",
+
+				"keyN": "valueN"
+
+			},
 
 			"memory": 0,
 
@@ -902,7 +1238,15 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"pidMode": "enum",
 
-			"ports": "[string, string, string...]",
+			"ports": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"primaryIpAddress": "string",
 
@@ -918,7 +1262,15 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"requestedHostId": "reference[host]",
 
-			"securityOpt": "[string, string, string...]",
+			"securityOpt": [
+
+				"string1",
+
+				"string2",
+
+				"...stringN"
+
+			],
 
 			"startCount": 0,
 
@@ -977,7 +1329,7 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/service/">service</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource
 </span>
 </div>
 </span>

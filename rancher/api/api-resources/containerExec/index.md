@@ -17,9 +17,10 @@ attachStdout | boolean | Optional | - | true | Attach to standard out stream. <c
 command | array[string] | Yes | - | - | Overwrite the default commands set by the image
 tty | boolean | Optional | - | true | Allocate a pseudo-tty. <code>-t</code> in a <code>docker run</code> command
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 ### Operations
 
@@ -28,7 +29,7 @@ tty | boolean | Optional | - | true | Allocate a pseudo-tty. <code>-t</code> in 
 <span class="action">
 <span class="header">
 Create
-<span class="headerright">POST:  <code>${links.self}</code></span>
+<span class="headerright">POST:  <code>/v1/containerExec</code></span>
 </span>
 <div class="action-contents">
 {% highlight json %} 
@@ -38,7 +39,15 @@ Create
 
 	"attachStdout": true,
 
-	"command": "[string, string, string...]",
+	"command": [
+
+		"string1",
+
+		"string2",
+
+		"...stringN"
+
+	],
 
 	"tty": true
 

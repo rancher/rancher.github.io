@@ -12,24 +12,16 @@ Collection Test Description
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the snapshot
-kind | string | - | - | - | 
-name | string | Optional | Yes | - | 
-state | enum | - | - | - | The current state of the snapshot. The options are [backed-up, backing-up, created, creating, removed, removing, requested].
-managedVolumeUUID | string | - | - | - | The unique identifier of the managed volume
-volumeId | [volume]({{site.baseurl}}/rancher/api/volume/) | Yes | - | - | 
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the snapshot was created.
 description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the snapshot was removed
-transitioning | enum | - | - | - | Whether or not the snapshot is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the snapshot
-uuid | string | - | - | - | The universally unique identifier for the snapshot. This will always be unique across Rancher installations.
+id | int | - | - | - | The unique identifier for the snapshot
+managedVolumeUUID | string | - | - | - | The unique identifier of the managed volume
+name | string | Optional | Yes | - | 
+volumeId | [volume]({{site.baseurl}}/rancher/api/api-resources/volume/) | Yes | - | - | 
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 ### Operations
 
@@ -38,7 +30,7 @@ uuid | string | - | - | - | The universally unique identifier for the snapshot. 
 <span class="action">
 <span class="header">
 Create
-<span class="headerright">POST:  <code>${links.self}</code></span>
+<span class="headerright">POST:  <code>/v1/snapshot</code></span>
 </span>
 <div class="action-contents">
 {% highlight json %} 
@@ -72,7 +64,7 @@ Create
 <span class="action">
 <span class="header">
 backup
-<span class="headerright">POST:  <code>${action.backup}</code></span>
+<span class="headerright">POST:  <code>${actions.backup}</code></span>
 </span>
 <div class="action-contents">
 To backup the snapshot
@@ -85,7 +77,7 @@ To backup the snapshot
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/snapshot/">snapshot</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/snapshot/">snapshot</a> resource
 </span>
 </div>
 </span>
@@ -95,7 +87,7 @@ To backup the snapshot
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the snapshot
@@ -108,7 +100,7 @@ To remove the snapshot
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/snapshot/">snapshot</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/snapshot/">snapshot</a> resource
 </span>
 </div>
 </span>

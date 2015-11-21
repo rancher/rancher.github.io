@@ -12,22 +12,14 @@ Collection Test Description
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the physicalHost
-kind | string | - | - | - | 
-name | string | Optional | Yes | - | 
-state | enum | - | - | - | The current state of the physicalHost. The options are [active, bootstrapping, created, creating, error, erroring, removed, removing, requested, updating].
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the physicalHost was created.
 description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the physicalHost was removed
-transitioning | enum | - | - | - | Whether or not the physicalHost is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the physicalHost
-uuid | string | - | - | - | The universally unique identifier for the physicalHost. This will always be unique across Rancher installations.
+id | int | - | - | - | The unique identifier for the physicalHost
+name | string | Optional | Yes | - | 
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 
 
@@ -42,7 +34,7 @@ uuid | string | - | - | - | The universally unique identifier for the physicalHo
 <span class="action">
 <span class="header">
 bootstrap
-<span class="headerright">POST:  <code>${action.bootstrap}</code></span>
+<span class="headerright">POST:  <code>${actions.bootstrap}</code></span>
 </span>
 <div class="action-contents">
 To bootstrap the physicalHost
@@ -55,7 +47,7 @@ To bootstrap the physicalHost
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/physicalHost/">physicalHost</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/physicalHost/">physicalHost</a> resource
 </span>
 </div>
 </span>
@@ -65,7 +57,7 @@ To bootstrap the physicalHost
 <span class="action">
 <span class="header">
 error
-<span class="headerright">POST:  <code>${action.error}</code></span>
+<span class="headerright">POST:  <code>${actions.error}</code></span>
 </span>
 <div class="action-contents">
 To error the physicalHost
@@ -78,7 +70,7 @@ To error the physicalHost
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/physicalHost/">physicalHost</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/physicalHost/">physicalHost</a> resource
 </span>
 </div>
 </span>
@@ -88,7 +80,7 @@ To error the physicalHost
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the physicalHost
@@ -101,7 +93,7 @@ To remove the physicalHost
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/physicalHost/">physicalHost</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/physicalHost/">physicalHost</a> resource
 </span>
 </div>
 </span>

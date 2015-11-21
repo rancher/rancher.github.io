@@ -5,33 +5,25 @@ layout: rancher-default
 
 ## registryCredential
 
-A registry credential is used to authenticate against a [registry]({{site.baseurl}}/rancher/api/registry).
+A registry credential is used to authenticate against a [registry]({{site.baseurl}}/rancher/api/api-resources/registry).
 
 ​
 ### Resource Fields
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the registryCredential
-kind | string | - | - | - | 
-name | string | Optional | Yes | - | 
-state | enum | - | - | - | The current state of the registryCredential. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
-email | string | Yes | Yes | - | The email address of the credential to use with a registry
-publicValue | string | Optional | Yes | - | The public value of the registryCredential
-registryId | [registry]({{site.baseurl}}/rancher/api/registry/) | Yes | - | - | The unique identifier of a registry
-secretValue | string | Optional | Yes | - | The secret value of the registryCredential
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the registryCredential was created.
 description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the registryCredential was removed
-transitioning | enum | - | - | - | Whether or not the registryCredential is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the registryCredential
-uuid | string | - | - | - | The universally unique identifier for the registryCredential. This will always be unique across Rancher installations.
+email | string | Yes | Yes | - | The email address of the credential to use with a registry
+id | int | - | - | - | The unique identifier for the registryCredential
+name | string | Optional | Yes | - | 
+publicValue | string | Optional | Yes | - | The public value of the registryCredential
+registryId | [registry]({{site.baseurl}}/rancher/api/api-resources/registry/) | Yes | - | - | The unique identifier of a registry
+secretValue | string | Optional | Yes | - | The secret value of the registryCredential
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 ### Operations
 
@@ -40,7 +32,7 @@ uuid | string | - | - | - | The universally unique identifier for the registryCr
 <span class="action">
 <span class="header">
 Create
-<span class="headerright">POST:  <code>${links.self}</code></span>
+<span class="headerright">POST:  <code>/v1/registryCredential</code></span>
 </span>
 <div class="action-contents">
 {% highlight json %} 
@@ -128,7 +120,7 @@ Delete
 <span class="action">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>${action.activate}</code></span>
+<span class="headerright">POST:  <code>${actions.activate}</code></span>
 </span>
 <div class="action-contents">
 To activate the registryCredential
@@ -141,7 +133,7 @@ To activate the registryCredential
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/credential/">credential</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource
 </span>
 </div>
 </span>
@@ -151,7 +143,7 @@ To activate the registryCredential
 <span class="action">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>${action.deactivate}</code></span>
+<span class="headerright">POST:  <code>${actions.deactivate}</code></span>
 </span>
 <div class="action-contents">
 To deactivate the registryCredential
@@ -164,7 +156,7 @@ To deactivate the registryCredential
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/credential/">credential</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource
 </span>
 </div>
 </span>
@@ -174,7 +166,7 @@ To deactivate the registryCredential
 <span class="action">
 <span class="header">
 purge
-<span class="headerright">POST:  <code>${action.purge}</code></span>
+<span class="headerright">POST:  <code>${actions.purge}</code></span>
 </span>
 <div class="action-contents">
 To purge the registryCredential
@@ -187,7 +179,7 @@ To purge the registryCredential
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/credential/">credential</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource
 </span>
 </div>
 </span>
@@ -197,7 +189,7 @@ To purge the registryCredential
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the registryCredential
@@ -210,7 +202,7 @@ To remove the registryCredential
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/credential/">credential</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource
 </span>
 </div>
 </span>

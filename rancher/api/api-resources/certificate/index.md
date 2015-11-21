@@ -12,35 +12,27 @@ A certificate is used to add in SSL termination to load balancers.
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-id | int | - | - | - | The unique identifier for the certificate
-kind | string | - | - | - | 
-name | string | Yes | Yes | - | 
-state | enum | - | - | - | The current state of the certificate. The options are [activating, active, removed, removing, requested].
 CN | string | - | - | - | The common name
 algorithm | string | - | - | - | 
 cert | string | Yes | Yes | - | 
 certChain | string | Optional | Yes | - | 
 certFingerprint | string | - | - | - | 
+description | string | Optional | Yes | - | 
 expiresAt | string | - | - | - | The date that the certificate expires at
+id | int | - | - | - | The unique identifier for the certificate
 issuedAt | string | - | - | - | The date that the certificate was issued
 issuer | string | - | - | - | The issuer of the certificate
 key | string | Yes | - | - | 
 keySize | int | - | - | - | 
+name | string | Yes | Yes | - | 
 serialNumber | string | - | - | - | 
 subjectAlternativeNames | array[string] | - | - | - | 
 version | string | - | - | - | 
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | - | - | - | The unique identifier for the associated account
-created | date | - | - | - | The date of when the certificate was created.
-description | string | Optional | Yes | - | 
-removed | date | - | - | - | The date of when the certificate was removed
-transitioning | enum | - | - | - | Whether or not the certificate is in a transitioning state
-transitioningMessage | string | - | - | - | The message to show while in a transitioning state
-transitioningProgress | int | - | - | - | The percentage remaining in the transitioning process of the certificate
-uuid | string | - | - | - | The universally unique identifier for the certificate. This will always be unique across Rancher installations.
 
-
-
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
+These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+​
 
 ### Operations
 
@@ -49,7 +41,7 @@ uuid | string | - | - | - | The universally unique identifier for the certificat
 <span class="action">
 <span class="header">
 Create
-<span class="headerright">POST:  <code>${links.self}</code></span>
+<span class="headerright">POST:  <code>/v1/certificate</code></span>
 </span>
 <div class="action-contents">
 {% highlight json %} 
@@ -133,7 +125,7 @@ Delete
 <span class="action">
 <span class="header">
 remove
-<span class="headerright">POST:  <code>${action.remove}</code></span>
+<span class="headerright">POST:  <code>${actions.remove}</code></span>
 </span>
 <div class="action-contents">
 To remove the certificate
@@ -146,7 +138,7 @@ To remove the certificate
 <br>
 </span>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/certificate/">certificate</a> resource
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/certificate/">certificate</a> resource
 </span>
 </div>
 </span>
