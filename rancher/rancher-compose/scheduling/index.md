@@ -91,6 +91,26 @@ labels:
   io.rancher.scheduler.affinity:host_label_soft_ne: key4=value4
 ```
 
+**Automatically Applied Host Labels**
+
+In v0.46.0+, Rancher has automatically added host labels to allow for easier scheduling. 
+
+Key | Value | Description
+----|----|----
+`io.rancher.host.linux_kernel_version` | Linux Kernel Version on Host (e.g, `3.19`) |  Version of the Linux kernel running on the host
+`io.rancher.host.docker_version` | Docker Version on the host (e.g. `1.9.1`) | Docker Engine Version on the host
+<br>
+
+```yaml
+labels:
+# Host MUST be running Docker version 1.9.1
+io.rancher.scheduler.affinity:host_label: io.rancher.host.docker_version=1.9.1
+# Host MUST not be running Docker version 1.6
+io.rancher.scheduler.affinity:host_label_ne: io.rancher.host.docker_version=1.6 
+```
+
+> **Note:** Rancher does not support the concept of scheduling containers on a host that has `>=` a specific version. You can create specific whitelists and blacklists using the host scheduling rules to determine if you have a specific Docker Engine version is required for your services.
+
 #### Finding Hosts with Container Labels
 
 When adding containers or services to Rancher, you can add container labels. These labels can be used for the field that you want a rule to compare against. Reminder: This cannot be used if you set global service to true.
