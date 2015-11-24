@@ -18,6 +18,8 @@ Docker is an open-source platform designed for developers, system admins, and De
 
 * x86_64 server with at least 512MB of RAM.
 
+> **Note:** If you are planning on [installing to disk]({{site.baseurl}}/os/running-rancheros/server/install-to-disk/), you will need at least 1024MB of RAM. 
+
 
 ### How this works
 ---
