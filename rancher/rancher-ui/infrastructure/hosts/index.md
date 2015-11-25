@@ -49,7 +49,7 @@ By adding labels to hosts, you can use these labels when [schedule services/load
 
 #### Automatically Applied Host Labels
 
-In v0.46.0+, Rancher has automatically added host labels to allow for easier service scheduling. 
+In v0.46.0+, Rancher automatically creates host labels related to linux kernel version and Docker Engine version of the host. 
 
 Key | Value | Description
 ----|----|----

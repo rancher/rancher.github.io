@@ -8,20 +8,24 @@ layout: rancher-default
 
 _Available as of v0.47.0+_
 
-As part of the [Rancher catalog]({{site.baseurl}}/rancher/rancher-ui/applications/catalog/), Rancher provides a storage service. Currently, the storage services are pre-fixed with `Convoy` in the catalog. 
+In the [Rancher catalog]({{site.baseurl}}/rancher/rancher-ui/applications/catalog/), Rancher provides storage services that are capable of exposing volumes to containers. Currently, the storage services are pre-fixed with `Convoy` in the catalog. 
 
 ### Prerequisites
 * You have the underlying storage system properly deployed and accessible to Rancher services
 
 ### Limitations
 
-* Only one Convoy service can be launched in one Rancher [environment]({{site.baseurl}}/rancher/configuration/environments/). 
+* Only one Convoy stack can be deployed once per one Rancher [environment]({{site.baseurl}}/rancher/configuration/environments/). 
+* Users are able to create service/containers and models exactly the same behavior as if you deployed a container using native Docker 1.9.1 commands. When creating a new container, the following rules apply:
+    * If the volume name  (e.g. __foo__:/path/in/container) is specified with a driver name (e.g. Convoy-Gluster), the container will be deployed on one of the hosts that belong to the Convoy-Gluster Storage Pool with a new volume "foo" created.
+    * If the volume name (e.g. __foo__:/path/in/container) is specified with or without a driver name and "foo" exists in Rancher, the container will be launched on a host from that Storage Pool that has access to "foo".
+    * If the volume name  (e.g. __foo__:/path/in/container) is specified with __NO__ driver name and "foo" __*DOES NOT*__ exist in Rancher, it will be created as a __local__ disk volume for that container.  At this point, normal scheduling rules apply. 
 
 ### Setting up the Storage Service
 
 #### Adding Host Labels
 
-Prior to launching storage services, it's recommended to prepare the hosts that will be able to use shared Docker volumes. For every host, add a [host label]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#host-labels). After the labels are added to all hosts, you are ready to launch the storage service.
+Before launching storage services, it's recommended to prepare the hosts that can use shared Docker volumes. For every host, add a [host label]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#host-labels). After the labels are added to all hosts, you can launch the storage service.
 
 > **Note:** You can opt to skip this step and add the host labels after the storage service is running.
 

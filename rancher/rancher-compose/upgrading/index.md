@@ -71,7 +71,7 @@ $ rancher-compose upgrade service1 service2 --interval "30000"
 
 #### Starting New Containers Before Stopping Old Containers
 
-By default, the in-service upgrade will stop the existing containers, and then launch the new containers. If you'd like to start the new containers before stopping the old containers, you would provide additional content in the `rancher-compose.yml` that would be used for the in-service upgrade.
+By default, the in-service upgrade stops the existing containers, and then launch the new containers. To start the new containers before stopping the old containers, you must provide additional content in the `rancher-compose.yml`.
 
 ```yaml
 myservice:
