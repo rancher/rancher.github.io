@@ -69,6 +69,21 @@ By default, during the upgrade, there is a 2 second wait between when containers
 $ rancher-compose upgrade service1 service2 --interval "30000"
 ```
 
+#### Starting New Containers Before Stopping Old Containers
+
+By default, the in-service upgrade stops the existing containers, and then launch the new containers. To start the new containers before stopping the old containers, you must provide additional content in the `rancher-compose.yml`.
+
+```yaml
+myservice:
+  upgrade_strategy:
+    start_first: true
+```
+
+```bash
+# Upgrading myservice with the above yaml will start the new service first
+$ rancher-compose up --upgrade myservice
+```
+
 ### Step 2: Confirming the upgrade
 
 Once you have verified the upgrade passes your validation, you will need to confirm that the upgrade is complete. The confirmation is required as it allows users to rollback to their old versions if necessary. **Once you have confirmed the upgrade, rolling back to the old version is no longer possible.**

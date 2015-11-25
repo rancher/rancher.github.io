@@ -47,6 +47,15 @@ With each host, you have the ability to add labels to help you organize your hos
 
 By adding labels to hosts, you can use these labels when [schedule services/load balancers/services]({{site.baseurl}}/rancher/rancher-ui/scheduling/) and create a whitelist or blacklist of hosts for your [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/) to run on. 
 
+#### Automatically Applied Host Labels
+
+In v0.46.0+, Rancher automatically creates host labels related to linux kernel version and Docker Engine version of the host. 
+
+Key | Value | Description
+----|----|----
+`io.rancher.host.linux_kernel_version` | Linux Kernel Version on Host (e.g, `3.19`) |  Version of the Linux kernel running on the host
+`io.rancher.host.docker_version` | Docker Version on the host (e.g. `1.9.1`) | Docker Engine Version on the host
+<br>
 ### Hosts behind a Proxy
 
 To support hosts behind a proxy, you'll need to edit the Docker daemon to point to the proxy. The detailed instructions are listed within our [adding custom host page]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/#hosts-behind-a-proxy).
