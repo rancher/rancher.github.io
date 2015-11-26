@@ -140,7 +140,7 @@ If you edited the `docker run .... rancher/agent...` command from the UI to add 
 
 If you cloned a VM and attempting to register the cloned VM, it will not work and throw an error in the rancher-agent logs. `ERROR: Please re-register this agent.` The unique ID that rancher saves in `/var/lib/rancher/state` will be the same for cloned VMs and unable to re-register. 
 
-The workaround is to `rm -rf /var/lib/rancher/state; docker rm -fv rancher-agent; docker rm-fv rancher-agent-state` and register again.
+The workaround for this is to run the following command on the cloned VM `rm -rf /var/lib/rancher/state; docker rm -fv rancher-agent; docker rm -fv rancher-agent-state`, once completed you can register the server again.
 
 <a id="agent-logs"></a>
 
