@@ -79,13 +79,13 @@ pre code {
 
 /* Link Color in Content*/
 a {
-    color: #37b7e1;
+    color: #005f88;
     text-decoration: none;
 }
 
 a:hover,
 a:focus {
-    color: #37b7e1;
+    color: #0077aa;
     text-decoration: none;
 }
 
@@ -375,7 +375,7 @@ H6:hover .header-anchor {
 
 /*ANCHORS*/
 a {
-  color: #3498db;
+  color: #0075a8;
   text-decoration: none;
 }
 a:hover {
