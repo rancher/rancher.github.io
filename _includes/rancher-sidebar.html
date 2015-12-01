@@ -11,7 +11,27 @@
             </button>
             <a class="navbar-brand" href="http://rancher.com/"><img src="{{site.baseurl}}/img/rancher-logo-nopadding.png"></a>
         </div>
+
         <div class="clearfix"></div>
+
+        <div>
+        <!--Start Google Search-->
+        <script>
+              (function() {
+                var cx = '007896692384436596364:60akf3bfmxm';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                    '//cse.google.com/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+              })();
+            </script>
+            <gcse:search></gcse:search>
+        <!--End Google Search-->
+        </div>
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav" id="mainmenu">
@@ -23,9 +43,9 @@
                         <li>
                             <a href="#installing-server" data-toggle="collapse" class="collapsed" data-parent="#installing-server">Installing Rancher server<i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
                               <ul class="collapse" id="installing-server">
-                                 <li><a href="{{site.baseurl}}/rancher/installing-rancher/installing-server/">Single Node</a></li>
-                                 <li><a href="{{site.baseurl}}/rancher/installing-rancher/installing-server/multi-nodes/">Multi Nodes</a></li>
-                                 <li><a href="{{site.baseurl}}/rancher/installing-rancher/installing-server/basic-ssl-config/">Basic SSL Configuration</a></li>
+                                 <li><a href="{{site.baseurl}}/rancher/installing-rancher/installing-server/"><i class="fa fa-angle-double-right"></i>Single Node</a></li>
+                                 <li><a href="{{site.baseurl}}/rancher/installing-rancher/installing-server/multi-nodes/"><i class="fa fa-angle-double-right"></i>Multi Nodes</a></li>
+                                 <li><a href="{{site.baseurl}}/rancher/installing-rancher/installing-server/basic-ssl-config/"><i class="fa fa-angle-double-right"></i>Basic SSL Configuration</a></li>
                                   <li><a href="{{site.baseurl}}/rancher/installing-rancher/installing-server/no-internet-access/">No Internet Access</a></li>
                              </ul>
                         </li>

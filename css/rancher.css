@@ -21,9 +21,10 @@ BODY {
         display: block;
     }
     .sidebar-nav .navbar li a {
-        padding-top: 12px;
-        padding-bottom: 12px;
+        padding-top: 8px;
+        padding-bottom: 8px;
         font-weight: 300;
+        color: #99a3a8;
     }
 }
 
@@ -222,34 +223,6 @@ blockquote {
     font-size: inherit;
 }
 
-
-
-.navbar-inverse .clearfix{
-    background-color:#0075A8;
-}
-
-.sidebar-nav{
-    background-color: #99a3a8;
-}
-.navbar-inverse .navbar-nav > li > a.active {
-    background: #99a3a8;
-    color: white;
-}
-ul.nav.navbar-nav li a.active:after {
-    content: "";
-    border: solid transparent;
-    height: 0;
-    width: 0;
-    pointer-events: none;
-    border-color: transparent;
-    border-left-color: #99a3a8;
-    border-width: 10px;
-    position: absolute;
-    right: -20px;
-    top: calc(50% - 10px);
-}
-
-
 code{
     padding:2px 5px;
     display:inline-block;
@@ -309,6 +282,39 @@ ul.collapse {
     padding: 0;
 }
 
+.navbar-inverse .clearfix{
+    background-color:#0075A8;
+}
+
+.sidebar-nav{
+    background-color: #99a3a8;
+}
+
+.navbar-inverse .navbar-nav > li > a.active {
+    background: #99a3a8;
+    color: white;
+}
+ul.nav.navbar-nav li a.active:after {
+    content: "";
+    border: solid transparent;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    border-color: transparent;
+    border-left-color: #99a3a8;
+    border-width: 10px;
+    position: absolute;
+    right: -20px;
+    top: calc(50% - 10px);
+}
+
+ul.nav.navbar-nav .list-group-submenu li a.active:after {
+display: none;
+}
+
+ul.collapse.in a.active {
+  color: #0075A8;
+}
 .panel {
     margin-bottom: 0px;
     border: 0px;
@@ -467,6 +473,37 @@ td code {
   background: rgba(0,0,0,.05);
 }
 
+.gsc-search-box td, .gsc-results-wrapper-overlay td {
+  border-color: transparent;
+}
+
+.gsc-table-result td {
+  border-bottom: solid 2px #efefef;
+  padding-bottom: 30px;
+}
+.gsc-search-box td, .gsc-above-wrapper-area-container td {
+  padding: 0;
+  
+}
+.cse .gsc-search-button input.gsc-search-button-v2, input.gsc-search-button-v2 {
+  width: auto!important;
+  height: auto!important; 
+}
+
+.gsc-above-wrapper-area .gsc-selected-option-container {
+    min-width: 100px;
+}
+
+.gsc-results-wrapper-overlay {
+    -webkit-box-shadow: 0 0 0 transparent!important;
+    -moz-box-shadow: 0 0 0 transparent!important;
+    -ms-box-shadow: 0 0 0 transparent!important;
+    -o-box-shadow: 0 0 0 transparent!important;
+    box-shadow: 0 0 0 transparent!important;
+}
+.gsc-modal-background-image {
+  background-color: rgba(153,163,168,.75)!important;
+}
 /*CODE SNIPPETS*/
 code {
   word-wrap:break-word;
