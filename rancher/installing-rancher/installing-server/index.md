@@ -68,8 +68,8 @@ If you would like to persist the database inside your container to a volume on y
 ```bash
 $ sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=always -p 8080:8080 rancher/server
 ```
-
 With this command, the database will persist on the host. 
+For instructions on bind mounting an existing rancher container, see [here.](http://docs.rancher.com/rancher/upgrading/#upgrading-rancher-launched-using-bind-mounts)
 
 <a id="external-db"></a>
 
