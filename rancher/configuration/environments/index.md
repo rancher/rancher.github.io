@@ -67,7 +67,7 @@ A member of an environment can perform any action available within the **Applica
 
 A restricted role of an environment is able to perform all actions on the **Applications** tab, i.e. adding/editing/removing stacks/services. For any container of a service, they can perform all actions, i.e. start, stop, delete, upgrade, clone, and edit. There is nothing restricted regarding actions related to stacks, services, and containers. 
 
-The restriction of their role is regarding **Hosts. They are only able to view hosts of an environment and will not be able to add/edit/remove hosts in the environment.
+The restriction of their role is regarding **Hosts**. They are only able to view hosts of an environment and will not be able to add/edit/remove hosts in the environment.
 
 > **Note:** Restricted users will not be able to add/remove host labels and will need to request a member/owner to make any changes to host labels. 
 
