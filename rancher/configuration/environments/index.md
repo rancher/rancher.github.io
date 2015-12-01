@@ -61,11 +61,22 @@ Any actions available within the **Applications** or **Infrastructure** tabs are
 
 #### Members
 
-A member of an environment can perform any action available within the **Applications** or **Infrastructure** tabs. They cannot change anything related to the environment.
+A member of an environment can perform any action available within the **Applications** or **Infrastructure** tabs. The only difference from an owner and member is that members cannot change the membership of the environment. They will not be able to add/remove members or change the membership roles of existing members. 
+
+#### Restricted
+
+A restricted role of an environment is able to perform all actions on the **Applications** tab, i.e. adding/editing/removing stacks/services. For any container of a service, they can perform all actions, i.e. start, stop, delete, upgrade, clone, and edit. There is nothing restricted regarding actions related to stacks, services, and containers. 
+
+The restriction of their role is regarding **Hosts. They are only able to view hosts of an environment and will not be able to add/edit/remove hosts in the environment.
+
+> **Note:** Restricted users will not be able to add/remove host labels and will need to request a member/owner to make any changes to host labels. 
 
 #### Read Only 
 
-A read only member has access to an environment, but cannot perform any actions. They can view all the applications and resources of the environment, but will be unable to make any changes. 
+A read only role of an environment is only able to view all resources in the environment. They can view hosts, stacks, services, containers, but they will be unable to perform any actions to create, edit, or remove them. 
+
+> **Note:** With this role, they will be able to view logs of a container.
+
 
 
 
