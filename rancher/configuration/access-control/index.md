@@ -74,6 +74,8 @@ Once an account has been made, the admin/user can be added to any [environments]
 
 ### Account Types
 
+The account type determines whether or not an account will have access to the admin tab. For each environment in Rancher, there are [membership roles]({{site.baseurl}}/rancher/configuration/environments/#membership-roles) that provide different level of access for the specific environment. 
+
 #### Admin
 
 The first user that authenticates Rancher becomes an admin of Rancher. Only admins will have permissions to view the **Admin** tab (_v0.37.0+) or the **Administration** options in the account dropdown menu (_anything v0.35.0 and prior_). This includes being able to configure **Access Control**, **Accounts**, and **[Host Registration]({{site.baseurl}}/rancher/configuration/host-registration/)**. 
