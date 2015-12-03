@@ -9,7 +9,7 @@ layout: os-default
 
 RancherOS is available as an image with Azure Resource Management. Please note that RancherOS is only offered in Azure Resource Management and not available in the Azure Service Management. 
 
-> **Note:** Currently, we only have v0.3.1 available as an image in Azure and it does not support passing in cloud config files. We are working on adding a new version that has cloud config enabled. 
+> **Note:** Currently, we only have v0.3.1 available as an image in Azure and it does not support passing in cloud config files. We are working on adding a new version that has cloud config enabled. Also, only certain regions are supported with RancherOS on Azure. 
 
 ### Launching Rancheros through the Azure Portal
 
@@ -30,7 +30,3 @@ After the VM has been provisioned, click on the VM to find the public IP address
 ```bash
 $ ssh rancher@<public_ip_of_vm> -p 22
 ```
-
-### Launching RancherOS through the Azure CLI
-
-More details coming soon!
