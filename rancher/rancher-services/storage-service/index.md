@@ -93,8 +93,8 @@ In this example, we're going to provide an example of how to use GlusterFS to ha
 4. Launch Service using the Convoy Gluster service
    * Click on **Add Service** in a different stack. Set up your service as you typically would. 
         * For this example, I'll be using the `ubuntu:14.04.3` image to provide how the storage service is working and a scale of `10`.
-   * In the **Advanced Options** -> **Volumes** tab, add the name of your **volume**. The naming convention of the volume will be the same as Docker, `</path/on/host>:</path/in/container>`. Docker volumes default to mount in read-write mode, but you can set it to be mounted read-only by adding the `:ro` at the end of the volume.
-        * For this example, I have used `myconvoy:/convoy1` as the volume name.
+   * In the **Advanced Options** -> **Volumes** tab, add the name of your **volume**. The naming convention of the volume will be the same as Docker, `<docker-volume-name>:</path/in/container>`. Docker volumes default to mount in read-write mode, but you can set it to be mounted read-only by adding the `:ro` at the end of the volume.
+        * For this example, I have used `glustervol1:/testvolume` as the volume name.
    * In the **Advanced Options** -> **Volumes** tab, the **Volume Driver** will be the name of the **storage pool** that was created. 
    * Click on **Create** to create your service. After the service is created, start the service.
 <br>
@@ -103,7 +103,7 @@ In this example, we're going to provide an example of how to use GlusterFS to ha
    * Select a container on one of the hosts and use the container's dropdown to select **Execute Shell**. In the container, check that the directory that you had set in the service creation exists. Create a file in the shared volume directly. 
         
         ```bash
-        $ cd convoy1
+        $ cd testvolume
         $ vi test.yml
         $ ls
         test.yml
@@ -111,10 +111,10 @@ In this example, we're going to provide an example of how to use GlusterFS to ha
    * Select a container on a **different** host and use the container's dropdown to select **Execute Shell**. In the container, check that the directory and file that was created in the previous container exists. 
         
         ```bash
-        $ cd convoy1
+        $ cd testvolume
         $ ls
         test.yml
         ```
 6. Checking the Volume Driver on the Host
    * Pick a host that has the host label and is running the `convoy-gluster` service. SSH into the host.
-   * Use `docker volume ls` to view the list of Docker volumes. One of the entries will be using the `convoy_gluster` driver with the volume name that was created in the service. 
+   * Use `docker volume ls` to view the list of Docker volumes. One of the entries will be using the `convoy_gluster` driver with the volume name that was created in the service. In my example, `glustervol1` will be listed. 
