@@ -86,6 +86,17 @@ Depending on how the MySQL database is setup, you may need to do an [upgrade]({{
 
 If you were unable to see the **Admin** -> **Processes** tab due to the lack of memory, after starting Rancher server again with more memory, you should be able to see the tab and start troubleshooting the processes that have been running the longest.
 
+### Rancher server database is growing too quickly.
+
+As of v0.35.0+, Rancher server automatically cleans up a couple of database tables to prevent the database from increasing too quickly. If you are noticing that these tables are not being cleaned up quick enough for you, please feel free to update the default settings using our API. 
+
+By default, any records in the `events` table are deleted if they were created 2 weeks ago. The setting in the API is listed in seconds (`1209600`). The setting in the API is `events.purge.after.seconds`. 
+
+By default, any records in the `process_instance` table are deleted if they were created 1 day ago. The setting in the API is listed in seconds (`86400`). The setting in the API is `process_instance.purge.after.seconds`. 
+
+To update these settings in your API, navigate to the `http://<rancher-server-ip>:8080/v1/settings` page. Search for the setting you want to update and click on the link in the `links -> self` to navigate to the setting. Click on `Edit` on the side page to change the `value`. Remember, the value is in seconds. 
+
+
 <div id="databaselock">
 
 ### Why is Rancher Server frozen? OR Why could my upgrade have failed?
