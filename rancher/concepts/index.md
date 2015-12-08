@@ -11,15 +11,15 @@ In this section, we introduce the key concepts in Rancher. You should be familia
 
 ### Users
 
-Users govern who has the access rights to view and manage Rancher resources within their Environment.  Rancher allows access for a single tenant but multi-user support can be enabled.
+Users govern who has the access rights to view and manage Rancher resources within their Environment.  Rancher allows access for a single tenant by default. However, multi-user support can also be enabled.
 
-Please read about [access control]({{site.baseurl}}/rancher/configuration/access-control/) to enable authentication.
+See [access control]({{site.baseurl}}/rancher/configuration/access-control/) before you enable authentication.
 
 ### Environments
 
-All hosts and any Rancher resources (i.e. containers, load balancers, etc.) are created and belong to an environment.  Access control to who can view and manage these resources are then defined by the owner of the environment.  Rancher currently supports the capability for each user to manage and invite other users to their environment and allows for the ability to create multiple environments for different workloads.  For example, you may want to create a "dev" environment and a separate "production" environment with its own set of resources and limited user access for your application deployment.
+All hosts and any Rancher resources, such as containers, load balancers, and so on are created in and belong to an environment.  Access control permissions for viewing and managing these resources are then defined by the owner of the environment.  Rancher currently supports the capability for each user to manage and invite other users to their environment and allows for the ability to create multiple environments for different workloads.  For example, you may want to create a "dev" environment and a separate "production" environment with its own set of resources and limited user access for your application deployment.
 
-[Access control]({{site.baseurl}}/rancher/configuration/access-control/) will need to be set up before being able to [share environments]({{site.baseurl}}/rancher/configuration/environments/) with users. 
+Set up [Access control]({{site.baseurl}}/rancher/configuration/access-control/) before you [share environments]({{site.baseurl}}/rancher/configuration/environments/) with users. 
 
 <a id="host"></a>
 
@@ -28,16 +28,16 @@ All hosts and any Rancher resources (i.e. containers, load balancers, etc.) are 
 Hosts are the most basic unit of resource within Rancher and is represented as any Linux server, virtual or physical, with the following minimum requirements:
 
 * Any modern Linux distribution that supports Docker 1.6+.
-* Must be able to communicate with the Rancher server via http or https through the pre-configured port (Default is 8080).
-* Must be routable to any other hosts belonging to the same environment to leverage Rancher's cross-host networking for Docker containers.
+* Ability to communicate with a Rancher server via http or https through the pre-configured port. Default is 8080.
+* Ability to be routed to any other hosts under the same environment to leverage Rancher's cross-host networking for Docker containers.
 
 Rancher also supports Docker Machine and allows you to add your host via any of its supported drivers.
 
-Read the following to [add your first host]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts) to Rancher.
+See [add your first host]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts) before adding your first host to Rancher.
 
 ### Networking
 
-Rancher supports cross-host container communication by implementing a simple and secure overlay network using IPsec tunneling.  To leverage this capability, a container launched through Rancher must select "Managed" for its network mode or if launched through Docker, provide an extra label "--label io.rancher.container.network=true".  Most of Rancher's network features such as a load balancer or DNS service require the container to be in the managed network.
+Rancher supports cross-host container communication by implementing a simple and secure overlay network using IPsec tunneling.  To leverage this capability, a container launched through Rancher must select "Managed" for its network mode or if launched through Docker, provide an extra label "--label io.rancher.container.network=true".  Most of Rancher's network features, such as load balancer or DNS service, require the container to be in the managed network.
 
 Under Rancher's network, a container will be assigned both a Docker bridge IP (172.17.0.0/16) and a Rancher managed IP (10.42.0.0/16) on the default docker0 bridge.  Containers within the same environment are then routable and reachable via the managed network.
 
@@ -49,11 +49,11 @@ Rancher adopts the standard Docker Compose terminology for services and defines 
 
 * Service HA - the ability to have Rancher automatically monitor container states and maintain a service's desired scale.
 * Health Monitoring - the ability to set basic monitoring thresholds for container health.
-* Add Load Balancers - the ability to add a simple load balancer for your services using HAProxy
-* Add External Services - the ability to add any-IP as a service to be discovered
-* Add Service Alias - the ability to add a DNS record for your services to be discovered
+* Add Load Balancers - the ability to add a simple load balancer for your services using HAProxy.
+* Add External Services - the ability to add any-IP as a service to be discovered.
+* Add Service Alias - the ability to add a DNS record for your services to be discovered.
 
-Read more about [adding services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/), [adding load balancers]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-balancers/), [adding external services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-external-services/) or [adding service alias]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-service-alias/).
+For more information, see [adding services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/), [adding load balancers]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-balancers/), [adding external services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-external-services/) or [adding service alias]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-service-alias/).
 
 ### Load Balancer
 
@@ -61,19 +61,19 @@ Rancher implements a managed load balancer using HAProxy that can be manually sc
 
 ### Distributed DNS Service
 
-Rancher implements a distributed DNS service using our own light-weight DNS server coupled with a highly available control plane. Each healthy container is automatically added to the DNS service when linked to another service or added to a Service Alias. When queried by the service name, the DNS service returns a randomized list of IP addresses of the healthy containers implementing that service.
+Rancher implements a distributed DNS service by using its own light-weight DNS server coupled with a highly available control plane. Each healthy container is automatically added to the DNS service when linked to another service or added to a Service Alias. When queried by the service name, the DNS service returns a randomized list of IP addresses of the healthy containers implementing that service.
 
-Because Rancher’s overlay networking provides each container with a distinct IP address, we do not need to deal with port mappings and do not need to handle situations like duplicated services listening on different ports. As a result, a simple DNS service is adequate for handling service discovery.
+Because Rancher’s overlay networking provides each container with a distinct IP address, you do not need to deal with port mappings and do not need to handle situations like duplicated services listening on different ports. As a result, a simple DNS service is adequate for handling service discovery.
 
 ### Health Checks
 
 Rancher implements a health monitoring system by running managed network agent’s across it’s hosts to co-ordinate the distributed health checking of containers and services. These network agents internally utilize HAProxy to validate the health status of your applications. When health checks are enabled either on an individual container or a service, each container is then monitored by up to three network agents running on hosts seperate to that containers parent host. The container is considered healthy if at least one HAProxy instance reports a “passed” health check.
 
-> **Note:** The only exception to this model is when your environment contains a single host, in this instance the health checks will be performed by the same host.
+> **Note:** The only exception to this model is when your environment contains a single host. In such instances the health checks will be performed by the same host.
 
-Rancher’s approach handles network partitions and is more efficient than client-based health checks. By using HAProxy to perform health checks, Rancher enables users to specify the same health check policy across applications and load balancers.
+Rancher handles network partitions and is more efficient than client-based health checks. By using HAProxy to perform health checks, Rancher enables users to specify the same health check policy across applications and load balancers.
 
-Read more [details]({{site.baseurl}}/rancher/concepts/health-checks/) including example failure scenarios and how Rancher displays services. You can also read more about how to set up health checks using [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/rancher-services/#health-check-for-services) or in the [UI]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#health-checks).
+For more information such as including example failure scenarios and how Rancher displays services, see [Health Checks]({{site.baseurl}}/rancher/concepts/health-checks/). You can also read more about setting up health checks by using [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/rancher-services/#health-check-for-services) or in the [UI]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#health-checks).
 
 ### Service HA
 
@@ -81,13 +81,13 @@ Rancher constantly monitors the state of your containers within a service and ac
 
 ### Service Upgrade
 
-Rancher supports the notion of service upgrades by allowing users to either load balance or apply a service alias for a given service.  By leveraging either Rancher features, it creates a static destination for existing workloads that require that service.  Once this is established, the underlying service can be cloned from Rancher as a new service, validated through isolated testing, and added to either the load balancer or service alias when ready.  The existing service can be removed when obsolete and all network or application traffic are then automatically distributed to the new service.
+Rancher supports the notion of service upgrades by allowing users to either load balance or apply a service alias for a given service.  By leveraging either Rancher features, it creates a static destination for existing workloads that require that service.  Once this is established, the underlying service can be cloned from Rancher as a new service, validated through isolated testing, and added to either the load balancer or service alias when ready.  The existing service can be removed when obsolete. Subsequently, all the network or application traffic are automatically distributed to the new service.
 
 ### Rancher Compose
 
 Rancher implements and ships a command-line tool called rancher-compose that is modeled after docker-compose. It takes in the same docker-compose.yml templates and deploys the Stacks onto Rancher. The rancher-compose tool additionally takes in a rancher-compose.yml file which extends docker-compose.yml to allow specifications of attributes such as scale, load balancing rules, health check policies, and external links not yet currently supported by docker-compose.
 
-Read more about how to use [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/).
+For more information, see [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/).
 
 ### Stacks
 
@@ -108,22 +108,20 @@ Rancher supports container scheduling policies that are modeled closely after Do
 * shared volumes
 * host tagging
 * shared network stack: --net=container:dependency
-* strict and soft affinity/anti-affinity rules using both env var (Swarm) and labels (Rancher)
+* strict and soft affinity/anti-affinity rules by using both env var (Swarm) and labels (Rancher)
 
-In addition, Rancher supports scheduling service triggers that allow users to specify rules such as on "host add" or "host label" to automatically scale services onto hosts with specific labels.
+In addition, Rancher supports scheduling service triggers that allow users to specify rules, such as on "host add" or "host label", to automatically scale services onto hosts with specific labels.
 
-Read more about how to use scheduling with [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/scheduling/), or in the [UI]({{site.baseurl}}/rancher/rancher-ui/scheduling/).
-
-Read more about the [differences/similarities]({{site.baseurl}}/rancher/concepts/scheduling/) between Rancher's scheduling and Docker Swarm.
+For more information on Container Scheduling and comparison matrix of Rancher's scheduling and Docker Swarm, see [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/scheduling/) 
 
 ### Sidekicks
 
-Rancher supports the colocation, scheduling, and lock step scaling of a set of services by allowing users to group these services using the notion of sidekicks.  A service with one or more sidekicks is typically created to support shared volumes (i.e. `--volumes_from`) and/or networking (i.e. `--net=container`) between containers.
+Rancher supports the colocation, scheduling, and lock step scaling of a set of services by allowing users to group these services by using the notion of sidekicks.  A service with one or more sidekicks is typically created to support shared volumes (i.e. `--volumes_from`) and networking (i.e. `--net=container`) between containers.
 
-Read more about using [sidekicks with rancher-compose]({{site.baseurl}}/rancher/rancher-compose/#sidekicks).
+For more information, see [sidekicks with rancher-compose]({{site.baseurl}}/rancher/rancher-compose/#sidekicks).
 
 ### Metadata Services
 
-Rancher offers data for both your services and containers that can be used to manage your running Docker instances in the form of a metadata service accessed directly through a HTTP based API.  These data can include static information when creating your Docker containers/Rancher Services, or runtime data such as discovery information about peer containers within the same service.
+Rancher offers data for both your services and containers. This data can be used to manage your running Docker instances in the form of a metadata service accessed directly through a HTTP based API.  These data can include static information when creating your Docker containers, Rancher Services, or runtime data such as discovery information about peer containers within the same service.
 
-Read more about how to use our [metadata service]({{site.baseurl}}/rancher/metadata-service/).
+For more information, see [metadata service]({{site.baseurl}}/rancher/metadata-service/).
