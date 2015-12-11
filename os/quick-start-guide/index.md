@@ -156,7 +156,7 @@ To make the container survive during the reboots, you should create the `/opt/ra
 
 ```bash
 $ sudo mkdir -p /opt/rancher/bin
-$ sudo echo “sudo system-docker start busydash” >> /opt/rancher/bin/start.sh
+$ echo “sudo system-docker start busydash” | sudo tee -a /opt/rancher/bin/start.sh
 $ sudo chmod 755 /opt/rancher/bin/start.sh
 ```
 
