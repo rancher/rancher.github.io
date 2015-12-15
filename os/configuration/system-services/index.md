@@ -6,8 +6,6 @@ layout: os-default
 
 ## System Services
 
-_Available as of v0.3.0_
-
 A system service is a container that can be run in either system-docker or user docker. Rancher provides services that are already available in RancherOS by adding them to the [os-services repo](https://github.com/rancher/os-services). Anything in the `index.yml` file from the repo will be an option shown when using the `ros service list` command. This command will list all system services and whether they are enabled or disabled.
 
 You can also create your own system service in the [docker compose](https://docs.docker.com/compose/) format. Rancher uses `rancher-compose`, which supports almost any key that `docker-compose` supports. The only ones that we don't support are env_file and external_links. The file that creates the system service can either be added directly into RancherOS or hosted at a URL. RancherOS can enable the service from either placement.
@@ -19,8 +17,12 @@ For any services that are listed from the `ros service list`, they can be enable
 
 ```bash
 $ sudo ros service list
-disabled ubuntu-console
+disabled amazon-ecs-agent
 disabled debian-console
+disabled kernel-headers
+disabled kernel-headers-system-docker
+disabled resize-fs
+disabled ubuntu-console
 $ sudo ros service enable ubuntu-console
 $ sudo reboot
 ```
@@ -31,7 +33,20 @@ To delete a service that you added, run `ros service delete <system-service-name
 
 ### Adding Custom System Services
 
-After creating your own custom service, you can save the rancher compose file in a http(s) url location or within RancherOS. If you choose to save it in RancherOS, the file must be saved in `/var/lib/rancher/conf/` in order for it to be enabled. 
+After creating your own custom service, you can save the rancher compose file in a http(s) url location, in the [cloud-config]({{site.baseurl}}/os/cloud-config/), or in a directory of RancherOS. 
+
+If you want to boot RancherOS with a system-service running, you can add the service to the cloud-config that is passed to RancherOS.
+
+```
+#cloud-config
+rancher:
+  services: 
+    nginxapp:
+      image: nginx
+      restart: always
+```      
+
+If you want to add a system-service to a running RancherOS, the file must be saved in `/var/lib/rancher/conf/` in order for it to be enabled. 
 
 For enabling custom system-services, the command must indicate the file location if saved in RancherOS.
 

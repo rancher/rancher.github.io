@@ -12,14 +12,14 @@ The `ros install` command is used to install RancherOS to hard disk. Please foll
 
  Options | Description
 ---------|------------------------------------------------------------------------
- -i      | Install RancherOS from a specific image
- -c      | The Cloud-Config file needed for SSH keys
- -d      | Which Device to Install to
- -f      | [ DANGEROUS! Data loss can happen ] Partition/Format without prompting
- -t      | Install type:
+ `--image`, `-i`      | Install RancherOS from a specific image
+`--cloud-config`, `-c`      | The [Cloud-Config file]({{site.baseurl}}/os/cloud-config/) needed for SSH authorized keys
+`--device`,  `-d`      | Which Device to Install to
+`--force`,  `-f`      | [ DANGEROUS! Data loss can happen ] Partition/Format without prompting
+`--install-type`, `-t`      | Install type:
          |   `generic`    - (default) creates 1 ext4 partition and installs RancherOS
          |   `amazon-ebs` - installs RancherOS and sets up PV-GRUB
- -h      | Prints help information
+`--no-reboot`      | Do not reboot after install
 
 #### Image / Version
 

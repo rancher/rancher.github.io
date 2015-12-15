@@ -38,8 +38,6 @@ Typically, when you first boot the server, you pass in the cloud-config file to 
 
 You can view the content of `cloud-config.yml` file by issuing the `ros config export` command. Another command `ros config export --full` prints the current effective configuration of RancherOS, taking into account the initial default configuration and the impact of `cloud-config.yml`.
 
-_In v0.3.1+, we changed the command from `rancherctl` to `ros`._
-
 ## Supported Cloud-Config Directives
 
 RancherOS currently supports a small number of cloud-config directives.
@@ -51,6 +49,7 @@ RancherOS currently supports a small number of cloud-config directives.
 You can add SSH keys to the default `rancher` user.
 
 ```yaml
+#cloud-config
 # Adds SSH keys to the rancher user
 ssh_authorized_keys:
   - ssh-rsa AAA... darren@rancher
@@ -61,6 +60,7 @@ ssh_authorized_keys:
 You can write files to the disk using the `write_files` directive.
 
 ```yaml
+#cloud-config
 write_files:
   - path: /opt/rancher/bin/start.sh
     permissions: "0755"
@@ -70,6 +70,29 @@ write_files:
       echo "I'm doing things on start"
 ```
 
+#### Logging into DockerHub or Private Repositories
+
+By using the `write_files` directive, you can add your login credentials so that when RancherOS boots, you will already by logged in.
+
+```
+#cloud-config
+write_files:
+  - path: /home/rancher/.docker/config.json
+    permissions: "0755"
+    owner: rancher
+    content: |
+      {
+        "auths": {
+          "https://index.docker.io/v1/": {
+            "auth": "asdf=",
+            "email": "not@val.id" 
+          }  
+        }    
+      }
+```
+
+> **Note:** Currently, you will not be able to log into a repository and launch the service in the same cloud-config file, which means you will not be able to launch a container using cloud-config from a private repository. 
+
 ### Set Hostname
 
 You can set the hostname of the host using cloud-config. The example below shows how to configure it.
@@ -77,6 +100,43 @@ You can set the hostname of the host using cloud-config. The example below shows
 ```yaml
 hostname: myhost
 ``` 
+
+### Launching Containers in RancherOS 
+
+To start containers in RancherOS when booting it up, you can just add the services to the cloud-config file. 
+
+```
+#cloud-config
+rancher:
+  services: 
+    nginxapp:
+      image: nginx
+      restart: always
+```  
+
+#### System-Docker vs. User Docker
+
+RancherOS uses labels to determine if the container should be deployed in system-docker. By default without the label, the container will be deployed in user docker.
+
+```yaml
+labels:
+- io.rancher.os.scope=system
+```
+
+#### Labels
+
+We use labels to determine how to handle the service containers.
+
+Key | Value |Description
+----|-----|---
+`io.rancher.os.detach` | Default: `true` | Equivalent of `docker run -d`. If set to `false`, equivalent of `docker run --detach=false`
+`io.rancher.os.scope` | `system` | Use this label to have the container deployed in system-docker instead of docker.
+`io.rancher.os.before`/`io.rancher.os.after` | Service Names (Comma separated list is accepted) | Used to determine order of when containers should be started
+`io.rancher.os.createonly` | Default: `false` | When set to `true`, only a `docker create` will be performed and not a `docker start`.
+`io.rancher.os.reloadconfig` | Default: `false`| When set to `true`, it reloads the configuration. 
+
+
+Read more about [system-services]({{site.baseurl}}/os/configuration/system-services) in RancherOS. 
 
 ### RancherOS Specific Configuration 
 

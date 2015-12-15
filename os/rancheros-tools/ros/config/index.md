@@ -6,7 +6,6 @@ layout: os-default
 
 ## ROS Config
 ---
-_In v0.3.1+, we changed the command from `rancherctl` to `ros`._
 
 RancherOS state is controlled by a cloud config file. `ros config` is used to manipulate the configuration of the cloud config file. In previous versions (prior to v0.4.0), `ros config` would only manipulate the `rancher` key in the configuration and `rancher` was not required to set or get data.
 
@@ -23,6 +22,7 @@ Remember, all `ros` commands needs to be used with `sudo`.
 | `get`      | Gets value                                       |
 | `set`      | Sets a value                                     |
 | `import`  | Import configuration from standard in or a file |
+| `images`	 | List Docker images for a configuration from a file
 | `export`   | Export configuration                            |
 | `merge`    | Merge configuration from standard in                 |
 

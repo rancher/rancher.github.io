@@ -6,7 +6,6 @@ layout: os-default
 
 ## ROS ENV
 ---
-_In v0.3.1+, we changed the command from `rancherctl` to `ros`._
 
 `ros env` runs an arbitrary command with RancherOS environment. 
 
