@@ -5,7 +5,6 @@ layout: os-default
 
 ## ROS
 ---
-_In v0.3.1+, we changed the command from `rancherctl` to `ros`._
 
 A useful command that can be used with RancherOS is `ros` which can be used to control and configure the system. `ros` requires you to be the root user, so with the rancher user, you will need to use `sudo`.
 
@@ -14,8 +13,9 @@ A useful command that can be used with RancherOS is `ros` which can be used to c
 | Command       | Description                                                                                   |
 |---------------|-----------------------------------------------------------------------------------------------|
 |`config`, `c`  | [Configure Settings]({{site.baseurl}}/os/rancheros-tools/ros/config/)                         |
+|`dev`, `d`     | dev spec
 |`env`, `e`     | [Run a command with RancherOS environment]({{site.baseurl}}/os/rancheros-tools/ros/env/)      |
-|`service`, `s` | [Service Settings]({{site.baseurl}}/os/rancheros-tools/ros/service/)                          |
+|`service`, `s` | [Command Line interface for services and compose.]({{site.baseurl}}/os/rancheros-tools/ros/service/)                          |
 |`os`           | [Operating System Upgrade/Downgrade]({{site.baseurl}}/os/rancheros-tools/ros/os/)             |
 |`tls`          | [Setup TLS configuration]({{site.baseurl}}/os/rancheros-tools/ros/tls/)                       |
 |`install`      | [Install RancherOS to Disk]({{site.baseurl}}/os/rancheros-tools/ros/install/)                 |
@@ -44,15 +44,16 @@ USAGE:
     ros [global options] command [command options] [arguments...]
 
 VERSION:
-    v0.3.0
+    v0.4.0
 
 AUTHOR(S): 
     Rancher Labs, Inc.  
 
 COMMANDS:
     config, c   configure settings
+    dev, d      dev spec
     env, e      env command
-    service, s  service settings
+    service, s  Coomand line interface for services and compose.
     os          operating system upgrade/downgrade
     tls         setup tls configuration
     install     install RancherOS to disk

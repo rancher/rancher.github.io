@@ -7,8 +7,6 @@ layout: os-default
 ## ROS Service
 ---
 
-_In v0.3.1+, we changed the command from `rancherctl` to `ros`._
-
 `ros service` allows you to enable/disable different system services. Please go to our [Adding System Services page]({{site.baseurl}}/os/system-services/) for more details on how to add system services to RancherOS. The `ros service` command shows you how to turn on and off the services that have been added.
 
 ### Sub Commands
@@ -19,6 +17,20 @@ _In v0.3.1+, we changed the command from `rancherctl` to `ros`._
 |`disable`	|Turn off an service|
 |`list`	|	List services and state|
 | `delete` | Delete services |
+|`build` |	Build or rebuild services.
+|`create`	| Create all services but do not start
+|`up` |		Bring all services up
+|`start` |	Start services
+|`logs` |		Get service logs
+|`restart` |	Restart services
+|`stop`, `down` |	Stop services
+|`scale` |	Scale services
+|`rm`	|	Delete services
+|`pull`	|	Pulls images for services
+|`kill`	|	Force stop service containers
+|`port` |		Print the public port for a port binding
+|`ps`	|	List containers
+|`help`, `h` |	Shows a list of commands or help for one command
 
 ### List
 ---

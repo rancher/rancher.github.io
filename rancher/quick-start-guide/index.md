@@ -64,7 +64,7 @@ When you click **Close** on the Rancher UI, you will be directed back to the **I
 
 ### Create a Container through UI
 
-In the newly added host, click **+ Add Container**. Provide the container a name like “first_container”. You can just use our default settings and click **Create**. Rancher will start launching two containers on the host. One container is the **_first_container_** that we requested. The other container is a **_Network Agent_**, which is a system container created by Rancher to handle tasks such as cross-host networking, health checking, etc.
+Navigate to the **Applications** -> **Stacks** page, if there are still no services, you can click on the "Add Service" button in the welcome screen. Provide the service with a name like “first_container”. You can just use our default settings and click **Create**. Rancher will start launching two containers on the host. One container is the **_first_container_** that we requested. The other container is a **_Network Agent_**, which is a system container created by Rancher to handle tasks such as cross-host networking, health checking, etc.
 
 Regardless what IP address your host has, both the **_first_container_** and **_Network Agent_** will have IP addresses in the `10.42.*.*` range. Rancher has created this overlay network so containers can communicate with each other even if they reside on different hosts.
 
