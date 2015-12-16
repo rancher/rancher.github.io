@@ -33,9 +33,9 @@ Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/ran
 
 <a id="ldap"></a>
 
-### Enabling LDAP Capabilities for TLS
+### Enabling Active Directory or OpenLDAP for TLS
 
-In order to enable LDAP for Rancher server with TLS, the Rancher server container will need need to be started with the  certificate passed to the server. On your Linux machine with Docker installed, place the certificate in `/some/dir`. 
+In order to enable Active Directory or OpenLDAP for Rancher server with TLS, the Rancher server container will need need to be started with the ldap certificate passed to the server. On your Linux machine with Docker installed, place the certificate in `/some/dir`. 
 
 Start Rancher by bind mount the volume that has the certificate. 
 

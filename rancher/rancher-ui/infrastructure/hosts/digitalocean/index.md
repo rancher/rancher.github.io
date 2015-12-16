@@ -34,6 +34,7 @@ Now that we've saved the **Access Token**, we are ready to launch our DigitalOce
 6. Select the **Region** that you want to launch in. We've provided the available regions that can be launched using metadata. Some regions may not be included as the API doesn't support it.
 7. (Optional) If you want to enable any of the advanced options (i.e. backups, IPv6, private networking), select the ones that you want to include.
 8. (Optional) Add **[labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#labels)** to hosts to help organize your hosts and to [schedule services/load balancers]({{site.baseurl}}/rancher/rancher-ui/scheduling/).
-9. When complete, click **Create**. 
+9. (Optional) Customize your `docker-machine create` command with [Docker engine options](https://docs.docker.com/machine/reference/create/#specifying-configuration-options-for-the-created-docker-engine).
+10. When complete, click **Create**. 
 
 Once you click on create, Rancher will create the DigitalOcean droplet and launch the _rancher-agent_ container in the droplet. In a couple of minutes, the host will be active and available for [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/).

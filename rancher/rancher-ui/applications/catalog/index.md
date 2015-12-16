@@ -28,3 +28,11 @@ After all the services have been upgraded, the stack and services will be in an 
 #### Rolling back 
 
 If something went wrong during your upgrade and you need to revert to the previous version, you would want to select **Rollback** in the stack dropdown menu. 
+
+
+### Catalogs in Rancher
+
+By default, the catalog is populated with templates from the Rancher Catalog [repository](https://github.com/rancher/rancher-catalog) as the `library` catalog. 
+
+An admin has the ability to add or remove catalogs to Rancher in the **Admin** -> **[Settings]({{site.baseurl}}/rancher/configuration/settings/#catalog)**. Whenever a new catalog is added, the catalog is available as a choice to the users to search and 
+

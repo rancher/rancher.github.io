@@ -114,7 +114,7 @@ Here is an Apache configuration. You'll need to launch an Apache container and d
 ## Host Registration
 After Rancher is launched with these settings, the UI will be up and running at `https://<your domain>/`.
 
-In the UI, you'll need to properly configure Host Registration for SSL. See the [Host Registration ]({{site.baseurl}}/rancher/configuration/host-registration) section for more details.
+In the UI, you'll need to properly configure Host Registration for SSL. See the [Host Registration ]({{site.baseurl}}/rancher/configuration/settings/#host-registration) section for more details.
 
 ## Running Rancher Server Behind an ELB in AWS with SSL
 
