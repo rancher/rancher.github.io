@@ -37,7 +37,8 @@ Finally, you'll just need to finish filling out the final details of the host(s)
 3. Select the **Instance Profile**.
 4. Select the **Root Size**, which is the Exoscale disk size.
 5. (Optional) Add **[labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#labels)** to hosts to help organize your hosts and to [schedule services/load balancers]({{site.baseurl}}/rancher/rancher-ui/scheduling/).
-6. When complete, click **Create**. 
+6. (Optional) Customize your `docker-machine create` command with [Docker engine options](https://docs.docker.com/machine/reference/create/#specifying-configuration-options-for-the-created-docker-engine).
+7. When complete, click **Create**. 
 
 > **Note:** Currently, not all options in `docker machine` are exposed in the UI for Exoscale. We use the default Exoscale endpoint (i.e. `https://api.exoscale.ch/compute`), image (i.e. `ubuntu-14.04`), and availability zone (i.e. `ch-gva-2`). 
 
