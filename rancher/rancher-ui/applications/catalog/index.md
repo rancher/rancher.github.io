@@ -28,3 +28,4 @@ After all the services have been upgraded, the stack and services will be in an 
 #### Rolling back 
 
 If something went wrong during your upgrade and you need to revert to the previous version, you would want to select **Rollback** in the stack dropdown menu. 
+

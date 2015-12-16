@@ -107,9 +107,28 @@ example.com | | | | `example.com`
 <br>
 **Note:** It is assumed that if you have only a port in the label, then the port is for the target port of the service. When using only a target port, it must be surrounded by single quotes.
 
+**Wildcards**
+
+Rancher supports wildcards when adding host based routing. The following wildcard syntax is supported.
+
+```
+*.domain.com -> hdr_end(host) -i .domain.com
+domain.com.* -> hdr_beg(host) -i domain.com.
+```
+
 #### Multiple Routing Rules for the Same Service
 
 In `rancher-compose`, you can configure multiple hostname routing rules to the same service by separating each rule with a comma. See the example for service `web2`.
+
+**Priority**
+
+When there are multiple hostname routing rules, the order of priority is as follows:
+
+1. Hostname and URL
+2. Hostname only
+3. URL
+4. Default (no hostname, no URL)
+
 
 #### Load Balancer Example (L7)
 
@@ -193,6 +212,28 @@ web1:
   scale: 1
 ```
 
+### Custom haproxy.cfg
+
+_Available as of v0.50.0+_
+
+For advanced users, you can specify `global` and `defaults` configuration to the load balancer in the `rancher-compose.yml`. Please refer to the [HAProxy documentation](http://cbonte.github.io/haproxy-dconv/configuration-1.5.html) for details on the available options you can add. 
+
+**Sample `rancher-compose.yml`**
+
+```
+lb:
+  scale: 1
+  load_balancer_config:
+    haproxy_config:
+      defaults: <DEFAULTS_INPUTS>
+      global: <GLOBAL_INPUTS>
+  health_check:
+    port: 42
+    interval: 2000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+```
 
 ## External Service
 

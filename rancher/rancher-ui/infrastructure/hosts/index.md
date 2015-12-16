@@ -25,7 +25,7 @@ The IPSec key is per [environment]({{site.baseurl}}/rancher/configuration/enviro
 ## Adding a Host
 ---
 
-The first time that you add a host, you may be required to set up the [Host Registration]({{site.baseurl}}/rancher/configuration/host-registration/). This setup determines what DNS name or IP address, and port that your hosts will be connected to the Rancher API. By default, we have selected the management server IP and port `8080`.  If you choose to change the address, please make sure to specify the port that should be used to connect to the Rancher API. At any time, you can update the [Host Registration]({{site.baseurl}}/rancher/configuration/host-registration/). After setting up your host registration, click on **Save**.
+The first time that you add a host, you may be required to set up the [Host Registration]({{site.baseurl}}/rancher/configuration/settings/#host-registration/). This setup determines what DNS name or IP address, and port that your hosts will be connected to the Rancher API. By default, we have selected the management server IP and port `8080`.  If you choose to change the address, please make sure to specify the port that should be used to connect to the Rancher API. At any time, you can update the [Host Registration]({{site.baseurl}}/rancher/configuration/settings/#host-registration/). After setting up your host registration, click on **Save**.
 
 We support adding hosts directly from cloud providers or adding a host that's already been provisioned. For cloud providers, we provision using `docker-machine` and support any images that `docker-machine` supports. 
 
