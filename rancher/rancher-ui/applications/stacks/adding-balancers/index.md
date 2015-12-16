@@ -97,6 +97,25 @@ domain3.com/admin -> Service2
 
 Since source/target ports are optional, the listening ports are used as defaults to direct traffic based on the request. If a source port is defined, traffic coming to a specific host header/path will need to match a specific rule in order to be directed to the target.
 
+**Wildcards**
+
+Rancher supports wildcards when adding host based routing. The following wildcard syntax is supported.
+
+```
+*.domain.com -> hdr_end(host) -i .domain.com
+domain.com.* -> hdr_beg(host) -i domain.com.
+```
+
+**Priority with Multiple Hostname Routing Rules**
+
+When there are multiple hostname routing rules, the order of priority is as follows:
+
+1. Hostname and URL
+2. Hostname only
+3. URL
+4. Default (no hostname, no URL)
+
+
 #### Target Port
 
 For each service, you can override the target port defined in the listening port section. This would allow you to direct traffic to services on different ports from the same source port.
