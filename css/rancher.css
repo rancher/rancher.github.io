@@ -433,7 +433,6 @@ table {
   width: 100%;
   border-collapse: collapse;
   word-wrap:break-word;
-  table-layout: fixed;
 }
 
 th {
@@ -465,7 +464,6 @@ tr:nth-child(even) {
   background: #efefef;
 }
 td code {
-  display: block;
   background: rgba(0,0,0,.05);
 }
 
