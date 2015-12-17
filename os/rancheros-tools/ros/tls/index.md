@@ -26,7 +26,7 @@ The `generate` command is used to generate new client and server certificates. B
 
 | Options  | Description                              |
 |----------|------------------------------------------|
-|`--hostname` `[--hostname option --hostname option]`	| The hostname for which you want to generate the certificate|
+|`--hostname`, `-H`	| `[-H host -H host.domain]` The hostname for which you want to generate the certificate|
 |`--server`, `-s`					|	Generate the server keys instead of client keys|
 |`--dir`, `-d` |			The directory to save the certs to|
 
@@ -50,7 +50,7 @@ $ sudo ros tls generate -s --hostname localhost -d ~/DIR/PATH
 
 #### Directory
 
-The `-d` or `--dir` options allow the user to change where the certificates are saved. 
+The `-d` or `--dir` options allow the user to change where the certificate and key files are saved. This is optional. The defaults are, for server files: `/etc/docker/tls`, for client files: `/home/rancher/.docker`.
 
 ```bash
 $ sudo ros tls generate -d ~/DIR/PATH

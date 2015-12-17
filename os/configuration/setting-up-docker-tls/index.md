@@ -8,46 +8,46 @@ layout: os-default
 
 _In v0.3.1+, we changed the command from `rancherctl` to `ros`._
 
-`ros tls` is used to generate both the client and server TLS certificates for Docker.
+`ros tls generate` is used to generate both the client and server TLS certificates for Docker.
 
 Remember, all `ros` commands needs to be used with `sudo` or as a `root` user.
 
 ### End to end example
 
-#### Generate Server Certificate
+#### Enable TLS for Docker and Generate Server Certificate
 
-A server certificate must be generated for the hostname under which you will access the server.  You can use an IP, "localhost", or "foo.example.com". You will need to set the directory of the certificates. Place them in `/home/rancher/.docker` using the `-d` option.
+If you set `rancher.docker.tls` to `true`, the server TLS certificate and private key will be generated automatically on the next start of the `docker` service:
 
-If you want to see the certificate, use `ros config export -p` to see all certificates.
-
-```bash
-$ sudo ros tls generate -s --hostname myserver.example.com --hostname localhost --hostname <IP_OF_SERVER> -d ~/.docker
-```
-
-#### Enable TLS for Docker
-
-> **Note:** As of v0.4.0+, we have re-named `rancher.user_docker` to `rancher.docker`. In versions prior to v0.4.0, you'll need to use `rancher.user_docker` instead of `rancher.docker`.
-
-```bash
-$ sudo ros config set rancher.docker.tls true
+```sh
+$ sudo ros c set rancher.docker.tls true
 $ sudo system-docker restart docker
 ```
 
+When you've done that, all the necessary server certificate and key files have been saved to `/etc/docker/tls` directory, and the `docker` service has been started with `--tlsverify` option.
+
 #### Generate Client Certificates
 
-One or more client certificates must be generated so that you can access Docker. Let's store them in `/.docker` by using the `-d` option.
+You also need client cert and key to access docker via a TCP socket now:
 
-```bash
-$ sudo ros tls generate -d ~/.docker
-# Change ownership to rancher user
-$ sudo chown -R rancher .docker
+```sh
+$ sudo ros tls gen
+  INFO[0000] Out directory (-d, --dir) not specified, using default: /home/rancher/.docker
 ```
 
-After the certificates are created, you'll need to copy all 4 `.pem` files (`ca-key.pem`, `ca.pem`, `cert.pem`, `key.pem`) into your $HOME/.docker on your client machine.
+All the docker client TLS files are in `~/.docker` dir now.
 
 #### Test certificates
 
-In your client, set the docker host and test out if Docker commands work.
+Now you can use your client cert to check if you can access docker via TCP:
+```sh
+$ docker --tlsverify version
+```
+
+Because all the necessary files are in the `~/.docker` dir, you don't need to specify them using `--tlscacert` `--tlscert` and `--tlskey` options. You also don't need `-H` to access docker on localhost.
+
+Copy the files from `/home/rancher/.docker` to `$HOME/.docker` on your client machine if you need to access docker on your RancherOS host from there.
+
+On your client machine, set the docker host and test out if Docker commands work.
 
 ```bash
 $ export DOCKER_HOST=tcp://<IP_OF_SERVER>:2376 DOCKER_TLS_VERIFY=1
