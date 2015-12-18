@@ -40,38 +40,38 @@ In the catalog entry folder, there will be folders for each version that you hav
 
 The first version should be `0` and each subsequent version will be an incremental value. For example, version 2 will be in the `1` folder. By providing a new version folder number, it provides a way to upgrade your stack from a previous version of the template. Alternatively, you could update the templates in the `0` folder and just re-deploy the entry. 
 
-#### Files
+#### Rancher Catalog Files to Display in Rancher Catalog
 
-**Files that are used to display the catalog entry in Rancher**
+Within the catalog entry folder, the details of how to display your catalog entry in the Rancher catalog are located in two files.
 
-Within the catalog entry folder, the details of how to display your catalog entry and saved in 2 files. 
+* The first file `config.yml` contains the details of your entry.
 
-The first file `config.yml` contains the details of your entry.
+     ```yaml
+     name: # Name of the Catalog Entry 
+     description: |
+        # Description of the Catalog Entry
+     version: # Version of the Catalog to be used 
+     category: # Category to be used for searching catalog entries
+     ```
+<br>
+* The second file is a the icon image for the catalog entry. The file must be prefixed with `catalogIcon-`. 
 
-```yaml
-name: # Name of the Catalog Entry 
-description: |
-  # Description of the Catalog Entry
-version: # Version of the Catalog to be used 
-category: # Category to be used for searching catalog entries
-```
+For every catalog entry, there will be a minimum of three items: `config.yml`, `catalogIcon-entry.svg`, and the `0` folder, which holds the first version of the catalog entry. 
 
-The second file is a the icon image for the catalog entry. The file must be prefixed with `catalogIcon-`. 
+#### Rancher Catalog Templates 
 
-**Catalog Entries**
-
-In the version folder number (i.e. `0`, `1`, etc.), the `docker-compose.yml` and `rancher-compose.yml` are saved, which are used to launch templates.
+The `docker-compose.yml` and `rancher-compose.yml` are located within the version folder number (i.e. `0`, `1`, etc.). Rancher uses these files to run [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/) to launch the services into Rancher.
 
 The `docker-compose.yml` should be a file that could also be launched using `docker-compose up`. The services follow the docker-compose format.
 
-The `rancher-compose.yml` will contain additional information to help customize your templates. In the `.catalog` section, you will need to populate a couple of items in order for the catalog service to populate the catalog entry correctly.
+The `rancher-compose.yml` will contain additional information to help customize your catalog entries. In the `.catalog` section, there are some fields that will be required in order to have your catalog entry interprested correctly.
 
 An optional `README.md` is possible to be created, which provides a lengthy description or notes on how to use the catalog service. 
 
 
-Rancher-Compose.yml
+**`rancher-compose.yml`**
 
-```
+```yaml
 .catalog
   name: # Name of the versioned template of the Catalog Entry 
   version: # Version of the versioned template of the Catalog Entry 
@@ -79,14 +79,16 @@ Rancher-Compose.yml
   uuid: # Unique identifier to be used for upgrades. Please see note. 
   questions: #Used to request user input for configuration options
 ```
-
+<br>
 > **Note:** The `uuid` is a required parameter that is used for upgrade scenarios. Each `uuid` must be unique and each later version should be incremental. The recommended format is to use the name of the catalog entry and suffixed with a `-0`. As versions are introduced, you would increment the `-0` to `-1` for the next entry. 
 
-The `questions` section of `.catalog` is used to be able to show questions to the user and provide real time feedback.
+**Questions in the `rancher-compose.yml`**
 
-For each question, the following is required.
+The `questions` section of `.catalog` is used to be able to show questions to the user and allow users to provide different configuration options. 
 
-```
+Each question is a list item in the `questions` section.
+
+```yaml
 .catalog
   questions:
     - variable: # A single word that is used to pair the question and answer.
@@ -99,7 +101,7 @@ For each question, the following is required.
         - Option 1
         - Option 2
 ```
-
+<br>
 > **Note:** The `type` section of the question can be multiple formats. For a drop-down menu, you would select `enum` and provide the options in the `options` section. The options would need to be in list format. 
 
 
