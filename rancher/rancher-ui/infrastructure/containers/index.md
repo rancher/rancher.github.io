@@ -44,7 +44,7 @@ When you select **Edit** from the dropdown menu, you will be only able to change
 
 > **Note:** When ports are exposed in Rancher, it will not show up in `docker ps` as Rancher manages the iptable rules to make the ports fully dynamic. 
 
-You can **Clone**, which will pre-fill the **Add Container** screen with all the setttings from an existing container. If you forget one thing, you can clone the container, change it, and then delete the old container. 
+You can **Clone**, which will pre-fill the **Add Container** screen with all the settings from an existing container. If you forget one thing, you can clone the container, change it, and then delete the old container. 
 
 ### Changing the Container States
 

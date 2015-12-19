@@ -50,7 +50,7 @@ Account keys can create new Environments,  and have can be used to access multip
 - Most resources are owned by an environment and accessible under `/v1/projects/<project_id>/<resource>`
 - Since Environment credentials only ever have access to one Environment (project), you can optionally skip the `/project/<project_id>` part.
 - For example, if you are working with project `1a5` using an Environment API key, /v1/projects/1a5` is the same as `/v1` and /v1/projects/1a5/hosts` is the same as `/v1/hosts`.
-- The documentation will generally refer to the shorter `/v1/<type>` version.  If using an Account key, add in the path for the approprate environment.
+- The documentation will generally refer to the shorter `/v1/<type>` version.  If using an Account key, add in the path for the appropriate environment.
 
 ## Making requests
 
@@ -59,7 +59,7 @@ The API is generally RESTful but has several features to make the definition of 
 - Every type has a [Schema]({{site.baseurl}}/rancher/api/api-resources/schema/) which describes:
   - The URL to get to the collection of this type of resources
   - Every field the resource can have, along with their type, basic validation rules, whether they are required or optional, etc.
-  - Every action that is possible on this type of resouce, with their inputs and outputs (also as schemas).
+  - Every action that is possible on this type of resource, with their inputs and outputs (also as schemas).
   - Every field that filtering is allowed on
   - What HTTP verb methods are available for the collection itself, or for individual resources in the collection.
 
@@ -86,7 +86,7 @@ Most collections can be filtered on the server-side by common fields using HTTP 
 Most collections can be sorted on the server-side by common fields busing HTTP query parameters.  The `sortLinks` map shows you what sorts are available, along with the URL to get the collection sorted by that.  It also includes info about what the current response was sorted by, if specified.
 
 ## Pagination
-API responses are paginated with a limit of 100 resources per page by default.  This can be increased to upto 1000 with the `limit=1000` query parameter.  The `pagination` map in collection responses tells you whether or not you have the full result set and has a link to the next page if you do not.
+API responses are paginated with a limit of 100 resources per page by default.  This can be increased to up to 1000 with the `limit=1000` query parameter.  The `pagination` map in collection responses tells you whether or not you have the full result set and has a link to the next page if you do not.
 
 ## WebSockets
 Several Rancher features such as container logs, shell access, and statistics use WebSockets to stream information.  To use these from the API:

@@ -329,7 +329,7 @@ mysql> update setting set value="" where name="api.auth.github.client.id";
 mysql> update setting set value="" where name="api.auth.github.client.secret";
 ```
 
-Confirm the chagnes have been made in the `setting` table.
+Confirm the changes have been made in the `setting` table.
 
 ```bash
 mysql> select * from setting;  

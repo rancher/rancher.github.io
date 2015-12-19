@@ -6,7 +6,7 @@ layout: rancher-default
 ## Adding Hosts from Other Cloud Providers
 ---
 
-Rancher supports provisioning from other cloud providuers using `docker-machine`. The other cloud providers have a generic UI, which provides all the options in `docker-machine`, and we only require the necessary parameters.
+Rancher supports provisioning from other cloud providers using `docker-machine`. The other cloud providers have a generic UI, which provides all the options in `docker-machine`, and we only require the necessary parameters.
 
 ### Launching Other Host(s) 
 

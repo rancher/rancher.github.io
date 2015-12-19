@@ -20,7 +20,7 @@ Read more about how to use scheduling with [rancher-compose]({{site.baseurl}}/ra
 
 ### Similarities and differences to/from Docker Swarm
 
-Much thought was taken into trying to keep Rancher's scheduler compatible with Docker Swarm's scheduling; however, there are some differences.  Perhaps, the most noteable is that Swarm currently uses environment variables to specify the scheduling rules.  See <a href="https://docs.docker.com/swarm/scheduler/filter/">Swarm scheduling/filters</a> for more details.  Although, we've mainly covered using labels for specifying the scheduling rules in Rancher above, Rancher also supports many of Swarm's scheduling rules via environment variables.
+Much thought was taken into trying to keep Rancher's scheduler compatible with Docker Swarm's scheduling; however, there are some differences.  Perhaps, the most notable is that Swarm currently uses environment variables to specify the scheduling rules.  See <a href="https://docs.docker.com/swarm/scheduler/filter/">Swarm scheduling/filters</a> for more details.  Although, we've mainly covered using labels for specifying the scheduling rules in Rancher above, Rancher also supports many of Swarm's scheduling rules via environment variables.
 
 <table>
 <tr><th>Swarm</th><th>Rancher</th></tr>
@@ -88,6 +88,6 @@ Swarm provides a set of **Standard Constraints** that are based off the informat
 
 _This is currently not supported by Rancher._
 
-Swarm's filter tries to provide an available host that fulfills various <a href="https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory">rresource requirements</a> for the container.  For example: `$ docker run -ti -m 300M ubuntu:14.04 /bin/bash` specifies to run on a host that has a minimum of 300MB.
+Swarm's filter tries to provide an available host that fulfills various <a href="https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory">resource requirements</a> for the container.  For example: `$ docker run -ti -m 300M ubuntu:14.04 /bin/bash` specifies to run on a host that has a minimum of 300MB.
 
 _This is currently not supported by Rancher._

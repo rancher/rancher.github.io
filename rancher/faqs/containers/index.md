@@ -10,7 +10,7 @@ layout: rancher-default
 
 Docker containers are immutable (not changeable) after creation. The only things you can edit are things that we store that aren't really part of the Docker container. This includes restarting, it's still the same container if you stop and start it. You will need to remove and recreate a container to change anything else. 
 
-You can **Clone**, which will pre-fill the **Add Container** screen with all the setttings from an existing container. If you forget one thing, you can clone the container, change it, and then delete the old container. 
+You can **Clone**, which will pre-fill the **Add Container** screen with all the settings from an existing container. If you forget one thing, you can clone the container, change it, and then delete the old container. 
 
 <a id="container-access"></a>
 
