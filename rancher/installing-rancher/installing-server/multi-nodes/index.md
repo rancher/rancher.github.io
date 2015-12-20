@@ -23,7 +23,7 @@ Documentation for building and scaling reliable Redis and Zookeeper installation
 
 For MySQL, you can run your own or use MySQL provided by a cloud provider. We have used Google Cloud SQL and AWS RDS MySQL. 
 
-Load balancing configuration can be handled in a number of ways. In our example configuration, servers are used in a round-robin configuration. The most basic health check that could be used is hitting the `/ping` url. It does not require authentication to receive the `pong` response.
+Load balancing configuration can be handled in a number of ways. In our example configuration, servers are used in a round-robin configuration. The most basic health check that could be used is hitting the `/ping` url. It does not require authentication to receive the `ping` response.
 
 The websocket-proxy provides a single target for the Rancher agent nodes to call into. It is currently a single container, but work is going on to add HA to this service. 
 

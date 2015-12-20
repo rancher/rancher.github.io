@@ -57,7 +57,7 @@ Within the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have 
 
 #### Versions Starting with v0.34.0 and Later
 
-As of v0.34.0, no additional environment variables need to be added to the command to launch Rancher agents. Ensure that your docker dameon is configured correctly.
+As of v0.34.0, no additional environment variables need to be added to the command to launch Rancher agents. Ensure that your docker daemon is configured correctly.
 
 #### Versions Prior to v0.34.0
 

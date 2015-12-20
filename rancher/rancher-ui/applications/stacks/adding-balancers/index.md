@@ -77,11 +77,11 @@ For example, if you were load balancing a web server and wanted both `http` and 
  4. And then add another port mapping the incoming port 443, `http` protocol and SSL _checked_.
  5. In the *SSL Termination* section, select the certificate to use for the SSL port.
 
-It is possible to provide multiple certificates for the load balancer such that the appropriate certificate is presented to the client based on the hostname requested (see [Server Name Indication](https://en.wikipedia.org/wiki/Server_Name_Indication)). This may not work with older clients which don't support SNI (those will get the main certificate). For modern clients, they will be offered the certificate from the list for which there is a match or the main certficiate if there is no match.
+It is possible to provide multiple certificates for the load balancer such that the appropriate certificate is presented to the client based on the hostname requested (see [Server Name Indication](https://en.wikipedia.org/wiki/Server_Name_Indication)). This may not work with older clients which don't support SNI (those will get the main certificate). For modern clients, they will be offered the certificate from the list for which there is a match or the main certficate if there is no match.
 
 ### Advanced Routing Options
 
-Rancher supports L7 load balancing with our advanced routing options. To expand the advanced options, click on the **Show advanced routing options**. The only required field is **Target Service**, which would be L4 load balancing. All of the other fields for L7 load balancing are optional. Since all the fields are optional, the listening ports are default when adding host/request paths, and the ports will be overriden if you specify source/target ports for a service. For each option, we cover some basic examples, but you can use all or some of these options together to define exactly how you want your load balancer to direct traffic to your services.
+Rancher supports L7 load balancing with our advanced routing options. To expand the advanced options, click on the **Show advanced routing options**. The only required field is **Target Service**, which would be L4 load balancing. All of the other fields for L7 load balancing are optional. Since all the fields are optional, the listening ports are default when adding host/request paths, and the ports will be overridden if you specify source/target ports for a service. For each option, we cover some basic examples, but you can use all or some of these options together to define exactly how you want your load balancer to direct traffic to your services.
 
 #### Request Host/Request Path 
 

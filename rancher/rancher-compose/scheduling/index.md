@@ -23,7 +23,7 @@ There are also hard and soft conditions of a rule.
 
 A hard condition is the equivalent of saying **must** or **must not**. Rancher will only use hosts that match or do not match the field and value. If Rancher cannot find a host that meets all of the rules with these conditions, your service could get stuck in an _Activating_ state. The service will be continually trying to find a host for the containers. To fix this state, you can either edit the scale value of the service or add/edit another host that would satisfy all of these rules. 
 
-A soft condition is the equivalent of saying **should** or **should not**. Rancher will attempt to use hosts that match the field and value. In the case of when there is no  host that matches all the rules, Rancher will remove one by one the soft contraints (should/should not rules) until a host satisfies the remaining constraints. 
+A soft condition is the equivalent of saying **should** or **should not**. Rancher will attempt to use hosts that match the field and value. In the case of when there is no  host that matches all the rules, Rancher will remove one by one the soft constraints (should/should not rules) until a host satisfies the remaining constraints. 
 
 To differentiate between the _must_ and _should_ conditions, we add `_soft` to our label name to indicate that the label is **should** try to match the field and values.
      
@@ -109,7 +109,7 @@ io.rancher.scheduler.affinity:host_label: io.rancher.host.docker_version=1.9.1
 io.rancher.scheduler.affinity:host_label_ne: io.rancher.host.docker_version=1.6 
 ```
 
-> **Note:** Rancher does not support the concept of scheduling containers on a host that has `>=` a specific version. You can create specific whitelists and blacklists by using the host scheduling rules to determine if a specific versin of Docker Engine is required for your services.
+> **Note:** Rancher does not support the concept of scheduling containers on a host that has `>=` a specific version. You can create specific whitelists and blacklists by using the host scheduling rules to determine if a specific version of Docker Engine is required for your services.
 
 #### Finding Hosts with Container Labels
 

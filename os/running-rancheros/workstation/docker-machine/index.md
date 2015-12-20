@@ -65,7 +65,7 @@ To point your docker client to the docker daemon inside the VM, use the followin
 $ eval $(docker-machine env <MACHINE-NAME>)
 ```
 
-After setting this up, you can run any docker commmand in your host, and it will execute the command in your RancherOS VM. 
+After setting this up, you can run any docker command in your host, and it will execute the command in your RancherOS VM. 
 
 ```bash
 $ docker run -p 80:80 -p 443:443 -d nginx
