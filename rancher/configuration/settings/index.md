@@ -16,7 +16,7 @@ Before launching any hosts, you will be asked to complete the host registration.
 
 The setup determines the base URL your hosts will use to connect to the Rancher API. By default, Rancher selects the base URL you used to access the UI.  If you choose to change the address, make sure to specify the port that should be used to connect to the Rancher API. If you are configuring Rancher with SSL, be sure to change the protocol to `https`. This registration setup determines what the command will be for [adding custom hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/).
 
-If [access control]({{site.baseurl}}/rancher/configuration/access-control/) is turned on for Rancher, only the **admin** will be able to change the host registration. By default, the first **admin** is the first user to authenticate with Rancher when access control was configured. If access-control is still not configured, any users to the site can update the host registration. This option can be updated in the **Admin** > **Host Registation** tab. 
+If [access control]({{site.baseurl}}/rancher/configuration/access-control/) is turned on for Rancher, only the **admin** will be able to change the host registration. By default, the first **admin** is the first user to authenticate with Rancher when access control was configured. If access-control is still not configured, any users to the site can update the host registration. This option can be updated in the **Admin** > **Host Registration** tab. 
 
 ## Catalog
 
@@ -72,7 +72,7 @@ The `docker-compose.yml` and `rancher-compose.yml` are the **required** files to
 
 The `docker-compose.yml` should be a file that could also be launched using `docker-compose up`. The services follow the docker-compose format.
 
-The `rancher-compose.yml` will contain additional information to help customize your catalog entries. In the `.catalog` section, there are some fields that will be required in order to have your catalog entry interprested correctly.
+The `rancher-compose.yml` will contain additional information to help customize your catalog entries. In the `.catalog` section, there are some fields that will be required in order to have your catalog entry interpreted correctly.
 
 An optional `README.md` is possible to be created, which provides a lengthy description or notes on how to use the catalog service. 
 
@@ -116,7 +116,7 @@ Eligible formats are:
 
 `string`
 
-A extbox will be shown in the UI to capture the answer, and the answer will be formatted to a string.
+A textbox will be shown in the UI to capture the answer, and the answer will be formatted to a string.
 
 `int`
 
