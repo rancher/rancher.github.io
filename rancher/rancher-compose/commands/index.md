@@ -10,7 +10,7 @@ layout: rancher-default
 The `rancher-compose` tool works just like the popular `docker-compose` and supports any `docker-compose.yml` file. There is also a `rancher-compose.yml` which extends and overwrites `docker-compose.yml.` The rancher-compose yaml file are attributes only supported in Rancher, for example, scale of a service.
 
 
-### Rancher-Compose Commands
+## Rancher-Compose Commands
 
 `rancher-compose` supports any command that `docker-compose` supports.
 
@@ -41,6 +41,7 @@ Name | Description
 `--access-key` 			| Specify Rancher API access key [$RANCHER_ACCESS_KEY]
 `--secret-key` 		|	Specify Rancher API secret key [$RANCHER_SECRET_KEY]
 `--rancher-file`, `-r` 	|		Specify an alternate Rancher compose file (default: rancher-compose.yml)
+`--env-file`, `-e` 		|	Specify a file from which to read environment variables
 `--help`, `-h`			|	show help
 `--version`, `-v`		|	print the version
 
@@ -56,16 +57,23 @@ $ rancher-compose -p stack1 scale web=3
 
 > **Note:** If you don't pass in `-p STACK_NAME`, the stack name will be the directory that you are running the `rancher-compose` command in.
 
-### Command Options
+##Command Options
 
-#### Up Command
-
-When you run the `up` command with `rancher-compose`, after all the tasks are complete, the process continues to run. If you want the process to exit after completion, you'll need to add in the `-d` option, which is to not block and log. 
+### Up Command
 
 Name | Description
 ---|----
-`-d` |	Do not block and log
+`--pull`, `-p` |				Before doing the upgrade do an image pull on all hosts that have the image already
+`-d` |					Do not block and log
+`--upgrade`, `-u`, `--recreate` |		Upgrade if service has changed
+`--force-upgrade`, `--force-recreate` |	Upgrade regardless if service has changed
+`--confirm-upgrade`, `-c` |		Confirm that the upgrade was success and delete old containers
+`--rollback`, `-r` |			Rollback to the previous deployed version
+`--batch-size "2"`	 |		Number of containers to upgrade at once
+`--interval "1000"`	 |		Update interval in milliseconds
 <br>
+
+When you run the `up` command with `rancher-compose`, after all the tasks are complete, the process continues to run. If you want the process to exit after completion, you'll need to add in the `-d` option, which is to not block and log. 
 
 ```bash
 # If you do not use the -d flag, rancher-compose will continue to run until you Ctrl+C to quit. 
@@ -73,26 +81,38 @@ $ rancher-compose up
 # Use the -d for rancher-compose to exit after running
 $ rancher-compose up -d
 ```
-#### Logs Command
+
+Read more about [upgrading using rancher-compose]({{site.baseurl}}/rancher/rancher-compose/upgrading/).
+
+### Start Command
+
+Name | Description
+---|----
+`-d` |	Do not block and log
+<br>
+
+If you want the start process to exit after completion, you'll need to add in the `-d` option, which is to not block and log. 
+
+### Logs Command
 
 Name | Description
 ---|----
 `--lines "100"` |	number of lines to tail
 <br>
 
-#### Restart/Stop/Down Command
+### Restart/Stop/Down/Scale Command
 
 Name | Description
 ---|----
 `--timeout`, `-t` `"10"` |	Specify a shutdown timeout in seconds.
 
-#### Rm Command
+### Rm Command
 
 Name | Description
 ---|----
 `--force`, `-f`	| Allow deletion of all services
 
-#### Pull Command
+### Pull Command
 
 Name | Description
 ---|----
@@ -109,7 +129,7 @@ $ rancher-compose pull --cached
 
 > **Note:** Unlike `docker-compose pull`, you will not be specifying which service to pull. Rancher-compose looks at all services in the `docker-compose.yml` and pulls images for all services found in the file. 
 
-#### Upgrade Command
+### Upgrade Command
 
 Rancher supports upgrades to services using `rancher-compose`. Please read more about when and how to [upgrade your services]({{site.baseurl}}/rancher/rancher-compose/upgrading/).
 
@@ -137,14 +157,14 @@ $ rancher-compose upgrade service1 service2 --scale 5
 $ rancher-compose upgrade service1 service2 --cleanup
 ```
 
-### Compose Compatibility
+## Compose Compatibility
 
 `rancher-compose` strives to be completely compatible with Docker Compose.  Since `rancher-compose` is largely focused on running production workloads some behaviors between Docker Compose and Rancher Compose are different.
 
 We support anything that can be created in a standard [docker-compose.yml](https://docs.docker.com/compose/yml/) file. There are a couple of differences in the behavior of rancher-compose that are documented below.
 
 
-### Deleting Services/Container
+## Deleting Services/Container
 
 `rancher-compose` will not delete things by default.  This means that if you do two `up` commands in a row, the second `up` will do nothing.  This is because the first up will create everything and leave it running.  Even if you do not pass `-d` to `up`, `rancher-compose` will not delete your services.  To delete a service you must use `rm`.
 
