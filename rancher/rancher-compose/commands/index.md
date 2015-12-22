@@ -100,7 +100,16 @@ Name | Description
 `--lines "100"` |	number of lines to tail
 <br>
 
-### Restart/Stop/Down/Scale Command
+### Restart Command
+
+Name | Description
+---|----
+`--batch-size` `"1"` |	Number of containers to retart at once
+`--interval` `"0"` |	Restart interval in milliseconds
+<br>
+By default, restarting services will restart the containers individually and immediately sequentially. You can set the batch size and interval of the restart policy. 
+
+### Stop/Down & Scale Command
 
 Name | Description
 ---|----
