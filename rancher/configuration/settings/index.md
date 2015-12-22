@@ -48,6 +48,8 @@ In the main directory, you will need a `templates` folder. The `templates` folde
 
 In the catalog entry folder (e.g. `cloudflare`), there will be folders for each version that you have created for your catalog entry. The first version should be `0` and each subsequent version will be an incremental value. For example, version 2 will be in the `1` folder. By providing a new version folder number, it provides a way to upgrade your stack from a previous version of the template. Alternatively, you could update the templates in the `0` folder and just re-deploy the entry. 
 
+> **Note:** Each catalog entry will need to be a single word, so please use `-` instead of spaces for longer catalog names. You can use spaces in the `name` section of the `config.yml`. 
+
 **Rancher Catalog Files to Display in Rancher Catalog**
 
 Within the catalog entry folder, the details of how to display your catalog entry in the Rancher catalog are located in two files.
