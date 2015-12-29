@@ -26,11 +26,15 @@ Just like adding individual [containers]({{site.baseurl}}/rancher/rancher-ui/inf
 
 #### Port Mapping
 
-When we are mapping ports, we are creating the ability to access the container through the host IP. In the **Port Map** section, you will define the public ports that will be used to connect to the container. You  also define the port will be exposed on the container. When mapping ports for a container to a host, Rancher will check to see if there are any port conflicts before launching the container.
+When we are mapping ports, we are creating the ability to access the exposed ports on the container through the host IP. In the **Port Map** section, you define the public ports that will be used to connect to the container. You also define the private port that is used to connect to the exposed port of the container. The private port is typically whatever port is exposed on the container. When mapping ports for a container to a host, Rancher will check to see if there are any port conflicts on a host before launching the container.
 
 When using port mapping, if the scale of your service is more than the number of hosts with available port(s), your service will become stuck in an activating state. The service will continue to try and if a host/port(s) becomes available, the service will continue to launch containers. 
 
 > **Note:** When ports are exposed in Rancher, it will not show up in `docker ps` as Rancher manages the iptable rules to make the ports fully dynamic. 
+
+**Random Port Mapping**
+
+If you would like to take advantage of Rancher's random port mapping, the public port will be blank and you will need to define the private port. The private port is typically one of exposed ports on the container.
 
 #### Linking Services 
 
