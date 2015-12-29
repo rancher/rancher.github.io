@@ -21,7 +21,11 @@ In the **Infrastructure** -> **Container** page, click on **Add Container**. Any
 
     <a id="port-mapping"></a>
 
-3. If desired, set up port mapping for your host to container relationship. Assuming that your host is using its public IP, when we are mapping ports, we are creating the ability to access the container through the host IP. In the **Port Map** section, you will define the public ports that will be used to communicate with the container. You will also be defining which port will be exposed on the container. When mapping ports for a container to a host, Rancher will check to see if there are any port conflicts. 
+3. If desired, set up port mapping, which proviedes the ability to access the exposed ports on the container through the host IP. In the **Port Map** section, you define the public ports that will be used to communicate with the container. You also define the private port that is used to connect to the exposed port of the container. 
+    
+    **Random Port Mapping**
+
+    If you would like to take advantage of Rancher's random port mapping, the public port will be blank and you will need to define the private port. The private port is typically one of exposed ports on the container.
 
     > **Note:** When ports are exposed in Rancher, it will not show up in `docker ps` as Rancher manages the iptable rules to make the ports fully dynamic. 
 
