@@ -200,8 +200,8 @@ If containers on different hosts cannot ping each other, there are some common s
 Every so often, the IP of the host will accidentally pick up the docker bridge IP instead of the actual IP. These are typically `172.17.42.1` or starting with `172.17.x.x`. If this is the case, you need to re-register your host with the correct IP by explicitly setting the `CATTLE_AGENT_IP` environment variable in the `docker run` command.
 
 ```bash
-$ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock \
-    -e CATTLE_AGENT_IP=<HOST_IP> \
+$ sudo docker run -d -e CATTLE_AGENT_IP=<HOST_IP> --privileged \
+    -v /var/run/docker.sock:/var/run/docker.sock \
     rancher/agent:v0.8.2 http://SERVER_IP:8080/v1/scripts/xxxx
 ```
 
