@@ -18,22 +18,26 @@ To support hosts behind a proxy, you’ll need to edit the Docker daemon to poin
 
 When the agent connects to Rancher server, it auto detects the IP of the agent. Sometimes, the IP that is selected is not the IP that you want to use. You can override this setting and set the host IP to what you want. 
 
-In order to update the IP address for a host, you will need to alter the registration command for the host. You will need to set the CATTLE_AGENT_IP to the IP address that you want to use. 
+In order to update the IP address for a host, you will need to alter the registration command for the host. You will need to set the environment variable for the CATTLE_AGENT_IP to the IP address that you want to use. 
 
-If you already have hosts running, you just need to rerun the agent registration command. If you have any containers existing on the host, please follow the upgrade instructions in order to have the containers remained on your host.
+If you already have hosts running, you can run the agent registration command again on the host. If you have any containers existing on the host, please follow the upgrade instructions in order to have the containers remained on your host.
 
 > **Note:** You should not update the IP of a host to the docker0 interface on the host machine. 
 
 Typically, the registration command from the UI follows this template:
-```bash
-sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock rancher/agent:v0.5.2 http://MANAGEMENT_IP:8080/v1/scripts/SECURITY_TOKEN
-```
-The command will need to be edited to include setting the CATTLE_AGENT_IP by adding the **-e CATTLE_AGENT_IP=x.x.x.x**
 
 ```bash
-sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock –e CATTLE_AGENT_IP=x.x.x.x rancher/agent:v0.5.2 http://MANAGEMENT_IP:8080/v1/scripts/SECURITY_TOKEN
+sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock \
+    rancher/agent:v0.5.2 http://MANAGEMENT_IP:8080/v1/scripts/SECURITY_TOKEN
 ```
-> **Note:** When override the IP address, if there are existing containers in the rancher server, those hosts will no longer to be able to ping the host with the new IP. We are working to fix this issue, but please update the IP address with caution.
+The command will need to be edited to include setting the CATTLE_AGENT_IP by adding the **-e CATTLE_AGENT_IP=x.x.x.x** into the list of options. 
+
+```bash
+sudo docker run -d –e CATTLE_AGENT_IP=x.x.x.x --privileged \
+    -v /var/run/docker.sock:/var/run/docker.sock  \
+    rancher/agent:v0.5.2 http://MANAGEMENT_IP:8080/v1/scripts/SECURITY_TOKEN
+```
+> **Note:** When overriding the IP address, if there are existing containers in Rancher, those hosts will no longer to be able to ping the host with the new IP. We are working to fix this issue, but please update the IP address with caution.
 
 ### What happens if my host is deleted outside of Rancher?
 

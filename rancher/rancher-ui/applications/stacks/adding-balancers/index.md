@@ -110,11 +110,12 @@ domain.com.* -> hdr_beg(host) -i domain.com.
 
 When there are multiple hostname routing rules, the order of priority is as follows:
 
-1. Hostname and URL
-2. Hostname only
-3. URL
-4. Default (no hostname, no URL)
-
+1. Hostname with no wildcards and URL
+2. Hostname with no wildcards
+3. Hostname with wildcards and URL
+4. Hostname with wildcards
+5. URL
+6. Default (no hostname, no URL)
 
 #### Target Port
 
