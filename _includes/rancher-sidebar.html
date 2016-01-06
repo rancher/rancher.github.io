@@ -58,7 +58,13 @@
                     <!--OLD href="{{site.baseurl}}/rancher/configuration/"-->
                     <ul class="collapse list-group-submenu" id="configuration">
                         <li><a href="{{site.baseurl}}/rancher/configuration/access-control/">Access Control</a></li>
-                        <li><a href="{{site.baseurl}}/rancher/configuration/settings/">Settings</a></li>
+                        <li>
+                            <a href="#settings" data-toggle="collapse" class="collapsed" data-parent="#settings">Settings <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
+                            <ul class="collapse list-group-submenu" id="settings">
+                                <li><a class="hash" href="{{site.baseurl}}/rancher/configuration/settings/#host-registration">Host-Registration</a></li>
+                                <li><a class="hash" href="{{site.baseurl}}/rancher/configuration/settings/#catalog">Catalog</a></li>
+                            </ul>
+                        </li>
                         <li><a href="{{site.baseurl}}/rancher/configuration/accounts/">Accounts</a></li>
                         
                         <li><a href="{{site.baseurl}}/rancher/configuration/environments/">Environments</a></li>
