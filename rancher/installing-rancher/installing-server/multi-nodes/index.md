@@ -33,8 +33,8 @@ The websocket-proxy provides a single target for the Rancher agent nodes to call
 When launching rancher server, the following environment variables will need to be set:
 
 * Websocket proxy settings:
-  * CATTLE_HOST_API_PROXY_MODE: "ha"
-  * CATTLE_HOST_API_PROXY_HOST: "<host_IP:port>" //This will need to be accessible from your browser AND to ALL compute nodes
+  * CATTLE_HOST_API_PROXY_MODE: `ha`
+  * CATTLE_HOST_API_PROXY_HOST: `<host_IP:port>` 
 
    > **Note:** The IP that you configure for the websocket proxy needs be accessible from your browser and from the hosts. The hosts make outbound connections to it and browsers connect directly to it as well. `CATTLE_HOST_API_PROXY_HOST` for rancher/server would need to have the public IP of the server running the websocket proxy and the websocket proxy's -listen-address=<ip:port> param would need to be `0.0.0.0:<port>`.
 
@@ -73,8 +73,8 @@ When launching rancher server, the following environment variables will need to 
         -e CATTLE_DB_CATTLE_USERNAME=<Username> \
         -e CATTLE_DB_CATTLE_PASSWORD=<Password> \
         -e DEFAULT_CATTLE_MACHINE_EXECUTE=false \
-        -e CATTLE_HOST_API_PROXY_MODE="ha" \
-        -e CATTLE_HOST_API_PROXY_HOST="<host:port>" //This will need to be accessible from your browser AND to ALL compute nodes. It also cannot be the same address:port as rancher server \
+        -e CATTLE_HOST_API_PROXY_MODE=ha \
+        -e CATTLE_HOST_API_PROXY_HOST=<host:port that is accessible from your browser and to all compute nodes> \
         -e CATTLE_ZOOKEEPER_CONNECTION_STRING=<comma separated list of zookeeper IPs ie. 10.0.1.2,10.0.1.3> \
         -e CATTLE_REDIS_HOSTS=<comma separated list of host:port server ips. ie 10.0.1.3:6379,10.0.1.4:6379> \
         -e CATTLE_REDIS_PASSWORD=<optional Redis password> \
