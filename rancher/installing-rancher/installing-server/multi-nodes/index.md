@@ -74,7 +74,7 @@ When launching rancher server, the following environment variables will need to 
         -e CATTLE_DB_CATTLE_PASSWORD=<Password> \
         -e DEFAULT_CATTLE_MACHINE_EXECUTE=false \
         -e CATTLE_HOST_API_PROXY_MODE=ha \
-        -e CATTLE_HOST_API_PROXY_HOST=<host:port that is accessible from your browser and to all compute nodes> \
+        -e CATTLE_HOST_API_PROXY_HOST=<host_ip:port that is accessible from your browser and to all compute nodes> \
         -e CATTLE_ZOOKEEPER_CONNECTION_STRING=<comma separated list of zookeeper IPs ie. 10.0.1.2,10.0.1.3> \
         -e CATTLE_REDIS_HOSTS=<comma separated list of host:port server ips. ie 10.0.1.3:6379,10.0.1.4:6379> \
         -e CATTLE_REDIS_PASSWORD=<optional Redis password> \
