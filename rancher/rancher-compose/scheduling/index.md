@@ -47,7 +47,7 @@ You use the values to define what you want the field to be checked against. If y
 
 ```yaml
 labels: 
-  io.rancher.scheduler.affinity:host_label: key1=value1, key2=value2
+  io.rancher.scheduler.affinity:host_label: key1=value1,key2=value2
 ```
 
 #### Global Service
@@ -204,14 +204,14 @@ If a hard affinity rule to itself was chosen instead, the deployment of the firs
 Label | Value | Description
 ----|-----|-----
 io.rancher.scheduler.global | true | Specifies this service to be a global service
-io.rancher.scheduler.affinity:host_label | key1=value1, key2=value2, etc... | Containers **must** be deployed to a host with the labels `key1=value1` and `key2=value2`
-io.rancher.scheduler.affinity:host_label_soft | key1=value1, key2=value2 | Containers **should** be deployed to a host with the labels `key1=value1` and `key2=value2`
-io.rancher.scheduler.affinity:host_label_ne | key1=value1, key2=value2 | Containers **must not** be deployed to a host with the label `key1=value1` or `key2=value2`
-io.rancher.scheduler.affinity:host_label_soft_ne | key1=value1, key2=value2 | Containers **should not** be deployed to a host with the label `key1=value1` or `key2=value2`
-io.rancher.scheduler.affinity:container_label | key1=value1, key2=value2 | Containers **must** be deployed to a host that has containers running with the labels `key1=value1` and `key2=value2`.  NOTE: These labels do not have to be on the same container.  The can be on different containers within the same host.
-io.rancher.scheduler.affinity:container_label_soft | key1=value1, key2=value2 | Containers **should** be deployed to a host that has containers running with the labels `key1=value1` and `key2=value2`
-io.rancher.scheduler.affinity:container_label_ne | key1=value1, key2=value2 | Containers **must not** be deployed to a host that has containers running with the label `key1=value1` or `key2=value2`
-io.rancher.scheduler.affinity:container_label_soft_ne | key1=value1, key2=value2 | Containers **should not** be deployed to a host that has containers running with the label `key1=value1` or `key2=value2`
+io.rancher.scheduler.affinity:host_label | key1=value1,key2=value2, etc... | Containers **must** be deployed to a host with the labels `key1=value1` and `key2=value2`
+io.rancher.scheduler.affinity:host_label_soft | key1=value1,key2=value2 | Containers **should** be deployed to a host with the labels `key1=value1` and `key2=value2`
+io.rancher.scheduler.affinity:host_label_ne | key1=value1,key2=value2 | Containers **must not** be deployed to a host with the label `key1=value1` or `key2=value2`
+io.rancher.scheduler.affinity:host_label_soft_ne | key1=value1,key2=value2 | Containers **should not** be deployed to a host with the label `key1=value1` or `key2=value2`
+io.rancher.scheduler.affinity:container_label | key1=value1,key2=value2 | Containers **must** be deployed to a host that has containers running with the labels `key1=value1` and `key2=value2`.  NOTE: These labels do not have to be on the same container.  The can be on different containers within the same host.
+io.rancher.scheduler.affinity:container_label_soft | key1=value1,key2=value2 | Containers **should** be deployed to a host that has containers running with the labels `key1=value1` and `key2=value2`
+io.rancher.scheduler.affinity:container_label_ne | key1=value1,key2=value2 | Containers **must not** be deployed to a host that has containers running with the label `key1=value1` or `key2=value2`
+io.rancher.scheduler.affinity:container_label_soft_ne | key1=value1,key2=value2 | Containers **should not** be deployed to a host that has containers running with the label `key1=value1` or `key2=value2`
 io.rancher.scheduler.affinity:container | container_name1,container_name2 | Containers **must** be deployed to a host that has containers with the names `container_name1` and `container_name2` running
 io.rancher.scheduler.affinity:container_soft | container_name1,container_name2 | Containers **should** be deployed to a host that has containers with the names `container_name1` and `container_name2` running
 io.rancher.scheduler.affinity:container_ne | container_name1,container_name2 | Containers **must not** be deployed to a host that has containers with the names `container_name1` or `container_name2` running
