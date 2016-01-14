@@ -44,7 +44,9 @@ Other Stacks | `http://rancher-metadata/2015-07-25/stacks/<stack-name>` | Provid
 
 ### Versioning of Metadata
 
-In the `curl` commands, we strongly recommend using a specific version, but you could also choose `latest`. As we make changes to our `latest` version, the data returned may change in any release and become incompatible with your code. 
+In the `curl` commands, we strongly recommend using a specific version, but you could also choose `latest`.
+
+> **Note:** As we make changes to our `latest` version, the data returned may change in any release and become incompatible with your code. 
 
 The version of the metadata service is based on date. 
 

@@ -8,7 +8,7 @@ layout: rancher-default
 
 _Available as of v0.47.0+_
 
-In the [Rancher catalog]({{site.baseurl}}/rancher/rancher-ui/applications/catalog/), Rancher provides storage services that are capable of exposing volumes to containers. Currently, the storage services are pre-fixed with `Convoy` in the catalog. 
+In the [Rancher catalog]({{site.baseurl}}/rancher/catalog/), Rancher provides storage services that are capable of exposing volumes to containers. Currently, the storage services are pre-fixed with `Convoy` in the catalog. 
 
 ### Prerequisites
 * You have the underlying storage system properly deployed and accessible to Rancher services
