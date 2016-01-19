@@ -60,3 +60,13 @@ There are many states shown for a host as we are trying to provide as much detai
 ### Why does my host have this weird name (e.g. 1ph7)?
 
 If you didn’t enter a name during host creation, the UI will automatically assign a name. This name is displayed on the host. 
+
+### Why is my Azure host not provisioning? I'm receiving an `illegal base64` error.
+
+When provisioning an Azure host, you'll need to make sure your `subscriptionCert` is a base64 string. You can convert your existing cert into base64. 
+
+```bash
+$ cat ~/.docker/ca.pem | base64
+```
+
+Use the long string that is returned to input into the `subscriptionCert` field. 
