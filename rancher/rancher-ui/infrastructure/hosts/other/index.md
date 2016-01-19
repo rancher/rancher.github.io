@@ -8,6 +8,8 @@ layout: rancher-default
 
 Rancher supports provisioning from other cloud providers using `docker-machine`. The other cloud providers have a generic UI, which provides all the options in `docker-machine`, and we only require the necessary parameters.
 
+Please review the docker-machine defaults for the driver you selected to confirm that you are okay with the defaults.
+
 ### Launching Other Host(s) 
 
 Select the **Other** icon in the **Add Host** page. 
@@ -21,3 +23,13 @@ Select the **Other** icon in the **Add Host** page.
 7. When complete, click **Create**. 
 
 Once you click on create, Rancher will create start a VM in your selected **Driver** using `docker-machine` and launch the _rancher-agent_ container in the VM. In a couple of minutes, the host will be active and available for [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/).
+
+#### Notes on Azure
+
+When provisioning an Azure host, you'll need to make sure your `subscriptionCert` is a base64 string. You can convert your existing cert into base64. 
+
+```bash
+$ cat ~/.docker/ca.pem | base64
+```
+
+Use the long string that is returned to input into the `subscriptionCert` field. 
