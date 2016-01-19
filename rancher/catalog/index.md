@@ -74,6 +74,7 @@ An optional `README.md` is possible to be created, which provides a lengthy desc
   version: # Version of the versioned template of the Catalog Entry 
   description: # Description of the versioned template of the Catalog Entry
   uuid: # Unique identifier to be used for upgrades. Please see note. 
+  minimum_rancher_version: # The minimum version of Rancher that supports the template
   questions: #Used to request user input for configuration options
 ```
 <br>
@@ -115,6 +116,10 @@ A textbox will be shown in the UI to capture the answer, and the answer will be 
 
 A radio button will be shown in the UI to capture the answer, and the answer will be formatted to `true` or `false`. If the radio button is selected, the answer will be formatted to `true`.
 
+`password`
+
+A textbox will be shown in the UI to capture the answer, and the answer will be formatted to a string.
+
 `service`
 
 A drop-down of all services in the environment will be displayed. 
@@ -152,8 +157,6 @@ A multiple line textbox will be shown in the UI.
         on a separate 
         line.
 ```
-
-
 
 
 
