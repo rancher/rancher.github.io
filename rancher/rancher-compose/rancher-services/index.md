@@ -34,8 +34,10 @@ When working with services that contains [sidekicks]({{site.baseurl}}/rancher/ra
 lb:
   image: rancher/load-balancer-service
   ports:
-  # Listen on public port 80 and direct traffic to private port 80 of the service
+  # Assign a random public port and direct traffic to private port 80 of the service. 
   - 80
+  # Listen on public port 80 and direct traffic to private port 80 of the service
+  - 80:80
   # Listen on public port 82 and by default forward traffic to private port 81 using HTTP
   - 82:81
   # Listen on public port 9999 using TCP and not HTTP
@@ -139,7 +141,7 @@ lb:
   image: rancher/load-balancer-service
   ports:
   # Listen on public port 80 and direct traffic to private port 80 of the service
-  - 80
+  - 80:80
   # Listen on public port 82 and by default forward traffic to private port 81 using HTTP
   - 82:81
   # Listen on public port 9999 using TCP and not HTTP
@@ -192,7 +194,7 @@ lb:
   # Instead of using ports, we use expose to define that it will be private ports
   expose: 
   # Listen on private port 80 and direct traffic to private port 80 of the service
-  - 80
+  - 80:80
   # Listen on private port 82 and by default forward traffic to private port 81 using HTTP
   - 82:81
   links: 
