@@ -75,15 +75,13 @@ Advanced routing options use `labels` in the `docker-compose.yml` file. Here's t
 
 Label Key | Label Value
 ---| ---
-`io.rancher.loadbalancer.target.SERVICE_NAME` | `REQUEST_HOST:SOURCE_PORT/REQUEST_PATH=TARGET_PORT`
+`io.rancher.loadbalancer.target.<SERVICE_NAME>` | `<REQUEST_HOST>:<SOURCE_PORT>/<REQUEST_PATH>=<TARGET_PORT>`
 
 > **Note:** If you use a source port with the advanced routing options, the source port must also be listed in `ports` section of the `docker-compose.yml`
 
 #### Linking Services in a Different Stack 
 
-In the label for target services, `SERVICE_NAME` is the name of the service regardless of which stack the service is in. You will need to make sure that there are no target services with the same names across stacks in order for the load balancer to work correctly. 
-
-For any services in a different stack, the link to the target service will be under `external_links`. In the example, see `web3`
+In the label for target services, `<SERVICE_NAME>` is the name of the service. If your service is in another stack, the `SERVICE_NAME` will need to include stack name using the following format `<STACK_NAME>/<SERVICE_NAME>`. The link to the target service of other stacks will be under `external_links`. 
 
 #### Syntax of the Combination of all Optional Fields 
 
@@ -163,7 +161,7 @@ lb:
     io.rancher.loadbalancer.target.web2: app.example.com/foo=8000,app.example.com/foo/bar=8001
     # Requests routed to web3 go to port 8000, overriding the default configuration
     # of 82:81
-    io.rancher.loadbalancer.target.web3: 82=8000
+    io.rancher.loadbalancer.target.differentstack/web3: 82=8000
 ```
 
 **Sample** `rancher-compose.yml`
