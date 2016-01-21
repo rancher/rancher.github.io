@@ -81,7 +81,7 @@ Label Key | Label Value
 
 #### Linking Services in a Different Stack 
 
-In the label for target services, `<SERVICE_NAME>` is the name of the service. If your service is in another stack, the `SERVICE_NAME` will need to include stack name using the following format `<STACK_NAME>/<SERVICE_NAME>`. The link to the target service of other stacks will be under `external_links`. 
+In the label for target services, `<SERVICE_NAME>` is the name of the service. If your service is in another stack, the `<SERVICE_NAME>` will need to include stack name using the following format `<STACK_NAME>/<SERVICE_NAME>`. The link to the target service of other stacks will be under `external_links`. 
 
 #### Syntax of the Combination of all Optional Fields 
 
