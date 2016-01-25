@@ -5,7 +5,7 @@ layout: rancher-default
 
 ## Experimenting with the API
 
-The API has its own user interface accessible from a web browser.  This is an easy way to see resources, perform actions, and see the equivalent cURL or HTTP request & response.  To access it, click on "API & Keys" in the User menu
+The API has its own user interface accessible from a web browser.  This is an easy way to see resources, perform actions, and see the equivalent cURL or HTTP request & response.  To access it, click on **API** to find the URL endpoint. 
 
 ![User menu]({{site.baseurl}}/img/rancher/apikeys.png)
 
