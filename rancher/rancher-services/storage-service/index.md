@@ -80,7 +80,7 @@ In this example, we're going to provide an example of how to use GlusterFS to ha
 <br>
 2. Add Labels to Hosts
    * While you are waiting for the Gluster FS service to become active, add the same label to hosts that you want to have shared storage. You can add labels to existing hosts by clicking on **Edit** in the dropdown of the host. 
-   * Add the desired label to the host. **Note:** By default, the Convoy Gluster service from the catalog will use the label `convoy.gluster=true`. Click on **Save**. 
+   * Add the desired label to the host. **Note:** By default, the Convoy Gluster service from the catalog will use the label `convoy.glusterfs=true`. Click on **Save**. 
 <br>
 3. Launch Convoy Gluster
    * In the **Applications** -> **Catalog**, click on **View Details** of the **Convoy Gluster** service.  
