@@ -25,9 +25,7 @@ sudo docker run -d --restart=always -p 8080:8080 rancher/server
 
 The UI and API will be available on the exposed port `8080`. After the docker image is downloaded, it will take a minute or two before Rancher has successfully started. The IP of the machine will need to be public and accessible from the internet in order for Rancher to work.
 
-You can access the UI by going to the following URL: `http://server_ip:8080`. The `server_ip` is the public IP address of the host that is running Rancher server.
-
-`http://server_ip:8080`
+You can access the UI by going to the following URL: `http://<SERVER_IP>:8080`. The `<SERVER_IP` is the public IP address of the host that is running Rancher server.
 
 Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/). After the hosts are setup, you can start adding [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/).
 

@@ -58,7 +58,7 @@ $ sudo docker run -d --restart=always -p 8080:8080 \
 
 #### Rancher UI
 
-The UI and API will be available on the exposed port `8080`. You can access the UI by going to the following URL: `http://server_ip:8080`.
+The UI and API will be available on the exposed port `8080`. You can access the UI by going to the following URL: `http://<SERVER_IP>:8080`.
 
 ### Adding Hosts
 
@@ -71,7 +71,7 @@ The command from the UI will be configured to use the private registry image for
 **Example Add Custom Host Command**
 
 ```bash
-$ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.1 http://<server_ip>:8080/v1/scripts/<security_credentials>
+$ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.1 http://<SERVER_IP>:8080/v1/scripts/<security_credentials>
 ```
 
 ## Using HTTP Proxy 
@@ -99,7 +99,7 @@ sudo docker run -d --restart=always -p 8080:8080 rancher/server
 ```
 #### Rancher UI
 
-The UI and API will be available on the exposed port `8080`. You can access the UI by going to the following URL: `http://server_ip:8080`.
+The UI and API will be available on the exposed port `8080`. You can access the UI by going to the following URL: `http://<SERVER_IP>:8080`.
 
 ### Adding Hosts
 

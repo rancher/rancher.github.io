@@ -14,7 +14,7 @@ The first account that authenticates with Rancher will become the **admin** of t
 
 ### Enabling Access Control
 
-In the **Admin** tab, click **Access Control** or the **Settings** link in the red banner.
+In the **Admin** tab, click **Access Control**.
 
 Currently, Rancher supports three methods of authentication: Active Directory, GitHub, Local and OpenLDAP. After authenticating your Rancher instance, Access Control will be considered enabled. With Access Control enabled, you will be able to manage different [environments]({{site.baseurl}}/rancher/configuration/environments/) and share them with different groups of people. 
 

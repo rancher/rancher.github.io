@@ -88,6 +88,7 @@ test-data:
   stdin_open: true
 ```
 
+<br>
 Sample `rancher-compose.yml`
 
 ```yaml
@@ -138,5 +139,5 @@ wordpress:
   external_links:
     - alldbs/db1:mysql
 ```
-
+<br>
 In this example, the `alldbs` stack has a `db1` service that the wordpress service will link to.
