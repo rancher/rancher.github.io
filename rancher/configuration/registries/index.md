@@ -8,11 +8,9 @@ layout: rancher-default
 
 With Rancher, you can add credentials to access private registries from DockerHub, Quay.io, or any address that you have a private registry. By having the ability to access your private registries, it enables Rancher to use your private images. In each [environment]({{site.baseurl}}/rancher/configuration/environments/), you can only use one credential per registry address. This makes it a simple request to launch images from private addresses. If you have added multiple credentials for the same address, Rancher will always use the most recently added one. 
 
-At any time, you can view all the registries and the respective credentials. Click on the account icon in the upper right hand corner. A dropdown menu will appear with the different Rancher configuration settings. Within the **Settings** section, click on **Registries**. For the environment that you are in, all registries that have been added will be listed in this Registries page. You can review your environment by looking at the folder in the upper right corner of the page. 
-
 ### Adding Registries
 
-On the **Admin** -> **Registries** page, click on **Add Registry**. 
+On the **Infrastructure** -> **Registries** page, click on **Add Registry**. 
 
 For all registries, you'll need to provide the **e-mail address**, **username**, and **password**. For a **Custom** registry, you'll need to also provide the **registry address**. Click on **Create**.
 
