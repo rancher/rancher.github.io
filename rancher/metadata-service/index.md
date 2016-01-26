@@ -152,7 +152,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 
 | Fields | Description |
 | ----| ----|
-| `create_index` | The order number of which the container was launched in the service, i.e. 2 means it was the second container launched in the service.
+| `create_index` | The order number of which the container was launched in the service, i.e. 2 means it was the second container launched in the service. Note: Create_index is never reused. If you had a service with 2 containers and deleted the 2nd container, the next container that gets launched for the service would have a `create_index` of 3 even though there are only 2 containers in the service.
 | `health_state` | The state of health for the container if a [health check]({{site.baseurl}}/rancher/concepts/health-checks/) was enabled.
 | `host_uuid` | Unique host identifier that Rancher server assigns to hosts
 | `hostname` | The hostname of the container.
@@ -171,7 +171,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
  Fields | Description
 ----|----
 `containers` | List of container names in the service
-`create_index` | The order number of which the service was launched in the stack, i.e. 2 means it was the second service launched in the stack.
+`create_index` | Create_index of the last container created of the service. Note: Create_index is never reused. If you had a service with 2 containers and deleted the 2nd container, the create_index will be 2. The next container that gets launched for the service would update the create_index to 3 even though there are only 2 containers.
 `expose` | 
 `external_ips` | List of External IPs for [External Services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-external-services/)
 `fqdn` | Fqdn of the service 
