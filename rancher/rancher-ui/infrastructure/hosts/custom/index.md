@@ -18,9 +18,25 @@ Once your hosts are added to Rancher, they are available for [our services]({{si
 
 ### Host Labels
 
-With each host, you have the ability to add labels to help you organize your hosts. The labels are a key/value pair and the keys must be unique identifiers. If you have added two keys with different values, Rancher takes the last inputted value to use as the key/value pair.
+With each host, you have the ability to add labels to help you organize your hosts. The labels are added as an environment variable when launching the rancher/agent container. The host label in the UI will be a key/value pair and the keys must be unique identifiers. If you added two keys with different values, we'll take the last inputted value to use as the key/value pair.
 
-By adding labels to hosts, you can use these labels when [schedule services/load balancers]({{site.baseurl}}/rancher/rancher-ui/scheduling/) and create a whitelist or blacklist of hosts for your [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/) to run on. 
+By adding labels to hosts, you can use these labels when [schedule services/load balancers/services]({{site.baseurl}}/rancher/rancher-ui/scheduling/) and create a whitelist or blacklist of hosts for your [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/) to run on. 
+
+When adding a custom host, you can add the labels using the UI and it will automatically add the environment variable (`CATTLE_HOST_LABELS`) with the key/value pair into the command on the UI screen.
+
+_Example_
+
+```bash
+# Adding one host label to the rancher/agent command
+$  sudo docker run -e CATTLE_HOST_LABELS='foo=bar' -d --privileged \
+-v /var/run/docker.sock:/var/run/docker.sock rancher/agent:v0.8.2 \
+http://<rancher-server-ip>:8080/v1/projects/1a5/scripts/<registrationToken>
+
+# Adding more than one host label requires joining the additional host labels with an `&`
+$  sudo docker run -e CATTLE_HOST_LABELS='foo=bar&hello=world' -d --privileged \
+-v /var/run/docker.sock:/var/run/docker.sock rancher/agent:v0.8.2 \
+http://<rancher-server-ip>:8080/v1/projects/1a5/scripts/<registrationToken>
+```
 
 ### Security Groups/Firewalls 
 

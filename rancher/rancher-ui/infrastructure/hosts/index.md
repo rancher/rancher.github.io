@@ -37,15 +37,36 @@ Select which host type you want to add:
 * [Adding Exoscale Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/exoscale/)
 * [Adding Packet Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/packet/)
 * [Adding Rackspace Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/rackspace/)
+* [Adding Hosts from Other Drivers]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/other/)
 
 When a host is added to Rancher, a rancher agent container is launched on the host. Rancher will automatically pull the correct image version tag for the `rancher/agent` and run the required version. The agent version is tagged specifically to each Rancher server version.
 
 <a id="labels"></a>
 ### Host Labels
 
-With each host, you have the ability to add labels to help you organize your hosts. The labels are a key/value pair and the keys must be unique identifiers. If you added two keys with different values, we'll take the last inputted value to use as the key/value pair.
+With each host, you have the ability to add labels to help you organize your hosts. The labels are added as an environment variable when launching the rancher/agent container. The host label in the UI will be a key/value pair and the keys must be unique identifiers. If you added two keys with different values, we'll take the last inputted value to use as the key/value pair.
 
 By adding labels to hosts, you can use these labels when [schedule services/load balancers/services]({{site.baseurl}}/rancher/rancher-ui/scheduling/) and create a whitelist or blacklist of hosts for your [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/) to run on. 
+
+When using the UI to add hosts with the different cloud providers, the rancher/agent command is automatically launched for you with the host labels that are added in the UI. 
+
+When adding a custom host, you can add the labels using the UI and it will automatically add the environment variable (`CATTLE_HOST_LABELS`) with the key/value pair into the command on the UI screen.
+
+_Example_
+
+```bash
+# Adding one host label to the rancher/agent command
+$  sudo docker run -e CATTLE_HOST_LABELS='foo=bar' -d --privileged \
+    -v /var/run/docker.sock:/var/run/docker.sock rancher/agent:v0.8.2 \
+    http://<rancher-server-ip>:8080/v1/projects/1a5/scripts/<registrationToken>
+
+# Adding more than one host label requires joining the additional host labels with an `&`
+$  sudo docker run -e CATTLE_HOST_LABELS='foo=bar&hello=world' -d --privileged \
+    -v /var/run/docker.sock:/var/run/docker.sock rancher/agent:v0.8.2 \
+    http://<rancher-server-ip>:8080/v1/projects/1a5/scripts/<registrationToken>
+```
+
+> **Note:** The `rancher/agent` version is correlated to the Rancher server version. You will need to check the custom command to get the appropriate tag for the version to use. 
 
 #### Automatically Applied Host Labels
 
