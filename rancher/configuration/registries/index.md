@@ -18,7 +18,7 @@ If you add a credential for an address that already exists, Rancher will start u
 
 #### Insecure Registries
 
-In order to access an insecure registry, you'll need to configure your daemon docker on your host(s). `DOMAIN` and `PORT` are the domain and port where the private registry is hosted.
+In order to access an insecure registry, you'll need to configure your Docker daemon on your host(s). `DOMAIN` and `PORT` are the domain and port where the private registry is hosted.
 
 > **Note:** Whenever you restart docker on the host, you may encounter issues with Network Agent being stuck in _Starting_ state. To workaround the issue, please reboot the host.
 
@@ -33,7 +33,7 @@ $ sudo service docker restart
 
 #### Self Signed Certificates
 
-In order to use a self signed certificate with a registry, you'll need to configure your daemon docker on your host(s). `DOMAIN` and `PORT` are the domain and port where the private registry is hosted.
+In order to use a self signed certificate with a registry, you'll need to configure your Docker daemon on your host(s). `DOMAIN` and `PORT` are the domain and port where the private registry is hosted.
 
 ```bash
 # Download the certificate from the domain

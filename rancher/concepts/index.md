@@ -27,7 +27,7 @@ Set up [Access control]({{site.baseurl}}/rancher/configuration/access-control/) 
 
 Hosts are the most basic unit of resource within Rancher and is represented as any Linux server, virtual or physical, with the following minimum requirements:
 
-* Any modern Linux distribution that supports Docker 1.6+.
+* Any modern Linux distribution that supports Docker 1.9.1+.
 * Ability to communicate with a Rancher server via http or https through the pre-configured port. Default is 8080.
 * Ability to be routed to any other hosts under the same environment to leverage Rancher's cross-host networking for Docker containers.
 

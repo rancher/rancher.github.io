@@ -14,6 +14,8 @@ When trying to troubleshoot Rancher, here are some ways to get Rancher specific 
 
 ### What version of Rancher am I running?
 
+As of v0.51.0, there is a footer that contains the version of Rancher.
+
 As of our Beta release, you can click on the cow in the upper left hand corner, which will display which the versions of Rancher, Cattle, UI and Rancher-Compose. 
 
 If clicking on the cow doesn't work, then you have a version prior to Beta. We recommend upgrading to Beta as it's a much more stable release due to many bug fixes. To find out what version you're running if prior to Beta, do a `docker inspect` on the container to view the environment variables. 
@@ -90,7 +92,7 @@ If you were unable to see the **Admin** -> **Processes** tab due to the lack of 
 
 As of v0.35.0+, Rancher server automatically cleans up a couple of database tables to prevent the database from increasing too quickly. If you are noticing that these tables are not being cleaned up quick enough for you, please feel free to update the default settings using our API. 
 
-By default, any records in the `events` table are deleted if they were created 2 weeks ago. The setting in the API is listed in seconds (`1209600`). The setting in the API is `events.purge.after.seconds`. 
+By default, any records in the `container_event` and `service_event` tables are deleted if they were created 2 weeks ago. The setting in the API is listed in seconds (`1209600`). The setting in the API is `events.purge.after.seconds`. 
 
 By default, any records in the `process_instance` table are deleted if they were created 1 day ago. The setting in the API is listed in seconds (`86400`). The setting in the API is `process_instance.purge.after.seconds`. 
 
