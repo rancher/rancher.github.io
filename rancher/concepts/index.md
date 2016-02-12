@@ -47,7 +47,7 @@ Under Rancher's network, a container will be assigned both a Docker bridge IP (1
 
 Rancher adopts the standard Docker Compose terminology for services and defines a basic service as one or more containers created from the same Docker image.  Once a service (consumer) is linked to another service (producer) within the same stack, a DNS record mapped to each container instance is automatically created and discoverable by containers from the "consuming" service.  Other benefits of creating a service under Rancher include:
 
-* Service HA - the ability to have Rancher automatically monitor container states and maintain a service's desired scale.
+* Service High Availability (HA) - the ability to have Rancher automatically monitor container states and maintain a service's desired scale.
 * Health Monitoring - the ability to set basic monitoring thresholds for container health.
 * Add Load Balancers - the ability to add a simple load balancer for your services using HAProxy.
 * Add External Services - the ability to add any-IP as a service to be discovered.

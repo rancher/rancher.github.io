@@ -1,12 +1,12 @@
 ---
-title: HA
+title: High Availability (HA)
 layout: rancher-default
 ---
 
-## Installing Rancher Server (HA)
+## Installing Rancher Server (High Availability)
 ---
 
-As of the Beta release, Rancher server is capable of running in a HA configuration. We recognize that the setup is complex, and we will be working on making it easier to stand up as we approach GA. In the meantime, if you would like to experiment with Rancher running in HA, here is the basic outline.
+As of the Beta release, Rancher server is capable of running in a High Availability (HA) configuration. We recognize that the setup is complex, and we will be working on making it easier to stand up as we approach GA. In the meantime, if you would like to experiment with Rancher running in HA, here is the basic outline.
 
 ### Pre-requisites
 
