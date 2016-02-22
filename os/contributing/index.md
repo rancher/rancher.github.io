@@ -7,13 +7,18 @@ layout: os-default
 ## Contributing to RancherOS
 ---
 
-### Developing
+## Developing
 
 Development is easiest done with QEMU on Linux. OS X works too, although QEMU doesn't have KVM support. If you are running Linux in a virtual machine, then we recommend you run VMWare Fusion/Workstation and enable VT-x support.  Then, QEMU will have KVM support and run sufficiently fast inside your Linux VM.
 
-#### Building
+### Building
 
-Bash, Docker 1.8+ and Make required.
+#### Requirements:
+
+* Bash
+* Docker 1.9.1+ 
+* [Dapper](https://github.com/rancher/dapper) 
+
 
 ```bash
 $ ./build.sh
@@ -21,13 +26,13 @@ $ ./build.sh
 
 The build will run in a docker container named `ros-build`. When the build is done, the ISO, vmlinuz and initrd should be in `dist/artifacts`. 
 
-Run `./build.sh` (or `make all`) to perform the full build.  After that, if you only make changes to the Go code, just run `make`. Otherwise (e.g. on changes to make files, 'build.conf' or 'os-config.yml'), run the full build again.
+Run `./build.sh` (or `dapper make all`) to perform the full build.  After that, if you only make changes to the Go code, just run `dapper make`. Otherwise (e.g. on changes to make files, 'build.conf' or 'os-config.yml'), run the full build again.
 
-#### Testing
+### Testing
 
 Run `time KVM=1 ./scripts/ci` to run the all integration tests. The tests will run in a docker container named "ros-ci".
 
-#### Running
+### Running
 
 Prerequisites: QEMU, coreutils, cdrtools/genisoimage/mkisofs. 
 On OS X, `brew` is recommended to install those. On Linux, use your distro package manager.
@@ -39,7 +44,7 @@ You can SSH in using `./scripts/ssh`.  Your SSH keys should have been populated 
 If you're on OS X, you can run RancherOS using [_xhyve_](https://github.com/mist64/xhyve) instead of QEMU: just pass `--xhyve` to `./scripts/run` and `./scripts/ssh`.
 
 
-### Repositories
+## Repositories
 
 All of repositories are located within our main GitHub [page](https://github.com/rancher). 
 
@@ -52,7 +57,7 @@ All of repositories are located within our main GitHub [page](https://github.com
 [RancherOS Vagrant Repo](https://github.com/rancher/os-vagrant): We've created an easy way to spin up RancherOS using [Vagrant]({{site.baseurl}}/os/getting-started/docs). 
 
 
-### Bugs
+## Bugs
 
 If you find any bugs or are having any trouble, please contact us by filing an [issue](https://github.com/rancher/os/issues/new). 
 
