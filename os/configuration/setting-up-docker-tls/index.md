@@ -29,6 +29,7 @@ When you've done that, all the necessary server certificate and key files have b
 
 You also need client cert and key to access docker via a TCP socket now:
 
+
 ```sh
 $ sudo ros tls gen
   INFO[0000] Out directory (-d, --dir) not specified, using default: /home/rancher/.docker
@@ -39,6 +40,7 @@ All the docker client TLS files are in `~/.docker` dir now.
 #### Test certificates
 
 Now you can use your client cert to check if you can access docker via TCP:
+
 ```sh
 $ docker --tlsverify version
 ```
