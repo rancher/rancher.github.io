@@ -124,3 +124,46 @@ Configuration Requirements for ELB to enable Rancher:
 
  * Enabling [proxy protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) mode
  * Configuring TLS/SSL for the frontend and TCP for the backend
+
+## Using Self Signed Certs (Beta)
+
+### Disclaimers
+
+This configuration will work for the 'core' services in Rancher running in stand alone mode (Non-HA setup). At the time of this writing, Rancher services deployed by the catalog.
+
+Rancher Compose CLI will need the CA certificate as part of the default store for the operating system. See [Golang root_*](https://golang.org/src/crypto/x509/)
+
+### Server Pre-Requisites
+
+* CA certificate file in PEM format 
+* Certificate signed by the CA for the Rancher Server
+* An instance of NGINX or Apache configured to terminate SSL and reverse proxy Rancher server
+* Rancher Server >= v0.57.0
+
+### Steps
+
+#### Rancher Server
+
+Launch the Rancher server container with the modified Docker command below:
+
+```bash
+$ docker run -d --restart=always -p 8080:8080 -v /some/dir/ca.crt:/ca.crt rancher/server
+```
+
+> **Note:** If you are running NGINX or Apache in a container, you can link the instance and not publish the Rancher UI 8080 port.
+
+This command will configure the server's ca-certificate bundle so that the Rancher services for machine provisioning, catalog and compose executor can communicate with the Rancher server.
+
+If you are using a container with NGINX or Apache to terminate SSL, you can launch that container and link the two containers.
+
+Access Rancher over the `https` address, which will be something similar to `https://rancher.server.domain`.
+
+Unless the machine running your web browser trusts the CA certificate used to sign the Rancher server certificate, the browser will give an untrusted site warning whenever you visit the web page.
+
+#### Adding Hosts
+
+1. On the host, place the CA certificate, which must be in pem format, into the directory `/var/lib/rancher/etc/ssl` with the file name `ca.crt`.
+
+2. Run the custom registration command from the UI, which will already have the `-v /var/lib/rancher:/var/lib/rancher` in the command. 
+
+
