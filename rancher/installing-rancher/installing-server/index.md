@@ -120,6 +120,14 @@ Within the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have 
 
 > **Note:** If running Docker with systemd, please follow Docker's [instructions](https://docs.docker.com/articles/systemd/#http-proxy) on how to configure the HTTP proxy. 
 
-After you've configured the proxy in your Docker daemon, just run your Rancher server command.
+After you've configured the proxy in your Docker daemon, you will need to run the Rancher server command with environment variables to pass in the proxy. 
+
+In order for the [Rancher catalog]({{site.baseurl}}/rancher/catalog/) to work correctly, you'll need to start the Rancher server and add the environment variables to pass in the proxy information. 
+
+```bash
+$ sudo docker run -d -e http_proxy=<proxyURL> -e https_proxy=<proxyURL> -e no_proxy="localhost,127.0.0.1" --restart=always -p 8080:8080 rancher/server
+```
+
+If you don't need the Rancher catalog, just run the Rancher server command.
 
 In order to add hosts to Rancher behind a proxy, please read about [adding custom hosts behind a proxy]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/#hosts-behind-a-proxy).
