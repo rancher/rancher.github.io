@@ -125,7 +125,11 @@ After you've configured the proxy in your Docker daemon, you will need to run th
 In order for the [Rancher catalog]({{site.baseurl}}/rancher/catalog/) to work correctly, you'll need to start the Rancher server and add the environment variables to pass in the proxy information. 
 
 ```bash
-$ sudo docker run -d -e http_proxy=<proxyURL> -e https_proxy=<proxyURL> -e no_proxy="localhost,127.0.0.1" --restart=always -p 8080:8080 rancher/server
+$ sudo docker run -d \
+    -e http_proxy=<proxyURL> \
+    -e https_proxy=<proxyURL> \
+    -e no_proxy="localhost,127.0.0.1" \
+    --restart=always -p 8080:8080 rancher/server
 ```
 
 If you don't need the Rancher catalog, just run the Rancher server command.
