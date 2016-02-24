@@ -10,6 +10,8 @@ By default, the catalog is populated with templates from the [Rancher Catalog re
 
 An admin has the ability to add or remove catalogs to Rancher. The catalogs within Rancher can be found at **Admin** -> **Settings*. Adding a catalog is as simple as adding a catalog name and the git URL. The correct format of the girl URL can be found [here](https://git-scm.com/docs/git-clone#_git_urls_a_id_urls_a). Whenever you add a catalog entry, it will be immediately available in your catalog.
 
+If you are running Rancher server behind a proxy, you will need to [start Rancher with certain environment variables]({{site.baseurl}}/rancher/installing-rancher/installing-server/#http-proxy) in order for the Rancher catalog to work in Rancher.  
+
 ## Creating Private Catalogs
 
 The Rancher catalog service requires private catalogs to be structured in a specific format in order for the catalog service to translate it into Rancher. 
