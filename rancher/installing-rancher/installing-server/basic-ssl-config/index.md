@@ -129,7 +129,7 @@ Configuration Requirements for ELB to enable Rancher:
 
 ### Disclaimers
 
-This configuration will work for the 'core' services in Rancher running in stand alone mode (Non-HA setup). At the time of this writing, Rancher services deployed by the catalog.
+This configuration will work for the 'core' services in Rancher running in stand alone mode (Non-HA setup). At the time of this writing, none of the Rancher services from the `library` catalog are supported. 
 
 Rancher Compose CLI will need the CA certificate as part of the default store for the operating system. See [Golang root_*](https://golang.org/src/crypto/x509/)
 
@@ -150,13 +150,13 @@ Launch the Rancher server container with the modified Docker command below:
 $ docker run -d --restart=always -p 8080:8080 -v /some/dir/ca.crt:/ca.crt rancher/server
 ```
 
-> **Note:** If you are running NGINX or Apache in a container, you can link the instance and not publish the Rancher UI 8080 port.
+> **Note:** If you are running NGINX or Apache in a container, you can directly link the instance and not publish the Rancher UI 8080 port.
 
-This command will configure the server's ca-certificate bundle so that the Rancher services for machine provisioning, catalog and compose executor can communicate with the Rancher server.
+The command will configure the server's ca-certificate bundle so that the Rancher services for machine provisioning, catalog and compose executor can communicate with the Rancher server.
 
 If you are using a container with NGINX or Apache to terminate SSL, you can launch that container and link the two containers.
 
-Access Rancher over the `https` address, which will be something similar to `https://rancher.server.domain`.
+Access Rancher over the `https` address, i.e. `https://rancher.server.domain`.
 
 Unless the machine running your web browser trusts the CA certificate used to sign the Rancher server certificate, the browser will give an untrusted site warning whenever you visit the web page.
 
