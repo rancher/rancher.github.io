@@ -157,17 +157,13 @@ mywordpress:
 wordpresslb:
   scale: 1
   load_balancer_config:
-    lb_cookie_stickiness_policy: null
-    description: null
-    name: wordpresslb config
-    app_cookie_stickiness_policy: null
-    health_check:
-      port: null
-      interval: 2000
-      unhealthy_threshold: 3
-      request_line: ''
-      healthy_threshold: 2
-      response_timeout: 2000
+    haproxy_config: {}
+  health_check:
+    port: 42
+    interval: 2000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
 database:
   scale: 1
 ```
