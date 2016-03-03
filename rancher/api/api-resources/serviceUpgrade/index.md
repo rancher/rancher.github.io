@@ -13,6 +13,6 @@ layout: rancher-default
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-inServiceStrategy | inServiceUpgradeStrategy | false | <no value> | 
-toServiceStrategy | toServiceUpgradeStrategy | false | <no value> | 
+inServiceStrategy | [inServiceUpgradeStrategy]({{site.baseurl}}/rancher/api/api-resources/inServiceUpgradeStrategy/) | false | <no value> | 
+toServiceStrategy | [toServiceUpgradeStrategy]({{site.baseurl}}/rancher/api/api-resources/toServiceUpgradeStrategy/) | false | <no value> | 
 
