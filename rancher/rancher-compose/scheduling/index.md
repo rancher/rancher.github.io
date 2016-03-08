@@ -140,9 +140,9 @@ Label | Value
 io.rancher.stack.name | `$${stack_name}`
 io.rancher.stack_service.name | `$${stack_name}/$${service_name}`
 
-> **Note:** When using the `io.rancher.stack_service.name`, the value must be in the format of `stack name/service name.
+> **Note:** When using the `io.rancher.stack_service.name`, the value must be in the format of `stack name/service name`.
 
-The macros `$${stack_name}` and `$${service_name}` can also be used in the `docker-compose.yml` file and will be evaluated when the service is started. 
+The macros `$${stack_name}` and `$${service_name}` can also be used in the `docker-compose.yml` file in any other `label` and will be evaluated when the service is started. 
 
 Please note that in versions prior to Rancher v0.41.0 and Rancher-compose v0.4.1, the values had a single `$`, but with the addition of [environment interpolation]({{site.baseurl}}rancher/rancher-compose/environment-interpolation/), the values require a double `$$`.
 
