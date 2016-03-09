@@ -23,19 +23,9 @@ In the [Rancher catalog]({{site.baseurl}}/rancher/catalog/), Rancher provides st
 
 ### Setting up the Storage Service
 
-#### Adding Host Labels
-
-Before launching storage services, it's recommended to prepare the hosts that can use shared Docker volumes. For every host, add a [host label]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#host-labels). After the labels are added to all hosts, you can launch the storage service.
-
-> **Note:** You can opt to skip this step and add the host labels after the storage service is running.
-
-#### Launching the Storage Service
-
 From the **Applications** -> **Catalog** tab, select one of the **Convoy** services. 
 
-By default, we've auto-populated the required fields. Edit the fields to your desired choices. For **Host label**, make sure to use the [host label]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#host-labels) that was created in the previous step. If you forgot to add labels to your hosts beforehand, you can pick a host label to be used. After the service is launched, you can add the label to the host. 
-
-After filling in the form, click on **Create**. 
+By default, we've auto-populated the required fields. Edit the fields to your desired choices. After filling in the form, click on **Create**. 
 
 ### Viewing Storage Pools
 
@@ -77,20 +67,14 @@ In this example, we're going to provide an example of how to use GlusterFS to ha
    * If desired, edit the **Name** of the stack for Gluster FS and add a **description**.
    * In the **Configuration Options**, edit the **volume name**. By default, Rancher has given the volume name `my_vol`. 
    * Click on **Launch** to start the Gluster FS service. This will take a minute or two.
-<br>
-2. Add Labels to Hosts
-   * While you are waiting for the Gluster FS service to become active, add the same label to hosts that you want to have shared storage. You can add labels to existing hosts by clicking on **Edit** in the dropdown of the host. 
-   * Add the desired label to the host. **Note:** By default, the Convoy Gluster service from the catalog will use the label `convoy.glusterfs=true`. Click on **Save**. 
-<br>
-3. Launch Convoy Gluster
+2. Launch Convoy Gluster
    * In the **Applications** -> **Catalog**, click on **View Details** of the **Convoy Gluster** service.  
    * If desired, edit the **Name** of the stack for Convoy Gluster and add a **description**.
    * In the **Configuration Options**, edit the **Volume Name**, if you have changed the volume name while launching the Gluster FS service.
-   * In the **Configuration Options**, edit the **Host Label**, if you have used a different host label on your hosts.
    * Select the **Gluster FS** service that is running in Rancher. The service is named `glusterfs-server`. 
-   * Click on **Launch** to start the Convoy Gluster service. The `convoy-gluster` service will be deployed on every host that has the matching host label. If you forgot to add a label to one of your hosts, you can also add it after your service has been launched. 
+   * Click on **Launch** to start the Convoy Gluster service. The `convoy-gluster` service will be deployed on every host.
    * Check that the storage pool (`convoy-gluster`) has been created in the **Infrastructure** -> **Storage Pools** tab. Note: The name of the storage pool is derived from the name of the stack.
-4. Launch Service using the Convoy Gluster service
+3. Launch Service using the Convoy Gluster service
    * Click on **Add Service** in a different stack. Set up your service as you typically would. 
         * For this example, I'll be using the `ubuntu:14.04.3` image to provide how the storage service is working and a scale of `10`.
    * In the **Advanced Options** -> **Volumes** tab, add the name of your **volume**. The naming convention of the volume will be the same as Docker, `<docker-volume-name>:</path/in/container>`. Docker volumes default to mount in read-write mode, but you can set it to be mounted read-only by adding the `:ro` at the end of the volume.
@@ -98,7 +82,7 @@ In this example, we're going to provide an example of how to use GlusterFS to ha
    * In the **Advanced Options** -> **Volumes** tab, the **Volume Driver** will be the name of the **storage pool** that was created. 
    * Click on **Create** to create your service. After the service is created, start the service.
 <br>
-5. Checking that the Services across Hosts are sharing volumes
+4. Checking that the Services across Hosts are sharing volumes
    * In the detailed page of your service, you can see all the containers launched on different hosts.
    * Select a container on one of the hosts and use the container's dropdown to select **Execute Shell**. In the container, check that the directory that you had set in the service creation exists. Create a file in the shared volume directly. 
         
@@ -115,6 +99,5 @@ In this example, we're going to provide an example of how to use GlusterFS to ha
         $ ls
         test.yml
         ```
-6. Checking the Volume Driver on the Host
-   * Pick a host that has the host label and is running the `convoy-gluster` service. SSH into the host.
+5. Checking the Volume Driver on the Host
    * Use `docker volume ls` to view the list of Docker volumes. One of the entries will be using the `convoy_gluster` driver with the volume name that was created in the service. In my example, `glustervol1` will be listed. 
