@@ -51,7 +51,13 @@ As of our Beta release (v0.24.0), Rancher no longer requires any additional TCP 
 <a id="samehost"></a>
 ### Adding Hosts to the same machine as Rancher Server
 
-If you are adding an agent host on the same machine as Rancher server, you must edit the command provided from the UI. Additionally, in order for the _rancher-agent_ container to be launched correctly, set the `CATTLE_AGENT_IP` environment variable to the public IP of the VM that Rancher server is running on.
+If you are adding an agent host on the same machine as Rancher server, you must edit the command provided from the UI. In order for the _rancher-agent_ container to be launched correctly, set the `CATTLE_AGENT_IP` environment variable to the IP address of the Docker VM that Rancher server is running on. To get the IP of the Rancher server:
+
+```bash
+sudo docker inspect --format='{{range .NetworkSettings.Networks}}{{.Gateway}}{{end}}' <CONTAINER_ID_OR_NAME_OF_RANCHER_SERVER>
+````
+
+Then set CATTLE_AGENT_IP to that IP address when running the Rancher agent:
 
 ```bash
 sudo docker run -d -e CATTLE_AGENT_IP=<IP_OF_RANCHER_SERVER> -v /var/run/docker....
