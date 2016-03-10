@@ -40,9 +40,10 @@ http://<rancher-server-ip>:8080/v1/projects/1a5/scripts/<registrationToken>
 
 ### Security Groups/Firewalls 
 
-For any hosts that are added, ensure that any security groups or firewalls allow traffic between the Rancher server and the Rancher agents, otherwise Rancher functionality will be limited.
+For any hosts that are added, ensure that any security groups or firewalls allow traffic between the Rancher agents, otherwise Rancher functionality will be limited.
 
-* From Rancher server to UDP ports `500` and `4500` (for IPsec networking) on Rancher agent hosts
+* From the Ranger agents on UDP ports `500` and `4500` (for IPsec networking) to the other Ranger agents
+* From the Ranger agents on TCP port 8080 to the Ranger server
 
 As of our Beta release (v0.24.0), Rancher no longer requires any additional TCP ports. But if you are using a version prior to Beta, then you will need to add the following ports:
 
