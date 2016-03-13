@@ -22,7 +22,7 @@ If [access control]({{site.baseurl}}/rancher/configuration/access-control/) is t
 
 By default, the [catalog]({{site.baseurl}}/rancher/catalog/) is populated with templates from the Rancher Catalog [repository](https://github.com/rancher/rancher-catalog). 
 
-An admin has the ability to add or remove catalogs to Rancher. Adding a catalog is as simple as adding a catalog name and the git URL. The correct format of the girl URL can be found [here](https://git-scm.com/docs/git-clone#_git_urls_a_id_urls_a). Whenever you add a catalog entry, it will be immediately available in your catalog.
+An admin has the ability to add or remove catalogs to Rancher. Adding a catalog is as simple as adding a catalog name and the git URL. The correct format of the git URL can be found [here](https://git-scm.com/docs/git-clone#_git_urls_a_id_urls_a). Whenever you add a catalog entry, it will be immediately available in your catalog.
 
 If you want to create your own private catalog to add, the git repository must be set up in a [specific format]({{site.baseurl}}/rancher/catalog/#creating-private-catalogs).
 
