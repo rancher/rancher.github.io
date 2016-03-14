@@ -6,13 +6,13 @@ layout: rancher-default
 ## Catalog
 ---
 
-Rancher provides a catalog of application templates that make it easy to deploy these complex stacks. By accessing the **Applications** -> **Catalog** tab, you can view all the templates that are available in the catalog. By default, the catalog is directed to our [Github repository](https://github.com/rancher/rancher-catalog) for templates. 
+Rancher provides a catalog of application templates that make it easy to deploy these complex stacks. By accessing the **Applications** -> **Catalog** tab, you can view all the templates that are available in the [enabled catalogs]({{site.baseurl}}/rancher/configuration/settings/#catalog). By default, the catalog is enabled with our [official catalog](https://github.com/rancher/rancher-catalog) and [community-catalog](https://github.com/rancher/community-catalog).
 
 ### Launching Templates 
 
-Search for your desired template and click on **Launch**. Fill in the required information for the template.
+Search for your desired template or use the filters for category or catalog. Once you have found your template, click on **Launch**. Fill in the required information for the template.
 
-1. By default, we select the latest **version** of a template, but if desired, you could select an older version. 
+1. By default, latest **version** of a template is selected, but if desired, you could select an older version. 
 2. Select a **stack** name and if desired, **description** of the stack. 
 3. Fill in the **Configuration Options**, which are questions specific to the selected template. 
 4. Click on **Create** to create the stack based on the template. You can review the `docker-compose.yml` and `rancher-compose.yml` files that are being used to generate the stacks by expanding **Preview** before creating the stack. 
@@ -32,9 +32,10 @@ If something went wrong during your upgrade and you need to revert to the previo
 
 ### Catalogs in Rancher
 
-By default, the catalog is populated with templates from the [Rancher Catalog repository](https://github.com/rancher/rancher-catalog) as the `library` catalog. 
+By default, the catalog is populated with templates from the [official catalog](https://github.com/rancher/rancher-catalog) and [community-catalog](https://github.com/rancher/community-catalog).
 
-An admin has the ability to add or remove catalogs to Rancher in the **Admin** -> **[Settings]({{site.baseurl}}/rancher/configuration/settings/#catalog)**. Whenever a new catalog is added, the templates in all catalogs are available.
+
+An [admin]({{site.baseurl}}/rancher/configuration/accounts/#admin) has the ability to add or remove catalogs to Rancher in the **Admin** -> **[Settings]({{site.baseurl}}/rancher/configuration/settings/#catalog)**. Whenever a new catalog is added, the templates in the new catalog is added to the list of all other enabled catalogs.
 
 Private catalogs can be created by [following the expected format]({{site.baseurl}}/rancher/catalog/#creating-private-catalogs). 
 

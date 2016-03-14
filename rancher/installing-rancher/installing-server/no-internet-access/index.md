@@ -6,8 +6,6 @@ layout: rancher-default
 ## Launching Rancher Server with No Internet Access
 ---
 
-_Available as of v0.34.0+_
-
 Rancher Server is able to run without internet, but the web browser accessing the UI will need access only to the private network. 
 
 Rancher can be configured with either a private registry or with a HTTP proxy. 
@@ -107,5 +105,5 @@ After accessing the UI, you can click on the **Add Host** button. This will imme
 
 The cloud providers will not work as Rancher uses `docker-machine` to provision the hosts through the cloud providers. Click on the **Custom** icon to add the host. 
 
-The command from the UI can be used on any machine that has Docker configured to use HTTP proxy. As of v0.34.0+, no environment variables are needed to start Rancher agents when using a proxy.
+The command from the UI can be used on any machine that has Docker configured to use HTTP proxy. No environment variables are needed to start Rancher agents when using a proxy.
 
