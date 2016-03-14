@@ -40,9 +40,10 @@ http://<rancher-server-ip>:8080/v1/projects/1a5/scripts/<registrationToken>
 
 ### Security Groups/Firewalls 
 
-For any hosts that are added, ensure that any security groups or firewalls allow traffic. If these are not enabled, the Rancher functionality will be limited.
+For any hosts that are added, ensure that any security groups or firewalls allow traffic between the Rancher agents, otherwise Rancher functionality will be limited.
 
-* From and to all other hosts on UDP ports `500` and `4500` (for IPsec networking)
+* From the Rancher agents on UDP ports `500` and `4500` (for IPsec networking) to the other Rancher agents
+* From the Rancher agents on TCP port 8080 to the Rancher server
 
 As of our Beta release (v0.24.0), Rancher no longer requires any additional TCP ports. But if you are using a version prior to Beta, then you will need to add the following ports:
 
@@ -51,7 +52,13 @@ As of our Beta release (v0.24.0), Rancher no longer requires any additional TCP 
 <a id="samehost"></a>
 ### Adding Hosts to the same machine as Rancher Server
 
-If you are adding an agent host on the same machine as Rancher server, you must edit the command provided from the UI. Additionally, in order for the _rancher-agent_ container to be launched correctly, set the `CATTLE_AGENT_IP` environment variable to the public IP of the VM that Rancher server is running on.
+If you are adding an agent host on the same machine as Rancher server, you must edit the command provided from the UI. In order for the _rancher-agent_ container to be launched correctly, set the `CATTLE_AGENT_IP` environment variable to the IP address of the Docker VM that Rancher server is running on. To get the IP of the Rancher server:
+
+```bash
+sudo docker inspect --format='{{range .NetworkSettings.Networks}}{{.Gateway}}{{end}}' <CONTAINER_ID_OF_RANCHER_SERVER>
+````
+
+Then set CATTLE_AGENT_IP to that IP address when running the Rancher agent:
 
 ```bash
 sudo docker run -d -e CATTLE_AGENT_IP=<IP_OF_RANCHER_SERVER> -v /var/run/docker....
