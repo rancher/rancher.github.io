@@ -69,7 +69,7 @@ If you have launched Rancher server **without** using an [external DB]({{site.ba
     docker run -d -v <path_on_host>:/var/lib/mysql -p 8080:8080 --restart=always rancher/server:latest
     ```
 
-    > **Note**: It is important that you have trailing '/' at the end of the host path if you have copied a database out of a previous container. Otherwise, the directory ends up in the wrong place.
+    > **Note:** It is important that you have trailing '/' at the end of the host path if you have copied a database out of a previous container. Otherwise, the directory ends up in the wrong place.
 
 ### Rancher Agents 
 

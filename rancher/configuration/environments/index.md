@@ -3,7 +3,7 @@ title: Environments within Rancher
 layout: rancher-default
 ---
 
-## Sharing Environments
+## Environments
 ---
 
 ### What is an Environment?
@@ -12,26 +12,30 @@ An environment is a way to share deployments and resources with different sets o
 
 > **Note:** Infrastructure resources cannot be shared across multiple environments. [Registries]({{site.baseurl}}/rancher/configuration/registries/) and [API keys]({{site.baseurl}}/rancher/configuration/api-keys/) are also environment specific.  
 
-The first time that you log in to Rancher, you are working in a **Default** environment. This environment can be renamed, shared with others, or you can create additional environments to share with users. The environment that you're working in is always displayed in the upper right corner of the screen.
+### Types of Environments 
+
+Rancher supports different cluster management frameworks when creating environments. 
+
+* **Cattle** is the default Rancher managed environment. 
+* **Kubernetes** will automatically plumb in the network for container communication and all hosts that are added into Rancher will automatically be added to Kubernetes. 
+
+The first time that you log in to Rancher, you are working in a **Default** Cattle environment. This environment can be renamed, shared with others, or you can create additional environments to share with users. The environment that you're working in is always displayed in the upper right corner of the screen.
 
 ### Adding Environments
 
-To add new environments, you'll need to navigate to the **Manage Environments** page. There are a couple of ways to get to the page.
+To add new environments, you'll need to navigate to the **Manage Environments** page by clicking on the environment name, which provides a drop down of available environments as well a link to **Manage Environments** 
 
-* In the environment drop down, the **Manage Environments** link is at the bottom of the list of environments. 
-* In the account drop down, the **Environments** link is under the **Settings** section.
+After navigating to the **Environments** page, you will see a list of environments. If you are an [admin]({{site.baseurl}}/rancher/configuration/accounts/#admin) of Rancher, you will see a list of everyone's environment, even if you are not invited to that environment. 
 
-After navigating to the **Environments** page, you will see a list of environments.
-
-Click on **Add Environment**. Each environment will have its own name, description, and members. Depending on the authentication type, the members can be any individual user. 
+Click on **Add Environment**. Select which **Cluster Management** environment that you want to be created. Each environment will have its own name, description, and members. 
 
 > **Note:** If you have not configured [Access Control]({{site.baseurl}}/rancher/configuration/access-control/), all environments will be available to anyone accessing Rancher. There will be no restriction of membership for any environments.
 
 There are two ways to add members to an environment. Provide username for the authentication. Click on the **+** to add the name to the list of members. If the name is not on the list, then they will not be added to the environment. Alternatively, there is a dropdown button on the right side of the **+** button, which will show organizations/teams for certain authentication types. 
 
-For each member (i.e. individual, team, or organization), you can define the role to be either an owner, a member or read only user. By default, they are added to the list as a member. You can change their role in the dropdown next to their name. As an owner, you can always change the list of members and their roles at any time, but only owners have the ability to change the membership and membership roles of the environment.
+For each member (i.e. individual, team, or organization), you can define the role to be either an [owner]({{site.baseurl}}/rancher/configuration/environments/#owners), a [member]({{site.baseurl}}/rancher/configuration/environments/#members), [restricted user]({{site.baseurl}}/rancher/configuration/environments/#restricted) or [read only user]({{site.baseurl}}/rancher/configuration/environments/#read-only). By default, they are added to the list as a member. You can change their role in the dropdown next to their name. As an owner, you can always change the list of members and their roles at any time, but only owners have the ability to change the membership and membership roles of the environment.
 
-Click on **Create** and the environment will immediately be available to all members and owners. At this point, anyone, that the environment is shared with, can start adding [services]({{site.baseurl}}/rancher/services/)!. adding [hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/) and anything else that a member can do.
+Click on **Create** and the environment will immediately be available to anyone on the member list. At this point, anyone, that the environment is shared with, can start adding [services]({{site.baseurl}}/rancher/services/), adding [hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/) and anything else that a member can do.
 
 ### Deactivating and Deleting Environments
 
@@ -39,13 +43,11 @@ After creating environments, owners might want to deactivate or delete the envir
 
 Deactivating an environment will remove the viewing ability from any members of the environment. All owners will still be able to view and activate the environment. You will not be able to change the membership of the environment until it's been re-activated. Nothing will change with your services or infrastructure. Therefore, if you want to make any changes to your services/infrastructure, you'll need to make these changes before your environment is deactivated.
 
-In order to delete an environment, you will need to first deactivate it. All registries, balancers and API keys created in the environment will be removed from Rancher.
-
-> **Note:** When deleting an environment, as of v0.37.0, the hosts **will** be removed from the cloud providers. Prior to v0.37.0, the hosts were **not** removed, so please make sure to check your cloud provider after deleting an environment.
+In order to delete an environment, you will need to first deactivate it. All registries, balancers and API keys created in the environment will be removed from Rancher. Any hosts created through the Rancher UI will also be removed from the cloud provider. If you have added a host using the [custom]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/) option, then the host will not be removed from the cloud provider.
 
 ### Editing Members
 
-Only owners can change the membership to an environment at any time. If an environment is a deactivated state, owners can still edit the membership of it. In the **Manage Environments** page, they will be able to **Edit** the environment. In the edit page, they will be able to add additional members by finding their names and clicking on the **+** button or selecting a name from the dropdown menu. 
+Only owners can change the membership to an environment. If an environment is a deactivated state, owners can still edit the membership of it. In the **Manage Environments** page, they will be able to **Edit** the environment. In the edit page, they will be able to add additional members by finding their names and clicking on the **+** button or selecting a name from the dropdown menu. 
 
 If there are any members that you want to delete, click on the **X** next to their name in the list of members. Remember that if you delete an individual user, they could still have access to the environment if they are part of a team or organization that is a member of the environment.  
 
