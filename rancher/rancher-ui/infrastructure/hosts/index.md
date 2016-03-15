@@ -33,6 +33,7 @@ Select which host type you want to add:
 
 * [Adding Custom Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/)
 * [Adding Amazon EC2 Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/amazon/)
+* [Adding Azure Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/azure/)
 * [Adding DigitalOcean Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/digitalocean/)
 * [Adding Exoscale Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/exoscale/)
 * [Adding Packet Hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/packet/)

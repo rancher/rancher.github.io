@@ -31,10 +31,6 @@ In the **Custom** option, you can choose an existing security group, but you wil
  * From the rancher server to TCP port `22` (SSH to install and configure Docker)
  * From and To all other hosts on UDP ports `500` and `4500` (for IPsec networking)
 
-As of our Beta release (v0.24.0), we no longer require any additional TCP ports. But if you are using a version prior to Beta, then you will need to add the following ports:
-
-* From the internet to TCP ports `9345` and `9346` (for UI hosts stats/graphs) 
-
 > **Note:** If you re-use the `rancher-machine` security group, any missing ports in the security group will not be re-opened. You will need to check the security group in AWS if the host does not launch correctly. 
 
 After choosing your security option, click on **Next: Set Instance Options**. 
@@ -50,7 +46,7 @@ Finally, you'll just need to finish filling out the final details of the host(s)
 5. (Optional) For the **AMI**, `docker machine` defaults with an Ubuntu 14.04 TLS image in the specific region. You also have the option to select your own AMI. If you input your own AMI, make sure it's available in that region!
 6. (Optional) Provide the **IAM Profile** to be used as an instance profile. 
 7. (Optional) Add **[labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#labels)** to hosts to help organize your hosts and to [schedule services/load balancers]({{site.baseurl}}/rancher/rancher-ui/scheduling/).
-8. (Optional) Customize your `docker-machine create` command with [Docker engine options](https://docs.docker.com/machine/reference/create/#specifying-configuration-options-for-the-created-docker-engine). 
+8. (Optional) In **Advanced Options**, customize your `docker-machine create` command with [Docker engine options](https://docs.docker.com/machine/reference/create/#specifying-configuration-options-for-the-created-docker-engine). 
 9. When complete, click **Create**. 
 
 Rancher will create the EC2 instance(s) and launch the _rancher-agent_ container in the instance. In a couple of minutes, the host will be active and available for [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/).
