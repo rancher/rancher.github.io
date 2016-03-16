@@ -6,32 +6,44 @@ layout: rancher-default
 ## Installing Rancher Server With SSL
 ---
 
-In order to run Rancher Server from an https url, you will need to terminate SSL with a proxy that is capable of setting headers. We'll provide an outline of how to set it up with NGINX, but other tools could be used.
+In order to run Rancher server from an `https` url, you will need to terminate SSL with a proxy that is capable of setting headers. We've provided an example of how it could be set up with NGINX or Apache, but other tools could be used.
 
 ## Requirements
 
-Besides the typical Rancher Server [requirements]({{site.baseurl}}/rancher/installing-rancher/installing-server/#requirements), you will also need:
+Besides the typical Rancher server [requirements]({{site.baseurl}}/rancher/installing-rancher/installing-server/#requirements), you will also need:
 
 * Valid SSL certificate
 * DNS entries configured
 
 ## Launching Rancher Server
 
-In our configuration, all traffic will pass through the proxy and be sent over a Docker link to the Rancher Server container. There are alternative approaches that could be followed, but this approach is simple and translates well.
+In our example configuration, all traffic will pass through the proxy and be sent over a Docker link to the Rancher server container. There are alternative approaches that could be followed, but this example is simple and translates well.
 
-Start the Rancher Server as normal:
+Start Rancher server. Please note that we have added in `--name=rancher-server` to this command for linking our proxy to our Rancher server container.
 
 ```bash
 $ sudo docker run -d --restart=always --name=rancher-server rancher/server
 ```
 
-> **Note:** We are assuming that you will run your proxy in a container. If you are going to run a proxy from the host, you will need to expose port 8080 by adding `-p 8080:8080` to the command.
+> **Note:** In our example, we have assumed the proxy will be running in another container. If you are planning to run a proxy from the host, you will need to expose port `8080` by adding `-p 8080:8080` to the `docker run` command.
 
-If you are converting an existing Rancher instance configured with a data volume or external DB, stop and remove the existing Rancher Server container. Launch the new container with `--volumes-from=<data_container>` or [external DB settings]({{site.baseurl}}/rancher/installing-rancher/installing-server/#external-db).
+If you are converting an existing Rancher instance, the upgrade to the new Rancher instance will depend on how you launched your original Rancher instance. 
 
-## Nginx Configuration
+* For Rancher instances using the MySQL database inside the Rancher server container, follow the [upgrade instructions]({{site.baseurl}}/rancher/upgrading/#upgrading-rancher-by-creating-a-data-container) of creating a data container and adding in the `--volumes-from=<data_container>` when launching your new Rancher server instance.
+* For Rancher instances with a [bind mounted database]({{site.baseurl}}/rancher/installing-rancher/installing-server/#bind-mount-mysql-volume), follow the [upgrade instructions for bind mounted instances]({{site.baseurl}}/rancher/upgrading/#upgrading-rancher-launched-using-bind-mounts). 
+* For Rancher instances launched using an external database, stop and remove the existing Rancher container. Launch the new container using the same [instructions for connecting to an external database]({{site.baseurl}}/rancher/installing-rancher/installing-server/#external-db).
 
-Here is the minimum NGINX configuration that will need to be configured. You should customize your configuration to meet best practices.
+> **Note:** After your new Rancher server is running, please make sure to **remove** the old Rancher instance. Otherwise, if your machine is rebooted, your old Rancher instance will start up as we have included `--restart=always` to the `docker run` commands.
+
+## Example Nginx Configuration
+
+Here is the minimum NGINX configuration that will need to be configured. You should customize your configuration to meet your needs.
+
+### Notes on the Settings
+
+* `rancher-server` is the name of your rancher server container. When starting your rancher server container, the command must include `--name=rancher-server`. When starting your nginx container, the command must include `--link=rancher-server` for this exact configuration to work.
+* `<server>` can be any arbitrary name, but the same name should be used for both the http and https servers.
+
 
 ```
 upstream rancher {
@@ -65,15 +77,16 @@ server {
 }
 ```
 
-**Important Setting Notes:**
-
-* `rancher-server` is the name of your rancher server container. In other words, you must start your rancher server container with `--name=rancher-server` and your nginx container with `--link=rancher-server` for this exact configuration to work.
-* `<server>` can be any arbitrary name, but the same name should be used for both the http and https servers.
-
 
 ## Apache Configuration
 
-Here is an Apache configuration. You'll need to launch an Apache container and do a docker link to provide DNS resolution for Rancher. 
+Here is an Apache configuration.
+
+### Notes on the Settings
+
+* `<server_name>` is the name of your rancher server container. When starting your Apache container, the command must include `--link=<server_name>` for this exact configuration to work.
+* In the proxy settings, you'll need to substitute `rancher` for your configuration.
+
 
 ```
 <VirtualHost *:80>
@@ -107,20 +120,18 @@ Here is an Apache configuration. You'll need to launch an Apache container and d
 </VirtualHost>
 ```
 
-**Important Setting Notes:**
+## Updating Host Registration
 
-* In the proxy settings, you'll need to substitute `rancher` for your configuration.
-
-## Host Registration
 After Rancher is launched with these settings, the UI will be up and running at `https://<your domain>/`.
 
-In the UI, you'll need to properly configure Host Registration for SSL. See the [Host Registration ]({{site.baseurl}}/rancher/configuration/settings/#host-registration) section for more details.
+Before [adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/), you'll need to properly configure [Host Registration]({{site.baseurl}}/rancher/configuration/settings/#host-registration) for SSL.
+
 
 ## Running Rancher Server Behind an ELB in AWS with SSL
 
-By default, ELB in HTTP/HTTPS mode does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher's websockets to work. 
+By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher's websockets to work. 
 
-Configuration Requirements for ELB to enable Rancher:
+### Configuration Requirements for ELB to enable Rancher
 
  * Enabling [proxy protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) mode
  * Configuring TLS/SSL for the frontend and TCP for the backend
@@ -129,9 +140,9 @@ Configuration Requirements for ELB to enable Rancher:
 
 ### Disclaimers
 
-This configuration will work for the 'core' services in Rancher running in stand alone mode (Non-HA setup). At the time of this writing, none of the Rancher services from the `library` catalog are supported. 
+This configuration will work for the 'core' services in Rancher running in a standalone mode (Non-HA setup). Currently, none of the Rancher services from the [official Rancher catalog](https://github.com/rancher/rancher-catalog) are supported. 
 
-Rancher Compose CLI will need the CA certificate as part of the default store for the operating system. See [Golang root_*](https://golang.org/src/crypto/x509/)
+Rancher Compose CLI will require the CA certificate as part of the default store for the operating system. See [Golang root_*](https://golang.org/src/crypto/x509/).
 
 ### Server Pre-Requisites
 
@@ -140,30 +151,30 @@ Rancher Compose CLI will need the CA certificate as part of the default store fo
 * An instance of NGINX or Apache configured to terminate SSL and reverse proxy Rancher server
 * Rancher Server >= v0.57.0
 
-### Steps
+### Rancher Server
 
-#### Rancher Server
+1. Launch the Rancher server container with the modified Docker command below:
 
-Launch the Rancher server container with the modified Docker command below:
+    ```bash
+    $ sudo docker run -d --restart=always -p 8080:8080 -v /some/dir/ca.crt:/ca.crt rancher/server
+    ```
 
-```bash
-$ docker run -d --restart=always -p 8080:8080 -v /some/dir/ca.crt:/ca.crt rancher/server
-```
+    > **Note:** If you are running NGINX or Apache in a container, you can directly link the instance and not publish the Rancher UI 8080 port.
 
-> **Note:** If you are running NGINX or Apache in a container, you can directly link the instance and not publish the Rancher UI 8080 port.
+    The command will configure the server's ca-certificate bundle so that the Rancher services for machine provisioning, catalog and compose executor can communicate with the Rancher server.
 
-The command will configure the server's ca-certificate bundle so that the Rancher services for machine provisioning, catalog and compose executor can communicate with the Rancher server.
+2. If you are using a container with NGINX or Apache to terminate SSL, launch the container and include the `--link=<rancher_server_container_name> in the command.
 
-If you are using a container with NGINX or Apache to terminate SSL, you can launch that container and link the two containers.
+3. Access Rancher over the `https` address, i.e. `https://rancher.server.domain`.
 
-Access Rancher over the `https` address, i.e. `https://rancher.server.domain`.
+4. Update the [Host Registration]({{site.baseurl}}/rancher/configuration/settings/#host-registration) for SSL.
 
-Unless the machine running your web browser trusts the CA certificate used to sign the Rancher server certificate, the browser will give an untrusted site warning whenever you visit the web page.
+> **Note:** Unless the machine running your web browser trusts the CA certificate used to sign the Rancher server certificate, the browser will give an untrusted site warning whenever you visit the web page.
 
-#### Adding Hosts
+### Adding Hosts
 
-1. On the host, place the CA certificate, which must be in pem format, into the directory `/var/lib/rancher/etc/ssl` with the file name `ca.crt`.
+1. On the host that you want to add into Rancher, save the CA certificate, which must be in pem format, into the directory `/var/lib/rancher/etc/ssl` with the file name `ca.crt`.
 
-2. Run the custom registration command from the UI, which will already have the `-v /var/lib/rancher:/var/lib/rancher` in the command. 
+2. Add the [custom host]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/), which is just copying and pasting the command from the UI. The command will already include  `-v /var/lib/rancher:/var/lib/rancher`, so the file will automatically be copied onto your host. 
 
 

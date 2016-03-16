@@ -68,6 +68,18 @@ In the **Labels** tab, Rancher allows you to add any labels to containers in a s
 
 More details about labels and scheduling can be read [here]({{site.baseurl}}/rancher/rancher-ui/scheduling/).
 
+### Sidekick Services
+
+With services, you may want to have your service use `volumes_from` and `net` to another service. In order for these to work, you need to set up a sidekick relationship. The sidekick relationship is how Rancher scales and schedules these services as one unit onto hosts. Example: B is a sidekick of A, so the services will always deploy as a pair and scale of the services will always be the same. 
+
+Another time that you may want to define the sidekick relationship is if you have multiple services that always need to be deployed on the same host.
+
+To set a sidekick relationship, you can click on **+ Add Sidekick Container**, which is located within the scale section. The first service is considered the primary service and each additional sidekick is a secondary service. 
+
+When defining a sidekick to a service, you do not need to link the services as sidekicks are automatically DNS-resolved to each other.
+
+When using [load balancers]({{site.baseurl}}/rancher/rancher-compose/rancher-services/#load-balancer) with services that have sidekicks, you need to use the primary service as the target of the load balancer. A sidekick **can not** be the target.
+
 ### Starting Services
 
 After filling out the information for your service, click **Create**. Creating the service will not automatically start the service.
