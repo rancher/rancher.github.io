@@ -28,7 +28,7 @@ If you want to create your own private catalog to add, the git repository must b
 
 ## Machine Drivers
 
-[Docker-machine](https://docs.docker.com/machine/) drivers can be added into Rancher to [add hosts]{{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/other/). 
+[Docker-machine](https://docs.docker.com/machine/) drivers can be added into Rancher to [add hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/other/). 
 
 ### Adding Machine Drivers
 

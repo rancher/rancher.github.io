@@ -12,7 +12,7 @@ In order to run Rancher server from an `https` url, you will need to terminate S
 
 Besides the typical Rancher server [requirements]({{site.baseurl}}/rancher/installing-rancher/installing-server/#requirements), you will also need:
 
-* Valid SSL certificate
+* Valid SSL certificate: If your certificate is not part of the standard Ubuntu CA bundle, please use the [self signed certificate instructions]({[site.baseurl}}/rancher/installing-rancher/installing-server/basic-ssl-config/#using-self-signed-certs-beta).
 * DNS entries configured
 
 ## Launching Rancher Server
@@ -153,10 +153,11 @@ Rancher Compose CLI will require the CA certificate as part of the default store
 
 ### Rancher Server
 
-1. Launch the Rancher server container with the modified Docker command below:
+1. Launch the Rancher server container with the modified Docker command. The certificate **must** be called `ca.crt` inside the container. 
+
 
     ```bash
-    $ sudo docker run -d --restart=always -p 8080:8080 -v /some/dir/ca.crt:/ca.crt rancher/server
+    $ sudo docker run -d --restart=always -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server
     ```
 
     > **Note:** If you are running NGINX or Apache in a container, you can directly link the instance and not publish the Rancher UI 8080 port.

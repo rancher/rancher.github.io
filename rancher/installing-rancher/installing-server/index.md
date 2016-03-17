@@ -35,10 +35,11 @@ Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/ran
 
 In order to enable Active Directory or OpenLDAP for Rancher server with TLS, the Rancher server container will need to be started with the ldap certificate. On the Linux machine that you want to launch Rancher server on, save the certificate. 
 
-Start Rancher by bind mounting the volume that has the certificate. 
+Start Rancher by bind mounting the volume that has the certificate. The certificate **must** be called `ca.crt` inside the container. 
 
 ```bash
-sudo docker run -d --restart=always -p 8080:8080 -v /dir_that_contains_the_cert/cert.crt:/ca.crt rancher/server
+sudo docker run -d --restart=always -p 8080:8080 \
+  -v /dir_that_contains_the_cert/cert.crt:/ca.crt rancher/server
 ```
 
 You can check that the `ca.crt` was passed to Rancher server container successfully by checking the logs of the rancher server container.
