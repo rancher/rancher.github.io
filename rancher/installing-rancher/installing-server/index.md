@@ -15,7 +15,7 @@ Rancher is deployed as a set of Docker containers. Running Rancher is a simple a
 
 ### Launching Rancher Server 
 
-On your Linux machine with Docker installed, the command to start Rancher is simple.
+On the Linux machine with Docker installed, the command to start Rancher is simple.
 
 ```bash
 sudo docker run -d --restart=always -p 8080:8080 rancher/server
@@ -23,22 +23,23 @@ sudo docker run -d --restart=always -p 8080:8080 rancher/server
 
 #### Rancher UI
 
-The UI and API will be available on the exposed port `8080`. After the docker image is downloaded, it will take a minute or two before Rancher has successfully started. The IP of the machine will need to be public and accessible from the internet in order for Rancher to work.
+The UI and API will be available on the exposed port `8080`. After the docker image is downloaded, it will take a minute or two before Rancher has successfully started. 
 
-You can access the UI by going to the following URL: `http://<SERVER_IP>:8080`. The `<SERVER_IP` is the public IP address of the host that is running Rancher server.
+Navigate to the following URL: `http://<SERVER_IP>:8080`. The `<SERVER_IP` is the public IP address of the host that is running Rancher server.
 
-Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/). After the hosts are setup, you can start adding [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/).
+Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/). After the hosts are added into Rancher, you can start adding [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/) or launch templates from the [Rancher catalog]({{site.baseurl}}/rancher/rancher-ui/applications/catalog/).
 
 <a id="ldap"></a>
 
 ### Enabling Active Directory or OpenLDAP for TLS
 
-In order to enable Active Directory or OpenLDAP for Rancher server with TLS, the Rancher server container will need need to be started with the ldap certificate passed to the server. On your Linux machine with Docker installed, place the certificate in `/some/dir`. 
+In order to enable Active Directory or OpenLDAP for Rancher server with TLS, the Rancher server container will need to be started with the ldap certificate. On the Linux machine that you want to launch Rancher server on, save the certificate. 
 
-Start Rancher by bind mount the volume that has the certificate. 
+Start Rancher by bind mounting the volume that has the certificate. The certificate **must** be called `ca.crt` inside the container. 
 
 ```bash
-sudo docker run -d --restart=always -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server
+sudo docker run -d --restart=always -p 8080:8080 \
+  -v /dir_that_contains_the_cert/cert.crt:/ca.crt rancher/server
 ```
 
 You can check that the `ca.crt` was passed to Rancher server container successfully by checking the logs of the rancher server container.
@@ -47,7 +48,7 @@ You can check that the `ca.crt` was passed to Rancher server container successfu
 $ docker logs <server_container_id>
 ```
 
-In the beginning of the logs, you should see confirmation that `ldap.crt` was added correctly.
+In the beginning of the logs, there will be confirmation that the `ldap.crt` was added correctly.
 
 ```bash
 DEFAULT_CATTLE_RANCHER_COMPOSE_WINDOWS_URL=https://releases.rancher.com/compose/beta/latest/rancher-compose-windows-386.zip
@@ -61,21 +62,20 @@ done.
 
 ### Bind Mount MySQL Volume
 
-If you would like to persist the database inside your container to a volume on your host, you can launch Rancher server by bind mounting the MySQL volume.
+If you would like to persist the database inside your container to a volume on your host, launch Rancher server by bind mounting the MySQL volume.
 
 ```bash
 $ sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=always -p 8080:8080 rancher/server
 ```
-With this command, the database will persist on the host. 
-For instructions on bind mounting an existing rancher container, see [here.](http://docs.rancher.com/rancher/upgrading/#upgrading-rancher-launched-using-bind-mounts)
+With this command, the database will persist on the host. If you have an existing Rancher container and would like to bind mount the MySQL volume, the instructions are located in our [upgrading documentation]({{site.baseurl}}/rancher/upgrading/#upgrading-rancher-launched-using-bind-mounts).
 
 <a id="external-db"></a>
 
 ### Using an external Database
 
-If you require using an external database to run Rancher server, please follow these instructions to connect Rancher server to the database. Your database will already need to be created, but does not need any schemas created. Rancher will automatically create all the schemas related to Rancher.
+If you would prefer to use an external database to run Rancher server, please follow these instructions to connect Rancher server to the database. Your database will already need to be created, but does not need any schemas created. Rancher will automatically create all the schemas related to Rancher.
 
-The following environment variables will need to be passed within the `docker run` command in order to decouple the server from the DB. 
+The following environment variables will need to be passed within the `docker run` command to launch Rancher server using your external database. 
 
 * CATTLE_DB_CATTLE_MYSQL_HOST: `hostname or IP of MySQL instance`
 * CATTLE_DB_CATTLE_MYSQL_PORT: `3306`
@@ -86,15 +86,15 @@ The following environment variables will need to be passed within the `docker ru
 
 > **Note:** The name and user of the database must already exist in order for Rancher to be able to create the database schema. Rancher will not create the database. 
 
-Here is the SQL command to create a database and users.
+Here is an example of a SQL command to create a database and users.
 
  ```sql
  CREATE DATABASE IF NOT EXISTS cattle COLLATE = 'utf8_general_ci' CHARACTER SET = 'utf8';
  GRANT ALL ON cattle.* TO 'cattle'@'%' IDENTIFIED BY 'cattle';
  GRANT ALL ON cattle.* TO 'cattle'@'localhost' IDENTIFIED BY 'cattle';
  ```
-
-After the database and user is created, you can run the command to launch rancher server.
+<br>
+After the database and user is created, launch rancher server with the environment variables. 
 
 ```bash
 sudo docker run -d --restart=always -p 8080:8080 \
@@ -110,19 +110,17 @@ sudo docker run -d --restart=always -p 8080:8080 \
 
 ### Launching Rancher Server behind a HTTP proxy
 
-In order to set up a HTTP proxy, you'll need to edit the Docker daemon to point to the proxy. Before attempting to start Rancher server, you'll need to edit the `/etc/default/docker` file to point to your proxy and restart Docker.
+In order to set up a HTTP proxy, the Docker daemon will need to be modified to point to the proxy. Before starting Rancher server, edit the `/etc/default/docker` file to point to your proxy and restart Docker.
 
 ```bash
 $ sudo vi /etc/default/docker
 ```
 
-Within the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it point to your proxy. Save your changes and then restart docker. Restarting Docker is different on every OS. 
+In the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it point to your proxy. Save your changes and then restart docker. Restarting Docker is different on every OS. 
 
-> **Note:** If running Docker with systemd, please follow Docker's [instructions](https://docs.docker.com/articles/systemd/#http-proxy) on how to configure the HTTP proxy. 
+> **Note:** If you are running Docker with systemd, please follow Docker's [instructions](https://docs.docker.com/articles/systemd/#http-proxy) on how to configure the HTTP proxy. 
 
-After you've configured the proxy in your Docker daemon, you will need to run the Rancher server command with environment variables to pass in the proxy. 
-
-In order for the [Rancher catalog]({{site.baseurl}}/rancher/catalog/) to work correctly, you'll need to start the Rancher server and add the environment variables to pass in the proxy information. 
+In order for the [Rancher catalog]({{site.baseurl}}/rancher/rancher-ui/applications/catalog/) to load, the proxy will need to be configured and Rancher server will need to be launched with environment variables to pass in the proxy information. 
 
 ```bash
 $ sudo docker run -d \
@@ -132,6 +130,6 @@ $ sudo docker run -d \
     --restart=always -p 8080:8080 rancher/server
 ```
 
-If you don't need the Rancher catalog, just run the Rancher server command.
+If the [Rancher catalog]({{site.baseurl}}/rancher/rancher-ui/applications/catalog/) will not be used, run the Rancher server command as you normally would.
 
-In order to add hosts to Rancher behind a proxy, please read about [adding custom hosts behind a proxy]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/#hosts-behind-a-proxy).
+When [adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/) to Rancher, there is no additional requirements behind a HTTP proxy. 

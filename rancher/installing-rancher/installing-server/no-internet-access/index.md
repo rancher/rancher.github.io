@@ -6,9 +6,14 @@ layout: rancher-default
 ## Launching Rancher Server with No Internet Access
 ---
 
-Rancher Server is able to run without internet, but the web browser accessing the UI will need access only to the private network. 
+Rancher Server is able to run without internet, but the web browser accessing the UI will need access to the private network. Rancher can be configured with either a private registry or with a HTTP proxy. 
 
-Rancher can be configured with either a private registry or with a HTTP proxy. 
+When launching Rancher server with no internet access, there will be a couple of features that will no longer work properly.
+
+* Launching Hosts using the UI for Cloud Providers - Since Rancher is calling `docker-machine` to create hosts in the cloud providers, this functionality will not work. You will add [custom hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/) to your Rancher setup. 
+* GitHub Authentication 
+* [Official Rancher Catalog](https://github.com/rancher/rancher-catalog) and [Community Catalog](https://github.com/rancher/community-catalog)( - These catalogs rely on being cloned from Github, but you will be able to [add internal private catalogs]({{site.baseurl}}/rancher/catalog/#creating-private-catalogs) into Rancher. 
+
 
 ## Using Private Registry
 
@@ -22,36 +27,36 @@ For each release of Rancher server, the corresponding Rancher agent and Rancher 
 
 **Commands to Push Images to Private Registry**
 
-These examples are for v0.39.0 Release using a machine that has access to both DockerHub and your private registry. We recommend tagging the version of the images in your private registry as the same version. 
+These examples are for the v0.63.1 release using a machine that has access to both DockerHub and your private registry. We recommend tagging the version of the images in your private registry as the same version. 
 
 ```bash
 # rancher/server 
-$ docker pull rancher/server:v0.39.0
-$ docker tag rancher/server:v0.39.0 localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v0.39.0
-$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v0.39.0 
+$ docker pull rancher/server:v0.63.1
+$ docker tag rancher/server:v0.63.1 localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v0.63.1
+$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v0.63.1 
 
 # rancher/agent
-$ docker pull rancher/agent:v0.8.2
-$ docker tag rancher/agent:v0.8.2 localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.2
-$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.2
+$ docker pull rancher/agent:v0.10.0
+$ docker tag rancher/agent:v0.10.0 localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.10.0
+$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.10.0
 
 # rancher/agent-instance
-$ docker pull rancher/agent-instance:v0.4.1
-$ docker tag rancher/agent-instance:v0.4.1 localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.4.1
-$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.4.1
+$ docker pull rancher/agent-instance:v0.8.0
+$ docker tag rancher/agent-instance:v0.8.0 localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.8.0
+$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.8.0
 ```
 
 ### Launching Rancher Server with Private Registry
 
-On your machine, start Rancher server to use the specific rancher images. We recommend using specific version tags instead of the `latest` tag to ensure you are working with the correct versions. 
+On your machine, start Rancher server to use the specific Rancher images. We recommend using specific version tags instead of the `latest` tag to ensure you are working with the correct versions. 
 
-Using the v0.39.0 example:
+Using the v0.63.1 example:
 
 ```bash
 $ sudo docker run -d --restart=always -p 8080:8080 \
-    -e CATTLE_BOOTSTRAP_REQUIRED_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.2 \
-    -e CATTLE_AGENT_INSTANCE_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.4.1 \
-    <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v0.39.0
+    -e CATTLE_BOOTSTRAP_REQUIRED_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.10.0 \
+    -e CATTLE_AGENT_INSTANCE_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.8.0 \
+    <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v0.63.1
 ```
 
 #### Rancher UI
@@ -60,7 +65,7 @@ The UI and API will be available on the exposed port `8080`. You can access the 
 
 ### Adding Hosts
 
-After accessing the UI, you can click on the **Add Host** button. This will immediately bring you to the **Host Registration** page. Click **Save**. 
+After accessing the UI, click on the **Add Host** button. This will immediately bring you to the **Host Registration** page. Click **Save**. 
 
 The cloud providers will not work as Rancher uses `docker-machine` to provision the hosts through the cloud providers. Click on the **Custom** icon to add the host. 
 
@@ -69,7 +74,7 @@ The command from the UI will be configured to use the private registry image for
 **Example Add Custom Host Command**
 
 ```bash
-$ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.8.1 http://<SERVER_IP>:8080/v1/scripts/<security_credentials>
+$ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v0.10.0 http://<SERVER_IP>:8080/v1/scripts/<security_credentials>
 ```
 
 ## Using HTTP Proxy 
@@ -78,15 +83,15 @@ Reminder, in this setup, the web browser accessing the UI will need access only 
 
 ### Configuring Docker to use a HTTP Proxy
 
-In order to set up a HTTP proxy, you'll need to edit the Docker daemon for the machines that will be used for Rancher server and Rancher hosts to point to the proxy. You'll need to edit the `/etc/default/docker` file to point to your proxy and restart Docker.
+In order to set up a HTTP proxy, the Docker daemon will need to be modified to point to the proxy for Rancher server and Rancher hosts. Before launching Rancher server or Rancher agents, edit the `/etc/default/docker` file to point to your proxy and restart Docker.
 
 ```bash
 $ sudo vi /etc/default/docker
 ```
 
-Within the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it point to your proxy. Save your changes and then restart docker. Restarting Docker is different on every OS. 
+In the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it point to your proxy. Save your changes and then restart docker. Restarting Docker is different on every OS. 
 
-> **Note:** If running Docker with systemd, please follow Docker's [instructions](https://docs.docker.com/articles/systemd/#http-proxy) on how to configure the HTTP proxy. 
+> **Note:** If you are running Docker with systemd, please follow Docker's [instructions](https://docs.docker.com/articles/systemd/#http-proxy) on how to configure the HTTP proxy. 
 
 ### Launching Rancher Server 
 
@@ -105,5 +110,5 @@ After accessing the UI, you can click on the **Add Host** button. This will imme
 
 The cloud providers will not work as Rancher uses `docker-machine` to provision the hosts through the cloud providers. Click on the **Custom** icon to add the host. 
 
-The command from the UI can be used on any machine that has Docker configured to use HTTP proxy. No environment variables are needed to start Rancher agents when using a proxy.
+The command from the UI can be used on any machine that has Docker configured to use HTTP proxy. 
 
