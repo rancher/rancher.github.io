@@ -12,7 +12,7 @@ In order to run Rancher server from an `https` url, you will need to terminate S
 
 Besides the typical Rancher server [requirements]({{site.baseurl}}/rancher/installing-rancher/installing-server/#requirements), you will also need:
 
-* Valid SSL certificate: If your certificate is not part of the standard Ubuntu CA bundle, please use the [self signed certificate instructions]({[site.baseurl}}/rancher/installing-rancher/installing-server/basic-ssl-config/#using-self-signed-certs-beta).
+* Valid SSL certificate: If your certificate is not part of the standard Ubuntu CA bundle, please use the [self signed certificate instructions]({{site.baseurl}}/rancher/installing-rancher/installing-server/basic-ssl-config/#using-self-signed-certs-beta).
 * DNS entries configured
 
 ## Launching Rancher Server
