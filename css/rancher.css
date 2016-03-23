@@ -248,7 +248,10 @@ a i {
     margin-top: 3px;
     padding-right:10px;
 }
-
+a.btn i {
+  margin: 0;
+  padding: 0;
+}
 a.collapsed i.fa-angle-down, a i.fa-angle-up{
     display:block;
 }
