@@ -237,7 +237,7 @@ lb:
 
 ## External Service
 
-With external services, you can set either external IP(s) **OR** a domain name.  
+With external services, you can set either external IP(s) **OR** a domain name. The `rancher/external-service` is not an actual image, but is required for the docker-compose.yml. There are no containers created for external services.
 
 **Sample configuration** `docker-compose.yml`
 
@@ -273,6 +273,8 @@ db:
 ```
 
 ## Service Alias/DNS service
+
+A service alias creates a pointer to service(s). In the example below, `web[.stack-name.rancher.internal]` will resolve to the IPs of the containers of `web1` and `web2`. The `rancher/dns-service` is not an actual image, but is required for the docker-compose.yml. There are no containers created for alias services.
 
 **Sample configuration** `docker-compose.yml`
 
