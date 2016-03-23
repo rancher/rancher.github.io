@@ -40,7 +40,7 @@ To configure your own kubectl to talk to your newly created Kubernetes cluster, 
 
 #### kubectl via Shell
 
-Rancher provides a convenient shell access to a managed kubectl instance that can be used to launch managed Kubernetes clusters and applications. 
+Rancher provides a convenient shell access to a managed kubectl instance that can be used to manage Kubernetes clusters and applications. 
 
 
 
