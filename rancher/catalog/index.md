@@ -6,20 +6,28 @@ layout: rancher-default
 ## Rancher Catalog 
 ---
 
-By default, the catalog is populated with templates from the [Rancher Catalog repository](https://github.com/rancher/rancher-catalog). 
+Rancher provides a catalog of application templates that make it easy to deploy these complex stacks. By accessing the **Applications** -> **Catalog** tab, you can view all the templates that are available in the [enabled catalogs]({{site.baseurl}}/rancher/configuration/settings/#catalog). By default, Rancher catalog is enabled with our [official catalog](https://github.com/rancher/rancher-catalog) and [community-catalog](https://github.com/rancher/community-catalog).
 
-An admin has the ability to add or remove catalogs to Rancher. The catalogs within Rancher can be found at **Admin** -> **Settings*. Adding a catalog is as simple as adding a catalog name and the git URL. The correct format of the git URL can be found [here](https://git-scm.com/docs/git-clone#_git_urls_a_id_urls_a). Whenever you add a catalog entry, it will be immediately available in your catalog.
+> **Note:** Though Rancher is defaulted with templates from both the official catalog and the community catalog, Rancher will only be maintaining support for templates in our official catalog. 
+
+An [admin]({{site.baseurl}}/rancher/configuration/access-control/#admin) of Rancher has the ability to add or remove catalogs to Rancher. The catalogs within Rancher can be found at **Admin** -> **Settings**. Adding a catalog is as simple as adding a catalog name and a URL. The URL needs to one that `git clone` [can handle](https://git-scm.com/docs/git-clone#_git_urls_a_id_urls_a). Whenever you add a catalog entry, it will be immediately available in your catalog.
 
 If you are running Rancher server behind a proxy, you will need to [start Rancher with certain environment variables]({{site.baseurl}}/rancher/installing-rancher/installing-server/#http-proxy) in order for the Rancher catalog to work in Rancher.  
 
 ## Creating Private Catalogs
 
-The Rancher catalog service requires private catalogs to be structured in a specific format in order for the catalog service to translate it into Rancher. 
+The Rancher catalog service requires private catalogs to be structured in a specific format in order for the catalog service to be able to translate it into Rancher. 
 
 ### Directory Structure
 
+Catalog templates are displayed in Rancher based on what cluster management type of environment that you are in. 
+
+* _Cattle_ environment: Entries in the UI are from the `templates` folder 
+* _Kubernetes_ environment: Entries in teh UI are from the `kubernetes-templates` folder 
+* _Swarm_ environment: Entries in the UI are from the `swarm-templates` folder 
+
 ```
--- templates
+-- templates OR kubernetes-templates OR swarm-templates
   |-- cloudflare
   |   |-- 0
   |   |   |-- docker-compose.yml
@@ -32,9 +40,12 @@ The Rancher catalog service requires private catalogs to be structured in a spec
 ...
 ```
 <br>
+
 In the main directory, you will need a `templates` folder. The `templates` folder will contain folders of each catalog entry that you have created. We recommend that each catalog entry have a simple template name as the folder name. 
 
 In the catalog entry folder (e.g. `cloudflare`), there will be folders for each version that you have created for your catalog entry. The first version should be `0` and each subsequent version will be an incremental value. For example, version 2 will be in the `1` folder. By providing a new version folder number, it provides a way to upgrade your stack from a previous version of the template. Alternatively, you could update the templates in the `0` folder and just re-deploy the entry. 
+
+> **Note:** Each catalog entry will need to be a single word, so please use `-` instead of spaces for longer catalog names. You can use spaces in the `name` section of the `config.yml`.
 
 #### Rancher Catalog Files to Display in Rancher Catalog
 

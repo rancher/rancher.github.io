@@ -8,6 +8,8 @@ layout: rancher-default
 
 Rancher provides a catalog of application templates that make it easy to deploy these complex stacks. By accessing the **Applications** -> **Catalog** tab, you can view all the templates that are available in the [enabled catalogs]({{site.baseurl}}/rancher/configuration/settings/#catalog). By default, the catalog is enabled with our [official catalog](https://github.com/rancher/rancher-catalog) and [community-catalog](https://github.com/rancher/community-catalog).
 
+> **Note:** Though Rancher is defaulted with templates from both the official catalog and community catalog, Rancher will only be maintaining support for templates in our official catalog. 
+
 ### Launching Templates 
 
 Search for your desired template or use the filters for category or catalog. Once you have found your template, click on **Launch**. Fill in the required information for the template.

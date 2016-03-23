@@ -9,7 +9,7 @@ Rancher is deployed as a set of Docker containers. Running Rancher is a simple a
 
 ### Requirements
 
-* Any modern Linux distribution that supports Docker 1.9.1+. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested. 
+* Any modern Linux distribution that supports Docker 1.9.1+. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested
 * 1GB RAM 
 * MySQL server should have a max_connections setting > 150
 
@@ -23,7 +23,7 @@ sudo docker run -d --restart=always -p 8080:8080 rancher/server
 
 #### Rancher UI
 
-The UI and API will be available on the exposed port `8080`. After the docker image is downloaded, it will take a minute or two before Rancher has successfully started. 
+The UI and API will be available on the exposed port `8080`. After the docker image is downloaded, it will take a minute or two before Rancher has successfully started and is available to view. 
 
 Navigate to the following URL: `http://<SERVER_IP>:8080`. The `<SERVER_IP` is the public IP address of the host that is running Rancher server.
 
