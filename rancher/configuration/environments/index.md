@@ -21,7 +21,7 @@ Rancher supports different cluster management frameworks when creating environme
 
 The first time that you log in to Rancher, you are working in a **Default** Cattle environment. This environment can be renamed, shared with others, or you can create additional environments to share with users. The environment that you're working in is always displayed in the upper right corner of the screen.
 
-> **Note:** As Rancher adds support for multiple cluster management frameworks, Rancher will not support the ability to switch between environments that have already have services running in it. 
+> **Note:** As Rancher adds support for multiple cluster management frameworks, Rancher currently does not support the ability to switch between environments that already have services running in it. 
 
 ### Adding Environments
 
