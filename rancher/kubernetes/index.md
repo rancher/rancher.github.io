@@ -10,23 +10,37 @@ To deploy Kubernetes in Rancher, you'll first need to create a new [environment]
 
 ### Creating a Kubernetes Environment
 
-In the dropdown of environments, click on the **Manage Environments**. A list of existing environments will be displayed. The _Default_ environment that is started when you launch Rancher is based on the _Cattle_ cluster management. You can choose to change the cluster management type of the _Default_ environment or  create a new environment that uses _Kubernetes_ as the cluster management.
-
-To create a new environment, click on **Add Environment**, select **Kubernetes** as the cluster management, provide a **Name**, **Description** (Optional). If [access control]({{site.baseurl}}/rancher/configuration/access-control/) is turned on, you can [add members]({{site.baseurl}}/rancher/configuration/environments/#editing-members) and select their [membership role]({{site.baseurl}}/rancher/configuration/environments/#membership-roles). Anyone added to the membership list would have access to your environment. 
-
-If you choose to change an existing environment's cluster management, click on **Edit** in the environment's dropdown. Change the cluster management to _Kubernetes_ and click on **Save**. 
+In the dropdown of environments, click on the **Manage Environments**. To create a new environment, click on **Add Environment**, select **Kubernetes** as the cluster management, provide a **Name**, **Description** (Optional). If [access control]({{site.baseurl}}/rancher/configuration/access-control/) is turned on, you can [add members]({{site.baseurl}}/rancher/configuration/environments/#editing-members) and select their [membership role]({{site.baseurl}}/rancher/configuration/environments/#membership-roles). Anyone added to the membership list would have access to your environment. 
 
 After a Kubernetes environment has been created, you can navigate to the environment by either selecting the name of the environment in the environment's dropdown in the upper right hand corner or by selecting **Switch to this Environment** in the specific environment's drop down. 
 
+> **Note:** As Rancher adds support for multiple cluster management frameworks, Rancher will not support the ability to switch between environments that have already have services running in it. 
+
 ### Starting Kubernetes
 
-After a Kubernetes environment has been created, you can start adding hosts to the environment in the **Infrastructure** -> **Hosts** page. [Adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts) is the same steps for all cluster management types. When a host is added into a Kubernetes environment, it is automatically added to the Kubernetes cluster by starting a series of different containers. 
+After a Kubernetes environment has been created, you can start the Kubernetes cluster by adding at least one host to your environment. The process of [adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts) is the same steps for all cluster management types. Once the first host has been added, Rancher will automatically start the deployment of the required Kubernetes components (i.e. master, kubelet, etcd, proxy, etc.). You can see the progress of the deployment by accessing the **Kubernetes** tab.
 
-After you add your first host, in the **Kubernetes** tab, you will see the progress of adding the host to a Kubernetes cluster. A **system stack** will be created, which can be located in the **System** -> **Stacks** page. 
+### Using Kubernetes
 
-After hosts have been added to your Kubernetes cluster, you could use the Rancher [catalog]({{site.baseurl}}/rancher/rancher-ui/applications/catalog/) to add in templates of tested Kubernetes entries. 
+Once the setup has completed, you can begin to create or manage your own Kubernetes applications via the following ways:
 
-In the **Kubernetes** tab, you can add services, replication controllers (RCs) or pods using a configuration file. We also provide access to the kubectl console. 
+#### Rancher UI 
+
+Rancher provides full CRUD capability of creating services, replication controllers (RCs), and pods. In the **Kubernetes** tab, click on the one of these items and click **Add**. A configuration file will be shown in the UI and editable. After you have made changes to the configuration file, click on **Create**.
+
+#### Rancher Catalog
+
+Rancher supports the capability of hosting a catalog of Kubernetes templates. To use a template, click on the **Catalog** tab. Select the template that you want to launch and click **View Details**. Review the stack name, stack description, and configuration options and make your edits before clicking on **Launch**. 
+
+If you want to add your own tempates to Kubernetes, you add them to the [Rancher catalog]({{site.baseurl}}/rancher/catalog/) and place your templates in a `kubernetes-templates` folder. 
+
+#### kubectl
+
+To configure your own kubectl to talk to your newly created Kubernetes cluster, go to **Kubernetes** -> **Kubectl** -> **Generate Config** to generate the necessary `kube/config_file` that you can download and add to your local directory. 
+
+#### Kubectl via Shell
+
+Rancher provides a convenient shell access to a managed kubectl instance that can be used to make managed Kubernetes clusters and applications. 
 
 
 

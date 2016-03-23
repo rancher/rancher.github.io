@@ -19,7 +19,7 @@ Besides the typical Rancher server [requirements]({{site.baseurl}}/rancher/insta
 
 In our example configuration, all traffic will pass through the proxy and be sent over a Docker link to the Rancher server container. There are alternative approaches that could be followed, but this example is simple and translates well.
 
-Start Rancher server. Please note that we have added in `--name=rancher-server` to this command for linking our proxy to our Rancher server container.
+Start Rancher server. We have added in `--name=rancher-server` to this command in order to link the proxy container to the Rancher server container.
 
 ```bash
 $ sudo docker run -d --restart=always --name=rancher-server rancher/server

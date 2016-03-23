@@ -8,7 +8,7 @@ layout: rancher-default
 
 ### What is an Environment?
 
-An environment is a way to share deployments and resources with different sets of users. Within each environment, you have the ability to invite others so it makes it easy to collaborate with others. By adding users to your environment, they will have the also have the ability to create deployments and manage resources. 
+An environment is a way to share deployments and resources with different sets of users and change cluster management frameworks. Within each environment, you have the ability to invite others so it makes it easy to collaborate with others. By adding users to your environment, they will have the also have the ability to create deployments and manage resources. 
 
 > **Note:** Infrastructure resources cannot be shared across multiple environments. [Registries]({{site.baseurl}}/rancher/configuration/registries/) and [API keys]({{site.baseurl}}/rancher/configuration/api-keys/) are also environment specific.  
 
@@ -17,25 +17,27 @@ An environment is a way to share deployments and resources with different sets o
 Rancher supports different cluster management frameworks when creating environments. 
 
 * **Cattle** is the default Rancher managed environment. 
-* **Kubernetes** will automatically plumb in the network for container communication and all hosts that are added into Rancher will automatically be added to Kubernetes. 
+* **Kubernetes** will automatically plumb in the network for container communication and all hosts that are added into Rancher will automatically be added to Kubernetes.
 
 The first time that you log in to Rancher, you are working in a **Default** Cattle environment. This environment can be renamed, shared with others, or you can create additional environments to share with users. The environment that you're working in is always displayed in the upper right corner of the screen.
 
+> **Note:** As Rancher adds support for multiple cluster management frameworks, Rancher will not support the ability to switch between environments that have already have services running in it. 
+
 ### Adding Environments
 
-To add new environments, you'll need to navigate to the **Manage Environments** page by clicking on the environment name, which provides a drop down of available environments as well a link to **Manage Environments** 
+To add new environments, you'll need to navigate to the **Manage Environments** page by clicking on the environment name, which provides a drop down of available environments as well a link to **Manage Environments**.
 
-After navigating to the **Environments** page, you will see a list of environments. If you are an [admin]({{site.baseurl}}/rancher/configuration/accounts/#admin) of Rancher, you will see a list of everyone's environment, even if you are not invited to that environment. 
+After navigating to the **Environments** page, you will see a list of environments. If you are an [admin]({{site.baseurl}}/rancher/configuration/accounts/#admin) of Rancher, you will see a list of everyone's environment, even if you are not invited to be a [member]({{site.baseurl}}/rancher/configuration/environments/#membership-roles) of that environment. 
 
-Click on **Add Environment**. Select which **Cluster Management** environment that you want to be created. Each environment will have its own name, description, and members. 
+Click on **Add Environment**. Select which **Cluster Management** environment that you want use. Each environment will have its own name, description, and members. 
 
 > **Note:** If you have not configured [Access Control]({{site.baseurl}}/rancher/configuration/access-control/), all environments will be available to anyone accessing Rancher. There will be no restriction of membership for any environments.
 
-There are two ways to add members to an environment. Provide username for the authentication. Click on the **+** to add the name to the list of members. If the name is not on the list, then they will not be added to the environment. Alternatively, there is a dropdown button on the right side of the **+** button, which will show organizations/teams for certain authentication types. 
+There are two ways to add members to an environment. Provide the username and click on the **+** to add the name to the list of members. If the name is not on the list, then they will not be added to the environment. Alternatively, there is a dropdown button on the right side of the **+** button, which will show organizations/teams for certain authentication types. 
 
-For each member (i.e. individual, team, or organization), you can define the role to be either an [owner]({{site.baseurl}}/rancher/configuration/environments/#owners), a [member]({{site.baseurl}}/rancher/configuration/environments/#members), [restricted user]({{site.baseurl}}/rancher/configuration/environments/#restricted) or [read only user]({{site.baseurl}}/rancher/configuration/environments/#read-only). By default, they are added to the list as a member. You can change their role in the dropdown next to their name. As an owner, you can always change the list of members and their roles at any time, but only owners have the ability to change the membership and membership roles of the environment.
+For each member (i.e. individual, team, or organization), you can define the role to be either an [owner]({{site.baseurl}}/rancher/configuration/environments/#owners), [member]({{site.baseurl}}/rancher/configuration/environments/#members), [restricted user]({{site.baseurl}}/rancher/configuration/environments/#restricted) or [read only user]({{site.baseurl}}/rancher/configuration/environments/#read-only). By default, they are added to the list as a member. You can change their role in the dropdown next to their name. As an owner, you can always change the list of members and their roles at any time, but only owners have the ability to change the membership and membership roles of the environment.
 
-Click on **Create** and the environment will immediately be available to anyone on the member list. At this point, anyone, that the environment is shared with, can start adding [services]({{site.baseurl}}/rancher/services/), adding [hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/) and anything else that a member can do.
+Click on **Create** and the environment will immediately be available to anyone on the member list.
 
 ### Deactivating and Deleting Environments
 
@@ -43,7 +45,7 @@ After creating environments, owners might want to deactivate or delete the envir
 
 Deactivating an environment will remove the viewing ability from any members of the environment. All owners will still be able to view and activate the environment. You will not be able to change the membership of the environment until it's been re-activated. Nothing will change with your services or infrastructure. Therefore, if you want to make any changes to your services/infrastructure, you'll need to make these changes before your environment is deactivated.
 
-In order to delete an environment, you will need to first deactivate it. All registries, balancers and API keys created in the environment will be removed from Rancher. Any hosts created through the Rancher UI will also be removed from the cloud provider. If you have added a host using the [custom]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/) option, then the host will not be removed from the cloud provider.
+In order to delete an environment, you will need to first deactivate it. All registries, balancers and API keys created in the environment will be removed from Rancher. Any hosts created through the Rancher UI, which launches hosts using `docker-machine`, will also be removed from the cloud provider. If you have added a host using the [custom]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/) option, then the host will not be removed from the cloud provider.
 
 ### Editing Members
 
@@ -77,7 +79,7 @@ The restriction of their role is regarding **Hosts**. They are only able to view
 
 A read only role of an environment is only able to view all resources in the environment. They can view hosts, stacks, services, containers, but they will be unable to perform any actions to create, edit, or remove them. 
 
-> **Note:** With this role, they will be able to view logs of a container.
+> **Note:** With this role, they will still be able to view logs of a container.
 
 
 

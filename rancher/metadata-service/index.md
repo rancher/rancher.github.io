@@ -6,11 +6,11 @@ layout: rancher-default
 
 ## Metadata Service
 
-With Rancher's metadata service, you can exec into any container within the Rancher managed network and retrieve information about containers in Rancher. The metadata could be related to the container, the service or stack that the container is part of, or the host that the container is on. The metadata is in a JSON format. 
+With Rancher's metadata service, you can exec into any container using the Rancher managed network and retrieve information about containers in Rancher. The metadata could be related to the container, the service or stack that the container is part of, or the host that the container is on. The metadata is in a JSON format. 
 
 A container can be launched in the Rancher managed network in several ways.
 
-* In the [UI]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/), the service/container was started with _Managed_ as the network option. By default, the network is set to _Managed_. 
+* In the [UI]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/), the service/container was started with _Managed_ as the network option. By default, the network of a service is set to _Managed_. 
 * Using [Rancher-Compose]({{site.baseurl}}/rancher/rancher-compose/), any service/container, that doesn't have another networking mode (`net`) specified, is launched in the managed network.
 * When [using native docker]({{site.baseurl}}/rancher/native-docker/#joining-natively-started-containers-to-the-rancher-network), if you add the label `io.rancher.container.network=true` to your `docker run` command, then the container will join the Rancher managed network.
 
@@ -178,7 +178,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 `hostname` | CNAME for [External Services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-external-services/)
 `kind` | Type of Rancher Service 
 `labels` | List of [Labels on Service]({{site.baseurl}}/rancher/rancher-ui/scheduling/#labels). Format for labels is `key:value`.
-`links` | List of linked services. Format for links is `stack_name/service_name:service_alias`. If the service is in the same stack, there will be no `stack_name`.
+`links` | List of linked services. Format for links is `stack_name/service_name:service_alias`. 
 `metadata` | [User added metadata]({{site.baseurl}}/rancher/metadata-service/#adding-user-metadata-to-a-service) 
 `name` | Name of Service
 `ports` | List of [Ports used in the Service]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#service-options). Format for ports is `host:public:private`.
