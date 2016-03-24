@@ -19,7 +19,7 @@ You can observe the same Docker event stream that Rancher is monitoring by execu
 
 ### Joining natively started containers to the Rancher network
 
-You can start containers outside of Rancher and still have them join the Rancher managed network. This means that these containers can participate in cross-host networking. To enable this feature, add the `io.rancher.container.network` label with a value of true to the container when you create it. Here's an example:
+You can start containers outside of Rancher and still have them join the Rancher managed network. This means that these containers can participate in cross-host networking. To enable this feature, add the `io.rancher.container.network` label with a value of `true` to the container when you create it. Here's an example:
 
 ```bash
 $ docker run -l io.rancher.container.network=true -itd ubuntu bash
