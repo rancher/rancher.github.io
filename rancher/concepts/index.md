@@ -19,7 +19,7 @@ See [access control]({{site.baseurl}}/rancher/configuration/access-control/) bef
 
 All hosts and any Rancher resources, such as containers, load balancers, and so on are created in and belong to an environment.  Access control permissions for viewing and managing these resources are then defined by the owner of the environment.  Rancher currently supports the capability for each user to manage and invite other users to their environment and allows for the ability to create multiple environments for different workloads.  For example, you may want to create a "dev" environment and a separate "production" environment with its own set of resources and limited user access for your application deployment.
 
-Set up [Access control]({{site.baseurl}}/rancher/configuration/access-control/) before you [share environments]({{site.baseurl}}/rancher/configuration/environments/) with users. 
+Set up [access control]({{site.baseurl}}/rancher/configuration/access-control/) before you [share environments]({{site.baseurl}}/rancher/configuration/environments/) with users. 
 
 <a id="host"></a>
 
