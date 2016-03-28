@@ -74,6 +74,21 @@
                  
                 </li>
                 <li class="panel">
+                    <a href="#rancherservice" class="collapsed" data-toggle="collapse" data-parent="#mainmenu">Rancher Services<i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
+                    <ul class="collapse list-group-submenu" id="rancherservice">
+                        <li><a href="{{site.baseurl}}/rancher/rancher-services/health-checks/">Health Checks</a></li>
+                        <li>
+                            <a href="#dnsservice" data-toggle="collapse" class="collapsed" data-parent="#dnsservice">DNS Service<i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
+                            <ul class="collapse" id="dnsservice">
+                                <li><a href="{{site.baseurl}}/rancher/rancher-services/internal-dns-service/"><i class="fa fa-angle-double-right"></i>Internal DNS Service</a></li>
+                                <li><a href="{{site.baseurl}}/rancher/rancher-services/dns-service/"><i class="fa fa-angle-double-right"></i>External DNS Service using Route 53</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{site.baseurl}}/rancher/metadata-service/">Metadata Service</a></li>
+                        <li><a href="{{site.baseurl}}/rancher/rancher-services/storage-service/">Storage Service</a></li>
+                    </ul>
+                </li>
+                <li class="panel">
                     <a href="#configuration" class="collapsed" data-toggle="collapse" data-parent="#mainmenu">Configuration<i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
                     <!--OLD href="{{site.baseurl}}/rancher/configuration/"-->
                     <ul class="collapse list-group-submenu" id="configuration">
@@ -150,15 +165,6 @@
                             </ul>
                         </li>
                         <li><a href="{{site.baseurl}}/rancher/rancher-ui/scheduling/">Scheduling</a></li>
-                    </ul>
-                </li>
-                <li class="panel">
-                    <a href="#rancherservice" class="collapsed" data-toggle="collapse" data-parent="#mainmenu">Rancher Services<i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
-                    <ul class="collapse list-group-submenu" id="rancherservice">
-                        
-                        <li><a href="{{site.baseurl}}/rancher/metadata-service/">Metadata Service</a></li>
-                        <li><a href="{{site.baseurl}}/rancher/rancher-services/dns-service/">DNS Service</a></li>
-                        <li><a href="{{site.baseurl}}/rancher/rancher-services/storage-service/">Storage Service</a></li>
                     </ul>
                 </li>
                 <li><a href="{{site.baseurl}}/rancher/catalog/">Rancher Catalog</a></li>

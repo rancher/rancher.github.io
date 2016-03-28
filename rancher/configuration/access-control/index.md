@@ -36,8 +36,6 @@ Select the **Local** icon. Create an admin user by providing the **Login Usernam
 
 #### OpenLDAP
 
-_Available as of v0.50.0+_
-
 Select the **OpenLDAP** icon. If you want to use a OpenLDAP using TLS, ensure that you have [started Rancher server with the appropriate certificate]({{site.baseurl}}/rancher/installing-rancher/installing-server/#ldap). Fill in the sections and authenticate Rancher by clicking **Authenticate**. When OpenLDAP is enabled, you'll automatically be logged in as the username that was authenticated. You will also be logged in as an admin of Rancher.
 
 ### Site Access

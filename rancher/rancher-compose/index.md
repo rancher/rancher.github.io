@@ -141,7 +141,7 @@ test2:
 
 In Rancher, all services within an environment are DNS resolvable so linking services are not required unless you would like to use a specific alias for DNS resolution. 
 
-> **Note:** We currently do not support linking sidekick services to the primary service or vice versa. Within the same launch configuration (i.e. the primary service and sidekick servicess), you can resolve the primary and sidekick services by their name. Outside of this launch configuration (i.e. services that are not part of the primary service and sidekick services), the primary service is resolvable by name, and the sidekick services are resolvable by `<sidekick_name>.<primary_service>`.
+> **Note:** We currently do not support linking sidekick services to the primary service or vice versa. Read more about how [Rancher's internal DNS works]({{site.baseurl}}/rancher/rancher-services/internal-dns-service/).
 
 For services in the same stack, any service is DNS resolvable by `service_name`. For services in a different stack, the service is DNS resolvable by `service_name.stack_name`. If you'd prefer to use a specific alias for DNS resolution, you would use `external_links` in the `docker-compose.yml`. 
 

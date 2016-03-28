@@ -20,7 +20,7 @@ Next, we'll define the listening ports of the load balancer. The **source port**
 
 In the *Accesss* section, you will decide if this load balancer port will be accessible publicly (i.e. accessible outside of the host) or only internally on the host. 
 
-> **Note:** Port `42` cannot be used as a source port for load balancers because Rancher uses this port for [health checks]({{site.baseurl}}/rancher/concepts/health-checks).  
+> **Note:** Port `42` cannot be used as a source port for load balancers because Rancher uses this port for [health checks]({{site.baseurl}}/rancher/rancher-services/health-checks).  
 
 Let's use a source port of `80`, select the `http` protocol, target port of `8080`, and select `Public` access. Next, let's add our targets for our load balancer. We can select the "letschat" service and click on **Create**. 
 

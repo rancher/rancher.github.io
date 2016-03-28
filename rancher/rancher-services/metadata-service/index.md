@@ -153,7 +153,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 | Fields | Description |
 | ----| ----|
 | `create_index` | The order number of which the container was launched in the service, i.e. 2 means it was the second container launched in the service. Note: Create_index is never reused. If you had a service with 2 containers and deleted the 2nd container, the next container that gets launched for the service would have a `create_index` of 3 even though there are only 2 containers in the service.
-| `health_state` | The state of health for the container if a [health check]({{site.baseurl}}/rancher/concepts/health-checks/) was enabled.
+| `health_state` | The state of health for the container if a [health check]({{site.baseurl}}/rancher/rancher-services/health-checks/) was enabled.
 | `host_uuid` | Unique host identifier that Rancher server assigns to hosts
 | `hostname` | The hostname of the container.
 | `ips` | When multiple NICs are supported, it will be the list of IPs.
@@ -179,7 +179,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 `kind` | Type of Rancher Service 
 `labels` | List of [Labels on Service]({{site.baseurl}}/rancher/rancher-ui/scheduling/#labels). Format for labels is `key:value`.
 `links` | List of linked services. Format for links is `stack_name/service_name:service_alias`. 
-`metadata` | [User added metadata]({{site.baseurl}}/rancher/metadata-service/#adding-user-metadata-to-a-service) 
+`metadata` | [User added metadata]({{site.baseurl}}/rancher/rancher-services/metadata-service/#adding-user-metadata-to-a-service) 
 `name` | Name of Service
 `ports` | List of [Ports used in the Service]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#service-options). Format for ports is `host:public:private`.
 `scale` | Scale of Service

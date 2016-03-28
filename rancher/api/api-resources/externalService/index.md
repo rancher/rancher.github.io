@@ -21,7 +21,7 @@ healthCheck | [instanceHealthCheck]({{site.baseurl}}/rancher/api/api-resources/i
 hostname | string | Optional | Yes | - | 
 id | int | - | - | - | The unique identifier for the externalService
 launchConfig | [launchConfig]({{site.baseurl}}/rancher/api/api-resources/launchConfig/) | Optional | - | - | The Docker run configuration of a container
-metadata | map[json] | Optional | Yes | - | The user added [metadata]({{site.baseurl}}/rancher/metadata-service/#adding-user-metadata-to-a-service) to a service.
+metadata | map[json] | Optional | Yes | - | The user added [metadata]({{site.baseurl}}/rancher/rancher-services/metadata-service/#adding-user-metadata-to-a-service) to a service.
 name | string | Yes | Yes | - | 
 selectorLink | string | Optional | - | - | The [selector value]({{site.baseurl}}/rancher/labels/#selector-labels) used to select a [service]({{site.baseurl}}/rancher/api/api-resources/service/) to link to the service based on a service's labels.
 upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/api/api-resources/serviceUpgrade/) | - | - | - | 

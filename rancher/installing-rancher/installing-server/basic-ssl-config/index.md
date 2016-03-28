@@ -149,7 +149,6 @@ Rancher Compose CLI will require the CA certificate as part of the default store
 * CA certificate file in PEM format 
 * Certificate signed by the CA for the Rancher Server
 * An instance of NGINX or Apache configured to terminate SSL and reverse proxy Rancher server
-* Rancher Server >= v0.57.0
 
 ### Rancher Server
 

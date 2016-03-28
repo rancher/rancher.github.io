@@ -19,7 +19,7 @@ externalId | string | - | - | - |
 fqdn | string | - | - | - | The fqdn of a service when the [Route 53 DNS service]({{site.baseurl}}/rancher/rancher-services/dns-service/) has started. The format will be `<serviceName>.<stackName>.<environmentName>.<yourHostedZoneName>`.
 id | int | - | - | - | The unique identifier for the service
 launchConfig | [launchConfig]({{site.baseurl}}/rancher/api/api-resources/launchConfig/) | Optional | - | - | The Docker run configuration of a container
-metadata | map[json] | Optional | Yes | - | The user added [metadata]({{site.baseurl}}/rancher/metadata-service/#adding-user-metadata-to-a-service) to a service.
+metadata | map[json] | Optional | Yes | - | The user added [metadata]({{site.baseurl}}/rancher/rancher-services/metadata-service/#adding-user-metadata-to-a-service) to a service.
 name | string | Yes | Yes | - | 
 scale | int | Optional | Yes | 1 | The number of containers to deploy as part of a service
 secondaryLaunchConfigs | array[secondaryLaunchConfig] | Optional | - | - | The list of services that are sidekicks to the service.
