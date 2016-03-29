@@ -18,7 +18,9 @@ After a Swarm environment has been created, you can navigate to the environment 
 
 ### Starting Swarm
 
-After a Swarm environment has been created, you can start the Swarm cluster by adding at least one host to your environment. The process of [adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts) is the same steps for all cluster management types. Once the first host has been added, Rancher will automatically start the deployment of the required Swarm components (i.e. swarm and swarm-agent). You can see the progress of the deployment by accessing the **Swarm** tab.
+After a Swarm environment has been created, you can start the Swarm cluster by adding at least one host to your environment. The process of [adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts) is the same steps for all cluster management types. Once the first host has been added, Rancher will automatically start the deployment of the required Swarm components (i.e. swarm and swarm-agent) on at least one host.  You can see the progress of the deployment by accessing the **Swarm** tab.
+
+> **Note:** The swarm agent does not need to be deployed on all hosts.
 
 ### Using Swarm
 
