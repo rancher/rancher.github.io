@@ -6,8 +6,6 @@ layout: rancher-default
 
 ## Storage Service
 
-_Available as of v0.47.0+_
-
 In the [Rancher catalog]({{site.baseurl}}/rancher/catalog/), Rancher provides storage services that are capable of exposing volumes to containers. Currently, the storage services are pre-fixed with `Convoy` in the catalog. 
 
 ### Prerequisites
@@ -23,13 +21,13 @@ In the [Rancher catalog]({{site.baseurl}}/rancher/catalog/), Rancher provides st
 
 ### Setting up the Storage Service
 
-From the **Applications** -> **Catalog** tab, select one of the **Convoy** services. 
+From the **Catalog** tab, select one of the **Convoy** services. 
 
 By default, we've auto-populated the required fields. Edit the fields to your desired choices. After filling in the form, click on **Create**. 
 
 ### Viewing Storage Pools
 
-After your storage service has been launched, a storage pool has been created and is viewable in **Infrastructure** -> **Storage Pools**. You will be able to see all the Convoy storage services that are running in your environment. Note: The name of the storage pool is derived from the name of the stack.
+After your storage service has been launched, a storage pool has been created and is viewable in **Infrastructure** -> **Storage Pools**. You will be able to see all the Convoy storage services that are running in your environment. The name of the storage pool is derived from the name of the stack.
 
 In each storage pool, the hosts that have the storage service running will be listed. Besides the list of hosts, the lists of volumes used in the storage pool is also listed. For each volume, you can see the name of the volume (i.e. the name of the volume on the host(s)), and the mounts of each volume. For each mount, there is the container name and the directory path inside the container. 
 
@@ -63,16 +61,16 @@ A volume can be added to a storage pool with two methods:
 In this example, we're going to provide an example of how to use GlusterFS to have a shared storage across hosts.
 
 1. Launch Gluster FS
-   * In the **Applications** -> **Catalog**, click on **View Details** of the **Gluster FS** service.
+   * In the **Catalog** tab, click on **View Details** of the **Gluster FS** service.
    * If desired, edit the **Name** of the stack for Gluster FS and add a **description**.
    * In the **Configuration Options**, edit the **volume name**. By default, Rancher has given the volume name `my_vol`. 
-   * Click on **Launch** to start the Gluster FS service. This will take a minute or two.
+   * Click on **Launch** to start the Gluster FS service. This will take a minute or two. You will be able to view the services in **Applications** -> **Stacks**.
 2. Launch Convoy Gluster
-   * In the **Applications** -> **Catalog**, click on **View Details** of the **Convoy Gluster** service.  
+   * In the **Catalog** tab, click on **View Details** of the **Convoy Gluster** service.  
    * If desired, edit the **Name** of the stack for Convoy Gluster and add a **description**.
    * In the **Configuration Options**, edit the **Volume Name**, if you have changed the volume name while launching the Gluster FS service.
    * Select the **Gluster FS** service that is running in Rancher. The service is named `glusterfs-server`. 
-   * Click on **Launch** to start the Convoy Gluster service. The `convoy-gluster` service will be deployed on every host.
+   * Click on **Launch** to start the Convoy Gluster service. The `convoy-gluster` service will be deployed on every host. You will be able to view the services in **Applications** -> **System**.
    * Check that the storage pool (`convoy-gluster`) has been created in the **Infrastructure** -> **Storage Pools** tab. Note: The name of the storage pool is derived from the name of the stack.
 3. Launch Service using the Convoy Gluster service
    * Click on **Add Service** in a different stack. Set up your service as you typically would. 

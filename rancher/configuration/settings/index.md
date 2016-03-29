@@ -20,7 +20,7 @@ If [access control]({{site.baseurl}}/rancher/configuration/access-control/) is t
 
 ## Catalog
 
-By default, the [catalog]({{site.baseurl}}/rancher/catalog/) is enabled with two catalogs, the [offical Rancher Catalog](https://github.com/rancher/rancher-catalog) and the [community-catalog](https://github.com/rancher/community-catalog). You can select to enable or disable these catalogs. 
+By default, the [catalog]({{site.baseurl}}/rancher/catalog/) is enabled with two catalogs, the [certified templates from the official Rancher Catalog](https://github.com/rancher/rancher-catalog) and the [community-catalog](https://github.com/rancher/community-catalog). You can select to enable or disable these catalogs. 
 
 An [admin]({{site.baseurl}}/rancher/configuration/accounts/#admin) has the ability to add private catalogs to Rancher. Adding a catalog is as simple as adding a catalog name and the git URL. The correct format of the git URL can be found [here](https://git-scm.com/docs/git-clone#_git_urls_a_id_urls_a). Whenever you add a catalog, it will be immediately available in the catalog.
 

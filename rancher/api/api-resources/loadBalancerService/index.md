@@ -21,7 +21,7 @@ fqdn | string | - | - | - | The fqdn of a service when the [Route 53 DNS service
 id | int | - | - | - | The unique identifier for the loadBalancerService
 launchConfig | [launchConfig]({{site.baseurl}}/rancher/api/api-resources/launchConfig/) | Optional | - | - | The Docker run configuration of a container
 loadBalancerConfig | [loadBalancerConfig]({{site.baseurl}}/rancher/api/api-resources/loadBalancerConfig/) | Optional | - | - | Configuration of a load balancer
-metadata | map[json] | Optional | Yes | - | The user added [metadata]({{site.baseurl}}/rancher/metadata-service/#adding-user-metadata-to-a-service) to a service.
+metadata | map[json] | Optional | Yes | - | The user added [metadata]({{site.baseurl}}/rancher/rancher-services/metadata-service/#adding-user-metadata-to-a-service) to a service.
 name | string | Yes | Yes | - | 
 scale | int | Optional | Yes | 1 | The number of containers to deploy as part of a service
 selectorLink | string | Optional | - | - | The [selector value]({{site.baseurl}}/rancher/labels/#selector-labels) used to select a [service]({{site.baseurl}}/rancher/api/api-resources/service/) to link to the service based on a service's labels.

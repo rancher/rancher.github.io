@@ -45,7 +45,7 @@ Finally, you'll just need to finish filling out the final details of the host(s)
 4. Select the **Root Size** of the image. The default in `docker machine` is 16GB, which is what we have defaulted in Rancher. 
 5. (Optional) For the **AMI**, `docker machine` defaults with an Ubuntu 14.04 TLS image in the specific region. You also have the option to select your own AMI. If you input your own AMI, make sure it's available in that region!
 6. (Optional) Provide the **IAM Profile** to be used as an instance profile. 
-7. (Optional) Add **[labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#labels)** to hosts to help organize your hosts and to [schedule services/load balancers]({{site.baseurl}}/rancher/rancher-ui/scheduling/).
+7. (Optional) Add **[labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#labels)** to hosts to help organize your hosts and to [schedule services/load balancers]({{site.baseurl}}/rancher/rancher-ui/scheduling/) or to [program external DNS records using an IP other than the host IP]({{site.baseurl}}/rancher/rancher-services/dns-service/#using-a-specific-ip-for-external-dns).
 8. (Optional) In **Advanced Options**, customize your `docker-machine create` command with [Docker engine options](https://docs.docker.com/machine/reference/create/#specifying-configuration-options-for-the-created-docker-engine). 
 9. When complete, click **Create**. 
 

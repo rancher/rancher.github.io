@@ -6,11 +6,11 @@ layout: rancher-default
 ## Adding Services
 ---
 
-With Rancher, you can add multiple services in a stack to make an application. With this guide, we'll assume you've already created a [stack]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/), set up your [hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/), and are ready to build your application. 
+With Rancher, you can add multiple services in a stack to make an application. A service is just one or more Docker containers. With this guide, we'll assume you've already created a [stack]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/), set up your [hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/), and are ready to build your application. 
 
-We'll walk through how to create a [LetsChat](http://sdelements.github.io/lets-chat/) application linked to a Mongo database. Inside your stack, you add a service by clicking the **Add Service** button. Alternatively, if you are viewing the stacks at the stack level, the same **Add Service** button is visible for each specific stack. 
+We'll walk through how to create a [LetsChat](http://sdelements.github.io/lets-chat/) application linked to a Mongo database. Inside your stack, you add a service by clicking the **Add Service** button. Alternatively, if you are viewing the stacks at the stack level, the same **Add Service** button is visible for each individual stack. 
 
-In the **Scale** section, you can use the slider for the specific number of containers you want launched for a service. Alternatively, you can select **Always run one instance of this container on every host**. With this option, your service will scale for any additional hosts that are added to your [environment]({{site.baseurl}}/rancher/configuration/environments/). If you have scheduling rules in the **Advanced Options** -> **Scheduling**, Rancher will only start containers on the hosts that meet the host labels rules. If you add a host to your environment that doesn't meet the scheduling rules, a container will not be started on the host.
+In the **Scale** section, you can use the slider for the specific number of containers you want launched for a service. Alternatively, you can select **Always run one instance of this container on every host**. With this option, your service will scale for any additional hosts that are added to your [environment]({{site.baseurl}}/rancher/configuration/environments/). If you have created scheduling rules in the **Advanced Options** -> **Scheduling** tab, Rancher will only start containers on the hosts that meet the scheduling rules. 
 
 You will also need to provide a **Name** and if desired, **Description** of the service. 
 
@@ -46,6 +46,8 @@ If you would like to take advantage of Rancher's random port mapping, the public
 
 If other services have already been created in your environment, you can link services to the service that you are creating. Linking services will link all containers in the service to all containers in the linked service. Linking services acts like the `--link` functionality in a `docker run` command.
 
+Linking services is additional functionality on top of Rancher's [internal DNS]({{site.baseurl}}/rancher/rancher-services/internal-dns-service/) and is not required to resolve services by service name.
+
 ### Rancher Options
 
 Besides providing all the options that `docker run` support, Rancher provides additional concepts available in the UI.
@@ -60,7 +62,7 @@ Rancher’s approach handles network partitions and is more efficient than clien
 
 In the **Advanced Options** section, the **Health Check** tab allows you to check TCP connections or HTTP responses for services. 
 
-More details about health checks can be read in the [concept section]({{site.baseurl}}/rancher/concepts/health-checks/).
+Read more details about how Rancher handles [health checks]({{site.baseurl}}/rancher/rancher-services/health-checks/).
 
 #### Labels/Scheduling 
 
@@ -76,13 +78,15 @@ Another time that you may want to define the sidekick relationship is if you hav
 
 To set a sidekick relationship, you can click on **+ Add Sidekick Container**, which is located within the scale section. The first service is considered the primary service and each additional sidekick is a secondary service. 
 
-When defining a sidekick to a service, you do not need to link the services as sidekicks are automatically DNS-resolved to each other.
+When defining a sidekick to a service, you do not need to link the services as sidekicks are automatically DNS-resolved to each other. 
 
 When using [load balancers]({{site.baseurl}}/rancher/rancher-compose/rancher-services/#load-balancer) with services that have sidekicks, you need to use the primary service as the target of the load balancer. A sidekick **can not** be the target.
 
+Read more about [Rancher's internal DNS]({{site.baseurl}}/rancher/rancher-services/internal-dns-service/).'
+
 ### Starting Services
 
-After filling out the information for your service, click **Create**. Creating the service will not automatically start the service.
+After filling out the information for your service, click **Create**. The service will immediately start to launch. If this is your first container launched on the host, a _Network Agent_ container will be launched onto the host, which is a system container created by Rancher to handle tasks such as cross-host networking, health checking, etc.
 
 Now that we've launched our "Mongo" service, we'll add the "LetsChat" service to our stack. This time, we'll set the scale of the service as 2 containers in our service, and use the `sdelements/lets-chat` image. We will not expose any ports in the "LetsChat" service as we will plan on load balancing this application. Since we've already created the database service, we'll pick the database service in the **Service Links** and select the name `mongo`. Just like Docker, Rancher will set up up the linking of the containers on the exposed port on the "Mongo" service, by naming the database as `mongo`.
 

@@ -6,7 +6,7 @@ layout: rancher-default
 ## Installing Rancher Server With SSL
 ---
 
-In order to run Rancher server from an `https` url, you will need to terminate SSL with a proxy that is capable of setting headers. We've provided an example of how it could be set up with NGINX or Apache, but other tools could be used.
+In order to run Rancher server from an `https` URL, you will need to terminate SSL with a proxy that is capable of setting headers. We've provided an example of how it could be set up with NGINX or Apache, but other tools could be used.
 
 ## Requirements
 
@@ -140,7 +140,7 @@ By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets
 
 ### Disclaimers
 
-This configuration will work for the 'core' services in Rancher running in a standalone mode (Non-HA setup). Currently, none of the Rancher services from the [official Rancher catalog](https://github.com/rancher/rancher-catalog) are supported. 
+This configuration will work for the 'core' services in Rancher running in a standalone mode (Non-HA setup). Currently, none of the certified Rancher templates from the [Rancher catalog](https://github.com/rancher/rancher-catalog) are supported. 
 
 Rancher Compose CLI will require the CA certificate as part of the default store for the operating system. See [Golang root_*](https://golang.org/src/crypto/x509/).
 
@@ -149,7 +149,6 @@ Rancher Compose CLI will require the CA certificate as part of the default store
 * CA certificate file in PEM format 
 * Certificate signed by the CA for the Rancher Server
 * An instance of NGINX or Apache configured to terminate SSL and reverse proxy Rancher server
-* Rancher Server >= v0.57.0
 
 ### Rancher Server
 

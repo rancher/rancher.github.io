@@ -4,9 +4,7 @@ layout: rancher-default
 
 ---
 
-## DNS Service
-
-_Available as of v0.44.0+_
+## Rancher's Route53 DNS Service
 
 As part of the [Rancher catalog]({{site.baseurl}}/rancher/catalog/), Rancher provides a DNS service that is integrated with Amazon Route53 DNS. When launching the service, a single route53 container is launched in Rancher. This container will listen for rancher-metadata events, generate DNS records based on the metadata changes, and update Route53 accordingly.
 
@@ -17,7 +15,7 @@ As part of the [Rancher catalog]({{site.baseurl}}/rancher/catalog/), Rancher pro
 
 ### Launching Route53 Service
 
-From the **Applications** -> **Catalog** tab, you can select the **Route53 DNS Stack**. 
+From the **Catalog** tab, you can select the **Route53 DNS Stack**. 
 
 Provide a **Name**, and if desired, **Description** for the stack. 
 
@@ -56,5 +54,13 @@ When using the fqdn in a browser, it will be directed to one of the containers i
 
 When the `route53` service is removed from Rancher, the record sets in Amazon Route 53 is **NOT** removed. Those will need to be manually removed by yourself in your Amazon account. 
 
+### Using a Specific IP for External DNS
 
+By default, Rancher DNS picks the host IP, that is registered in Rancher server, to be used for exposing services. There will be use cases where hosts have been configured in Rancher using a private network, but these hosts will need to expose services using external DNS through the public network. In cases where you would like to specify the IP to be used for external DNS, you will need to add a [host label]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#host-labels) before launching your external DNS service.
+
+Before launching external DNS services, please add the following label to your host. The value of the label is what Rancher's Route53 DNS service will use when programming rules. If this label is not set on the host, Rancher's Route53 DNS service will automatically use the host IP that is displayed in Rancher.
+
+```
+io.rancher.host.external_dns_ip=<IP_TO_BE_USED_FOR_EXTERNAL_DNS>
+```
 

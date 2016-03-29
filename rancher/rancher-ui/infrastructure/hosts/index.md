@@ -49,6 +49,8 @@ With each host, you have the ability to add labels to help you organize your hos
 
 By adding labels to hosts, you can use these labels when [schedule services/load balancers/services]({{site.baseurl}}/rancher/rancher-ui/scheduling/) and create a whitelist or blacklist of hosts for your [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/) to run on. 
 
+If you are planning to use an [external DNS service]({{site.baseurl}}/rancher/rancher-services/dns-service/) and will require [to program the DNS records using an IP other than the host IP]({{site.baseurl}}/rancher/rancher-services/dns-service/#using-a-specific-ip-for-external-dns), then you will need to include the label `io.rancher.host.external_dns_ip=<IP_TO_BE_USED_FOR_EXTERNAL_DNS>` on the host. The host label can be added when registering the host or after the host has been added to Rancher, but it should be added to the host before the external DNS service starts. The value of this label will be used when programming rules for external DNS services. 
+
 When using the UI to add hosts with the different cloud providers, the rancher/agent command is automatically launched for you with the host labels that are added in the UI. 
 
 When adding a custom host, you can add the labels using the UI and it will automatically add the environment variable (`CATTLE_HOST_LABELS`) with the key/value pair into the command on the UI screen.

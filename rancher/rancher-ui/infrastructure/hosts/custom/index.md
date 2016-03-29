@@ -44,10 +44,6 @@ For any hosts that are added, ensure that any security groups or firewalls allow
 
 * From and to all other hosts on UDP ports `500` and `4500` (for IPsec networking)
 
-As of our Beta release (v0.24.0), Rancher no longer requires any additional TCP ports. But if you are using a version prior to Beta, then you will need to add the following ports:
-
-* From the internet to TCP ports `9345` and `9346` (for UI hosts stats/graphs) 
-
 <a id="samehost"></a>
 ### Adding Hosts to the same machine as Rancher Server
 
@@ -71,32 +67,7 @@ Within the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have 
 
 > **Note:** If running docker with systemd, follow docker [instructions](https://docs.docker.com/articles/systemd/#http-proxy) on how to configure the HTTP proxy. 
 
-#### Versions Starting with v0.34.0 and Later
-
-As of v0.34.0, no additional environment variables need to be added to the command to launch Rancher agents. Ensure that your docker daemon is configured correctly.
-
-#### Versions Prior to v0.34.0
-
-For versions prior to v0.34.0, you'll need to add environment variables in order for the Rancher agent to leverage the proxy.
-
-Potential Environment Variables to Set:
-
-* http_proxy
-* https_proxy
-* NO_PROXY (must be capitalized)
-
-
-> **Note:** NO_PROXY` must be set to the Rancher server IP address and localhost (i.e. 127.0.0.1) in order for Rancher agents to communicate directly to Rancher server. Communication between Rancher server and Rancher agents cannot go through the proxy. 
-
-```bash
-$ sudo docker run -d \
-    -e http_proxy=<proxyURL> \
-    -e https_proxy=<proxyURL> \
-    -e NO_PROXY=127.0.0.1,<Rancher_Server_IP> \
-    --privileged \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-      rancher/agent:<agent_version> <URL provided from UI>
-```
+No additional environment variables need to be added to the command to launch Rancher agents. You only need to ensure that your docker daemon is configured correctly.
 
 ### VMs with Private and Public IP Addresses
 

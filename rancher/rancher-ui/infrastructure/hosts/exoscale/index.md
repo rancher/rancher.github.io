@@ -36,7 +36,7 @@ Finally, you'll just need to finish filling out the final details of the host(s)
 2. Provide a **Name** and if desired, **Description** for the host.
 3. Select the **Instance Profile**.
 4. Select the **Root Size**, which is the Exoscale disk size.
-5. (Optional) Add **[labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#labels)** to hosts to help organize your hosts and to [schedule services/load balancers]({{site.baseurl}}/rancher/rancher-ui/scheduling/).
+5. (Optional) Add **[labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#labels)** to hosts to help organize your hosts and to [schedule services/load balancers]({{site.baseurl}}/rancher/rancher-ui/scheduling/) or to [program external DNS records using an IP other than the host IP]({{site.baseurl}}/rancher/rancher-services/dns-service/#using-a-specific-ip-for-external-dns).
 6. (Optional) Customize your `docker-machine create` command with [Docker engine options](https://docs.docker.com/machine/reference/create/#specifying-configuration-options-for-the-created-docker-engine).
 7. When complete, click **Create**. 
 

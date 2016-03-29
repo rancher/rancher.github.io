@@ -93,7 +93,7 @@ labels:
 
 **Automatically Applied Host Labels**
 
-In v0.46.0+, Rancher automatically creates host labels related to linux kernel version and Docker Engine version of the host.
+Rancher automatically creates host labels related to linux kernel version and Docker Engine version of the host.
 
 Key | Value | Description
 ----|----|----
