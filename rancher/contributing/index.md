@@ -23,11 +23,14 @@ All of repositories are located within our main GitHub [page](https://github.com
 
 [UI Repo](https://github.com/rancher/ui): This repo is where all the UI for Rancher is developed. 
 
+[Community Catalog Repo](https://github.com/rancher/community-catalog): This repo has all community contributed templates for the [Rancher Catalog]({{site.baseurl}}/rancher/catalog). We welcome community contributions to the Rancher templates. 
+
+[Rancher-Compose Repo](https://github.com/rancher/rancher-compose): This repo is what the [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/) CLI is based on. It's synced with docker/libcompose. 
 
 ### Bugs
 
-If you find any bugs or are having any trouble, please contact us by filing an [issue](https://github.com/rancher/rancher/issues/new). Though we have many repositories related to Rancher, we want the majority of the bugs in the Rancher repo so we won't miss them!
+If you find any bugs or are having any trouble, please contact us by filing an [issue](https://github.com/rancher/rancher/issues/new). Though we have many repositories related to Rancher, we want the majority of the bugs in the [Rancher repo](https://github.com/rancher/rancher) so we won't miss them!
 
-If you have any updates to our documentation, please make any PRs to our [docs repo](https://github.com/rancher/rancher.github.io). 
+If you have any updates to our documentation, please make any PRs to our [docs repo](https://github.com/rancher/rancher.github.io) or click on the **Edit this page** to be taken directly to the page. 
 <br>
 <br>

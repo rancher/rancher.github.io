@@ -39,7 +39,7 @@ rancher:
 ```
 <br>
 
-> **Note:** You can not name the service `rancher-agent` as this will not allow the rancher/agent container to be launched correctly. Please read more about why [you can't name your container as `rancher-agent`]({{site.baseurl}}/rancher/faqs/troubleshooting/#adding-in-name-rancher-agent). 
+> **Note:** You can not name the service `rancher-agent` as this will not allow the rancher/agent container to be launched correctly. Please read more about why [you can't name your container as `rancher-agent`]({{site.baseurl}}/rancher/faqs/agents/#adding-in-name-rancher-agent). 
 
 ### Adding in Host Labels
 
