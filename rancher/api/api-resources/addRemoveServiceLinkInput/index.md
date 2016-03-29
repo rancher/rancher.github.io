@@ -13,5 +13,5 @@ layout: rancher-default
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-serviceLink | serviceLink | true | <no value> | 
+serviceLink | [serviceLink]({{site.baseurl}}/rancher/api/api-resources/serviceLink/) | true | <no value> | 
 

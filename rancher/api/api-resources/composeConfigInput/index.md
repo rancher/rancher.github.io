@@ -13,5 +13,5 @@ layout: rancher-default
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-serviceIds | array[reference[service]] | false | <no value> | The list of Service IDs in the `docker-compose.yml`
+serviceIds | array[[service]({{site.baseurl}}/rancher/api/api-resources/service/)] | false | <no value> | The list of Service IDs in the `docker-compose.yml`
 

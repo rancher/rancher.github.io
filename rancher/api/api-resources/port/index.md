@@ -12,6 +12,7 @@ Collection Test Description
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+bindAddress | string | - | - | - | 
 description | string | Optional | Yes | - | 
 id | int | - | - | - | The unique identifier for the port
 instanceId | [instance]({{site.baseurl}}/rancher/api/api-resources/instance/) | - | - | - | The unique identifier for the associated instance

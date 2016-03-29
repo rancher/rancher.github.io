@@ -14,6 +14,7 @@ Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 description | string | Optional | Yes | - | 
 externalId | string | - | - | - | 
+hostId | [host]({{site.baseurl}}/rancher/api/api-resources/host/) | - | - | - | The unique identifier for the associated host
 id | int | - | - | - | The unique identifier for the instance
 name | string | Optional | Yes | - | 
 
@@ -87,6 +88,29 @@ deallocate
 </span>
 <div class="action-contents">
 To deallocate the instance
+<br>
+
+<span class="input">
+<strong>Input:</strong>This action has no inputs
+<br>
+
+<br>
+</span>
+
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource
+</span>
+</div>
+</span>
+</span>
+</span>
+
+<span class="action">
+<span class="header">
+error
+<span class="headerright">POST:  <code>${actions.error}</code></span>
+</span>
+<div class="action-contents">
+To error the instance
 <br>
 
 <span class="input">
@@ -286,6 +310,29 @@ updatehealthy
 </span>
 <div class="action-contents">
 To updatehealthy the instance
+<br>
+
+<span class="input">
+<strong>Input:</strong>This action has no inputs
+<br>
+
+<br>
+</span>
+
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource
+</span>
+</div>
+</span>
+</span>
+</span>
+
+<span class="action">
+<span class="header">
+updatereinitializing
+<span class="headerright">POST:  <code>${actions.updatereinitializing}</code></span>
+</span>
+<div class="action-contents">
+To updatereinitializing the instance
 <br>
 
 <span class="input">

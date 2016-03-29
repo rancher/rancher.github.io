@@ -16,7 +16,7 @@ description | string | Optional | Yes | - |
 id | int | - | - | - | The unique identifier for the credential
 name | string | Optional | Yes | - | 
 publicValue | string | - | - | - | The public value of the credential
-secretValue | string | - | - | - | The secret value of the credential
+secretValue | [password]({{site.baseurl}}/rancher/api/api-resources/password/) | - | - | - | The secret value of the credential
 
 <br>
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 

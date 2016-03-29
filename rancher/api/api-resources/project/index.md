@@ -17,6 +17,8 @@ id | int | - | - | - | The unique identifier for the project
 kubernetes | boolean | Optional | Yes | - | 
 members | array[projectMember] | Optional | - | - | 
 name | string | Optional | Yes | - | 
+publicDns | boolean | Optional | Yes | - | 
+servicesPortRange | [servicesPortRange]({{site.baseurl}}/rancher/api/api-resources/servicesPortRange/) | Optional | Yes | - | 
 swarm | boolean | Optional | Yes | - | 
 
 <br>

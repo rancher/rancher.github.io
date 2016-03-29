@@ -13,5 +13,5 @@ layout: rancher-default
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-ipAddressId | reference[ipAddress] | false | <no value> | 
+ipAddressId | [ipAddress]({{site.baseurl}}/rancher/api/api-resources/ipAddress/) | false | <no value> | 
 

@@ -18,7 +18,7 @@ id | int | - | - | - | The unique identifier for the registryCredential
 name | string | Optional | Yes | - | 
 publicValue | string | Optional | Yes | - | The public value of the registryCredential
 registryId | [registry]({{site.baseurl}}/rancher/api/api-resources/registry/) | Yes | - | - | The unique identifier of a registry
-secretValue | string | Optional | Yes | - | The secret value of the registryCredential
+secretValue | [password]({{site.baseurl}}/rancher/api/api-resources/password/) | Optional | Yes | - | The secret value of the registryCredential
 
 <br>
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
@@ -48,7 +48,7 @@ Create
 
 	"registryId": "reference[registry]",
 
-	"secretValue": "string"
+	"secretValue": "password"
 
 } 
 {% endhighlight %}
@@ -84,7 +84,7 @@ Update
 
 	"publicValue": "string",
 
-	"secretValue": "string"
+	"secretValue": "password"
 
 } 
 {% endhighlight %}

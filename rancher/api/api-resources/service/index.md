@@ -12,20 +12,24 @@ Rancher adopts the standard Docker Compose terminology for services and defines 
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+assignServiceIpAddress | boolean | Optional | - | - | 
 createIndex | int | - | - | - | The order that the container was created in a service.
 description | string | Optional | Yes | - | 
 environmentId | [environment]({{site.baseurl}}/rancher/api/api-resources/environment/) | Yes | - | - | The identifier of which stack the service belongs to
 externalId | string | - | - | - | 
 fqdn | string | - | - | - | The fqdn of a service when the [Route 53 DNS service]({{site.baseurl}}/rancher/rancher-services/dns-service/) has started. The format will be `<serviceName>.<stackName>.<environmentName>.<yourHostedZoneName>`.
+healthState | string | - | - | - | 
 id | int | - | - | - | The unique identifier for the service
 launchConfig | [launchConfig]({{site.baseurl}}/rancher/api/api-resources/launchConfig/) | Optional | - | - | The Docker run configuration of a container
 metadata | map[json] | Optional | Yes | - | The user added [metadata]({{site.baseurl}}/rancher/rancher-services/metadata-service/#adding-user-metadata-to-a-service) to a service.
 name | string | Yes | Yes | - | 
+publicEndpoints | array[publicEndpoint] | - | - | - | 
+retainIp | boolean | Optional | - | - | 
 scale | int | Optional | Yes | 1 | The number of containers to deploy as part of a service
 secondaryLaunchConfigs | array[secondaryLaunchConfig] | Optional | - | - | The list of services that are sidekicks to the service.
-selectorContainer | string | Optional | - | - | The [selector value]({{site.baseurl}}/rancher/labels/#selector-labels) used to select a [container]({{site.baseurl}}/rancher/api/api-resources/container/) to link to the service based on a service's labels.
-selectorLink | string | Optional | - | - | The [selector value]({{site.baseurl}}/rancher/labels/#selector-labels) used to select a [service]({{site.baseurl}}/rancher/api/api-resources/service/) to link to the service based on a service's labels.
-serviceSchemas | map[schema] | Optional | - | - | 
+selectorContainer | string | Optional | Yes | - | The [selector value]({{site.baseurl}}/rancher/labels/#selector-labels) used to select a [container]({{site.baseurl}}/rancher/api/api-resources/container/) to link to the service based on a service's labels.
+selectorLink | string | Optional | Yes | - | The [selector value]({{site.baseurl}}/rancher/labels/#selector-labels) used to select a [service]({{site.baseurl}}/rancher/api/api-resources/service/) to link to the service based on a service's labels.
+startOnCreate | boolean | Optional | - | - | 
 upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/api/api-resources/serviceUpgrade/) | - | - | - | 
 vip | string | Optional | - | - | 
 
@@ -46,6 +50,8 @@ Create
 <div class="action-contents">
 {% highlight json %} 
 {
+
+	"assignServiceIpAddress": false,
 
 	"description": "string",
 
@@ -133,6 +139,8 @@ Create
 
 		],
 
+		"disks": "array[virtualMachineDisk]",
+
 		"dns": [
 
 			"string1",
@@ -203,21 +211,35 @@ Create
 
 			"healthyThreshold": 0,
 
+			"initializingTimeout": 0,
+
 			"interval": 0,
 
 			"name": "string",
 
 			"port": 0,
 
+			"recreateOnQuorumStrategyConfig": {
+
+				"quorum": 0
+
+			},
+
+			"reinitializingTimeout": 0,
+
 			"requestLine": "string",
 
 			"responseTimeout": 0,
+
+			"strategy": "recreate",
 
 			"unhealthyThreshold": 0
 
 		},
 
 		"healthState": "enum",
+
+		"hostId": "reference[host]",
 
 		"hostname": "string",
 
@@ -227,7 +249,7 @@ Create
 
 		"instanceLinks": "map[reference[instance]]",
 
-		"kind": "string",
+		"kind": "container",
 
 		"labels": {
 
@@ -267,6 +289,8 @@ Create
 
 		"memory": 0,
 
+		"memoryMb": 0,
+
 		"memorySwap": 0,
 
 		"nativeContainer": true,
@@ -305,6 +329,8 @@ Create
 
 		"requestedHostId": "reference[host]",
 
+		"requestedIpAddress": "string",
+
 		"securityOpt": [
 
 			"string1",
@@ -335,7 +361,11 @@ Create
 
 		"user": "string",
 
+		"userdata": "string",
+
 		"uuid": "string",
+
+		"vcpu": 1,
 
 		"version": "0",
 
@@ -349,6 +379,8 @@ Create
 
 	"name": "string",
 
+	"retainIp": true,
+
 	"scale": 1,
 
 	"secondaryLaunchConfigs": "array[secondaryLaunchConfig]",
@@ -357,7 +389,7 @@ Create
 
 	"selectorLink": "string",
 
-	"serviceSchemas": "map[schema]",
+	"startOnCreate": false,
 
 	"vip": "string"
 
@@ -393,7 +425,11 @@ Update
 
 	"name": "string",
 
-	"scale": 1
+	"scale": 1,
+
+	"selectorContainer": "string",
+
+	"selectorLink": "string"
 
 } 
 {% endhighlight %}
@@ -474,7 +510,9 @@ serviceLink | serviceLink | Yes | <no value> |
 
 		"name": "string",
 
-		"serviceId": "reference[service]"
+		"serviceId": "reference[service]",
+
+		"uuid": "string"
 
 	}
 
@@ -630,7 +668,50 @@ serviceLink | serviceLink | Yes | <no value> |
 
 		"name": "string",
 
-		"serviceId": "reference[service]"
+		"serviceId": "reference[service]",
+
+		"uuid": "string"
+
+	}
+
+}{% endhighlight %}
+
+<br>
+</span>
+
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource
+</span>
+</div>
+</span>
+</span>
+</span>
+
+<span class="action">
+<span class="header">
+restart
+<span class="headerright">POST:  <code>${actions.restart}</code></span>
+</span>
+<div class="action-contents">
+To restart the service
+<br>
+
+<span class="input">
+<strong>Input:</strong>​​​ serviceRestart
+
+
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+rollingRestartStrategy | rollingRestartStrategy | Yes | <no value> | 
+
+
+<br>
+{% highlight json %}{
+
+	"rollingRestartStrategy": {
+
+		"batchSize": 1,
+
+		"intervalMillis": 2000
 
 	}
 
@@ -814,6 +895,8 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			],
 
+			"disks": "array[virtualMachineDisk]",
+
 			"dns": [
 
 				"string1",
@@ -884,21 +967,35 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 				"healthyThreshold": 0,
 
+				"initializingTimeout": 0,
+
 				"interval": 0,
 
 				"name": "string",
 
 				"port": 0,
 
+				"recreateOnQuorumStrategyConfig": {
+
+					"quorum": 0
+
+				},
+
+				"reinitializingTimeout": 0,
+
 				"requestLine": "string",
 
 				"responseTimeout": 0,
+
+				"strategy": "recreate",
 
 				"unhealthyThreshold": 0
 
 			},
 
 			"healthState": "enum",
+
+			"hostId": "reference[host]",
 
 			"hostname": "string",
 
@@ -908,7 +1005,7 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"instanceLinks": "map[reference[instance]]",
 
-			"kind": "string",
+			"kind": "container",
 
 			"labels": {
 
@@ -948,6 +1045,8 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"memory": 0,
 
+			"memoryMb": 0,
+
 			"memorySwap": 0,
 
 			"nativeContainer": true,
@@ -986,6 +1085,8 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"requestedHostId": "reference[host]",
 
+			"requestedIpAddress": "string",
+
 			"securityOpt": [
 
 				"string1",
@@ -1016,7 +1117,11 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"user": "string",
 
+			"userdata": "string",
+
 			"uuid": "string",
+
+			"vcpu": 1,
 
 			"version": "0",
 
@@ -1108,6 +1213,8 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			],
 
+			"disks": "array[virtualMachineDisk]",
+
 			"dns": [
 
 				"string1",
@@ -1178,21 +1285,35 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 				"healthyThreshold": 0,
 
+				"initializingTimeout": 0,
+
 				"interval": 0,
 
 				"name": "string",
 
 				"port": 0,
 
+				"recreateOnQuorumStrategyConfig": {
+
+					"quorum": 0
+
+				},
+
+				"reinitializingTimeout": 0,
+
 				"requestLine": "string",
 
 				"responseTimeout": 0,
+
+				"strategy": "recreate",
 
 				"unhealthyThreshold": 0
 
 			},
 
 			"healthState": "enum",
+
+			"hostId": "reference[host]",
 
 			"hostname": "string",
 
@@ -1202,7 +1323,7 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"instanceLinks": "map[reference[instance]]",
 
-			"kind": "string",
+			"kind": "container",
 
 			"labels": {
 
@@ -1242,6 +1363,8 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"memory": 0,
 
+			"memoryMb": 0,
+
 			"memorySwap": 0,
 
 			"nativeContainer": true,
@@ -1280,6 +1403,8 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"requestedHostId": "reference[host]",
 
+			"requestedIpAddress": "string",
+
 			"securityOpt": [
 
 				"string1",
@@ -1310,7 +1435,11 @@ toServiceStrategy | toServiceUpgradeStrategy | No | <no value> |
 
 			"user": "string",
 
+			"userdata": "string",
+
 			"uuid": "string",
+
+			"vcpu": 1,
 
 			"version": "0",
 

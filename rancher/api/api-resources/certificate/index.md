@@ -22,7 +22,7 @@ expiresAt | string | - | - | - | The date that the certificate expires at
 id | int | - | - | - | The unique identifier for the certificate
 issuedAt | string | - | - | - | The date that the certificate was issued
 issuer | string | - | - | - | The issuer of the certificate
-key | string | Yes | - | - | 
+key | string | Yes | Yes | - | 
 keySize | int | - | - | - | 
 name | string | Yes | Yes | - | 
 serialNumber | string | - | - | - | 
@@ -88,6 +88,8 @@ Update
 	"certChain": "string",
 
 	"description": "string",
+
+	"key": "string",
 
 	"name": "string"
 
