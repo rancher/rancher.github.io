@@ -6,8 +6,6 @@ layout: rancher-default
 ## Upgrading Rancher
 ---
 
-Currently, upgrades are **NOT** officially supported between releases before we hit a GA release. Therefore, certain features might break in later versions as we enhance them. The procedure we follow when we upgrade is outlined below. We typically only go from one version to the next if we do upgrade.
-
 If you have launched Rancher server **without** using an [external DB]({{site.baseurl}}/rancher/installing-rancher/installing-server/#external-db), the Rancher server database is inside your Rancher server container. We will use the running Rancher server container to create a data container. This data container will be used to start new Rancher server containers by using a `--volumes-from`. Alternatively, you can copy the database out of the container to a directory on the host and bind mount the database.
 
 > **Note:** If you used an external DB, you can stop the original Rancher server container and launch a new version of Rancher server using the same [external DB instructions]({{site.baseurl}}/rancher/installing-rancher/installing-server/#external-db). After the new server is up and running, you can remove the old Rancher server container. Note: If you only stop the container, the container will be restarted if your machine is rebooted due to the `--restart=always`.

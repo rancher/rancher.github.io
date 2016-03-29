@@ -4,10 +4,14 @@ layout: rancher-default
 
 ---
 
-## Rancher-Compose Labels 
+## Labels in Rancher
 ---
 
-Labels are used to help Rancher start up services and leverage the features of Rancher. This index of labels are used to help users create services using `rancher-compose`. 
+Rancher uses labels on services/containers and hosts to help manage different features of Rancher. 
+
+### Rancher-Compose Labels for Services
+
+Labels are used to help Rancher start up services and leverage the features of Rancher. This index of labels are used to help users create services using `rancher-compose`. There are UI equivalents of these labels that should be used instead of adding labels to a service.
 
 Key | Value |Description
 ----|-----|---
@@ -28,7 +32,7 @@ Key | Value |Description
 <br>
 > **Note:** For the labels prefixed with `io.rancher.scheduler.affinity`, there are slight variations based on your how want to match (i.e. equal or not equal, hard or soft rules). More details can be found [here]({{site.baseurl}}/rancher/rancher-compose/scheduling/#table-of-scheduling-labels).
 
-### Selector Labels
+#### Selector Labels
 
 Using a _selector label_ (i.e. `io.rancher.service.selector.link`, `io.rancher.service.selector.container`), Rancher can identify services/containers by their labels and have them automatically linked to the service. _Selector labels_ are evaluated in two scenarios. Scenario 1 is when a _selector label_ is added to a service. In Scenario 1, all existing labels are evaluated to see if they match the _selector label_. Scenario 2 is when a service already has a _selector label_. In Scenario 2, any new services/containers added to Rancher is checked to see if it qualifies to be linked. A _selector label_ can be made of multiple requirements, which are comma separated. If there are multiple requirements, all requirements must be satisfied so the comma separator acts as an **AND** logical operator. 
 
@@ -73,7 +77,7 @@ service2:
       foo: bar
 ```
 
-## System Labels
+### System Labels on a Service
 
 Besides labels that can be used by `rancher-compose`, there are a series of system labels that Rancher creates when starting services.
 
@@ -85,6 +89,23 @@ Key | Description
 `io.rancher.service.launch.config` |   Used to define configurations for side kicked services.
 `io.rancher.service.requested.host.id` |  Used by the scheduler to know which host it was scheduled on
 
+### Host Labels
+
+[Host labels]({{site.baseurl}}/rancher/infrastructure/hosts/#host-labels) can be added to a host during registration of a host or added later by **Editing** the host. 
+
+Key | Value |Description
+----|-----|---
+`io.rancher.host.external_dns_ip` | IP to be used for [External DNS]({{site.baseurl}}/rancher/rancher-services/dns-service/), e.g. a.b.c.d | If you plan on using external DNS and and need [to program the DNS records using an IP other than the host IP]({{site.baseurl}}/rancher/rancher-services/dns-service/#using-a-specific-ip-for-external-dns)
+
+### Automatically Applied Host Labels
+
+Rancher automatically creates host labels related to linux kernel version and Docker Engine version of the host. These labels can be used for [scheduling in the UI]({{site.baseurl}}/rancher/rancher-ui/scheduling/) or [scheduling through rancher-compose]({{site.baseurl}}/rancher/rancher-compose/scheduling/).
+
+Key | Value | Description
+----|----|----
+`io.rancher.host.linux_kernel_version` | Linux Kernel Version on Host (e.g, `3.19`) |  Version of the Linux kernel running on the host
+`io.rancher.host.docker_version` | Docker Version on the host (e.g. `1.9.1`) | Docker Engine Version on the host
+<br>
 
 ## Native Docker Labels
 

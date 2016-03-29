@@ -21,7 +21,7 @@ Key product features of Rancher include:
 
 2. Container load balancing. Rancher provides an integrated, elastic load balancing service to distribute traffic between containers or services. The load balancing service works across multiple clouds.
 
-3. Storage management. Rancher supports live snapshot and backup of Docker volumes, enabling users to backup stateful containers and stateful services.
+3. Persistent Storage Services. Rancher supports orchestrating Persistent Storage Services for Docker, making it possible for developers to deploy storage reliably in conjunction with containerized applications. The new feature builds on Docker 1.9 volume plugin capabilities, and makes it easier for developers to run applications that require stateful databases and persistent storage.
 
 4.	Service discovery: Rancher implements a distributed DNS-based service discovery function with integrated health checking that allows containers to automatically register themselves as services, as well as services to dynamically discover each other over the network.
 
@@ -30,6 +30,8 @@ Key product features of Rancher include:
 6.	Resource management: Rancher supports Docker Machine, a powerful tool for provisioning hosts directly from cloud providers. Rancher then monitors host resources and manages container deployment.
 
 7. Multi-tenancy & user management: Rancher is designed for multiple users and allows organizations to collaborate throughout the application lifecycle. By connecting with existing directory services, Rancher allows users to create separate development, testing, and production environments and invite their peers to collaboratively manage resources and applications.
+
+8. Multi Orchestration Engines. Rancher supports the ability for users to select the default Cattle, Kubernetes, or Docker Swarm as their container orchestration engine of choice when creating environments.  This will allow users to select market leading scheduling frameworks while still leveraging Rancher features such as the app catalog, enterprise user management, container networking, and storage technologies.
 
 ### Primary Consumption Interfaces
 
@@ -53,7 +55,7 @@ Before you start using Rancher, make sure to read through the [Concepts]({{site.
 
 The Configuration section documents how you perform various one-time tasks after you complete installation of Rancher and start using Rancher.
 
-The next three sections--[Using Rancher Through Native Docker CLI]({{site.baseurl}}/rancher/native-docker/), [Rancher Compose]({{site.baseurl}}/rancher/rancher-compose), and [Rancher UI]({{site.baseurl}}/rancher/rancher-ui)--covers three primary ways you can consume Rancher features.
+The next three sections--[Using Rancher Through Native Docker CLI]({{site.baseurl}}/rancher/native-docker/), [Rancher Compose]({{site.baseurl}}/rancher/rancher-compose), and [Rancher UI]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/)--covers three primary ways you can consume Rancher features.
 
 The [Upgrading Rancher]({{site.baseurl}}/rancher/upgrading) section is essential if you run Rancher in production.
 
