@@ -4,17 +4,11 @@ layout: rancher-default
 
 ---
 
-## Internal DNS Service
+## Rancher Internal DNS Service
 
-Within Rancher, we have an internal DNS service that allows all services within one [environment]({{site.baseurl}}/rancher/configuration/environments) to resolve to any other in the environment. 
+Within Rancher, we have our own internal DNS service that allows all services within one [cattle environment]({{site.baseurl}}/rancher/configuration/environments) to resolve to any other in the environment. 
 
 All services in the environment are resolvable by `<service_name>` and there is no linking required between the services. For any services that are in a different stack, you'd resolve by `<service_name>.<stack_name>` instead of just `<service_name>`. If you would like to resolve a service by a different name, you could set a link so that the service could be resolvable by the service alias. 
-
-Any container in a service will get configured with DNS in `/etc/resolv.conf`. Rancher maintains three DNS namespaces.
-
-* Rancher - `rancher.internal` 
-* Stack - `stack_name.rancher.internal` 
-* Service - `service_name.stack_name.rancher.internal` 
 
 ### Setting Service Alias via linking
 
@@ -37,11 +31,13 @@ service1:
 
 ### Sidekicks and Linking
 
-We currently do not support links/external_links in a sidekick service. 
-
-When launching a service, you may require services to be launched together on the same host all the time. Specific use cases include when trying to use a `volumes_from` or `net` from another service. In these cases, you would set up sidekicks either in the [UI]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#sidekick-services) or using [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/#sidekicks).
+When launching a service, you may require services to be launched together on the same host all the time. Specific use cases include when trying to use a `volumes_from` or `net` from another service. When creating a sidekick relationship either through the [UI]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#sidekick-services) or using [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/#sidekicks), the services are automatically resolvable to each other by their name. We currently do not support creating a service alias via links/external_links inside a sidekick service. 
 
 When creating a sidekick relationship, there is always a primary service and sidekick service(s). Together, they are considered as a single launch configuration. This launch configuration would be deployed onto a host as a group of containers, 1 from the primary service and 1 from each sidekick defined. Within any service in the launch configuration, you can resolve the primary and sidekick(s) by their names. For any service outside of the launch configuration, the primary service is resolvable by name, but the sidekick services are only resolvable by `<sidekick_name>.<primary_service_name>`.
+
+### Container Names
+
+All containers are resolvable globally by their name as every service's container name is unique within each environment. There is no need to append service name or stack name. 
 
 ### Examples
 
@@ -60,8 +56,6 @@ PING bar.stacka.rancher.internal (10.42.x.x) 58(84) bytes of data.
 64 bytes from 10.42.x.x: icmp_seq=2 ttl=62 time=1.13 ms
 64 bytes from 10.42.x.x: icmp_seq=3 ttl=62 time=1.07 ms
 ```
-
-Rancher automatically looks for the `bar.stackA.rancher.internal`, then `bar.rancher.internal`, and finally `bar.bar.rancher.internal`.
 
 #### Pinging Services in a Different Stack
 
@@ -130,6 +124,22 @@ PING bar.foo.stacka (10.42.x.x) 56(84) bytes of data.
 64 bytes from 10.42.x.x: icmp_seq=1 ttl=62 time=1.23 ms
 64 bytes from 10.42.x.x: icmp_seq=2 ttl=62 time=1.00 ms
 64 bytes from 10.42.x.x: icmp_seq=3 ttl=62 time=0.994 ms
+```
+
+#### Pinging Container Name
+
+From any container, you can ping another container in the environment by their name regardless if they are in a different stack or service.
+
+In our example, we have a stack called `stackA`, which contains a service called `foo`. We also have another stack called `stackB`, which contains a service called `bar`. The names of containers are `<environment_name>_<service_name>_<co
+
+If we exec into one of the containers in the `foo` service, you can ping the container in the `bar` service. 
+
+```bash
+$ ping stackB_bar_1
+PING stackB_bar_1.rancher.internal (10.42.x.x): 56 data bytes
+64 bytes from 10.42.x.x: icmp_seq=1 ttl=62 time=1.994 ms
+64 bytes from 10.42.x.x: icmp_seq=2 ttl=62 time=1.090 ms
+64 bytes from 10.42.x.x: icmp_seq=3 ttl=62 time=1.100 ms
 ```
 
 

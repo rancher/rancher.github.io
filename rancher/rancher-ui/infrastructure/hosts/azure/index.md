@@ -21,7 +21,7 @@ Rancher supports provisioning [Microsoft Azure](https://azure.microsoft.com) hos
 6. Update the **SSH port**, **Docker port** and **Docker Swarm Master Port** if they will be different from the default. 
 7. Add your **Publish Settings File**. 
 8. Select which **Region** your Azure resources are part of. 
-9. (Optional) Add **[labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#labels)** to hosts to help organize your hosts and to [schedule services/load balancers]({{site.baseurl}}/rancher/rancher-ui/scheduling/).
+9. (Optional) Add **[labels]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#labels)** to hosts to help organize your hosts and to [schedule services/load balancers]({{site.baseurl}}/rancher/rancher-ui/scheduling/) or to [program external DNS records using an IP other than the host IP]({{site.baseurl}}/rancher/rancher-services/dns-service/#using-a-specific-ip-for-external-dns).
 10. (Optional) In **Advanced Options**, customize your `docker-machine create` command with [Docker engine options](https://docs.docker.com/machine/reference/create/#specifying-configuration-options-for-the-created-docker-engine).
 11. When complete, click **Create**. 
 

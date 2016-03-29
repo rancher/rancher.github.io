@@ -4,7 +4,7 @@ layout: rancher-default
 
 ---
 
-## DNS Service
+## Rancher's Route53 DNS Service
 
 As part of the [Rancher catalog]({{site.baseurl}}/rancher/catalog/), Rancher provides a DNS service that is integrated with Amazon Route53 DNS. When launching the service, a single route53 container is launched in Rancher. This container will listen for rancher-metadata events, generate DNS records based on the metadata changes, and update Route53 accordingly.
 

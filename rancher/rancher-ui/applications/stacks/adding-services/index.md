@@ -86,8 +86,8 @@ Read more about [Rancher's internal DNS]({{site.baseurl}}/rancher/rancher-servic
 
 ### Starting Services
 
-After filling out the information for your service, click **Create**. The service will immediately start to launch. If this is your first container launched on the host, a _Network Agent_ container will be launched onto the host as well. The _Network Agent_ container is used by Rancher to allow communication across hosts, monitor health checks, and helps enable other Rancher functionality.  
-'
+After filling out the information for your service, click **Create**. The service will immediately start to launch. If this is your first container launched on the host, a _Network Agent_ container will be launched onto the host, which is a system container created by Rancher to handle tasks such as cross-host networking, health checking, etc.
+
 Now that we've launched our "Mongo" service, we'll add the "LetsChat" service to our stack. This time, we'll set the scale of the service as 2 containers in our service, and use the `sdelements/lets-chat` image. We will not expose any ports in the "LetsChat" service as we will plan on load balancing this application. Since we've already created the database service, we'll pick the database service in the **Service Links** and select the name `mongo`. Just like Docker, Rancher will set up up the linking of the containers on the exposed port on the "Mongo" service, by naming the database as `mongo`.
 
 Click on **Create** and our "LetsChat" app is ready to have a load balancer pointed to it. 

@@ -18,6 +18,7 @@ Rancher supports different cluster management frameworks when creating environme
 
 * **Cattle** is the default Rancher managed environment. 
 * **Kubernetes** will automatically plumb in the network for container communication and all hosts that are added into Rancher will automatically be added to Kubernetes.
+* **Swarm** allows for any hosts that are added into Rancher are also automatically be added to the swarm cluster.
 
 The first time that you log in to Rancher, you are working in a **Default** Cattle environment. This environment can be renamed, shared with others, or you can create additional environments to share with users. The environment that you're working in is always displayed in the upper right corner of the screen.
 

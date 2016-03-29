@@ -143,7 +143,23 @@ In Rancher, all services within an environment are DNS resolvable so linking ser
 
 > **Note:** We currently do not support linking sidekick services to the primary service or vice versa. Read more about how [Rancher's internal DNS works]({{site.baseurl}}/rancher/rancher-services/internal-dns-service/).
 
-For services in the same stack, any service is DNS resolvable by `service_name`. For services in a different stack, the service is DNS resolvable by `service_name.stack_name`. If you'd prefer to use a specific alias for DNS resolution, you would use `external_links` in the `docker-compose.yml`. 
+For services in the same stack, any service is DNS resolvable by `service_name`, but you could use links to use a service alias. 
+
+
+Sample configuration `docker-compose.yml`
+
+```
+wordpress:
+  image: wordpress
+  links:
+  - db:mysql
+db:
+  image: mysql
+```
+In this example, the `db` would be resolvable as `mysql`. Without the link, `db` would be resolvable as `db`.
+
+
+For services in a different stack, the service is DNS resolvable by `service_name.stack_name`. If you'd prefer to use a specific alias for DNS resolution, you would use `external_links` in the `docker-compose.yml`. 
 
 Sample configuration `docker-compose.yml`
 
@@ -154,7 +170,7 @@ wordpress:
     - alldbs/db1:mysql
 ```
 <br>
-In this example, the `alldbs` stack has a `db1` service that the wordpress service will link to. In the `wordpress` service, `db1` would be resolvable with `mysql`. Without the external link, `db1` would be resolvable with `db1.alldbs`.
+In this example, the `alldbs` stack has a `db1` service that the wordpress service will link to. In the `wordpress` service, `db1` would be resolvable as `mysql`. Without the external link, `db1` would be resolvable as `db1.alldbs`.
 
 
 

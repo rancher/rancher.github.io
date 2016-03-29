@@ -61,12 +61,12 @@ A volume can be added to a storage pool with two methods:
 In this example, we're going to provide an example of how to use GlusterFS to have a shared storage across hosts.
 
 1. Launch Gluster FS
-   * In the **Catalog**, click on **View Details** of the **Gluster FS** service.
+   * In the **Catalog** tab, click on **View Details** of the **Gluster FS** service.
    * If desired, edit the **Name** of the stack for Gluster FS and add a **description**.
    * In the **Configuration Options**, edit the **volume name**. By default, Rancher has given the volume name `my_vol`. 
-   * Click on **Launch** to start the Gluster FS service. This will take a minute or two. You will be able to view the servces in **Applications** -> **Stacks**.
+   * Click on **Launch** to start the Gluster FS service. This will take a minute or two. You will be able to view the services in **Applications** -> **Stacks**.
 2. Launch Convoy Gluster
-   * In the **Catalog**, click on **View Details** of the **Convoy Gluster** service.  
+   * In the **Catalog** tab, click on **View Details** of the **Convoy Gluster** service.  
    * If desired, edit the **Name** of the stack for Convoy Gluster and add a **description**.
    * In the **Configuration Options**, edit the **Volume Name**, if you have changed the volume name while launching the Gluster FS service.
    * Select the **Gluster FS** service that is running in Rancher. The service is named `glusterfs-server`. 

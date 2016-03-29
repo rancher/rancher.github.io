@@ -159,7 +159,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 | `ips` | When multiple NICs are supported, it will be the list of IPs.
 | `labels` | List of [Labels on Container]({{site.baseurl}}/rancher/rancher-ui/scheduling/#labels). Format for labels is `key`:`value`.
 | `name` | Name of Container 
-| `ports` | List of [Ports used in the container]({{site.baseurl}}/rancher/rancher-ui/infrastructure/containers/#port-mapping). Format for ports is `host:public:private`.
+| `ports` | List of [Ports used in the container]({{site.baseurl}}/rancher/rancher-ui/infrastructure/containers/#port-mapping). Format for ports is `hostIP:publicIP:privateIP[/protocol]`.
 | `primary_ip` | IP of container
 | `service_name` | Name of service (if applicable)
 | `stack_name` | Name of stack that the service is in (if applicable)
@@ -178,10 +178,10 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 `hostname` | CNAME for [External Services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-external-services/)
 `kind` | Type of Rancher Service 
 `labels` | List of [Labels on Service]({{site.baseurl}}/rancher/rancher-ui/scheduling/#labels). Format for labels is `key:value`.
-`links` | List of linked services. Format for links is `stack_name/service_name:service_alias`. 
+`links` | List of linked services. Format for links is `stack_name/service_name:service_alias`. The `links` would show all the keys (i.e. `stack_name/service_name` for all links) and to retrieve the `service_alias`, you would need to drill down to the specific key.
 `metadata` | [User added metadata]({{site.baseurl}}/rancher/rancher-services/metadata-service/#adding-user-metadata-to-a-service) 
 `name` | Name of Service
-`ports` | List of [Ports used in the Service]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#service-options). Format for ports is `host:public:private`.
+`ports` | List of [Ports used in the Service]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#service-options). Format for ports is `hostIP:publicIP:privateIP[/protocol]`.
 `scale` | Scale of Service
 `sidekicks` | List of service names that are [sidekicks]({{site.baseurl}}/rancher/rancher-compose/#sidekicks)
 `stack_name` | Name of stack the service is part of

@@ -27,7 +27,7 @@ The UI and API will be available on the exposed port `8080`. After the docker im
 
 Navigate to the following URL: `http://<SERVER_IP>:8080`. The `<SERVER_IP` is the public IP address of the host that is running Rancher server.
 
-Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/). After the hosts are added into Rancher, you can start adding [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/) or launch templates from the [Rancher catalog]({{site.baseurl}}/rancher/rancher-ui/applications/catalog/).
+Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/). After the hosts are added into Rancher, you can start adding [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/) or launch templates from the [Rancher catalog]({{site.baseurl}}/rancher/catalog/).
 
 <a id="ldap"></a>
 
@@ -120,7 +120,7 @@ In the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it p
 
 > **Note:** If you are running Docker with systemd, please follow Docker's [instructions](https://docs.docker.com/articles/systemd/#http-proxy) on how to configure the HTTP proxy. 
 
-In order for the [Rancher catalog]({{site.baseurl}}/rancher/rancher-ui/applications/catalog/) to load, the proxy will need to be configured and Rancher server will need to be launched with environment variables to pass in the proxy information. 
+In order for the [Rancher catalog]({{site.baseurl}}/rancher/catalog/) to load, the proxy will need to be configured and Rancher server will need to be launched with environment variables to pass in the proxy information. 
 
 ```bash
 $ sudo docker run -d \
@@ -130,6 +130,6 @@ $ sudo docker run -d \
     --restart=always -p 8080:8080 rancher/server
 ```
 
-If the [Rancher catalog]({{site.baseurl}}/rancher/rancher-ui/applications/catalog/) will not be used, run the Rancher server command as you normally would.
+If the [Rancher catalog]({{site.baseurl}}/rancher/catalog/) will not be used, run the Rancher server command as you normally would.
 
 When [adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/) to Rancher, there is no additional requirements behind a HTTP proxy. 

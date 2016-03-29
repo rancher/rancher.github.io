@@ -80,7 +80,7 @@ Rancher implements a health monitoring system by running managed network agentâ€
 
 Rancher handles network partitions and is more efficient than client-based health checks. By using HAProxy to perform health checks, Rancher enables users to specify the same health check policy across applications and load balancers.
 
-For more information such as including example failure scenarios and how Rancher displays services, see [Health Checks]({{site.baseurl}}/rancher/rancher-services/rancher-services/health-checks/). You can also read more about setting up health checks by using [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/rancher-services/#health-check-for-services) or in the [UI]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#health-checks).
+For more information such as including example failure scenarios and how Rancher displays services, see [Health Checks]({{site.baseurl}}/rancher/rancher-services/health-checks/). You can also read more about setting up health checks by using [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/rancher-services/#health-check-for-services) or in the [UI]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#health-checks).
 
 ### Service HA
 
@@ -119,7 +119,9 @@ Rancher supports container scheduling policies that are modeled closely after Do
 
 In addition, Rancher supports scheduling service triggers that allow users to specify rules, such as on "host add" or "host label", to automatically scale services onto hosts with specific labels.
 
-For more information on Container Scheduling and comparison matrix of Rancher's scheduling and Docker Swarm, see [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/scheduling/) 
+For more information on how to schedule containers in Rancher, see how we use [labels and scheduling rules in the UI]({{site.baseurl}}/rancher/rancher-ui/scheduling/) or how we use [labels in rancher-compose]({{site.baseurl}}/rancher/rancher-compose/scheduling/).
+
+For more information on Container Scheduling and comparison matrix of Rancher's scheduling and Docker Swarm, see [scheduling services]({{site.baseurl}}/rancher/rancher-services/scheduling/).
 
 ### Sidekicks
 
