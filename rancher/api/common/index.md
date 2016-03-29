@@ -10,7 +10,7 @@ In the API, the resource fields that are the most common and read only on a reso
 
 Field | Type |  Notes
 ---|---|---|---|---|---
-accountId | [account]({{site.baseurl}}/rancher/api/account/) | The unique identifier for the associated account
+accountId | [account]({{site.baseurl}}/rancher/api/api-resources/account/) | The unique identifier for the associated account
 created[TS] | date | The date/time when the resource was initially created.
 id | string | The unique identifier for the resource.
 kind | string | A more specific sub-type for the resoruce.
