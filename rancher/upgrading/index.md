@@ -31,7 +31,9 @@ If you have launched Rancher server **without** using an [external DB]({{site.ba
     $ docker pull rancher/server:latest
     ```
 
-4. Launch a new Rancher Server container using the database from the `rancher-data` container. Any changes in Rancher will be saved in the `rancher-data` container. If you are having issues with your upgrade, please refer to our [FAQs on Rancher server]({{site.baseurl}}/rancher/faqs/server/#databaselock).
+4. Launch a new Rancher Server container using the database from the `rancher-data` container. Any changes in Rancher will be saved in the `rancher-data` container. If you seen an exception in the server regarding a log lock, please refer to [how to fix the log lock]({{site.baseurl}}/rancher/faqs/server/#databaselock).
+    
+    > **Note**: Depending on how long you've had Rancher server, certain database migrations may take longer than expected. Please do not stop upgrades in the middle of upgrading as you will hit a database migration error the next time you upgrade.
 
     ```bash
     $ docker run -d --volumes-from rancher-data --restart=always -p 8080:8080 rancher/server:latest

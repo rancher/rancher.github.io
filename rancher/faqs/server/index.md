@@ -107,7 +107,11 @@ If you have just upgraded and in the Rancher server logs, there can be a log loc
 
 #### Releasing the database lock
 
+> **Note:** Please do not release the database lock unless you have the above **exception** regarding the log lock. If your upgrading is taking a long time due to data migration, you may hit other migration issues if you try to release the database lock. 
+
 If you had created the data container for Rancher server per the [upgrading documentation]({{site.baseurl}}/rancher/upgrading/), you'll need to `exec` into the `rancher-data` container to update the  `DATABASECHANGELOGLOCK` table and remove the lock. If you hadn't created the data container, you can `exec` into the container that has your database.
+
+
 
 ```bash
 $ sudo docker exec -it <container_id> mysql
