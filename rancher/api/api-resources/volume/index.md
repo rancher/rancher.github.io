@@ -96,11 +96,11 @@ Delete
 
 <span class="action">
 <span class="header">
-allocate
-<span class="headerright">POST:  <code>${actions.allocate}</code></span>
+activate
+<span class="headerright">POST:  <code>${actions.activate}</code></span>
 </span>
 <div class="action-contents">
-To allocate the volume
+To activate the volume
 <br>
 
 <span class="input">
@@ -119,11 +119,11 @@ To allocate the volume
 
 <span class="action">
 <span class="header">
-deactivate
-<span class="headerright">POST:  <code>${actions.deactivate}</code></span>
+allocate
+<span class="headerright">POST:  <code>${actions.allocate}</code></span>
 </span>
 <div class="action-contents">
-To deactivate the volume
+To allocate the volume
 <br>
 
 <span class="input">

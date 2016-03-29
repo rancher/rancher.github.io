@@ -13,6 +13,8 @@ Collection Test Description
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 description | string | Optional | Yes | - | 
+driver | string | - | - | - | 
+externalId | string | - | - | - | 
 id | int | - | - | - | The unique identifier for the physicalHost
 name | string | Optional | Yes | - | 
 

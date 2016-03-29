@@ -13,5 +13,5 @@ layout: rancher-default
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-serviceLink | loadBalancerServiceLink | true | <no value> | 
+serviceLink | [loadBalancerServiceLink]({{site.baseurl}}/rancher/api/api-resources/loadBalancerServiceLink/) | true | <no value> | 
 

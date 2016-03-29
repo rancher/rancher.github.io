@@ -37,6 +37,7 @@ extraHosts | array[string] | Optional | - | - |
 firstRunning | date | - | - | - | 
 healthCheck | [instanceHealthCheck]({{site.baseurl}}/rancher/api/api-resources/instanceHealthCheck/) | Optional | - | - | The configuration of the health monitoring for managed network services
 healthState | enum | - | - | - | 
+hostId | [host]({{site.baseurl}}/rancher/api/api-resources/host/) | - | - | - | The unique identifier for the associated host
 hostname | string | Optional | - | - | 
 id | int | - | - | - | The unique identifier for the container
 imageUuid | string | Optional | - | - | 
@@ -217,15 +218,27 @@ Create
 
 		"healthyThreshold": 0,
 
+		"initializingTimeout": 0,
+
 		"interval": 0,
 
 		"name": "string",
 
 		"port": 0,
 
+		"recreateOnQuorumStrategyConfig": {
+
+			"quorum": 0
+
+		},
+
+		"reinitializingTimeout": 0,
+
 		"requestLine": "string",
 
 		"responseTimeout": 0,
+
+		"strategy": "recreate",
 
 		"unhealthyThreshold": 0
 
@@ -471,6 +484,29 @@ To deallocate the container
 
 <span class="action">
 <span class="header">
+error
+<span class="headerright">POST:  <code>${actions.error}</code></span>
+</span>
+<div class="action-contents">
+To error the container
+<br>
+
+<span class="input">
+<strong>Input:</strong>This action has no inputs
+<br>
+
+<br>
+</span>
+
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource
+</span>
+</div>
+</span>
+</span>
+</span>
+
+<span class="action">
+<span class="header">
 execute
 <span class="headerright">POST:  <code>${actions.execute}</code></span>
 </span>
@@ -576,6 +612,44 @@ To migrate the container
 </span>
 
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource
+</span>
+</div>
+</span>
+</span>
+</span>
+
+<span class="action">
+<span class="header">
+proxy
+<span class="headerright">POST:  <code>${actions.proxy}</code></span>
+</span>
+<div class="action-contents">
+To proxy the container
+<br>
+
+<span class="input">
+<strong>Input:</strong>​​​ containerProxy
+
+
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+port | int | No | 80 | 
+scheme | enum | No | http | 
+
+
+<br>
+{% highlight json %}{
+
+	"port": 80,
+
+	"scheme": "http"
+
+}{% endhighlight %}
+
+<br>
+</span>
+
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/hostAccess/">hostAccess</a> resource
 </span>
 </div>
 </span>
@@ -777,6 +851,29 @@ updatehealthy
 </span>
 <div class="action-contents">
 To updatehealthy the container
+<br>
+
+<span class="input">
+<strong>Input:</strong>This action has no inputs
+<br>
+
+<br>
+</span>
+
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource
+</span>
+</div>
+</span>
+</span>
+</span>
+
+<span class="action">
+<span class="header">
+updatereinitializing
+<span class="headerright">POST:  <code>${actions.updatereinitializing}</code></span>
+</span>
+<div class="action-contents">
+To updatereinitializing the container
 <br>
 
 <span class="input">

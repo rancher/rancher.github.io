@@ -5,7 +5,7 @@ layout: rancher-default
 
 ## host
 
-Hosts are the most basic unit of resource within Rancher and is represented as any Linux server, virtual or physical, with the following minimum requirements. <br> <br> * Any modern Linux distribution that supports Docker 1.9.1+. <br> * Must be able to communicate with the Rancher server via http or https through the pre-configured port (Default is 8080). <br> * Must be routable to any other hosts belonging to the same environment to leverage Rancher's cross-host networking for Docker containers.<br> <br> Rancher also supports Docker Machine and allows you to add your host via any of its supported drivers.
+Hosts are the most basic unit of resource within Rancher and is represented as any Linux server, virtual or physical, with the following minimum requirements. <br> <br> * Any modern Linux distribution that supports Docker 1.6+. <br> * Must be able to communicate with the Rancher server via http or https through the pre-configured port (Default is 8080). <br> * Must be routable to any other hosts belonging to the same environment to leverage Rancher's cross-host networking for Docker containers.<br> <br> Rancher also supports Docker Machine and allows you to add your host via any of its supported drivers.
 
 ​
 ### Resource Fields
@@ -15,11 +15,13 @@ Field | Type | Create | Update | Default | Notes
 agentState | string | - | - | - | The state of the agent
 computeTotal | int | - | - | - | 
 description | string | Optional | Yes | - | 
+hostname | string | - | - | - | 
 id | int | - | - | - | The unique identifier for the host
 info | json | - | - | - | 
 labels | map[string] | - | Yes | - | 
 name | string | Optional | Yes | - | 
 physicalHostId | [physicalHost]({{site.baseurl}}/rancher/api/api-resources/physicalHost/) | - | - | - | The unique identifier of the physical host
+publicEndpoints | array[publicEndpoint] | - | - | - | 
 
 <br>
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 

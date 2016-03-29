@@ -16,7 +16,7 @@ description | string | Optional | Yes | - |
 id | int | - | - | - | The unique identifier for the password
 name | string | Optional | Yes | - | 
 publicValue | string | Optional | - | - | The public value of the password
-secretValue | string | Optional | - | - | The secret value of the password
+secretValue | [password]({{site.baseurl}}/rancher/api/api-resources/password/) | Optional | - | - | The secret value of the password
 
 <br>
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 
@@ -42,7 +42,7 @@ Create
 
 	"publicValue": "string",
 
-	"secretValue": "string"
+	"secretValue": "password"
 
 } 
 {% endhighlight %}

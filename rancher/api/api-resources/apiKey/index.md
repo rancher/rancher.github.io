@@ -16,7 +16,7 @@ description | string | Optional | Yes | - |
 id | int | - | - | - | The unique identifier for the apiKey
 name | string | Optional | Yes | - | 
 publicValue | string | - | - | - | The public value of the apiKey
-secretValue | string | - | - | - | The secret value of the apiKey
+secretValue | [password]({{site.baseurl}}/rancher/api/api-resources/password/) | - | - | - | The secret value of the apiKey
 
 <br>
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/api/common/). 

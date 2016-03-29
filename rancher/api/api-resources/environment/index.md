@@ -16,9 +16,11 @@ description | string | Optional | Yes | - |
 dockerCompose | string | Optional | - | - | The docker-compose.yml file for the stack
 environment | map[string] | Optional | - | - | 
 externalId | string | Optional | Yes | - | 
+healthState | string | - | - | - | 
 id | int | - | - | - | The unique identifier for the environment
 name | string | Yes | Yes | - | 
 outputs | map[string] | Optional | Yes | - | 
+previousEnvironment | map[string] | Optional | Yes | - | 
 previousExternalId | string | Optional | Yes | - | 
 rancherCompose | string | Optional | - | - | The rancher-compose.yml file for the stack
 startOnCreate | boolean | Optional | - | - | Whether or not the services in the stack should be started after creation
@@ -69,6 +71,16 @@ Create
 
 	},
 
+	"previousEnvironment": {
+
+		"key1": "value1",
+
+		"key2": "value2",
+
+		"keyN": "valueN"
+
+	},
+
 	"previousExternalId": "string",
 
 	"rancherCompose": "string",
@@ -108,6 +120,16 @@ Update
 	"name": "string",
 
 	"outputs": {
+
+		"key1": "value1",
+
+		"key2": "value2",
+
+		"keyN": "valueN"
+
+	},
+
+	"previousEnvironment": {
 
 		"key1": "value1",
 
