@@ -121,8 +121,6 @@ In addition, Rancher supports scheduling service triggers that allow users to sp
 
 For more information on how to schedule containers in Rancher, see how we use [labels and scheduling rules in the UI]({{site.baseurl}}/rancher/rancher-ui/scheduling/) or how we use [labels in rancher-compose]({{site.baseurl}}/rancher/rancher-compose/scheduling/).
 
-For more information on Container Scheduling and comparison matrix of Rancher's scheduling and Docker Swarm, see [scheduling services]({{site.baseurl}}/rancher/rancher-services/scheduling/).
-
 ### Sidekicks
 
 Rancher supports the colocation, scheduling, and lock step scaling of a set of services by allowing users to group these services by using the notion of sidekicks.  A service with one or more sidekicks is typically created to support shared volumes (i.e. `--volumes_from`) and networking (i.e. `--net=container`) between containers.
