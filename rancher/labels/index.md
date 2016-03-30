@@ -17,7 +17,7 @@ Key | Value |Description
 ----|-----|---
 `io.rancher.sidekicks` | Service Names  | Used to define what services are [sidekicks]({{site.baseurl}}/rancher/rancher-compose/#sidekicks)
 `io.rancher.loadbalancer.target.SERVICE_NAME` | `REQUEST_HOST:SOURCE_PORT/REQUEST_PATH=TARGET_PORT` |Used to determine [L7 Load Balancing]({{site.baseurl}}/rancher/rancher-compose/rancher-services/#advanced-load-balancing-(l7))
-`io.rancher.container.dns`| `true` | Service is able to use Rancher DNS based service discovery and network will be the host network.
+`io.rancher.container.dns`| `true` | Service is able to use Rancher DNS based service discovery to resolve other services and to be resolved by other services. This label is required if you require DNS, when networking is set to `host`.
 `io.rancher.container.hostname_override` | `container_name` | Used to set the hostname of the container to the name of the container (e.g. StackName_ServiceName_CreateIndex)
 `io.rancher.container.start_once` |`true` | Used to run a container once and have it remain in stopped state while the service remains in `active` state
 `io.rancher.container.pull_image` | `always` | Used to always pull a new image before deploying container. 
