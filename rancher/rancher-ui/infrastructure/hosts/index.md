@@ -113,6 +113,8 @@ Deactivating the host will put the host into an _Inactive_ state. In this state,
 
 When a host is in the _Inactive_ state, you can bring the host back into an _Active_ state by clicking on **Activate** from the host's dropdown menu.
 
+> **Note:** If a host is down in Rancher (i.e. in `reconnecting` or `inactive` state), you will need to implement a [health check]({{site.baseurl}}/rancher/rancher-services/health-checks/) in order for Rancher to launch the containers on your service on to a different host.
+
 ## Removing Hosts
 ---
 
