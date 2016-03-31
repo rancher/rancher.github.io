@@ -75,7 +75,7 @@ If you have launched Rancher server **without** using an [external DB]({{site.ba
 
 Each Rancher agent version is pinned to a Rancher server version. If you upgrade Rancher server and Rancher agents require an upgrade, it will automatically upgrade the agents to the latest version of Rancher agent. 
 
-For anything using the `rancher/agent-instance` image, the running container gets upgraded even if the image of the container is not updated to the latest version. 
+For anything using the `rancher/agent-instance` image, the running container gets upgraded even if the image of the container is not updated to the latest version. For the _Network Agent_, this occurs when there is a trigger regarding networking (e.g. adding another container, deleting a container). For the _Load Balancers_, the upgrade occurs by the next load balancer configuration update (e.g. target instance gets restarted, new target service is added, hostname routing rules change, load balacner instance restart, etc).
 
 #### Users with No Internet Access
 
