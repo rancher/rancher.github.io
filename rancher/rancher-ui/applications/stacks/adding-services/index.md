@@ -54,7 +54,7 @@ Besides providing all the options that `docker run` support, Rancher provides ad
 
 #### Health Checks
 
-Rancher implements a distributed health monitoring system by running an HAProxy instance on every host for the sole purpose of providing health checks to containers.  When health checks are enabled either on an individual container or a service,  each container is then monitored by up to three HAProxy instances running on different hosts. The container is considered healthy if at least one HAProxy instance reports a "passed" health check.
+Rancher implements a distributed health monitoring system by running an HAProxy instance on every host for the sole purpose of providing health checks to containers.  When health checks are enabled either on an individual container or a service,  each container is then monitored by up to three HAProxy instances running on different hosts. The container is considered healthy if at least one HAProxy instance reports a "passed" health check and it is considered unhealthy when all HAProxy instances report a "unhealthy" health check.
 
 Rancher’s approach handles network partitions and is more efficient than client-based health checks. By using HAProxy to perform health checks, Rancher enables users to specify the same health check policy for DNS service and for load balancers.
 
@@ -63,6 +63,8 @@ Rancher’s approach handles network partitions and is more efficient than clien
 In the **Advanced Options** section, the **Health Check** tab allows you to check TCP connections or HTTP responses for services. 
 
 Read more details about how Rancher handles [health checks]({{site.baseurl}}/rancher/rancher-services/health-checks/).
+
+> **Note:** If a host is down in Rancher (i.e. in `reconnecting` or `inactive` state), you will need to implement a health check in order for Rancher to launch the containers on your service on to a different host.
 
 #### Labels/Scheduling 
 

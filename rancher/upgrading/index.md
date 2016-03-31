@@ -73,10 +73,10 @@ If you have launched Rancher server **without** using an [external DB]({{site.ba
 
 ### Rancher Agents 
 
-Each Rancher agent version is pinned to a Rancher server version. If you upgrade Rancher server and Rancher agents require an upgrade, it will automatically upgrade the agents.
+Each Rancher agent version is pinned to a Rancher server version. If you upgrade Rancher server and Rancher agents require an upgrade, it will automatically upgrade the agents to the latest version of Rancher agent. 
 
-> **Note:** At present this covers the upgrade path for the rancher agent, not however for the 'agent-instance' containers. For now these must be manually upgraded.
+For anything using the `rancher/agent-instance` image, the running container gets upgraded even if the image of the container is not updated to the latest version. 
 
-In order to upgrade the version of the network agent, you'd need to manually stop the network agent and remove. Anything that triggers networking on the host that has the network agent will cause a new network agent (with the latest verison) to be started.
+#### Users with No Internet Access
 
-In order to upgrade the version of your load balancers, you'll need to re-create them to get the newest version of rancher/agent-instance. One way is to clone them so that you'll get all your targets.
+Users without internet will need to download the latest `rancher/agent-instance` into their own registry. In order to upgrade the version of the network agent, you’d need to manually stop the network agent and remove from the UI. Anything that triggers networking on the host that has the missing network agent will cause a new network agent (with the latest version) to be started. In order to upgrade the version of your load balancers, you’ll need to re-create them to get the newest version of `rancher/agent-instance`. 

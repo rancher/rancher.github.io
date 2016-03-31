@@ -49,3 +49,5 @@ The time taken to detect a failure is controlled through the 'interval' value, w
 > **Note:** The failure recovery actions are only executed after the container has become _green_. That is if a service has a long start-up time, the container won't be immediately restarted because the service takes longer than 2000ms to start. The Health Check first need to turn the container green before taking any other actions.
 
 Read more about how to set up health checks using [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/rancher-services/#health-check-for-services) or in the [UI]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/#health-checks).
+
+> **Note:** If a host is down in Rancher (i.e. in `reconnecting` or `inactive` state), you will need to implement a health check in order for Rancher to launch the containers on your service on to a different host.

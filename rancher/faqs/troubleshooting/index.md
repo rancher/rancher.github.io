@@ -120,6 +120,15 @@ $ cat /var/lib/cattle/etc/cattle/dns/answers.json
 
 ## Networking
 
+### Where can I find logs for networking?
+
+If you are having issues with networking inside Rancher, you can obtain the following logs from the **Network Agent** container. 
+
+```
+/var/log/rancher-net.log
+/var/log/charon.log
+```
+
 ### CentOS
 
 #### Why are my containers unable to connect to network?

@@ -71,7 +71,7 @@ No additional environment variables need to be added to the command to launch Ra
 
 ### VMs with Private and Public IP Addresses
 
-By default, the IP of a VM with a private IP and public IP will be set to the public IP. If you wanted to change the IP address to the private one, you'll need to edit the command provided from the UI. In order for the _rancher-agent_  container to be launched correctly, set the `CATTLE_AGENT_IP` environment variable to the private IP address. All the hosts within Rancher will need to be on the same network as Rancher server. 
+By default, the IP of a VM with a private IP and public IP will be set to match the IP specified in the registration URL. For example, if a private IP is used in the registration URL, then the host's private IP will be used. If you wanted to change the host's IP address, you’ll need to edit the command provided from the UI. In order for the rancher-agent container to be launched correctly, set the CATTLE_AGENT_IP environment variable to the desired IP address. All the hosts within Rancher will need to be on the same network as Rancher server.
 
 ```bash
 sudo docker run -d -e CATTLE_AGENT_IP=<PRIVATE_IP> -v /var/run/docker....
