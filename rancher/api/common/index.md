@@ -4,6 +4,7 @@ layout: rancher-default
 ---
 
 ## Common Resource Fields
+---
 
 In the API, the resource fields that are the most common and read only on a resource have been hidden from the resource view. We've removed it from the list of resource fields to make it easier for a user to view the list of resource fields.
 

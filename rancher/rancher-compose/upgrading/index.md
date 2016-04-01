@@ -10,6 +10,7 @@ layout: rancher-default
 With `rancher-compose`, there are two methods of upgrades supported. With the `rancher-compose up --upgrade`, the containers in existing services are upgraded to the provided `docker-compose.yml` and the existing containers in the service are removed.  With the `rancher-compose upgrade`, a [rolling upgrade]({{site.baseurl}}/rancher/rancher-compose/upgrading/#rolling-upgrade) can be performed. A new service will be deployed, and as it's deployed, the containers in the old service are stopped.
 
 ## In-Service Upgrade
+---
 
 For in-service upgrades, the commands are just options passed in during a `rancher-compose up` command. By adding the `--upgrade` option, the  `docker-compose.yml` will upgrade any services, that have the same name, in the stack. The in-service upgrade is a two step process as we require the user to confirm the upgrade is okay. 
 
@@ -106,6 +107,7 @@ $ rancher-compose up --upgrade --rollback
 ```
 
 ## Rolling Upgrade 
+---
 
 The command to perform a rolling upgrade to a new service is easy:  
 

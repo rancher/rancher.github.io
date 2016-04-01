@@ -5,6 +5,7 @@ layout: rancher-default
 ---
 
 ## Storage Service
+---
 
 In the [Rancher catalog]({{site.baseurl}}/rancher/catalog/), Rancher provides storage services that are capable of exposing volumes to containers. Currently, the storage services are pre-fixed with `Convoy` in the catalog. 
 
@@ -57,6 +58,7 @@ A volume can be added to a storage pool with two methods:
 2. In **Infrastructure** -> **Storage Pools**, click on **Add Volume**. Provide the name of the volume for the specified storage pool. 
 
 ## Example using GlusterFS
+---
 
 In this example, we're going to provide an example of how to use GlusterFS to have a shared storage across hosts.
 

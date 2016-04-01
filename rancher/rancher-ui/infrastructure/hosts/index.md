@@ -14,7 +14,7 @@ Within Rancher, we provide easy instructions to add your host from the Cloud pro
 * Recommended CPU w/ AES-NI
 
 ### How do Hosts work?
----
+
 A host gets connected to Rancher server when the rancher agent container is started on the host. The registration token, which is the long URL in  the **Add Host** -> **Custom** screen, is used by the rancher agent to connect to the server for the first time. Upon connection, it generates an agent account and API key pair in Rancher server. The key pair is then used for all subsequent communication using the same authentication and authorization logic as there is for other kinds of accounts, like environment API keys.
 
 The design is that the agent is untrusted because it is running on the outside and potentially hostile (to the server) hardware. The agent accounts have access to only the resources they need in the API, replies to events are checked that the event was actually sent to that agent, etc. There is not as much in the opposite direction for the agent to verify the host, so you can also set up TLS and the certificate will be verified. 
@@ -24,6 +24,7 @@ The IPSec key is per [environment]({{site.baseurl}}/rancher/configuration/enviro
 <a id="addhost"></a>
 
 ## Adding a Host
+---
 
 The first time that you add a host, you may be required to set up the [Host Registration]({{site.baseurl}}/rancher/configuration/settings/#host-registration/). This setup determines what DNS name or IP address, and port that your hosts will be connected to the Rancher API. By default, we have selected the management server IP and port `8080`.  If you choose to change the address, please make sure to specify the port that should be used to connect to the Rancher API. At any time, you can update the [Host Registration]({{site.baseurl}}/rancher/configuration/settings/#host-registration/). After setting up your host registration, click on **Save**.
 
@@ -69,6 +70,8 @@ $  sudo docker run -e CATTLE_HOST_LABELS='foo=bar&hello=world' -d --privileged \
     -v /var/run/docker.sock:/var/run/docker.sock rancher/agent:v0.8.2 \
     http://<rancher-server-ip>:8080/v1/projects/1a5/scripts/<registrationToken>
 ```
+
+<br>
 
 > **Note:** The `rancher/agent` version is correlated to the Rancher server version. You will need to check the custom command to get the appropriate tag for the version to use. 
 

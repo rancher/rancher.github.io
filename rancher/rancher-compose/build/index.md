@@ -90,6 +90,7 @@ $ rancher-compose --url URL_of_Rancher --access-key username_of_API_key --secret
 With the command, the web container should be started on a host in your Rancher server. It will first upload the current directory to S3, which can be verified by going to S3 UI and checking for a new upload. After the image is uploaded, it will download it to the host and build a container using the files that were provided. 
 
 ## Troubleshooting S3 Builds
+---
 
 If you are having issues with your S3 builds, you can test out your builds in Docker to make sure that your image can be built and the container can run. In the same location as you'd run your `rancher-compose` command, use the following commands to test if it would work in Docker.
 

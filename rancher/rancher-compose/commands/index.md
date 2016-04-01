@@ -11,6 +11,7 @@ The `rancher-compose` tool works just like the popular `docker-compose` and supp
 
 
 ## Rancher-Compose Commands
+---
 
 `rancher-compose` supports any command that `docker-compose` supports.
 
@@ -29,6 +30,7 @@ Name | Description
 `help`, `h`	| Shows a list of commands or help for one command
 
 ## Rancher-Compose Options
+---
 
 Whenever you use the `rancher-compose` command, there are different options that you can use. 
 
@@ -60,6 +62,7 @@ $ rancher-compose -p stack1 scale web=3
 > **Note:** If you don't pass in `-p STACK_NAME`, the stack name will be the directory that you are running the `rancher-compose` command in.
 
 ## Command Options
+---
 
 ### Up Command
 
@@ -174,6 +177,7 @@ $ rancher-compose upgrade service1 service2 --cleanup
 ```
 
 ## Compose Compatibility
+---
 
 `rancher-compose` strives to be completely compatible with Docker Compose.  Since `rancher-compose` is largely focused on running production workloads some behaviors between Docker Compose and Rancher Compose are different.
 
@@ -181,6 +185,7 @@ We support anything that can be created in a standard [docker-compose.yml](https
 
 
 ## Deleting Services/Container
+---
 
 `rancher-compose` will not delete things by default.  This means that if you do two `up` commands in a row, the second `up` will do nothing.  This is because the first up will create everything and leave it running.  Even if you do not pass `-d` to `up`, `rancher-compose` will not delete your services.  To delete a service you must use `rm`.
 

@@ -9,6 +9,7 @@ layout: rancher-default
 In the **Admin** -> **Settings** page of Rancher, we allow customization of Rancher for different areas of the product.
 
 ## Host Registration
+---
 
 Before launching any hosts, you will be asked to complete the host registration. This registration sets up how your Rancher server is going to connect with your hosts. If you have already set up [access control]({{site.baseurl}}/rancher/configuration/access-control), you will not be prompted to set host registration as Rancher assumes that your URL will be accessible.
 
@@ -19,6 +20,7 @@ The setup determines the base URL your hosts will use to connect to the Rancher 
 If [access control]({{site.baseurl}}/rancher/configuration/access-control/) is turned on for Rancher, only the **admin** will be able to change the host registration. By default, the first **admin** is the first user to authenticate with Rancher when access control was configured. If access-control is still not configured, any users to the site can update the host registration. This option can be updated in the **Admin** -> **Host Registration** tab. 
 
 ## Catalog
+---
 
 By default, the [catalog]({{site.baseurl}}/rancher/catalog/) is enabled with two catalogs, the [certified templates from the official Rancher Catalog](https://github.com/rancher/rancher-catalog) and the [community-catalog](https://github.com/rancher/community-catalog). You can select to enable or disable these catalogs. 
 
@@ -27,6 +29,7 @@ An [admin]({{site.baseurl}}/rancher/configuration/accounts/#admin) has the abili
 If you want to create your own private catalog to add, the git repository must be set up in a [specific format]({{site.baseurl}}/rancher/catalog/#creating-private-catalogs).
 
 ## Machine Drivers
+---
 
 [Docker-machine](https://docs.docker.com/machine/) drivers can be added into Rancher to [add hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/other/). 
 

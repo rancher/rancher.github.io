@@ -5,6 +5,7 @@ layout: rancher-default
 ---
 
 ## Health Check for Services
+---
 
 Rancher implements a distributed health monitoring system by running an HAProxy instance on every host for the sole purpose of providing health checks to containers.  When health checks are enabled either on an individual container or a service,  each container is then monitored by up to three HAProxy instances running on different hosts. The container is considered healthy if at least one HAProxy instance reports a "passed" health check and it is considered unhealthy when all HAProxy instances report a "unhealthy" health check.
 
@@ -36,6 +37,7 @@ More details about Health Checks can be read in the [concept section]({{site.bas
 > **Note:** If a host is down in Rancher (i.e. in `reconnecting` or `inactive` state), you will need to implement a health check in order for Rancher to launch the containers on your service on to a different host. 
 
 ## Custom Rancher Services
+---
 
 Custom Rancher services are configured by using a special image name in the compose template.  The image name is how `rancher-compose` knows to set up a Rancher service versus a normal service.
 
@@ -46,6 +48,7 @@ External Service | rancher/external-service
 Alias/DNS Service | rancher/dns-service
 
 ## Load Balancer
+---
 
 A load balancer can be scheduled like any other service. Read more about [scheduling]({{site.baseurl}}/rancher/rancher-compose/scheduling/) services and load balancers using `rancher-compose`.
 
@@ -138,7 +141,8 @@ example.com | | | | `example.com`
  | | | 81 | `'81'` *See Note 
 
 <br>
-**Note:** It is assumed that if you have only a port in the label, then the port is for the target port of the service. When using only a target port, it must be surrounded by single quotes.
+
+> **Note:** It is assumed that if you have only a port in the label, then the port is for the target port of the service. When using only a target port, it must be surrounded by single quotes.
 
 **Wildcards**
 
@@ -268,6 +272,7 @@ lb:
 ```
 
 ## External Service
+---
 
 With external services, you can set either external IP(s) **OR** a domain name. The `rancher/external-service` is not an actual image, but is required for the docker-compose.yml. There are no containers created for external services.
 
@@ -305,7 +310,8 @@ db:
   hostname: example.com
 ```
 
-## Service Alias/DNS service
+## Service Alias/Internal DNS service
+---
 
 A service alias creates a pointer to service(s). In the example below, `web[.stack-name.rancher.internal]` will resolve to the IPs of the containers of `web1` and `web2`. The `rancher/dns-service` is not an actual image, but is required for the docker-compose.yml. There are no containers created for alias services.
 
