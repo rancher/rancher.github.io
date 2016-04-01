@@ -92,10 +92,8 @@ By default, any records in the `process_instance` table are deleted if they were
 
 To update these settings in your API, navigate to the `http://<rancher-server-ip>:8080/v1/settings` page. Search for the setting you want to update and click on the link in the `links -> self` to navigate to the setting. Click on `Edit` on the side page to change the `value`. Remember, the value is in seconds. 
 
-
 <div id="databaselock">
-
-### Why is Rancher Server frozen? OR Why could my upgrade have failed?
+###Why is Rancher Server frozen? OR Why could my upgrade have failed?
 
 If you are starting Rancher and it freezes forever, there might be a liquibase database lock. On startup, liquibase does a schema migration. There is a race condition where it might leave a lock entry, which will prevent subsequent boots. 
 
