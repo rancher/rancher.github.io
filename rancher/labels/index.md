@@ -30,6 +30,7 @@ Key | Value |Description
 `io.rancher.scheduler.affinity:container` | Name of Container | Used to schedule containers on hosts based on [container name]({{site.baseurl}}/rancher/rancher-compose/scheduling/#finding-hosts-with-container-names)
 
 <br>
+
 > **Note:** For the labels prefixed with `io.rancher.scheduler.affinity`, there are slight variations based on your how want to match (i.e. equal or not equal, hard or soft rules). More details can be found [here]({{site.baseurl}}/rancher/rancher-compose/scheduling/#table-of-scheduling-labels).
 
 #### Selector Labels
@@ -49,6 +50,7 @@ foo4 in (bar1, bar2)
 foo5 notin (bar3, bar4)
 ```
 <br>
+
 > **Note:** If there is a label with a value that contains a comma in it, the selector will not be able to match with the label as the _selector label_ can match on any key with no associated value. Example: A label of `io.rancher.service.selector.link: foo=bar1,bar2` would translate to any service that have one label must be key equals to `foo` and value equal to `bar1` **AND** another label with key equal to `bar2`. It would NOT pick up a service that has a label with key equal to `foo` and value equal to `bar1,bar2`. 
 
 #### Example of a comma separated list
