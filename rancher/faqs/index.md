@@ -11,6 +11,7 @@ Please read more detailed FAQs about [Rancher Server]({{site.baseurl}}/rancher/f
 This section assumes you were able to successfully start Rancher server and add hosts.
 
 ## Services/Containers 
+---
 
 ### Why can I only edit the name of a container? 
 
@@ -24,6 +25,7 @@ In Docker, linked containers (using `--link` in `docker run`) shows up in the `/
 
 
 ## Cross Host Communication
+---
 
 If containers on different hosts cannot ping each other, there are some common scenarios that could be the issue. 
 
@@ -107,6 +109,7 @@ After the value is updated, you'll need to create new environments to have conta
 > **Note:** Any existing environment prior to the API change will not be updated to use the new subnet. 
 
 ## Network Agents
+---
 
 <a id="dns-config"></a>
 
@@ -119,6 +122,7 @@ $ cat /var/lib/cattle/etc/cattle/dns/answers.json
 ```
 
 ## Networking
+---
 
 ### Where can I find logs for networking?
 
@@ -140,6 +144,7 @@ CentOS will by default set `/proc/sys/net/ipv4/ip_forward` to `0`, which will es
 <a id="lb-config"></a>
 
 ## Load Balancer
+---
 
 ### How can I see the configuration of my Load Balancer?
 
@@ -152,6 +157,7 @@ $ cat /etc/haproxy/haproxy.cfg
 This file will provide all the configuration details of the load balancer. 
 
 ## Authentication
+---
 
 <a id="manually-turn-off-github"></a>
 

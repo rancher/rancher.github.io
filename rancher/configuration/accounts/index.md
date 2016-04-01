@@ -20,6 +20,7 @@ When [Active Directory]({{site.baseurl}}/rancher/configuration/access-control/#a
 When [local authentication is enabled]({{site.baseurl}}/rancher/configuration/access-control/#local-authentication), accounts can be added to Rancher in the **Accounts** tab. Click the **Add Account** button to add accounts into the Rancher database. When creating accounts, the account type can be specified as an admin or user. 
 
 ## Account Types
+---
 
 The account type determines whether or not an account will have access to the admin tab. For each environment in Rancher, there are [membership roles]({{site.baseurl}}/rancher/configuration/environments/#membership-roles) that provide different level of access for a specific environment. 
 

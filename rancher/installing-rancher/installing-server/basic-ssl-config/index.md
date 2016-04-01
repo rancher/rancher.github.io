@@ -8,14 +8,14 @@ layout: rancher-default
 
 In order to run Rancher server from an `https` URL, you will need to terminate SSL with a proxy that is capable of setting headers. We've provided an example of how it could be set up with NGINX or Apache, but other tools could be used.
 
-## Requirements
+### Requirements
 
 Besides the typical Rancher server [requirements]({{site.baseurl}}/rancher/installing-rancher/installing-server/#requirements), you will also need:
 
 * Valid SSL certificate: If your certificate is not part of the standard Ubuntu CA bundle, please use the [self signed certificate instructions]({{site.baseurl}}/rancher/installing-rancher/installing-server/basic-ssl-config/#using-self-signed-certs-beta).
 * DNS entries configured
 
-## Launching Rancher Server
+### Launching Rancher Server
 
 In our example configuration, all traffic will pass through the proxy and be sent over a Docker link to the Rancher server container. There are alternative approaches that could be followed, but this example is simple and translates well.
 
@@ -35,6 +35,7 @@ If you are converting an existing Rancher instance, the upgrade to the new Ranch
 > **Note:** After your new Rancher server is running, please make sure to **remove** the old Rancher instance. Otherwise, if your machine is rebooted, your old Rancher instance will start up as we have included `--restart=always` to the `docker run` commands.
 
 ## Example Nginx Configuration
+---
 
 Here is the minimum NGINX configuration that will need to be configured. You should customize your configuration to meet your needs.
 
@@ -78,6 +79,7 @@ server {
 
 
 ## Apache Configuration
+---
 
 Here is an Apache configuration.
 
@@ -120,6 +122,7 @@ Here is an Apache configuration.
 ```
 
 ## Updating Host Registration
+---
 
 After Rancher is launched with these settings, the UI will be up and running at `https://<your domain>/`.
 
@@ -127,6 +130,7 @@ Before [adding hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/)
 
 
 ## Running Rancher Server Behind an ELB in AWS with SSL
+---
 
 By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher's websockets to work. 
 
@@ -136,6 +140,7 @@ By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets
  * Configuring TLS/SSL for the frontend and TCP for the backend
 
 ## Using Self Signed Certs (Beta)
+---
 
 ### Disclaimers
 

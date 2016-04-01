@@ -109,5 +109,6 @@ Key | Value | Description
 `io.rancher.host.docker_version` | Docker Version on the host (e.g. `1.9.1`) | Docker Engine Version on the host
 
 ## Native Docker Labels
+---
 
 `io.rancher.container.network` | `true`|  Add this label to a `docker run` command to add Rancher networking to the container

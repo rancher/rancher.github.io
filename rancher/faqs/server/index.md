@@ -92,8 +92,9 @@ By default, any records in the `process_instance` table are deleted if they were
 
 To update these settings in your API, navigate to the `http://<rancher-server-ip>:8080/v1/settings` page. Search for the setting you want to update and click on the link in the `links -> self` to navigate to the setting. Click on `Edit` on the side page to change the `value`. Remember, the value is in seconds. 
 
-<div id="databaselock">
-###Why is Rancher Server frozen? OR Why could my upgrade have failed?
+<a id="databaselock"></a>
+
+### Why is Rancher Server frozen? OR Why could my upgrade have failed?
 
 If you are starting Rancher and it freezes forever, there might be a liquibase database lock. On startup, liquibase does a schema migration. There is a race condition where it might leave a lock entry, which will prevent subsequent boots. 
 
@@ -108,8 +109,6 @@ If you have just upgraded and in the Rancher server logs, there can be a log loc
 > **Note:** Please do not release the database lock unless you have the above **exception** regarding the log lock. If your upgrading is taking a long time due to data migration, you may hit other migration issues if you try to release the database lock. 
 
 If you had created the data container for Rancher server per the [upgrading documentation]({{site.baseurl}}/rancher/upgrading/), you'll need to `exec` into the `rancher-data` container to update the  `DATABASECHANGELOGLOCK` table and remove the lock. If you hadn't created the data container, you can `exec` into the container that has your database.
-
-
 
 ```bash
 $ sudo docker exec -it <container_id> mysql

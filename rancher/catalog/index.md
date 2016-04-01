@@ -34,6 +34,7 @@ After all the services have been upgraded, the stack and services will be in an 
 If something went wrong during your upgrade and you need to revert to the previous version, you would want to select **Rollback** in the stack dropdown menu. 
 
 ## Creating Private Catalogs
+---
 
 The Rancher catalog service requires private catalogs to be structured in a specific format in order for the catalog service to be able to translate it into Rancher. 
 
@@ -110,6 +111,7 @@ An optional `README.md` is possible to be created, which provides a lengthy desc
   questions: #Used to request user input for configuration options
 ```
 <br>
+
 > **Note:** The `uuid` is a required parameter that is used for upgrade scenarios. Each `uuid` must be unique and each later version should be incremental. The recommended format is to use the name of the catalog entry and suffixed with a `-0`. As versions are introduced, you would increment the `-0` to `-1` for the next entry. 
 
 #### Questions in the `rancher-compose.yml`

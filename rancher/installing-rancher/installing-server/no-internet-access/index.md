@@ -16,6 +16,8 @@ When launching Rancher server with no internet access, there will be a couple of
 
 
 ## Using Private Registry
+---
+
 
 It is assumed you either have your own private registry or other means of distributing docker images to your machine. If you need help with creating a private registry, please refer to the [Docker documentation for private registries](https://docs.docker.com/registry/). 
 
@@ -78,6 +80,7 @@ $ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock <
 ```
 
 ## Using HTTP Proxy 
+---
 
 Reminder, in this setup, the web browser accessing the UI will need access only the private network. 
 

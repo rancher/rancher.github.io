@@ -5,6 +5,7 @@ layout: rancher-default
 ---
 
 ## Metadata Service
+---
 
 With Rancher's metadata service, you can exec into any container using the Rancher managed network and retrieve information about containers in Rancher. The metadata could be related to the container, the service or stack that the container is part of, or the host that the container is on. The metadata is in a JSON format. 
 
@@ -17,6 +18,7 @@ A container can be launched in the Rancher managed network in several ways.
 > **Note:** Metadata service is not available for system containers, i.e. Network Agent and LB Agent. 
 
 ## How to Get the Metadata 
+---
 
 From the Rancher UI, you can execute into shell of the container by selecting **Execute Shell** from the drop down of the container. The drop down can be found by hovering over the container. 
 
@@ -147,6 +149,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 ```
 
 ## Metadata Fields 
+---
 
 ### Container
 
@@ -207,6 +210,7 @@ Fields | Description
 `uuid` | Unique host identifier that Rancher server assigns to hosts
 
 ## Adding User Metadata To a Service
+---
 
 Rancher allows users to add in their own metadata to a service. Currently, this is only supported through [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/) and the metadata is part of the `rancher-compose.yml` file. In the `metadata` key, the yaml will be parsed into JSON format to be used by the metadata-service.
 

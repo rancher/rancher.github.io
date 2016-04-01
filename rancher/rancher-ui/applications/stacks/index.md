@@ -53,7 +53,6 @@ You can view the stack in another view, which shows how all the services/balance
 Clicking the **graph icon** shows this view.
 
 ### Editing Services
----
 
 All of Rancher services are created differently, but after creation, they all have the same options within their drop-down menu. All the options for the services and load balancers are the same. 
 
