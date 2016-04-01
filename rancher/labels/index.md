@@ -105,7 +105,6 @@ Key | Value | Description
 ----|----|----
 `io.rancher.host.linux_kernel_version` | Linux Kernel Version on Host (e.g, `3.19`) |  Version of the Linux kernel running on the host
 `io.rancher.host.docker_version` | Docker Version on the host (e.g. `1.9.1`) | Docker Engine Version on the host
-<br>
 
 ## Native Docker Labels
 

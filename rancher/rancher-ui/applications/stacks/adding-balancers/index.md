@@ -46,17 +46,18 @@ Rancher supports L4 load balancing by simply adding listening ports and linking 
 
 When we set up 2 listening ports and 3 services, the load balancer will direct traffic on both listening ports across all services.
 
-Source Port| Target Port
+Source Port | Target Port
 ---|---
 80 | 8080
 81 | 8081
+
 <br>
 
-| Target Services|
-|----|
-| Service1 |
-| Service2 |
-|Service3 |
+|Target Services|
+|---|
+|Service1|
+|Service2|
+|Service3|
 
 <br>
 In our example, any traffic directed to port `80` on the host of the load balancer would get round robin-ed to  Service1, Service2, Service3 on the target port `8080` and `8081`. Any traffic directed to port `81` on the host of the load balancer would get round robin-ed to Service1, Service2, Service3 on port `8080` and `8081`. 
