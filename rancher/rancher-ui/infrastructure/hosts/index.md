@@ -22,7 +22,9 @@ The design is that the agent is untrusted because it is running on the outside a
 The IPSec key is per [environment]({{site.baseurl}}/rancher/configuration/environments/). It is generated on the server, stored in the database, and sent to the host as part of the agent registration with the API key pair. The connections are point to point between hosts and AES encrypted, which is accelerated by most modern CPUs.
 
 <a id="addhost"></a>
+
 ## Adding a Host
+
 The first time that you add a host, you may be required to set up the [Host Registration]({{site.baseurl}}/rancher/configuration/settings/#host-registration/). This setup determines what DNS name or IP address, and port that your hosts will be connected to the Rancher API. By default, we have selected the management server IP and port `8080`.  If you choose to change the address, please make sure to specify the port that should be used to connect to the Rancher API. At any time, you can update the [Host Registration]({{site.baseurl}}/rancher/configuration/settings/#host-registration/). After setting up your host registration, click on **Save**.
 
 We support adding hosts directly from cloud providers or adding a host that's already been provisioned. For cloud providers, we provision using `docker-machine` and support any images that `docker-machine` supports. 
@@ -41,7 +43,9 @@ Select which host type you want to add:
 When a host is added to Rancher, a rancher agent container is launched on the host. Rancher will automatically pull the correct image version tag for the `rancher/agent` and run the required version. The agent version is tagged specifically to each Rancher server version.
 
 <a id="labels"></a>
+
 ### Host Labels
+
 With each host, you have the ability to add labels to help you organize your hosts. The labels are added as an environment variable when launching the rancher/agent container. The host label in the UI will be a key/value pair and the keys must be unique identifiers. If you added two keys with different values, we'll take the last inputted value to use as the key/value pair.
 
 By adding labels to hosts, you can use these labels when [schedule services/load balancers/services]({{site.baseurl}}/rancher/rancher-ui/scheduling/) and create a whitelist or blacklist of hosts for your [services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/) to run on. 
@@ -69,6 +73,7 @@ $  sudo docker run -e CATTLE_HOST_LABELS='foo=bar&hello=world' -d --privileged \
 > **Note:** The `rancher/agent` version is correlated to the Rancher server version. You will need to check the custom command to get the appropriate tag for the version to use. 
 
 #### Automatically Applied Host Labels
+
 Rancher automatically creates host labels related to linux kernel version and Docker Engine version of the host. 
 
 Key | Value | Description
@@ -81,6 +86,7 @@ Key | Value | Description
 To support hosts behind a proxy, you'll need to edit the Docker daemon to point to the proxy. The detailed instructions are listed within our [adding custom host page]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/#hosts-behind-a-proxy).
 
 <a id="machine-config"></a>
+
 ### Accessing hosts from the Cloud Providers 
 After Rancher launches the host, you may want to be able to access the host. We provide all the certificates generated when launching the machine in an easy to download file. Click on **Machine Config** in the host's dropdown menu. It will download a tar.gz file that has all the certificates.
 
