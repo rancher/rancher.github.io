@@ -100,13 +100,6 @@ For more information, see [rancher-compose]({{site.baseurl}}/rancher/rancher-com
 
 A Rancher stack mirrors the same concept as a docker-compose project.  It represents a group of services that make up a typical application or workload.
 
-<!--
-```bash
-rancher-compose up -p app1
-```
-
-This command deploys the docker-compose.yml template in the current directory into app1. All services in the same stack can link to each other through service discovery.
--->
 ### Container Scheduling
 
 Rancher supports container scheduling policies that are modeled closely after Docker Swarm.  They include scheduling based on:

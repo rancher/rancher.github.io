@@ -87,7 +87,7 @@ What if we want to create a Docker container through CLI and still give it an IP
 ```bash
 $ docker run -it --label io.rancher.container.network=true ubuntu:14.04.2
 ```
-
+<br>
 The label `io.rancher.container.network` enables us to pass a hint through the Docker command line so Rancher will set up the container to connect to the overlay network.
 
 ### Create a Multi-Container Application

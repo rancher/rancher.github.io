@@ -170,7 +170,9 @@ wordpress:
     - alldbs/db1:mysql
 ```
 <br>
+
 In this example, the `alldbs` stack has a `db1` service that the wordpress service will link to. In the `wordpress` service, `db1` would be resolvable as `mysql`. Without the external link, `db1` would be resolvable as `db1.alldbs`.
+
 > **Note:** Cross stack discovery is limited by environment (by design). Cross environment discovery is not supported.
 
 

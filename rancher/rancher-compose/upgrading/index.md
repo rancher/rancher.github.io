@@ -38,6 +38,7 @@ Option | Description
 `--rollback`, `-r`		|	Rollback to the previous deployed version
 `--batch-size` "2"	|		Number of containers to upgrade at once
 `--interval` "1000"	|		Update interval in milliseconds
+
 <br>
 **Pull** 
 
@@ -78,6 +79,8 @@ myservice:
   upgrade_strategy:
     start_first: true
 ```
+
+<br>
 
 ```bash
 # Upgrading myservice with the above yaml will start the new service first
@@ -173,6 +176,7 @@ By default, containers of the new service are started 2 at a time during an upgr
 # until the scale of the service2 is reached
 $ rancher-compose upgrade service1 service2 --batch-size 3
 ```
+
 #### Final Scale
 
 By default, the scale of a new service is based on the scale of the old service. You can change the scale of the new service by passing in `--scale` and a number. The number defines the final scale of running containers you want in the new service. 
@@ -181,6 +185,8 @@ By default, the scale of a new service is based on the scale of the old service.
 # Setting the scale of service2 to 8 containers
 $ rancher-compose upgrade service1 service2 --scale 8
 ```
+
+<br>
 
 > **Note:** The containers of the old service will not be removed based on batch size. After the containers are launched in a particular batch, containers of the old service are stopped and removed when the sum of containers in the old and new service exceed the final scale of the new service.
 

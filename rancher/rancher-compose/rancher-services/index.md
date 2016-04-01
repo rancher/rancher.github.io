@@ -108,6 +108,8 @@ Label Key | Label Value
 ---| ---
 `io.rancher.loadbalancer.target.<SERVICE_NAME>` | `<REQUEST_HOST>:<SOURCE_PORT>/<REQUEST_PATH>=<TARGET_PORT>`
 
+<br>
+
 > **Note:** If you use a source port with the advanced routing options, the source port must also be listed in `ports` section of the `docker-compose.yml`
 
 #### Linking Services in a Different Stack 
@@ -229,8 +231,9 @@ lb:
   links: 
   # Any service that is a target will be listed as a link
   - web1:web1
- ```
+```
 
+<br>
 **Sample** `rancher-compose.yml`
 
 ```yaml
@@ -294,6 +297,7 @@ redis:
   - 2.2.2.2
 ```
 
+<br>
 **Sample** `rancher-compose.yml` using hostname
 
 ```yaml

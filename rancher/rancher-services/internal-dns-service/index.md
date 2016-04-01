@@ -130,7 +130,7 @@ PING bar.foo.stacka (10.42.x.x) 56(84) bytes of data.
 
 From any container, you can ping another container in the environment by their name regardless if they are in a different stack or service.
 
-In our example, we have a stack called `stackA`, which contains a service called `foo`. We also have another stack called `stackB`, which contains a service called `bar`. The names of containers are `<environment_name>_<service_name>_<co
+In our example, we have a stack called `stackA`, which contains a service called `foo`. We also have another stack called `stackB`, which contains a service called `bar`. The names of containers are `<environment_name>_<service_name>_<number>`.
 
 If we exec into one of the containers in the `foo` service, you can ping the container in the `bar` service. 
 
