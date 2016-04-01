@@ -5,14 +5,8 @@ description: Documentation for Rancher
 URL: http://rancher.github.io
 baseurl: ""
 
-markdown: redcarpet
-
-redcarpet:
-  extensions: ["smart", "tables", "no_intra_emphasis", "autolink", "strikethrough", "superscript", "with_toc_data"]
-  syntax_highlighter: rouge
-
-kramdown: 
-  syntax_highlighter: rouge
+markdown: kramdown
+highlighter: rouge
+kramdown:
   input: GFM
-permalink: pretty
-
+  syntax_highlighter: rouge
