@@ -100,6 +100,7 @@ Rancher server does not need to be launched using any environment variables when
 ```bash
 sudo docker run -d --restart=always -p 8080:8080 rancher/server
 ```
+
 #### Rancher UI
 
 The UI and API will be available on the exposed port `8080`. You can access the UI by going to the following URL: `http://<SERVER_IP>:8080`.

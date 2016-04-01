@@ -99,6 +99,7 @@ Key | Value | Description
 ----|----|----
 `io.rancher.host.linux_kernel_version` | Linux Kernel Version on Host (e.g, `3.19`) |  Version of the Linux kernel running on the host
 `io.rancher.host.docker_version` | Docker Engine Version on the host (e.g. `1.9.1`) | Docker Engine Version on the host
+
 <br>
 
 ```yaml
@@ -108,6 +109,8 @@ io.rancher.scheduler.affinity:host_label: io.rancher.host.docker_version=1.9.1
 # Host MUST not be running Docker version 1.6
 io.rancher.scheduler.affinity:host_label_ne: io.rancher.host.docker_version=1.6 
 ```
+
+<br> 
 
 > **Note:** Rancher does not support the concept of scheduling containers on a host that has `>=` a specific version. You can create specific whitelists and blacklists by using the host scheduling rules to determine if a specific version of Docker Engine is required for your services.
 
@@ -131,6 +134,7 @@ labels:
   io.rancher.scheduler.affinity:container_label_soft_ne: key4=value4
 ```
 
+<br>
 **Service Name**
 
 When `rancher-compose` starts containers for a service, it also automatically creates several container labels. Since checking for a specific container label is looking for a `key=value`, we can use these system labels as the key of our rules. Here are the system labels created on the containers when Rancher starts a service: 
@@ -140,13 +144,15 @@ Label | Value
 io.rancher.stack.name | `$${stack_name}`
 io.rancher.stack_service.name | `$${stack_name}/$${service_name}`
 
+<br>
+
 > **Note:** When using the `io.rancher.stack_service.name`, the value must be in the format of `stack name/service name`.
 
 The macros `$${stack_name}` and `$${service_name}` can also be used in the `docker-compose.yml` file in any other `label` and will be evaluated when the service is started. 
 
 Please note that in versions prior to Rancher v0.41.0 and Rancher-compose v0.4.1, the values had a single `$`, but with the addition of [environment interpolation]({{site.baseurl}}rancher/rancher-compose/environment-interpolation/), the values require a double `$$`.
 
-Example of Service Name:
+**Example of Service Name:**
 
 ```yaml
 labels:

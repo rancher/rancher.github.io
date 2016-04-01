@@ -46,6 +46,7 @@ Name | Description
 `--version`, `-v`		|	print the version
 
 <br>
+
 ### Examples 
 
 ```bash
@@ -54,10 +55,11 @@ $ rancher-compose --url URL_of_Rancher --access-key username_of_API_key --secret
 # To change the scale of an existing service
 $ rancher-compose -p stack1 scale web=3
 ```
+<br>
 
 > **Note:** If you don't pass in `-p STACK_NAME`, the stack name will be the directory that you are running the `rancher-compose` command in.
 
-##Command Options
+## Command Options
 
 ### Up Command
 
@@ -71,6 +73,7 @@ Name | Description
 `--rollback`, `-r` |			Rollback to the previous deployed version
 `--batch-size "2"`	 |		Number of containers to upgrade at once
 `--interval "1000"`	 |		Update interval in milliseconds
+
 <br>
 
 When you run the `up` command with `rancher-compose`, after all the tasks are complete, the process continues to run. If you want the process to exit after completion, you'll need to add in the `-d` option, which is to not block and log. 
@@ -89,6 +92,7 @@ Read more about [upgrading using rancher-compose]({{site.baseurl}}/rancher/ranch
 Name | Description
 ---|----
 `-d` |	Do not block and log
+
 <br>
 
 If you want the start process to exit after completion, you'll need to add in the `-d` option, which is to not block and log. 
@@ -98,7 +102,6 @@ If you want the start process to exit after completion, you'll need to add in th
 Name | Description
 ---|----
 `--lines "100"` |	number of lines to tail
-<br>
 
 ### Restart Command
 
@@ -106,7 +109,9 @@ Name | Description
 ---|----
 `--batch-size` `"1"` |	Number of containers to retart at once
 `--interval` `"0"` |	Restart interval in milliseconds
+
 <br>
+
 By default, restarting services will restart the containers individually and immediately sequentially. You can set the batch size and interval of the restart policy. 
 
 ### Stop/Down & Scale Command
@@ -135,6 +140,8 @@ $ rancher-compose pull
 # Pulls new images for all services located in docker-compose.yml file on hosts that already have the image
 $ rancher-compose pull --cached
 ```
+
+<br>
 
 > **Note:** Unlike `docker-compose pull`, you will not be specifying which service to pull. Rancher-compose looks at all services in the `docker-compose.yml` and pulls images for all services found in the file. 
 

@@ -25,7 +25,7 @@ $IMAGE_TAG=14.04
 $ rancher-compose up
 ```
 
-**Docker-Compose.yml**
+**Example docker-compose.yml**
 
 ```yaml
 ubuntu:
@@ -33,6 +33,8 @@ ubuntu:
   image: ubuntu:$IMAGE_TAG
   stdin_open: true
 ```
+
+<br>
 
 In Rancher, an `Ubuntu` service will be deployed with an `ubuntu:14.04` image. 
 
