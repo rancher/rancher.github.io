@@ -43,7 +43,7 @@ The Rancher catalog service requires private catalogs to be structured in a spec
 Catalog templates are displayed in Rancher based on what cluster management type of environment that you are in. 
 
 * _Cattle_ environment: Entries in the UI are from the `templates` folder 
-* _Kubernetes_ environment: Entries in teh UI are from the `kubernetes-templates` folder 
+* _Kubernetes_ environment: Entries in the UI are from the `kubernetes-templates` folder 
 * _Swarm_ environment: Entries in the UI are from the `swarm-templates` folder 
 
 ```
