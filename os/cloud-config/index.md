@@ -62,7 +62,7 @@ You can write files to the disk using the `write_files` directive.
 ```yaml
 #cloud-config
 write_files:
-  - path: /opt/rancher/bin/start.sh
+  - path: /etc/rc.local
     permissions: "0755"
     owner: root
     content: |
