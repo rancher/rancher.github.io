@@ -17,19 +17,19 @@ To enable health checks for services, we add the health check in the `rancher-co
 
 ```yaml
 wordpress:
-scale: 1
-health_check:
-port: 80
-# Interval is measured in milliseconds
-interval: 2000
-unhealthy_threshold: 3
-# For TCP, request_line needs to be ''
-# TCP Example: 
-# request_line: ''
-request_line: GET /healthcheck HTTP/1.0
-healthy_threshold: 2
-# Response timeout is measured in milliseconds
-response_timeout: 2000
+  scale: 1
+  health_check:
+    port: 80
+    # Interval is measured in milliseconds
+    interval: 2000
+    unhealthy_threshold: 3
+    # For TCP, request_line needs to be ''
+    # TCP Example: 
+    # request_line: ''
+    request_line: GET /healthcheck HTTP/1.0
+    healthy_threshold: 2
+    # Response timeout is measured in milliseconds
+    response_timeout: 2000
 ```
 
 More details about Health Checks can be read in the [concept section]({{site.baseurl}}/rancher/rancher-services/health-checks/).
