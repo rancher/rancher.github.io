@@ -76,7 +76,7 @@ num  target     prot opt source               destination
 3    DNAT       udp  --  0.0.0.0/0            0.0.0.0/0            ADDRTYPE match dst-type LOCAL udp dpt:500 to:10.42.179.222:500
 ```
 
-The first rule is an example of a rule for a user-defined container in which the user mapped host port `80` to container port `8080`. The ip `10.42.160.45` is the IP the Rancher assigned to the container. If Rancher is working properly, you should a rule for each port mapping you defined for each container running on the host. The second two rules are for the Rancher network agent container that runs on each host to provide Rancher networking. We always use ports `500` and `4500`.
+The first rule is an example of a rule for a user-defined container in which the user mapped host port `80` to container port `8080`. The ip `10.42.160.45` is the IP the Rancher assigned to the container. If Rancher is working properly, you should have a rule for each port mapping you defined for each container running on the host. The second two rules are for the Rancher network agent container that runs on each host to provide Rancher networking. We always use ports `500` and `4500`.
 
 If it seems that you are missing rules, try deploying another container from the Rancher UI and specify a port mapping. When the container is deployed, all rules will be synced up with the Rancher database. This obviously is not a permanent fix to the problem, but is useful for debugging and short-term fixes.
 
