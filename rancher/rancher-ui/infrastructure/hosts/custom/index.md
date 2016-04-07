@@ -45,6 +45,7 @@ For any hosts that are added, ensure that any security groups or firewalls allow
 * From and to all other hosts on UDP ports `500` and `4500` (for IPsec networking)
 
 <a id="samehost"></a>
+
 ### Adding Hosts to the same machine as Rancher Server
 
 If you are adding an agent host on the same machine as Rancher server, you must edit the command provided from the UI. Additionally, in order for the _rancher-agent_ container to be launched correctly, set the `CATTLE_AGENT_IP` environment variable to the public IP of the VM that Rancher server is running on.
