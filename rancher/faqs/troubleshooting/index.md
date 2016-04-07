@@ -118,6 +118,10 @@ If you want to see the configuration of the Rancher DNS setup, you will need to 
 $ cat /var/lib/cattle/etc/cattle/dns/answers.json
 ```
 
+### My network agent keeps restarting. Why? 
+
+If your host has IPV6, it will cause the network agent to keep restarting. Currently, Rancher doesn't support hosts with IPV6. 
+
 ## Networking
 
 ### Where can I find logs for networking?
