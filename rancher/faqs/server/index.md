@@ -39,6 +39,14 @@ Here's the command to copy the Rancher server logs from the container to the hos
 $ docker cp <container_id>:/var/lib/cattle/logs /local/path
 ```
 
+### What happens if the IP of Rancher server has changed? 
+
+If the IP of Rancher server has been changed, you will need to re-attach the hosts with the updated information. 
+
+In Rancher, go to **Admin** -> **Settings** and update the **Host Registration** with the updated URL for Rancher server. Please note that it must include the exposed port that you started Rancher server with. By default, we have recommended using port `8080` in our [installation instructions]({{site.baseurl}}/rancher/installing-rancher/installing-server/). 
+
+After the [Host Registration]({{site.baseurl}}/rancher/configuration/settings/#host-registration) has been updated, go to **Infrastructure** -> **Add Hosts** -> **Custom**. The `docker run` command to add Rancher agents will have been updated with the new information. Using the updated command, run the command on all the hosts inside your Rancher server [environments]({{site.baseurl}}/rancher/configuration/environments/).
+
 ### Why is Go-Machine-Service continually restarting in my logs? What should I do?
 
 Go-machine-service is a micro-service that connects to the Rancher API server via a websocket connection. If it fails to connect, it restarts and tries again. 
