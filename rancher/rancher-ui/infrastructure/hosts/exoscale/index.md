@@ -21,6 +21,7 @@ Next, you'll select a security group to use for the hosts. There are two choices
 In the **Custom** option, you can choose an existing security group, but you will need to ensure that specific ports are open in order for Rancher to be working correctly. 
 
 <a id="Ports"></a>
+
 ### Required Ports for Rancher to work:
 
 * From the rancher server to TCP port 22 (SSH to install and configure Docker) and TCP port 2376 (access to Docker daemon)
