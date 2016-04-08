@@ -93,7 +93,7 @@ Most collections can be filtered on the server-side by common fields using HTTP 
 ## Sorting
 ---
 
-Most collections can be sorted on the server-side by common fields busing HTTP query parameters.  The `sortLinks` map shows you what sorts are available, along with the URL to get the collection sorted by that.  It also includes info about what the current response was sorted by, if specified.
+Most collections can be sorted on the server-side by common fields using HTTP query parameters.  The `sortLinks` map shows you what sorts are available, along with the URL to get the collection sorted by that.  It also includes info about what the current response was sorted by, if specified.
 
 ## Pagination
 ---
