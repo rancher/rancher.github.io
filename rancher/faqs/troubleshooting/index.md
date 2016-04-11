@@ -22,6 +22,13 @@ You can **Clone**, which will pre-fill the **Add Container** screen with all the
 
 In Docker, linked containers (using `--link` in `docker run`) shows up in the `/etc/hosts` of the container it's linked to. In Rancher, we don't edit the `/etc/hosts`. Instead we run an [internal DNS server]({{site.baseurl}}/rancher/rancher-services/internal-dns-service/) that makes links work across hosts. The DNS server would respond with the correct IP.
 
+<a id="container-access"></a>
+
+### Help! I cannot execute the shell or view logs of the container from the UI. How does Rancher access the shell/logs of a container?
+
+Since the agent is potentially open to the public internet, requests to the agent for a shell (or logs, etc) of a container aren't automatically trusted. The request from Rancher Server includes a JWT (JSON Web Token) and that JWT is signed by the server and can be verified by the agent to have actually come from the server. Part of that includes an expiration time, which is 5 minutes from when it is issued. This prevents a token from being used for long periods of time if it were to be intercepted, which is particularly important if not using SSL.
+
+If you run docker logs -f rancher-agent and the logs show messages about an expired token, then please check that the date/time of the Rancher Server host and Rancher Agent host are in sync.
 
 ## Cross Host Communication
 
