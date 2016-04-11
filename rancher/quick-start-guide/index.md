@@ -13,14 +13,7 @@ In this guide, we will create a simple Rancher install, which is a single host i
 
 Provision a Linux host with 64-bit Ubuntu 14.04, which must have a kernel of 3.10+. You can use your laptop, a virtual machine, or a physical server. Please make sure the Linux host has at least **1GB** memory.
 
-To install Docker on the server, follow these instructions, which are simplified from the [Docker](https://docs.docker.com/installation/ubuntulinux/) documentation. 
-
-```bash
-# Get the latest Docker package
-$ wget -qO- https://get.docker.com/ | sh
-# Verify that you have the latest version
-$ sudo docker version
-```
+To install Docker on the server, follow the instructions from [Docker](https://docs.docker.com/installation/ubuntulinux/). 
 
 ### Start Rancher Server
 
