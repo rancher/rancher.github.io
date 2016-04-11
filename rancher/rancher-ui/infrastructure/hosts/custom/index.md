@@ -14,7 +14,7 @@ Ensure that you are in the environment that you want to add hosts to. The enviro
 
 Once your hosts are added to Rancher, they are available for [our services]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/).
 
-> **Note:** Ensure that the time stamp of your host on your server and hosts are the same and you have the access to the containers on the host. For more information, see [Rancher accesses the shell/logs of a container]({{site.baseurl}}/rancher/faqs/containers/#container-access). 
+> **Note:** Ensure that the time stamp of your host on your server and hosts are the same and you have the access to the containers on the host. For more information, see [Rancher accesses the shell/logs of a container]({{site.baseurl}}/rancher/faqs/troubleshooting/#container-access). 
 
 ### Host Labels
 
