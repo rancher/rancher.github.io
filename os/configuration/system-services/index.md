@@ -81,9 +81,21 @@ Key | Value |Description
 ----|-----|---
 `io.rancher.os.detach` | Default: `true` | Equivalent of `docker run -d`. If set to `false`, equivalent of `docker run --detach=false`
 `io.rancher.os.scope` | `system` | Use this label to have the container deployed in system-docker instead of docker.
-`io.rancher.os.before`/`io.rancher.os.after` | Service Names (Comma separated list is accepted) | Used to determine order of when containers should be started
+`io.rancher.os.before`/`io.rancher.os.after` | Service Names (Comma separated list is accepted) | Used to determine order of when containers should be started. 
 `io.rancher.os.createonly` | Default: `false` | When set to `true`, only a `docker create` will be performed and not a `docker start`.
 `io.rancher.os.reloadconfig` | Default: `false`| When set to `true`, it reloads the configuration. 
+
+
+#### Example of how to order container deployment
+
+```yaml
+foo:
+  labels:
+    # Start foo before bar is launched
+    io.rancher.os.before: bar
+    # Start foo after baz has been launched
+    io.rancher.os.after: baz 
+```
 
 ### Environment
 
