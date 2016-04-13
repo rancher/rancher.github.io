@@ -94,10 +94,11 @@ Here is an example of a SQL command to create a database and users.
  GRANT ALL ON cattle.* TO 'cattle'@'localhost' IDENTIFIED BY 'cattle';
  ```
 <br>
+
 After the database and user is created, launch rancher server with the environment variables. 
 
 ```bash
-sudo docker run -d --restart=always -p 8080:8080 \
+$ sudo docker run -d --restart=always -p 8080:8080 \
     -e CATTLE_DB_CATTLE_MYSQL_HOST=<hostname or IP of MySQL instance> \
     -e CATTLE_DB_CATTLE_MYSQL_PORT=<port> \
     -e CATTLE_DB_CATTLE_MYSQL_NAME=<Name of Database> \
