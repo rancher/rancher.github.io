@@ -158,10 +158,8 @@ Rancher Compose CLI will require the CA certificate as part of the default store
 
 1. Launch the Rancher server container with the modified Docker command. The certificate **must** be called `ca.crt` inside the container. 
 
+    `$ sudo docker run -d --restart=always -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server`
 
-    ```bash
-    $ sudo docker run -d --restart=always -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server
-    ```
 
     > **Note:** If you are running NGINX or Apache in a container, you can directly link the instance and not publish the Rancher UI 8080 port.
 
