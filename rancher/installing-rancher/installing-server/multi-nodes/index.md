@@ -10,14 +10,19 @@ _Available as of v1.0.1+_
 
 ### Requirements 
 
-* MySQL database with at least 1 GB RAM and 50 connections per Rancher server node (e.g. A 3 node setup will need to support at least 150 connections)
-* External Load Balancer 
 * Nodes to be used in HA setup that meet the single node [requirements]({{site.baseurl}}/rancher/installing-rancher/installing-server/#requirements) 
+* MySQL database
+    * At least 1 GB RAM 
+    * 50 connections per Rancher server node (e.g. A 3 node setup will need to support at least 150 connections)
+* External Load Balancer 
+
 
 ### Recommendations for Larger Deployments 
 
+* Each Rancher server node should have a 4 GB or 8 GB heap size, which requires having at least 16 GB to 24 GB of RAM
 * MySQL database should have fast disks
-* Each Rancher server node should have a 4GB or 8 GB heap size, which requires having at least 16 to 24 GB of RAM
+* For true HA, a replicated MySQL database with proper backups is recommended. Using Galera and forcing writes to a single node, due to transaction locks, would be an alternative.
+
 
 ### Preparing for the High Availability (HA) Setup
 
