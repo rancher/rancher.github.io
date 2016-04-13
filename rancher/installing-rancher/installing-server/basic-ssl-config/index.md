@@ -24,6 +24,8 @@ Start Rancher server. We have added in `--name=rancher-server` to this command i
 ```bash
 $ sudo docker run -d --restart=always --name=rancher-server rancher/server
 ```
+<br>
+
 > **Note:** In our example, we have assumed the proxy will be running in another container. If you are planning to run a proxy from the host, you will need to expose port `8080` by adding `-p 8080:8080` to the `docker run` command.
 
 If you are converting an existing Rancher instance, the upgrade to the new Rancher instance will depend on how you launched your original Rancher instance. 
@@ -159,9 +161,10 @@ Rancher Compose CLI will require the CA certificate as part of the default store
 1. Launch the Rancher server container with the modified Docker command. The certificate **must** be called `ca.crt` inside the container. 
 
 
-    ```bash
-    $ sudo docker run -d --restart=always -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server
-    ```
+   ```bash
+   $ sudo docker run -d --restart=always -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server
+   ```
+    <br>
 
     > **Note:** If you are running NGINX or Apache in a container, you can directly link the instance and not publish the Rancher UI 8080 port.
 

@@ -18,7 +18,7 @@ Rancher is deployed as a set of Docker containers. Running Rancher is a simple a
 On the Linux machine with Docker installed, the command to start Rancher is simple.
 
 ```bash
-sudo docker run -d --restart=always -p 8080:8080 rancher/server
+$ sudo docker run -d --restart=always -p 8080:8080 rancher/server
 ```
 
 #### Rancher UI
@@ -38,7 +38,7 @@ In order to enable Active Directory or OpenLDAP for Rancher server with TLS, the
 Start Rancher by bind mounting the volume that has the certificate. The certificate **must** be called `ca.crt` inside the container. 
 
 ```bash
-sudo docker run -d --restart=always -p 8080:8080 \
+$ sudo docker run -d --restart=always -p 8080:8080 \
   -v /dir_that_contains_the_cert/cert.crt:/ca.crt rancher/server
 ```
 

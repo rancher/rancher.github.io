@@ -15,29 +15,31 @@ If you have launched Rancher server **without** using an [external DB]({{site.ba
 
 1. Stop the container.
 
-    ```bash
-    $ docker stop <container_name_of_original_server>
-    ```
+   ```bash
+   $ docker stop <container_name_of_original_server>
+   ```
 
 2. Create a `rancher-data` container. Note: This step can be skipped if you have already upgraded in the past and already have a `rancher-data` container.
     
-    ```bash
-    $ docker create --volumes-from <container_name_of_original_server> --name rancher-data rancher/server:<tag_of_previous_rancher_server>
-    ```
+   ```bash
+   $ docker create --volumes-from <container_name_of_original_server> \
+    --name rancher-data rancher/server:<tag_of_previous_rancher_server>
+   ```
 
 3. Pull the most recent image of Rancher Server. Note: If you skip this step and try to run the `latest` image, it will not automatically pull an updated image.
 
-    ```bash
-    $ docker pull rancher/server:latest
-    ```
+   ```bash
+   $ docker pull rancher/server:latest
+   ```
 
 4. Launch a new Rancher Server container using the database from the `rancher-data` container. Any changes in Rancher will be saved in the `rancher-data` container. If you seen an exception in the server regarding a log lock, please refer to [how to fix the log lock]({{site.baseurl}}/rancher/faqs/server/#databaselock).
     
     > **Note**: Depending on how long you've had Rancher server, certain database migrations may take longer than expected. Please do not stop upgrades in the middle of upgrading as you will hit a database migration error the next time you upgrade.
 
-    ```bash
-    $ docker run -d --volumes-from rancher-data --restart=always -p 8080:8080 rancher/server:latest
-    ```
+   ```bash
+   $ docker run -d --volumes-from rancher-data --restart=always \
+     -p 8080:8080 rancher/server:latest
+   ```
 
     > **Note:** If you set any environment variables or passed in a [ldap certificate]({{site.baseurl}}/rancher/installing-rancher/installing-server/#enabling-active-directory-or-openldap-for-tls) in your original Rancher server setup, you'll need to add those environment variables or certificate in the command. 
 
@@ -47,29 +49,31 @@ If you have launched Rancher server **without** using an [external DB]({{site.ba
 
 1. Stop the running Rancher Server container.
 
-    ```bash
-    $ docker stop <container_name_of_original_server>
-    ```
+   ```bash
+   $ docker stop <container_name_of_original_server>
+   ```
 
 2. Copy the database files out of the server container. Note: If you already have the database stored on the host, you can skip this step. Also, if the DB has been copied out of the container, it will be inside /<path>/mysql/ because of the way Docker copies it out. Be sure to account for this when bind mounting into the container. If you started with bind mounts, you will not need the mysql/.
 
-    ```bash
-    $ docker cp <container_name_of_original_server>:/var/lib/mysql <path on host>
-    ```
+   ```bash
+   $ docker cp <container_name_of_original_server>:/var/lib/mysql <path on host>
+   ```
 
 3. Now set the UID/GID for the folder so that the mysql user within the container has the correct ownership of the mysql mount.
 
-    ```bash
-    $ sudo chown -R 102:105 <path on host>
-    ```
+   ```bash
+   $ sudo chown -R 102:105 <path on host>
+   ```
 
 4. Start new server container.
 
-    ```bash
-    docker run -d -v <path_on_host>:/var/lib/mysql -p 8080:8080 --restart=always rancher/server:latest
-    ```
+   ```bash
+   $ docker run -d -v <path_on_host>:/var/lib/mysql -p 8080:8080 \
+     --restart=always rancher/server:latest
+   ```
+  <br>
 
-    > **Note:** It is important that you have trailing '/' at the end of the host path if you have copied a database out of a previous container. Otherwise, the directory ends up in the wrong place.
+   > **Note:** It is important that you have trailing '/' at the end of the host path if you have copied a database out of a previous container. Otherwise, the directory ends up in the wrong place.
 
 ### Rancher Agents 
 
