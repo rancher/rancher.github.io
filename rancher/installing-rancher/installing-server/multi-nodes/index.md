@@ -19,7 +19,7 @@ _Available as of v1.0.1+_
 
 ### Recommendations for Larger Deployments 
 
-* Each Rancher server node should have a 4 GB or 8 GB heap size, which requires having at least 16 GB to 24 GB of RAM
+* Each Rancher server node should have a 4 GB or 8 GB heap size, which requires having at least 8 GB or 16 GB of RAM
 * MySQL database should have fast disks
 * For true HA, a replicated MySQL database with proper backups is recommended. Using Galera and forcing writes to a single node, due to transaction locks, would be an alternative.
 
