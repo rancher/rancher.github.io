@@ -6,109 +6,76 @@ layout: rancher-default
 ## Installing Rancher Server (High Availability)
 ---
 
-As of the Beta release, Rancher server is capable of running in a High Availability (HA) configuration. We recognize that the setup is complex, and we will be working on making it easier to stand up as we approach GA. In the meantime, if you would like to experiment with Rancher running in HA, here is the basic outline.
+_Available as of v1.0.1_
 
-### Pre-requisites
+### Requirements 
 
-To launch a HA configuration Rancher needs the following:
-
-*  Shared MySQL DB instance
-*  Redis
-*  Zookeeper
-*  Load balancer to spread traffic across the Rancher instances
-*  A host to run the websocket-proxy on. (Can be one of the Rancher Server nodes)
+* Nodes to be used in HA setup that meet the single node [requirements]({{site.baseurl}}/rancher/installing-rancher/installing-server/#requirements) 
+* MySQL database
+    * At least 1 GB RAM 
+    * 50 connections per Rancher server node (e.g. A 3 node setup will need to support at least 150 connections)
+* External Load Balancer 
 
 
-Documentation for building and scaling reliable Redis and Zookeeper installations are outside the scope of this document. As far as Rancher is concerned though, Redis and Zookeeper do not need to persist the data used by Rancher. If either ZooKeeper or Redis go down, Rancher will also go down, but the data in those system does not need to be present to recover. 
+### Recommendations for Larger Deployments 
 
-For MySQL, you can run your own or use MySQL provided by a cloud provider. We have used Google Cloud SQL and AWS RDS MySQL. 
-
-Load balancing configuration can be handled in a number of ways. In our example configuration, servers are used in a round-robin configuration. The most basic health check that could be used is hitting the `/ping` url. It does not require authentication to receive the `ping` response.
-
-The websocket-proxy provides a single target for the Rancher agent nodes to call into. It is currently a single container, but work is going on to add HA to this service. 
+* Each Rancher server node should have a 4 GB or 8 GB heap size, which requires having at least 8 GB or 16 GB of RAM
+* MySQL database should have fast disks
+* For true HA, a replicated MySQL database with proper backups is recommended. Using Galera and forcing writes to a single node, due to transaction locks, would be an alternative.
 
 
-### Configuration
+### Preparing for the High Availability (HA) Setup
 
-When launching rancher server, the following environment variables will need to be set:
+1. Prepare a MySQL database with at least 1 GB RAM following the same directions as [starting a single node using an external database]({{site.baseurl}}/rancher/installing-rancher/installing-server/#using-an-external-database), but do not launch Rancher server according to those instructions. By default, users will only be able to access the database from localhost. You will need to grant access to the new user for the network where your Rancher nodes will reside.
+2. Configure an external load balancer that will balance traffic on ports 80 and 443 across a pool of nodes that will be running Rancher server. Depending on your cloud provider, it may be necessary to start the nodes before being able to configure the external load balancer.
+3. Prepare the nodes that will be used in the HA setup. These nodes should meet the same [requirements]({{site.baseurl}}/rancher/installing-rancher/installing-server/#requirements) as a single node setup of Rancher. (Optional) Pre-pulling the `rancher/server` image onto the Rancher nodes. 
 
-* Websocket proxy settings:
-  * CATTLE_HOST_API_PROXY_MODE: `ha`
-  * CATTLE_HOST_API_PROXY_HOST: `<host_IP:port>` 
+    Currently, our HA setup supports 3 cluster sizes. 
+    * 1 Node: Not really HA
+    * 3 Nodes: Any **one** host can fail
+    * 5 Nodes: Any **two** hosts can fail
+    
+    > **Note:** The nodes can be split between data centers connected with high speed low latency links within a region, but should not be attempted acrosss larger geographic regions. If you choose to split the nodes within a region, Zookeeper is used in our HA setup and requires a quorum to stay active. If you split the nodes between data centers, you will only be able to survive the region with the fewest nodes going down.
 
-   > **Note:** The IP that you configure for the websocket proxy needs be accessible from your browser and from the hosts. The hosts make outbound connections to it and browsers connect directly to it as well. `CATTLE_HOST_API_PROXY_HOST` for rancher/server would need to have the public IP of the server running the websocket proxy and the websocket proxy's -listen-address=<ip:port> param would need to be `0.0.0.0:<port>`.
+4. On one of the nodes, launch a Rancher server that will be used to generate the HA startup scripts. This script generating Rancher server will connect to the external MySQL database and populate the database schema. It will be used to bootstrap the HA deployment process. Eventually, the Rancher server container used in this step will be replaced with a HA configured Rancher server.   
+    
+    
+   ```bash
+   $ sudo docker run -d -p 8080:8080 \
+   -e CATTLE_DB_CATTLE_MYSQL_HOST=<hostname or IP of MySQL instance> \
+   -e CATTLE_DB_CATTLE_MYSQL_PORT=<port> \
+   -e CATTLE_DB_CATTLE_MYSQL_NAME=<Name of Database> \
+   -e CATTLE_DB_CATTLE_USERNAME=<Username> \
+   -e CATTLE_DB_CATTLE_PASSWORD=<Password> \
+   -v /var/run/docker.sock:/var/run/docker.sock \
+   rancher/server:v1.0.1
+   ```
 
-* Database:
-  * CATTLE_DB_CATTLE_MYSQL_HOST: `hostname or IP of MySQL instance`
-  * CATTLE_DB_CATTLE_MYSQL_PORT: `3306`
-  * CATTLE_DB_CATTLE_MYSQL_NAME: `Name of Database`
-  * CATTLE_DB_CATTLE_USERNAME: `Username`
-  * CATTLE_DB_CATTLE_PASSWORD: `Password`
-* Zookeeper:    
-  * CATTLE_ZOOKEEPER_CONNECTION_STRING: `comma separated list of zookeeper IPs ie. 10.0.1.2,10.0.1.3 will try connecting to 2181. Add :<port> for non-standard ports `
-* Redis:
-  * CATTLE_REDIS_HOSTS: `comma separated list of host:port server ips. ie 10.0.1.3:6379,10.0.1.4:6379`
-  * CATTLE_REDIS_PASSWORD: `optional Redis password`
+    <br>
 
-### Steps
+    > **Note:** Please be patient with this step, initialization may take up to 15 minutes to complete. 
 
-1. Each server must have the basic [system requirements]({{site.baseurl}}/rancher/installing-rancher/installing-server/) needed to run Rancher
-2. Verify all servers can talk to your Redis installation
-3. Verify all servers can talk to your ZooKeeper installation
-4. Setup your MySQL database: You will need to create a database and user before starting Rancher server.
+5. (Optional) Pre-pulling the `rancher/server` image onto the Rancher nodes. While the initialization is taking place for the script generating Rancher server, you can pre-pull images onto your nodes that will be used in the setup.
+ 
+   ```bash
+   # The version would be whatever was used in Step 4
+   $ sudo docker pull rancher/server:v1.0.1
+   ```
 
-    ```sql
-    CREATE DATABASE IF NOT EXISTS cattle COLLATE = 'utf8_general_ci' CHARACTER SET = 'utf8';
-    GRANT ALL ON cattle.* TO 'cattle'@'%' IDENTIFIED BY 'cattle';
-    GRANT ALL ON cattle.* TO 'cattle'@'localhost' IDENTIFIED BY 'cattle'; 
-    ```
+### Generating the Configuration Scripts 
 
-5. Launch your rancher server instances with this command:
-      
-      ```bash
-      sudo docker run -d --restart=always -p 8080:8080 \
-        -e CATTLE_DB_CATTLE_MYSQL_HOST=<hostname or IP of MySQL instance> \
-        -e CATTLE_DB_CATTLE_MYSQL_PORT=<port> \
-        -e CATTLE_DB_CATTLE_MYSQL_NAME=<Name of Database> \
-        -e CATTLE_DB_CATTLE_USERNAME=<Username> \
-        -e CATTLE_DB_CATTLE_PASSWORD=<Password> \
-        -e DEFAULT_CATTLE_MACHINE_EXECUTE=false \
-        -e CATTLE_HOST_API_PROXY_MODE=ha \
-        -e CATTLE_HOST_API_PROXY_HOST=<host_ip:port that is accessible from your browser and to all compute nodes> \
-        -e CATTLE_ZOOKEEPER_CONNECTION_STRING=<comma separated list of zookeeper IPs ie. 10.0.1.2,10.0.1.3> \
-        -e CATTLE_REDIS_HOSTS=<comma separated list of host:port server ips. ie 10.0.1.3:6379,10.0.1.4:6379> \
-        -e CATTLE_REDIS_PASSWORD=<optional Redis password> \
-        rancher/server
-      ```  
-       > **Note:** In order to start websocket-proxy, Rancher server needs to be up and running. Therefore, Rancher server needs to be started with the `CATTLE_HOST_API_PROXY_MODE` and `CATTLE_HOST_API_PROXY_HOST` variables to be able to use websocket-proxy.
-      
-6. Point your load balancer at the server targets
-7. Go to new installation ip: `http://<LB ip>:<port>`
-8. Bring up the websocket-proxy:
-   * download the Public Key to verify host tokens:
-     * `curl -X GET -O http(s)://<rancher>/v1/scripts/api.crt`
-   * Bring up websocket-proxy running on the host. (Do not use localhost)
-     * `docker run -d -p <port>:<port> -v $(pwd)/api.crt:/api.crt rancher/server websocket-proxy -jwt-public-key-file=/api.crt -listen-address=0.0.0.0:<port>` 
-9. Bring up `go-machine-service`
-   * Create a service account and API keys:
-      * Visit `http(s)://<rancher_server/v1/accounts` in a web browser.
-      * Click `+Create` button.
-          - kind: service
-          - name: RemoteMachineService
-          - uuid: RemoteMachineService
-      * Click `Show Request` then `Send Request`
-      * Click `Follow Self Link`
-      * In the body there is a links section with a credentials link, click it.
-      * Click `+Create`
-      * Click `Show Request`
-      * Click `Follow Self Link`
-      * Make note of publicValue and secretValue.
-   * Launch `go-machine-service` with this command:
-      
-      ```bash
-      sudo docker run -d --restart=always \
-        -e CATTLE_URL=http(s)://<Rancher URL>/v1 \
-        -e CATTLE_ACCESS_KEY=<Service accounts publicValue> \
-        -e CATTLE_SECRET_KEY=<Service accounts secretValue> \
-        rancher/server go-machine-service
-	  ```	
+1. Access the script generating Rancher server's UI at `http://<server_IP>:8080`. Under **Admin** -> **HA**, there will be a confirmation that Rancher server has successfully connected to an external database. If this is not set up correctly, please repeat steps 1 and 4 in the previous section. 
+2. Select the cluster size, which should be the number of Rancher server nodes that you created in step 3 in the previous section. 
+3. In the **Host Registration URL**, provide the external load balancer's IPV4 address or hostname.
+4. Select which certificate type you would like to use. Rancher can generate a self-signed certificate for you or you can use your own valid certificate. 
+5. Click on **Generate Config Script**. 
+6. Download the script and save it locally. 
+
+> **Note:** After the configuration script is saved, you can stop and remove the script generating Rancher server container. This will allow you to reuse that node for the HA setup.  
+
+### Launching Rancher in HA
+
+1. For each node that you want in HA, use the startup script to launch Rancher server. The script will start a Rancher server container that connects to the same external MySQL database created earlier.  
+2. Navigate to the IP or hostname of the external load balancer that you provided earlier and used in the **Host Registration URL** when generating the configuration scripts. Please note that it will take a couple of minutes before the UI is available as Rancher. If your UI doesn't become available, [view the status of the management stack]({{site.baseurl}}/rancher/faqs/server/#ha-monitoring). 
+3. Once the UI is available, you can prepare to add hosts to your HA nodes. Under the **Admin** -> **HA** tab, HA is now enabled and indicates the number of HA nodes are in your setup. For any host that you want to add on to your node, save the management certificate to `/var/lib/rancher/etc/ssl/ca.crt` with `400` permissions. The registration command will automatically be created to use the management certificate. 
+4. Once you have added all the hosts into your environment, your HA setup is complete and you can start launching [services in the UI]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/),  launching templates from the [Rancher Catalog]({{site.baseurl}}/rancher/catalog/) or start using [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/) to launch services.

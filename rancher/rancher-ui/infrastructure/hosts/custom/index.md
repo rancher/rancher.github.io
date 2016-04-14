@@ -51,7 +51,7 @@ For any hosts that are added, ensure that any security groups or firewalls allow
 If you are adding an agent host on the same machine as Rancher server, you must edit the command provided from the UI. Additionally, in order for the _rancher-agent_ container to be launched correctly, set the `CATTLE_AGENT_IP` environment variable to the public IP of the VM that Rancher server is running on.
 
 ```bash
-sudo docker run -d -e CATTLE_AGENT_IP=<IP_OF_RANCHER_SERVER> -v /var/run/docker....
+$ sudo docker run -d -e CATTLE_AGENT_IP=<IP_OF_RANCHER_SERVER> -v /var/run/docker....
 ```
 
 If you have added a host onto the same host as Rancher server, note that you will not be able to create any containers on the host that binds to port `8080`. Since the UI of the Rancher server relies on the `8080` port, there will be a port conflict and Rancher will stop working. If you require using port `8080` for your containers, you could launch Rancher server using a different port. 
@@ -75,7 +75,7 @@ No additional environment variables need to be added to the command to launch Ra
 By default, the IP of a VM with a private IP and public IP will be set to match the IP specified in the registration URL. For example, if a private IP is used in the registration URL, then the host's private IP will be used. If you wanted to change the host's IP address, you’ll need to edit the command provided from the UI. In order for the rancher-agent container to be launched correctly, set the CATTLE_AGENT_IP environment variable to the desired IP address. All the hosts within Rancher will need to be on the same network as Rancher server.
 
 ```bash
-sudo docker run -d -e CATTLE_AGENT_IP=<PRIVATE_IP> -v /var/run/docker....
+$ sudo docker run -d -e CATTLE_AGENT_IP=<PRIVATE_IP> -v /var/run/docker....
 ```
 
 If you need to correct the IP of your host after the agent has connected, re-run the custom command. If the network agent has already started on your hosts, you'll need to restart the network on agents in your environment for the IPsec rules inside the network agent to be configured properly. 

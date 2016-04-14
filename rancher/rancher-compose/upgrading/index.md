@@ -131,6 +131,8 @@ service2:
   - db:mysql
 ```
 
+By default, any load balancers or services linked to `service1` (i.e. inbound links) will automatically be updated with a new link to `service2`. If you do not wish for these links to be created, you can [set an option to not have them created]({{site.baseurl}}/rancher/rancher-compose/upgrading/#updating-inbound-links).
+
 > **Note:** There is no need for a `rancher-compose.yml` file used while upgrading services. By default, the scale of the new service is based on the scale of the old service. You can override this scale by passing in the `--scale` option. 
 
 ### Scaling during an Upgrade

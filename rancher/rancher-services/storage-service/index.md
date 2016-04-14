@@ -86,18 +86,18 @@ In this example, we're going to provide an example of how to use GlusterFS to ha
    * In the detailed page of your service, you can see all the containers launched on different hosts.
    * Select a container on one of the hosts and use the container's dropdown to select **Execute Shell**. In the container, check that the directory that you had set in the service creation exists. Create a file in the shared volume directly. 
         
-        ```bash
-        $ cd testvolume
-        $ vi test.yml
-        $ ls
-        test.yml
-        ```
+   ```bash
+   $ cd testvolume
+   $ vi test.yml
+   $ ls
+   test.yml
+   ```
    * Select a container on a **different** host and use the container's dropdown to select **Execute Shell**. In the container, check that the directory and file that was created in the previous container exists. 
         
-        ```bash
-        $ cd testvolume
-        $ ls
-        test.yml
-        ```
+   ```bash
+   $ cd testvolume
+   $ ls
+   test.yml
+   ```
 5. Checking the Volume Driver on the Host
    * Use `docker volume ls` to view the list of Docker volumes. One of the entries will be using the `convoy_gluster` driver with the volume name that was created in the service. In my example, `glustervol1` will be listed. 
