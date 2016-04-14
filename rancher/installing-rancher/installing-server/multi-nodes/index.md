@@ -35,7 +35,7 @@ _Available as of v1.0.1_
     * 3 Nodes: Any **one** host can fail
     * 5 Nodes: Any **two** hosts can fail
     
-    > **Note: The nodes can be split between data centers connected with high speed low latency links within a region, but should not be attempted acrosss larger geographic regions. If you choose to split the nodes within a region, Zookeeper is used in our HA setup and requires a quorum to stay active. If you split the nodes between data centers, you will only be able to survive the region with the fewest nodes going down.
+    > **Note:** The nodes can be split between data centers connected with high speed low latency links within a region, but should not be attempted acrosss larger geographic regions. If you choose to split the nodes within a region, Zookeeper is used in our HA setup and requires a quorum to stay active. If you split the nodes between data centers, you will only be able to survive the region with the fewest nodes going down.
 
 4. On one of the nodes, launch a Rancher server that will be used to generate the HA startup scripts. This script generating Rancher server will connect to the external MySQL database and populate the database schema. It will be used to bootstrap the HA deployment process. Eventually, the Rancher server container used in this step will be replaced with a HA configured Rancher server.   
     
