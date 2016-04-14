@@ -6,7 +6,7 @@ layout: rancher-default
 ## Installing Rancher Server (High Availability)
 ---
 
-_Available as of v1.0.1+_
+_Available as of v1.0.1_
 
 ### Requirements 
 
