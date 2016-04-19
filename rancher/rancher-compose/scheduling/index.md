@@ -98,14 +98,14 @@ Rancher automatically creates host labels related to linux kernel version and Do
 Key | Value | Description
 ----|----|----
 `io.rancher.host.linux_kernel_version` | Linux Kernel Version on Host (e.g, `3.19`) |  Version of the Linux kernel running on the host
-`io.rancher.host.docker_version` | Docker Engine Version on the host (e.g. `1.9.1`) | Docker Engine Version on the host
+`io.rancher.host.docker_version` | Docker Engine Version on the host (e.g. `1.10.3`) | Docker Engine Version on the host
 
 <br>
 
 ```yaml
 labels:
-# Host MUST be running Docker version 1.9.1
-io.rancher.scheduler.affinity:host_label: io.rancher.host.docker_version=1.9.1
+# Host MUST be running Docker version 1.10.3
+io.rancher.scheduler.affinity:host_label: io.rancher.host.docker_version=1.10.3
 # Host MUST not be running Docker version 1.6
 io.rancher.scheduler.affinity:host_label_ne: io.rancher.host.docker_version=1.6 
 ```

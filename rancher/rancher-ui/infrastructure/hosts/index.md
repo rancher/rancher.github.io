@@ -9,7 +9,7 @@ Within Rancher, we provide easy instructions to add your host from the Cloud pro
 
 ### Hosts Requirements
 
-* Any modern Linux distribution that supports Docker 1.9.1+. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
+* Any modern Linux distribution that supports Docker 1.10.3. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
 * 1GB RAM 
 * Recommended CPU w/ AES-NI
 
@@ -82,7 +82,7 @@ Rancher automatically creates host labels related to linux kernel version and Do
 Key | Value | Description
 ----|----|----
 `io.rancher.host.linux_kernel_version` | Linux Kernel Version on Host (e.g, `3.19`) |  Version of the Linux kernel running on the host
-`io.rancher.host.docker_version` | Docker Version on the host (e.g. `1.9.1`) | Docker Engine Version on the host
+`io.rancher.host.docker_version` | Docker Version on the host (e.g. `1.10.3`) | Docker Engine Version on the host
 
 
 ### Hosts behind a Proxy

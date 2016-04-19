@@ -15,7 +15,7 @@ In the [Rancher catalog]({{site.baseurl}}/rancher/catalog/), Rancher provides st
 ### Limitations
 
 * Only one Convoy stack can be deployed once per one Rancher [environment]({{site.baseurl}}/rancher/configuration/environments/). 
-* Users are able to create service/containers and models exactly the same behavior as if you deployed a container using native Docker 1.9.1 commands. When creating a new container, the following rules apply:
+* Users are able to create service/containers and models exactly the same behavior as if you deployed a container using native Docker 1.10.3 commands. When creating a new container, the following rules apply:
     * If the volume name  (e.g. __foo__:/path/in/container) is specified with a driver name (e.g. Convoy-Gluster), the container will be deployed on one of the hosts that belong to the Convoy-Gluster Storage Pool with a new volume "foo" created.
     * If the volume name (e.g. __foo__:/path/in/container) is specified with or without a driver name and "foo" exists in Rancher, the container will be launched on a host from that Storage Pool that has access to "foo".
     * If the volume name  (e.g. __foo__:/path/in/container) is specified with __NO__ driver name and "foo" __*DOES NOT*__ exist in Rancher, it will be created as a __local__ disk volume for that container.  At this point, normal scheduling rules apply. 
