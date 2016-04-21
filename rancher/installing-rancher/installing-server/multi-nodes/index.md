@@ -91,6 +91,3 @@ _Available as of v1.0.1_
     
     > **Note:** If you are using AWS, you will need to specify the IP of the hosts that you are adding into Rancher. If you are adding a [custom host]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom/), you can specify the public IP in the UI and the command to launch Rancher agent will be editted to specify the IP.  If you are adding a host through the UI, after the host has been added into Rancher, you will need to [ssh into the host]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/#accessing-hosts-from-the-cloud-providers) to re-run the custom command to re-launch Rancher agent so that the IP is correct.
 
-### HA Maintenance
-
-If one of your nodes becomes unusable, you can add another node into HA by running the same configuration script that was used to start the previous HA nodes. 
