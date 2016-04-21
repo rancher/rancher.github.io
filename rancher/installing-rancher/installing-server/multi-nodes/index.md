@@ -76,8 +76,7 @@ _Available as of v1.0.1_
 4. Select which certificate type you would like to use. Rancher can generate a self-signed certificate for you or you can use your own valid certificate. 
 5. Click on **Generate Config Script**. 
 6. Download the script and save it locally. 
-
-> **Note:** After the configuration script is saved, stop the script generating Rancher server container. 
+7. After the configuration script is saved, stop the script generating Rancher server container. 
 
 ### Launching Rancher in HA
 
