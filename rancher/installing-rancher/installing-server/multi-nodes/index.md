@@ -12,8 +12,10 @@ _Available as of v1.0.1_
 
 * Nodes to be used in HA setup that meet the single node [requirements]({{site.baseurl}}/rancher/installing-rancher/installing-server/#requirements) 
     * Ports that need to be opened on Nodes
-        * Global Access: `22`, `80`, `443`, `18080` (Port exposed to [view the management stack]({{site.baseurl}}/rancher/faqs/server/#ha-monitoring) as it comes up)
-        * Access between nodes: `500`, `4500`, `2181`,  `2376`, `2888`, `3888`,`6379`
+        * Global Access: TCP Ports `22` , `80`, `443`, `18080` (Optional: Used to [view the management stack]({{site.baseurl}}/rancher/faqs/server/#ha-monitoring) as it comes up)
+        * Access between nodes: 
+            * UDP Ports `500`, `4500`
+            * TCP Ports: `2181`,  `2376`, `2888`, `3888`,`6379`
 * MySQL database
     * At least 1 GB RAM 
     * 50 connections per Rancher server node (e.g. A 3 node setup will need to support at least 150 connections)
@@ -75,13 +77,13 @@ _Available as of v1.0.1_
 5. Click on **Generate Config Script**. 
 6. Download the script and save it locally. 
 
-> **Note:** After the configuration script is saved, you should stop and remove the script generating Rancher server container. You should remove this container before running the HA script to add the same node to your HA setup.  
+> **Note:** After the configuration script is saved, you should stop the script generating Rancher server container. 
 
 ### Launching Rancher in HA
 
 1. For each node that you want in HA, use the startup script to launch Rancher server on all nodes. The script will start a Rancher server container that connects to the same external MySQL database created earlier. 
 
-   > **Note:** If you are reusing the node that created the HA script, please stop and remove the script generating Rancher server container before running the script.
+    > **Note:** Please ensure that you have stoped the script generating Rancher server container after you generate the `rancher-ha.sh` launch script. Otherwise, if you try to launch the HA script on that node, there will be a port conflict and the HA node will fail to start.
 
 2. Navigate to the IP or hostname of the external load balancer that you provided earlier and used in the **Host Registration URL** when generating the configuration scripts. Please note that it will take a couple of minutes before the UI is available as Rancher. If your UI doesn't become available, [view the status of the management stack]({{site.baseurl}}/rancher/faqs/server/#ha-monitoring). 
 3. Once the UI is available, you can prepare to add hosts to your HA nodes. Under the **Admin** -> **HA** tab, HA is now enabled and indicates the number of HA nodes are in your setup. For any host that you want to add on to your node, save the management certificate to `/var/lib/rancher/etc/ssl/ca.crt` with `400` permissions. The registration command will automatically be created to use the management certificate. 
