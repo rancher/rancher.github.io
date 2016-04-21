@@ -86,3 +86,7 @@ _Available as of v1.0.1_
 2. Navigate to the IP or hostname of the external load balancer that you provided earlier and used in the **Host Registration URL** when generating the configuration scripts. Please note that it will take a couple of minutes before the UI is available as Rancher. If your UI doesn't become available, [view the status of the management stack]({{site.baseurl}}/rancher/faqs/server/#ha-monitoring). 
 3. Once the UI is available, you can prepare to add hosts to your HA nodes. Under the **Admin** -> **HA** tab, HA is now enabled and indicates the number of HA nodes are in your setup. For any host that you want to add on to your node, save the management certificate to `/var/lib/rancher/etc/ssl/ca.crt` with `400` permissions. The registration command will automatically be created to use the management certificate. 
 4. Once you have added all the hosts into your environment, your HA setup is complete and you can start launching [services in the UI]({{site.baseurl}}/rancher/rancher-ui/applications/stacks/adding-services/),  launching templates from the [Rancher Catalog]({{site.baseurl}}/rancher/catalog/) or start using [rancher-compose]({{site.baseurl}}/rancher/rancher-compose/) to launch services.
+
+### HA Maintenance
+
+If one of your nodes becomes unusable, you can add another node into HA by running the same configuration script that was used to start the previous HA nodes. 
