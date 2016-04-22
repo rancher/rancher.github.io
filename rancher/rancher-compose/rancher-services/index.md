@@ -74,7 +74,7 @@ lb:
   - 80:80
   # Listen on public port 82 and by default forward traffic to private port 81 using HTTP
   - 82:81
-  # Listen on public port 9999 using TCP and not HTTP
+  # Assign a random public port and direct traffic to private port 9999 using TCP and not HTTP
   - 9999/tcp
   links: 
   # Target services in the same stack will be listed as a link
