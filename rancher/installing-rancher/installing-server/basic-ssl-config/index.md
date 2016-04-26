@@ -26,7 +26,7 @@ $ sudo docker run -d --restart=always --name=rancher-server rancher/server
 ```
 <br>
 
-> **Note:** In our example, we have assumed the proxy will be running in another container. If you are planning to run a proxy from the host, you will need to expose port `8080` by adding `-p 8080:8080` to the `docker run` command.
+> **Note:** In our example, we have assumed the proxy will be running in another container. If you are planning to run a proxy from the host, you will need to expose port `8080` locally by adding `-p 127.0.0.1:8080:8080` to the `docker run` command.
 
 If you are converting an existing Rancher instance, the upgrade to the new Rancher instance will depend on how you launched your original Rancher instance. 
 
