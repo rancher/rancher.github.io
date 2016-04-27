@@ -5,7 +5,7 @@ description: Documentation for Rancher
 URL: http://rancher.github.io
 baseurl: ""
 
-markdown: redcarpet
+markdown: kramdown
 highlighter: rouge
 kramdown:
   input: GFM
