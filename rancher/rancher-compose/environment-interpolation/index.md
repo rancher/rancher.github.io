@@ -20,7 +20,7 @@ On our machine running `rancher-compose`, we have an environment variable, `IMAG
 ```bash
 # Image tag is set as environment variable
 $ env | grep IMAGE
-$IMAGE_TAG=14.04
+IMAGE_TAG=14.04
 # Run rancher-compose
 $ rancher-compose up
 ```
