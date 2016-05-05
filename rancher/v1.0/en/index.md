@@ -6,7 +6,6 @@ lang: en
 
 ---
 
-testing
 
 ## Overview of Rancher
 ---
