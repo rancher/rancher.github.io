@@ -33,10 +33,10 @@ You can generate a new SSH key for `cloud-config.yml` file by following this [ar
 
 Copy the public SSH key into RancherOS before installing to disk. 
 
-Now that our `cloud_config.yml` contains our public SSH key, we can move on to installing RancherOS to disk!
+Now that our `cloud-config.yml` contains our public SSH key, we can move on to installing RancherOS to disk!
 
 ```bash
-$ sudo ros install -c cloud_config.yml -d /dev/sda
+$ sudo ros install -c cloud-config.yml -d /dev/sda
 INFO[0000] No install type specified...defaulting to generic 
 Installing from rancher/os:v0.4.0
 Continue [y/N]:

@@ -5,7 +5,7 @@ This readme file includes information pertaining to the documentation project fo
 Rancher is an open source project that provides a complete platform for operating Docker in production. It provides infrastructure services such as multi-host networking, global and local load balancing, and volume snapshots. It integrates native Docker management capabilities such as Docker Machine and Docker Swarm. It offers a rich user experience that enables devops admins to operate Docker in production at large scale.
 
 ## Rancher OS
-The smallest, easiest way to run Docker in production at scale. Everything in RancherOS is a container managed by Docker. This includes system services such as udev and rsyslog. RancherOS includes only the bare minimum amount of software needed to run Docker.
+The smallest, easiest way to run Docker in production at scale. Everything in RancherOS is a container managed by Docker. This includes system services such as udev and syslog. RancherOS includes only the bare minimum amount of software needed to run Docker.
 
 ## Rancher Labs Documentation website
 Rancher documentation is available at <http://docs.rancher.com/rancher/>. 
