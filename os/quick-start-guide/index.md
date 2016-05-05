@@ -27,7 +27,7 @@ $ docker-machine ssh <MACHINE-NAME>
 
 ### A First Look At RancherOS
 
-There are two Docker daemons running in RancherOS. The first is called **system-docker**, which is where RancherOS runs system services like ntpd and rsyslogd. You can use the `system-docker` command to control the **system-docker** daemon. 
+There are two Docker daemons running in RancherOS. The first is called **system-docker**, which is where RancherOS runs system services like ntpd and syslog. You can use the `system-docker` command to control the **system-docker** daemon. 
 
 The other Docker daemon running on the system is **docker**, which can be accessed by using the normal `docker` command.
 
