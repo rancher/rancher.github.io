@@ -54,9 +54,6 @@ All of repositories are located within our main GitHub [page](https://github.com
 
 [RancherOS Services Repo](https://github.com/rancher/os-services): This repo is where any [system-services]({{site.baseurl}}/os/system-services/) can be contributed.
 
-[RancherOS Vagrant Repo](https://github.com/rancher/os-vagrant): We've created an easy way to spin up RancherOS using [Vagrant]({{site.baseurl}}/os/getting-started/docs). 
-
-
 ## Bugs
 
 If you find any bugs or are having any trouble, please contact us by filing an [issue](https://github.com/rancher/os/issues/new). 

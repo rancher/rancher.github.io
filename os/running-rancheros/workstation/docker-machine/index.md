@@ -27,6 +27,8 @@ Before moving forward, you'll need to have VirtualBox installed. Download it dir
 $ docker-machine create -d virtualbox --virtualbox-boot2docker-url <LOCATION-OF-RANCHEROS-ISO> <MACHINE-NAME>
 ```
 
+<br>
+
 > **Note:** Instead of downloading the ISO, you can directly use the URL for the `rancheros.iso`. 
 
 Example with RancherOS v0.4.0 link:

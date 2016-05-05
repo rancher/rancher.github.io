@@ -7,121 +7,67 @@ layout: os-default
 ## Quick Start Guide
 ---
 
-If you have a specific RanchersOS machine requirements, please check out our [guides on running RancherOS]({{site.baseurl}}/os/running-rancheros/). With the rest of this guide, we'll start up a RancherOS using [Vagrant]({{site.baseurl}}/os/running-rancheros/workstation/vagrant/) and show you some of what RancherOS can do.
+If you have a specific RanchersOS machine requirements, please check out our [guides on running RancherOS]({{site.baseurl}}/os/running-rancheros/). With the rest of this guide, we'll start up a RancherOS using [docker machine]({{site.baseurl}}/os/running-rancheros/workstation/docker-machine/) and show you some of what RancherOS can do.
 
-### Launching RancherOS using Vagrant
+### Launching RancherOS using Docker Machine
 
-We have created a [RancherOS Vagrant project](https://github.com/rancher/os-vagrant) that allows you to quickly launch RancherOS on your local machine. We have a more detailed guide on [Vagrant].
+Before moving forward, you'll need to have [Docker Machine](https://docs.docker.com/machine/) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed. Once you have VirtualBox and Docker Machine installed, it's just one command to get RancherOS running. 
 
-1. Vagrant must be installed on your local machine. Vagrant can be downloaded and installed from [here](http://www.vagrantup.com/downloads.html).
+```bash
+$ docker-machine create -d virtualbox --virtualbox-boot2docker-url https://releases.rancher.com/os/latest/rancheros.iso <MACHINE-NAME>
+```
 
-2. Clone the [RancherOS Vagrant repository](https://github.com/rancher/os-vagrant). Clone the repo and go into the newly cloned directory.
+That's it! You're up and running a RancherOS instance.
 
+To log into the instance, just use the docker-machine command.
 
-    ```bash
-    $ git clone https://github.com/rancher/os-vagrant.git
-    $ cd os-vagrant
-    ```
-
-3. Startup your VM with `vagrant up`.  
-
-    ```bash
-    $ vagrant up
-    Bringing machine 'rancher-01' up with 'virtualbox' provider...
-    …
-    …
-    ==> rancher-01: Machine booted and ready!
-    ==> rancher-01: Configuring and enabling network interfaces...
-    ```
-
-4. Log into your VM with `vagrant ssh`. 
-
-    ```bash
-    $ vagrant ssh
-    ```
-
-With those simple commands, you're up and running a RancherOS instance.
+```bash
+$ docker-machine ssh <MACHINE-NAME>
+```
 
 ### A First Look At RancherOS
 
-Let's start checking out what processes are running on the system.
-
-```sh
-$ ps aux
-PID   USER 	COMMAND
-1 	root 	docker -d -s overlay -b none --restart=false -H unix:///var/run/system-docker.sock
-…..
-308     root 	ntpd -d
-314     root 	rsyslogd -n
-322     root 	docker -d -s overlay --tlsverify --tlscacert=/etc/docker/tls/ca.pem --tlscert=/etc/docker/tls/serve
-…..
-
-```
-
-As you can see, the first process on the system, PID 1, is the Docker daemon, called **system-docker**. This is where RancherOS runs system services like ntpd and rsyslogd. You can use the `system-docker` command to control the **system-docker** daemon. 
+There are two Docker daemons running in RancherOS. The first is called **system-docker**, which is where RancherOS runs system services like ntpd and rsyslogd. You can use the `system-docker` command to control the **system-docker** daemon. 
 
 The other Docker daemon running on the system is **docker**, which can be accessed by using the normal `docker` command.
 
-Use `docker images` to see the images that the system has:
 
-```bash
-$ docker images
-REPOSITORY   TAG	IMAGE ID	CREATED	VIRTUAL SIZE
-```
-
-At this point, there are no containers running on the `docker` daemon. However, if you run the same command against the `system-docker` instance you’ll see a number of system services that are shipped with RancherOS. 
+When you first launch RancherOS, there are no containers running in the `docker` daemon. However, if you run the same command against the `system-docker` instance, you’ll see a number of system services that are shipped with RancherOS. 
 
 > **Note:** `system-docker` can only be used by root, so it is necessary to use the `sudo` command whenever you want to interact with `system-docker`.
 
 ```bash
-$ sudo system-docker images
-REPOSITORY  TAG         IMAGE ID        CREATED     	VIRTUAL SIZE
-syslog  	latest  	92855074bb56    46 hours ago    18.09 MB
-syslog      v0.0.1      92855074bb56    46 hours ago    18.09 MB
-ntp         latest      6560c12b3f56    46 hours ago    18.09 MB
-ntp         v0.0.1      6560c12b3f56    46 hours ago    18.09 MB
-rescue      latest      27c5b8ae9b7c    46 hours ago    18.1 MB
-rescue      v0.0.1      27c5b8ae9b7c    46 hours ago    18.1 MB
-console     latest      ee3a47bd7309    46 hours ago    18.1 MB
-console     v0.0.1      ee3a47bd7309    46 hours ago	18.1 MB
-userdocker  latest  	c0196a52a7c4    46 hours ago    18.35 MB
-userdocker  v0.0.1      c0196a52a7c4    46 hours ago    18.35 MB
-cloudinit   latest      7dc2bc8c2ad5	46 hours ago	18.09 MB
-cloudinit   v0.0.1      7dc2bc8c2ad5    46 hours ago	18.09 MB
-…….
-```
-
-All of these images are available for use by `system-docker` daemon, some of them are run at boot time, and others, such as the `console`, `docker`, `rsyslog`, and `ntp` containers are always running.
-
-```bash
 $ sudo system-docker ps
-CONTAINER ID    IMAGE   COMMAND      	CREATED         	STATUS         PORTS             NAMES
-5ff08dbb57ce   console:latest 	"/usr/sbin/console.s   About an hour ago   Up About an hour console
-56ac381d4acb   userdocker:latest   "/docker.sh"	About an hour ago   Up About an hour   userdocker    	 
-f0dd31b1f7a8   syslog:latest   	"/syslog.sh"   	About an hour ago   Up About an hour    syslog         	 
-0c7154630edd   ntp:latest      	"/ntp.sh"     	About an hour ago   Up About an hour    ntp
+CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS               NAMES
+4710a91a0729        rancher/os-docker:v0.4.4    "/usr/sbin/entry.sh /"   6 minutes ago       Up 6 minutes                            docker
+7ef4fad1612c        rancher/os-console:v0.4.4   "/usr/sbin/entry.sh /"   6 minutes ago       Up 6 minutes                            console
+1b436b6b7fdb        rancher/os-network:v0.4.4   "/usr/sbin/entry.sh /"   6 minutes ago       Up 6 minutes                            network
+2ce47a55d1bd        rancher/os-ntp:v0.4.4       "/usr/sbin/entry.sh /"   6 minutes ago       Up 6 minutes                            ntp
+c2237144ec41        rancher/os-udev:v0.4.4      "/usr/sbin/entry.sh /"   6 minutes ago       Up 6 minutes                            udev
+5373e592dc51        rancher/os-acpid:v0.4.4     "/usr/sbin/entry.sh /"   6 minutes ago       Up 6 minutes                            acpid
+c5d8cd81a94c        rancher/os-syslog:v0.4.4    "/usr/sbin/entry.sh /"   6 minutes ago       Up 6 minutes                            syslog
 ```
 
-## Deploying a Docker Container
+Some containers are run at boot time, and others, such as the `console`, `docker`, etc. containers are always running.
+
+## Using RancherOS
+---
+
+### Deploying a Docker Container
 
 Let's try to deploy a normal Docker container on the `docker` daemon.  The RancherOS `docker` daemon is identical to any other Docker environment, so all normal Docker commands work.
 
-The following is an example of deploying a small nginx container installed on a Busybox Linux. To start a Docker container in the `docker` environment, use the following command:
-
 ```bash
-$ docker run -d --name nginx -p 8000:80 husseingalal/nginxbusy
-be2a3c972b75e95cd162e7b4989f66e2b0ed1cb90529c52fd93f6c849b01840f
+$ docker run -d nginx 
 ```
 
-You can see that the nginx container is up and running, using `docker ps` command:
+You can see that the nginx container is up and running:
 
 ```sh
 $ docker ps
-CONTAINER ID        IMAGE                           COMMAND             CREATED             STATUS              PORTS                  NAMES
-be2a3c972b75        husseingalal/nginxbusy:latest   "/usr/sbin/nginx"   3 seconds ago       Up 2 seconds        0.0.0.0:8000->80/tcp   nginx
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+e99c2c4b8b30        nginx               "nginx -g 'daemon off"   12 seconds ago      Up 11 seconds       80/tcp, 443/tcp     drunk_ptolemy
 ```
-
-> **Note:** The `rancher` user belongs to docker group, which is why we're able to use docker without sudo privileges.
 
 ### Deploying A System Service Container
 
@@ -140,19 +86,18 @@ RUN npm install
 ENTRYPOINT ["node","server"]
 ```
 
-I used `hwestphal/nodebox` image, which uses a busybox image and installs `node.js` and `npm`. I downloaded the source code of Linux-dash, and finally I ran the server. This Docker image is only 32MB, and linux-dash will run on port 80 by default.
+Using the `hwestphal/nodebox` image, which uses a busybox image and installs `node.js` and `npm`. We downloaded the source code of Linux-dash, and then ran the server. Linux-dash will run on port 80 by default.
 
 To run this container with system-docker use the following command:
 
 ```sh
 $ sudo system-docker run -d --net=host --name busydash husseingalal/busydash
 ```
-
-Note that I used `--net=host` to tell `system-docker` not to containerize the container's networking, and use the host’s networking instead. After running the container, you can see the monitoring server by accessing `http://SERVER_IP`.
+In the commad, we used `--net=host` to tell `system-docker` not to containerize the container's networking, and use the host’s networking instead. After running the container, you can see the monitoring server by accessing `http://<IP_OF_MACHINE`.
 
 ![System Docker Container]({{site.baseurl}}/img/os/Rancher_busydash.png)
 
-To make the container survive during the reboots, you should create the `/opt/rancher/bin/start.sh` script, and add the docker start line to launch the docker at each startup:
+To make the container survive during the reboots, you can create the `/opt/rancher/bin/start.sh` script, and add the docker start line to launch the docker at each startup.
 
 ```bash
 $ sudo mkdir -p /opt/rancher/bin
@@ -177,33 +122,19 @@ $ sudo ros config get rancher.dns
 - 8.8.4.4
 ```
 
-You can use `ros` to customize the console and replace the native Busybox console with the consoles from other Linux distributions. Supported consoles are available in the [os-services repository](https://github.com/rancher/os-services). In order to enable the Ubuntu console use the following command:
+
+When using the native Busybox console, any changes to the console will be lost after reboots, only changes to `/home` or `/opt` will be persistent. The console always executes **/opt/rancher/bin/start.sh** at each startup. You can use `ros` to enable a [persistent console]({{site.baseurl}}/os/configuration/custom-console/#console-persistence) and replace the native Busybox console. In order to enable the Ubuntu console, use the following command:
 
 ```sh
 $ sudo ros service enable ubuntu-console
 $ sudo reboot
 ```
 
-Any changes to the console or the system containers will be lost after reboots, any changes to `/home` or `/opt` will be persistent. The console always executes **/opt/rancher/bin/start.sh** at each startup. 
+<br>
 
-
-### Using Rancher Management platform with RancherOS
-
-Rancher Management platform can be used to Manage Docker containers on RancherOS machines, in the following example I am going to illustrate how to set up Rancher platform and register RancherOS installed on EC2 machine, first you need to run Rancher platform on a machine using the following command:
-
-```bash
-$ sudo docker run -d --restart=always -p 8080:8080 rancher/server
-```
-
-You can access the Rancher server by going to the `http://SERVER_IP:8080`. It might take a couple of minutes before it is available.
-
-> **Note:** If you are trying to use an EC2 instance, you will need to make sure that the security group for your EC2 instance has TCP port `8080` has been enabled in order to view the UI. You will need to make sure UDP ports `500` and `4500` are enabled for IPsec networking, which is how Rancher communicates to other hosts.
- 
-The next step is to register a RancherOS machine with Rancher platform. Click on **Infrastructure** -> **Hosts** -> **Add Host** button. Select the **Custom** option and get the `docker` command to run in your RancherOS. Typically, we recommend having the Rancher server and hosts be on separate VMs, but in our example, we will use the same RancherOS instance. 
-
-Once your host shows up, you can start to deploy your Docker containers on RancherOS using the Rancher management platform, pretty cool, right?
+> **Note:** You must reboot after enabling a console.
 
 ### Conclusion
 
-RancherOS is a simple Linux distribution ideal for running Docker.  By embracing containerization of system services and leveraging Docker for management, RancherOS hopes to provide a very reliable, and easy to manage OS for running containers.  To stay up to date, please follow the RancherOS [GitHub site](https://github.com/rancher/os).  
+RancherOS is a simple Linux distribution ideal for running Docker.  By embracing containerization of system services and leveraging Docker for management, RancherOS hopes to provide a very reliable, and easy to manage OS for running containers. 
 
