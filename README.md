@@ -1,15 +1,27 @@
 # Rancher Labs Documentation
 This readme file includes information pertaining to the documentation project for both Rancher and Rancher OS.
+
 ## Rancher
 Rancher is an open source project that provides a complete platform for operating Docker in production. It provides infrastructure services such as multi-host networking, global and local load balancing, and volume snapshots. It integrates native Docker management capabilities such as Docker Machine and Docker Swarm. It offers a rich user experience that enables devops admins to operate Docker in production at large scale.
+
 ## Rancher OS
-The smallest, easiest way to run Docker in production at scale. Everything in RancherOS is a container managed by Docker. This includes system services such as udev and rsyslog. RancherOS includes only the bare minimum amount of software needed to run Docker. This keeps the binary download of RancherOS to about 25MB. Everything else can be pulled in dynamically through Docker.
+The smallest, easiest way to run Docker in production at scale. Everything in RancherOS is a container managed by Docker. This includes system services such as udev and rsyslog. RancherOS includes only the bare minimum amount of software needed to run Docker.
+
 ## Rancher Labs Documentation website
-Rancher documentation is available at <http://docs.rancher.com/rancher/>
+Rancher documentation is available at <http://docs.rancher.com/rancher/>. 
+
+As Rancher has gone GA, we've added in version control. The default Rancher docs site will always be referring to the latest release. We will branch off specific versions of Rancher that are deemed GA, which would also be tagged as `rancher/server:stable`. 
+<br>
+Currently, we've added support for Chinese version of the docs site per communtiy request. Currently, Rancher will not be actively translating the docs site, but we welcome PRs. 
+<br>
 Rancher OS documentation is available at <http://docs.rancher.com/os/>
+
 ## Contributing to Rancher Labs Documentation Project
+
 ### About Rancher Labs Documentation Site
+
 Rancher Labs documentation is hosted on GitHub Pages and published online by using Jekyll, an easy blog-aware static website generator. For more details on how to set up Jekyll, we recommend you to read <https://help.github.com/articles/using-jekyll-with-pages/>. If you are using Windows, we strongly advise you to follow the instruction given at <http://jekyllrb.com/docs/windows/>.
+
 For information on editing .md files (Markdown), refer to <https://daringfireball.net/projects/markdown/syntax>
 ### Setting up the Git Environment
 In your browser, navigate to <https://github.com/rancher/rancher.github.io>

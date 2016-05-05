@@ -1,3 +1,7 @@
+.sidebar-nav .btn-group {
+    margin: 15px 0 0 15px;
+}
+
 BODY {
   background-color: #f0f2f2;
   font-family: 'Lato', sans-serif;
@@ -26,6 +30,7 @@ BODY {
         font-weight: 300;
     }
 }
+
 
 pre {
     padding: 0;
