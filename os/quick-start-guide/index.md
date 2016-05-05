@@ -127,12 +127,9 @@ When using the native Busybox console, any changes to the console will be lost a
 
 ```sh
 $ sudo ros service enable ubuntu-console
+# You must reboot in order to switch to the ubuntu console
 $ sudo reboot
 ```
-
-<br>
-
-> **Note:** You must reboot after enabling a console.
 
 ### Conclusion
 
