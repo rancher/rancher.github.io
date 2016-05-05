@@ -79,3 +79,7 @@ $ sudo docker run -d -e CATTLE_AGENT_IP=<NEW_HOST_IP> --privileged \
 If your host is deleted outside of Rancher, then Rancher server will continue to show the host until it’s removed. Typically, these hosts will show up in a _Reconnecting_ state and never be able to reconnect. You will be able to **Delete** these hosts to remove them from the UI. 
 
 If you have services that have deployed containers onto the `Reconnecting` hosts, they will only be re-scheduled to other hosts if you have added [health checks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/health-checks/). 
+
+### Why is the same host showing up in the UI multiple times?
+
+If you are using boot2docker to add hosts, the hosts cannot persist `var/lib/rancher`, which is what Rancher uses to store necessary information for identify hosts. 
