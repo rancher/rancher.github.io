@@ -8,8 +8,7 @@ lang: en
 ## Rancher Compose Command and Options
 ---
 
-The `rancher-compose` tool works just like the popular `docker-compose` and supports any `docker-compose.yml` file. There is also a `rancher-compose.yml` which extends and overwrites `docker-compose.yml.` The rancher-compose yaml file are attributes only supported in Rancher, for example, scale of a service.
-
+The `rancher-compose` tool works just like the popular `docker-compose` and supports the V1 version of  `docker-compose.yml` files. To enable features that are supported in Rancher, you can also have a `rancher-compose.yml` which extends and overwrites the `docker-compose.yml`. For example, scale of servives and health checks would be in the `rancher-compose.yml` file. 
 
 ## Rancher-Compose Commands
 ---
@@ -52,15 +51,40 @@ Name | Description
 
 ### Examples 
 
-```bash
-# Starting a service without environment variables and defining a stack name
-$ rancher-compose --url URL_of_Rancher --access-key username_of_API_key --secret-key password_of_API_key -p stack1 up
-# To change the scale of an existing service
-$ rancher-compose -p stack1 scale web=3
+To get started, you can create a simple `docker-compose.yml` file and optionally a `rancher-compose.yml` file. If there is no `rancher-compose.yml` file, then all services will start with a scale of 1 container. 
+
+Sample `docker-compose.yml`
+
+```yaml
+web:
+  image: nginx
 ```
+
+Sample `rancher-compose.yml`
+
+```yaml
+# Reference the service that you want to extend
+web:
+  scale: 2
+```
+
+After your files are created, you can launch the services into Rancher server. 
+
+```bash
+# Creating and starting a service without environment variables and selecting a stack 
+# If the stack does not exist in Rancher, it will be created in Rancher
+$ rancher-compose --url URL_of_Rancher --access-key <username_of_environment_api_key> --secret-key <password_of_environment_api_key> -p stack1 up
+
+# Creating and starting a service with environment variables already set
+$ rancher-compose -p stack1 up
+
+# To change the scale of an existing service
+$ rancher-compose -p stack1 scale service1=3
+```
+
 <br>
 
-> **Note:** If you don't pass in `-p STACK_NAME`, the stack name will be the directory that you are running the `rancher-compose` command in.
+> **Note:** If you don't pass in `-p <STACK_NAME>`, the stack name will be the directory that you are running the `rancher-compose` command in.
 
 ## Command Options
 ---
@@ -83,9 +107,10 @@ Name | Description
 When you run the `up` command with `rancher-compose`, after all the tasks are complete, the process continues to run. If you want the process to exit after completion, you'll need to add in the `-d` option, which is to not block and log. 
 
 ```bash
-# If you do not use the -d flag, rancher-compose will continue to run until you Ctrl+C to quit. 
+# If you do not use the -d flag, rancher-compose will continue to run until you Ctrl+C to quit 
 $ rancher-compose up
-# Use the -d for rancher-compose to exit after running
+
+# Use the -d flag for rancher-compose to exit after running
 $ rancher-compose up -d
 ```
 
@@ -141,6 +166,7 @@ Name | Description
 ```bash
 # Pulls new images for all services located in the docker-compose.yml file on ALL hosts in the environment
 $ rancher-compose pull
+
 # Pulls new images for all services located in docker-compose.yml file on hosts that already have the image
 $ rancher-compose pull --cached
 ```
@@ -151,38 +177,7 @@ $ rancher-compose pull --cached
 
 ### Upgrade Command
 
-Rancher supports upgrades to services using `rancher-compose`. Please read more about when and how to [upgrade your services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/upgrading/).
-
-Name | Description
----|----
-`--batch-size` `"2"`	| Number of containers to upgrade at once
-`--scale` `"-1"`		| Final number of running containers
-`--interval` `"2000"`	 | Update interval in milliseconds
-`--update-links`	| Update inbound links on target service
-`--wait`, `-w`		| Wait for upgrade to complete
-`--pull`, `-p`		| Before doing the upgrade do an image pull on all hosts that have the image already
-`--cleanup`, `-c`	| Remove the original service definition once upgraded, implies `--wait`
-
-<br>
-
-```bash
-# Upgrade service1 to service2 
-# service1 and service2 to be defined in the docker-compose.yml
-$ rancher-compose upgrade service1 service2 
-
-# Upgrade to a different scale
-$ rancher-compose upgrade service1 service2 --scale 5
-
-# Removes service1 from Rancher
-$ rancher-compose upgrade service1 service2 --cleanup
-```
-
-## Compose Compatibility
----
-
-`rancher-compose` strives to be completely compatible with Docker Compose.  Since `rancher-compose` is largely focused on running production workloads some behaviors between Docker Compose and Rancher Compose are different.
-
-We support anything that can be created in a standard [docker-compose.yml](https://docs.docker.com/compose/yml/) file. There are a couple of differences in the behavior of rancher-compose that are documented below.
+You can upgrade your services in Rancher using `rancher-compose`. Please read more about when and how to [upgrade your services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/upgrading/).
 
 
 ## Deleting Services/Container
