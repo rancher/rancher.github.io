@@ -23,9 +23,9 @@ To install Docker on the server, follow the instructions from [Docker](https://d
 All you need is one command to launch Rancher server. After launching the container, we'll tail the logs to see when the server is up and running.
 
 ```bash
-$ sudo docker run -d --restart=always -p 8080:8080 rancher/server
+$ sudo docker run -d --restart=always -p 8080:8080 --name rancher rancher/server
 # Tail the logs to show Rancher
-$ sudo docker logs -f containerid
+$ sudo docker logs -f rancher
 ```
 
 It will take a couple of minutes for Rancher server to start up. When the logs show `.... Startup Succeeded, Listening on port...`, Rancher UI is up and running.
