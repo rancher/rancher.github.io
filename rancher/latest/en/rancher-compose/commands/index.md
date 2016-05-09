@@ -152,6 +152,13 @@ Name | Description
 ---|----
 `--timeout`, `-t` `"10"` |	Specify a shutdown timeout in seconds.
 
+<br> 
+
+```yaml
+# To change the scale of an existing service
+$ rancher-compose -p stack1 scale service1=3
+```
+
 ### Rm Command
 
 Name | Description
