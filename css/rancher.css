@@ -8,6 +8,11 @@ BODY {
   font-size: 14px;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* make sidebar nav vertical */
 @media (min-width: 768px) {
     .sidebar-nav .navbar .navbar-collapse {
