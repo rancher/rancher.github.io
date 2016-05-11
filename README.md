@@ -86,3 +86,7 @@ You no longer need the `dev` branch after the changes have been committed into t
  $ git branch -D dev
  $ git push origin :dev
 ```
+
+## How to translate Rancher Documents
+The process should be similar like how to update a document, but it is more about how you guys run multi-language doc site. I am from Cloudsoar Shenzhen China and we got volunteer translators from our Rancher user community. We will translate Rancher document site into Simplify Chinese. I think collaborate this with you before we do is a good way to start. I don't know your email so I just put my idea here. Martin Liu  liuzh66@gmail.com
+
