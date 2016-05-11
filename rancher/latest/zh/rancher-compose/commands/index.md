@@ -164,6 +164,10 @@ Name | Description
 `--force`, `-f`	| Allow deletion of all services
 `-v`	| Remove volumes associated with containers
 
+<br>
+
+By default, volumes attached to containers will not be removed. You can see all volumes with `docker volume ls`.
+
 ### Pull Command
 
 Name | Description

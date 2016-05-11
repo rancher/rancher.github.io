@@ -12,7 +12,7 @@ layout: os-default
 Remember all `ros` commands needs to be used with `sudo`. 
 
 ### Sub Commands
----
+
 |Command | Description |
 |--------|-------------|
 |`upgrade` |	Upgrade to the latest version |
@@ -21,7 +21,7 @@ Remember all `ros` commands needs to be used with `sudo`.
 
 
 ### Version 
----
+
 Besides using `ros -v`, you can also find the current version with the `version` command. 
 
 ```bash
@@ -31,7 +31,7 @@ v0.4.1
 ```
 
 ### List
----
+
 It's easy to see all the current available versions using the `list` command. 
 
 ```bash
@@ -41,7 +41,7 @@ rancher/os:v0.4.1 local
 ```
 
 ### Upgrade
----
+
 Our [upgrading]({{site.baseurl}}/os/upgrading/) page provides more details on steps for upgrading.
 
 #### Upgrade Options

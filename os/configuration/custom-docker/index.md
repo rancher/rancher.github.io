@@ -12,20 +12,20 @@ In RancherOS, you can change the default Docker version with a custom Docker ver
 
 In order to update the docker binary, you will need to start with a persistent console. Both `debian-console` and `ubuntu-console` provided by RancherOS are persistent and one of the consoles need to be [enabled]({{site.baseurl}}/os/configuration/custom-console/). To confirm what console is running, run `sudo system-docker ps` to see what console container is running.
 
-    ```bash
-    $ sudo system-docker ps
-    CONTAINER ID        IMAGE                           COMMAND                  CREATED             STATUS              PORTS               NAMES
-    # os-console is a busybox console and not persistent. 
-    f5ea8eb23fb6        rancher/os-console:v0.4.0-rc6   "/usr/sbin/entry.sh /"   2 minutes ago       Up 2 minutes                            os_console_1
-    825b860b3a6c        rancher/os-docker:v0.4.0-rc6    "/usr/sbin/entry.sh /"   23 hours ago        Up 2 minutes                            docker
-    e8b20d1b34fe        rancher/os-ntp:v0.4.0-rc6       "/usr/sbin/entry.sh /"   23 hours ago        Up 2 minutes                            ntp
-    420aced55a08        rancher/os-acpid:v0.4.0-rc6     "/usr/sbin/entry.sh /"   23 hours ago        Up 2 minutes                            acpid
-    1a1bd08c3120        rancher/os-udev:v0.4.0-rc6      "/usr/sbin/entry.sh /"   23 hours ago        Up 2 minutes                            udev
-    e52f62fcba82        rancher/os-syslog:v0.4.0-rc6    "/usr/sbin/entry.sh /"   23 hours ago        Up 2 minutes                            syslog
-    # Enable the debian console and reboot
-    $ sudo ros service enable debian-console
-    $ sudo reboot
-    ```
+```bash
+$ sudo system-docker ps
+CONTAINER ID        IMAGE                           COMMAND                  CREATED             STATUS              PORTS               NAMES
+# os-console is a busybox console and not persistent. 
+f5ea8eb23fb6        rancher/os-console:v0.4.0-rc6   "/usr/sbin/entry.sh /"   2 minutes ago       Up 2 minutes                            os_console_1
+825b860b3a6c        rancher/os-docker:v0.4.0-rc6    "/usr/sbin/entry.sh /"   23 hours ago        Up 2 minutes                            docker
+e8b20d1b34fe        rancher/os-ntp:v0.4.0-rc6       "/usr/sbin/entry.sh /"   23 hours ago        Up 2 minutes                            ntp
+420aced55a08        rancher/os-acpid:v0.4.0-rc6     "/usr/sbin/entry.sh /"   23 hours ago        Up 2 minutes                            acpid
+1a1bd08c3120        rancher/os-udev:v0.4.0-rc6      "/usr/sbin/entry.sh /"   23 hours ago        Up 2 minutes                            
+e52f62fcba82        rancher/os-syslog:v0.4.0-rc6    "/usr/sbin/entry.sh /"   23 hours ago        Up 2 minutes                            syslog
+# Enable the debian console and reboot
+$ sudo ros service enable debian-console
+$ sudo reboot
+```
 
 After you are logged in a persistent console, you can download the docker binary and symlink as `/usr/local/bin/docker`.
 
@@ -67,35 +67,35 @@ In order to change the Docker version in `docker` and `system-docker`, you'll be
 
 1. Create a clone of the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`. 
 
-     ```bash
-     $ git clone https://github.com/rancher/os.git
-     ```
+   ```bash
+   $ git clone https://github.com/rancher/os.git
+   ```
 
 2. In the root of the repository, the `build.conf` file will need to be updated. Using your favorite editor, replace the `DOCKER_BINARY_URL` value with a Docker binary download URL. 
 
-     `build.conf` file
+   `build.conf` file
 
-     ```
-     IMAGE_NAME=rancher/os
-     VERSION=v0.4.0
+   ```
+   IMAGE_NAME=rancher/os
+   VERSION=v0.4.0
 
-     # Update the URL to your preferred Docker version
-     DOCKER_BINARY_URL=https://github.com/rancher/docker/releases/download/v1.8.2-ros1/docker-1.8.2
-     COMPILED_KERNEL_URL=https://github.com/rancher/os-kernel/releases/download/Ubuntu-3.19.0-27.29-ros1/linux-3.19.8-ckt5-rancher-x86.tar.gz
-     DFS_IMAGE=rancher/docker:1.8.2
-     ```
+   # Update the URL to your preferred Docker version
+   DOCKER_BINARY_URL=https://github.com/rancher/docker/releases/download/v1.8.2-ros1/docker-1.8.2
+   COMPILED_KERNEL_URL=https://github.com/rancher/os-kernel/releases/download/Ubuntu-3.19.0-27.29-ros1/linux-3.19.8-ckt5-rancher-x86.tar.gz
+   DFS_IMAGE=rancher/docker:1.8.2
+   ```
 
 3. After you've replaced the URL with your custom kernel, run `./build.sh` in the root directory. After the build has completed, a `./dist/artifacts` directory will be created with the custom built RancherOS release files. 
 
      Build Requirements: `bash`, `make`, `docker` (docker version >= 1.8.0)
 
-     ```bash
-     $ ./build.sh
-     $ cd dist/artifacts
-     $ ls
-     initrd             rancheros.iso
-     iso-checksums.txt	vmlinuz
-     ```
+   ```bash
+   $ ./build.sh
+   $ cd dist/artifacts
+   $ ls
+   initrd             rancheros.iso
+   iso-checksums.txt	vmlinuz
+   ```
 
 The `rancheros.iso` is ready to be used to [boot RancherOS from ISO]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso/) or [launch RancherOS using docker-machine]({{site.baseurl}}/os/running-rancheros/workstation/docker-machine). The new ISO will be running your custom Docker version in `docker` and `system-docker`. 
 

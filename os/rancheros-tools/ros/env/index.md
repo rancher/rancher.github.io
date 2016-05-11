@@ -12,7 +12,7 @@ layout: os-default
 Remember all `ros` commands needs to be used with `sudo` (or as `root` user). 
 
 ### Example
----
+
 Suppose there are a few environment entries in `rancher.environment`: 
 
 ```sh

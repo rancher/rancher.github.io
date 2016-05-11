@@ -13,13 +13,13 @@ Remember, all `ros` commands needs to be used with `sudo`.
 
 
 ### Sub Commands
----
+
 | Command  | Description                              |
 |----------|------------------------------------------|
 | `generate` | Generates new client and server certificates |
 
 ### Generate
----
+
 The `generate` command is used to generate new client and server certificates. By default, the command will be creating new client certificates.
 
 #### Generate Options
