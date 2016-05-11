@@ -16,7 +16,8 @@ Remember, all `ros` commands needs to be used with `sudo`.
 **For all changes to your configuration, you must reboot for them to take effect.**
 
 ### Sub commands
----
+
+
 | Command  | Description                                     |
 |----------|-------------------------------------------------|
 | `get`      | Gets value                                       |
@@ -29,7 +30,7 @@ Remember, all `ros` commands needs to be used with `sudo`.
 
 
 ### Get
----
+
 The `get` command gets a value from the `/var/lib/rancher/conf/cloud-config.yml` file. Let's see how easy it is to get the DNS configuration of the system.
 
 ```sh
@@ -39,7 +40,7 @@ $ sudo ros config get rancher.network.dns.nameservers
 ```
 
 ### Set
----
+
 The `set` command can set values in the `/var/lib/rancher/conf/cloud-config.yml` file. 
 
 Setting a list in the `/var/lib/rancher/conf/cloud-config.yml`
@@ -55,7 +56,7 @@ $ sudo ros config set rancher.docker.tls true
 ```
 
 ### Import
----
+
 The `import` command allows you to import configurations from a standard in or a file. When using `import`, the existing configuration in `/var/lib/rancher/conf/cloud-config.yml` will be overridden. If you want to add information to the file, you'd need to use `ros config merge`.
 
 #### Import Options
@@ -73,7 +74,7 @@ $ sudo ros config import -i localcloudconfig.yml
 ```
 
 ### Export
----
+
 The `export` command allows you to export your existing configuration from `/var/lib/rancher/conf/cloud-config.yml`. By default, only changes from the default values will be exported. 
 
 If you run the command without any options, it will output into the shell what is in the `/var/lib/rancher/conf/cloud-config.yml` file.
@@ -97,6 +98,7 @@ rancher:
   docker:
     tls: true
 ```
+
 #### Export Options
 
 | Options  | Description                                     |

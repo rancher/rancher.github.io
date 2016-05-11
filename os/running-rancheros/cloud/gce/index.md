@@ -12,9 +12,7 @@ Note: The Google Compute Engine image was introduced in v0.3.0, but is still exp
 
 RancherOS is available as an image in GCE, and can be easily run in Google Compute Engine (GCE).  Let’s walk through how to upload GCE image. 
 
-1. Download the most recent RancherOS image. The image can be found in the [release artifacts](https://github.com/rancher/os/releases).
-
-    ![RancherOS on GCE 1]({{site.baseurl}}/img/os/Rancher_gce1.png)
+1. Download the most recent RancherOS image. The image can be found in the [release artifacts](https://github.com/rancher/os/releases). It is `.tar.gz` file and has `gce` in the artifact name.
 
 2. Follow Google's instructions on how to [upload the image](https://cloud.google.com/compute/docs/tutorials/building-images#publishingimage). The image must be uploaded into a Google Cloud Storage bucket before it can be added to a project. 
 

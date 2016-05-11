@@ -9,7 +9,7 @@ layout: os-default
 A useful command that can be used with RancherOS is `ros` which can be used to control and configure the system. `ros` requires you to be the root user, so with the rancher user, you will need to use `sudo`.
 
 ### Sub Commands
----
+
 | Command       | Description                                                                                   |
 |---------------|-----------------------------------------------------------------------------------------------|
 |`config`, `c`  | [Configure Settings]({{site.baseurl}}/os/rancheros-tools/ros/config/)                         |
@@ -23,7 +23,7 @@ A useful command that can be used with RancherOS is `ros` which can be used to c
 
 
 ### RancherOS Version
----
+
 If you want to check what version you are on, just use the `-v` option.
 
 ```sh
@@ -32,7 +32,7 @@ ros version v0.4.0
 ```
 
 ### Help
----
+
 To list available commands, run any `ros` command with `-h` or `--help`. This would work with any subcommand within `ros`.
 
 ```sh
