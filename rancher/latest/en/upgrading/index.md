@@ -4,7 +4,7 @@ layout: rancher-default
 version: latest
 lang: en
 redirect_from:
-  - rancher/upgrading-rancher/
+  - rancher/upgrading/
 ---
 
 ## Upgrading Rancher
