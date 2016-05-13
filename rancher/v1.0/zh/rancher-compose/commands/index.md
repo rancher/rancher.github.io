@@ -162,6 +162,10 @@ Name | Description
 ---|----
 `--force`, `-f`	| Allow deletion of all services
 
+When removing services, `rancher-compose` will only delete the services that are found in the `docker-compose.yml`. If there are more services within the stack in Rancher, they will not be deleted as rancher-compose will not know they exist.
+
+Also, the stack will not be deleted as rancher-compose will not be aware if there are any remaining services. 
+
 ### Pull Command
 
 Name | Description
