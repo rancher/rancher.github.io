@@ -21,6 +21,12 @@ rancher:
     args: [daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -s, overlay, -G, docker, -H, 'unix:///var/run/docker.sock', --userland-proxy=false]
 ```    
 
+You can also customize Docker after it's been started using `ros config`. In this case, you'll need to be sure to put the entire list in double quotes and each individual item in single quotes. This is required so that RancherOS to parse values that include commas.
+
+```
+$ sudo ros config set rancher.docker.args "['daemon','--insecure-registry','192.168.199.88:5000']"
+```
+
 #### Valid Keys for Docker
 
 Key | Value | Default | Description

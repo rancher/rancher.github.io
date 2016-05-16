@@ -46,7 +46,7 @@ The `set` command can set values in the `/var/lib/rancher/conf/cloud-config.yml`
 Setting a list in the `/var/lib/rancher/conf/cloud-config.yml`
 
 ```bash
-$ sudo ros config set rancher.network.dns.nameservers '[8.8.8.8,8.8.4.4]'
+$ sudo ros config set rancher.network.dns.nameservers "['8.8.8.8','8.8.4.4']"
 ```
 
 Setting a simple value in the `/var/lib/rancher/conf/cloud-config.yml`
