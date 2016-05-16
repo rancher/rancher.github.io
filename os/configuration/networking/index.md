@@ -20,7 +20,7 @@ We'll provide some examples using both the `ros config` or setting it through th
 Using `ros config`, you can set the `nameservers`, and `search`, which directly map to the fields of the same name in `/etc/resolv.conf`. With v0.4.0+, you need to prefix the config values with `rancher` as we are updating the cloud config file. 
 
 ```bash
-$ sudo ros config set rancher.network.dns.search [mydomain.com,example.com]
+$ sudo ros config set rancher.network.dns.search "['mydomain.com','example.com']"
 $ sudo ros config get rancher.network.dns.search
 - mydomain.com
 - example.com

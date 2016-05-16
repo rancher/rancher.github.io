@@ -162,7 +162,7 @@ $ zfs list
 We'll need to edit the user Docker daemon by adding `zfs` to the list of args. 
 
 ```bash
-$ sudo ros config set rancher.docker.args "[daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -s, zfs, --storage-opt, zfs.fsname=zpool1/zdocker, -G, docker, -H, unix:///var/run/docker.sock, --userland-proxy=false]"
+$ sudo ros config set rancher.docker.args "['daemon', '--log-opt', 'max-size=25m', '--log-opt', 'max-file=2', '-s', 'zfs', '--storage-opt', 'zfs.fsname=zpool1/zdocker', '-G', 'docker', '-H', 'unix:///var/run/docker.sock', '--userland-proxy=false']"
 # After editing the user Docker daemon, you'll need to restart user Docker
 $ sudo system-docker stop docker
 $ sudo system-docker start docker
