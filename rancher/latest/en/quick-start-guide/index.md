@@ -98,7 +98,7 @@ The load balancer targets the WordPress service, and the WordPress service links
 
 In this section, we will walk through how to create and deploy the WordPress application in Rancher.
 
-From the Rancher UI, click the **Applications** -> **Stacks**, and click on the **Add Service** button to add a service. 
+From the Rancher UI, click the **Applications** -> **Stacks**, and click on the **Add Stack** button to add a new stack. Enter a Name and Description for the stack and click the **Create** button. Now click the **Add Service** button to begin adding services to the new Stack.
 
 First, we'll create a database service called _database_ and use the mysql image. In the **Command** tab, add the environment variable `MYSQL_ROOT_PASSWORD=pass1`. Click **Create**. You will be immediately brought to a stack page, which will contain all the services.
 
