@@ -3,6 +3,8 @@ title: API
 layout: rancher-default
 version: latest
 lang: en
+redirect_from:
+  - /rancher/api/api-resources/certificate/
 ---
 
 ## certificate
