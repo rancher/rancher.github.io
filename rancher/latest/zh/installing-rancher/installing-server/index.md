@@ -15,7 +15,7 @@ Rancher is deployed as a set of Docker containers. Running Rancher is a simple a
 * 1GB RAM 
 * MySQL server should have a max_connections setting > 150
 
-### Rancher Server Versioning
+### Rancher Server Tags
 
 Rancher supports two version tags for `rancher/server`. 
 
