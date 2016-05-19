@@ -24,7 +24,7 @@ In our example configuration, all traffic will pass through the proxy and be sen
 Start Rancher server. We have added in `--name=rancher-server` to this command in order to link the proxy container to the Rancher server container.
 
 ```bash
-$ sudo docker run -d --restart=always --name=rancher-server rancher/server
+$ sudo docker run -d --restart=always --name=rancher-server rancher/server:v1.0.1
 ```
 <br>
 
@@ -164,7 +164,7 @@ Rancher Compose CLI will require the CA certificate as part of the default store
 
 
    ```bash
-   $ sudo docker run -d --restart=always -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server
+   $ sudo docker run -d --restart=always -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server:v1.0.1
    ```
     <br>
 
