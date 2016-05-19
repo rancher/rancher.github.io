@@ -16,6 +16,10 @@ Rancher is deployed as a set of Docker containers. Running Rancher is a simple a
 * Any modern Linux distribution that supports Docker 1.10.3. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested
 * 1GB RAM 
 * MySQL server should have a max_connections setting > 150
+  * MYSQL Configuration Requirements   
+    * Option 1: Run with Antelope with default of `COMPACT` 
+    * Option 2: Run MySQL 5.7 with Barracuda where the default `ROW_FORMAT` is `Dynamic`
+
 
 ### Rancher Server Tags 
 
