@@ -58,7 +58,9 @@ When you click **Close** on the Rancher UI, you will be directed back to the **I
 
 ### Create a Container through UI
 
-Navigate to the **Applications** -> **Stacks** page, if there are still no services, you can click on the "Add Service" button in the welcome screen. Provide the service with a name like “first_container”. You can just use our default settings and click **Create**. Rancher will start launching two containers on the host. One container is the **_first_container_** that we requested. The other container is a **_Network Agent_**, which is a system container created by Rancher to handle tasks such as cross-host networking, health checking, etc.
+Navigate to the **Applications** -> **Stacks** page, if there are still no services, you can click on the **Add Service** button in the welcome screen. If there are already services, you can click on **Add Service** in any existing stack or create a new stack to add services in. If you need to create a new stack, click on **Add Stack**, provide a name and description and click **Create**. Then, click on **Add Service**.
+
+Provide the service with a name like “first_container”. You can just use our default settings and click **Create**. Rancher will start launching two containers on the host. One container is the **_first_container_** that we requested. The other container is a **_Network Agent_**, which is a system container created by Rancher to handle tasks such as cross-host networking, health checking, etc.
 
 Regardless what IP address your host has, both the **_first_container_** and **_Network Agent_** will have IP addresses in the `10.42.*.*` range. Rancher has created this managed overlay network so containers can communicate with each other even if they reside on different hosts.
 
@@ -98,7 +100,7 @@ The load balancer targets the WordPress service, and the WordPress service links
 
 In this section, we will walk through how to create and deploy the WordPress application in Rancher.
 
-From the Rancher UI, click the **Applications** -> **Stacks**, and click on the **Add Stack** button to add a new stack. Enter a Name and Description for the stack and click the **Create** button. Now click the **Add Service** button to begin adding services to the new Stack.
+Navigate to the **Applications** -> **Stacks** page, if there are still no services, you can click on the **Add Service** button in the welcome screen. If there are already services, you can click on **Add Service** in any existing stack or create a new stack to add services in. If you need to create a new stack, click on **Add Stack**, provide a name and description and click **Create**. Then, click on **Add Service**.
 
 First, we'll create a database service called _database_ and use the mysql image. In the **Command** tab, add the environment variable `MYSQL_ROOT_PASSWORD=pass1`. Click **Create**. You will be immediately brought to a stack page, which will contain all the services.
 
