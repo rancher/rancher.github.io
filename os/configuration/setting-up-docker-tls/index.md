@@ -6,8 +6,6 @@ layout: os-default
 
 ## Configuring TLS
 
-_In v0.3.1+, we changed the command from `rancherctl` to `ros`._
-
 `ros tls generate` is used to generate both the client and server TLS certificates for Docker.
 
 Remember, all `ros` commands needs to be used with `sudo` or as a `root` user.
