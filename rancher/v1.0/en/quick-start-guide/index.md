@@ -38,13 +38,13 @@ For simplicity, we will add the same host running the Rancher server as a host i
 
 To add a host, access the UI and click **Infrastructure**, which will immediately bring you to the **Hosts** page. Click on the **Add Host**. Rancher will prompt you to select an IP address. This IP address must be reachable from all the hosts that you will be adding. This is useful in installations where Rancher server will be exposed to the Internet through a NAT firewall or a load balancer. If your host has a private or local IP address like `192.168.*.*`, Rancher will print a warning asking you to make sure hosts can indeed reach the IP.
 
-For now you can ignore these warnings as we will only add the Rancher server host itself. Click **Save**. By default, you will be directed to the **Custom** option, which allows you to find the command that launches the rancher/agent container. There will also be options for cloud providers that use `docker-machine` to launch hosts. In the UI, Rancher will provide a command to use to add hosts.
+For now you can ignore these warnings as we will only add the Rancher server host itself. Click **Save**. By default, you will be directed to the **Custom** option, which allows you to find the command that launches the rancher/agent container. There will also be options for cloud providers that use `docker-machine` to launch hosts. In the UI, Rancher will provide a custom command to use to add hosts, an example of which is shown below.
 
 ```bash
 $ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock rancher/agent:v0.7.9 http://172.17.0.3:8080/v1/scripts/DB121CFBA836F9493653:1434085200000:2ZOwUMd6fIzz44efikGhBP1veo
 ```
 
-Since we are adding a host that is also running Rancher server, we need to add the public IP that should be used for the host. Without this addition to the Rancher agent command, the IP will most likely be set incorrectly for the host. You can add this IP in **Step 4**, which will alter the command and add an environment variable.
+Since we are adding a host that is also running Rancher server, we need to add the public IP that should be used for the host. Without this addition to the Rancher agent command, the IP will most likely be set incorrectly for the host. You can add this IP in **Step 4**, which will alter the command and add an environment variable, example shown below.
 
 ```bash
 $ sudo docker run -e CATTLE_AGENT_IP=172.17.0.3 -d --privileged -v /var/run/docker.sock:/var/run/docker.sock rancher/agent:v0.7.9 http://172.17.0.3:8080/v1/scripts/DB121CFBA836F9493653:1434085200000:2ZOwUMd6fIzz44efikGhBP1veo
