@@ -6,7 +6,7 @@ layout: os-default
 ## Running RancherOS on Google Compute Engine (GCE)
 ----
 
-Note: The Google Compute Engine image was introduced in v0.3.0, but is still experimental. There are known issues with the image, so please do not use it in production!
+Note: The Google Compute Engine image is still experimental. There are known issues with the image, so please do not use it in production!
 
 ### Adding the RancherOS Image into GCE
 
