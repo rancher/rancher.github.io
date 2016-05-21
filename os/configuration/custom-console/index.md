@@ -51,7 +51,9 @@ $ sudo reboot
 
 As of v0.4.0, debian and ubuntu consoles are persistent, while the default (busybox) console is ephemeral. Persistent console means that the console container will remain the same and preserves changes made to its filesystem across reboots. 
 
-> **Note:** Currently, if you want to switch between debian/ubuntu consoles, you will need to change RancherOS to be running the default console before making switches to the other persistent console. 
+### Switching between custom consoles
+
+Currently, if you want to switch between debian/ubuntu consoles, you will need to change RancherOS to be running the default console before making switches to the other persistent console.
 
 ```bash
 # Currently running ubuntu console
