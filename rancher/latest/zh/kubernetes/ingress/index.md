@@ -2,9 +2,7 @@
 title: Kubernetes Ingress in Rancher
 layout: rancher-default
 version: latest
-lang: en
-redirect_from:
-  - rancher/kubernetes/ingress/
+lang: zh
 ---
 
 ## Kubernetes Ingress
