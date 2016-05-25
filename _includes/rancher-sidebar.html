@@ -158,7 +158,13 @@
                     </ul>
                 </li>
                 <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/">Rancher Catalog</a></li>
-                <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/">Kubernetes</a></li>
+                <li class="panel">
+                    <a href="#kubernetes" class="collapsed" data-toggle="collapse" data-parent="#mainmenu">Kubernetes<i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
+                    <ul class="collapse list-group-submenu" id="kubernetes">
+                        <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/">How to work with Kubernetes</a></li>
+                        <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/ingress/">Ingress Support</a></li>
+                    </ul>
+                </li>
                 <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/swarm/">Swarm</a></li>
                 <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/labels/">Labels in Rancher</a></li>
                 <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/">Upgrading Rancher</a></li>

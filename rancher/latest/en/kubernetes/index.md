@@ -40,7 +40,9 @@ If you want to add your own templates to Kubernetes, you add them to the [Ranche
 
 #### kubectl
 
-To configure your own kubectl to talk to your newly created Kubernetes cluster, go to **Kubernetes** -> **kubectl** -> **Generate Config** to generate the necessary `kube/config_file` that you can download and add to your local directory. 
+To configure your own kubectl to talk to your newly created Kubernetes cluster, go to **Kubernetes** -> **kubectl**. Click on **Generate Config** to generate the necessary `kube/config_file` that you can download and add to your local directory. 
+
+In the config file, it provides the necessary information for your local machine so that anything you launch using `kubectl` will be displayed in Rancher.
 
 #### kubectl via Shell
 
@@ -65,3 +67,5 @@ For existing namespaces, in the **Namespaces** page, click on **Edit** in the na
 #### Switching Namespaces
 
 In the dropdown of namespaces, you can select the namespace that you want to launch services in to switch between the namespaces.
+
+
