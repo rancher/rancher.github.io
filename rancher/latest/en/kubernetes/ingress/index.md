@@ -14,7 +14,7 @@ _Available as of v1.1.0-dev2_
 
 Before being able to start using [Kubernetes Ingress resources](http://kubernetes.io/docs/user-guide/ingress/), you'll first need to have an [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) that has specified the cluster management to be Kubernetes. We also recommend [setting up `kubectl` on your local machine]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#kubectl) to make it easier to launch Kubernetes resources into Rancher. Alternatively, you can use the shell provided by the Rancher UI to launch resources. 
 
-The Kubernetes Ingress resource can be backed up by any load balancer of your choice, so to leverage the Rancher's load balancing functionality, we have introduced the concept of a Rancher ingress controller, which is automatically created whenever an Ingress is added to Kubernetes. The ingress controller is part of the system stack for Kubernetes and manages the creation/removal/update of Rancher load balancers. Each load balancer is created/removed/updated based on the Kubernetes ingress resources.
+The Kubernetes Ingress resource can be backed up by any load balancer of your choice, so to leverage the Rancher's load balancing functionality, we have introduced the concept of a Rancher ingress controller. The ingress controller is part of the system stack for Kubernetes and manages the creation/removal/update of Rancher load balancers. Each load balancer is created/removed/updated based on the Kubernetes ingress resources.
 
 ### Current Limitations 
 
