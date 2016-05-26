@@ -26,7 +26,6 @@ _Available as of v1.0.1_
 * External Load Balancer 
 
 
-
 ### Recommendations for Larger Deployments 
 
 * Each Rancher server node should have a 4 GB or 8 GB heap size, which requires having at least 8 GB or 16 GB of RAM
@@ -59,23 +58,23 @@ _Available as of v1.0.1_
    -e CATTLE_DB_CATTLE_USERNAME=<Username> \
    -e CATTLE_DB_CATTLE_PASSWORD=<Password> \
    -v /var/run/docker.sock:/var/run/docker.sock \
-   rancher/server:v1.0.1
+   rancher/server
    ```
 
     <br>
 
     > **Note:** Please be patient with this step, initialization may take up to 15 minutes to complete. 
 
-5. (Optional) Pre-pulling the `rancher/server` image onto the Rancher nodes. While the initialization is taking place for the script generating Rancher server, you can pre-pull images onto your nodes that will be used in the setup.
+5.  While the initialization is taking place for the script generating Rancher server, you can pre-pull images onto your nodes that will be used in the setup.
  
    ```bash
    # The version would be whatever was used in Step 4
-   $ sudo docker pull rancher/server:v1.0.1
+   $ sudo docker pull rancher/server
    ```
 
 ### Generating the Configuration Scripts 
 
-1. Access the script generating Rancher server's UI at `http://<server_IP>:8080`. Under **Admin** -> **HA**, there will be a confirmation that Rancher server has successfully connected to an external database. If this is not set up correctly, please repeat steps 1 and 4 in the previous section. 
+1. Access the script generating Rancher server's UI at `http://<server_IP>:8080`. Under **Admin** -> **High Availability**, there will be a confirmation that Rancher server has successfully connected to an external database. If this is not set up correctly, please repeat steps 1 and 4 in the previous section. 
 2. Select the cluster size, which should be the number of Rancher server nodes that you created in step 3 in the previous section. 
 3. In the **Host Registration URL**, provide the external load balancer's IPV4 address or hostname.
 4. Select which certificate type you would like to use. Rancher can generate a self-signed certificate for you or you can use your own valid certificate. 
@@ -90,8 +89,8 @@ _Available as of v1.0.1_
     > **Note:** Please ensure that you have stopped the script generating Rancher server container after you generate the `rancher-ha.sh` launch script. Otherwise, if you try to launch the HA script on the same node, there will be a port conflict and the HA node will fail to start.
 
 2. Navigate to the IP or hostname of the external load balancer that you provided earlier and used in the **Host Registration URL** when generating the configuration scripts. Please note that it will take a couple of minutes before the UI is available as Rancher. If your UI doesn't become available, [view the status of the management stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/faqs/server/#ha-monitoring). 
-3. Once the UI is available, you can prepare to add hosts to your HA nodes. Under the **Admin** -> **HA** tab, HA is now enabled and indicates the number of HA nodes are in your setup. For any host that you want to add on to your node, save the management certificate to `/var/lib/rancher/etc/ssl/ca.crt` in the host with `400` permissions and then run the registration command. The registration command will automatically be created to use the management certificate. 
-4. Once you have added all the hosts into your environment, your HA setup is complete and you can start launching [services in the UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/),  launching templates from the [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) or start using [rancher-compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/) to launch services.
+
+3. Once you have added all the hosts into your environment, your HA setup is complete and you can start launching [services in the UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/),  launching templates from the [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) or start using [rancher-compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/) to launch services.
     
     > **Note:** If you are using AWS, you will need to specify the IP of the hosts that you are adding into Rancher. If you are adding a [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/custom/), you can specify the public IP in the UI and the command to launch Rancher agent will be editted to specify the IP.  If you are adding a host through the UI, after the host has been added into Rancher, you will need to [ssh into the host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/#accessing-hosts-from-the-cloud-providers) to re-run the custom command to re-launch Rancher agent so that the IP is correct.
 
