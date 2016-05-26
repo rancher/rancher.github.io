@@ -7,7 +7,7 @@ layout: os-default
 ## Running RancherOS using Docker Machine 
 ---
 
-Before we get started, you'll need to make sure that you have docker machine installed. Download it directly from the docker machine [releases](https://github.com/docker/machine/releases). The version must be at least [v0.3.0-rc1](https://github.com/docker/machine/releases/tag/v0.3.0-rc1) or greater. 
+Before we get started, you'll need to make sure that you have docker machine installed. Download it directly from the docker machine [releases](https://github.com/docker/machine/releases).  
 
 > **Note:** If you create a RancherOS instance using `docker-machine`, you will not be able to upgrade your version of RancherOS.
 

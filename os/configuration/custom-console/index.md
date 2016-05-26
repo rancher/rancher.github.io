@@ -47,11 +47,9 @@ $ sudo ros service enable debian-console
 $ sudo reboot
 ```
 
-### Console persistence
+### Switching between custom consoles
 
-As of v0.4.0, debian and ubuntu consoles are persistent, while the default (busybox) console is ephemeral. Persistent console means that the console container will remain the same and preserves changes made to its filesystem across reboots. 
-
-> **Note:** Currently, if you want to switch between debian/ubuntu consoles, you will need to change RancherOS to be running the default console before making switches to the other persistent console. 
+Currently, if you want to switch between debian/ubuntu consoles, you will need to change RancherOS to be running the default console before making switches to the other persistent console.
 
 ```bash
 # Currently running ubuntu console
@@ -70,4 +68,15 @@ $ sudo reboot
 $ sudo ros service enable debian-console
 # Reboot and log back in to be running the debian console
 $ sudo reboot
+```
+
+### Console persistence
+
+As of v0.4.0, debian and ubuntu consoles are persistent, while the default (busybox) console is ephemeral. Persistent console means that the console container will remain the same and preserves changes made to its filesystem across reboots. If a container is deleted/rebuilt, state in the console will be lost except what is in the persisted directories.
+
+```bash
+/home
+/opt
+/var/lib/docker
+/var/lib/rancher
 ```

@@ -15,6 +15,14 @@ Rancher is deployed as a set of Docker containers. Running Rancher is a simple a
 * 1GB RAM 
 * MySQL server should have a max_connections setting > 150
 
+### Rancher Server Tags
+
+Rancher supports two version tags for `rancher/server`. 
+
+* `rancher/server:latest`: The `latest` tag will be our development builds which will have been validated through our CI automation framework, but these releases are not meant for deployment in production. All development builds will be appended with a `*-dev{n}` suffix to denote that it's a development release. 
+
+* `rancher/server:stable`: The `stable` tag wll be our feature release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version. 
+
 ### Launching Rancher Server 
 
 On the Linux machine with Docker installed, the command to start Rancher is simple.

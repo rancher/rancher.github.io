@@ -62,7 +62,7 @@ V1 | 2015-07-25 |
 
 **V1 vs. V2**
 
-When drilling down to containers using the http path ending in `/services/<service-name>/containers` or `</stacks/<stack-name>/services/<service-name>/containers`, V1 returns container name(s) and V2 returns container object(s). More information is provided with V2 of the metadata service. 
+When drilling down to containers using the http path ending in `/services/<service-name>/containers` or `/stacks/<stack-name>/services/<service-name>/containers`, V1 returns container name(s) and V2 returns container object(s). More information is provided with V2 of the metadata service. 
 
 _Example_
 

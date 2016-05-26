@@ -1,4 +1,4 @@
----
+f---
 title: Rancher Server with No Internet Access
 layout: rancher-default-v1.0
 version: v1.0
@@ -103,7 +103,7 @@ In the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it p
 Rancher server does not need to be launched using any environment variables when using a proxy. Therefore, the command to start Rancher server will be the same as a regular installation.
 
 ```bash
-sudo docker run -d --restart=always -p 8080:8080 rancher/server
+sudo docker run -d --restart=always -p 8080:8080 rancher/server:v1.0.1
 ```
 
 #### Rancher UI

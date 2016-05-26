@@ -39,13 +39,13 @@ For simplicity, we will add the same host running the Rancher server as a host i
 
 To add a host, access the UI and click **Infrastructure**, which will immediately bring you to the **Hosts** page. Click on the **Add Host**. Rancher will prompt you to select an IP address. This IP address must be reachable from all the hosts that you will be adding. This is useful in installations where Rancher server will be exposed to the Internet through a NAT firewall or a load balancer. If your host has a private or local IP address like `192.168.*.*`, Rancher will print a warning asking you to make sure hosts can indeed reach the IP.
 
-For now you can ignore these warnings as we will only add the Rancher server host itself. Click **Save**. By default, you will be directed to the **Custom** option, which allows you to find the command that launches the rancher/agent container. There will also be options for cloud providers that use `docker-machine` to launch hosts. In the UI, Rancher will provide a command to use to add hosts.
+For now you can ignore these warnings as we will only add the Rancher server host itself. Click **Save**. By default, you will be directed to the **Custom** option, which allows you to find the command that launches the rancher/agent container. There will also be options for cloud providers that use `docker-machine` to launch hosts. In the UI, Rancher will provide a custom command to use to add hosts, an example of which is shown below.
 
 ```bash
 $ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock rancher/agent:v0.7.9 http://172.17.0.3:8080/v1/scripts/DB121CFBA836F9493653:1434085200000:2ZOwUMd6fIzz44efikGhBP1veo
 ```
 
-Since we are adding a host that is also running Rancher server, we need to add the public IP that should be used for the host. Without this addition to the Rancher agent command, the IP will most likely be set incorrectly for the host. You can add this IP in **Step 4**, which will alter the command and add an environment variable.
+Since we are adding a host that is also running Rancher server, we need to add the public IP that should be used for the host. Without this addition to the Rancher agent command, the IP will most likely be set incorrectly for the host. You can add this IP in **Step 4**, which will alter the command and add an environment variable, example shown below.
 
 ```bash
 $ sudo docker run -e CATTLE_AGENT_IP=172.17.0.3 -d --privileged -v /var/run/docker.sock:/var/run/docker.sock rancher/agent:v0.7.9 http://172.17.0.3:8080/v1/scripts/DB121CFBA836F9493653:1434085200000:2ZOwUMd6fIzz44efikGhBP1veo
@@ -57,7 +57,9 @@ When you click **Close** on the Rancher UI, you will be directed back to the **I
 
 ### Create a Container through UI
 
-Navigate to the **Applications** -> **Stacks** page, if there are still no services, you can click on the "Add Service" button in the welcome screen. Provide the service with a name like “first_container”. You can just use our default settings and click **Create**. Rancher will start launching two containers on the host. One container is the **_first_container_** that we requested. The other container is a **_Network Agent_**, which is a system container created by Rancher to handle tasks such as cross-host networking, health checking, etc.
+Navigate to the **Applications** -> **Stacks** page, if there are still no services, you can click on the **Add Service** button in the welcome screen. If there are already services, you can click on **Add Service** in any existing stack or create a new stack to add services in. If you need to create a new stack, click on **Add Stack**, provide a name and description and click **Create**. Then, click on **Add Service**.
+
+Provide the service with a name like “first_container”. You can just use our default settings and click **Create**. Rancher will start launching two containers on the host. One container is the **_first_container_** that we requested. The other container is a **_Network Agent_**, which is a system container created by Rancher to handle tasks such as cross-host networking, health checking, etc.
 
 Regardless what IP address your host has, both the **_first_container_** and **_Network Agent_** will have IP addresses in the `10.42.*.*` range. Rancher has created this managed overlay network so containers can communicate with each other even if they reside on different hosts.
 
@@ -97,7 +99,7 @@ The load balancer targets the WordPress service, and the WordPress service links
 
 In this section, we will walk through how to create and deploy the WordPress application in Rancher.
 
-From the Rancher UI, click the **Applications** -> **Stacks**, and click on the **Add Service** button to add a service. 
+Navigate to the **Applications** -> **Stacks** page, if there are still no services, you can click on the **Add Service** button in the welcome screen. If there are already services, you can click on **Add Service** in any existing stack or create a new stack to add services in. If you need to create a new stack, click on **Add Stack**, provide a name and description and click **Create**. Then, click on **Add Service**.
 
 First, we'll create a database service called _database_ and use the mysql image. In the **Command** tab, add the environment variable `MYSQL_ROOT_PASSWORD=pass1`. Click **Create**. You will be immediately brought to a stack page, which will contain all the services.
 

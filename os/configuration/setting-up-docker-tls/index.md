@@ -6,8 +6,6 @@ layout: os-default
 
 ## Configuring TLS
 
-_In v0.3.1+, we changed the command from `rancherctl` to `ros`._
-
 `ros tls generate` is used to generate both the client and server TLS certificates for Docker.
 
 Remember, all `ros` commands needs to be used with `sudo` or as a `root` user.
@@ -51,7 +49,10 @@ Copy the files from `/home/rancher/.docker` to `$HOME/.docker` on your client ma
 
 On your client machine, set the docker host and test out if Docker commands work.
 
+
 ```bash
-$ export DOCKER_HOST=tcp://<IP_OF_SERVER>:2376 DOCKER_TLS_VERIFY=1
+$ export DOCKER_HOST=tcp://<hostname>:2376 DOCKER_TLS_VERIFY=1
 $ docker ps
 ```
+
+> **Note:** `<hostname>` cannot be longer than 4 components (e.g. `aa.bb.cc.dd.ee` will not be valid). 
