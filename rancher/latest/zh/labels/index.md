@@ -87,11 +87,11 @@ Besides labels that can be used by `rancher-compose`, there are a series of syst
 
 Key | Description
 ----|---
-`io.rancher.stack.name`/`io.rancher.project.name` | Used to define the stack name of service
-`io.rancher.stack_service.name`/`io.rancher.project_service.name`|Determines the name of the stack 
-`io.rancher.service.deployment.unit` |  Used to define the deployments for sidekicked services.
-`io.rancher.service.launch.config` |   Used to define configurations for side kicked services.
-`io.rancher.service.requested.host.id` |  Used by the scheduler to know which host it was scheduled on
+`io.rancher.stack.name`/`io.rancher.project.name` | Created based on the stack name
+`io.rancher.stack_service.name`/`io.rancher.project_service.name`| Created based on the service name
+`io.rancher.service.deployment.unit` |  Created based on the deployments for sidekicked services
+`io.rancher.service.launch.config` |   Created based on the configurations for sidekicked services.
+`io.rancher.service.requested.host.id` |  Created based on which host the service was scheduled on
 
 ### Host Labels
 
