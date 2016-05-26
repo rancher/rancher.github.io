@@ -12,7 +12,7 @@ redirect_from:
 
 ### What is Access Control?
 
-Access Control is how Rancher limits the users who have the access permissions to your Rancher instance. By default, Access Control is not configured. This means anyone who has the IP address of your Rancher instance will be able to use it and access the API. Your Rancher instance is open to the public! We highly recommend configuring Access Control soon after launching Rancher. Upon enabling Access Control, you can share your Rancher instance to who you want to. They will be required to authenticate to the instance before being able to access it. The API becomes only accessible to those who have the valid API keys to the instance. 
+Access Control is how Rancher limits the users who have the access permissions to your Rancher instance. By default, Access Control is not configured. This means anyone who has the IP address of your Rancher instance will be able to use it and access the API. Your Rancher instance is open to the public! We highly recommend configuring Access Control soon after launching Rancher. Upon enabling Access Control, you can share your Rancher instance with whom you wish. They will be required to authenticate to the instance before being able to access it. The API becomes accessible only to those who have the valid API keys to the instance. 
 
 The first account that authenticates with Rancher will become the **admin** of the account. For more information, see [permissions of an admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#admin). 
 
@@ -20,7 +20,7 @@ The first account that authenticates with Rancher will become the **admin** of t
 
 In the **Admin** tab, click **Access Control**.
 
-Currently, Rancher supports three methods of authentication: Active Directory, GitHub, Local and OpenLDAP. After authenticating your Rancher instance, Access Control will be considered enabled. With Access Control enabled, you will be able to manage different [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) and share them with different groups of people. 
+Currently, Rancher supports four methods of authentication: Active Directory, GitHub, Local and OpenLDAP. After authenticating your Rancher instance, Access Control will be considered enabled. With Access Control enabled, you will be able to manage different [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) and share them with different groups of people. 
 
 When Access Control is enabled, the API is locked and requires either being authenticated as a user or by using an [API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/api-keys/) to access it.
 
