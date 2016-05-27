@@ -31,13 +31,13 @@ For each release of Rancher server, the corresponding Rancher agent and Rancher 
 
 **Commands to Push Images to Private Registry**
 
-These examples are for the v1.0.1 release using a machine that has access to both DockerHub and your private registry. We recommend tagging the version of the images in your private registry as the same version. 
+These examples are for the v1.0.2 release using a machine that has access to both DockerHub and your private registry. We recommend tagging the version of the images in your private registry as the same version. 
 
 ```bash
-# rancher/server 
-$ docker pull rancher/server:v1.0.1
-$ docker tag rancher/server:v1.0.1 localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.0.1
-$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.0.1 
+# rancher/server
+$ docker pull rancher/server:v1.0.2
+$ docker tag rancher/server:v1.0.2 localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.0.2
+$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.0.2
 
 # rancher/agent
 $ docker pull rancher/agent:v1.0.1
@@ -54,13 +54,13 @@ $ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.8.1
 
 On your machine, start Rancher server to use the specific Rancher images. We recommend using specific version tags instead of the `latest` tag to ensure you are working with the correct versions. 
 
-Using the v1.0.1 example:
+Using the v1.0.2 example:
 
 ```bash
 $ sudo docker run -d --restart=always -p 8080:8080 \
     -e CATTLE_BOOTSTRAP_REQUIRED_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v1.0.1 \
     -e CATTLE_AGENT_INSTANCE_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.8.1 \
-    <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.0.1
+    <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.0.2
 ```
 
 #### Rancher UI
@@ -103,7 +103,7 @@ In the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it p
 Rancher server does not need to be launched using any environment variables when using a proxy. Therefore, the command to start Rancher server will be the same as a regular installation.
 
 ```bash
-sudo docker run -d --restart=always -p 8080:8080 rancher/server:v1.0.1
+sudo docker run -d --restart=always -p 8080:8080 rancher/server:v1.0.2
 ```
 
 #### Rancher UI

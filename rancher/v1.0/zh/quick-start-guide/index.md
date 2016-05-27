@@ -22,7 +22,7 @@ To install Docker on the server, follow the instructions from [Docker](https://d
 All you need is one command to launch Rancher server. After launching the container, we'll tail the logs to see when the server is up and running.
 
 ```bash
-$ sudo docker run -d --restart=always -p 8080:8080 rancher/server:v1.0.1
+$ sudo docker run -d --restart=always -p 8080:8080 rancher/server:v1.0.2
 # Tail the logs to show Rancher
 $ sudo docker logs -f containerid
 ```
@@ -124,7 +124,7 @@ mywordpress:
   tty: true
   image: wordpress
   links:
-    database: mysql
+    - database:mysql
   stdin_open: true
 wordpresslb:
   ports:
@@ -132,7 +132,7 @@ wordpresslb:
   tty: true
   image: rancher/load-balancer-service
   links:
-    mywordpress: mywordpress
+    -  mywordpress:mywordpress
   stdin_open: true
 database:
   environment:
