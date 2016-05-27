@@ -62,11 +62,6 @@ _Available as of v1.0.1_
     > **Note:** Please be patient with this step, initialization may take up to 15 minutes to complete. 
 
 5. While the initialization is taking place for the script generating Rancher server, you can pre-pull images onto your nodes that will be used in the setup.
- 
-   ```bash
-   # The version would be whatever was used in Step 4
-   $ sudo docker pull rancher/server
-   ```
 
 ### Generating the Configuration Scripts 
 
