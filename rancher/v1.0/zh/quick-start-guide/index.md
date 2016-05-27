@@ -124,7 +124,7 @@ mywordpress:
   tty: true
   image: wordpress
   links:
-    database: mysql
+    - database:mysql
   stdin_open: true
 wordpresslb:
   ports:
@@ -132,7 +132,7 @@ wordpresslb:
   tty: true
   image: rancher/load-balancer-service
   links:
-    mywordpress: mywordpress
+    -  mywordpress:mywordpress
   stdin_open: true
 database:
   environment:
