@@ -20,7 +20,7 @@ Rancher is deployed as a set of Docker containers. Running Rancher is a simple a
 On the Linux machine with Docker installed, the command to start Rancher is simple.
 
 ```bash
-$ sudo docker run -d --restart=always -p 8080:8080 rancher/server:v1.0.1
+$ sudo docker run -d --restart=always -p 8080:8080 rancher/server:v1.0.2
 ```
 
 #### Rancher UI
@@ -41,7 +41,7 @@ Start Rancher by bind mounting the volume that has the certificate. The certific
 
 ```bash
 $ sudo docker run -d --restart=always -p 8080:8080 \
-  -v /dir_that_contains_the_cert/cert.crt:/ca.crt rancher/server:v1.0.1
+  -v /dir_that_contains_the_cert/cert.crt:/ca.crt rancher/server:v1.0.2
 ```
 
 You can check that the `ca.crt` was passed to Rancher server container successfully by checking the logs of the rancher server container.
@@ -67,7 +67,7 @@ done.
 If you would like to persist the database inside your container to a volume on your host, launch Rancher server by bind mounting the MySQL volume.
 
 ```bash
-$ sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=always -p 8080:8080 rancher/server:v1.0.1
+$ sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=always -p 8080:8080 rancher/server:v1.0.2
 ```
 With this command, the database will persist on the host. If you have an existing Rancher container and would like to bind mount the MySQL volume, the instructions are located in our [upgrading documentation]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#upgrading-rancher-launched-using-bind-mounts).
 
@@ -108,7 +108,7 @@ $ sudo docker run -d --restart=always -p 8080:8080 \
     -e CATTLE_DB_CATTLE_MYSQL_NAME=<Name of Database> \
     -e CATTLE_DB_CATTLE_USERNAME=<Username> \
     -e CATTLE_DB_CATTLE_PASSWORD=<Password> \
-    rancher/server:v1.0.1
+    rancher/server:v1.0.2
 ```
 
 <a id="http-proxy"></a>
@@ -132,7 +132,7 @@ $ sudo docker run -d \
     -e http_proxy=<proxyURL> \
     -e https_proxy=<proxyURL> \
     -e no_proxy="localhost,127.0.0.1" \
-    --restart=always -p 8080:8080 rancher/server:v1.0.1
+    --restart=always -p 8080:8080 rancher/server:v1.0.2
 ```
 
 If the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) will not be used, run the Rancher server command as you normally would.

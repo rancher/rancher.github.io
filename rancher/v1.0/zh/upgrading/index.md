@@ -31,7 +31,7 @@ If you have launched Rancher server **without** using an [external DB]({{site.ba
 3. Pull the most recent image of Rancher Server. Note: If you skip this step and try to run the `latest` image, it will not automatically pull an updated image.
 
    ```bash
-   $ docker pull rancher/server:v1.0.1
+   $ docker pull rancher/server:v1.0.2
    ```
 
 4. Launch a new Rancher Server container using the database from the `rancher-data` container. Any changes in Rancher will be saved in the `rancher-data` container. If you seen an exception in the server regarding a log lock, please refer to [how to fix the log lock]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/faqs/server/#databaselock).
@@ -40,7 +40,7 @@ If you have launched Rancher server **without** using an [external DB]({{site.ba
 
    ```bash
    $ docker run -d --volumes-from rancher-data --restart=always \
-     -p 8080:8080 rancher/server:v1.0.1
+     -p 8080:8080 rancher/server:v1.0.2
    ```
 
     > **Note:** If you set any environment variables or passed in a [ldap certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#enabling-active-directory-or-openldap-for-tls) in your original Rancher server setup, you'll need to add those environment variables or certificate in the command. 
@@ -71,7 +71,7 @@ If you have launched Rancher server **without** using an [external DB]({{site.ba
 
    ```bash
    $ docker run -d -v <path_on_host>:/var/lib/mysql -p 8080:8080 \
-     --restart=always rancher/server:v1.0.1
+     --restart=always rancher/server:v1.0.2
    ```
   <br>
 
