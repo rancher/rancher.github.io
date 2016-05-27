@@ -62,7 +62,7 @@ You should get a json response. If authentication is turned on, the response cod
 
 When the agent connects to Rancher server, it auto detects the IP of the agent. Sometimes, the IP that is selected is not the IP that you want to use or it selects the docker bridge IP, i.e. `172.17.x.x`. 
 
-Alternatively, if you've already registered a hos and your host has a new IP after a reboot, the IP of your host in the UI will no longer match. 
+Alternatively, if you've already registered a host and your host has a new IP after a reboot, the IP of your host in the UI will no longer match. 
 
 You can override the `CATTLE_AGENT_IP` setting and set the host IP to what you want. 
 
