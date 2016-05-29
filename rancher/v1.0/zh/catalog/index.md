@@ -75,16 +75,16 @@ Within the catalog entry folder, the details of how to display your catalog entr
 
 * The first file `config.yml` contains the details of your entry.
 
-     ```yaml
-     name: # Name of the Catalog Entry 
-     description: |
-        # Description of the Catalog Entry
-     version: # Version of the Catalog to be used 
-     category: # Category to be used for searching catalog entries
-     maintainer: # The maintainer of the catalog entry
-     license: # The license 
-     projectURL: # A URL related to the catalog entry
-     ```
+```yaml
+name: # Name of the Catalog Entry 
+description: |
+   # Description of the Catalog Entry
+version: # Version of the Catalog to be used 
+category: # Category to be used for searching catalog entries
+maintainer: # The maintainer of the catalog entry
+license: # The license 
+projectURL: # A URL related to the catalog entry
+```
 <br>
 * The second file is a the icon image for the catalog entry. The file must be prefixed with `catalogIcon-`. 
 
