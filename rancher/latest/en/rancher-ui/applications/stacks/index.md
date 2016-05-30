@@ -12,7 +12,7 @@ redirect_from:
 
 ### Adding Stacks
 
-In the **Applications** > **Stacks** page, click **Add Stack**. You will need to provide a **Name** and click **Create**. 
+In the **Stacks** page, click **Add Stack**. You will need to provide a **Name** and click **Create**. 
 
 You will immediately be brought to the stack and can begin [adding services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/), [adding load balancers]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-balancers/), [adding service aliases]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-service-alias), or [adding external services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-external-services).
 

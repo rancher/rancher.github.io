@@ -68,13 +68,13 @@ In this example, we're going to provide an example of how to use GlusterFS to ha
    * In the **Catalog** tab, click on **View Details** of the **Gluster FS** service.
    * If desired, edit the **Name** of the stack for Gluster FS and add a **description**.
    * In the **Configuration Options**, edit the **volume name**. By default, Rancher has given the volume name `my_vol`. 
-   * Click on **Launch** to start the Gluster FS service. This will take a minute or two. You will be able to view the services in **Applications** -> **Stacks**.
+   * Click on **Launch** to start the Gluster FS service. This will take a minute or two. You will be able to view the services in **Stacks**.
 2. Launch Convoy Gluster
    * In the **Catalog** tab, click on **View Details** of the **Convoy Gluster** service.  
    * If desired, edit the **Name** of the stack for Convoy Gluster and add a **description**.
    * In the **Configuration Options**, edit the **Volume Name**, if you have changed the volume name while launching the Gluster FS service.
    * Select the **Gluster FS** service that is running in Rancher. The service is named `glusterfs-server`. 
-   * Click on **Launch** to start the Convoy Gluster service. The `convoy-gluster` service will be deployed on every host. You will be able to view the services in **Applications** -> **System**.
+   * Click on **Launch** to start the Convoy Gluster service. The `convoy-gluster` service will be deployed on every host. You will be able to view the services in **Stacks** -> **System**.
    * Check that the storage pool (`convoy-gluster`) has been created in the **Infrastructure** -> **Storage Pools** tab. Note: The name of the storage pool is derived from the name of the stack.
 3. Launch Service using the Convoy Gluster service
    * Click on **Add Service** in a different stack. Set up your service as you typically would. 
