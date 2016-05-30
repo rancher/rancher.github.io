@@ -57,7 +57,7 @@ When you click **Close** on the Rancher UI, you will be directed back to the **I
 
 ### Create a Container through UI
 
-Navigate to the **Applications** -> **Stacks** page, if there are still no services, you can click on the **Add Service** button in the welcome screen. If there are already services, you can click on **Add Service** in any existing stack or create a new stack to add services in. If you need to create a new stack, click on **Add Stack**, provide a name and description and click **Create**. Then, click on **Add Service**.
+Navigate to the **Stacks** page, if there are still no services, you can click on the **Add Service** button in the welcome screen. If there are already services, you can click on **Add Service** in any existing stack or create a new stack to add services in. If you need to create a new stack, click on **Add Stack**, provide a name and description and click **Create**. Then, click on **Add Service**.
 
 Provide the service with a name like “first_container”. You can just use our default settings and click **Create**. Rancher will start launching two containers on the host. One container is the **_first_container_** that we requested. The other container is a **_Network Agent_**, which is a system container created by Rancher to handle tasks such as cross-host networking, health checking, etc.
 
@@ -99,7 +99,7 @@ The load balancer targets the WordPress service, and the WordPress service links
 
 In this section, we will walk through how to create and deploy the WordPress application in Rancher.
 
-Navigate to the **Applications** -> **Stacks** page, if there are still no services, you can click on the **Add Service** button in the welcome screen. If there are already services, you can click on **Add Service** in any existing stack or create a new stack to add services in. If you need to create a new stack, click on **Add Stack**, provide a name and description and click **Create**. Then, click on **Add Service**.
+Navigate to the **Stacks** page, if there are still no services, you can click on the **Add Service** button in the welcome screen. If there are already services, you can click on **Add Service** in any existing stack or create a new stack to add services in. If you need to create a new stack, click on **Add Stack**, provide a name and description and click **Create**. Then, click on **Add Service**.
 
 First, we'll create a database service called _database_ and use the mysql image. In the **Command** tab, add the environment variable `MYSQL_ROOT_PASSWORD=pass1`. Click **Create**. You will be immediately brought to a stack page, which will contain all the services.
 
@@ -107,7 +107,7 @@ Next, click on  **Add Service** again to add another service. We'll add a WordPr
 
 Finally, we'll create our load balancer. Click on the dropdown menu icon next to the **Add Service** button. Select **Add Load Balancer**. Provide a name like _wordpresslb_ and select a source port and target port on the host that you'll use to access the wordpress application. In this case, we'll use `80` for both ports.  The target service will be _mywordpress_ service. Click **Save**. 
 
-Our multi-service application is now complete! On the **Applications** -> **Stack** page, you'll be able to find the exposed port of the load balancer as a link. Click on that link and a new browser will open, which will display the wordpress application.
+Our multi-service application is now complete! On the **Stack** page, you'll be able to find the exposed port of the load balancer as a link. Click on that link and a new browser will open, which will display the wordpress application.
 
 ### Create a Multi-Container Application using Rancher Compose
 

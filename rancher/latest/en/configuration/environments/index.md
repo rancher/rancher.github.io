@@ -67,15 +67,15 @@ Owners can also change the roles of anyone on the member list. Just select the r
 
 An owner of an environment has the ability to change the status of an environment and change the membership of an environment. Within the membership list, the owner can also change the roles of other members of the environment. 
 
-Any actions available within the **Applications** or **Infrastructure** tabs are available to owners. 
+Any actions available within the **Stacks** or **Infrastructure** tabs are available to owners. 
 
 #### Members
 
-A member of an environment can perform any action available within the **Applications** or **Infrastructure** tabs. The only difference from an owner and member is that members cannot change the membership of the environment. They will not be able to add/remove members or change the membership roles of existing members. 
+A member of an environment can perform any action available within the **Stacks** or **Infrastructure** tabs. The only difference from an owner and member is that members cannot change the membership of the environment. They will not be able to add/remove members or change the membership roles of existing members. 
 
 #### Restricted
 
-A restricted role of an environment is able to perform all actions on the **Applications** tab, i.e. adding/editing/removing stacks/services. For any container of a service, they can perform all actions, i.e. start, stop, delete, upgrade, clone, and edit. There is nothing restricted regarding actions related to stacks, services, and containers. 
+A restricted role of an environment is able to perform all actions on the **Stacks** tab, i.e. adding/editing/removing stacks/services. For any container of a service, they can perform all actions, i.e. start, stop, delete, upgrade, clone, and edit. There is nothing restricted regarding actions related to stacks, services, and containers. 
 
 The restriction of their role is regarding **Hosts**. They are only able to view hosts of an environment and will not be able to add/edit/remove hosts in the environment.
 

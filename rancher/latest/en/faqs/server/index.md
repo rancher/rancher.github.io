@@ -152,5 +152,5 @@ mysql> select * from DATABASECHANGELOGLOCK;
 
 ### How can I monitor progress on my HA deployment?
 
-When [launching a HA setup of Rancher]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/multi-nodes/), you can add port `18080` to the external load balancer to view progress of the HA setup. In the **Applications** -> **Stacks** -> **Management** stack, all the services required for the HA setup are being launched. When all the services are in `Active` state, the Rancher UI will be available. 
+When [launching a HA setup of Rancher]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/multi-nodes/), you can add port `18080` to the external load balancer to view progress of the HA setup. In the **Stacks** -> **Management** stack, all the services required for the HA setup are being launched. When all the services are in `Active` state, the Rancher UI will be available. 
 
