@@ -13,7 +13,7 @@ layout: os-default
 # Location of Kernel/Initrd images
 $ set base-url http://releases.rancher.com/os/latest
 
-$ kernel ${base-url}/vmlinuz rancher.state.autoformat=[/dev/sda] rancher.cloud_init.datasources=[url:http://example.com/cloud-config]
+$ kernel ${base-url}/vmlinuz rancher.state.autoformat=[/dev/sda] rancher.cloud_init.datasources=['url:http://example.com/cloud-config']
 $ initrd ${base-url}/initrd
 $ boot
 ```
