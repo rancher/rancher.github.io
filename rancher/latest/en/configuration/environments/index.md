@@ -55,7 +55,7 @@ In order to delete an environment, you will need to first deactivate it. All reg
 
 ### Editing Members
 
-Only owners can change the membership to an environment. If an environment is a deactivated state, owners can still edit the membership of it. In the **Manage Environments** page, they will be able to **Edit** the environment. In the edit page, they will be able to add additional members by finding their names and clicking on the **+** button or selecting a name from the dropdown menu. 
+Only owners can change the membership to an environment. If an environment is in a deactivated state, owners can still edit the membership of it. In the **Manage Environments** page, they will be able to **Edit** the environment. In the edit page, they will be able to add additional members by finding their names and clicking on the **+** button or selecting a name from the dropdown menu. 
 
 If there are any members that you want to delete, click on the **X** next to their name in the list of members. Remember that if you delete an individual user, they could still have access to the environment if they are part of a team or organization that is a member of the environment.  
 
