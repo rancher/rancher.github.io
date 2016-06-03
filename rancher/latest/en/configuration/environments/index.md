@@ -12,7 +12,7 @@ redirect_from:
 
 ### What is an Environment?
 
-An environment is a way to share deployments and resources with different sets of users and change cluster management frameworks. Within each environment, you have the ability to invite others making it easy to collaborate. By adding users to your environment, they will have the also have the ability to create deployments and manage resources. 
+An environment is a way to share deployments and resources with different sets of users and change cluster management frameworks. Within each environment, you have the ability to invite others making it easy to collaborate. By adding users to your environment, they will also have the ability to create deployments and manage resources. 
 
 > **Note:** Infrastructure resources cannot be shared across multiple environments. [Registries]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/registries/) and [API keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/api-keys/) are also environment specific.  
 
