@@ -141,7 +141,16 @@ By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets
 ### Configuration Requirements for ELB to enable Rancher
 
  * Enabling [proxy protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) mode
- * Configuring TLS/SSL for the frontend and TCP for the backend
+
+```bash
+$ aws elb create-load-balancer-policy --load-balancer-name my-elb --policy-name myorg-ProxyProtocol-policy --policy-type-name ProxyProtocolPolicyType --policy-attributes AttributeName=ProxyProtocol,AttributeValue=true
+$ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name my-elb --instance-port 81 --policy-names my-ProxyProtocol-policy
+$ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name my-elb --instance-port 444 --policy-names my-ProxyProtocol-policy
+```
+
+* For SSL terminated at the Rancher servers: Configure ELB listener for TLS/SSL:443 for the frontend and TCP:444 for the backend instance protocol:port.
+* For SSL terminated at the ELB: Configure ELB listener for TCP:80 for the frontend and TCP:81 for the backend instance protocol:port.
+* Health check can be configured to use HTTP:8080 /ping url
 
 ## Using Self Signed Certs (Beta)
 ---
