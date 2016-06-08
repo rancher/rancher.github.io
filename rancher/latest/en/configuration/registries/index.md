@@ -20,7 +20,9 @@ On the **Infrastructure** -> **Registries** page, click on **Add Registry**.
 
 For all registries, you'll need to provide the **e-mail address**, **username**, and **password**. For a **Custom** registry, you'll need to also provide the **registry address**. Click on **Create**.
 
-If you add a credential for an address that already exists, Rancher will start using the new credentials.  
+> **Note:** For the `Address` in the custom registry, please do not pre-fix with `http://` or `https://` as we are expecting just the IP or URL.
+
+If you add a credential for an address that already exists, Rancher will start using the new credentials. 
 
 #### Insecure Registries
 
