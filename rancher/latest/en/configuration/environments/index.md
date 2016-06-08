@@ -12,7 +12,7 @@ redirect_from:
 
 ### What is an Environment?
 
-An environment is a way to share deployments and resources with different sets of users and change cluster management frameworks. Within each environment, you have the ability to invite others so it makes it easy to collaborate with others. By adding users to your environment, they will have the also have the ability to create deployments and manage resources. 
+An environment is a way to share deployments and resources with different sets of users and change cluster management frameworks. Within each environment, you have the ability to invite others making it easy to collaborate. By adding users to your environment, they will also have the ability to create deployments and manage resources. 
 
 > **Note:** Infrastructure resources cannot be shared across multiple environments. [Registries]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/registries/) and [API keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/api-keys/) are also environment specific.  
 
@@ -22,8 +22,8 @@ Rancher supports different cluster management frameworks when creating environme
 
 * **Cattle** is the default Rancher managed environment. 
 * **Kubernetes** will automatically plumb in the network for container communication and all hosts that are added into Rancher will automatically be added to Kubernetes.
-* **Mesos** allows for any hosts that are added into Rancher are also automatically added to the Mesos cluster.
-* **Swarm** allows for any hosts that are added into Rancher are also automatically be added to the swarm cluster.
+* **Mesos** allows any Rancher added hosts to automatically be added to the Mesos cluster. 
+* **Swarm** allows any Rancher added hosts to automatically be added to the Swarm cluster.
 
 The first time that you log in to Rancher, you are working in a **Default** Cattle environment. This environment can be renamed, shared with others, or you can create additional environments to share with users. The environment that you're working in is always displayed in the upper right corner of the screen.
 
@@ -55,7 +55,7 @@ In order to delete an environment, you will need to first deactivate it. All reg
 
 ### Editing Members
 
-Only owners can change the membership to an environment. If an environment is a deactivated state, owners can still edit the membership of it. In the **Manage Environments** page, they will be able to **Edit** the environment. In the edit page, they will be able to add additional members by finding their names and clicking on the **+** button or selecting a name from the dropdown menu. 
+Only owners can change the membership to an environment. If an environment is in a deactivated state, owners can still edit the membership of it. In the **Manage Environments** page, they will be able to **Edit** the environment. In the edit page, they will be able to add additional members by finding their names and clicking on the **+** button or selecting a name from the dropdown menu. 
 
 If there are any members that you want to delete, click on the **X** next to their name in the list of members. Remember that if you delete an individual user, they could still have access to the environment if they are part of a team or organization that is a member of the environment.  
 
