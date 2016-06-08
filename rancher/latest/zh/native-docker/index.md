@@ -6,7 +6,7 @@ lang: zh
 
 ---
 
-## Using Rancher through Native Docker CLI
+## How the Native Docker CLI works with Rancher 
 ---
 
 Rancher integrates with the native docker CLI so that it can be used alongside other DevOps and Docker tools. At a high level, this means that if you start, stop, or destroy containers outside of Rancher, Rancher will detect those changes and update accordingly.
