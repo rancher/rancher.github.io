@@ -12,6 +12,13 @@ If you have launched Rancher server **without** using an [external DB]({{site.ba
 
 > **Note:** If you used an external DB, you can stop the original Rancher server container and launch a new version of Rancher server using the same [external DB instructions]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#external-db). After the new server is up and running, you can remove the old Rancher server container. Note: If you only stop the container, the container will be restarted if your machine is rebooted due to the `--restart=always`.
 
+### Rancher Server Tags 
+
+Rancher supports two version tags for `rancher/server`. 
+
+* `rancher/server:latest`: The `latest` tag will be our development builds which will have been validated through our CI automation framework, but these releases are not meant for deployment in production. All development builds will be appended with a `*-dev{n}` suffix to denote that it's a development release. 
+
+* `rancher/server:stable`: The `stable` tag wll be our feature release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version. 
 
 #### Upgrading Rancher by Creating a Data Container 
 
