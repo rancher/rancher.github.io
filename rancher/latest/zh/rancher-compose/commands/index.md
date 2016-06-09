@@ -86,6 +86,36 @@ $ rancher-compose -p stack1 scale service1=3
 
 > **Note:** If you don't pass in `-p <STACK_NAME>`, the stack name will be the directory that you are running the `rancher-compose` command in.
 
+### Using the `--env-file` Option
+
+You can pass in a file of environment variables using `--env-file` while running a `rancher-compose` command. 
+
+Sample `secrets` file
+
+```
+MYSQL_ROOT_PASSWORD=test
+```
+
+<br>
+Sample `docker-compose.yml`
+
+```yaml
+db:
+image: mysql
+environment:
+# Just like docker-compose, if there is only a key, rancher-compose will resolve to
+# the values on the machine or the file passed in using --env-file
+MYSQL_ROOT_PASSWORD:
+```
+
+You can launch your service and pass in the `secrets` file. 
+
+```bash
+$ rancher-compose --env-file secrets up -d
+```
+
+By passing in a file and having an environment variable with only a key, `rancher-compose` resolves to the value in the file or on the machine that rancher-compose is running on. If the environment variable is set in the file and on the machine, rancher-compose will use the value in the file.  
+
 ## Command Options
 ---
 
