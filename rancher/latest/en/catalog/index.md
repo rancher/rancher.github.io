@@ -213,24 +213,10 @@ A drop down of all available certificates in the environment.
 ```
       
 
-### Catalogue generator based on Yeoman
+### Catalog generator based on Yeoman
 
-There is an [open-source](https://github.com/Slashgear/generator-rancher-catalogue) project base on [Yeoman](http://yeoman.io/), that create the template of an empty catalogue.
+There is an [open-source](https://github.com/Slashgear/generator-rancher-catalog) project base on [Yeoman](http://yeoman.io/), that create the template of an empty catalog entry.
 
-[https://github.com/Slashgear/generator-rancher-catalogue](https://github.com/Slashgear/generator-rancher-catalogue)
-
-First, install [Yeoman](http://yeoman.io) and generator-rancher-catalogue using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
-
-```bash
-npm install -g yo
-npm install -g generator-rancher-catalogue
-```
-
-Then generate your new project:
-
-```bash
-yo rancher-catalogue
-```
 
 
 
