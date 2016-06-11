@@ -32,18 +32,3 @@ An [admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration
 
 If you want to create your own private catalog to add, the git repository must be set up in a [specific format]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/#creating-private-catalogs).
 
-## Machine Drivers
----
-
-[Docker-machine](https://docs.docker.com/machine/) drivers can be added into Rancher to [add hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/other/). 
-
-### Adding Machine Drivers
-
-Click on **Add Machine Driver**. 
-
-1. Provide a **name** for the driver to be displayed when adding [other hosts]{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/other/). 
-2. Provide the **Download URL**. This URL is the machine driver binary 64-bit Linux. 
-3. (Optional) Provide the **MD5 Checksum** to verify the downloaded driver matches the expected checksum. 
-4. When complete, click **Create**. 
-
-After clicking on create, Rancher add the additional driver and will display this option in the **Driver** field of adding [other hosts]{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/other/).

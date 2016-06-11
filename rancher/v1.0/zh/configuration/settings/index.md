@@ -44,4 +44,4 @@ Click on **Add Machine Driver**.
 3. (Optional) Provide the **MD5 Checksum** to verify the downloaded driver matches the expected checksum. 
 4. When complete, click **Create**. 
 
-After clicking on create, Rancher add the additional driver and will display this option in the **Driver** field of adding [other hosts]{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/other/).
+After clicking on create, Rancher add the additional driver and will display this option in the **Driver** field of adding [other hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/other/).
