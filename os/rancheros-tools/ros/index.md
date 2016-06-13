@@ -13,12 +13,14 @@ A useful command that can be used with RancherOS is `ros` which can be used to c
 | Command       | Description                                                                                   |
 |---------------|-----------------------------------------------------------------------------------------------|
 |`config`, `c`  | [Configure Settings]({{site.baseurl}}/os/rancheros-tools/ros/config/)                         |
+| `console` |	[console container commands]({{site.baseurl}}/os/rancheros-tools/ros/console/)
 |`dev`, `d`     | dev spec
 |`env`, `e`     | [Run a command with RancherOS environment]({{site.baseurl}}/os/rancheros-tools/ros/env/)      |
 |`service`, `s` | [Command Line interface for services and compose.]({{site.baseurl}}/os/rancheros-tools/ros/service/)                          |
 |`os`           | [Operating System Upgrade/Downgrade]({{site.baseurl}}/os/rancheros-tools/ros/os/)             |
 |`tls`          | [Setup TLS configuration]({{site.baseurl}}/os/rancheros-tools/ros/tls/)                       |
 |`install`      | [Install RancherOS to Disk]({{site.baseurl}}/os/rancheros-tools/ros/install/)                 |
+| `selinux` |	Launch SELinux tools container. |
 |`help`, `h`    | Shows a list of commands or help for one command                                              |
 
 
@@ -44,23 +46,27 @@ USAGE:
     ros [global options] command [command options] [arguments...]
 
 VERSION:
-    v0.4.0
+    v0.5.0
 
 AUTHOR(S): 
     Rancher Labs, Inc.  
 
-COMMANDS:
-    config, c   configure settings
+Options:
+--help, -h			show help
+--generate-bash-completion	
+--version, -v			print the version
+
+Commands:
+    config, c	configure settings
+    console     console container commands
     dev, d      dev spec
     env, e      env command
-    service, s  Coomand line interface for services and compose.
+    service, s	Command line interface for services and compose.
     os          operating system upgrade/downgrade
     tls         setup tls configuration
     install     install RancherOS to disk
-    help, h     Shows a list of commands or help for one command
+    selinux     Launch SELinux tools container.
+    help		Shows a list of commands or help for one command
 
-GLOBAL OPTIONS:
-    --help, -h                  show help
-    --generate-bash-completion	
-    --version, -v               print the version
+Run 'ros COMMAND --help' for more information on a command.
 ```
