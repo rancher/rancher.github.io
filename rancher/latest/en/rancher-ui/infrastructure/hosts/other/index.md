@@ -16,7 +16,7 @@ Please review the docker-machine defaults for the driver you selected to confirm
 
 ### Adding Additional Drivers
 
-If you'd like to add other drivers to your Rancher instance, an [admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/#admin) will need to add them in the [settings]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#machine-drivers). 
+If you'd like to add other drivers to your Rancher instance, an [admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/#admin) will need to add them in our [machine drivers]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/machine-drivers/) page.
 
 ### Launching Other Host(s) 
 

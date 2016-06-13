@@ -24,4 +24,4 @@ In order to add certificates to your [environment]({{site.baseurl}}/rancher/{{pa
 
 ### Using Certificates
 
-Certificates loaded in the environment can be used for [SSL termination of a load balancer]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-balancers/#ssl-termination). 
+Certificates loaded in the environment can be used for [SSL termination of a load balancer]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-balancers/#ssl-termination) or TLS termination for a Kubernetes Ingress]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/ingress/#example-using-tls). 
