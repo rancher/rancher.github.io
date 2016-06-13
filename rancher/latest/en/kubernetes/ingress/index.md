@@ -103,7 +103,7 @@ spec:
     servicePort: 90
 ```
 
-Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger a load balancer to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. From `kubectl`, you can see the ingress created, but the UI will only show the load balancer. The ingress controller has already done all the translations of the requests in the ingress to a Rancher load balancer.  
+Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger a load balancer service to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. By default, the load balancer service will only have 1 instance of the load balancer deployed. From `kubectl`, you can see the ingress created, but the UI will only show the load balancer. The ingress controller has already done all the translations of the requests in the ingress to a Rancher load balancer.  
 
 ```bash
 $ kubectl create -f simple-ingress.yml
@@ -232,7 +232,7 @@ spec:
           servicePort: 90
 ```
 
-Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger a load balancer to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. The load balancer will have the host name routing rules created from the ingress. 
+Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger a load balancer service to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. By default, the load balancer service will only have 1 instance of the load balancer deployed. The load balancer will have the host name routing rules created from the ingress. 
 
 From `kubectl`, you can see the ingress created, but the UI will only show the load balancer. The ingress controller has already done all the translations of the requests in the ingress to a Rancher load balancer.  
 
@@ -282,7 +282,7 @@ spec:
           servicePort: 90
 ```
 
-Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger a load balancer to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. The load balancer will have the host name routing rules created from the ingress. 
+Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger a load balancer to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. By default, the load balancer service will only have 1 instance of the load balancer deployed. The load balancer will have the host name routing rules created from the ingress. 
 
 From `kubectl`, you can see the ingress created, but the UI will only show the load balancer. The ingress controller has already done all the translations of the requests in the ingress to a Rancher load balancer.  
 
@@ -383,7 +383,7 @@ spec:
     servicePort: 90
 ```
 
-Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger 2 load balancers to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. 
+Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger the load balancer service to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. Since the `scale` is set to `2` in the ingress, the load balancer service will have 2 instances of the load balancer deployed. 
 
 From `kubectl`, you can see the ingress created, but the UI will only show the load balancer. The ingress controller has already done all the translations of the requests in the ingress to a Rancher load balancer. Since there are 2 load balancers, there will be 2 addresses set in the ingress. 
 
@@ -419,7 +419,7 @@ spec:
     servicePort: 90
 ```
 
-Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger 1 load balancer to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. 
+Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger the load balancer service to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. By default, the load balancer service will only have 1 instance of the load balancer deployed. 
 
 From `kubectl`, you can see the ingress created, but the UI will only show the load balancer. The ingress controller has already done all the translations of the requests in the ingress to a Rancher load balancer. 
 

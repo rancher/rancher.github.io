@@ -50,7 +50,7 @@ Rancher provides a convenient shell access to a managed kubectl instance that ca
 
 ### Adding a Private Registry To Kubernetes
 
-Private registries can be used with Kubernetes services by adding your [private registry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/registries/) in all of your Kubernetes environments. 
+Private registries can be used with Kubernetes services by adding your [private registry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/registries/) in your Kubernetes environment. 
 
 ### Kubernetes Namespaces
 
