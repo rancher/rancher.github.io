@@ -52,7 +52,7 @@ Account keys can create new Environments,  and have can be used to access multip
 
 - Most resources are owned by an environment and accessible under `/v1/projects/<project_id>/<resource>`
 - Since Environment credentials only ever have access to one Environment (project), you can optionally skip the `/project/<project_id>` part.
-- For example, if you are working with project `1a5` using an Environment API key, /v1/projects/1a5` is the same as `/v1` and /v1/projects/1a5/hosts` is the same as `/v1/hosts`.
+- For example, if you are working with project `1a5` using an Environment API key, `/v1/projects/1a5` is the same as `/v1` and `/v1/projects/1a5/hosts` is the same as `/v1/hosts`.
 - The documentation will generally refer to the shorter `/v1/<type>` version.  If using an Account key, add in the path for the appropriate environment.
 
 ## Making requests
