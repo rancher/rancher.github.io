@@ -22,8 +22,6 @@ Remember, all `ros` commands needs to be used with `sudo`.
 |----------|-------------------------------------------------|
 | `get`      | Gets value                                       |
 | `set`      | Sets a value                                     |
-| `import`  | Import configuration from standard in or a file |
-| `images`	 | List Docker images for a configuration from a file
 | `export`   | Export configuration                            |
 | `merge`    | Merge configuration from standard in                 |
 
@@ -53,24 +51,6 @@ Setting a simple value in the `/var/lib/rancher/conf/cloud-config.yml`
 
 ```bash
 $ sudo ros config set rancher.docker.tls true
-```
-
-### Import
-
-The `import` command allows you to import configurations from a standard in or a file. When using `import`, the existing configuration in `/var/lib/rancher/conf/cloud-config.yml` will be overridden. If you want to add information to the file, you'd need to use `ros config merge`.
-
-#### Import Options
-
-| Options  | Description                                     |
-|----------|-------------------------------------------------|
-| `--input`, `-i` |	File from which to read|
-
-#### Input
-
-The `-i` or `--input` option must be set in order for the command to work. This option determines where to find the file that you want to import.
-
-```bash
-$ sudo ros config import -i localcloudconfig.yml
 ```
 
 ### Export
