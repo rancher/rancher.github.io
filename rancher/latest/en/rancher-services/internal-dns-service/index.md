@@ -7,9 +7,8 @@ redirect_from:
   - rancher/rancher-services/internal-dns-service/
 ---
 
-## Rancher Internal DNS Service
+## Rancher Internal DNS Service in Cattle Environments 
 ---
-
 
 Within Rancher, we have our own internal DNS service that allows all services within one [cattle environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments) to resolve to any other in the environment. 
 
