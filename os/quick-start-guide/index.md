@@ -7,7 +7,7 @@ layout: os-default
 ## Quick Start Guide
 ---
 
-If you have a specific RanchersOS machine requirements, please check out our [guides on running RancherOS]({{site.baseurl}}/os/running-rancheros/). With the rest of this guide, we'll start up a RancherOS using [docker machine]({{site.baseurl}}/os/running-rancheros/workstation/docker-machine/) and show you some of what RancherOS can do.
+If you have a specific RanchersOS machine requirements, please check out our [guides on running RancherOS]({{site.baseurl}}/os/running-rancheros/). With the rest of this guide, we'll start up a RancherOS using [Docker machine]({{site.baseurl}}/os/running-rancheros/workstation/docker-machine/) and show you some of what RancherOS can do.
 
 ### Launching RancherOS using Docker Machine
 
@@ -19,7 +19,7 @@ $ docker-machine create -d virtualbox --virtualbox-boot2docker-url https://relea
 
 That's it! You're up and running a RancherOS instance.
 
-To log into the instance, just use the docker-machine command.
+To log into the instance, just use the `docker-machine` command.
 
 ```bash
 $ docker-machine ssh <MACHINE-NAME>
@@ -27,14 +27,13 @@ $ docker-machine ssh <MACHINE-NAME>
 
 ### A First Look At RancherOS
 
-There are two Docker daemons running in RancherOS. The first is called **system-docker**, which is where RancherOS runs system services like ntpd and syslog. You can use the `system-docker` command to control the **system-docker** daemon. 
+There are two Docker daemons running in RancherOS. The first is called **System Docker**, which is where RancherOS runs system services like ntpd and syslog. You can use the `system-docker` command to control the **System Docker** daemon. 
 
-The other Docker daemon running on the system is **docker**, which can be accessed by using the normal `docker` command.
+The other Docker daemon running on the system is **Docker**, which can be accessed by using the normal `docker` command.
 
+When you first launch RancherOS, there are no containers running in the Docker daemon. However, if you run the same command against the System Docker, you’ll see a number of system services that are shipped with RancherOS. 
 
-When you first launch RancherOS, there are no containers running in the `docker` daemon. However, if you run the same command against the `system-docker` instance, you’ll see a number of system services that are shipped with RancherOS. 
-
-> **Note:** `system-docker` can only be used by root, so it is necessary to use the `sudo` command whenever you want to interact with `system-docker`.
+> **Note:** `system-docker` can only be used by root, so it is necessary to use the `sudo` command whenever you want to interact with System Docker.
 
 ```bash
 $ sudo system-docker ps
@@ -55,7 +54,7 @@ Some containers are run at boot time, and others, such as the `console`, `docker
 
 ### Deploying a Docker Container
 
-Let's try to deploy a normal Docker container on the `docker` daemon.  The RancherOS `docker` daemon is identical to any other Docker environment, so all normal Docker commands work.
+Let's try to deploy a normal Docker container on the Docker daemon.  The RancherOS Docker daemon is identical to any other Docker environment, so all normal Docker commands work.
 
 ```bash
 $ docker run -d nginx 
@@ -88,16 +87,16 @@ ENTRYPOINT ["node","server"]
 
 Using the `hwestphal/nodebox` image, which uses a busybox image and installs `node.js` and `npm`. We downloaded the source code of Linux-dash, and then ran the server. Linux-dash will run on port 80 by default.
 
-To run this container with system-docker use the following command:
+To run this container in System Docker use the following command:
 
 ```sh
 $ sudo system-docker run -d --net=host --name busydash husseingalal/busydash
 ```
-In the commad, we used `--net=host` to tell `system-docker` not to containerize the container's networking, and use the host’s networking instead. After running the container, you can see the monitoring server by accessing `http://<IP_OF_MACHINE`.
+In the commad, we used `--net=host` to tell System Docker not to containerize the container's networking, and use the host’s networking instead. After running the container, you can see the monitoring server by accessing `http://<IP_OF_MACHINE`.
 
 ![System Docker Container]({{site.baseurl}}/img/os/Rancher_busydash.png)
 
-To make the container survive during the reboots, you can create the `/opt/rancher/bin/start.sh` script, and add the docker start line to launch the docker at each startup.
+To make the container survive during the reboots, you can create the `/opt/rancher/bin/start.sh` script, and add the Docker start line to launch the Docker at each startup.
 
 ```bash
 $ sudo mkdir -p /opt/rancher/bin

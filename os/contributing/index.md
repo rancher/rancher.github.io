@@ -24,13 +24,13 @@ Development is easiest done with QEMU on Linux. OS X works too, although QEMU do
 $ ./build.sh
 ```
 
-The build will run in a docker container named `ros-build`. When the build is done, the ISO, vmlinuz and initrd should be in `dist/artifacts`. 
+The build will run in a Docker container named `ros-build`. When the build is done, the ISO, vmlinuz and initrd should be in `dist/artifacts`. 
 
 Run `./build.sh` (or `dapper make all`) to perform the full build.  After that, if you only make changes to the Go code, just run `dapper make`. Otherwise (e.g. on changes to make files, 'build.conf' or 'os-config.yml'), run the full build again.
 
 ### Testing
 
-Run `time KVM=1 ./scripts/ci` to run the all integration tests. The tests will run in a docker container named "ros-ci".
+Run `time KVM=1 ./scripts/ci` to run the all integration tests. The tests will run in a Docker container named "ros-ci".
 
 ### Running
 

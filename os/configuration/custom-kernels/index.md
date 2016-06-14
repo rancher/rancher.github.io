@@ -36,7 +36,7 @@ Currently, RancherOS ships with Linux 3.19.2 kernel. Starting with v0.4.0+, the 
   
  3. After you've replaced the URL with your custom kernel, run `./build.sh` in the root directory. After the build has completed, a `./dist/artifacts` directory will be created with the custom built RancherOS release files. 
 
-     Build Requirements: `bash`, `make`, `docker` (docker version >= 1.8.0)
+     Build Requirements: `bash`, `make`, `docker` (Docker version >= 1.8.0)
      
     ```bash
     $ ./build.sh

@@ -14,7 +14,7 @@ It's easy to build your own RancherOS ISO.
    $ git clone https://github.com/rancher/os.git
    ```
 
-2. In the root of the repository, the `build.conf` file can be updated for changes for [custom kernels]({{site.baseurl}}/os/configuration/custom-kernels), or [custom docker]({{site.baseurl}}/os/configuration/custom-docker). 
+2. In the root of the repository, the `build.conf` file can be updated for changes for [custom kernels]({{site.baseurl}}/os/configuration/custom-kernels), or [custom Docker]({{site.baseurl}}/os/configuration/custom-docker). 
 
      `build.conf` file
 
@@ -29,7 +29,7 @@ It's easy to build your own RancherOS ISO.
 
 3. After you've saved your edits, run `./build.sh` in the root directory. After the build has completed, a `./dist/artifacts` directory will be created with the custom built RancherOS release files. 
 
-     Build Requirements: `bash`, `make`, `docker` (docker version >= 1.8.0)
+     Build Requirements: `bash`, `make`, `docker` (Docker version >= 1.8.0)
 
    ```bash
    $ ./build.sh
