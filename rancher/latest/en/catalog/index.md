@@ -213,6 +213,10 @@ A drop down of all available certificates in the environment.
 ```
       
 
+### Catalog generator based on Yeoman
+
+There is an [open-source](https://github.com/Slashgear/generator-rancher-catalog) project base on [Yeoman](http://yeoman.io/), that create the template of an empty catalog entry.
+
 
 
 
