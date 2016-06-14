@@ -8,7 +8,7 @@ lang: en
 ## API & Keys
 ---
 
-Click on **API** to find the API endpoint. Whenever you create an environment API key, the endpoint URL provided will direct you to the specific [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments) that you are currently working in. 
+Click on **API** to find the API endpoint. Whenever you create an environment API key, the endpoint URL provided will direct you to the specific [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) that you are currently working in. 
 
 If [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is not configured, anyone with the IP address will have access to your Rancher's API. It's highly recommended to enable access control.
 
