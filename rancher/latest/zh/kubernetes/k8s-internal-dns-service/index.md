@@ -2,7 +2,7 @@
 title: Kubernetes Internal DNS Service
 layout: rancher-default
 version: latest
-lang: en
+lang: zh
 ---
 
 ## Rancher Internal DNS Service in Kubernetes Environments 
