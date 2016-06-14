@@ -6,7 +6,7 @@ layout: os-default
 
 ## Configuring Storage
 
-By default, User Docker runs in the console container, which means that it will for the most part act and behave like Docker on any other standard Linux distribution. Customizing the storage that is available to Docker is largely a matter of installing components into the console. There is a second option in which you can create a dedicated container to provide storage.
+By default, Docker runs in the console container, which means that it will for the most part act and behave like Docker on any other standard Linux distribution. Customizing the storage that is available to Docker is largely a matter of installing components into the console. There is a second option in which you can create a dedicated container to provide storage.
 
 ### Modifying Console
 
@@ -21,8 +21,8 @@ rancher:
     ubuntu-console: true
 
 write_files:
-  # /opt/rancher/bin/start.sh is executed on start before User Docker starts
-  # /etc/rc.local is also executed on start but not guaranteed to be ran before User Docker
+  # /opt/rancher/bin/start.sh is executed on start before Docker starts
+  # /etc/rc.local is also executed on start but not guaranteed to be ran before Docker
   - path: /opt/rancher/bin/start.sh
     permissions: "0755"
     owner: root
@@ -159,16 +159,16 @@ $ zfs create zpool1/zdocker
 $ zfs list
 ```
 
-We'll need to edit the user Docker daemon by adding `zfs` to the list of args. 
+We'll need to edit the Docker daemon by adding `zfs` to the list of args. 
 
 ```bash
 $ sudo ros config set rancher.docker.args "['daemon', '--log-opt', 'max-size=25m', '--log-opt', 'max-file=2', '-s', 'zfs', '--storage-opt', 'zfs.fsname=zpool1/zdocker', '-G', 'docker', '-H', 'unix:///var/run/docker.sock', '--userland-proxy=false']"
-# After editing the user Docker daemon, you'll need to restart user Docker
+# After editing the Docker daemon, you'll need to restart Docker
 $ sudo system-docker stop docker
 $ sudo system-docker start docker
 ```
 
-After customizing the Docker daemon parameters and restarting the user Docker service, ZFS should work for Docker. 
+After customizing the Docker daemon parameters and restarting the Docker container, ZFS should work for Docker. 
 
 ```bash
 $ docker info

@@ -4,9 +4,9 @@ layout: os-default
 
 ---
 
-## Configuring Docker or System-Docker
+## Configuring Docker or System Docker
 
-In RancherOS, you can configure `system-docker` and `docker` daemons by using [cloud-config]({{site.baseurl}}/os/cloud-config/). 
+In RancherOS, you can configure System Docker and Docker daemons by using [cloud-config]({{site.baseurl}}/os/cloud-config/). 
 
 ### Configuring Docker
 
@@ -32,18 +32,18 @@ $ sudo ros config set rancher.docker.args "['daemon','--insecure-registry','192.
 Key | Value | Default | Description
 ---|---|---| ---
 `args` | List of Strings (required)|  `[daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -s, overlay, -G, docker, -H, 'unix:///var/run/docker.sock', --userland-proxy=false]` | Docker daemon process args list, starting with `daemon`. 
-`extra_args` | List of Strings (optional) |  `[]`| Extra docker daemon process args, appended to `args` value. 
+`extra_args` | List of Strings (optional) |  `[]`| Extra Docker daemon process args, appended to `args` value. 
 `environment` | List of Strings (optional) |`[]` | 
 `tls` | Boolean (optional) | `false` | When [setting up TLS]({{site.baseurl}}/os/configuration/setting-up-docker-tls/), this key needs to be set to true.
 `tls_args` | List of Strings (optional, used only if `tls: true`) | `[]` | 
 `server_key` | String (optional, used only if `tls: true`)| `""` | PEM encoded server TLS key. 
 `server_cert` | String (optional, used only if `tls: true`) | `""` | PEM encoded server TLS certificate.
 `ca_key` | String (optional, used only if `tls: true`) | `""` | PEM encoded CA TLS key. 
-`storage_context` | String  (optional) | `console` | Specifies the name of the system container in whose context to run the docker daemon process. 
+`storage_context` | String  (optional) | `console` | Specifies the name of the system container in whose context to run the Docker daemon process. 
 
-### Configuring System-Docker
+### Configuring System Docker
 
-In your cloud config, the system-docker configuration is under the `rancher.system_docker` key. 
+In your cloud config, the System Docker configuration is under the `rancher.system_docker` key. 
 
 ```yaml
 #cloud-config
@@ -53,12 +53,12 @@ rancher:
     args: [daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -s, overlay, -b, docker-sys, --restart=false, -g, /var/lib/system-docker, -G, root, -H, 'unix:///var/run/system-docker.sock', --userland-proxy=false]
 ```
      
-#### Valid Keys for System-Docker
+#### Valid Keys for System Docker
 
 Key | Value | Default | Description
 ---|---|---| ---
 `args` | List of Strings (required)|  `[daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -s, overlay, -b, docker-sys, --restart=false, -g, /var/lib/system-docker, -G, root, -H, 'unix:///var/run/system-docker.sock', --userland-proxy=false]` | Docker daemon process args list, starting with `daemon`. 
-`extra_args` | List of Strings (optional) |  `[]`| Extra docker daemon process args, appended to `args` value. 
+`extra_args` | List of Strings (optional) |  `[]`| Extra Docker daemon process args, appended to `args` value. 
 `environment` | List of Strings (optional) |`[]` | 
   
 

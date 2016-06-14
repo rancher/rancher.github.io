@@ -27,7 +27,7 @@ rancher/os:v0.4.0 remote
 rancher/os:v0.4.1 local
 ```
 
-The local/remote shows which images are already in the system-docker containers versus on Docker Hub. If you choose to upgrade to a version that is remote, we will automatically pull that image during the upgrade.
+The local/remote shows which images are already in the System Docker containers versus on Docker Hub. If you choose to upgrade to a version that is remote, we will automatically pull that image during the upgrade.
 
 ### Upgrading 
 

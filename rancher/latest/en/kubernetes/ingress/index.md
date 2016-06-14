@@ -10,8 +10,6 @@ redirect_from:
 ## Kubernetes Ingress
 ---
 
-_Available as of v1.1.0-dev2_
-
 Before being able to start using [Kubernetes Ingress resources](http://kubernetes.io/docs/user-guide/ingress/), you'll first need to have an [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) that has specified the cluster management to be Kubernetes. We also recommend [setting up `kubectl` on your local machine]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#kubectl) to make it easier to launch Kubernetes resources into Rancher. Alternatively, you can use the shell provided by the Rancher UI to launch resources. 
 
 The Kubernetes Ingress resource can be backed up by any load balancer of your choice, so to leverage the Rancher's load balancing functionality, we have introduced the concept of a Rancher ingress controller. The ingress controller is created as part of ingress-controller service, which gets deployed as part of the system stack for Kubernetes. 
@@ -21,9 +19,7 @@ The ingress controller manages the creation/removal/update of Rancher load balan
 ### Current Limitations 
 
 * Ingress resources can only be added through `kubectl` 
-* For every ingress, there must be 1 Host in the Kubernetes environment with port `80` available. Currently, the load balancer is automatically defaulted to port `80`.
-* If you are [upgrading]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/) to `v1.1.0-dev2`from a previous version, any existing Kubernetes environments will not be able to take advantage of the ingress support unless you de-activate/activate the environment. Currently, there is no upgrade support for kubernetes environments, so this deactivation/reactivation will permit ingress support to be activated.
-* Currently, TLS is not supported
+* If you are [upgrading]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/) to `v1.1.0`from a previous version, any existing Kubernetes environments will not be able to take advantage of the ingress support unless you de-activate/activate the environment. Currently, there is no upgrade support for kubernetes environments, so this deactivation/reactivation will permit ingress support to be activated.
 
 ### Rancher Ingress Controller
 
@@ -107,7 +103,7 @@ spec:
     servicePort: 90
 ```
 
-Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger a load balancer to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. From `kubectl`, you can see the ingress created, but the UI will only show the load balancer. The ingress controller has already done all the translations of the requests in the ingress to a Rancher load balancer.  
+Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger a load balancer service to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. By default, the load balancer service will only have 1 instance of the load balancer deployed. From `kubectl`, you can see the ingress created, but the UI will only show the load balancer. The ingress controller has already done all the translations of the requests in the ingress to a Rancher load balancer.  
 
 ```bash
 $ kubectl create -f simple-ingress.yml
@@ -236,7 +232,7 @@ spec:
           servicePort: 90
 ```
 
-Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger a load balancer to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. The load balancer will have the host name routing rules created from the ingress. 
+Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger a load balancer service to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. By default, the load balancer service will only have 1 instance of the load balancer deployed. The load balancer will have the host name routing rules created from the ingress. 
 
 From `kubectl`, you can see the ingress created, but the UI will only show the load balancer. The ingress controller has already done all the translations of the requests in the ingress to a Rancher load balancer.  
 
@@ -286,7 +282,7 @@ spec:
           servicePort: 90
 ```
 
-Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger a load balancer to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. The load balancer will have the host name routing rules created from the ingress. 
+Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger a load balancer to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. By default, the load balancer service will only have 1 instance of the load balancer deployed. The load balancer will have the host name routing rules created from the ingress. 
 
 From `kubectl`, you can see the ingress created, but the UI will only show the load balancer. The ingress controller has already done all the translations of the requests in the ingress to a Rancher load balancer.  
 
@@ -307,4 +303,123 @@ Similar to the simple ingress load balancer, this load balancer will be in the *
 The `address` in the ingress will be the public endpoint of where the load balancer service was launched. If the load balancer is moved to a different host and gets a different public endpoint, the ingress `address` will be updated. 
 
 To access your application, you can hit the address at our default port `80` (i.e. `http://1.2.3.4:80`) or the address directly (i.e. `http://1.2.3.4`). 
+
+### Load Balancer Options with Kubernetes Ingress 
+
+By default, a Kubernetes ingress will deploy 1 load balancer on only 1 host using port `80`. Rancher has added the ability to support multiple load balancers using the port of your choice. By scaling the ingress, the address programmed in Kubernetes will also reflect all the hosts that have the load balancer available. 
+
+> **Note:** If you choose to increase the scale of your ingress, you will need to ensure that there are at least the equivalent number of hosts available in your Kubernetes environment that have the port available. 
+
+#### Setting up a Simple Service
+
+Before setting up any ingress, services will need to be created in Kubernetes. We'll start by adding a service and replication controller into our Kubernetes environment. 
+
+Here's a simple nginx service to add into Kubernetes.
+
+Example `nginx-service.yml`:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  labels:
+    k8s-app: nginx-service
+spec:
+  ports:
+  - port: 90
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    k8s-app: nginx-service
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-service
+spec:
+  replicas: 1
+  selector:
+    k8s-app: nginx-service
+  template:
+    metadata:
+      labels:
+        k8s-app: nginx-service
+    spec:
+      terminationGracePeriodSeconds: 60
+      containers:
+      - name: nginx-service
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+```
+
+Using `kubectl`, let's launch our nginx service into Kubernetes. Remember, you can either [configure `kubectl` for your local machine]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#kubectl) or you can use the shell in the UI under **Kubernetes** -> **kubectl**.
+
+```bash
+$ kubectl create -f nginx-service.yml
+service "nginx-service" created
+replicationcontroller "nginx-service" created
+```
+
+#### Example of 2 Load Balancers using an Alternative Port
+
+You can set up a ingress that is launched using 2 load balancers on 2 different hosts that uses a port, `99`, instead of the default ingress port `80`. For this ingress to work correctly, your kubernetes environment will need at least 2 hosts that have port `99` available. 
+
+Example `scaled-ingress.yml`
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: scaledlb
+  annotations:
+    scale: "2"
+    http.port: "99"
+spec:
+  backend:
+    serviceName: nginx-service
+    servicePort: 90
+```
+
+Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger the load balancer service to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. Since the `scale` is set to `2` in the ingress, the load balancer service will have 2 instances of the load balancer deployed. 
+
+From `kubectl`, you can see the ingress created, but the UI will only show the load balancer. The ingress controller has already done all the translations of the requests in the ingress to a Rancher load balancer. Since there are 2 load balancers, there will be 2 addresses set in the ingress. 
+
+
+```bash
+$ kubectl create -f scaled-ingress.yml
+ingress "host-based-ingress" created
+$ kubectl get ingress
+NAME       RULE      BACKEND            ADDRESS             AGE
+simplelb   -         nginx-service:90   1.2.3.4,5.6.7.8     41s
+```
+
+#### Example using TLS
+
+If you want to use TLS with Kubernetes, you'll need to [add the certifcate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/certificates/) into Rancher. The certificate added into Rancher can be used to secure an ingress for TLS termination.
+
+Let's say we added a certificate called `foo`. 
+
+Example `tls-ingress.yml` using the `foo` certificate
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tlslb
+  annotations:
+    https.port: "444"
+spec:
+  tls:
+   - secretName: foo
+  backend:
+    serviceName: nginx-service
+    servicePort: 90
+```
+
+Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger the load balancer service to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. By default, the load balancer service will only have 1 instance of the load balancer deployed. 
+
+From `kubectl`, you can see the ingress created, but the UI will only show the load balancer. The ingress controller has already done all the translations of the requests in the ingress to a Rancher load balancer. 
 

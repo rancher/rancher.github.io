@@ -7,72 +7,47 @@ layout: os-default
 ## Custom Console
 ---
 
-When [booting from the ISO]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso/), RancherOS starts with the default console, which is based on busybox. If you are running RancherOS through a cloud provider, RancherOS is enabled to start with the ubuntu console. The console is considered a [system service]({{site.baseurl}}/os/configuration/system-services).
+When [booting from the ISO]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso/), RancherOS starts with the default console, which is based on busybox. If you are running RancherOS through a cloud provider, RancherOS is enabled to start with the ubuntu console. 
 
-Currently, RancherOS supports three different consoles, busybox, ubuntu and debian console. You can select which console you want RancherOS to start with using [cloud-config]({{site.baseurl}}/os/cloud-config/). If multiple consoles are enabled, the first console that starts will be the console that is used in RancherOS, so it's important to disable any consoles that you don't want to use. 
+You can select which console you want RancherOS to start with using the [cloud-config]({{site.baseurl}}/os/cloud-config/).
 
-> **Note:** With v0.4.0, ubuntu and debian are [persistent consoles]({{site.baseurl}}/os/custom-console/#console-persistence). If you have already started RancherOS in a persistent console, you will not be able to switch directly to the other persistent console.  You must first switch back to the default busybox console, and then switch to the new persistent console.
+### Enabling Consoles using Cloud-Config 
 
+When launching RancherOS with a [cloud-config]({[site.baseurl}}/os/cloud-config/) file, you can select which console you want Rancher to use. 
 
-### Enabling Consoles using Cloud Config 
+Currently, the list of available consoles are:
 
-When launching RancherOS with [cloud-config]({[site.baseurl}}/os/cloud-config/), you can select which console you want Rancher to start using the `services_include` key. 
+* default 
+* centos
+* debian
+* fedora
+* ubuntu
 
-The supported consoles are listed in the [os-services repository](https://github.com/rancher/os-services/blob/master/index.yml) and can be set to `true` or `false` in the file.
-
-Debian Console Example
+Here is an example cloud-config file that can be used to enable the debian console.
 
 ```yaml
+#cloud-config
 rancher:
-  services_include:
-    # Disable the Ubuntu Console
-    ubuntu-console: false
-    # Enable the Debian Console
-    debian-console: true
+  console: debian
 ```
 
-In order to enable the busybox console, you would need to set both ubuntu-console and debian-console to false (or just delete these lines from cloud-config). 
+### Changing Consoles after RancherOS has started
 
-### Changing Consoles after RancherOS has launched
+You can view which console is being used by RancherOS by checking which console container is running in System Docker. 
 
-You can view which console is being used by RancherOS by checking which console container is running in system-docker. 
-
-To enable the busybox console, all consoles in the system-services list will need to be disabled. You can check which consoles are enabled from the `ros service list` command and disable any consoles that are enabled. **If you enable or disable services, you need to reboot in order for the changes to get applied.**
+You can easily switch between the different consoles.
 
 ```bash
-$ sudo ros service list
-disabled debian-console 
-disabled ubuntu-console
-$ sudo ros service enable debian-console
-$ sudo reboot
+$ sudo ros console switch <console>
 ```
 
-### Switching between custom consoles
+<br>
 
-Currently, if you want to switch between debian/ubuntu consoles, you will need to change RancherOS to be running the default console before making switches to the other persistent console.
-
-```bash
-# Currently running ubuntu console
-$ sudo ros service list
-disabled debian-console 
-enabled ubuntu-console
-# Disable ubuntu console
-$ sudo ros service disable ubuntu-console
-# Both consoles are disabled and RancherOS will start the default busybox console
-$ sudo ros service list
-disabled debian-console 
-disabled ubuntu-console
-# Reboot
-$ sudo reboot
-# Log back in the default busybox console, enable the debian console
-$ sudo ros service enable debian-console
-# Reboot and log back in to be running the debian console
-$ sudo reboot
-```
+> **Note:** When switching between consoles, the currently running console container is destroyed, Docker is restarted and you will be logged out.
 
 ### Console persistence
 
-As of v0.4.0, debian and ubuntu consoles are persistent, while the default (busybox) console is ephemeral. Persistent console means that the console container will remain the same and preserves changes made to its filesystem across reboots. If a container is deleted/rebuilt, state in the console will be lost except what is in the persisted directories.
+All consoles except the default (busybox) console are persistent. Persistent console means that the console container will remain the same and preserves changes made to its filesystem across reboots. If a container is deleted/rebuilt, state in the console will be lost except what is in the persisted directories.
 
 ```bash
 /home

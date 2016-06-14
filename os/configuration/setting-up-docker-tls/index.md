@@ -25,7 +25,7 @@ When you've done that, all the necessary server certificate and key files have b
 
 #### Generate Client Certificates
 
-You also need client cert and key to access docker via a TCP socket now:
+You also need client cert and key to access Docker via a TCP socket now:
 
 
 ```sh
@@ -37,17 +37,17 @@ All the docker client TLS files are in `~/.docker` dir now.
 
 #### Test certificates
 
-Now you can use your client cert to check if you can access docker via TCP:
+Now you can use your client cert to check if you can access Docker via TCP:
 
 ```sh
 $ docker --tlsverify version
 ```
 
-Because all the necessary files are in the `~/.docker` dir, you don't need to specify them using `--tlscacert` `--tlscert` and `--tlskey` options. You also don't need `-H` to access docker on localhost.
+Because all the necessary files are in the `~/.docker` dir, you don't need to specify them using `--tlscacert` `--tlscert` and `--tlskey` options. You also don't need `-H` to access Docker on localhost.
 
-Copy the files from `/home/rancher/.docker` to `$HOME/.docker` on your client machine if you need to access docker on your RancherOS host from there.
+Copy the files from `/home/rancher/.docker` to `$HOME/.docker` on your client machine if you need to access Docker on your RancherOS host from there.
 
-On your client machine, set the docker host and test out if Docker commands work.
+On your client machine, set the Docker host and test out if Docker commands work.
 
 
 ```bash
