@@ -28,7 +28,35 @@ By default, RancherOS ships with the kernel provided by the [os-kernel repositor
 
     <br>
 
-    > **Note:** `COMPILED_KERNEL_URL` should point to a Linux kernel, compiled and packaged in a specific way. You can use the [os-kernel repository](https://github.com/rancher/os-kernel) to package your own kernel.
+    > **Note:** `COMPILED_KERNEL_URL` should point to a Linux kernel, compiled and packaged in a specific way. You can fork [os-kernel repository](https://github.com/rancher/os-kernel) to package your own kernel.
+
+    Your kernel should be packaged and published as a set of files of the following format:
+
+    `<kernel-name-and-version>.tar.gz` is the one KERNEL_URL should point to. It contains the kernel binary, core modules and firmware:
+
+    ```
+    boot/
+         vmlinuz-<kernel-version>
+    lib/
+        modules/
+                <kernel-version>/
+                                 ...
+        firmware/
+                 ...
+    ```
+
+    `build.tar.gz` contains build headers to build additional modules (e.g. using DKMS): it is a subset of the kernel sources tarball. These files will be installed into `/usr/src/<os-kernel-tag>`.
+
+    `extra.tar.gz` contains extra modules and firmware for your kernel:
+
+    ```
+    lib/
+        modules/
+                <kernel-version>/
+                                 ...
+        firmware/
+                 ...
+    ```
   
  3. After you've replaced the URL with your custom kernel, you can follow the steps in [building your own custom RancherOS ISO]({{site.baseurl}}/os/configuration/custom-rancheros-iso/).
 
