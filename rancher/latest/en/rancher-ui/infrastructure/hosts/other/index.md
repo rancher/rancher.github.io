@@ -12,7 +12,7 @@ redirect_from:
 
 Rancher supports provisioning from other cloud providers using `docker-machine`. The other cloud providers have a generic UI, which provides all the options in `docker-machine`, and we only require the necessary parameters.
 
-Please review the docker-machine defaults for the driver you selected to confirm that you are okay with the defaults.
+Please review the Docker Machine defaults for the driver you selected to confirm that you are okay with the defaults.
 
 ### Adding Additional Drivers
 
