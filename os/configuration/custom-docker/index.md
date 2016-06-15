@@ -96,6 +96,6 @@ In order to change the Docker version in Docker and System Docker, you'll be [bu
    iso-checksums.txt	vmlinuz
    ```
 
-The `rancheros.iso` is ready to be used to [boot RancherOS from ISO]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso/) or [launch RancherOS using docker-machine]({{site.baseurl}}/os/running-rancheros/workstation/docker-machine). The new ISO will be running your custom Docker version in Docker and System Docker. 
+The `rancheros.iso` is ready to be used to [boot RancherOS from ISO]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso/) or [launch RancherOS using Docker Machine]({{site.baseurl}}/os/running-rancheros/workstation/docker-machine). The new ISO will be running your custom Docker version in Docker and System Docker. 
 
 
