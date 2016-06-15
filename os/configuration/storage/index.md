@@ -75,36 +75,22 @@ rancher:
 In order to start using ZFS, you'll need to first enable one of the [persistent consoles]({{site.baseurl}}/os/configuration/custom-console/#console-persistence) and enable [kernel headers]({{site.baseurl}}/os/configuration/kernel-modules-kernel-headers/).
 
 ```bash
-# You can enable either ubuntu-console or debian-console
-$ sudo ros service enable ubuntu-console
 $ sudo ros service enable kernel-headers
-
-$ sudo ros service pull
-# Reboot in order for the changes to take effect
-$ sudo reboot
+$ sudo ros service up -d kernel-headers
+$ sudo ros console switch ubuntu
 ```
 
-When RancherOS has booted up again, you will have logged into the persistent console and the current kernel headers will have been downloaded and unpacked.
+When RancherOS console has reloaded, you will have logged into the persistent console and the current kernel headers will have been downloaded and unpacked.
 
 ### Installing ZFS on Ubuntu Console
 
-Based on the [ZFS docs regarding Ubuntu](https://launchpad.net/~zfs-native/+archive/stable), you'll need to add the `ppa:zfs-native/stable` PPA to the Ubuntu console. 
-
-There will be a couple of packages that need to be installed in order to add the PPA. 
+Based on the [Ubuntu ZFS docs](https://wiki.ubuntu.com/Kernel/Reference/ZFS), you only need to install `zfsutils-linux` package into the Ubuntu console to enable ZFS (all the other necessary packages will be installed as its dependencies).
 
 ```bash
-# Installing DKMS-based kernel modules
-$ apt-get install software-properties-common build-essential dkms
 # Adding ZFS PPA and updating the package cache
-$ add-apt-repository ppa:zfs-native/stable
-$ apt-get update
-```
-
-At this point, if we tried to install `ubuntu-zfs`, the `apt-get` will show that `mountall` isn't updated. We'll need to install `mountall` and then install ZFS.
-
-```bash
-$ apt-get install mountall
-$ apt-get install --no-install-recommends ubuntu-zfs
+$ sudo apt update
+$ sudo apt upgrade
+$ sudo apt install zfsutils-linux
 ```
 
 ### Installing ZFS on Debian Console
@@ -152,42 +138,65 @@ To experiment with ZFS, you can create zpool backed by just ordinary files, not 
 
 ## ZFS storage for Docker on RancherOS
 
-Before editing the Docker daemon, you'll need to create a ZFS filesystem for Docker. 
+First, you need to stop `docker` system service and wipe out `/var/lib/docker` folder:
 
 ```bash
-$ zfs create zpool1/zdocker
-$ zfs list
+$ sudo system-docker stop docker
+$ sudo rm -rf /var/lib/docker/*
 ```
 
-We'll need to edit the Docker daemon by adding `zfs` to the list of args. 
+To enable ZFS as the storage driver for Docker, you'll need to create a ZFS filesystem for Docker:
 
 ```bash
-$ sudo ros config set rancher.docker.args "['daemon', '--log-opt', 'max-size=25m', '--log-opt', 'max-file=2', '-s', 'zfs', '--storage-opt', 'zfs.fsname=zpool1/zdocker', '-G', 'docker', '-H', 'unix:///var/run/docker.sock', '--userland-proxy=false']"
-# After editing the Docker daemon, you'll need to restart Docker
-$ sudo system-docker stop docker
+$ sudo zfs create -o mountpoint=/var/lib/docker zpool1/docker
+$ sudo zfs mount zpool1/docker
+$ sudo zfs list -o name,mountpoint,mounted
+```
+
+At this point you'll have a ZFS filesystem created and mounted at `/var/lib/docker`. According to [Docker ZFS storage docs](https://docs.docker.com/engine/userguide/storagedriver/zfs-driver/), if `/var/lib/docker` is a ZFS filesystem, Docker daemon will automatically use `zfs` as its storage driver.
+
+Now you'll need to remove `-s overlay` (or any other storage driver) from docker daemon args to allow docker to automatically detect `zfs`:
+
+```bash
+$ sudo ros config set rancher.docker.args "[daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -G, docker, -H, 'unix:///var/run/docker.sock']"
+# After editing Docker daemon args, you'll need to start Docker
 $ sudo system-docker start docker
 ```
 
-After customizing the Docker daemon parameters and restarting the Docker container, ZFS should work for Docker. 
+After customizing the Docker daemon arguments and restarting `docker` system service, ZFS will be used as Docker storage driver:
 
 ```bash
 $ docker info
+
 Containers: 0
+ Running: 0
+ Paused: 0
+ Stopped: 0
 Images: 0
+Server Version: 1.11.2
 Storage Driver: zfs
-  Zpool: zpool1
-  Zpool Health: ONLINE
-  Parent Dataset: zpool1/zdocker
-  Space Used By Parent: 19456
-  Space Available: 1023326720
-  Parent Quota: no
-  Compression: off
-Execution Driver: native-0.2
+ Zpool: zpool1
+ Zpool Health: ONLINE
+ Parent Dataset: zpool1/docker
+ Space Used By Parent: 19968
+ Space Available: 4128138240
+ Parent Quota: no
+ Compression: off
 Logging Driver: json-file
-Kernel Version: 4.2.2-rancher
+Cgroup Driver: cgroupfs
+Plugins:
+ Volume: local
+ Network: bridge null host
+Kernel Version: 4.4.10-rancher
 Operating System: RancherOS (containerized)
-CPUs: 2
-Total Memory: 996.4 MiB
+OSType: linux
+Architecture: x86_64
+CPUs: 1
+Total Memory: 1.955 GiB
 Name: rancher-dev
-ID: PVRY:SQJ5:GQPH:BMHA:74RQ:WOIW:NMGM:EFGE:JZVS:MUH7:TFT2:RZ4W
+ID: YNXU:HZ7N:H4RI:TFND:YHJT:JJFZ:33II:7M7V:FBAO:7WWF:GTCH:WZ3K
+Docker Root Dir: /var/lib/docker
+Debug mode (client): false
+Debug mode (server): false
+Registry: https://index.docker.io/v1/
 ```
