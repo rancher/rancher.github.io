@@ -75,7 +75,7 @@ $ apt-get update
 $ apt-get install debian-zfs
 ```
 
-### Adding ZFS to load on every boot
+### Mounting ZFS filesystems on boot
 
 In order for ZFS to load on boot, it needs to be added to `modules` list in the config. Prior to adding it to the list of modules, you'll need to check to see if there are other modules that are currently enabled. 
 
@@ -84,6 +84,24 @@ $ ros config get rancher.modules
 # Make sure to include any modules that were already enabled
 $ ros config set rancher.modules [zfs]
 ```
+
+Also, make sure `/opt/rancher/bin/start.sh` has this line:
+```bash
+[ -f /etc/zfs/zpool.cache ] && zpool import -c /etc/zfs/zpool.cache -a
+```
+
+As noted above, you can write `/opt/rancher/bin/start.sh` in your cloud-config:
+```yaml
+#cloud-config
+write_files:
+- path: /opt/rancher/bin/start.sh
+  permissions: "0755"
+  owner: root
+  content: |
+    #!/bin/sh
+    [ -f /etc/zfs/zpool.cache ] && zpool import -c /etc/zfs/zpool.cache -a
+```
+
 
 ### Using ZFS
 
@@ -103,23 +121,21 @@ First, you need to stop `docker` system service and wipe out `/var/lib/docker` f
 
 ```bash
 $ sudo system-docker stop docker
-$ sudo rm -rf /var/lib/docker/*
 ```
 
 To enable ZFS as the storage driver for Docker, you'll need to create a ZFS filesystem for Docker:
 
 ```bash
-$ sudo zfs create -o mountpoint=/var/lib/docker zpool1/docker
-$ sudo zfs mount zpool1/docker
+$ sudo zfs create zpool1/docker
 $ sudo zfs list -o name,mountpoint,mounted
 ```
 
-At this point you'll have a ZFS filesystem created and mounted at `/var/lib/docker`. According to [Docker ZFS storage docs](https://docs.docker.com/engine/userguide/storagedriver/zfs-driver/), if `/var/lib/docker` is a ZFS filesystem, Docker daemon will automatically use `zfs` as its storage driver.
+At this point you'll have a ZFS filesystem created and mounted at `/zpool1/docker`. According to [Docker ZFS storage docs](https://docs.docker.com/engine/userguide/storagedriver/zfs-driver/), if `/var/lib/docker` is a ZFS filesystem, Docker daemon will automatically use `zfs` as its storage driver.
 
 Now you'll need to remove `-s overlay` (or any other storage driver) from docker daemon args to allow docker to automatically detect `zfs`:
 
 ```bash
-$ sudo ros config set rancher.docker.args "[daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -G, docker, -H, 'unix:///var/run/docker.sock']"
+$ sudo ros config set rancher.docker.args "[daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -G, docker, -H, 'unix:///var/run/docker.sock', -g, '/zpool1/docker']"
 # After editing Docker daemon args, you'll need to start Docker
 $ sudo system-docker start docker
 ```
