@@ -18,9 +18,9 @@ The **active** machine drivers are the only options that are displayed on the **
 
 You can easily add your own machine-driver by clicking on **Add Machine Driver**. 
 
-1. Provide a **name** for the driver to be displayed when adding [other hosts]{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/other/). 
-2. Provide the **Download URL**. This URL is the machine driver binary 64-bit Linux. 
-3. (Optional) Provide the **MD5 Checksum** to verify the downloaded driver matches the expected checksum. 
+1. Provide the **Download URL**. This URL is the machine driver binary 64-bit Linux. 
+2. (Optional) Provide a **Custom UI URL** to load a customized Add Hosts screen for the driver. The [ui-driver-skel repository](https://github.com/rancher/ui-driver-skel) has more info on how to set it up.
+3. (Optional) Provide the **Checksum** to verify the downloaded driver matches the expected checksum. 
 4. When complete, click **Create**. 
 
-After clicking on create, Rancher adds the additional driver and will display this option in the **Driver** field of adding [other hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/other/).
+After clicking on create, Rancher adds the additional driver and will display this option in the **Driver** field of adding [other hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/other/) or with a custom image (if provided).
