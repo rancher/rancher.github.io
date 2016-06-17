@@ -6,68 +6,29 @@ layout: os-default
 
 ## Configuring Storage
 
-By default, Docker runs in the console container, which means that it will for the most part act and behave like Docker on any other standard Linux distribution. Customizing the storage that is available to Docker is largely a matter of installing components into the console. There is a second option in which you can create a dedicated container to provide storage.
+By default, Docker runs in the console container, which means that it will for the most part act and behave like Docker on any other standard Linux distribution. Customizing the storage that is available to Docker is largely a matter of mounting additional storage into the console.
 
-### Modifying Console
+### Mounting Additional Storage for Docker
 
-#### Example: Mounting NFS
+If you want to use an existing storage device to store docker persistent state, you can mount it in `/opt/rancher/bin/start.sh` (it is run on boot and exits before docker is started) like this:
 
-Example of mounting `192.168.1.180:/home` to `/mnt`
-
-```yaml
-#cloud-config
-rancher:
-  services_include:
-    ubuntu-console: true
-
-write_files:
-  # /opt/rancher/bin/start.sh is executed on start before Docker starts
-  # /etc/rc.local is also executed on start but not guaranteed to be ran before Docker
-  - path: /opt/rancher/bin/start.sh
-    permissions: "0755"
-    owner: root
-    content: |
-      #!/bin/bash
-      if ! dpkg -l | grep -q nfs-common; then
-        apt-get update -qq && apt-get install -y nfs-common
-      fi
-      rpcbind
-      mount -t nfs 192.168.1.180:/home /mnt
+```bash
+#!/bin/sh
+set -ex
+mount /dev/<your-storage-dev> /var/lib/docker
 ```
 
-### Custom Storage Container
-
-A custom storage container can be created and Docker will run inside of that container and not the console.  This allows one to provide custom storage but maintain a lightweight and ephemeral console.
-
-#### Example:
-
+You can write `/opt/rancher/bin/start.sh` in cloud-config:
 ```yaml
 #cloud-config
-
-rancher:
-  docker:
-    # This must be the name of the service that provides the storage.  Docker will run this container.
-    storage_context: nfs
-    
-  services:
-    nfs:
-      # Your custom image
-      image: example/custom-nfs-image
-
-      # Everything below is required to be set so that Docker can run properly
-      labels:
-        io.rancher.os.after: console
-        io.rancher.os.scope: system
-      net: host
-      pid: host
-      uts: host
-      ipc: host
-      privileged: true
-      restart: always
-      volumes_from:
-      - all-volumes
-      volumes:
-      - /usr/bin/iptables:/sbin/iptables:ro
+write_files:
+- path: /opt/rancher/bin/start.sh
+  permissions: "0755"
+  owner: root
+  content: |
+    #!/bin/sh
+    set -ex
+    mount /dev/<your-storage-dev> /var/lib/docker
 ```
 
 ## Using ZFS
@@ -114,7 +75,7 @@ $ apt-get update
 $ apt-get install debian-zfs
 ```
 
-### Adding ZFS to load on every boot
+### Mounting ZFS filesystems on boot
 
 In order for ZFS to load on boot, it needs to be added to `modules` list in the config. Prior to adding it to the list of modules, you'll need to check to see if there are other modules that are currently enabled. 
 
@@ -123,6 +84,24 @@ $ ros config get rancher.modules
 # Make sure to include any modules that were already enabled
 $ ros config set rancher.modules [zfs]
 ```
+
+Also, make sure `/opt/rancher/bin/start.sh` has this line:
+```bash
+[ -f /etc/zfs/zpool.cache ] && zpool import -c /etc/zfs/zpool.cache -a
+```
+
+As noted above, you can write `/opt/rancher/bin/start.sh` in your cloud-config:
+```yaml
+#cloud-config
+write_files:
+- path: /opt/rancher/bin/start.sh
+  permissions: "0755"
+  owner: root
+  content: |
+    #!/bin/sh
+    [ -f /etc/zfs/zpool.cache ] && zpool import -c /etc/zfs/zpool.cache -a
+```
+
 
 ### Using ZFS
 
@@ -142,23 +121,21 @@ First, you need to stop `docker` system service and wipe out `/var/lib/docker` f
 
 ```bash
 $ sudo system-docker stop docker
-$ sudo rm -rf /var/lib/docker/*
 ```
 
 To enable ZFS as the storage driver for Docker, you'll need to create a ZFS filesystem for Docker:
 
 ```bash
-$ sudo zfs create -o mountpoint=/var/lib/docker zpool1/docker
-$ sudo zfs mount zpool1/docker
+$ sudo zfs create zpool1/docker
 $ sudo zfs list -o name,mountpoint,mounted
 ```
 
-At this point you'll have a ZFS filesystem created and mounted at `/var/lib/docker`. According to [Docker ZFS storage docs](https://docs.docker.com/engine/userguide/storagedriver/zfs-driver/), if `/var/lib/docker` is a ZFS filesystem, Docker daemon will automatically use `zfs` as its storage driver.
+At this point you'll have a ZFS filesystem created and mounted at `/zpool1/docker`. According to [Docker ZFS storage docs](https://docs.docker.com/engine/userguide/storagedriver/zfs-driver/), if `/var/lib/docker` is a ZFS filesystem, Docker daemon will automatically use `zfs` as its storage driver.
 
 Now you'll need to remove `-s overlay` (or any other storage driver) from docker daemon args to allow docker to automatically detect `zfs`:
 
 ```bash
-$ sudo ros config set rancher.docker.args "[daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -G, docker, -H, 'unix:///var/run/docker.sock']"
+$ sudo ros config set rancher.docker.args "[daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -G, docker, -H, 'unix:///var/run/docker.sock', -g, '/zpool1/docker']"
 # After editing Docker daemon args, you'll need to start Docker
 $ sudo system-docker start docker
 ```
