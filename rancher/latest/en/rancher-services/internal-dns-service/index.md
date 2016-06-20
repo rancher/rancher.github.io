@@ -68,7 +68,7 @@ For services that are in different stacks, you can ping the services in a differ
 
 In our example, we have a stack called `stackA`, which contains a service called `foo`, and we also have a stack called `stackB`, which contains a service called `bar`. 
 
-If we exec into one of the containers in the `foo` service, you can ping the `bar` service with `foo.stackB`. 
+If we exec into one of the containers in the `foo` service, you can ping the `bar` service with `bar.stackB`. 
 
 ```bash
 $ ping bar.stackb
