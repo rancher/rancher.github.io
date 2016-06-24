@@ -134,7 +134,7 @@ lb-test:
   stdin_open: true
 ```
 
-In our example, with hostname routing rules, every service is still registered for all the ports listed in `port`. This is by design to support the existing L4 load balancing that we had initially introduced. In order to force the traffic to only be service specific, you will need to include some dummy hostname routing rules.
+In our example, with hostname routing rules, every service is still registered for all the ports listed in `ports`. This is by design as we originally had only supported L4 load balancing. In order to force the traffic to only be service specific, you will need to include some dummy hostname routing rules to exclude the unneeded target service from the specific port.
 
 ```yaml
 lb-test:

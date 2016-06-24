@@ -306,7 +306,7 @@ To access your application, you can hit the address at our default port `80` (i.
 
 ### Load Balancer Options with Kubernetes Ingress 
 
-By default, a Kubernetes ingress will deploy 1 load balancer on only 1 host using port `80`. Rancher has added the ability to support multiple load balancers using the port of your choice. By scaling the ingress, the address programmed in Kubernetes will also reflect all the hosts that have the load balancer available. 
+By default, a Kubernetes ingress will deploy 1 load balancer on only 1 host using http/https on default ports `80`/`443`. Rancher has added the ability to support multiple load balancers using the port of your choice. By scaling the ingress, the address programmed in Kubernetes will also reflect all the hosts that have the load balancer available. 
 
 > **Note:** If you choose to increase the scale of your ingress, you will need to ensure that there are at least the equivalent number of hosts available in your Kubernetes environment that have the port available. 
 

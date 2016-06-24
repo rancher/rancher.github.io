@@ -110,6 +110,51 @@ When there are multiple hostname routing rules, the order of priority is as foll
 5. URL
 6. Default (no hostname, no URL)
 
+#### Examples of Using Multiple Ports in Advanced Routing Options 
+
+Regardless of the priority, every service specified on the load balancer is registered for every load balancer listening port. 
+
+Example:
+
+```yaml
+lb-test:
+  ports:
+  - 80:80
+  - 81:81
+  labels:
+    io.rancher.loadbalancer.target.service1: 80=80
+    io.rancher.loadbalancer.target.service2: 81=81
+  tty: true
+  image: rancher/load-balancer-service
+  links:
+  - service1:service1
+  - service2:service2
+  stdin_open: true
+```
+
+In our example, with hostname routing rules, every service is still registered for all the ports listed in `ports`. This is by design as we originally had only supported L4 load balancing. In order to force the traffic to only be service specific, you will need to include some dummy hostname routing rules to exclude the unneeded target service from the specific port.
+
+```yaml
+lb-test:
+  ports:
+  - 80:80
+  - 81:81
+  labels:
+    io.rancher.loadbalancer.target.service1: 80=80
+    # Add in dummy rule for service1 to force the traffic coming to 81 to not be redirected to service1
+    io.rancher.loadbalancer.target.service1: dummy1:81=81
+    io.rancher.loadbalancer.target.service2: 81=81
+    # Add in dummy rule for service2 to force the traffic coming to 80 to not be redirected to service1
+    io.rancher.loadbalancer.target.service2: dummy2:80=80
+  tty: true
+  image: rancher/load-balancer-service
+  links:
+  - service1:service1
+  - service2:service2
+  stdin_open: true
+```
+
+
 #### Target Port
 
 For each service, you can override the target port defined in the listening port section. This would allow you to direct traffic to services on different ports from the same source port.
