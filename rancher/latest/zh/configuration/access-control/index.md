@@ -10,7 +10,7 @@ lang: zh
 
 ### What is Access Control?
 
-Access Control is how Rancher limits the users who have the access permissions to your Rancher instance. By default, Access Control is not configured. This means anyone who has the IP address of your Rancher instance will be able to use it and access the API. Your Rancher instance is open to the public! We highly recommend configuring Access Control soon after launching Rancher. Upon enabling Access Control, you can share your Rancher instance to who you want to. They will be required to authenticate to the instance before being able to access it. The API becomes only accessible to those who have the valid API keys to the instance. 
+Access Control is how Rancher limits the users who have the access permissions to your Rancher instance. By default, Access Control is not configured. This means anyone who has the IP address of your Rancher instance will be able to use it and access the API. Your Rancher instance is open to the public! We highly recommend configuring Access Control soon after launching Rancher. Upon enabling Access Control, you can share your Rancher instance with whom you wish. They will be required to authenticate to the instance before being able to access it. The API becomes accessible only to those who have the valid API keys to the instance. 
 
 The first account that authenticates with Rancher will become the **admin** of the account. For more information, see [permissions of an admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#admin). 
 
@@ -18,13 +18,17 @@ The first account that authenticates with Rancher will become the **admin** of t
 
 In the **Admin** tab, click **Access Control**.
 
-Currently, Rancher supports four methods of authentication: Active Directory, GitHub, Local and OpenLDAP. After authenticating your Rancher instance, Access Control will be considered enabled. With Access Control enabled, you will be able to manage different [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) and share them with different groups of people. 
+After authenticating your Rancher instance, Access Control will be considered enabled. With Access Control enabled, you will be able to manage different [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) and share them with different groups of people. 
 
 When Access Control is enabled, the API is locked and requires either being authenticated as a user or by using an [API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/api-keys/) to access it.
 
 #### Active Directory
 
 Select the **Active Directory** icon. If you want to use Active Directory using TLS, ensure that you have [started Rancher server with the appropriate certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#ldap). Fill in the sections and authenticate Rancher by clicking **Authenticate**. When Active Directory is enabled, you'll automatically be logged in as the username that was authenticated. You will also be logged in as an admin of Rancher.
+
+#### Azure AD
+
+Select the **Azure AD** icon. Fill in the sections and authenticate Rancher by clicking **Authenticate with Azure**. When Active Directory is enabled, you'll automatically be logged in as the username that was authenticated. You will also be logged in as an admin of Rancher.
 
 #### GitHub
 
@@ -42,27 +46,23 @@ Select the **OpenLDAP** icon. If you want to use a OpenLDAP using TLS, ensure th
 
 ### Site Access
 
-Anyone who is a member or owner of an environment will also have access to the Rancher instance. Alternatively, you can invite members to access the Rancher instance, but when they log in, they will have their own environment. These members, who are added by using **Access Control** or **Accounts** options, will not be able to see other environments until they are added as a member to them.
+Depending on your authentication type, Rancher provides different levels of site access. 
 
-Anyone with the permissions to view the Rancher instance will be given user permissions. However, they will not be able to view the **Admin** tab. In order for users to view different [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/), they will need to be added by an owner to the environment.
+#### Active Directory/GitHub
 
-#### Active Directory/OpenLDAP
+If you have authenticated with AD or GitHub, there will be 3 options available. 
 
-Once Active Directory or OpenLDAP is enabled, any user will be able to access the Rancher site. Eventually, we will be adding in the ability to restrict the Rancher instance to specific users and group members. Rancher still has [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) to keep resources protected from other users and groups, but anyone part of your LDAP server will be able to access the Rancher instance.
+* **Allow any valid Users** - Any user within GitHub or Active Directory would be able to access your Rancher instance. This is **not** recommended for GitHub as it would be any user in GitHub!
+* **Allow members of Environments, plus Authorized Users and Organizations** - Any user who is a member or owner of an environment will also have access to the Rancher instance as well as any user added to the _Authorized Users and Organizations_ list. 
+* **Restrict access only to Authorized Users and Organizations** - Only users who are added to the _Authorized Users and Organizations_ would have access to the Rancher instance. Even if a user has been added to an environment, they would not have access unless they are **also** added to the _Authorized Users and Organizations_ section. 
 
-#### GitHub
+Anyone with the permissions for the Rancher instance will be given [user]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/#user) permissions. They will not be able to view the **Admin** tab. You would explicitly need to change their account to be an [admin account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/#admin).
 
-If you wanted to add users to Rancher without sharing your environment, you can add them in the **Site Access** section. Click the **Customize** button.
+In order for users to view different [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/), they will need to be added to the environment by an [owner]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#owners) of the environment.
 
-**Option 1: Allow any GitHub user** 
+#### Azure AD/OpenLDAP
 
-This would allow anyone with a GitHub account to access your site.  
-
-**Option 2: Restrict to specific GitHub users and organization members**
-
-By clicking the drop-down menu icon next to the **+** button, you'll see the list of organizations that you are a member of. When you click any of those organizations, Rancher adds their name to the list of _Authorized Users and Organizations_. You can also add individual users by typing in their username into the text box and clicking the **+**. This will just add the users/organizations to the list, but you will still need to save!
-
-> **Note: Save your configuration!** For either option, you must click the **Save authorization configuration** button in order for any changes to take affect. If you leave the page before saving, your changes will be lost.
+For Azure AD and OpenLDAP, any user that is a member of your setup will be able to access the Rancher site. 
 
 #### Local Authentication
 
