@@ -199,7 +199,7 @@ Update the `api.security.enabled` to `false` and clear the `api.auth.provider.co
 
 ```bash
 mysql> update setting set value="false" where name="api.security.enabled";
-mysql> update setting set value="" where name="api.auth.provider.configured;
+mysql> update setting set value="" where name="api.auth.provider.configured";
 ```
 
 Confirm the changes have been made in the `setting` table.
