@@ -18,13 +18,6 @@ All resources in Rancher are owned or created by an account. |
 
 <br>
 
-[addOutputsInput]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/addOutputsInput/)|
----|
- |
-
-
-<br>
-
 [amazonec2Config]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/amazonec2Config/)|
 ---|
 The configuration to launch an EC2 instance in Amazon Web Services using [machine]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/machine). Rancher is calling `docker-machine`, so any available options in `docker-machine` for specific drivers are exposed in Rancher. The default fields from `docker-machine` are not listed in the Rancher API, and they can be found in the `docker-machine` documentation. The notes on which fields are **required** are from the `docker-machine` documentation. |
@@ -35,13 +28,6 @@ The configuration to launch an EC2 instance in Amazon Web Services using [machin
 [apiKey]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/apiKey/)|
 ---|
 An API Key provides access to the Rancher API if access control has been turned on. The access key and secret key pair are created per environment and can be used to directly call the API or used with [rancher-compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose). |
-
-
-<br>
-
-[auditLog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/auditLog/)|
----|
- |
 
 
 <br>
@@ -60,44 +46,10 @@ A certificate is used to add in SSL termination to load balancers. |
 
 <br>
 
-[composeProject]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/composeProject/)|
----|
- |
-
-
-<br>
-
-[composeService]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/composeService/)|
----|
- |
-
-
-<br>
-
 [container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/container/)|
 ---|
 A container is a representation of a Docker container on a host. |
 
-
-<br>
-
-[containerEvent]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/containerEvent/)|
----|
- |
-
-
-<br>
-
-[containerExec]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/containerExec/)|
----|
- |
-
-
-<br>
-
-[credential]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/credential/)|
----|
- |
 
 
 <br>
@@ -116,23 +68,9 @@ A "dnsService" in the API is referred to as a Service Alias in the UI and the Ra
 
 <br>
 
-[dockerBuild]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/dockerBuild/)|
----|
- |
-
-
-<br>
-
 [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/)|
 ---|
 An "environment" in the API is referred to as a stack in the UI and the Rancher documentation. In the API documentation, we'll use the UI terminology. A Rancher stack mirrors the same concept as a docker-compose project.  It represents a group of services that make up a typical application or workload. |
-
-
-<br>
-
-[environmentUpgrade]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environmentUpgrade/)|
----|
- |
 
 
 <br>
@@ -142,26 +80,6 @@ An "environment" in the API is referred to as a stack in the UI and the Rancher 
 The configuration to launch an instance in exoscale using [machine]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/machine). Rancher is calling `docker-machine`, so any available options in `docker-machine` for specific drivers are exposed in Rancher. The default fields from `docker-machine` are not listed in the Rancher API, and they can be found in the `docker-machine` documentation. The notes on which fields are **required** are from the `docker-machine` documentation. |
 
 
-<br>
-
-[externalDnsEvent]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/externalDnsEvent/)|
----|
- |
-
-
-<br>
-
-[externalEvent]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/externalEvent/)|
----|
- |
-
-
-<br>
-
-[externalHostEvent]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/externalHostEvent/)|
----|
- |
-
 
 <br>
 
@@ -169,47 +87,6 @@ The configuration to launch an instance in exoscale using [machine]({{site.baseu
 ---|
 An external service allows the ability to add any IP or hostname as a service to be discovered as a service. |
 
-
-<br>
-
-[externalServiceEvent]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/externalServiceEvent/)|
----|
- |
-
-
-<br>
-
-[externalStoragePoolEvent]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/externalStoragePoolEvent/)|
----|
- |
-
-
-<br>
-
-[externalVolumeEvent]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/externalVolumeEvent/)|
----|
- |
-
-
-<br>
-
-[genericConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/genericConfig/)|
----|
- |
-
-
-<br>
-
-[googleConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/googleConfig/)|
----|
- |
-
-
-<br>
-
-[healthcheckInstanceHostMap]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/healthcheckInstanceHostMap/)|
----|
- |
 
 
 <br>
@@ -221,72 +98,9 @@ Hosts are the most basic unit of resource within Rancher and is represented as a
 
 <br>
 
-[hostAccess]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/hostAccess/)|
----|
- |
-
-
-<br>
-
-[hypervConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/hypervConfig/)|
----|
- |
-
-
-<br>
-
 [identity]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/identity/)|
 ---|
 An identity is Rancher's representation of an object(i.e. `ldap_group`, `github_user`) when Rancher has turned on [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/). The `externalId` in an identity is the unique identifier in the authentication system that represents the object. The role of an identity is always null unless it is being returned as the identity of a [projectMember]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/projectMember/). |
-
-
-<br>
-
-[image]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/image/)|
----|
- |
-
-
-<br>
-
-[instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/)|
----|
- |
-
-
-<br>
-
-[instanceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instanceLink/)|
----|
- |
-
-
-<br>
-
-[ipAddress]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/ipAddress/)|
----|
- |
-
-
-<br>
-
-[kubernetesService]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/kubernetesService/)|
----|
- |
-
-
-<br>
-
-[label]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/label/)|
----|
- |
-
-
-<br>
-
-[loadBalancerConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/loadBalancerConfig/)|
----|
- |
 
 
 <br>
@@ -312,13 +126,6 @@ A mount is the relationship of a volume and the directory location inside the co
 
 <br>
 
-[network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/network/)|
----|
- |
-
-
-<br>
-
 [openstackConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/openstackConfig/)|
 ---|
 The configuration to launch an instance in OpenStack. For all cloud providers, Rancher is calling `docker-machine`, so any available options in `docker-machine` are exposed in Rancher. The default fields from `docker-machine` are not listed in the Rancher API, and they can be found in the `docker-machine` documentation. |
@@ -329,27 +136,6 @@ The configuration to launch an instance in OpenStack. For all cloud providers, R
 [packetConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/packetConfig/)|
 ---|
 The configuration to launch an instance in Packet. |
-
-
-<br>
-
-[password]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/password/)|
----|
- |
-
-
-<br>
-
-[physicalHost]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/physicalHost/)|
----|
- |
-
-
-<br>
-
-[port]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/port/)|
----|
- |
 
 
 <br>
@@ -368,30 +154,9 @@ A "project member" in the API is referred to as an environment members in the UI
 
 <br>
 
-[pullTask]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/pullTask/)|
----|
- |
-
-
-<br>
-
 [rackspaceConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/rackspaceConfig/)|
 ---|
 The configuration to launch a server in Rackspace. For all cloud providers, Rancher is calling `docker-machine`, so any available options in `docker-machine` are exposed in Rancher. The default fields from `docker-machine` are not listed in the Rancher API, and they can be found in the `docker-machine` documentation. |
-
-
-<br>
-
-[register]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/register/)|
----|
- |
-
-
-<br>
-
-[registrationToken]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/registrationToken/)|
----|
- |
 
 
 <br>
@@ -410,59 +175,9 @@ A registry credential is used to authenticate against a [registry]({{site.baseur
 
 <br>
 
-[schema]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/schema/)|
----|
-This is the schema resource |
-
-
-<br>
-
 [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/)|
 ---|
 Rancher adopts the standard Docker Compose terminology for services and defines a basic service as one or more containers created from the same Docker image.  Once a service (consumer) is linked to another service (producer) within the same stack, a DNS record mapped to each container instance is automatically created and discoverable by containers from the "consuming" service. Other benefits of creating a service under Rancher include":" <br><br> * Service HA - the ability to have Rancher automatically monitor container states and maintain a service's desired scale. <br> * Health Monitoring - the ability to set basic monitoring thresholds for container health. |
-
-
-<br>
-
-[serviceConsumeMap]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceConsumeMap/)|
----|
- |
-
-
-<br>
-
-[serviceEvent]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceEvent/)|
----|
- |
-
-
-<br>
-
-[serviceExposeMap]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceExposeMap/)|
----|
- |
-
-
-<br>
-
-[serviceProxy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceProxy/)|
----|
- |
-
-
-<br>
-
-[setting]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/setting/)|
----|
- |
-
-
-<br>
-
-[snapshot]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/snapshot/)|
----|
- |
-
 
 <br>
 
@@ -473,44 +188,16 @@ The configuration to launch a server in SoftLayer. For all cloud providers, Ranc
 
 <br>
 
-[statsAccess]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/statsAccess/)|
----|
- |
-
-
-<br>
-
 [storagePool]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/storagePool/)|
 ---|
 A storage pool is a list of hosts that can participate in shared storage. |
 
 
-<br>
-
-[subscribe]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/subscribe/)|
----|
- |
-
-
-<br>
-
-[typeDocumentation]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/typeDocumentation/)|
----|
- |
-
-
-<br>
 
 [ubiquityConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/ubiquityConfig/)|
 ---|
 The configuration to launch a server in Ubiquity Hosting. |
 
-
-<br>
-
-[virtualMachine]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/virtualMachine/)|
----|
- |
 
 
 <br>
@@ -518,13 +205,6 @@ The configuration to launch a server in Ubiquity Hosting. |
 [virtualboxConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/virtualboxConfig/)|
 ---|
 The configuration to launch a local VM using VirtualBox. Rancher is calling `docker-machine`, so any available options in `docker-machine` are exposed in Rancher. The default fields from `docker-machine` are not listed in the Rancher API, and they can be found in the `docker-machine` documentation. |
-
-
-<br>
-
-[vmwarefusionConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/vmwarefusionConfig/)|
----|
- |
 
 
 <br>
