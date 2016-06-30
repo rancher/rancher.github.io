@@ -30,7 +30,7 @@ If you want to check what version you are on, just use the `-v` option.
 
 ```sh
 $ sudo ros -v
-ros version v0.4.0
+ros version v0.5.0
 ```
 
 ### Help

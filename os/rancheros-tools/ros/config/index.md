@@ -7,9 +7,7 @@ layout: os-default
 ## ROS Config
 ---
 
-RancherOS state is controlled by a cloud config file. `ros config` is used to manipulate the configuration of the cloud config file. In previous versions (prior to v0.4.0), `ros config` would only manipulate the `rancher` key in the configuration and `rancher` was not required to set or get data.
-
-With v0.4.0+, we simplified the configuration of RancherOS to only run off of a cloud config file. In order to make changes using `ros config`, you must prefix changes with `rancher`. 
+RancherOS state is controlled by a cloud config file. `ros config` is used to manipulate the configuration of the cloud config file.
 
 Remember, all `ros` commands needs to be used with `sudo`. 
 

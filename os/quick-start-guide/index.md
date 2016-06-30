@@ -38,13 +38,13 @@ When you first launch RancherOS, there are no containers running in the Docker d
 ```bash
 $ sudo system-docker ps
 CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS               NAMES
-4710a91a0729        rancher/os-docker:v0.4.4    "/usr/sbin/entry.sh /"   6 minutes ago       Up 6 minutes                            docker
-7ef4fad1612c        rancher/os-console:v0.4.4   "/usr/sbin/entry.sh /"   6 minutes ago       Up 6 minutes                            console
-1b436b6b7fdb        rancher/os-network:v0.4.4   "/usr/sbin/entry.sh /"   6 minutes ago       Up 6 minutes                            network
-2ce47a55d1bd        rancher/os-ntp:v0.4.4       "/usr/sbin/entry.sh /"   6 minutes ago       Up 6 minutes                            ntp
-c2237144ec41        rancher/os-udev:v0.4.4      "/usr/sbin/entry.sh /"   6 minutes ago       Up 6 minutes                            udev
-5373e592dc51        rancher/os-acpid:v0.4.4     "/usr/sbin/entry.sh /"   6 minutes ago       Up 6 minutes                            acpid
-c5d8cd81a94c        rancher/os-syslog:v0.4.4    "/usr/sbin/entry.sh /"   6 minutes ago       Up 6 minutes                            syslog
+6f56057cf5ba        rancher/os-base:v0.5.0      "/usr/sbin/entry.sh /"   16 seconds ago      Up 15 seconds                           docker
+bd5376830237        rancher/os-console:v0.5.0   "/usr/sbin/entry.sh /"   16 seconds ago      Up 15 seconds                           console
+ede8ce39fff5        rancher/os-base:v0.5.0      "/usr/sbin/entry.sh n"   16 seconds ago      Up 15 seconds                           network
+9e5d18bca391        rancher/os-base:v0.5.0      "/usr/sbin/entry.sh n"   17 seconds ago      Up 16 seconds                           ntp
+393b9fb7e30a        rancher/os-udev:v0.5.0      "/usr/sbin/entry.sh /"   18 seconds ago      Up 16 seconds                           udev
+dc2cafca3c69        rancher/os-syslog:v0.5.0    "/usr/sbin/entry.sh /"   18 seconds ago      Up 17 seconds                           syslog
+439d5535fbfa        rancher/os-base:v0.5.0      "/usr/sbin/entry.sh /"   18 seconds ago      Up 17 seconds                           acpid
 ```
 
 Some containers are run at boot time, and others, such as the `console`, `docker`, etc. containers are always running.
