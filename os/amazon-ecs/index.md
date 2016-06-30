@@ -34,6 +34,29 @@ rancher:
     amazon-ecs-agent: true
 ```
 
+#### Version
+
+By default, the ECS agent will be using the `latest` tag for the `amazon-ecs-agent` image. In v0.5.0, we introduced the ability to select which version of the `amazon-ecs-agent`. 
+
+To select the version, you can update your [cloud-config]({{site.baseurl}}/os/cloud-config/) file.
+
+```yaml
+#cloud-config
+rancher:
+  environment:
+    ECS_CLUSTER: your-ecs-cluster-name
+    # Note: You will need to make sure to include the colon in front of the version.
+    ECS_AGENT_VERSION: :v1.9.0
+    # If you have selected a RancherOS AMI that does not have ECS enabled by default,
+    # you'll need to enable the system service for the ECS agent.
+  services_include:
+    amazon-ecs-agent: true
+```
+
+<br>
+
+> **Note:** The `:` must be in front of the version tag in order for the ECS image to be tagged correctly.
+
 ### Amazon ECS enabled AMIs
 
 Latest Release: [v0.4.5](https://github.com/rancher/os/releases/tag/v0.4.5)
