@@ -5,8 +5,10 @@ version: latest
 lang: zh
 ---
 
-## Upgrading Rancher
+## Upgrading Rancher (Single Node)
 ---
+
+If you have a HA setup, please [see below]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#upgrading-rancher-high-availability).
 
 If you have launched Rancher server **without** using an [external DB]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#external-db), the Rancher server database is inside your Rancher server container. We will use the running Rancher server container to create a data container. This data container will be used to start new Rancher server containers by using a `--volumes-from`. Alternatively, you can copy the database out of the container to a directory on the host and bind mount the database.
 
@@ -18,7 +20,7 @@ Rancher supports two version tags for `rancher/server`.
 
 * `rancher/server:latest`: The `latest` tag will be our development builds which will have been validated through our CI automation framework, but these releases are not meant for deployment in production. All development builds will be appended with a `*-dev{n}` suffix to denote that it's a development release. 
 
-* `rancher/server:stable`: The `stable` tag wll be our feature release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version. 
+* `rancher/server:stable`: The `stable` tag will be our feature release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version. 
 
 #### Upgrading Rancher by Creating a Data Container 
 
@@ -93,3 +95,28 @@ For anything using the `rancher/agent-instance` image, the running container get
 #### Users with No Internet Access
 
 Users without internet will need to download the latest `rancher/agent-instance` into their own registry. In order to upgrade the version of the network agent, you’d need to manually stop the network agent and remove from the UI. Anything that triggers networking on the host that has the missing network agent will cause a new network agent (with the latest version) to be started. In order to upgrade the version of your load balancers, you’ll need to re-create them to get the newest version of `rancher/agent-instance`. 
+
+## Upgrading Rancher (High Availability)
+---
+
+If you have launched Rancher server in [High Availability (HA)]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/multi-nodes/), the new Rancher HA set up will continue using the external database that was used to install the original HA setup. 
+
+> **Note:** When upgrading a HA setup, the Rancher server service will be down during the upgrade. 
+
+1. Before upgrading your Rancher server, we recommend backing up your external database. 
+
+2. On each node in the HA setup, stop and remove the running Rancher containers and then execute the HA generating script with the latest rancher/server version.
+
+   ```bash
+   # Removing all the running Rancher containers
+   $ sudo docker rm -f $(sudo docker ps -a | grep rancher | awk {'print $1'}) 
+   # Execute the scrip with the latest rancher/server version
+   $ sudo sh rancher-ha.sh rancher/server:v1.1.0
+   ```
+
+3. Monitoring your upgrade. 
+
+* Log into the Rancher UI and in the environments drop down, navigate to **System HA**. 
+* Click on **Stacks**. Expand the **Management** stack. 
+* The services that were part of the previous version will automatically upgrade to the version selected in Step 1. 
+* Once all the services have become `Active`, the Rancher HA upgrade will be complete. 
