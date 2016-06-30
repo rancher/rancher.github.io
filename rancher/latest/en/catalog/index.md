@@ -89,6 +89,7 @@ license: # The license
 projectURL: # A URL related to the catalog entry
 ```
 <br>
+
 * The second file is a the icon image for the catalog entry. The file must be prefixed with `catalogIcon-`. 
 
 For every catalog entry, there will be a minimum of three items: `config.yml`, `catalogIcon-entry.svg`, and the `0` folder, which holds the first version of the catalog entry. 
@@ -111,13 +112,10 @@ An optional `README.md` is possible to be created, which provides a lengthy desc
   name: # Name of the versioned template of the Catalog Entry 
   version: # Version of the versioned template of the Catalog Entry 
   description: # Description of the versioned template of the Catalog Entry
-  uuid: # Unique identifier to be used for upgrades. Please see note. 
   minimum_rancher_version: # The minimum version of Rancher that supports the template
   questions: #Used to request user input for configuration options
 ```
 <br>
-
-> **Note:** The `uuid` is a required parameter that is used for upgrade scenarios. Each `uuid` must be unique and each later version should be incremental. The recommended format is to use the name of the catalog entry and suffixed with a `-0`. As versions are introduced, you would increment the `-0` to `-1` for the next entry. 
 
 #### Questions in the `rancher-compose.yml`
 
@@ -212,6 +210,10 @@ A drop down of all available certificates in the environment.
       type: certificate
 ```
       
+
+### Catalog Generator based on Yeoman
+
+There is an [open-source project](https://github.com/slashgear/generator-rancher-catalog) based on [Yeoman](http://yeoman.io/), that can be used to create the templates of an empty catalog entry.
 
 
 
