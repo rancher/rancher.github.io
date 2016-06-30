@@ -58,7 +58,7 @@ If you are ready to set up a production-grade Rancher installation, follow the i
 
 Before you start using Rancher, make sure to read through the [Concepts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/concepts/) section to understand how Rancher works.
 
-The Configuration section documents how you perform various one-time tasks after you complete installation of Rancher and start using Rancher.
+The [Configuration]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) section documents how you perform various one-time tasks after you complete installation of Rancher and start using Rancher.
 
 The next three sections--[Using Rancher Through Native Docker CLI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/native-docker/), [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose), and [Rancher UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/)--covers three primary ways you can consume Rancher features.
 
