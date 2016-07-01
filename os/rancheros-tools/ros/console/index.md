@@ -36,14 +36,14 @@ The `switch` command will switch from your currently running console to the cons
 
 > **Note:** When switching between consoles, your current console will be destroyed, Docker will restart and you will be logged out of RancherOS. 
 
-For our example, we'll switch to the ubuntu console. 
+For our example, we'll switch to the Ubuntu console. 
 
 ```bash
 # Check the console running in System Docker
 $ sudo system-docker ps
 CONTAINER ID        IMAGE                              COMMAND                  CREATED             STATUS              PORTS               NAMES
 95d548689e82        rancher/os-docker:e6d52a5-dirty    "/usr/sbin/entry.sh /"   About an hour ago   Up About an hour                        docker
-# Switch from the default console to ubuntu
+# Switch from the default console to Ubuntu
 $ sudo ros console switch ubuntu
 Switching consoles will destroy the current console container and restart Docker.
 Note: You will also be logged out.
@@ -68,7 +68,7 @@ Connection to 127.0.0.1 closed by remote host.
 Connection to 127.0.0.1 closed.
 ```
 
-After logging back, you'll be in the ubuntu console. 
+After logging back, you'll be in the Ubuntu console. 
 
 ```bash
 $ sudo system-docker ps
@@ -80,14 +80,14 @@ CONTAINER ID        IMAGE                                 COMMAND               
 
 The `enable` comand allows you to set the console to be switched at the next reboot. 
 
-For our example, we'll switch to the debian console.
+For our example, we'll switch to the Debian console.
 
 ```bash
 # Check the console running in System Docker
 $ sudo system-docker ps
 CONTAINER ID        IMAGE                              COMMAND                  CREATED             STATUS              PORTS               NAMES
 95d548689e82        rancher/os-docker:v0.5.0    "/usr/sbin/entry.sh /"   About an hour ago   Up About an hour                        docker
-# Enable the debian console
+# Enable the Debian console
 $ sudo ros console enable debian
 Pulling console (rancher/os-debianconsole:v0.5.0-rc3)...
 v0.5.0-rc3: Pulling from rancher/os-debianconsole
@@ -102,4 +102,4 @@ Digest: sha256:d6d8999ff5fa6e2f6fc2e7e1858613d5651f33de573ad5a51205328e50887734
 Status: Downloaded newer image for rancher/os-debianconsole:v0.5.0-rc3
 ```
 
-At the next reboot, RancherOS will use the debian console. 
+At the next reboot, RancherOS will use the Debian console. 

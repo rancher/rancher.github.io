@@ -85,7 +85,7 @@ RUN npm install
 ENTRYPOINT ["node","server"]
 ```
 
-Using the `hwestphal/nodebox` image, which uses a busybox image and installs `node.js` and `npm`. We downloaded the source code of Linux-dash, and then ran the server. Linux-dash will run on port 80 by default.
+Using the `hwestphal/nodebox` image, which uses a Busybox image and installs `node.js` and `npm`. We downloaded the source code of Linux-dash, and then ran the server. Linux-dash will run on port 80 by default.
 
 To run this container in System Docker use the following command:
 
