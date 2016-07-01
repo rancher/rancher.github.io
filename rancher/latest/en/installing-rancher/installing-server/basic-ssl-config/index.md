@@ -152,7 +152,7 @@ $ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name my-
  
  * For SSL terminated at the Rancher servers: Configure ELB listener for TLS/SSL:443 for the frontend and TCP:444 for the backend instance protocol:port.
  * For SSL terminated at the ELB: Configure ELB listener for TCP:80 for the frontend and TCP:81 for the backend instance protocol:port.
- * Health check can be configured to use HTTP:80 or HTTPS:443 using ```/ping``` as your path.
+ * Health check can be configured to use HTTP:80 or HTTPS:443 using `/ping` as your path.
 
 ## Using Self Signed Certs (Beta)
 ---
