@@ -14,8 +14,6 @@ A useful command that can be used with RancherOS is `ros` which can be used to c
 |---------------|-----------------------------------------------------------------------------------------------|
 |`config`, `c`  | [Configure Settings]({{site.baseurl}}/os/rancheros-tools/ros/config/)                         |
 | `console` |	[console container commands]({{site.baseurl}}/os/rancheros-tools/ros/console/)
-|`dev`, `d`     | dev spec
-|`env`, `e`     | [Run a command with RancherOS environment]({{site.baseurl}}/os/rancheros-tools/ros/env/)      |
 |`service`, `s` | [Command Line interface for services and compose.]({{site.baseurl}}/os/rancheros-tools/ros/service/)                          |
 |`os`           | [Operating System Upgrade/Downgrade]({{site.baseurl}}/os/rancheros-tools/ros/os/)             |
 |`tls`          | [Setup TLS configuration]({{site.baseurl}}/os/rancheros-tools/ros/tls/)                       |
