@@ -122,12 +122,10 @@ $ sudo ros config get rancher.dns
 ```
 
 
-When using the native Busybox console, any changes to the console will be lost after reboots, only changes to `/home` or `/opt` will be persistent. The console always executes **/opt/rancher/bin/start.sh** at each startup. You can use `ros` to enable a [persistent console]({{site.baseurl}}/os/configuration/custom-console/#console-persistence) and replace the native Busybox console. In order to enable the Ubuntu console, use the following command:
+When using the native Busybox console, any changes to the console will be lost after reboots, only changes to `/home` or `/opt` will be persistent. You can use the `ros console switch` command to switch to a [persistent console]({{site.baseurl}}/os/configuration/custom-console/#console-persistence) and replace the native Busybox console. For example, to switch to the Ubuntu console:
 
 ```sh
-$ sudo ros service enable ubuntu-console
-# You must reboot in order to switch to the ubuntu console
-$ sudo reboot
+$ sudo ros console switch ubuntu
 ```
 
 ### Conclusion
