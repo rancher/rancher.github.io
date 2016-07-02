@@ -23,11 +23,11 @@ The `list` command will provide you a list of all consoles available.
 
 ```bash
 $ sudo ros console list
-default
-centos
-debian
-fedora
-ubuntu
+disabled centos
+disabled debian
+current  default
+disabled fedora
+disabled ubuntu
 ```
 
 ### Switch
@@ -39,14 +39,11 @@ The `switch` command will switch from your currently running console to the cons
 For our example, we'll switch to the Ubuntu console. 
 
 ```bash
-# Check the console running in System Docker
-$ sudo system-docker ps
-CONTAINER ID        IMAGE                              COMMAND                  CREATED             STATUS              PORTS               NAMES
-95d548689e82        rancher/os-docker:e6d52a5-dirty    "/usr/sbin/entry.sh /"   About an hour ago   Up About an hour                        docker
-# Switch from the default console to Ubuntu
 $ sudo ros console switch ubuntu
-Switching consoles will destroy the current console container and restart Docker.
-Note: You will also be logged out.
+Switching consoles will
+1. destroy the current console container
+2. log you out
+3. restart Docker
 Continue [y/N]:y
 v0.5.0-rc3: Pulling from rancher/os-ubuntuconsole
 6d3a6d998241: Pull complete 
