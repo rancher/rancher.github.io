@@ -45,24 +45,24 @@ Switching consoles will
 2. log you out
 3. restart Docker
 Continue [y/N]:y
-v0.5.0-rc3: Pulling from rancher/os-ubuntuconsole
+Pulling console (rancher/os-ubuntuconsole:v0.5.0-3)...
+v0.5.0-3: Pulling from rancher/os-ubuntuconsole
 6d3a6d998241: Pull complete 
 606b08bdd0f3: Pull complete 
 1d99b95ffc1c: Pull complete 
 a3ed95caeb02: Pull complete 
-21e9a7e529d0: Pull complete 
-c70bea4dcb69: Pull complete 
-ac1733490c6b: Pull complete 
-f8e0071f38f1: Pull complete 
-9808e71293a6: Pull complete 
-113254b8db30: Pull complete 
-Digest: sha256:4fcff04e5ae009b5891092e64e600563af70a090c01098a03739538d04291afa
-Status: Downloaded newer image for rancher/os-ubuntuconsole:v0.5.0-rc3
-switch-console_1 | time="2016-06-14T06:45:14Z" level=info msg="Project [os]: Starting project " 
-switch-console_1 | time="2016-06-14T06:45:14Z" level=info msg="[0/18] [console]: Starting " 
-switch-console_1 | time="2016-06-14T06:45:14Z" level=info msg="Recreating console" 
+3fc2f42db623: Pull complete 
+2fb84911e8d2: Pull complete 
+fff5d987b31c: Pull complete 
+e7849ae8f782: Pull complete 
+de375d40ae05: Pull complete 
+8939c16614d1: Pull complete 
+Digest: sha256:37224c3964801d633ea8b9629137bc9d4a8db9d37f47901111b119d3e597d15b
+Status: Downloaded newer image for rancher/os-ubuntuconsole:v0.5.0-3
+switch-console_1 | time="2016-07-02T01:47:14Z" level=info msg="Project [os]: Starting project " 
+switch-console_1 | time="2016-07-02T01:47:14Z" level=info msg="[0/18] [console]: Starting " 
+switch-console_1 | time="2016-07-02T01:47:14Z" level=info msg="Recreating console" 
 Connection to 127.0.0.1 closed by remote host.
-Connection to 127.0.0.1 closed.
 ```
 
 After logging back, you'll be in the Ubuntu console. 
@@ -86,17 +86,17 @@ CONTAINER ID        IMAGE                              COMMAND                  
 95d548689e82        rancher/os-docker:v0.5.0    "/usr/sbin/entry.sh /"   About an hour ago   Up About an hour                        docker
 # Enable the Debian console
 $ sudo ros console enable debian
-Pulling console (rancher/os-debianconsole:v0.5.0-rc3)...
-v0.5.0-rc3: Pulling from rancher/os-debianconsole
+Pulling console (rancher/os-debianconsole:v0.5.0-3)...
+v0.5.0-3: Pulling from rancher/os-debianconsole
 7268d8f794c4: Pull complete 
 a3ed95caeb02: Pull complete 
-f774062bef60: Pull complete 
-dfa80dc6f374: Pull complete 
-017e85cae03c: Pull complete 
-a8136a6de4d9: Pull complete 
-08e2eb4e8c91: Pull complete 
-Digest: sha256:d6d8999ff5fa6e2f6fc2e7e1858613d5651f33de573ad5a51205328e50887734
-Status: Downloaded newer image for rancher/os-debianconsole:v0.5.0-rc3
+21cb8a645d75: Pull complete 
+5ee1d288a088: Pull complete 
+c09f41c2bd29: Pull complete 
+02b48ce40553: Pull complete 
+38a4150e7e9c: Pull complete 
+Digest: sha256:5dbca5ba6c3b7ba6cd6ac75a1d054145db4b4ea140db732bfcbd06f17059c5d0
+Status: Downloaded newer image for rancher/os-debianconsole:v0.5.0-3
 ```
 
 At the next reboot, RancherOS will use the Debian console. 

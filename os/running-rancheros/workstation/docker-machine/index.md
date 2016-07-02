@@ -1,10 +1,10 @@
 ---
-title: Running RancherOS on VirtualBox using docker machine
+title: Docker Machine
 layout: os-default
 
 ---
 
-## Running RancherOS using Docker Machine 
+## Docker Machine 
 ---
 
 Before we get started, you'll need to make sure that you have docker machine installed. Download it directly from the docker machine [releases](https://github.com/docker/machine/releases).  

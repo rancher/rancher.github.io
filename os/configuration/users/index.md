@@ -1,5 +1,5 @@
 ---
-title: Configuring RancherOS Users
+title: Users
 layout: os-default
 
 ---

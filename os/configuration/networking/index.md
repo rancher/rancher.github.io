@@ -4,7 +4,7 @@ layout: os-default
 
 ---
 
-## Configuring RancherOS Networking
+## Networking
 ---
 
 There are two ways to configure networking on RancherOS.
@@ -133,6 +133,8 @@ rancher:
     https_proxy: https://myproxy.example.com
     no_proxy: localhost,127.0.0.1
 ```
+
+<br>
 
 > **Note:** System Docker proxy settings will not be applied until after a reboot.
 

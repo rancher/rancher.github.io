@@ -1,10 +1,10 @@
 ---
-title: Upgrading RancherOS
+title: Upgrading 
 layout: os-default
 
 ---
 
-## Upgrading RancherOS
+## Upgrading 
 ---
 RancherOS has released a new version and you want to learn how to upgrade your OS. We make it easy using the [ROS OS]({{site.baseurl}}/os/rancheros-tools/ros/os) commands.
 
