@@ -1,5 +1,5 @@
 ---
-title: Installing to Disk
+title: Install to Disk
 layout: os-default
 ---
 
@@ -24,6 +24,8 @@ Create a cloud config file with a SSH key, this allows you to SSH into the box a
 ssh_authorized_keys:
   - ssh-rsa AAA...
 ```
+
+<br>
 
 > **Note:** Currently, RancherOS doesn't support adding other users to RancherOS. If this is in your cloud config file, RancherOS will not boot up. 
 

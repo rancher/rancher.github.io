@@ -19,7 +19,7 @@ $ sudo ros service list
 disabled amazon-ecs-agent
 disabled kernel-headers
 disabled kernel-headers-system-docker
-disabled resize-fs
+disabled open-vm-tools
 $ sudo ros service enable kernel-headers
 $ sudo reboot
 ```

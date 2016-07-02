@@ -4,7 +4,7 @@ layout: os-default
 
 ---
 
-## Running Rancher on RancherOS
+## Tips on using Rancher with RancherOS
 ---
 
 RancherOS can be used to launch [Rancher]({{site.baseurl}}/rancher/) and be used as the OS to [add hosts]({{site.baseurl}}/rancher/rancher-ui/infrastructure/hosts/custom) to Rancher.
@@ -19,6 +19,8 @@ After Rancher is launched and [host registration]({{site.baseurl}}/rancher/confi
 $ sudo docker run --d --privileged -v /var/run/docker.sock:/var/run/docker.sock \
     rancher/agent:v0.8.2  http://<rancher-server-ip>:8080/v1/projects/1a5/scripts/<registrationToken>
 ```
+
+<br>
 
 > **Note:** The `rancher/agent` version is correlated to the Rancher server version. You will need to check the custom command to get the appropriate tag for the version to use.
 

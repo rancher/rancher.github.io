@@ -4,7 +4,7 @@ layout: os-default
 
 ---
 
-## Configure RancherOS with Cloud-Config
+## Cloud-Config Reference
 ---
 
 Cloud-config is a declarative configuration file format supported by many Linux distributions and is the primary configuration mechanism for RancherOS. 

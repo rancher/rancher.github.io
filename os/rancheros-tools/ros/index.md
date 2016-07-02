@@ -3,7 +3,7 @@ title: ROS (formerly RancherCTL)
 layout: os-default
 ---
 
-## ROS
+## What is ROS?
 ---
 
 A useful command that can be used with RancherOS is `ros` which can be used to control and configure the system. `ros` requires you to be the root user, so with the rancher user, you will need to use `sudo`.
