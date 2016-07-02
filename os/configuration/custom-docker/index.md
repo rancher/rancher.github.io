@@ -6,28 +6,24 @@ layout: os-default
 
 ## Custom Docker
 
-In RancherOS, you can change the default Docker version with a custom Docker version. You can change the Docker version for just `docker` in RancherOS and keeping `system-docker` with the default version, or you can change Docker for `docker` and `system-docker`. 
+In RancherOS, you can change the default Docker version with a custom Docker version. You can change the Docker version for only Docker in RancherOS and keep System Docker with the default version, or you can change the Docker version for Docker and System Docker. 
 
-### Custom Docker with default System-Docker
+### Custom Docker with default System Docker
 
-In order to update the docker binary, you will need to start with a persistent console. Both `debian-console` and `ubuntu-console` provided by RancherOS are persistent and one of the consoles need to be [enabled]({{site.baseurl}}/os/configuration/custom-console/). To confirm what console is running, run `sudo system-docker ps` to see what console container is running.
+In order to update the Docker binary, you will need to be in a [persistent console]({{site.baseurl}}/os/configuration/custom-console/#console-persistence). To confirm what console is running, run `sudo ros console list` to see what console container is currently running.
 
 ```bash
-$ sudo system-docker ps
-CONTAINER ID        IMAGE                           COMMAND                  CREATED             STATUS              PORTS               NAMES
-# os-console is a busybox console and not persistent. 
-f5ea8eb23fb6        rancher/os-console:v0.4.0-rc6   "/usr/sbin/entry.sh /"   2 minutes ago       Up 2 minutes                            os_console_1
-825b860b3a6c        rancher/os-docker:v0.4.0-rc6    "/usr/sbin/entry.sh /"   23 hours ago        Up 2 minutes                            docker
-e8b20d1b34fe        rancher/os-ntp:v0.4.0-rc6       "/usr/sbin/entry.sh /"   23 hours ago        Up 2 minutes                            ntp
-420aced55a08        rancher/os-acpid:v0.4.0-rc6     "/usr/sbin/entry.sh /"   23 hours ago        Up 2 minutes                            acpid
-1a1bd08c3120        rancher/os-udev:v0.4.0-rc6      "/usr/sbin/entry.sh /"   23 hours ago        Up 2 minutes                            
-e52f62fcba82        rancher/os-syslog:v0.4.0-rc6    "/usr/sbin/entry.sh /"   23 hours ago        Up 2 minutes                            syslog
-# Enable the debian console and reboot
-$ sudo ros service enable debian-console
-$ sudo reboot
+$ sudo ros console list
+disabled centos
+disabled debian
+current  default
+disabled fedora
+disabled ubuntu
 ```
 
-After you are logged in a persistent console, you can download the docker binary and symlink as `/usr/local/bin/docker`.
+If you are in the default console then you will need to [switch consoles]({{site.baseurl}}/os/configuration/custom-console/#changing-consoles-after-rancheros-has-started) to one of the persistent ones.
+
+After you are logged into a persistent console, you can download the Docker binary and symlink as `/usr/local/bin/docker`.
 
 ```bash
 $ curl -OL https://github.com/rancher/docker/releases/download/v1.8.2-rc1-ros/docker-1.8.2-rc1
@@ -59,11 +55,11 @@ Server:
  OS/Arch:      linux/amd64
 ```
 
-If you haven't touched `/usr/bin/docker` symlink, `system-docker` will still use the bundled docker from the OS image.
+If you haven't touched `/usr/bin/docker` symlink, System Docker will still use the bundled Docker from the OS image.
 
-### Custom Docker and Custom System-Docker 
+### Custom Docker and Custom System Docker 
 
-In order to change the Docker version in `docker` and `system-docker`, you'll be [building your own custom RancherOS ISO]({{site.baseurl}}/os/configuration/custom-rancheros-iso/).
+In order to change both Docker and System Docker, you'll have to [build a custom RancherOS ISO]({{site.baseurl}}/os/configuration/custom-rancheros-iso/).
 
 1. Create a clone of the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`. 
 
@@ -97,6 +93,6 @@ In order to change the Docker version in `docker` and `system-docker`, you'll be
    iso-checksums.txt	vmlinuz
    ```
 
-The `rancheros.iso` is ready to be used to [boot RancherOS from ISO]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso/) or [launch RancherOS using docker-machine]({{site.baseurl}}/os/running-rancheros/workstation/docker-machine). The new ISO will be running your custom Docker version in `docker` and `system-docker`. 
+The `rancheros.iso` is ready to be used to [boot RancherOS from ISO]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso/) or [launch RancherOS using Docker Machine]({{site.baseurl}}/os/running-rancheros/workstation/docker-machine). The new ISO will be running your custom Docker version in Docker and System Docker. 
 
 

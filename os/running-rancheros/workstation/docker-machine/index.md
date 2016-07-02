@@ -9,15 +9,15 @@ layout: os-default
 
 Before we get started, you'll need to make sure that you have docker machine installed. Download it directly from the docker machine [releases](https://github.com/docker/machine/releases).  
 
-> **Note:** If you create a RancherOS instance using `docker-machine`, you will not be able to upgrade your version of RancherOS.
+> **Note:** If you create a RancherOS instance using Docker Machine, you will not be able to upgrade your version of RancherOS.
 
 ### Downloading RancherOS
 
-Get the latest `rancheros.iso` artifact from the RancherOS [releases](https://github.com/rancher/os/releases).  As of v0.4.0, the `rancheros.iso` can be used for `docker-machine`. Prior to v0.4.0, you must select the `machine-rancheros.iso`. 
+Get the latest `rancheros.iso` artifact from the RancherOS [releases](https://github.com/rancher/os/releases).
 
 ### Using Docker Machine  
 
-You can use `docker-machine` to launch VMs for various providers. Currently only VirtualBox and AWS are supported.
+You can use Docker Machine to launch VMs for various providers. Currently only VirtualBox and AWS are supported.
 
 #### Using Docker Machine with VirtualBox
 
@@ -31,7 +31,7 @@ $ docker-machine create -d virtualbox --virtualbox-boot2docker-url <LOCATION-OF-
 
 > **Note:** Instead of downloading the ISO, you can directly use the URL for the `rancheros.iso`. 
 
-Example with RancherOS v0.4.0 link:
+Example using the RancherOS latest link:
 
 ```bash
 $ docker-machine create -d virtualbox --virtualbox-boot2docker-url https://releases.rancher.com/os/latest/rancheros.iso <MACHINE-NAME>
@@ -47,7 +47,7 @@ This command will print out the newly created machine. If not, something went wr
 
 ### Logging into RancherOS
 
-Logging into RancherOS follows the standard `docker-machine` commands. To login into your newly provisioned RancherOS VM.
+Logging into RancherOS follows the standard Docker Machine commands. To login into your newly provisioned RancherOS VM.
 
 ```bash
 $ docker-machine ssh <MACHINE-NAME>
@@ -59,7 +59,7 @@ If you want to exit out of RancherOS, you can exit by pressing `Ctrl+D`.
 
 ### Docker Machine Benefits
 
-With docker-machine, you can point the docker client on your host to the docker daemon running inside of the VM. This allows you to run your docker commands as if you had installed docker on your host. 
+With Docker Machine, you can point the docker client on your host to the docker daemon running inside of the VM. This allows you to run your docker commands as if you had installed docker on your host. 
 
 To point your docker client to the docker daemon inside the VM, use the following command:
 

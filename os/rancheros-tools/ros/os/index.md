@@ -26,8 +26,7 @@ Besides using `ros -v`, you can also find the current version with the `version`
 
 ```bash
 $ sudo ros os version
-v0.4.0
-v0.4.1
+v0.4.5
 ```
 
 ### List
@@ -37,7 +36,12 @@ It's easy to see all the current available versions using the `list` command.
 ```bash
 $ sudo ros os list
 rancher/os:v0.4.0 remote
-rancher/os:v0.4.1 local
+rancher/os:v0.4.1 remote
+rancher/os:v0.4.2 remote
+rancher/os:v0.4.3 remote
+rancher/os:v0.4.4 remote
+rancher/os:v0.4.5 remote
+rancher/os:v0.5.0 local
 ```
 
 ### Upgrade
@@ -58,10 +62,8 @@ Our [upgrading]({{site.baseurl}}/os/upgrading/) page provides more details on st
 The `-i` or `--image` option uses an image name to upgrade to the specific version. If no image is specified, the command will automatically use the current version.
 
 ```bash
-$ sudo ros os upgrade -i rancher/os:v0.4.0    
-INFO[0000] [0/1] [os-upgrade]: Starting
-INFO[0034] [1/1] [os-upgrade]: Started
-Upgrading to rancher/os:v0.4.1
+$ sudo ros os upgrade -i rancher/os:v0.5.0
+Upgrading to rancher/os:v0.5.0
 Continue [y/N]: y
 ...
 ...
@@ -75,9 +77,7 @@ INFO[0082] Rebooting
 The `-s` or `--stage` option is used to stage the specific template instead of immediately installing it. 
 
 ```bash
-$ sudo ros os upgrade -s -i rancher/os:v0.4.1
-INFO[0000] [0/1] [os-upgrade]: Starting
-INFO[0040] [1/1] [os-upgrade]: Started
+$ sudo ros os upgrade -s -i rancher/os:v0.5.0
 ```
 
 #### Force 

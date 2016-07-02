@@ -23,13 +23,19 @@ The `ros install` command is used to install RancherOS to hard disk. Please foll
 
 #### Image / Version
 
-The `-i` option specifies the particular image to install from. By default, `ros install` uses the same installer image version as the ISO it is run from. E.g. for RancherOS v0.4.0 the default installer image would be `rancher/os:v0.4.0`.
+The `-i` option specifies the particular image to install from. By default, `ros install` uses the same installer image version as the ISO it is run from. E.g. for RancherOS v0.5.0 the default installer image would be `rancher/os:v0.5.0`.
 
 You can use `ros os list` command to find the list of available RancherOS images/versions.
  
 ```bash
 $ sudo ros os list
 rancher/os:v0.4.0 remote
+rancher/os:v0.4.1 remote
+rancher/os:v0.4.2 remote
+rancher/os:v0.4.3 remote
+rancher/os:v0.4.4 remote
+rancher/os:v0.4.5 remote
+rancher/os:v0.5.0 remote
 ```
 
 #### Cloud-Config
@@ -38,7 +44,7 @@ The `-c` option provides the location of the cloud config file. Read more about 
 
 #### Device
 
-The `-d` option provide the target disk location. 
+The `-d` option provides the target disk location. 
 
 You can see the list of disks available to install to by running `sudo fdisk -l`
 

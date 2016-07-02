@@ -38,7 +38,10 @@ The `list` command will provide you a list of all services available in the [os-
 
 ```bash
 $ sudo ros service list
-disabled ubuntu-console
+disabled amazon-ecs-agent
+disabled kernel-headers
+disabled kernel-headers-system-docker
+disabled open-vm-tools
 ```
 
 ### Enable
@@ -47,14 +50,20 @@ The `enable` command turns on a service. This service can either be a http(s) ur
 
 Note: If you are using the location of a yaml file to enable, the system-service-name should be the entire location of the file. Therefore, if you were enabling an `example.yml` file, you will be enabling `/var/lib/rancher/conf/example.yml`.
 
-For our example, we're enabling the ubuntu console, which is in the os-services repository. After the reboot, we'll be logged in using the ubuntu-console. 
+For our example, we're enabling the `kernel-headers` service, which is in the os-services repository. After a reboot, kernel headers will be installed on the system.
 
 ```bash
 $ sudo ros service list
-disabled ubuntu-console
-$ sudo ros service enable ubuntu-console
+disabled amazon-ecs-agent
+disabled kernel-headers
+disabled kernel-headers-system-docker
+disabled open-vm-tools
+$ sudo ros service enable kernel-headers
 $ sudo ros service list
-enabled ubuntu-console
+disabled amazon-ecs-agent
+enabled  kernel-headers
+disabled kernel-headers-system-docker
+disabled open-vm-tools
 $ sudo reboot
 ```
 
@@ -62,14 +71,20 @@ $ sudo reboot
 
 The `disable` command turns off any service, but the service will **not** be removed. You will need to reboot in order for the change to take effect. In the future, the reboot will be dynamic. 
 
-For our example, we're disabling the ubuntu console. After the reboot, we'll be logged in using the busybox console.
+For our example, we're disabling the `kernel-headers` service. This service will no longer be run on future boots.
 
 ```bash
 $ sudo ros service list
-enabled ubuntu-console
-$ sudo ros service disable ubuntu-console
+disabled amazon-ecs-agent
+enabled  kernel-headers
+disabled kernel-headers-system-docker
+disabled open-vm-tools
+$ sudo ros service disable kernel-headers
 $ sudo ros service list
-disabled ubuntu-console
+disabled amazon-ecs-agent
+disabled kernel-headers
+disabled kernel-headers-system-docker
+disabled open-vm-tools
 ```
 
 ### Delete
@@ -79,10 +94,16 @@ The `delete` command can be used to delete services that were added dynamically.
 ```bash
 $ sudo ros service enable /var/lib/rancher/conf/etcd.yml
 $ sudo ros service list
-disabled ubuntu-console
-enabled /var/lib/rancher/conf/etcd.yml
+disabled amazon-ecs-agent
+disabled kernel-headers
+disabled kernel-headers-system-docker
+disabled open-vm-tools
+enabled  /var/lib/rancher/conf/etcd.yml
 $ sudo ros delete /var/lib/rancher/conf/etcd.yml
 $ sudo ros service list
-disabled ubuntu-console
+disabled amazon-ecs-agent
+disabled kernel-headers
+disabled kernel-headers-system-docker
+disabled open-vm-tools
 ```
 

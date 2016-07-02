@@ -8,7 +8,7 @@ layout: os-default
 
 ### Changing the Kernel in RancherOS 
 
-Currently, RancherOS ships with Linux 3.19.2 kernel. Starting with v0.4.0+, the kernel in RancherOS can be swapped out to your own version by [building your own custom RancherOS ISO]({{site.baseurl}}/os/configuration/custom-rancheros-iso/).
+By default, RancherOS ships with the kernel provided by the [os-kernel repository](https://github.com/rancher/os-kernel). Swapping out the default kernel can by done by [building your own custom RancherOS ISO]({{site.baseurl}}/os/configuration/custom-rancheros-iso/).
 
  1. Create a clone of the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`. 
 
@@ -16,37 +16,49 @@ Currently, RancherOS ships with Linux 3.19.2 kernel. Starting with v0.4.0+, the 
     $ git clone https://github.com/rancher/os.git
     ```
 
- 2. In the root of the repository, the `build.conf` file will need to be updated. Using your favorite editor, replace the `COMPILED_KERNEL_URL` value with a URL of your compiled custom kernel tarball. Ideally, the URL will be pre-fixed with `https`. 
+ 2. In the root of the repository, the "General Configuration" section of `Dockerfile.dapper` will need to be updated. Using your favorite editor, replace the appropriate `KERNEL_URL` value with a URL of your compiled custom kernel tarball. Ideally, the URL will use `HTTPS`.
 
-    `build.conf` file
+    `Dockerfile.dapper` file
 
     ```
-    IMAGE_NAME=rancher/os
-    VERSION=v0.4.0
- 
-    DOCKER_BINARY_URL=https://github.com/rancher/docker/releases/download/v1.8.2-ros1/docker-1.8.2
     # Update the URL to your own custom kernel tarball
-    COMPILED_KERNEL_URL=https://github.com/rancher/os-kernel/releases/download/Ubuntu-3.19.0-27.29-ros1/linux-3.19.8-ckt5-rancher-x86.tar.gz
-    DFS_IMAGE=rancher/docker:1.8.2
+    ARG KERNEL_URL_amd64=https://github.com/rancher/os-kernel/releases/download/Ubuntu-4.4.0-23.41-rancher/linux-4.4.10-rancher-x86.tar.gz
+    ARG KERNEL_URL_arm64=https://github.com/imikushin/os-kernel/releases/download/Estuary-4.1.18-arm64-3/linux-4.1.18-arm64.tar.gz
     ```
 
     <br>
 
-    > **Note:** `COMPILED_KERNEL_URL` should point to a Linux kernel, compiled and packaged in a specific way. You can use the [os-kernel repository](https://github.com/rancher/os-kernel) to package your own kernel.
-  
- 3. After you've replaced the URL with your custom kernel, run `./build.sh` in the root directory. After the build has completed, a `./dist/artifacts` directory will be created with the custom built RancherOS release files. 
+    > **Note:** `COMPILED_KERNEL_URL` should point to a Linux kernel, compiled and packaged in a specific way. You can fork [os-kernel repository](https://github.com/rancher/os-kernel) to package your own kernel.
 
-     Build Requirements: `bash`, `make`, `docker` (docker version >= 1.8.0)
-     
-    ```bash
-    $ ./build.sh
-    $ cd dist/artifacts
-    $ ls
-    initrd             rancheros.iso
-    iso-checksums.txt	vmlinuz
+    Your kernel should be packaged and published as a set of files of the following format:
+
+    `<kernel-name-and-version>.tar.gz` is the one KERNEL_URL should point to. It contains the kernel binary, core modules and firmware:
+
+    ```
+    boot/
+         vmlinuz-<kernel-version>
+    lib/
+        modules/
+                <kernel-version>/
+                                 ...
+        firmware/
+                 ...
     ```
 
-The `rancheros.iso` is ready to be used to [boot RancherOS from ISO]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso/) or [launch RancherOS using docker-machine]({{site.baseurl}}/os/running-rancheros/workstation/docker-machine). The new ISO and will be running with your custom kernel. 
+    `build.tar.gz` contains build headers to build additional modules (e.g. using DKMS): it is a subset of the kernel sources tarball. These files will be installed into `/usr/src/<os-kernel-tag>`.
+
+    `extra.tar.gz` contains extra modules and firmware for your kernel:
+
+    ```
+    lib/
+        modules/
+                <kernel-version>/
+                                 ...
+        firmware/
+                 ...
+    ```
+  
+ 3. After you've replaced the URL with your custom kernel, you can follow the steps in [building your own custom RancherOS ISO]({{site.baseurl}}/os/configuration/custom-rancheros-iso/).
 
 ### Packaging a Kernel to be used in RancherOS
 

@@ -114,9 +114,9 @@ rancher:
       restart: always
 ```  
 
-#### System-Docker vs. User Docker
+#### System Docker vs. Docker
 
-RancherOS uses labels to determine if the container should be deployed in system-docker. By default without the label, the container will be deployed in user docker.
+RancherOS uses labels to determine if the container should be deployed in System Docker. By default without the label, the container will be deployed in Docker.
 
 ```yaml
 labels:
@@ -130,13 +130,13 @@ We use labels to determine how to handle the service containers.
 Key | Value |Description
 ----|-----|---
 `io.rancher.os.detach` | Default: `true` | Equivalent of `docker run -d`. If set to `false`, equivalent of `docker run --detach=false`
-`io.rancher.os.scope` | `system` | Use this label to have the container deployed in system-docker instead of docker.
+`io.rancher.os.scope` | `system` | Use this label to have the container deployed in System Docker instead of Docker
 `io.rancher.os.before`/`io.rancher.os.after` | Service Names (Comma separated list is accepted) | Used to determine order of when containers should be started
-`io.rancher.os.createonly` | Default: `false` | When set to `true`, only a `docker create` will be performed and not a `docker start`.
+`io.rancher.os.createonly` | Default: `false` | When set to `true`, only a `docker create` will be performed and not a `docker start`
 `io.rancher.os.reloadconfig` | Default: `false`| When set to `true`, it reloads the configuration. 
 
 
-Read more about [system-services]({{site.baseurl}}/os/configuration/system-services) in RancherOS. 
+Read more about [system services]({{site.baseurl}}/os/configuration/system-services) in RancherOS. 
 
 ### RancherOS Specific Configuration 
 
@@ -233,7 +233,7 @@ rancher:
 
 #### Docker Configuration
 
-The `docker` key configures the docker arguments and TLS settings.
+The `docker` key configures the Docker arguments and TLS settings.
 
 ```yaml
 rancher:
@@ -243,9 +243,9 @@ rancher:
     args: [daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -s, overlay, -G, docker, -H, 'unix:///var/run/docker.sock', --userland-proxy=false]
 ```
 
-#### System-Docker Configuration
+#### System Docker Configuration
 
-The `system_docker` key configures the system-docker arguments.
+The `system_docker` key configures the System Docker arguments.
 
 ```yaml
 rancher:

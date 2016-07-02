@@ -15,22 +15,21 @@ Development is easiest done with QEMU on Linux. OS X works too, although QEMU do
 
 #### Requirements:
 
-* Bash
-* Docker 1.9.1+ 
-* [Dapper](https://github.com/rancher/dapper) 
-
+* bash
+* make
+* Docker 1.10.3+ 
 
 ```bash
-$ ./build.sh
+$ make
 ```
 
-The build will run in a docker container named `ros-build`. When the build is done, the ISO, vmlinuz and initrd should be in `dist/artifacts`. 
+The build will run in a Docker container named `ros-build`. When the build is done, the vmlinuz, initrd, and ISO should be in `dist/artifacts`.
 
-Run `./build.sh` (or `dapper make all`) to perform the full build.  After that, if you only make changes to the Go code, just run `dapper make`. Otherwise (e.g. on changes to make files, 'build.conf' or 'os-config.yml'), run the full build again.
+If you're building a version of RancherOS used for development and not for a release, you can instead run `make dev`. This will run faster than the standard build while still producing the same artifacts.
 
 ### Testing
 
-Run `time KVM=1 ./scripts/ci` to run the all integration tests. The tests will run in a docker container named "ros-ci".
+Run `make integration-tests` to run the all integration tests. The tests will run in a Docker container named "ros-ci".
 
 ### Running
 
@@ -50,9 +49,10 @@ All of repositories are located within our main GitHub [page](https://github.com
 
 [RancherOS Repo](https://github.com/rancher/os): This repo contains the bulk of the RancherOS code.
 
-[RancherOS Images Repo](https://github.com/rancher/os-images): This repo is for RancherOS system container images.
-
 [RancherOS Services Repo](https://github.com/rancher/os-services): This repo is where any [system-services]({{site.baseurl}}/os/system-services/) can be contributed.
+
+[RancherOS Images Repo](https://github.com/rancher/os-images): This repo is for the corresponding service images.
+
 
 ## Bugs
 
