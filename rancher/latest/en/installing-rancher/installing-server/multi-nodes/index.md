@@ -7,7 +7,7 @@ redirect_from:
   - rancher/installing-rancher/installing-server/multi-nodes/
 ---
 
-## Installing Rancher Server (High Availability)
+## Installing Rancher Server (Multi Nodes)
 ---
 
 _Available as of v1.0.1_

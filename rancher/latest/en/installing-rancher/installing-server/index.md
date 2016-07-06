@@ -7,7 +7,7 @@ redirect_from:
   - rancher/installing-rancher/installing-server/
 ---
 
-## Installing Rancher Server
+## Installing Rancher Server (Single Node)
 ---
 Rancher is deployed as a set of Docker containers. Running Rancher is a simple as launching two containers. One container as the management server and another container on a node as an agent. 
 
