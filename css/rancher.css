@@ -109,7 +109,7 @@ h3:before, h3:after {
   content: "";
   width: 50px;
   height: 3px;
-  background: #99a3a8;
+  background: #5c686f;
   display: inline-block;
   vertical-align: middle;
   margin: 0 10px;
@@ -120,30 +120,20 @@ h1, h2 {
   font-weight: 300;
 }
 
-h3 {
-    font-size: 1.17em;
-}
-h4 {
-    font-size: 1em;
-}
-h5 {
-font-size: .83em;
-}
-
 h3,
 h4,
 h5,
 h6 {
   text-transform: uppercase;
-  color: #99a3a8;
-  letter-spacing: .5px;
+  color: #5c686f;
+  letter-spacing: .75px;
 }
 h3,
 h4,
 h5,
 h6 {
   text-transform: uppercase;
-  color: #99a3a8;
+  color: #5c686f;
   font-weight: 900;
 }
 h3 {
@@ -182,7 +172,7 @@ hr {
 .navbar-inverse {
     background:#fff;
     border: none;
-    color: #99A3A8;
+    color: #5c686f;
 }
 
 
@@ -202,7 +192,7 @@ hr {
 }
 .navbar-inverse .navbar-nav > li > .no-list-group:hover,
 .navbar-inverse .navbar-nav > li > .no-list-group:focus {
-    background-color: #99a3a8;
+    background-color: #5c686f;
     color:#0075a8;
     text-decoration: none;
 }
@@ -298,11 +288,11 @@ ul.collapse {
 }
 
 .sidebar-nav{
-    background-color: #99a3a8;
+    background-color: #5c686f;
 }
 
 .navbar-inverse .navbar-nav > li > a.active {
-    background: #99a3a8;
+    background: #5c686f;
     color: white;
 }
 ul.nav.navbar-nav li a.active:after {
@@ -312,7 +302,7 @@ ul.nav.navbar-nav li a.active:after {
     width: 0;
     pointer-events: none;
     border-color: transparent;
-    border-left-color: #99a3a8;
+    border-left-color: #5c686f;
     border-width: 10px;
     position: absolute;
     right: -20px;
@@ -359,7 +349,7 @@ ul.collapse.in a.active {
         left:auto;
         bottom:auto;
         position:relative;
-        background-color: #99a3a8;
+        background-color: #5c686f;
     }
     
     .row .col-sm-9{
@@ -554,7 +544,7 @@ blockquote strong:first-child{
   display: block;
   text-transform: uppercase;
   margin-bottom: 10px;
-  color: #99a3a8;
+  color: #5c686f;
 }
 
 /*ACTIONS*/
