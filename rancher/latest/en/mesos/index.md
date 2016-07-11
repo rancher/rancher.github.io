@@ -10,11 +10,11 @@ redirect_from:
 ## Mesos
 ---
 
-To deploy Mesos in Rancher, you'll first need to create a new [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) that has specified the cluster management to be **Mesos**. 
+To deploy Mesos in Rancher, you'll first need to create a new [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) that has specified the cluster management to be **Mesos**. 
 
 ### Creating a Mesos Environment
 
-In the dropdown of environments, click on the **Manage Environments**. To create a new environment, click on **Add Environment**, select **Mesos** as the cluster management, provide a **Name**, **Description** (Optional). If [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is turned on, you can [add members]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/#editing-members) and select their [membership role]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/#membership-roles). Anyone added to the membership list would have access to your environment. 
+In the dropdown of environments, click on the **Manage Environments**. To create a new environment, click on **Add Environment**, select **Mesos** as the cluster management, provide a **Name**, **Description** (Optional). If [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is turned on, you can [add members]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#editing-members) and select their [membership role]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#membership-roles). Anyone added to the membership list would have access to your environment. 
 
 After a Mesos environment has been created, you can navigate to the environment by either selecting the name of the environment in the environment's dropdown in the upper right hand corner or by selecting **Switch to this Environment** in the specific environment's drop down. 
 
@@ -22,7 +22,7 @@ After a Mesos environment has been created, you can navigate to the environment 
 
 ### Starting Mesos
 
-After a Mesos environment has been created, you can start the Mesos cluster by adding at least three hosts to your environment. The process of [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts) is the same steps for all cluster management types. Once the first host has been added, Rancher will automatically start the deployment of the required Mesos components (i.e. mesos-master, mesos-slave and zookeeper).  You can see the progress of the deployment by accessing the **Mesos** tab.
+After a Mesos environment has been created, you can start the Mesos cluster by adding at least three hosts to your environment. The process of [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) is the same steps for all cluster management types. Once the first host has been added, Rancher will automatically start the deployment of the required Mesos components (i.e. mesos-master, mesos-slave and zookeeper).  You can see the progress of the deployment by accessing the **Mesos** tab.
 
 ### Using Mesos
 

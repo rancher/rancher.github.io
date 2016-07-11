@@ -1,14 +1,12 @@
 ---
-title: High Availability (HA)
+title: Installing Rancher Server (Multi Nodes)
 layout: rancher-default
 version: latest
 lang: zh
 ---
 
-## Installing Rancher Server (High Availability)
+## Installing Rancher Server (Multi Nodes)
 ---
-
-_Available as of v1.0.1_
 
 ### Requirements 
 
@@ -23,20 +21,22 @@ _Available as of v1.0.1_
     * 50 connections per Rancher server node (e.g. A 3 node setup will need to support at least 150 connections)
 * External Load Balancer 
 
+
 ### Recommendations for Larger Deployments 
 
 * Each Rancher server node should have a 4 GB or 8 GB heap size, which requires having at least 8 GB or 16 GB of RAM
 * MySQL database should have fast disks
 * For true HA, a replicated MySQL database with proper backups is recommended. Using Galera and forcing writes to a single node, due to transaction locks, would be an alternative.
 
+
 ### Preparing for the High Availability (HA) Setup
 
 1. Prepare a MySQL database with at least 1 GB RAM following the same directions as [starting a single node using an external database]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#using-an-external-database), but do not launch Rancher server according to those instructions. By default, users will only be able to access the database from localhost. You will need to grant access to the new user for the network where your Rancher nodes will reside.
 2. Configure an external load balancer that will balance traffic on ports 80 and 443 across a pool of nodes that will be running Rancher server. Depending on your cloud provider, it may be necessary to start the nodes before being able to configure the external load balancer.
 3. Prepare the nodes that will be used in the HA setup. These nodes should meet the same [requirements]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#requirements) as a single node setup of Rancher. (Optional) Pre-pulling the `rancher/server` image onto the Rancher nodes. 
-
+    
     Currently, our HA setup supports 3 cluster sizes. 
-
+    
     * 1 Node: Not really HA
     * 3 Nodes: Any **one** host can fail
     * 5 Nodes: Any **two** hosts can fail
@@ -61,7 +61,7 @@ _Available as of v1.0.1_
 
     > **Note:** Please be patient with this step, initialization may take up to 15 minutes to complete. 
 
-5. While the initialization is taking place for the script generating Rancher server, you can pre-pull images onto your nodes that will be used in the setup.
+5.  While the initialization is taking place for the script generating Rancher server, you can pre-pull images onto your nodes that will be used in the setup.
  
    ```bash
    # The version would be whatever was used in Step 4
@@ -86,7 +86,7 @@ _Available as of v1.0.1_
 
 2. Navigate to the IP or hostname of the external load balancer that you provided earlier and used in the **Host Registration URL** when generating the configuration scripts. Please note that it will take a couple of minutes before the UI is available as Rancher. If your UI doesn't become available, [view the status of the management stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/faqs/server/#ha-monitoring). 
 
-3. Once you have added all the hosts into your environment, your HA setup is complete and you can start launching [services in the UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/),  launching templates from the [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) or start using [rancher-compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/) to launch services.
+3. Once you have added all the hosts into your environment, your HA setup is complete and you can start launching [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/),  or start launching templates from the [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/).
     
-    > **Note:** If you are using AWS, you will need to specify the IP of the hosts that you are adding into Rancher. If you are adding a [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/custom/), you can specify the public IP in the UI and the command to launch Rancher agent will be editted to specify the IP.  If you are adding a host through the UI, after the host has been added into Rancher, you will need to [ssh into the host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/#accessing-hosts-from-the-cloud-providers) to re-run the custom command to re-launch Rancher agent so that the IP is correct.
+    > **Note:** If you are using AWS, you will need to specify the IP of the hosts that you are adding into Rancher. If you are adding a [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/), you can specify the public IP in the UI and the command to launch Rancher agent will be editted to specify the IP.  If you are adding a host through the UI, after the host has been added into Rancher, you will need to [ssh into the host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#accessing-hosts-from-the-cloud-providers) to re-run the custom command to re-launch Rancher agent so that the IP is correct.
 

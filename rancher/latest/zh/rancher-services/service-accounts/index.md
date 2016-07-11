@@ -1,11 +1,11 @@
 ---
-title: Labels in Rancher
+title: Service Accounts in Rancher
 layout: rancher-default
 version: latest
 lang: zh
 ---
 
-## Service Accounts in Rancher
+## Service Accounts 
 ---
 
 If you create a service that needs to interact with the Rancher API, service account API keys will need to be created for the containers so that the service will be able to access the API for authenticated set ups. In order to create these keys in the service, the following labels will need to be added to the service. 

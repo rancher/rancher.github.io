@@ -1,5 +1,5 @@
 ---
-title: Audit Log
+title: Audit Logging in Rancher
 layout: rancher-default
 version: latest
 lang: zh
@@ -9,6 +9,7 @@ lang: zh
 ---
 
 Only [admins]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#admin) will have access to the audit logs. The audit log can be found under **Admin** -> **Audit Log**. 
+
 Rancher's audit logs are a compilation of different event types. 
 
 * Anything prefixed with `api` is a call to our API. The event type will log the API action, who performed the action and how the API was called (i.e. through the UI, through an API key).

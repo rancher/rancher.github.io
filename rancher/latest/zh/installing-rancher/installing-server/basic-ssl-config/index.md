@@ -1,5 +1,5 @@
 ---
-title: Basic SSL Rancher Server Configuration
+title: Installing Rancher Server with SSL
 layout: rancher-default
 version: latest
 lang: zh
@@ -38,12 +38,11 @@ If you are converting an existing Rancher instance, the upgrade to the new Ranch
 
 > **Note:** After your new Rancher server is running, please make sure to **remove** the old Rancher instance. Otherwise, if your machine is rebooted, your old Rancher instance will start up as we have included `--restart=always` to the `docker run` commands.
 
-## Example Nginx Configuration
----
+### Example Nginx Configuration
 
 Here is the minimum NGINX configuration that will need to be configured. You should customize your configuration to meet your needs.
 
-### Notes on the Settings
+#### Notes on the Settings
 
 * `rancher-server` is the name of your rancher server container. When starting your rancher server container, the command must include `--name=rancher-server`. When starting your nginx container, the command must include `--link=rancher-server` for this exact configuration to work.
 * `<server>` can be any arbitrary name, but the same name should be used for both the http and https servers.
@@ -82,12 +81,12 @@ server {
 ```
 
 
-## Apache Configuration
----
+### Apache Configuration
+
 
 Here is an Apache configuration.
 
-### Notes on the Settings
+#### Notes on the Settings
 
 * `<server_name>` is the name of your rancher server container. When starting your Apache container, the command must include `--link=<server_name>` for this exact configuration to work.
 * In the proxy settings, you'll need to substitute `rancher` for your configuration.
@@ -125,20 +124,18 @@ Here is an Apache configuration.
 </VirtualHost>
 ```
 
-## Updating Host Registration
----
+### Updating Host Registration
 
 After Rancher is launched with these settings, the UI will be up and running at `https://<your domain>/`.
 
-Before [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/), you'll need to properly configure [Host Registration]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#host-registration) for SSL.
+Before [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/), you'll need to properly configure [Host Registration]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#host-registration) for SSL.
 
 
-## Running Rancher Server Behind an ELB in AWS with SSL
----
+### Running Rancher Server Behind an ELB in AWS with SSL
 
 By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher's websockets to work. 
 
-### Configuration Requirements for ELB to enable Rancher
+#### Configuration Requirements for ELB to enable Rancher
 
  * Enabling [proxy protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) mode
 
@@ -147,27 +144,26 @@ $ aws elb create-load-balancer-policy --load-balancer-name my-elb --policy-name 
 $ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name my-elb --instance-port 81 --policy-names my-ProxyProtocol-policy
 $ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name my-elb --instance-port 444 --policy-names my-ProxyProtocol-policy
 ```
+ 
+ * For SSL terminated at the Rancher servers: Configure ELB listener for TLS/SSL:443 for the frontend and TCP:444 for the backend instance protocol:port.
+ * For SSL terminated at the ELB: Configure ELB listener for TCP:80 for the frontend and TCP:81 for the backend instance protocol:port.
+ * Health check can be configured to use HTTP:80 or HTTPS:443 using `/ping` as your path.
 
-* For SSL terminated at the Rancher servers: Configure ELB listener for TLS/SSL:443 for the frontend and TCP:444 for the backend instance protocol:port.
-* For SSL terminated at the ELB: Configure ELB listener for TCP:80 for the frontend and TCP:81 for the backend instance protocol:port.
-* Health check can be configured to use HTTP:80 or HTTPS:443 using `/ping` as your path.
+### Using Self Signed Certs (Beta)
 
-## Using Self Signed Certs (Beta)
----
-
-### Disclaimers
+#### Disclaimers
 
 This configuration will work for the 'core' services in Rancher running in a standalone mode (Non-HA setup). Currently, none of the certified Rancher templates from the [Rancher catalog](https://github.com/rancher/rancher-catalog) are supported. 
 
 Rancher Compose CLI will require the CA certificate as part of the default store for the operating system. See [Golang root_*](https://golang.org/src/crypto/x509/).
 
-### Server Pre-Requisites
+#### Server Pre-Requisites
 
 * CA certificate file in PEM format 
 * Certificate signed by the CA for the Rancher Server
 * An instance of NGINX or Apache configured to terminate SSL and reverse proxy Rancher server
 
-### Rancher Server
+#### Rancher Server
 
 1. Launch the Rancher server container with the modified Docker command. The certificate **must** be called `ca.crt` inside the container. 
 
@@ -189,10 +185,10 @@ Rancher Compose CLI will require the CA certificate as part of the default store
 
 > **Note:** Unless the machine running your web browser trusts the CA certificate used to sign the Rancher server certificate, the browser will give an untrusted site warning whenever you visit the web page.
 
-### Adding Hosts
+#### Adding Hosts
 
 1. On the host that you want to add into Rancher, save the CA certificate, which must be in pem format, into the directory `/var/lib/rancher/etc/ssl` with the file name `ca.crt`.
 
-2. Add the [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/custom/), which is just copying and pasting the command from the UI. The command will already include  `-v /var/lib/rancher:/var/lib/rancher`, so the file will automatically be copied onto your host. 
+2. Add the [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/), which is just copying and pasting the command from the UI. The command will already include  `-v /var/lib/rancher:/var/lib/rancher`, so the file will automatically be copied onto your host. 
 
 

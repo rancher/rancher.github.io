@@ -1,5 +1,5 @@
 ---
-title: Metadata Service
+title: Metadata Service in Rancher
 layout: rancher-default
 version: latest
 lang: en
@@ -10,12 +10,14 @@ redirect_from:
 ## Metadata Service
 ---
 
+Rancher offers data for both your services and containers. This data can be used to manage your running Docker instances in the form of a metadata service accessed directly through a HTTP based API.  These data can include static information when creating your Docker containers, Rancher Services, or runtime data such as discovery information about peer containers within the same service.
+
 With Rancher's metadata service, you can exec into any container using the Rancher managed network and retrieve information about containers in Rancher. The metadata could be related to the container, the service or stack that the container is part of, or the host that the container is on. The metadata is in a JSON format. 
 
-A container can be launched in the Rancher managed network in several ways.
+In a Cattle environment, containers can be launched in the Rancher managed network in several ways.
 
-* In the [UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/), the service/container was started with _Managed_ as the network option. By default, the network of a service is set to _Managed_. 
-* Using [Rancher-Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/), any service/container, that doesn't have another networking mode (`net`) specified, is launched in the managed network.
+* In the [UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#adding-services-in-the-ui), the service was started with _Managed_ as the network option. By default, the network of a service is set to _Managed_. 
+* Using [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#adding-services-with-rancher-compose), any service, that doesn't have another networking mode (`net`) specified, is launched in the managed network.
 * When [using native docker]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/native-docker/#joining-natively-started-containers-to-the-rancher-network), if you add the label `io.rancher.container.network=true` to your `docker run` command, then the container will join the Rancher managed network.
 
 > **Note:** Metadata service is not available for system containers, i.e. Network Agent and LB Agent. 
@@ -159,13 +161,13 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 | Fields | Description |
 | ----| ----|
 | `create_index` | The order number of which the container was launched in the service, i.e. 2 means it was the second container launched in the service. Note: Create_index is never reused. If you had a service with 2 containers and deleted the 2nd container, the next container that gets launched for the service would have a `create_index` of 3 even though there are only 2 containers in the service.
-| `health_state` | The state of health for the container if a [health check]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/health-checks/) was enabled.
+| `health_state` | The state of health for the container if a [health check]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks/) was enabled.
 | `host_uuid` | Unique host identifier that Rancher server assigns to hosts
 | `hostname` | The hostname of the container.
 | `ips` | When multiple NICs are supported, it will be the list of IPs.
-| `labels` | List of [Labels on Container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/scheduling/#labels). Format for labels is `key`:`value`.
+| `labels` | List of [Labels on Container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#labels). Format for labels is `key`:`value`.
 | `name` | Name of Container 
-| `ports` | List of [Ports used in the container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/containers/#port-mapping). Format for ports is `hostIP:publicIP:privateIP[/protocol]`.
+| `ports` | List of [Ports used in the container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#port-mapping). Format for ports is `hostIP:publicIP:privateIP[/protocol]`.
 | `primary_ip` | IP of container
 | `service_index` | The last number in the container name of the service
 | `service_name` | Name of service (if applicable)
@@ -180,17 +182,17 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 `containers` | List of container names in the service
 `create_index` | Create_index of the last container created of the service. Note: Create_index is never reused. If you had a service with 2 containers and deleted the 2nd container, the create_index will be 2. The next container that gets launched for the service would update the create_index to 3 even though there are only 2 containers.
 `expose` | 
-`external_ips` | List of External IPs for [External Services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-external-services/)
+`external_ips` | List of External IPs for [External Services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-external-services/)
 `fqdn` | Fqdn of the service 
-`hostname` | CNAME for [External Services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-external-services/)
+`hostname` | CNAME for [External Services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-external-services/)
 `kind` | Type of Rancher Service 
-`labels` | List of [Labels on Service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/scheduling/#labels). Format for labels is `key:value`.
+`labels` | List of [Labels on Service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#labels). Format for labels is `key:value`.
 `links` | List of linked services. Format for links is `stack_name/service_name:service_alias`. The `links` would show all the keys (i.e. `stack_name/service_name` for all links) and to retrieve the `service_alias`, you would need to drill down to the specific key.
 `metadata` | [User added metadata]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/metadata-service/#adding-user-metadata-to-a-service) 
 `name` | Name of Service
-`ports` | List of [Ports used in the Service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/#port-mapping). Format for ports is `hostIP:publicIP:privateIP[/protocol]`.
+`ports` | List of [Ports used in the Service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#port-mapping). Format for ports is `hostIP:publicIP:privateIP[/protocol]`.
 `scale` | Scale of Service
-`sidekicks` | List of service names that are [sidekicks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/#sidekicks)
+`sidekicks` | List of service names that are [sidekicks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#sidekick-services)
 `stack_name` | Name of stack the service is part of
 `uuid` | Unique service identifier that Rancher assigns to services
 
@@ -198,8 +200,8 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 
 Fields | Description
 ----|----
-`environment_name` | Name of [Environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) that the Stack is in
-`name` | Name of [Stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/)
+`environment_name` | Name of [Environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) that the Stack is in
+`name` | Name of [Stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/stacks/)
 `services` | List of Services in the Stack
 `uuid` | Unique stack identifier that Rancher assigns to stacks
 
@@ -209,14 +211,14 @@ Fields | Description
 ----|----
 `agent_ip` | IP of the Rancher Agent, i.e. the value of the `CATTLE_AGENT_IP` environment variable.
 `hostId` | Identifier of the host in the specific environment
-`labels` | List of [Host Labels]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/#host-labels). Format for labels is `key:value`.
-`name` | Name of [Host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/)
+`labels` | List of [Host Labels]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels). Format for labels is `key:value`.
+`name` | Name of [Host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/)
 `uuid` | Unique host identifier that Rancher server assigns to hosts
 
 ## Adding User Metadata To a Service
 ---
 
-Rancher allows users to add in their own metadata to a service. Currently, this is only supported through [rancher-compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/) and the metadata is part of the `rancher-compose.yml` file. In the `metadata` key, the yaml will be parsed into JSON format to be used by the metadata-service.
+Rancher allows users to add in their own metadata to a service. Currently, this is only supported through [rancher-compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/) and the metadata is part of the `rancher-compose.yml` file. In the `metadata` key, the yaml will be parsed into JSON format to be used by the metadata-service.
 
 Example `rancher-compose.yml` 
 

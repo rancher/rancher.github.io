@@ -1,5 +1,5 @@
 ---
-title: Machine Drivers
+title: Machine Drivers in Rancher
 layout: rancher-default
 version: latest
 lang: en
@@ -10,7 +10,7 @@ redirect_from:
 ## Machine Drivers
 ---
 
-[Docker-machine](https://docs.docker.com/machine/) drivers can be added into Rancher so that they can be available to [add hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/other/) into Rancher. Only an [admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#admin) can change which machine drivers are visible, which can be located in  **Admin** -> **Machine Drivers**.
+[Docker-machine](https://docs.docker.com/machine/) drivers can be added into Rancher so that they can be available to [add hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/other/) into Rancher. Only an [admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#admin) can change which machine drivers are visible, which can be located in  **Admin** -> **Machine Drivers**.
 
 The **active** machine drivers are the only options that are displayed on the **Infrastructure** -> **Add Hosts** page. By default, Rancher provides many machine-drivers, which only a subset are **Active** in our UI. 
 
@@ -23,4 +23,4 @@ You can easily add your own machine-driver by clicking on **Add Machine Driver**
 3. (Optional) Provide the **Checksum** to verify the downloaded driver matches the expected checksum. 
 4. When complete, click **Create**. 
 
-After clicking on create, Rancher adds the additional driver and will display this option in the **Driver** field of adding [other hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/other/) or with a custom image (if provided).
+After clicking on create, Rancher adds the additional driver and will display this option in the **Driver** field of adding [other hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/other/) or with a custom image (if provided).

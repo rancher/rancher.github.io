@@ -28,7 +28,7 @@ All of repositories are located within our main GitHub [page](https://github.com
 
 [Community Catalog Repo](https://github.com/rancher/community-catalog): This repo has all community contributed templates for the [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog). We welcome community contributions to the Rancher templates. 
 
-[Rancher-Compose Repo](https://github.com/rancher/rancher-compose): This repo is what the [rancher-compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/) CLI is based on. It's synced with docker/libcompose. 
+[Rancher-Compose Repo](https://github.com/rancher/rancher-compose): This repo is what the [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/) CLI is based on. It's synced with docker/libcompose. 
 
 ### Bugs
 

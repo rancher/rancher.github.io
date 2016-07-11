@@ -1,5 +1,5 @@
 ---
-title: Audit Log
+title: Audit Logging in Rancher
 layout: rancher-default
 version: latest
 lang: en

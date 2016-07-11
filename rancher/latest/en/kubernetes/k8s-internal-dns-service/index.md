@@ -1,14 +1,14 @@
 ---
-title: Kubernetes Internal DNS Service
+title: Internal DNS Service in Kubernetes Environments
 layout: rancher-default
 version: latest
 lang: en
 ---
 
-## Rancher Internal DNS Service in Kubernetes Environments 
+## Internal DNS Service in Kubernetes Environments 
 ---
 
-Within Rancher, we use our own internal DNS service in a [Kubernetes environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) and not the SkyDNS cluster add on that Kubernetes uses. 
+Within Rancher, we use our own internal DNS service in a [Kubernetes environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) and not the SkyDNS cluster add on that Kubernetes uses. 
 
 Service discovery works by listening for events in Kubernetes. Each service will get its own record created in the format `<serviceName>.scc.cluster.local`. 
 

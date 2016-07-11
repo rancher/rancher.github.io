@@ -1,5 +1,5 @@
 ---
-title: Access Control for Rancher
+title: Access Control in Rancher
 layout: rancher-default
 version: latest
 lang: zh
@@ -18,9 +18,9 @@ The first account that authenticates with Rancher will become the **admin** of t
 
 In the **Admin** tab, click **Access Control**.
 
-After authenticating your Rancher instance, Access Control will be considered enabled. With Access Control enabled, you will be able to manage different [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) and share them with different groups of people. 
+After authenticating your Rancher instance, Access Control will be considered enabled. With Access Control enabled, you will be able to manage different [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) and share them with different groups of people. 
 
-When Access Control is enabled, the API is locked and requires either being authenticated as a user or by using an [API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/api-keys/) to access it.
+When Access Control is enabled, the API is locked and requires either being authenticated as a user or by using an [API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/) to access it.
 
 #### Active Directory
 
@@ -56,9 +56,9 @@ If you have authenticated with AD or GitHub, there will be 3 options available.
 * **Allow members of Environments, plus Authorized Users and Organizations** - Any user who is a member or owner of an environment will also have access to the Rancher instance as well as any user added to the _Authorized Users and Organizations_ list. 
 * **Restrict access only to Authorized Users and Organizations** - Only users who are added to the _Authorized Users and Organizations_ would have access to the Rancher instance. Even if a user has been added to an environment, they would not have access unless they are **also** added to the _Authorized Users and Organizations_ section. 
 
-Anyone with the permissions for the Rancher instance will be given [user]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/#user) permissions. They will not be able to view the **Admin** tab. You would explicitly need to change their account to be an [admin account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/#admin).
+Anyone with the permissions for the Rancher instance will be given [user]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/#users) permissions. They will not be able to view the **Admin** tab. You would explicitly need to change their account to be an [admin account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/#admin).
 
-In order for users to view different [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/), they will need to be added to the environment by an [owner]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#owners) of the environment.
+In order for users to view different [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/), they will need to be added to the environment by an [owner]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#owners) of the environment.
 
 #### Azure AD/OpenLDAP
 
@@ -68,17 +68,17 @@ For Azure AD and OpenLDAP, any user that is a member of your setup will be able 
 
 Once local authentication is enabled, the admin can create additional admins/users by accessing the **Admin** > **Accounts** tab. Click **Add Account** and fill in the details of the account you want to add. You can select their account type as an **Admin** or **User**. An admin has the ability to view the **Admin** tab while users of Rancher instance would not have the visibility to the tab.  
 
-Once an account has been created, the admin/user can be added to any [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/).
+Once an account has been created, the admin/user can be added to any [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/).
 
 ### Account Types
 
-The account type determines whether or not an account will have access to the admin tab. For each environment in Rancher, there are [membership roles]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/#membership-roles) that provide different level of access for a specific environment. 
+The account type determines whether or not an account will have access to the admin tab. For each environment in Rancher, there are [membership roles]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#membership-roles) that provide different level of access for a specific environment. 
 
 #### Admin
 
 The first user that authenticates Rancher becomes an admin of Rancher. Only admins will have permissions to view the **Admin** tab. 
 
-When managing environment, admins have the ability to view all the [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) in Rancher even if the admin is not added as a member to the environment. In an admin's environment drop-down menu, the members will only see the environments that they are on the membership list.
+When managing environment, admins have the ability to view all the [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) in Rancher even if the admin is not added as a member to the environment. In an admin's environment drop-down menu, the members will only see the environments that they are on the membership list.
 
 Admins can add other users to be an admin of Rancher. They can change a user's role on the **Admin** > **Accounts** page after the user has logged into Rancher. In the **Admin** > **Accounts** tab, click  **Edit** next to the account name and change the account type to _Admin_. Click **Save**. 
 

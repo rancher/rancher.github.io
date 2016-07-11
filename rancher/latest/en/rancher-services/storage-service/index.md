@@ -1,5 +1,5 @@
 ---
-title: Storage Service
+title: Persistent Storage Service in Rancher
 layout: rancher-default
 version: latest
 lang: en
@@ -7,7 +7,7 @@ redirect_from:
   - rancher/rancher-services/storage-service/
 ---
 
-## Storage Service
+## Persistent Storage Service
 ---
 
 In the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/), Rancher provides storage services that are capable of exposing volumes to containers. Currently, the storage services are pre-fixed with `Convoy` in the catalog. 
@@ -17,7 +17,7 @@ In the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}
 
 ### Limitations
 
-* Only one Convoy stack can be deployed once per one Rancher [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/). 
+* Only one Convoy stack can be deployed once per one Rancher [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/). 
 * Users are able to create service/containers and models exactly the same behavior as if you deployed a container using native Docker 1.10.3 commands. When creating a new container, the following rules apply:
     * If the volume name  (e.g. __foo__:/path/in/container) is specified with a driver name (e.g. Convoy-Gluster), the container will be deployed on one of the hosts that belong to the Convoy-Gluster Storage Pool with a new volume "foo" created.
     * If the volume name (e.g. __foo__:/path/in/container) is specified with or without a driver name and "foo" exists in Rancher, the container will be launched on a host from that Storage Pool that has access to "foo".
@@ -37,7 +37,7 @@ In each storage pool, the hosts that have the storage service running will be li
 
 ### Using the Storage Service in the UI  
 
-After your storage service has been launched, a storage pool has been created and is viewable in **Infrastructure** -> **Storage Pools**. [Services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/) can start using the shared storage. In the **Volumes** tab, provide a **volume** and a **volume driver**. The **volume** will be in the same syntax as Docker, `<volume_name_on_host>:</path/in/container>`. Docker volumes default to mount in read-write mode, but you can set it to be mounted read-only by adding the `:ro` at the end of the volume. The **volume driver** will be the name of the storage pool, that was created after launching the Convoy storage service. 
+After your storage service has been launched, a storage pool has been created and is viewable in **Infrastructure** -> **Storage Pools**. [Services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/) can start using the shared storage. In the **Volumes** tab, provide a **volume** and a **volume driver**. The **volume** will be in the same syntax as Docker, `<volume_name_on_host>:</path/in/container>`. Docker volumes default to mount in read-write mode, but you can set it to be mounted read-only by adding the `:ro` at the end of the volume. The **volume driver** will be the name of the storage pool, that was created after launching the Convoy storage service. 
 
 ### Using the Storage Service with Rancher-Compose
 

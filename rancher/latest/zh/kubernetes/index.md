@@ -8,11 +8,11 @@ lang: zh
 ## Kubernetes
 ---
 
-To deploy Kubernetes in Rancher, you'll first need to create a new [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) that has specified the cluster management to be Kubernetes. 
+To deploy Kubernetes in Rancher, you'll first need to create a new [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) that has specified the cluster management to be Kubernetes. 
 
 ### Creating a Kubernetes Environment
 
-In the dropdown of environments, click on the **Manage Environments**. To create a new environment, click on **Add Environment**, select **Kubernetes** as the cluster management, provide a **Name**, **Description** (Optional). If [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is turned on, you can [add members]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/#editing-members) and select their [membership role]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/#membership-roles). Anyone added to the membership list would have access to your environment. 
+In the dropdown of environments, click on the **Manage Environments**. To create a new environment, click on **Add Environment**, select **Kubernetes** as the cluster management, provide a **Name**, **Description** (Optional). If [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is turned on, you can [add members]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#editing-members) and select their [membership role]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#membership-roles). Anyone added to the membership list would have access to your environment. 
 
 After a Kubernetes environment has been created, you can navigate to the environment by either selecting the name of the environment in the environment's dropdown in the upper right hand corner or by selecting **Switch to this Environment** in the specific environment's drop down. 
 
@@ -20,7 +20,7 @@ After a Kubernetes environment has been created, you can navigate to the environ
 
 ### Starting Kubernetes
 
-After a Kubernetes environment has been created, you can start the Kubernetes cluster by adding at least one host to your environment. The process of [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts) is the same steps for all cluster management types. Once the first host has been added, Rancher will automatically start the deployment of the required Kubernetes components (i.e. master, kubelet, etcd, proxy, etc.). You can see the progress of the deployment by accessing the **Kubernetes** tab.
+After a Kubernetes environment has been created, you can start the Kubernetes cluster by adding at least one host to your environment. The process of [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) is the same steps for all cluster management types. Once the first host has been added, Rancher will automatically start the deployment of the required Kubernetes components (i.e. master, kubelet, etcd, proxy, etc.). You can see the progress of the deployment by accessing the **Kubernetes** tab.
 
 ### Using Kubernetes
 
@@ -48,7 +48,7 @@ Rancher provides a convenient shell access to a managed kubectl instance that ca
 
 ### Adding a Private Registry To Kubernetes
 
-Private registries can be used with Kubernetes services by adding your [private registry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/registries/) in all of your Kubernetes environments. 
+Private registries can be used with Kubernetes services by adding your [private registry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/) in your Kubernetes environment. 
 
 ### Kubernetes Namespaces
 

@@ -1,12 +1,11 @@
 ---
-title: Using Rancher through Native Docker CLI
+title: Using Native Docker CLI with Rancher 
 layout: rancher-default
 version: latest
 lang: zh
-
 ---
 
-## How the Native Docker CLI works with Rancher 
+## Using Native Docker CLI with Rancher 
 ---
 
 Rancher integrates with the native docker CLI so that it can be used alongside other DevOps and Docker tools. At a high level, this means that if you start, stop, or destroy containers outside of Rancher, Rancher will detect those changes and update accordingly.
@@ -27,11 +26,11 @@ You can start containers outside of Rancher and still have them join the Rancher
 $ docker run -l io.rancher.container.network=true -itd ubuntu bash
 ```
 
-To read more about the Rancher managed network and cross-host networking, please read about Rancher [Concepts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/concepts/).
+To read more about the Rancher managed network and cross-host networking, please read about [networking in Rancher]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking/).
 
 ### Importing Existing Containers
 
-Rancher also supports importing existing container upon host registration. When you register a host using the [custom command]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/custom/) from the UI, any containers currently on the host will be detected and imported into Rancher.
+Rancher also supports importing existing container upon host registration. When you register a host using the [custom command]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) from the UI, any containers currently on the host will be detected and imported into Rancher.
 
 ### Periodically Syncing State
 
