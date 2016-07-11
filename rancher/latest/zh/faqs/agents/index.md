@@ -1,16 +1,16 @@
 ---
-title: FAQS on Rancher
+title: FAQS about Rancher Agents/Hosts
 layout: rancher-default
 version: latest
 lang: zh
 ---
 
-## FAQs on Rancher Agent
+## FAQs about Rancher Agent/Hosts 
 ---
 
 ### How do I set up my hosts behind a Proxy? 
 
-To support hosts behind a proxy, you’ll need to edit the Docker daemon to point to the proxy. The detailed instructions are listed within our [adding custom host page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/custom/#hosts-behind-a-proxy).
+To support hosts behind a proxy, you’ll need to edit the Docker daemon to point to the proxy. The detailed instructions are listed within our [adding custom host page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/#hosts-behind-a-proxy).
 
 ### What are reasons why Rancher agent would fail to start? 
 
@@ -66,7 +66,7 @@ Alternatively, if you've already registered a host and your host has a new IP af
 
 You can override the `CATTLE_AGENT_IP` setting and set the host IP to what you want. 
 
-When the host has the incorrect IP, the containers will not have access to the managed network. To get the host and all containers into the managed network, just edit the command to [add in a custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/custom/) by specify the new IP as an environment variable (i.e Step 4). Run the edited command on the host. Do not stop or remove the existing agent on the host!
+When the host has the incorrect IP, the containers will not have access to the managed network. To get the host and all containers into the managed network, just edit the command to [add in a custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) by specify the new IP as an environment variable (i.e Step 4). Run the edited command on the host. Do not stop or remove the existing agent on the host!
 
 ```bash
 $ sudo docker run -d -e CATTLE_AGENT_IP=<NEW_HOST_IP> --privileged \
@@ -78,7 +78,7 @@ $ sudo docker run -d -e CATTLE_AGENT_IP=<NEW_HOST_IP> --privileged \
 
 If your host is deleted outside of Rancher, then Rancher server will continue to show the host until it’s removed. Typically, these hosts will show up in a _Reconnecting_ state and never be able to reconnect. You will be able to **Delete** these hosts to remove them from the UI. 
 
-If you have services that have deployed containers onto the `Reconnecting` hosts, they will only be re-scheduled to other hosts if you have added [health checks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/health-checks/). 
+If you have services that have deployed containers onto the `Reconnecting` hosts, they will only be re-scheduled to other hosts if you have added [health checks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks/). 
 
 ### Why is the same host showing up in the UI multiple times?
 

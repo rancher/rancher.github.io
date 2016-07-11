@@ -1,5 +1,5 @@
 ---
-title: FAQS on Rancher Server
+title: FAQS about Rancher Server
 layout: rancher-default
 version: latest
 lang: en
@@ -49,7 +49,7 @@ If the IP of Rancher server has been changed, you will need to re-attach the hos
 
 In Rancher, go to **Admin** -> **Settings** and update the **Host Registration** with the updated URL for Rancher server. Please note that it must include the exposed port that you started Rancher server with. By default, we have recommended using port `8080` in our [installation instructions]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/). 
 
-After the [Host Registration]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#host-registration) has been updated, go to **Infrastructure** -> **Add Hosts** -> **Custom**. The `docker run` command to add Rancher agents will have been updated with the new information. Using the updated command, run the command on all the hosts inside your Rancher server [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/).
+After the [Host Registration]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#host-registration) has been updated, go to **Infrastructure** -> **Add Hosts** -> **Custom**. The `docker run` command to add Rancher agents will have been updated with the new information. Using the updated command, run the command on all the hosts inside your Rancher server [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/).
 
 ### Why is Go-Machine-Service continually restarting in my logs? What should I do?
 

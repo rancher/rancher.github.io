@@ -10,11 +10,11 @@ redirect_from:
 ## Swarm
 ---
 
-To deploy Swarm in Rancher, you'll first need to create a new [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) that has specified the cluster management to be **Swarm**. 
+To deploy Swarm in Rancher, you'll first need to create a new [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) that has specified the cluster management to be **Swarm**. 
 
 ### Creating a Swarm Environment
 
-In the dropdown of environments, click on the **Manage Environments**. To create a new environment, click on **Add Environment**, select **Swarm** as the cluster management, provide a **Name**, **Description** (Optional). If [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is turned on, you can [add members]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/#editing-members) and select their [membership role]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/#membership-roles). Anyone added to the membership list would have access to your environment. 
+In the dropdown of environments, click on the **Manage Environments**. To create a new environment, click on **Add Environment**, select **Swarm** as the cluster management, provide a **Name**, **Description** (Optional). If [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is turned on, you can [add members]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#editing-members) and select their [membership role]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#membership-roles). Anyone added to the membership list would have access to your environment. 
 
 After a Swarm environment has been created, you can navigate to the environment by either selecting the name of the environment in the environment's dropdown in the upper right hand corner or by selecting **Switch to this Environment** in the specific environment's drop down. 
 
@@ -22,7 +22,7 @@ After a Swarm environment has been created, you can navigate to the environment 
 
 ### Starting Swarm
 
-After a Swarm environment has been created, you can start the Swarm cluster by adding at least one host to your environment. The process of [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts) is the same steps for all cluster management types. Once the first host has been added, Rancher will automatically start the deployment of the required Swarm components (i.e. swarm and swarm-agent) on at least one host.  You can see the progress of the deployment by accessing the **Swarm** tab.
+After a Swarm environment has been created, you can start the Swarm cluster by adding at least one host to your environment. The process of [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) is the same steps for all cluster management types. Once the first host has been added, Rancher will automatically start the deployment of the required Swarm components (i.e. swarm and swarm-agent) on at least one host.  You can see the progress of the deployment by accessing the **Swarm** tab.
 
 > **Note:** The swarm agent does not need to be deployed on all hosts.
 

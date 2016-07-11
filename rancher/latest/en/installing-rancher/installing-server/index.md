@@ -1,5 +1,5 @@
 ---
-title: Installing Rancher Server
+title: Installing Rancher Server (Single Node)
 layout: rancher-default
 version: latest
 lang: en
@@ -7,7 +7,7 @@ redirect_from:
   - rancher/installing-rancher/installing-server/
 ---
 
-## Installing Rancher Server
+## Installing Rancher Server (Single Node)
 ---
 Rancher is deployed as a set of Docker containers. Running Rancher is a simple as launching two containers. One container as the management server and another container on a node as an agent. 
 
@@ -43,7 +43,7 @@ The UI and API will be available on the exposed port `8080`. After the docker im
 
 Navigate to the following URL: `http://<SERVER_IP>:8080`. The `<SERVER_IP` is the public IP address of the host that is running Rancher server.
 
-Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/). After the hosts are added into Rancher, you can start adding [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/) or launch templates from the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/).
+Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) in the `Default` Cattle [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/). After the hosts are added into Rancher, you can start adding [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/) or launch templates from the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/).
 
 <a id="ldap"></a>
 
@@ -150,4 +150,4 @@ $ sudo docker run -d \
 
 If the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) will not be used, run the Rancher server command as you normally would.
 
-When [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/) to Rancher, there is no additional requirements behind a HTTP proxy. 
+When [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) to Rancher, there is no additional requirements behind a HTTP proxy. 

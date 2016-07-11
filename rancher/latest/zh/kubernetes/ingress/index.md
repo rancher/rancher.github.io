@@ -1,14 +1,14 @@
 ---
-title: Kubernetes Ingress in Rancher
+title: Kubernetes Ingress Support in Rancher
 layout: rancher-default
 version: latest
 lang: zh
 ---
 
-## Kubernetes Ingress
+## Ingress Support 
 ---
 
-Before being able to start using [Kubernetes Ingress resources](http://kubernetes.io/docs/user-guide/ingress/), you'll first need to have an [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) that has specified the cluster management to be Kubernetes. We also recommend [setting up `kubectl` on your local machine]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#kubectl) to make it easier to launch Kubernetes resources into Rancher. Alternatively, you can use the shell provided by the Rancher UI to launch resources. 
+Before being able to start using [Kubernetes Ingress resources](http://kubernetes.io/docs/user-guide/ingress/), you'll first need to have an [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) that has specified the cluster management to be Kubernetes. We also recommend [setting up `kubectl` on your local machine]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#kubectl) to make it easier to launch Kubernetes resources into Rancher. Alternatively, you can use the shell provided by the Rancher UI to launch resources. 
 
 The Kubernetes Ingress resource can be backed up by any load balancer of your choice, so to leverage the Rancher's load balancing functionality, we have introduced the concept of a Rancher ingress controller. The ingress controller is created as part of ingress-controller service, which gets deployed as part of the system stack for Kubernetes. 
 
@@ -396,7 +396,7 @@ simplelb   -         nginx-service:90   1.2.3.4,5.6.7.8     41s
 
 #### Example using TLS
 
-If you want to use TLS with Kubernetes, you'll need to [add the certifcate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/certificates/) into Rancher. The certificate added into Rancher can be used to secure an ingress for TLS termination.
+If you want to use TLS with Kubernetes, you'll need to [add the certifcate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/) into Rancher. The certificate added into Rancher can be used to secure an ingress for TLS termination.
 
 Let's say we added a certificate called `foo`. 
 

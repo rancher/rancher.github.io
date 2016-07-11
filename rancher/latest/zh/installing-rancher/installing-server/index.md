@@ -1,11 +1,11 @@
 ---
-title: Installing Rancher Server
+title: Installing Rancher Server (Single Node)
 layout: rancher-default
 version: latest
 lang: zh
 ---
 
-## Installing Rancher Server
+## Installing Rancher Server (Single Node)
 ---
 Rancher is deployed as a set of Docker containers. Running Rancher is a simple as launching two containers. One container as the management server and another container on a node as an agent. 
 
@@ -14,14 +14,18 @@ Rancher is deployed as a set of Docker containers. Running Rancher is a simple a
 * Any modern Linux distribution that supports Docker 1.10.3. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested
 * 1GB RAM 
 * MySQL server should have a max_connections setting > 150
+  * MYSQL Configuration Requirements   
+    * Option 1: Run with Antelope with default of `COMPACT` 
+    * Option 2: Run MySQL 5.7 with Barracuda where the default `ROW_FORMAT` is `Dynamic`
 
-### Rancher Server Tags
+
+### Rancher Server Tags 
 
 Rancher supports two version tags for `rancher/server`. 
 
 * `rancher/server:latest`: The `latest` tag will be our development builds which will have been validated through our CI automation framework, but these releases are not meant for deployment in production. All development builds will be appended with a `*-dev{n}` suffix to denote that it's a development release. 
 
-* `rancher/server:stable`: The `stable` tag wll be our feature release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version. 
+* `rancher/server:stable`: The `stable` tag will be our feature release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version. 
 
 ### Launching Rancher Server 
 
@@ -37,7 +41,7 @@ The UI and API will be available on the exposed port `8080`. After the docker im
 
 Navigate to the following URL: `http://<SERVER_IP>:8080`. The `<SERVER_IP` is the public IP address of the host that is running Rancher server.
 
-Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/). After the hosts are added into Rancher, you can start adding [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/adding-services/) or launch templates from the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/).
+Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) in the `Default` Cattle [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/). After the hosts are added into Rancher, you can start adding [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/) or launch templates from the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/).
 
 <a id="ldap"></a>
 
@@ -144,4 +148,4 @@ $ sudo docker run -d \
 
 If the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) will not be used, run the Rancher server command as you normally would.
 
-When [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/) to Rancher, there is no additional requirements behind a HTTP proxy. 
+When [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) to Rancher, there is no additional requirements behind a HTTP proxy. 
