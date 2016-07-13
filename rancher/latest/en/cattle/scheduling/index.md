@@ -38,10 +38,10 @@ For [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/ad
 
 For [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/), there are 2 options provided to determine where to launch your container. 
 
-**Option 1: Run _all_ containers on a specific host**
+#### Option 1: Run _all_ containers on a specific host
 By selecting this option, the container/service will be started on a specific host. If your host goes down, then the container will also go down. If you create a container from the container page, even if there is a port conflict, the container will be started. If you create a service of scale greater than 1 and there is a port conflict, your service might get stuck in _Activating_ state until you edit the scale value of the service.
 
-**Option 2: Automatically pick a host matching scheduling rules**
+#### Option 2: Automatically pick a host matching scheduling rulesf
 By selecting this option, you have the flexibility to choose your scheduling rules. Any host that follows all the rules is a host that could have the container started on. You can add rules by clicking on the **+** button. 
 
 For [load balancers]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/), only option 2 is available due to port conflicts. You are only given the choice to add scheduling rules. Click on the **Scheduling** tab. You can add as many scheduling rules as you want by clicking on the **Add Scheduling Rule** button. 
@@ -50,12 +50,12 @@ For each rule, you select a **condition** of the rule. There are 4 different con
 
 > **Note:** For [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/)/[load balancers]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/), if you have selected the **Always run one instance of this container on every host** option for scale, then only the host labels will appear as a possible field.
 
-_Conditions_
+#### Conditions
 
 * **must** or **must not**: Rancher will only use hosts that match or do not match the field and value. If Rancher cannot find a host that meets all of the rules with these conditions, your service could get stuck in an _Activating_ state. The service will be continually trying to find a host for the containers. To fix this state, you can either edit the scale value of the service or add/edit another host that would satisfy all of these rules.  
 * **should** or **should not**: Rancher will attempt to use hosts that match the field and value. In the case of when there is no  host that matches all the rules, Rancher will remove one by one the soft constraints (should/should not rules) until a host satisfies the remaining constraints. 
 
-_Fields_
+#### Fields
 
 * **host label**: When selecting the hosts to use for the container/service, Rancher will check the labels on the host to see if they match the key/value pair provided. Since every host can have one or more labels, Rancher will compare the key/value pair against all labels on a host. When adding a host to Rancher, you can add labels to the host. You can also edit the labels on the hosts by using the **Edit** option in the host's dropdown menu. The list of labels on active hosts are available from the dropdown in the key field.
 * **container with label**: When selecting this field, Rancher will look for hosts that already have containers with labels that match the key/value pair. Since every container can have one or more labels, Rancher will compare the key/value pair against all labels on every container in a host. The container labels are in the **Labels** tab for a container. You will not be able to edit the container labels after the container is started. In order to create a new container with the same settings, you can **Clone** the container/service and add the labels before starting it. The list of user labels on running containers are available from the dropdown in the key field.
@@ -109,7 +109,7 @@ Making a service into a global service is the equivalent of selecting **Always r
 
 Currently, we only support global services with host labels fields that are using the hard condition. This means that only labels that are related to `host_labels` will be adhered to when scheduling and it **must** or **must not** equal the values. Any other label types will be ignored.
 
-Example `docker-compose.yml`:
+##### Example `docker-compose.yml`
 
 ```yaml
 wordpress:
@@ -130,7 +130,7 @@ wordpress:
 
 When adding hosts to Rancher, you can add [host labels]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels). When scheduling a service, you can leverage these labels to create rules to pick the hosts you want your service to be deployed on.
 
-Examples for each condition type:
+##### Example using Host Labels
 
 ```yaml
 labels:
@@ -144,7 +144,7 @@ labels:
   io.rancher.scheduler.affinity:host_label_soft_ne: key4=value4
 ```
 
-**Automatically Applied Host Labels**
+##### Automatically Applied Host Labels
 
 Rancher automatically creates host labels related to linux kernel version and Docker Engine version of the host.
 
@@ -173,7 +173,7 @@ When adding containers or services to Rancher, you can add container labels. The
 
 > **Note:** If there are multiple values for container labels, Rancher will look at all labels on all containers on the host to check the container labels. The multiple values do not need to be on the same container on a host. 
 
-Examples for each condition type:
+##### Example using Container Labels
 
 ```yaml
 labels:
@@ -187,10 +187,9 @@ labels:
   io.rancher.scheduler.affinity:container_label_soft_ne: key4=value4
 ```
 
-<br>
-**Service Name**
+##### Service Name
 
-When `rancher-compose` starts containers for a service, it also automatically creates several container labels. Since checking for a specific container label is looking for a `key=value`, we can use these system labels as the key of our rules. Here are the system labels created on the containers when Rancher starts a service: 
+When Rancher Compose starts containers for a service, it also automatically creates several container labels. Since checking for a specific container label is looking for a `key=value`, we can use these system labels as the key of our rules. Here are the system labels created on the containers when Rancher starts a service: 
 
 Label | Value
 ----|-----
@@ -203,9 +202,7 @@ io.rancher.stack_service.name | `$${stack_name}/$${service_name}`
 
 The macros `$${stack_name}` and `$${service_name}` can also be used in the `docker-compose.yml` file in any other `label` and will be evaluated when the service is started. 
 
-Please note that in versions prior to Rancher v0.41.0 and Rancher-compose v0.4.1, the values had a single `$`, but with the addition of [environment interpolation]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/environment-interpolation/), the values require a double `$$`.
-
-**Example of Service Name:**
+##### Example using Service Name
 
 ```yaml
 labels:
@@ -216,6 +213,8 @@ labels:
 #### Finding Hosts with Container Names
 
 When adding containers to Rancher, you give each container a name. You can use this name as a field that you want a rule to compare against. Reminder: This cannot be used if you set global service to true.
+
+##### Example using Container Names
 
 ```yaml
 labels:

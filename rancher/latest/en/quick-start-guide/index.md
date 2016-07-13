@@ -112,13 +112,13 @@ Our multi-service application is now complete! On the **Stacks** page, you'll be
 
 ### Create a Multi-Container Application using Rancher Compose
 
-In this section, we will show you how to create and deploy the same WordPress application we created in the previous section using a command-line tool called `rancher-compose`. 
+In this section, we will show you how to create and deploy the same WordPress application we created in the previous section using a command-line tool called Rancher Compose. 
 
-The `rancher-compose` tool works just like the popular `docker-compose` tool. It takes in the same `docker-compose.yml` file and deploys the application on Rancher. You can specify additional attributes in a `rancher-compose.yml` file which extends and overwrites the `docker-compose.yml` file.
+The Rancher Compose tool works just like the popular Docker Compose tool. It takes in the same `docker-compose.yml` file and deploys the application on Rancher. You can specify additional attributes in a `rancher-compose.yml` file which extends and overwrites the `docker-compose.yml` file.
 
 In the previous section, we created a Wordpress application with a load balancer. If you had created it in Rancher, you can download the files directly from our UI by selecting **Export Config** from the stack's dropdown menu. The `docker-compose.yml` and `rancher-compose.yml` files would look like this:
 
-**docker-compose.yml**
+#### Example docker-compose.yml
 
 ```yaml
 mywordpress:
@@ -143,7 +143,7 @@ database:
   stdin_open: true
 ```
 
-**rancher-compose.yml**
+#### Example rancher-compose.yml
 
 ```yaml
 mywordpress:
@@ -162,9 +162,9 @@ database:
   scale: 1
 ```
 
-Download the `rancher-compose` binary from the Rancher UI by clicking on `Download CLI`, which is located on the right side of the footer. We provide the ability to download binaries for Windows, Mac, and Linux.
+Download the Rancher Compose binary from the Rancher UI by clicking on `Download CLI`, which is located on the right side of the footer. We provide the ability to download binaries for Windows, Mac, and Linux.
 
-In order for services to be launched in Rancher using `rancher-compose`, you will need to set some variables in `rancher-compose`. You will need to create an [environment API Key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/) in the Rancher UI. Click on **API** and click on **Add API Key**. Save the username (access key) and password (secret key). Set up the environment variables needed for rancher-compose: `RANCHER_URL`, `RANCHER_ACCESS_KEY`, and `RANCHER_SECRET_KEY`.
+In order for services to be launched in Rancher using Rancher Compose, you will need to set some variables in Rancher Compose. You will need to create an [environment API Key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/) in the Rancher UI. Click on **API** and click on **Add API Key**. Save the username (access key) and password (secret key). Set up the environment variables needed for Rancher Compose: `RANCHER_URL`, `RANCHER_ACCESS_KEY`, and `RANCHER_SECRET_KEY`.
 
 ```bash
 # Set the url that Rancher is on
