@@ -69,3 +69,15 @@ After installing RancherOS, you can ssh into RancherOS using your private key an
 $ ssh -i /path/to/private/key rancher@<ip-address>
 ```
 
+### Installing with no Internet Access
+
+If you'd like to install RancherOS onto a machine that has no internet access, it is assumed you either have your own private registry or other means of distributing docker images to System Docker of the machine. If you need help with creating a private registry, please refer to the [Docker documentation for private registries](https://docs.docker.com/registry/). 
+
+In the installation command (i.e. `sudo ros install`), there is an option to pass in a specific image to install. As long as this image is available in System Docker, then RancherOS will use that image to install RancherOS. 
+
+```
+$ sudo ros install -c cloud-config.yml -d /dev/sda -i <Image_Name_in_System_Docker>
+INFO[0000] No install type specified...defaulting to generic 
+Installing from <Image_Name_in_System_Docker>
+Continue [y/N]:
+```
