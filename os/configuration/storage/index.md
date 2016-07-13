@@ -19,6 +19,7 @@ mount /dev/<your-storage-dev> /var/lib/docker
 ```
 
 You can write `/opt/rancher/bin/start.sh` in cloud-config:
+
 ```yaml
 #cloud-config
 write_files:
