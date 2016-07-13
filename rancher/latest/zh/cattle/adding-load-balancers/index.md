@@ -172,7 +172,7 @@ Now, let's see the load balancer in action. In the stack view, there is a link t
 
 ### Load Balancer Options in Rancher Compose
 
-A load balancer can be scheduled like any other service. Read more about [scheduling]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#adding-labels-in-rancher-compose) services and load balancers using `rancher-compose`.
+A load balancer can be scheduled like any other service. Read more about [scheduling]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#adding-labels-in-rancher-compose) services and load balancers using Rancher Compose.
 
 Rancher supports L4 load balancing by adding ports and linking target services. Any traffic directed to any of source port(s) will be sent to the private port(s) of the linked service(s).
 
@@ -284,7 +284,7 @@ domain.com.* -> hdr_beg(host) -i domain.com.
 
 ##### Multiple Routing Rules for the Same Service
 
-In `rancher-compose`, you can configure multiple hostname routing rules to the same service by separating each rule with a comma. See the example for service `web2`.
+In Rancher Compose, you can configure multiple hostname routing rules to the same service by separating each rule with a comma. See the example for service `web2`.
 
 **Priority**
 

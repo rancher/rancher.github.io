@@ -12,9 +12,9 @@ redirect_from:
 
 Rancher uses labels on services/containers and hosts to help manage different features of Rancher. 
 
-### Rancher-Compose Labels for Services
+### Rancher Compose Labels for Services
 
-Labels are used to help Rancher start up services and leverage the features of Rancher. This index of labels are used to help users create services using `rancher-compose`. There are UI equivalents of these labels that should be used instead of adding labels to a service.
+Labels are used to help Rancher start up services and leverage the features of Rancher. This index of labels are used to help users create services using Rancher Compose. There are UI equivalents of these labels that should be used instead of adding labels to a service.
 
 Key | Value |Description
 ----|-----|---
@@ -84,7 +84,7 @@ service2:
 
 ### System Labels on a Service
 
-Besides labels that can be used by `rancher-compose`, there are a series of system labels that Rancher creates when starting services.
+Besides labels that can be used by Rancher Compose, there are a series of system labels that Rancher creates when starting services.
 
 Key | Description
 ----|---
@@ -111,7 +111,6 @@ Key | Value | Description
 `io.rancher.host.linux_kernel_version` | Linux Kernel Version on Host (e.g, `3.19`) |  Version of the Linux kernel running on the host
 `io.rancher.host.docker_version` | Docker Version on the host (e.g. `1.10.3`) | Docker Engine Version on the host
 
-## Native Docker Labels
----
+### Native Docker Labels
 
 `io.rancher.container.network` | `true`|  Add this label to a `docker run` command to add Rancher networking to the container

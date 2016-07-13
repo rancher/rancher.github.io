@@ -26,7 +26,7 @@ At any time, you can edit the targets in an external service. Click on the **Edi
 
 ### Adding External Services with Rancher Compose
 
-With external services, you can set either external IP(s) **OR** a domain name. The `rancher/external-service` is not an actual image, but is required for the docker-compose.yml. There are no containers created for external services.
+With external services, you can set either external IP(s) **OR** a domain name. The `rancher/external-service` is not an actual image, but is required for the `docker-compose.yml`. There are no containers created for external services.
 
 #### Example `docker-compose.yml`
 

@@ -16,7 +16,7 @@ All services in the environment are resolvable by `<service_name>` and there is 
 
 In the UI, when [adding a service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#adding-services-in-the-ui), expand the **Service Links** section, select the service, and provide the alias name.
 
-If you're using `rancher-compose` to [add the service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/services/#adding-services-with-rancher-compose), the `docker-compose.yml` would use either the `links` or `external_links` directive.
+If you're using Rancher Compose to [add the service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/services/#adding-services-with-rancher-compose), the `docker-compose.yml` would use either the `links` or `external_links` directive.
 
 ```yaml
 service1:
@@ -41,10 +41,9 @@ When creating a sidekick relationship, there is always a primary service and sid
 
 All containers are resolvable globally by their name as every service's container name is unique within each environment. There is no need to append service name or stack name. 
 
-## Examples
----
+### Examples
 
-### Pinging Services in the Same Stack
+#### Pinging Services in the Same Stack
 
 If you exec into the shell of a container, you are able to ping other services in the same stack by the service name. 
 
@@ -60,7 +59,7 @@ PING bar.stacka.rancher.internal (10.42.x.x) 58(84) bytes of data.
 64 bytes from 10.42.x.x: icmp_seq=3 ttl=62 time=1.07 ms
 ```
 
-### Pinging Services in a Different Stack
+#### Pinging Services in a Different Stack
 
 For services that are in different stacks, you can ping the services in a different stack by using `<service_name>.<stack_name>`.
 
@@ -76,7 +75,7 @@ PING bar.stackb (10.42.x.x) 56(84) bytes of data.
 64 bytes from 10.42.x.x: icmp_seq=3 ttl=62 time=1.27 ms
 ```
 
-### Pinging Sidekick Services
+#### Pinging Sidekick Services
 
 Depending on which service you ping from, you can reach a sidekick service by either `<sidekick_name>` or `<sidekick_name>.<primary_service_name>`. 
 
@@ -129,7 +128,7 @@ PING bar.foo.stacka (10.42.x.x) 56(84) bytes of data.
 64 bytes from 10.42.x.x: icmp_seq=3 ttl=62 time=0.994 ms
 ```
 
-### Pinging Container Name
+#### Pinging Container Name
 
 From any container, you can ping another container in the environment by their name regardless if they are in a different stack or service.
 

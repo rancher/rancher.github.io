@@ -5,15 +5,15 @@ version: latest
 lang: zh
 ---
 
-## Building wih AWS S3
+## Building with AWS S3
 ---
 
 Docker builds are supported in two ways.  First is to set `build:` to a git or HTTP URL that is compatible with the using the [Docker Remote API](https://docs.docker.com/reference/api/docker_remote_api_v1.18/#build-image-from-a-dockerfile). The second approach is to set `build:` to a local directory and the build context will be uploaded to S3 and then built on demand on each node.
 
-**Requirements:**
+### Requirements
 
 * Docker
-* Rancher-Compose
+* Rancher Compose
 * AWS account
 * Rancher Server running with 1 Host
 
@@ -38,7 +38,7 @@ web:
   scale: 3
 ```
 
-Once the files are set for `rancher-compose`, the next step is to write the application itself and steps to build it. 
+Once the files are set for Rancher Compose, the next step is to write the application itself and steps to build it. 
 
 Using the example from the `docker-compose` documentation, we'll create a filed named `app.py`. The application talks to a host called `redis`, which is expected to be running a redis KV store. It increments the value of a key in the store called `hits` and retrieves it. 
 
@@ -75,7 +75,7 @@ RUN pip install -r requirements.txt
 CMD python app.py
 ```
 
-Since you already have Rancher server running, you need to set up your AWS credentials and just run `rancher-compose` with your Rancher server URL and [API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/).
+Since you already have Rancher server running, you need to set up your AWS credentials and just run Rancher Compose with your Rancher server URL and [API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/).
 
 ```bash
 # Set up your AWS credentials
@@ -90,10 +90,9 @@ $ rancher-compose --url URL_of_Rancher --access-key username_of_API_key --secret
 
 With the command, the web container should be started on a host in your Rancher server. It will first upload the current directory to S3, which can be verified by going to S3 UI and checking for a new upload. After the image is uploaded, it will download it to the host and build a container using the files that were provided. 
 
-## Troubleshooting S3 Builds
----
+### Troubleshooting S3 Builds
 
-If you are having issues with your S3 builds, you can test out your builds in Docker to make sure that your image can be built and the container can run. In the same location as you'd run your `rancher-compose` command, use the following commands to test if it would work in Docker.
+If you are having issues with your S3 builds, you can test out your builds in Docker to make sure that your image can be built and the container can run. In the same location as you'd run your Rancher Compose command, use the following commands to test if it would work in Docker.
 
 ```bash
 # Test building locally to see if works

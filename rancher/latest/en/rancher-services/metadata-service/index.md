@@ -22,8 +22,7 @@ In a Cattle environment, containers can be launched in the Rancher managed netwo
 
 > **Note:** Metadata service is not available for system containers, i.e. Network Agent and LB Agent. 
 
-## How to Get the Metadata 
----
+### How to Get the Metadata 
 
 From the Rancher UI, you can execute into shell of the container by selecting **Execute Shell** from the drop down of the container. The drop down can be found by hovering over the container. 
 
@@ -62,11 +61,11 @@ V1 | 2015-07-25 |
 
 #### Differences in Versions
 
-**V1 vs. V2**
+##### V1 vs. V2
 
 When drilling down to containers using the http path ending in `/services/<service-name>/containers` or `/stacks/<stack-name>/services/<service-name>/containers`, V1 returns container name(s) and V2 returns container object(s). More information is provided with V2 of the metadata service. 
 
-_Example_
+##### Example
 
 In Rancher, there is a stack called `foostack` and it contains a service called `barservice` with 3 containers. 
 
@@ -153,10 +152,9 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/services/<service-name>' 
 ```
 
-## Metadata Fields 
----
+### Metadata Fields 
 
-### Container
+#### Container
 
 | Fields | Description |
 | ----| ----|
@@ -175,7 +173,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 | `start_count` | The number of times the container was started.
 | `uuid` | Unique container identifier that Rancher assigns to containers
 
-### Service
+#### Service
 
  Fields | Description
 ----|----
@@ -196,7 +194,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 `stack_name` | Name of stack the service is part of
 `uuid` | Unique service identifier that Rancher assigns to services
 
-### Stack
+#### Stack
 
 Fields | Description
 ----|----
@@ -205,7 +203,7 @@ Fields | Description
 `services` | List of Services in the Stack
 `uuid` | Unique stack identifier that Rancher assigns to stacks
 
-### Host
+#### Host
 
 Fields | Description
 ----|----
@@ -215,12 +213,11 @@ Fields | Description
 `name` | Name of [Host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/)
 `uuid` | Unique host identifier that Rancher server assigns to hosts
 
-## Adding User Metadata To a Service
----
+### Adding User Metadata To a Service
 
-Rancher allows users to add in their own metadata to a service. Currently, this is only supported through [rancher-compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/) and the metadata is part of the `rancher-compose.yml` file. In the `metadata` key, the yaml will be parsed into JSON format to be used by the metadata-service.
+Rancher allows users to add in their own metadata to a service. Currently, this is only supported through [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/) and the metadata is part of the `rancher-compose.yml` file. In the `metadata` key, the yaml will be parsed into JSON format to be used by the metadata-service.
 
-Example `rancher-compose.yml` 
+#### Example `rancher-compose.yml` 
 
 ```yaml
 service:
@@ -239,7 +236,7 @@ service:
 After the service is up, you can find metadata using the metadata service in `.../self/service/metadata` or in `.../services/<service_id>/metadata`. 
 
 
-### JSON Query
+#### JSON Query
 
 ```bash
 $ curl --header 'Accept: application/json' 'http://rancher-metadata/latest/self/service/metadata'
@@ -247,7 +244,7 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/latest/self/
 
 ```
 
-### Plaintext Queries
+#### Plaintext Queries
 
 ```bash
 $ curl 'http://rancher-metadata/latest/self/service/metadata'

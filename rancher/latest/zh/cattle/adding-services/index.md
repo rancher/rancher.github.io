@@ -200,9 +200,9 @@ Whichever service contains the sidekick label is considered the primary service,
 
 When using [load balancers]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/) with services that have sidekicks, you can only target the primary service. A sidekick **can not** be the target.
 
-##### Example of Sidekicks in Rancher-Compose:
+##### Example of Sidekicks in Rancher Compose:
 
-Sample configuration `docker-compose.yml` 
+Example `docker-compose.yml` 
 
 ```yaml
 test:
@@ -222,7 +222,7 @@ test-data:
 ```
 
 <br>
-Sample `rancher-compose.yml`
+Example `rancher-compose.yml`
 
 ```yaml
 test:
@@ -231,9 +231,11 @@ test-data:
   scale: 2
 ```
 
-##### Example of Sidekicks in Rancher-Compose: Multiple services using the same service for `volumes_from`
+##### Example of Sidekicks in Rancher Compose: Multiple services using the same service for `volumes_from`
 
 If you have multiple services that will be using the same container to do a `volumes_from`, you can add the second service as a sidekick of the primary service and use the same data container. Since only the primary service can be a target of a load balancer, please make sure the correct service is chosen as the primary service (i.e. the one that will have the sidekick label). 
+
+Example `docker-compose.yml` 
 
 ```yaml
 test-data:

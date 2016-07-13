@@ -39,7 +39,7 @@ In each storage pool, the hosts that have the storage service running will be li
 
 After your storage service has been launched, a storage pool has been created and is viewable in **Infrastructure** -> **Storage Pools**. [Services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/) can start using the shared storage. In the **Volumes** tab, provide a **volume** and a **volume driver**. The **volume** will be in the same syntax as Docker, `<volume_name_on_host>:</path/in/container>`. Docker volumes default to mount in read-write mode, but you can set it to be mounted read-only by adding the `:ro` at the end of the volume. The **volume driver** will be the name of the storage pool, that was created after launching the Convoy storage service. 
 
-### Using the Storage Service with Rancher-Compose
+### Using the Storage Service with Rancher Compose
 
 After the storage service has been launched, you can start using the storage service as a `volume_driver` in the `docker-compose.yml`. The `volume_driver` would be the name of the storage pool.
 
@@ -60,8 +60,7 @@ A volume can be added to a storage pool with two methods:
 1. Upon starting a service that has a volume and a volume driver, that is the storage service. When the service is started, the volume is created on all hosts and mounted in all containers. The volume is also added to the storage pool in Rancher.
 2. In **Infrastructure** -> **Storage Pools**, click on **Add Volume**. Provide the name of the volume for the specified storage pool. 
 
-## Example using GlusterFS
----
+### Example using GlusterFS
 
 In this example, we're going to provide an example of how to use GlusterFS to have a shared storage across hosts.
 

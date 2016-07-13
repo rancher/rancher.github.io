@@ -29,7 +29,7 @@ At any time, you can edit the services in a service alias. Click on the **Edit**
 
 ### Adding Service Aliases with Rancher Compose
 
-A service alias creates a pointer to service(s). In the example below, `web[.stack-name.rancher.internal]` will resolve to the IPs of the containers of `web1` and `web2`. The `rancher/dns-service` is not an actual image, but is required for the docker-compose.yml. There are no containers created for alias services.
+A service alias creates a pointer to service(s). In the example below, `web[.stack-name.rancher.internal]` will resolve to the IPs of the containers of `web1` and `web2`. The `rancher/dns-service` is not an actual image, but is required for the `docker-compose.yml`. There are no containers created for alias services.
 
 #### Example `docker-compose.yml`
 
