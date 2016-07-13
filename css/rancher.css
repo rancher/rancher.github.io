@@ -58,7 +58,7 @@ pre code {
     border-radius: 4px;
 }
 
-.language-bash {
+.language-bash pre code{
     padding: 9.5px;
     margin: 0 0 10px;
     font-size: 13px;
@@ -71,7 +71,7 @@ pre code {
     color: #ECF0F1;
 }
 
-.language-sh {
+.language-sh pre code{
     padding: 9.5px;
     margin: 0 0 10px;
     font-size: 13px;
