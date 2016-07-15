@@ -1,5 +1,5 @@
 ---
-title: ROS (formerly RancherCTL)
+title: ROS 
 layout: os-default
 ---
 

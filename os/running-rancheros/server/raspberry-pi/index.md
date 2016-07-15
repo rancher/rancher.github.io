@@ -1,5 +1,5 @@
 ---
-title: Raspberry Pi
+title: Running RancherOS on Raspberry Pi
 layout: os-default
 ---
 

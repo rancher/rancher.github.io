@@ -1,5 +1,5 @@
 ---
-title: Openstack
+title: Rancher RancherOS in Openstack
 layout: os-default
 ---
 

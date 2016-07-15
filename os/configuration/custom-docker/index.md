@@ -1,5 +1,5 @@
 ---
-title: Custom Docker
+title: Customizing Docker in RancherOS
 layout: os-default
 
 ---

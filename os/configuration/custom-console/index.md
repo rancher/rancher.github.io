@@ -1,5 +1,5 @@
 ---
-title: Custom Console
+title: Custom Console on RancherOS
 layout: os-default
 
 ---

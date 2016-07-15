@@ -1,5 +1,5 @@
 ---
-title: Resizing a Device Partition
+title: Resizing a Device Partition in RancherOS
 layout: os-default
 
 ---

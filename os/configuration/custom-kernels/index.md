@@ -1,5 +1,5 @@
 ---
-title: Custom Kernels
+title: Custom Kernels in RancherOS
 layout: os-default
 
 ---
