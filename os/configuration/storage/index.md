@@ -25,6 +25,8 @@ mounts:
 
 The four arguments for each mount are the same as those given for [cloud-init](https://cloudinit.readthedocs.io/en/latest/topics/examples.html#adjust-mount-points-mounted). Only the first four arguments are currently supported. The `mount_default_fields` is not implemented.
 
+> **Note:** `auto` cannot be used as the file system type. RancherOS uses the mount syscall, which does not handle detecting file system type.
+
 ### Shared Mounts
 
 By default, `/media` and `/mnt` are mounted as shared in the console container. This means that mounts within these directories will propogate to the host as well as other system services that mount these folders as shared.
