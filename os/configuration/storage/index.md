@@ -1,38 +1,37 @@
 ---
 title: Docker
 layout: os-default
-
+redirect_from:
+  - os/configuration/additional-mounts/ 
 ---
 
 ## Configuring Storage
 
 By default, Docker runs in the console container, which means that it will for the most part act and behave like Docker on any other standard Linux distribution. Customizing the storage that is available to Docker is largely a matter of mounting additional storage into the console.
 
-### Mounting Additional Storage for Docker
+### Additional Mounts
 
-If you want to use an existing storage device to store docker persistent state, you can mount it in `/opt/rancher/bin/start.sh` (it is run on boot and exits before docker is started) like this:
-
-```bash
-#!/bin/sh
-set -ex
-mount /dev/<your-storage-dev> /var/lib/docker
-```
-
-You can write `/opt/rancher/bin/start.sh` in cloud-config:
+Additional mounts can be specified as part of your [cloud-config]({{site.baseurl}}/os/cloud-config/). These mounts are applied within the console container. Here's an example that will setup a simple bind mount.
 
 ```yaml
 #cloud-config
 write_files:
-- path: /opt/rancher/bin/start.sh
-  permissions: "0755"
-  owner: root
-  content: |
-    #!/bin/sh
-    set -ex
-    mount /dev/<your-storage-dev> /var/lib/docker
+- path: /test
+  content: test
+- path: /home/rancher/test
+mounts:
+- ["/test", "/home/rancher/test", "", "bind"]
 ```
 
-## Using ZFS
+The four arguments for each mount are the same as those given for [cloud-init](https://cloudinit.readthedocs.io/en/latest/topics/examples.html#adjust-mount-points-mounted). Only the first four arguments are currently supported. The `mount_default_fields` is not implemented.
+
+### Shared Mounts
+
+By default, `/media` and `/mnt` are mounted as shared in the console container. This means that mounts within these directories will propogate to the host as well as other system services that mount these folders as shared.
+
+See [here](https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt) for a more detailed overview of shared mounts and their properties.
+
+### Using ZFS
 
 In order to start using ZFS, you'll need to first enable one of the [persistent consoles]({{site.baseurl}}/os/configuration/custom-console/#console-persistence) and enable [kernel headers]({{site.baseurl}}/os/configuration/kernel-modules-kernel-headers/).
 
@@ -44,7 +43,7 @@ $ sudo ros console switch ubuntu
 
 When RancherOS console has reloaded, you will have logged into the persistent console and the current kernel headers will have been downloaded and unpacked.
 
-### Installing ZFS on Ubuntu Console
+#### Installing ZFS on Ubuntu Console
 
 Based on the [Ubuntu ZFS docs](https://wiki.ubuntu.com/Kernel/Reference/ZFS), you only need to install `zfsutils-linux` package into the Ubuntu console to enable ZFS (all the other necessary packages will be installed as its dependencies).
 
@@ -55,7 +54,7 @@ $ sudo apt upgrade
 $ sudo apt install zfsutils-linux
 ```
 
-### Installing ZFS on Debian Console
+#### Installing ZFS on Debian Console
 
 Instead of enabling the Ubuntu console, you'll need to have enabled the Debian console and install prerequisites for building DKMS modules. 
 
@@ -76,7 +75,7 @@ $ apt-get update
 $ apt-get install debian-zfs
 ```
 
-### Mounting ZFS filesystems on boot
+#### Mounting ZFS filesystems on boot
 
 In order for ZFS to load on boot, it needs to be added to `modules` list in the config. Prior to adding it to the list of modules, you'll need to check to see if there are other modules that are currently enabled. 
 
@@ -92,6 +91,7 @@ Also, make sure `/opt/rancher/bin/start.sh` has this line:
 ```
 
 As noted above, you can write `/opt/rancher/bin/start.sh` in your cloud-config:
+
 ```yaml
 #cloud-config
 write_files:
@@ -104,7 +104,7 @@ write_files:
 ```
 
 
-### Using ZFS
+#### Using ZFS
 
 After it's installed, it should be ready to use!
 
