@@ -1,5 +1,5 @@
 ---
-title: Install to Disk
+title: Installing RancherOS to Disk
 layout: os-default
 ---
 

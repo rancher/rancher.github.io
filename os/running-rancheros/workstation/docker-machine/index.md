@@ -1,5 +1,5 @@
 ---
-title: Docker Machine
+title: Using Docker Machine to run RancherOS
 layout: os-default
 
 ---

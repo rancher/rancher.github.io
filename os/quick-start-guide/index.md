@@ -1,5 +1,5 @@
 ---
-title: Quick Start Guide
+title: Quick Start Guide for RancherOS
 layout: os-default
 
 ---

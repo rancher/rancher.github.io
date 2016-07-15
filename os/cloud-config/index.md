@@ -1,5 +1,5 @@
 ---
-title: Cloud-Config
+title: Cloud-Config Reference for RancherOS
 layout: os-default
 
 ---

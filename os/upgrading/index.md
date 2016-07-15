@@ -1,5 +1,5 @@
 ---
-title: Upgrading 
+title: Upgrading RancherOS
 layout: os-default
 
 ---

@@ -1,5 +1,5 @@
 ---
-title: Loading Kernel Modules
+title: Loading Kernel Modules in RancherOS
 layout: os-default
 
 ---
