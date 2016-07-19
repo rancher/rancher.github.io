@@ -104,7 +104,7 @@ An optional `README.md` is possible to be created, which provides a lengthy desc
 **`rancher-compose.yml`**
 
 ```yaml
-.catalog
+.catalog:
   name: # Name of the versioned template of the Catalog Entry 
   version: # Version of the versioned template of the Catalog Entry 
   description: # Description of the versioned template of the Catalog Entry
@@ -123,7 +123,7 @@ The `questions` section of `.catalog` is used to allow the user to change the co
 Each configuration option is a list item in the `questions` section of the `rancher-compose.yml.
 
 ```yaml
-.catalog
+.catalog:
   questions:
     - variable: # A single word that is used to pair the question and answer.
       label: # The "question" to be answered.
@@ -165,7 +165,7 @@ A drop-down of all services in the environment will be displayed.
 A drop-down menu will be shown in the UI and the `options` section will be populated in the drop-down.
 
 ```
-.catalog
+.catalog:
   questions:
     - variable:
       label:
@@ -181,7 +181,7 @@ A drop-down menu will be shown in the UI and the `options` section will be popul
 A multiple line textbox will be shown in the UI. 
 
 ```
-.catalog
+.catalog:
   questions:
     - variable:
       label:
@@ -201,7 +201,7 @@ A multiple line textbox will be shown in the UI.
 A drop down of all available certificates in the environment.
 
 ```
-.catalog
+.catalog:
   questions:
     - variable:
       label:
