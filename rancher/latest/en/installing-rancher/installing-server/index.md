@@ -20,6 +20,7 @@ Rancher is deployed as a set of Docker containers. Running Rancher is a simple a
     * Option 1: Run with Antelope with default of `COMPACT` 
     * Option 2: Run MySQL 5.7 with Barracuda where the default `ROW_FORMAT` is `Dynamic`
 
+> **Note:** Currently, Docker for Windows and Docker for Mac are not supported. 
 
 ### Rancher Server Tags 
 

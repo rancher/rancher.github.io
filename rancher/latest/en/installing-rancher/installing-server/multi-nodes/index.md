@@ -23,6 +23,7 @@ redirect_from:
     * 50 connections per Rancher server node (e.g. A 3 node setup will need to support at least 150 connections)
 * External Load Balancer 
 
+> **Note:** Currently, Docker for Windows and Docker for Mac are not supported. 
 
 ### Recommendations for Larger Deployments 
 

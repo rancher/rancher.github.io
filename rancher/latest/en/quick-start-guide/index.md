@@ -18,6 +18,8 @@ Provision a Linux host with 64-bit Ubuntu 14.04, which must have a kernel of 3.1
 
 To install Docker on the server, follow the instructions from [Docker](https://docs.docker.com/installation/ubuntulinux/). 
 
+> **Note:** Currently, Docker for Windows and Docker for Mac are not supported. 
+
 ### Start Rancher Server
 
 All you need is one command to launch Rancher server. After launching the container, we'll tail the logs to see when the server is up and running.
@@ -60,25 +62,25 @@ When you click **Close** on the Rancher UI, you will be directed back to the **I
 
 Navigate to the **Stacks** page, if there are still no services, you can click on the **Add Service** button in the welcome screen. If there are already services, you can click on **Add Service** in any existing stack or create a new stack to add services in. If you need to create a new stack, click on **Add Stack**, provide a name and description and click **Create**. Then, click on **Add Service**.
 
-Provide the service with a name like “first_container”. You can just use our default settings and click **Create**. Rancher will start launching two containers on the host. One container is the **_first_container_** that we requested. The other container is a **_Network Agent_**, which is a system container created by Rancher to handle tasks such as cross-host networking, health checking, etc.
+Provide the service with a name like “first-container”. You can just use our default settings and click **Create**. Rancher will start launching two containers on the host. One container is the **_first-container_** that we requested. The other container is a **_Network Agent_**, which is a system container created by Rancher to handle tasks such as cross-host networking, health checking, etc.
 
-Regardless what IP address your host has, both the **_first_container_** and **_Network Agent_** will have IP addresses in the `10.42.*.*` range. Rancher has created this managed overlay network so containers can communicate with each other even if they reside on different hosts.
+Regardless what IP address your host has, both the **_first-container_** and **_Network Agent_** will have IP addresses in the `10.42.*.*` range. Rancher has created this managed overlay network so containers can communicate with each other even if they reside on different hosts.
 
-If you click on the dropdown of the **_first_container_**, you will be able to perform management actions like stopping the container, viewing the logs, or accessing the container console.
+If you click on the dropdown of the **_first-container_**, you will be able to perform management actions like stopping the container, viewing the logs, or accessing the container console.
 
 ### Create a Container through Native Docker CLI
 
 Rancher will display any containers on the host even if the container is created outside of the UI. Create a container in the host's shell terminal.
 
 ```bash
-$ docker run -it --name=second_container ubuntu:14.04.2
+$ docker run -it --name=second-container ubuntu:14.04.2
 ```
 
-In the UI, you will see **_second_container_** pop up on your host! If you terminate the container by exiting the shell, the Rancher UI will immediately show the stopped state of the container.
+In the UI, you will see **_second-container_** pop up on your host! If you terminate the container by exiting the shell, the Rancher UI will immediately show the stopped state of the container.
 
 Rancher reacts to events that happen out of the band and just does the right thing to reconcile its view of the world with reality. You can read more about using Rancher with the [native docker CLI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/native-docker/).
 
-If you look at the IP address of the **_second_container_**, you will notice that it is not in `10.42.*.*` range. It instead has the usual IP address assigned by the Docker daemon. This is the expected behavior of creating a Docker container through the CLI. 
+If you look at the IP address of the **_second-container_**, you will notice that it is not in `10.42.*.*` range. It instead has the usual IP address assigned by the Docker daemon. This is the expected behavior of creating a Docker container through the CLI. 
 
 What if we want to create a Docker container through CLI and still give it an IP address from Rancher’s overlay network? All we need to do is add a label in the command. 
 
