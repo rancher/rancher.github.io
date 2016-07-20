@@ -62,7 +62,7 @@ When you click **Close** on the Rancher UI, you will be directed back to the **I
 
 Navigate to the **Stacks** page, if there are still no services, you can click on the **Add Service** button in the welcome screen. If there are already services, you can click on **Add Service** in any existing stack or create a new stack to add services in. If you need to create a new stack, click on **Add Stack**, provide a name and description and click **Create**. Then, click on **Add Service**.
 
-Provide the service with a name like “first-container”. You can just use our default settings and click **Create**. Rancher will start launching two containers on the host. One container is the **_first-container_** that we requested. The other container is a **_Network Agent_**, which is a system container created by Rancher to handle tasks such as cross-host networking, health checking, etc.
+Provide the service with a name like “first-container”. You can just use our default settings and click **Create**. Rancher will start launching two containers on the host. One container is the **_first-container_** that we requested. The other container is a **_Network Agent_**, which is a system container created by Rancher to handle tasks such as cross-host networking, health checking, etc. The **_Network Agent_** container will not be visible on the **Stacks** page, but the container will be running on the host. You can view this container on the **Infrastructure** -> **Hosts** page and enabling the **Show System** checkbox or on the **Infrastructure** -> **Containers** page. 
 
 Regardless what IP address your host has, both the **_first-container_** and **_Network Agent_** will have IP addresses in the `10.42.*.*` range. Rancher has created this managed overlay network so containers can communicate with each other even if they reside on different hosts.
 
@@ -73,7 +73,7 @@ If you click on the dropdown of the **_first-container_**, you will be able to p
 Rancher will display any containers on the host even if the container is created outside of the UI. Create a container in the host's shell terminal.
 
 ```bash
-$ docker run -it --name=second-container ubuntu:14.04.2
+$ docker run -d -it --name=second-container ubuntu:14.04.2
 ```
 
 In the UI, you will see **_second-container_** pop up on your host! If you terminate the container by exiting the shell, the Rancher UI will immediately show the stopped state of the container.
@@ -85,7 +85,7 @@ If you look at the IP address of the **_second-container_**, you will notice tha
 What if we want to create a Docker container through CLI and still give it an IP address from Rancher’s overlay network? All we need to do is add a label in the command. 
 
 ```bash
-$ docker run -it --label io.rancher.container.network=true ubuntu:14.04.2
+$ docker run -d -it --label io.rancher.container.network=true ubuntu:14.04.2
 ```
 <br>
 The label `io.rancher.container.network` enables us to pass a hint through the Docker command line so Rancher will set up the container to connect to the overlay network.
