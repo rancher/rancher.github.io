@@ -109,29 +109,12 @@ The `type` section controls how the questions are formatted in the UI as well as
 
 Eligible formats are:
 
-`string`
-
-A textbox will be shown in the UI to capture the answer, and the answer will be formatted to a string.
-
-`int`
-
-A textbox will be shown in the UI to capture the answer, and the answer will be formatted to a number. The UI will validate whether or not it's a valid number before launching the template.
-
-`boolean`
-
-A radio button will be shown in the UI to capture the answer, and the answer will be formatted to `true` or `false`. If the radio button is selected, the answer will be formatted to `true`.
-
-`password`
-
-A textbox will be shown in the UI to capture the answer, and the answer will be formatted to a string.
-
-`service`
-
-A drop-down of all services in the environment will be displayed. 
-
-`enum`
-
-A drop-down menu will be shown in the UI and the `options` section will be populated in the drop-down.
+* `string` A textbox will be shown in the UI to capture the answer, and the answer will be formatted to a string.
+* `int` A textbox will be shown in the UI to capture the answer, and the answer will be formatted to a number. The UI will validate whether or not it's a valid number before launching the template.
+* `boolean` A radio button will be shown in the UI to capture the answer, and the answer will be formatted to `true` or `false`. If the radio button is selected, the answer will be formatted to `true`.
+* `password` A textbox will be shown in the UI to capture the answer, and the answer will be formatted to a string.
+* `service` A drop-down of all services in the environment will be displayed. 
+* `enum` A drop-down menu will be shown in the UI and the `options` section will be populated in the drop-down.
 
 ```
 .catalog:
@@ -144,10 +127,8 @@ A drop-down menu will be shown in the UI and the `options` section will be popul
         - Option 1
         - Option 2
 ```
-<br>
-`multiline`
 
-A multiple line textbox will be shown in the UI. 
+* `multiline` A multiple line textbox will be shown in the UI. 
 
 ```
 .catalog:
@@ -163,11 +144,7 @@ A multiple line textbox will be shown in the UI.
         line.
 ```
 
-<br>
-
-`certificate`
-
-A drop down of all available certificates in the environment.
+* `certificate` A drop down of all available certificates in the environment.
 
 ```
 .catalog:
@@ -177,7 +154,6 @@ A drop down of all available certificates in the environment.
       description: |
       type: certificate
 ```
-      
 
 ### Catalog Generator based on Yeoman
 
