@@ -120,7 +120,7 @@ An optional `README.md` is possible to be created, which provides a lengthy desc
 
 The `questions` section of `.catalog` is used to allow the user to change the configuration options of the services. The `answers` would be populated within the `docker-compose.yml` before the services are launched.
 
-Each configuration option is a list item in the `questions` section of the `rancher-compose.yml.
+Each configuration option is a list item in the `questions` section of the `rancher-compose.yml`.
 
 ```yaml
 .catalog:
