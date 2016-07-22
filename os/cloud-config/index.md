@@ -103,7 +103,7 @@ hostname: myhost
 
 ### Launching Containers in RancherOS 
 
-To start containers in RancherOS when booting it up, you can just add the services to the cloud-config file. 
+To start containers in RancherOS when booting it up, you can just add the services to the cloud-config file. Services are specified in [Docker Compose format](https://docs.docker.com/compose/compose-file/#/service-configuration-reference). This format includes most of the flags available via the Docker CLI.  
 
 ```
 #cloud-config
@@ -113,6 +113,7 @@ rancher:
       image: nginx
       restart: always
 ```  
+
 
 #### System Docker vs. Docker
 
