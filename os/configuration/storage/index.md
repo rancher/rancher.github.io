@@ -38,9 +38,9 @@ See [here](https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.tx
 In order to start using ZFS, you'll need to first enable one of the [persistent consoles]({{site.baseurl}}/os/configuration/custom-console/#console-persistence) and enable [kernel headers]({{site.baseurl}}/os/configuration/kernel-modules-kernel-headers/).
 
 ```bash
+$ sudo ros console switch ubuntu
 $ sudo ros service enable kernel-headers
 $ sudo ros service up -d kernel-headers
-$ sudo ros console switch ubuntu
 ```
 
 When RancherOS console has reloaded, you will have logged into the persistent console and the current kernel headers will have been downloaded and unpacked.
@@ -56,64 +56,43 @@ $ sudo apt upgrade
 $ sudo apt install zfsutils-linux
 ```
 
-#### Installing ZFS on Debian Console
-
-Instead of enabling the Ubuntu console, you'll need to have enabled the Debian console and install prerequisites for building DKMS modules. 
-
-```bash
-$ apt-get update
-$ apt-get install --no-install-recommends build-essential dkms
-```
-
-Based on the [ZFS docs regarding Debian](http://zfsonlinux.org/debian.html), the following commands need to occur to install `debian-zfs`. 
-
-```bash
-# Pre-requisites to install debian-zfs
-$ apt-get install lsb-release
-# curl -OL http://archive.zfsonlinux.org/debian/pool/main/z/zfsonlinux/zfsonlinux_6_all.deb
-# dpkg -i zfsonlinux_6_all.deb
-# Updating the package cache 
-$ apt-get update
-$ apt-get install debian-zfs
-```
-
 #### Mounting ZFS filesystems on boot
 
 In order for ZFS to load on boot, it needs to be added to `modules` list in the config. Prior to adding it to the list of modules, you'll need to check to see if there are other modules that are currently enabled. 
 
 ```bash
-$ ros config get rancher.modules
+# Check to see what modules currently exist
+$ sudo ros config get rancher.modules
 # Make sure to include any modules that were already enabled
-$ ros config set rancher.modules [zfs]
+$ sudo ros config set rancher.modules [zfs]
 ```
 
-Also, make sure `/opt/rancher/bin/start.sh` has this line:
+<br>
+
+You will need to create a file called `/opt/rancher/bin/start.sh`, which will contain:
+
 ```bash
 [ -f /etc/zfs/zpool.cache ] && zpool import -c /etc/zfs/zpool.cache -a
 ```
 
-As noted above, you can write `/opt/rancher/bin/start.sh` in your cloud-config:
+<br>
 
-```yaml
-#cloud-config
-write_files:
-- path: /opt/rancher/bin/start.sh
-  permissions: "0755"
-  owner: root
-  content: |
-    #!/bin/sh
-    [ -f /etc/zfs/zpool.cache ] && zpool import -c /etc/zfs/zpool.cache -a
+```bash
+# Create the directory
+$ sudo mkdir -p /opt/rancher/bin
+# Create the file
+$ sudo vi /opt/rancher/bin/start.sh
+$ sudo chmod +x /opt/rancher/bin/start.sh
 ```
-
 
 #### Using ZFS
 
 After it's installed, it should be ready to use!
 
 ```bash
-$ modprobe zfs
-$ zpool list
-$ zpool create zpool1 /dev/<some-disk-dev>
+$ sudo modprobe zfs
+$ sudo zpool list
+$ sudo zpool create zpool1 /dev/<some-disk-dev>
 ```
 
 To experiment with ZFS, you can create zpool backed by just ordinary files, not necessarily real block devices. In fact, you can mix storage devices in your ZFS pools; it's perfectly fine to create a zpool backed by real devices **and** ordinary files.
