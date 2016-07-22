@@ -133,7 +133,7 @@ A drop-down of all services in the environment will be displayed.
 
 A drop-down menu will be shown in the UI and the `options` section will be populated in the drop-down.
 
-```
+```yaml
 .catalog:
   questions:
     - variable:
@@ -149,7 +149,7 @@ A drop-down menu will be shown in the UI and the `options` section will be popul
 
 A multiple line textbox will be shown in the UI. 
 
-```
+```yaml
 .catalog:
   questions:
     - variable:
@@ -169,7 +169,7 @@ A multiple line textbox will be shown in the UI.
 
 A drop down of all available certificates in the environment.
 
-```
+```yaml
 .catalog:
   questions:
     - variable:
