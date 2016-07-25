@@ -11,21 +11,17 @@ By default, Docker runs in the console container, which means that it will for t
 
 ### Additional Mounts
 
-Additional mounts can be specified as part of your [cloud-config]({{site.baseurl}}/os/cloud-config/). These mounts are applied within the console container. Here's an example that will setup a simple bind mount.
+Additional mounts can be specified as part of your [cloud-config]({{site.baseurl}}/os/cloud-config/). These mounts are applied within the console container. Here's an simple example that mounts `/dev/vdb` to `/mnt/s`.
 
 ```yaml
 #cloud-config
-write_files:
-- path: /test
-  content: test
-- path: /home/rancher/test
 mounts:
-- ["/test", "/home/rancher/test", "", "bind"]
+- ["/dev/vdb", "/mnt/s", "ext4", ""]
 ```
 
-The four arguments for each mount are the same as those given for [cloud-init](https://cloudinit.readthedocs.io/en/latest/topics/examples.html#adjust-mount-points-mounted). Only the first four arguments are currently supported. The `mount_default_fields` is not implemented.
+The four arguments for each mount are the same as those given for [cloud-init](https://cloudinit.readthedocs.io/en/latest/topics/examples.html#adjust-mount-points-mounted). Only the first four arguments are currently supported. The `mount_default_fields` key is not yet implemented.
 
-> **Note:** `auto` cannot be used as the file system type. RancherOS uses the mount syscall, which does not handle detecting file system type.
+RancherOS uses the mount syscall rather than the `mount` command behind the scenes. This means that `auto` cannot be used as the filesystem type (third argument) and `defaults` cannot be used for the options (forth argument).
 
 ### Shared Mounts
 
