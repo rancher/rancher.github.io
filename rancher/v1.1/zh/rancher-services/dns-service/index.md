@@ -15,7 +15,7 @@ Rancher implements a distributed DNS service by using its own light-weight DNS s
 * If you need a custom DNS name for your service, that is different from your service name, you will be required to use a link to get the custom DNS name. 
 * Links are still required for load balancers to target services. 
 * Links are still required if a Service Alias is used. 
-* To make services resolvable that are in different stacks, you will need to link them explicitly. 
+* To make services resolvable that are in different stacks, you can use `<service_name>.<stack_name>` and are not required explicit links. 
 
 Because Rancher’s overlay networking provides each container with a distinct IP address, you do not need to deal with port mappings and do not need to handle situations like duplicated services listening on different ports. As a result, a simple DNS service is adequate for handling service discovery.
 
