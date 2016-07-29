@@ -113,6 +113,7 @@ rancher:
       image: nginx
       restart: always
 ```  
+Additional keys could also be passed in (i.e. Under restart with same indent) that match usual docker commands. These include ports (-p in docker), net (as per --net flag), command (the command to run on the image), volumes (-v in docker), privileged, etc.
 
 
 #### System Docker vs. Docker
