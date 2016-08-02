@@ -4,11 +4,11 @@ layout: os-default
 
 ---
 
-## System Services
+## Adding New System Services
 
 A system service is a container that can be run in either System Docker or Docker. Rancher provides services that are already available in RancherOS by adding them to the [os-services repo](https://github.com/rancher/os-services). Anything in the `index.yml` file from the repo will be an option shown when using the `ros service list` command. This command will list all system services and whether they are enabled or disabled.
 
-You can also create your own system service in the [docker compose](https://docs.docker.com/compose/) format. 
+You can also create your own system service in the [Docker Compose](https://docs.docker.com/compose/) format. 
 
 ### Enabling/Disabling System Services
 
@@ -32,7 +32,7 @@ To delete a service that you added, run `ros service delete <system-service-name
 
 After creating your own custom service, you can launch the services in RancherOS in two different methods. The service could be directly added to the [cloud-config]({{site.baseurl}}/os/cloud-config/) that you start RancherOS with or a `docker-compose.yml` file could be saved in a http(s) url location or in a directory of RancherOS. 
 
-#### Launching Services through Cloud Config
+#### Launching Services through Cloud-Config
 
 If you want to boot RancherOS with a system service running, you can add the service to the cloud-config that is passed to RancherOS.
 
@@ -104,41 +104,3 @@ foo:
     io.rancher.os.after: baz 
 ```
 
-### Environment
-
-With [environment](https://docs.docker.com/compose/yml/#environment) in the yaml file, if the environment is not set (i.e. it doesn't have an `=`), then RancherOS looks up the value in the [cloud config file]({{site.baseurl}}/os/cloud-config). 
-
-We support worldwide globbing, so in our example below, the services.yml file will find ETCD_DISCOVERY in the `cloud-config.yml` file and set the environment to `https://discovery.etcd.io/d1cd18f5ee1c1e2223aed6a1734719f7` for the service. 
-
-`services.yml` File:
-
-```yaml
-etcd:
-  environment:
-    - ETCD_*
-```
-
-`cloud-config.yml` File:
-
-```yaml
-rancher:
-  environment:
-    ETCD_DISCOVERY: https://discovery.etcd.io/d1cd18f5ee1c1e2223aed6a1734719f7
-```
-
-### Unsupported Keys in RancherOS
-
-RancherOS doesn't support some docker-compose keys as it isn't relevant to RancherOS.
-
-* Build 
-* Env_File
-* External_Links
-
-If you set the net to your host, then the `hostname` key will not be set for the container. Instead, it will be automatically set to `rancher`.
-
-## Contributing to OS-Services
-
-If you're interested in adding more services to RancherOS, please contribute to our [repo](https://github.com/rancher/os-services). 
-
-<br>
-<br>
