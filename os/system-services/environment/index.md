@@ -1,5 +1,5 @@
 ---
-title: Adding System Services in RancherOS
+title: Environment
 layout: os-default
 
 ---
@@ -7,24 +7,30 @@ layout: os-default
 ## Environment
 ---
 
-With [environment](https://docs.docker.com/compose/yml/#environment) in the yaml file, if the environment is not set (i.e. it doesn't have an `=`), then RancherOS looks up the value in the [cloud-config file]({{site.baseurl}}/os/cloud-config). 
+The [environment key](https://docs.docker.com/compose/yml/#environment) can be used to customize system services. When a value is not assigned, RancherOS looks up the value from the `rancher.environment` key.
 
-We support worldwide globbing, so in our example below, the `services.yml` file will find `ETCD_DISCOVERY` in the `cloud-config.yml` file and set the environment to `https://discovery.etcd.io/d1cd18f5ee1c1e2223aed6a1734719f7` for the service. 
-
-`services.yml` File:
-
-```yaml
-etcd:
-  environment:
-    - ETCD_*
-```
-
-<br>
-
-`cloud-config.yml` File:
+In the example below, `ETCD_DISCOVERY` will be set to `https://discovery.etcd.io/d1cd18f5ee1c1e2223aed6a1734719f7` for the `etcd` service.
 
 ```yaml
 rancher:
   environment:
     ETCD_DISCOVERY: https://discovery.etcd.io/d1cd18f5ee1c1e2223aed6a1734719f7
+  services:
+    etcd:
+      ...
+      environment:
+      - ETCD_DISCOVERY
+```
+
+Wildcard globbing is also supported. In the example below, `ETCD_DISCOVERY` will be set as in the previous example, along with any other environment variables beginning with `ETCD_`.
+
+```yaml
+rancher:
+  environment:
+    ETCD_DISCOVERY: https://discovery.etcd.io/d1cd18f5ee1c1e2223aed6a1734719f7
+  services:
+    etcd:
+      ...
+      environment:
+      - ETCD_*
 ```
