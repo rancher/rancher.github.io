@@ -54,7 +54,7 @@ Provides necessary command binaries (read-only), used by system services:
 
 Provides necessary persistent directories, used by system services:
 
-```
+```bash
 /host/dev
 /etc/docker
 /etc/hosts
