@@ -15,7 +15,8 @@ Hosts are the most basic unit of resource within Rancher and is represented as a
 
 * Any modern Linux distribution that supports Docker 1.10.3+. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
 * 1GB RAM 
-* Recommended CPU w/ AES-NI•	Ability to communicate with a Rancher server via http or https through the pre-configured port. Default is 8080.
+* Recommended CPU w/ AES-NI
+* Ability to communicate with a Rancher server via http or https through the pre-configured port. Default is 8080.
 * Ability to be routed to any other hosts under the same environment to leverage Rancher’s cross-host networking for Docker containers.
 
 Rancher also supports Docker Machine and allows you to add your host via any of its supported drivers.
