@@ -1,4 +1,4 @@
----
+`ros service` allows you to enable/disable different system services.---
 title: Adding System Services in RancherOS
 layout: os-default
 
@@ -12,21 +12,24 @@ You can also create your own system service in the [Docker Compose](https://docs
 
 ### Enabling/Disabling System Services
 
-For any services that are listed from the `ros service list`, they can be enabled by running a single command. In order for the changes take effect, you will also need to reboot. In the future, the reboot will be dynamic.
+`ros service` allows you to enable/disable different system services. For any services that are listed from the `ros service list`, they can be enabled by running a single command, i.e. `ros service enable <system-service-name>`. In order for the changes take effect, you will also need to reboot. In the future, the reboot will be dynamic.
 
 ```bash
+# List all available system services
 $ sudo ros service list
 disabled amazon-ecs-agent
 disabled kernel-headers
 disabled kernel-headers-system-docker
 disabled open-vm-tools
+# Enable a system service
 $ sudo ros service enable kernel-headers
+# Reboot to apply the changes
 $ sudo reboot
 ```
 
 To turn off a system service, run `ros service disable <system-service-name>`. This will only turn off the service, and it will not remove the service from RancherOS. Similar to when we enabled the service, we will need to reboot in order for the disabling to take effect.
 
-To delete a service that you added, run `ros service delete <system-service-name>`. This will remove the service from the list of services.
+To delete a service that you added, run `ros service delete <system-service-name>`. This will remove the service from the list of services. Only custom system services can be deleted.
 
 ### Adding Custom System Services
 

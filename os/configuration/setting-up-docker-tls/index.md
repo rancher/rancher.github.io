@@ -18,7 +18,7 @@ To have docker secured by TLS you need to set `rancher.docker.tls` to `true`, an
 
 ```sh
 $ sudo ros c set rancher.docker.tls true
-$ sudo ros tls gen -s -H localhost -H <hostname1> -H <hostname2> ... -H <hostnameN>
+$ sudo ros tls gen --server -H localhost -H <hostname1> -H <hostname2> ... -H <hostnameN>
 $ sudo system-docker restart docker
 ```
 

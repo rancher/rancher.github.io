@@ -5,7 +5,7 @@ layout: os-default
 
 ## Installing RancherOS to Disk
 ---
-RancherOS comes with a simple installer that will install RancherOS on a given target disk. To install RancherOS on a new disk, you can use the `ros install` [command]({{site.baseurl}}/os/rancheros-tools/ros/install). Before installing, you'll need to have already [booted RancherOS from ISO]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso). Please be sure to pick the `rancheros.iso` from our release [page](https://github.com/rancher/os/releases).
+RancherOS comes with a simple installer that will install RancherOS on a given target disk. To install RancherOS on a new disk, you can use the `ros install` command. Before installing, you'll need to have already [booted RancherOS from ISO]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso). Please be sure to pick the `rancheros.iso` from our release [page](https://github.com/rancher/os/releases).
 
 ### Using `ros install` to Install RancherOS 
 
@@ -60,6 +60,25 @@ Continue with reboot [y/N]:
 ```
 
 After installing RancherOS to disk, the rancher/rancher user/password will no longer be valid, unless you've booted off the ISO again. You'll need to have added in SSH keys within your [cloud config file]({{site.baseurl}}/os/cloud-config/).
+
+#### Installing a Different Version
+
+By default, `ros install` uses the same installer image version as the ISO it is run from. The `-i` option specifies the particular image to install from. To keep the ISO as small as possible, the installer image is downloaded from DockerHub and used in System Docekr. For example for RancherOS v0.5.0 the default installer image would be `rancher/os:v0.5.0`.
+
+You can use `ros os list` command to find the list of available RancherOS images/versions.
+
+```bash
+$ sudo ros os list
+rancher/os:v0.4.0 remote
+rancher/os:v0.4.1 remote
+rancher/os:v0.4.2 remote
+rancher/os:v0.4.3 remote
+rancher/os:v0.4.4 remote
+rancher/os:v0.4.5 remote
+rancher/os:v0.5.0 remote
+```
+
+Alternatively, you can set the installer image to any image in System Docker to install RancherOS. This is particularily useful for machines that will not have direct access to the internet. 
 
 ### SSH into RancherOS
 

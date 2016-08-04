@@ -34,7 +34,7 @@ Typically, when you first boot the server, you pass in the cloud-config file to 
 
 ## Updating Cloud-Config After RancherOS has booted
 
-`ros config` is the main command to interact with RancherOS configuration, here's the link to the [full ros config command docs]({{site.baseurl}}/os/rancheros-tools/ros/config/). With these commands, you can get and set values in the `cloud-config.yml` file as well as import/export configurations.
+`ros config` is the main command to [interact with RancherOS configuration]({{site.baseurl}}/os/configuration/). 
 
 You can view the content of `cloud-config.yml` file by issuing the `ros config export` command. Another command `ros config export --full` prints the current effective configuration of RancherOS, taking into account the initial default configuration and the impact of `cloud-config.yml`.
 
