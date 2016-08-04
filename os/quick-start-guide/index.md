@@ -104,7 +104,7 @@ $ echo “sudo system-docker start busydash” | sudo tee -a /opt/rancher/bin/st
 $ sudo chmod 755 /opt/rancher/bin/start.sh
 ```
 
-### Using [ROS]({{site.baseurl}}/os/rancheros-tools/ros/)
+### Using ROS
 
 Another useful command that can be used with RancherOS is `ros` which can be used to control and configure the system. 
 

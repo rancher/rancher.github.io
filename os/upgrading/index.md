@@ -6,22 +6,24 @@ layout: os-default
 
 ## Upgrading 
 ---
-RancherOS has released a new version and you want to learn how to upgrade your OS. We make it easy using the [ROS OS]({{site.baseurl}}/os/rancheros-tools/ros/os) commands.
 
-To see all of our releases, please visit our [release page](https://github.com/rancher/os/releases) in GitHub.
+If RancherOS has released a new version and you want to learn how to upgrade your OS, we make it easy using the `ros os` command.
+
+To see all of our releases, please visit our [releases page](https://github.com/rancher/os/releases) in GitHub.
 
 ### Version Control
 
 First, let's check what version you have running on your system.
 
 ```bash
-$ sudo ros -v
-ros version v0.4.5
+$ sudo ros os version
+v0.4.5
 ```
 
-If you just want to find out the available releases from the command line, it's a simple [ros]({{site.baseurl}}/os/rancheros-tools/ros/) command.
+If you just want to find out the available releases from the command line, it's a simple command.
 
 ```bash
+# List all available releases
 $ sudo ros os list
 rancher/os:v0.4.0 remote
 rancher/os:v0.4.1 remote
@@ -32,7 +34,7 @@ rancher/os:v0.4.5 remote
 rancher/os:v0.5.0 local
 ```
 
-The local/remote label shows which images are available to System Docker locally versus on Docker Hub. If you choose to upgrade to a version that is remote, we will automatically pull that image during the upgrade.
+The `local`/`remote` label shows which images are available to System Docker locally versus which need to be pulled from Docker Hub. If you choose to upgrade to a version that is remote, we will automatically pull that image during the upgrade.
 
 ### Upgrading 
 
@@ -61,7 +63,7 @@ $ sudo ros -v
 ros version v0.5.0
 ```
 
-Note: If you are booting from ISO and have not installed to disk, your upgrade will not be saved. You can view our guide to [installing to disk]({{site.baseurl}}/os/running-rancheros/server/install-to-disk/). 
+> **Note:** If you are booting from ISO and have not installed to disk, your upgrade will not be saved. You can view our guide to [installing to disk]({{site.baseurl}}/os/running-rancheros/server/install-to-disk/). 
 
 #### Upgrading to a Specific Version
 
@@ -78,10 +80,11 @@ Continue with reboot [y/N]: y
 INFO[0082] Rebooting 
 ```
 
-#### Tips
+#### Bypassing The Prompts
 
 We have added the ability to bypass the prompts. Use the `-f` or `--force` option when upgrading. Your machine will automatically be rebooted and you'll just need to log back in when it's done.
 
+If you want to bypass the prompts, but you don't want to immediately reboot, you can add `--no-reboot` to avoid rebooting immediately. 
 
 ### Rolling back an Upgrade
 

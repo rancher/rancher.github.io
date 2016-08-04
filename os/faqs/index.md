@@ -17,7 +17,7 @@ Command | Description
 --------|------------
 `docker`| Good old Docker, use that to run stuff.
 `system-docker` | The Docker instance running the system containers.  Must run as root or using `sudo`
-`ros` | [Control and configure RancherOS]({{site.baseurl}}/os/rancheros-tools/ros/)
+`ros` | Control and configure RancherOS
 
 
 
