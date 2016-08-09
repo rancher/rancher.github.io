@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-default
+layout: rancher-api-default
 version: latest
 lang: en
 ---
@@ -9,19 +9,11 @@ lang: en
 
 
 
+
+
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Notes
----|---|---|---|---|---
-outputs | map[string] | Yes | - | - | 
-
-
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). 
-These fields are read only and applicable to almost every resource. We have segregated them from the list above.
-
-
-
-
-
-
+Field | Type | Required | Default | Description
+---|---|---|---|---
+outputs | map[string] | true |  | 
 

@@ -1,11 +1,11 @@
 ---
-title: API
-layout: rancher-default
+title: Rancher API - serviceProxy
+layout: rancher-api-default
 version: latest
 lang: en
 ---
 
-## serviceProxy
+## ServiceProxy
 
 
 
@@ -19,39 +19,23 @@ service | string | Yes | - | - |
 token | string | - | - | - | 
 url | string | - | - | - | 
 
-
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). 
-These fields are read only and applicable to almost every resource. We have segregated them from the list above.
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
 {::options parse_block_html="true" /}
-
-
-
-<div class="action">
-<span class="header">
-Create
-<span class="headerright">POST:  <code>/v1/serviceProxy</code></span></span>
+<a id="create"></a>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/serviceProxy</code></span></span>
 <div class="action-contents">
-{% highlight json %} 
+{% highlight json %}
 {
-
 	"port": 80,
-
 	"scheme": "http",
-
 	"service": "string"
-
-} 
+}
 {% endhighlight %}
 </div>
 </div>
-
-
-
-
-
 
 
 

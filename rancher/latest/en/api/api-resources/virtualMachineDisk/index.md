@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-default
+layout: rancher-api-default
 version: latest
 lang: en
 ---
@@ -18,6 +18,8 @@ Field | Type | Required | Default | Description
 driver | string | false |  | 
 name | string | false |  | 
 opts | map[string] | false |  | 
+readIops | int | false |  | 
 root | boolean | false |  | 
 size | string | false | 40g | 
+writeIops | int | false |  | 
 

@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-default
+layout: rancher-api-default
 version: latest
 lang: en
 ---
@@ -15,11 +15,11 @@ lang: en
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-batchSize | int | false | 1 | The batch size to upgrade a service (i.e. how many containers to launch at a time)
-intervalMillis | int | false | 2000 | The number of milliseconds between upgrading
-launchConfig | [launchConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/launchConfig/) | false |  | The Docker run configuration of a container
+batchSize | int | false | 1 | 
+intervalMillis | int | false | 2000 | 
+launchConfig | [launchConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/launchConfig/) | false |  | 
 previousLaunchConfig | [launchConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/launchConfig/) | false |  | 
-previousSecondaryLaunchConfigs | array[secondaryLaunchConfig] | false |  | 
-secondaryLaunchConfigs | array[secondaryLaunchConfig] | false |  | The list of services that are sidekicks to the service.
+previousSecondaryLaunchConfigs | array[[secondaryLaunchConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/secondaryLaunchConfig/)] | false |  | 
+secondaryLaunchConfigs | array[[secondaryLaunchConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/secondaryLaunchConfig/)] | false |  | 
 startFirst | boolean | false | false | 
 

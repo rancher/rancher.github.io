@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-default
+layout: rancher-api-default
 version: latest
 lang: en
 ---
@@ -15,6 +15,6 @@ lang: en
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-dockerComposeConfig | string | false |  | The `docker-compose.yml` file to pass to `rancher-compose create`
-rancherComposeConfig | string | false |  | The `rancher-compose.yml` file to pass to `rancher-compose create`
+dockerComposeConfig | string | false |  | 
+rancherComposeConfig | string | false |  | 
 

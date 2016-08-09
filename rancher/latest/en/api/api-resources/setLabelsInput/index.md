@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-default
+layout: rancher-api-default
 version: latest
 lang: en
 ---
@@ -15,5 +15,5 @@ lang: en
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-labels | json | false |  | 
+labels | json | false |  | A map of key value pairs to be used as labels for the setLabelsInput
 

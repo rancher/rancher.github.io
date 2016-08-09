@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-default
+layout: rancher-api-default
 version: latest
 lang: en
 ---
@@ -15,5 +15,5 @@ lang: en
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-serviceIds | array[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/)] | false |  | The list of Service IDs in the `docker-compose.yml`
+serviceIds | array[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/)] | false |  | 
 

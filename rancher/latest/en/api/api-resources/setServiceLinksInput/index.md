@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-default
+layout: rancher-api-default
 version: latest
 lang: en
 ---
@@ -15,5 +15,5 @@ lang: en
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-serviceLinks | array[serviceLink] | false |  | The list of services linked
+serviceLinks | array[[serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceLink/)] | false |  | 
 

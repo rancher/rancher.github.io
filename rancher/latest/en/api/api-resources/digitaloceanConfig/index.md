@@ -1,11 +1,11 @@
 ---
-title: API
-layout: rancher-default
+title: Rancher API - digitaloceanConfig
+layout: rancher-api-default
 version: latest
 lang: en
 ---
 
-## digitaloceanConfig
+## DigitaloceanConfig
 
 The configuration to launch a droplet in DigitalOcean using [machine]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/machine). Rancher is calling `docker-machine`, so any available options in `docker-machine` for specific drivers are exposed in Rancher. The default fields from `docker-machine` are not listed in the Rancher API, and they can be found in the `docker-machine` documentation.
 
@@ -13,64 +13,41 @@ The configuration to launch a droplet in DigitalOcean using [machine]({{site.bas
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-accessToken | string | Optional | Yes | - | <strong>required</strong>Your personal access token for the Digital Ocean API
-backups | boolean | Optional | Yes | - | Whether or not to enable Digital Oceans backups for the droplet
-image | string | Optional | Yes | - | The name of the Digital Ocean image to use
-ipv6 | boolean | Optional | Yes | - | Whether or not to enable IPv6 support for the droplet
-privateNetworking | boolean | Optional | Yes | - | Whether or not to enable private networking support for the droplet
-region | string | Optional | Yes | - | The region to create the droplet in
-size | string | Optional | Yes | - | The size of the Digital Ocean droplet (larger than the default option (`512mb`) are of the form `2gb`)
-sshPort | string | Optional | Yes | - | The port to ssh into the host
-sshUser | string | Optional | Yes | - | The ssh username to use to ssh into the host
-userdata | string | Optional | Yes | - | 
+accessToken | string | Optional | - | - | 
+backups | boolean | Optional | - | - | 
+image | string | Optional | - | ubuntu-15-10-x64 | 
+ipv6 | boolean | Optional | - | - | 
+privateNetworking | boolean | Optional | - | - | 
+region | string | Optional | - | nyc3 | The region to use when launching the host
+size | string | Optional | - | 512mb | 
+sshPort | string | Optional | - | 22 | The port to ssh into the host
+sshUser | string | Optional | - | root | The ssh username to use to ssh into the host
+userdata | string | Optional | - | - | 
 
-
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). 
-These fields are read only and applicable to almost every resource. We have segregated them from the list above.
-
+<br>
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
 {::options parse_block_html="true" /}
-
-
-
-<div class="action">
-<span class="header">
-Create
-<span class="headerright">POST:  <code>/v1/digitaloceanConfig</code></span></span>
+<a id="create"></a>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/digitaloceanConfig</code></span></span>
 <div class="action-contents">
-{% highlight json %} 
+{% highlight json %}
 {
-
-	"accessToken": "string",
-
+	"accessToken": "",
 	"backups": true,
-
-	"image": "string",
-
+	"image": "ubuntu-15-10-x64",
 	"ipv6": true,
-
 	"privateNetworking": true,
-
-	"region": "string",
-
-	"size": "string",
-
-	"sshPort": "string",
-
-	"sshUser": "string",
-
-	"userdata": "string"
-
-} 
+	"region": "nyc3",
+	"size": "512mb",
+	"sshPort": "22",
+	"sshUser": "root",
+	"userdata": ""
+}
 {% endhighlight %}
 </div>
 </div>
-
-
-
-
-
 
 
 
