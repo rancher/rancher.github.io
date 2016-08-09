@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-default
+layout: rancher-api-default
 version: latest
 lang: en
 ---
@@ -15,6 +15,6 @@ lang: en
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-maximumRetryCount | int | false |  | The maximum number of restart on a service
+maximumRetryCount | int | false |  | 
 name | string | false |  | 
 

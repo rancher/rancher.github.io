@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-default
+layout: rancher-api-default
 version: latest
 lang: en
 ---
@@ -17,9 +17,9 @@ Field | Type | Required | Default | Description
 ---|---|---|---|---
 cookie | string | false |  | 
 domain | string | false |  | 
-indirect | boolean | false |  | Whether or not to have an indirect cookie
+indirect | boolean | false |  | 
 mode | enum | false |  | 
 name | string | false |  | 
 nocache | boolean | false |  | 
-postonly | boolean | false |  | Whether or not to only set cookie on POST
+postonly | boolean | false |  | 
 

@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-default
+layout: rancher-api-default
 version: latest
 lang: en
 ---
@@ -16,5 +16,5 @@ lang: en
 Field | Type | Required | Default | Description
 ---|---|---|---|---
 config | map[string] | false |  | 
-driver | string | false |  | The logging driver option to use in a logConfig.
+driver | string | false |  | 
 

@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-default
+layout: rancher-api-default
 version: latest
 lang: en
 ---
@@ -15,6 +15,6 @@ lang: en
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-newSecret | string | true |  | Value of the new secret
-oldSecret | string | true |  | Value of the old secret
+newSecret | string | true |  | 
+oldSecret | string | true |  | 
 
