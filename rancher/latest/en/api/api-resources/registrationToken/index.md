@@ -27,7 +27,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 ### Operations
 {::options parse_block_html="true" /}
 <a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/registrationToken</code></span></span>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/registrationTokens</code></span></span>
 <div class="action-contents">
 {% highlight json %}
 {
@@ -37,8 +37,4 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {% endhighlight %}
 </div>
 </div>
-
-
-
-
 

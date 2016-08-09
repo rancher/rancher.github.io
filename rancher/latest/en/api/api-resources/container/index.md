@@ -80,7 +80,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 ### Operations
 {::options parse_block_html="true" /}
 <a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/container</code></span></span>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/containers</code></span></span>
 <div class="action-contents">
 {% highlight json %}
 {
@@ -218,14 +218,15 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 }
 {% endhighlight %}
 </div>
+</div><a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/containers/${ID}</code></span></span>
+<div class="action-contents">
+{% highlight json %}
+
+{% endhighlight %}
 </div>
-
-
-
-<a id="update"></a>
-<div class="action">
-<span class="header">Update
-<span class="headerright">PUT:  <code>${links.self}</code></span></span>
+</div><a id="update"></a>
+<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/containers/${ID}</code></span></span>
 <div class="action-contents">
 {% highlight json %}
 {
@@ -236,23 +237,11 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 </div>
 </div>
 
-
-<a id="delete"></a>
-<div class="action">
-<span class="header">Delete
-<span class="headerright">DELETE:  <code>${links.self}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-
-{% endhighlight %}
-</div>
-</div>
-
 ### Actions
 <div class="action">
 <span class="header">
 console
-<span class="headerright">POST:  <code>/v1/containers/${ID}/?action=console</code></span></span>
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=console</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -266,7 +255,7 @@ console
 <div class="action">
 <span class="header">
 execute
-<span class="headerright">POST:  <code>/v1/containers/${ID}/?action=execute</code></span></span>
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=execute</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -289,7 +278,7 @@ execute
 <div class="action">
 <span class="header">
 logs
-<span class="headerright">POST:  <code>/v1/containers/${ID}/?action=logs</code></span></span>
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=logs</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -306,7 +295,7 @@ logs
 <div class="action">
 <span class="header">
 proxy
-<span class="headerright">POST:  <code>/v1/containers/${ID}/?action=proxy</code></span></span>
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=proxy</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -323,7 +312,7 @@ proxy
 <div class="action">
 <span class="header">
 restart
-<span class="headerright">POST:  <code>/v1/containers/${ID}/?action=restart</code></span></span>
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=restart</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -336,7 +325,7 @@ restart
 <div class="action">
 <span class="header">
 start
-<span class="headerright">POST:  <code>/v1/containers/${ID}/?action=start</code></span></span>
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=start</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -349,7 +338,7 @@ start
 <div class="action">
 <span class="header">
 stop
-<span class="headerright">POST:  <code>/v1/containers/${ID}/?action=stop</code></span></span>
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=stop</code></span></span>
 <div class="action-contents">
 
 <br>

@@ -24,7 +24,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 ### Operations
 {::options parse_block_html="true" /}
 <a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/backupTarget</code></span></span>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/backupTargets</code></span></span>
 <div class="action-contents">
 {% highlight json %}
 {
@@ -38,16 +38,8 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 }
 {% endhighlight %}
 </div>
-</div>
-
-
-
-
-
-<a id="delete"></a>
-<div class="action">
-<span class="header">Delete
-<span class="headerright">DELETE:  <code>${links.self}</code></span></span>
+</div><a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/backupTargets/${ID}</code></span></span>
 <div class="action-contents">
 {% highlight json %}
 

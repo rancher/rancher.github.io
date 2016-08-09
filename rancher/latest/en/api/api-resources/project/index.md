@@ -29,12 +29,11 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 
 
 
-
 ### Actions
 <div class="action">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>/v1/projects/${ID}/?action=activate</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${ID}?action=activate</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -47,7 +46,7 @@ activate
 <div class="action">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>/v1/projects/${ID}/?action=deactivate</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${ID}?action=deactivate</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -60,7 +59,7 @@ deactivate
 <div class="action">
 <span class="header">
 setmembers
-<span class="headerright">POST:  <code>/v1/projects/${ID}/?action=setmembers</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${ID}?action=setmembers</code></span></span>
 <div class="action-contents">
 
 <br>
