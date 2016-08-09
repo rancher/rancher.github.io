@@ -31,7 +31,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 ### Operations
 {::options parse_block_html="true" /}
 <a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/volume</code></span></span>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/volumes</code></span></span>
 <div class="action-contents">
 {% highlight json %}
 {
@@ -46,27 +46,20 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 }
 {% endhighlight %}
 </div>
-</div>
-
-
-
-
-
-<a id="delete"></a>
-<div class="action">
-<span class="header">Delete
-<span class="headerright">DELETE:  <code>${links.self}</code></span></span>
+</div><a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/volumes/${ID}</code></span></span>
 <div class="action-contents">
 {% highlight json %}
 
 {% endhighlight %}
 </div>
 </div>
+
 ### Actions
 <div class="action">
 <span class="header">
 restorefrombackup
-<span class="headerright">POST:  <code>/v1/volumes/${ID}/?action=restorefrombackup</code></span></span>
+<span class="headerright">POST:  <code>/v1/volumes/${ID}?action=restorefrombackup</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -82,7 +75,7 @@ restorefrombackup
 <div class="action">
 <span class="header">
 reverttosnapshot
-<span class="headerright">POST:  <code>/v1/volumes/${ID}/?action=reverttosnapshot</code></span></span>
+<span class="headerright">POST:  <code>/v1/volumes/${ID}?action=reverttosnapshot</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -98,7 +91,7 @@ reverttosnapshot
 <div class="action">
 <span class="header">
 snapshot
-<span class="headerright">POST:  <code>/v1/volumes/${ID}/?action=snapshot</code></span></span>
+<span class="headerright">POST:  <code>/v1/volumes/${ID}?action=snapshot</code></span></span>
 <div class="action-contents">
 
 <br>

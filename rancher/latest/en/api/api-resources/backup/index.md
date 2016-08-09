@@ -26,14 +26,8 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 
 ### Operations
 {::options parse_block_html="true" /}
-
-
-
-
 <a id="delete"></a>
-<div class="action">
-<span class="header">Delete
-<span class="headerright">DELETE:  <code>${links.self}</code></span></span>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/backups/${ID}</code></span></span>
 <div class="action-contents">
 {% highlight json %}
 

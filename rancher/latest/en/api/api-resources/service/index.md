@@ -42,7 +42,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 ### Operations
 {::options parse_block_html="true" /}
 <a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/service</code></span></span>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/services</code></span></span>
 <div class="action-contents">
 {% highlight json %}
 {
@@ -227,14 +227,15 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 }
 {% endhighlight %}
 </div>
+</div><a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/services/${ID}</code></span></span>
+<div class="action-contents">
+{% highlight json %}
+
+{% endhighlight %}
 </div>
-
-
-
-<a id="update"></a>
-<div class="action">
-<span class="header">Update
-<span class="headerright">PUT:  <code>${links.self}</code></span></span>
+</div><a id="update"></a>
+<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/services/${ID}</code></span></span>
 <div class="action-contents">
 {% highlight json %}
 {
@@ -255,23 +256,11 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 </div>
 </div>
 
-
-<a id="delete"></a>
-<div class="action">
-<span class="header">Delete
-<span class="headerright">DELETE:  <code>${links.self}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-
-{% endhighlight %}
-</div>
-</div>
-
 ### Actions
 <div class="action">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>/v1/services/${ID}/?action=activate</code></span></span>
+<span class="headerright">POST:  <code>/v1/services/${ID}?action=activate</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -284,7 +273,7 @@ activate
 <div class="action">
 <span class="header">
 addservicelink
-<span class="headerright">POST:  <code>/v1/services/${ID}/?action=addservicelink</code></span></span>
+<span class="headerright">POST:  <code>/v1/services/${ID}?action=addservicelink</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -304,7 +293,7 @@ addservicelink
 <div class="action">
 <span class="header">
 cancelrollback
-<span class="headerright">POST:  <code>/v1/services/${ID}/?action=cancelrollback</code></span></span>
+<span class="headerright">POST:  <code>/v1/services/${ID}?action=cancelrollback</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -317,7 +306,7 @@ cancelrollback
 <div class="action">
 <span class="header">
 cancelupgrade
-<span class="headerright">POST:  <code>/v1/services/${ID}/?action=cancelupgrade</code></span></span>
+<span class="headerright">POST:  <code>/v1/services/${ID}?action=cancelupgrade</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -330,7 +319,7 @@ cancelupgrade
 <div class="action">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>/v1/services/${ID}/?action=deactivate</code></span></span>
+<span class="headerright">POST:  <code>/v1/services/${ID}?action=deactivate</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -343,7 +332,7 @@ deactivate
 <div class="action">
 <span class="header">
 finishupgrade
-<span class="headerright">POST:  <code>/v1/services/${ID}/?action=finishupgrade</code></span></span>
+<span class="headerright">POST:  <code>/v1/services/${ID}?action=finishupgrade</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -356,7 +345,7 @@ finishupgrade
 <div class="action">
 <span class="header">
 removeservicelink
-<span class="headerright">POST:  <code>/v1/services/${ID}/?action=removeservicelink</code></span></span>
+<span class="headerright">POST:  <code>/v1/services/${ID}?action=removeservicelink</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -376,7 +365,7 @@ removeservicelink
 <div class="action">
 <span class="header">
 restart
-<span class="headerright">POST:  <code>/v1/services/${ID}/?action=restart</code></span></span>
+<span class="headerright">POST:  <code>/v1/services/${ID}?action=restart</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -395,7 +384,7 @@ restart
 <div class="action">
 <span class="header">
 rollback
-<span class="headerright">POST:  <code>/v1/services/${ID}/?action=rollback</code></span></span>
+<span class="headerright">POST:  <code>/v1/services/${ID}?action=rollback</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -408,7 +397,7 @@ rollback
 <div class="action">
 <span class="header">
 setservicelinks
-<span class="headerright">POST:  <code>/v1/services/${ID}/?action=setservicelinks</code></span></span>
+<span class="headerright">POST:  <code>/v1/services/${ID}?action=setservicelinks</code></span></span>
 <div class="action-contents">
 
 <br>

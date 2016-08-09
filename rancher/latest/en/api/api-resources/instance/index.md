@@ -24,12 +24,11 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 
 
 
-
 ### Actions
 <div class="action">
 <span class="header">
 console
-<span class="headerright">POST:  <code>/v1/instances/${ID}/?action=console</code></span></span>
+<span class="headerright">POST:  <code>/v1/instances/${ID}?action=console</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -43,7 +42,7 @@ console
 <div class="action">
 <span class="header">
 restart
-<span class="headerright">POST:  <code>/v1/instances/${ID}/?action=restart</code></span></span>
+<span class="headerright">POST:  <code>/v1/instances/${ID}?action=restart</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -56,7 +55,7 @@ restart
 <div class="action">
 <span class="header">
 start
-<span class="headerright">POST:  <code>/v1/instances/${ID}/?action=start</code></span></span>
+<span class="headerright">POST:  <code>/v1/instances/${ID}?action=start</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -69,7 +68,7 @@ start
 <div class="action">
 <span class="header">
 stop
-<span class="headerright">POST:  <code>/v1/instances/${ID}/?action=stop</code></span></span>
+<span class="headerright">POST:  <code>/v1/instances/${ID}?action=stop</code></span></span>
 <div class="action-contents">
 
 <br>

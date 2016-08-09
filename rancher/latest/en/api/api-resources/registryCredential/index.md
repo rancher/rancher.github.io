@@ -27,7 +27,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 ### Operations
 {::options parse_block_html="true" /}
 <a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/registryCredential</code></span></span>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/registryCredentials</code></span></span>
 <div class="action-contents">
 {% highlight json %}
 {
@@ -40,14 +40,15 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 }
 {% endhighlight %}
 </div>
+</div><a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/registryCredentials/${ID}</code></span></span>
+<div class="action-contents">
+{% highlight json %}
+
+{% endhighlight %}
 </div>
-
-
-
-<a id="update"></a>
-<div class="action">
-<span class="header">Update
-<span class="headerright">PUT:  <code>${links.self}</code></span></span>
+</div><a id="update"></a>
+<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/registryCredentials/${ID}</code></span></span>
 <div class="action-contents">
 {% highlight json %}
 {
@@ -61,23 +62,11 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 </div>
 </div>
 
-
-<a id="delete"></a>
-<div class="action">
-<span class="header">Delete
-<span class="headerright">DELETE:  <code>${links.self}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-
-{% endhighlight %}
-</div>
-</div>
-
 ### Actions
 <div class="action">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>/v1/registryCredentials/${ID}/?action=activate</code></span></span>
+<span class="headerright">POST:  <code>/v1/registryCredentials/${ID}?action=activate</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -90,7 +79,7 @@ activate
 <div class="action">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>/v1/registryCredentials/${ID}/?action=deactivate</code></span></span>
+<span class="headerright">POST:  <code>/v1/registryCredentials/${ID}?action=deactivate</code></span></span>
 <div class="action-contents">
 
 <br>
