@@ -3,8 +3,6 @@ title: API Common Resource Fields
 layout: rancher-default
 version: latest
 lang: en
-redirect_from:
-  - /rancher/api/common/
 ---
 
 ## Common Resource Fields

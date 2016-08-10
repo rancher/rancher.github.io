@@ -3,8 +3,7 @@ title: Adding Service Alias
 layout: rancher-default
 version: latest
 lang: en
-redirect_from:
-  - rancher/rancher-ui/applications/stacks/adding-service-alias/
+
 ---
 
 ## Adding Service Alias
@@ -16,7 +15,7 @@ By adding a service alias, it provides the ability to point to service aliases i
 
 Inside your stack, you add a service alias by clicking on the dropdown icon next to the **Add Service** button. Select **Service Alias**. Alternatively, if you are viewing the stacks at the stack level, the same **Add Service** dropdown is visible for each specific stack.
 
-You will need to provide a **Name** and if desired, **Description** of the service. The **Name** will be the service alias for the service that you select. 
+You will need to provide a **Name** and if desired, **Description** of the service. The **Name** will be the service alias for the service that you select.
 
 Select the target(s) that you want to add the alias to. The list of available targets is any service that is already created in the stack. Finally, click **Create**.
 

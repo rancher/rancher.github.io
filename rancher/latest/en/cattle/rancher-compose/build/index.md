@@ -3,8 +3,6 @@ title: Building with AWS S3 in Rancher Compose
 layout: rancher-default
 version: latest
 lang: en
-redirect_from:
-  - rancher/rancher-compose/build/
 ---
 
 ## Building with AWS S3
@@ -19,12 +17,12 @@ Docker builds are supported in two ways.  First is to set `build:` to a git or H
 * AWS account
 * Rancher Server running with 1 Host
 
-In our example, we'll define our application in the `docker-compose.yml` and place the file in a `composetest` directory. The compose file defines a service called `web`, that opens port `5000` of the container to be exposed on the host. There is also a link to a service called `redis`. The application running inside the `web` container will also be able to reach the `redis` container by its hostname `redis`. 
+In our example, we'll define our application in the `docker-compose.yml` and place the file in a `composetest` directory. The compose file defines a service called `web`, that opens port `5000` of the container to be exposed on the host. There is also a link to a service called `redis`. The application running inside the `web` container will also be able to reach the `redis` container by its hostname `redis`.
 
 ```yaml
 web:
   build: .
-  ports: 
+  ports:
     - "5000:5000"
   links:
     - redis
@@ -40,9 +38,9 @@ web:
   scale: 3
 ```
 
-Once the files are set for Rancher Compose, the next step is to write the application itself and steps to build it. 
+Once the files are set for Rancher Compose, the next step is to write the application itself and steps to build it.
 
-Using the example from the `docker-compose` documentation, we'll create a filed named `app.py`. The application talks to a host called `redis`, which is expected to be running a redis KV store. It increments the value of a key in the store called `hits` and retrieves it. 
+Using the example from the `docker-compose` documentation, we'll create a filed named `app.py`. The application talks to a host called `redis`, which is expected to be running a redis KV store. It increments the value of a key in the store called `hits` and retrieves it.
 
 ```yaml
 from flask import Flask
@@ -67,7 +65,7 @@ flask
 redis
 ```
 
-Now, let's define the steps to build the application using a `Dockerfile`. Inside the `Dockerfile`, the instruction define how the application container should be built. 
+Now, let's define the steps to build the application using a `Dockerfile`. Inside the `Dockerfile`, the instruction define how the application container should be built.
 
 ```
 FROM python:2.7
@@ -90,7 +88,7 @@ Default output format [None]:
 $ rancher-compose --url URL_of_Rancher --access-key username_of_API_key --secret-key password_of_API_key up
 ```
 
-With the command, the web container should be started on a host in your Rancher server. It will first upload the current directory to S3, which can be verified by going to S3 UI and checking for a new upload. After the image is uploaded, it will download it to the host and build a container using the files that were provided. 
+With the command, the web container should be started on a host in your Rancher server. It will first upload the current directory to S3, which can be verified by going to S3 UI and checking for a new upload. After the image is uploaded, it will download it to the host and build a container using the files that were provided.
 
 ### Troubleshooting S3 Builds
 
@@ -102,5 +100,3 @@ $ docker build -t test .
 # Test running the newly built image
 $ docker run test
 ```
-
-
