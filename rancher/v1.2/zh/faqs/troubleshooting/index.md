@@ -3,7 +3,8 @@ title: Troubleshooting FAQs about Rancher
 layout: rancher-default
 version: v1.2
 lang: zh
-
+redirect_from:
+  - /rancher/v1.2/zh/faqs/
 ---
 
 ## Troubleshooting FAQs
