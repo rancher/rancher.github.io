@@ -3,8 +3,7 @@ title: Health Checks in Rancher
 layout: rancher-default
 version: latest
 lang: en
-redirect_from:
-  - rancher/rancher-services/health-checks/
+
 ---
 
 ## Health Checks
@@ -22,13 +21,13 @@ Rancher handles network partitions and is more efficient than client-based healt
 
 Use the following options to configure Health Checks:
 
-**Check type**: There are two types of checks - _TCP Connection Opens_ (only verifies that the port is open) and _HTTP Responds 2xx/3xx_ (performs an HTTP request and ensures a good response is received). 
+**Check type**: There are two types of checks - _TCP Connection Opens_ (only verifies that the port is open) and _HTTP Responds 2xx/3xx_ (performs an HTTP request and ensures a good response is received).
 
 **HTTP request**: If the check is of type _HTTP Responds 2xx/3xx_, you must specify a URL path to be queried. You can select the request method (`GET`, `POST`, etc) as well as the HTTP version (`HTTP/1.0`, `HTTP/1.1`).
 
 **Port**: The port to perform the check against.
 
-**Initializing Timeout:** The number of milliseconds before we exit initializing. 
+**Initializing Timeout:** The number of milliseconds before we exit initializing.
 
 **Check interval**: The number of milliseconds between checks.
 
@@ -38,7 +37,7 @@ Use the following options to configure Health Checks:
 
 **Unhealthy threshold**: The number of failed check responses before a (currently marked healthy) container is considered unhealthy.
 
-**When Unhealthy**: There are 3 options of what to do when a container is considered unhealthy. `Take no action` means that the container will remain in unhealthy state. `Re-create` means that Rancher will destroy the unhealthy container and create a new container for the service.  `Re-create, only when at least X container is healthy` means that if there are `X` number of containers healthy, then the unhealthy container will be destroyed and re-created. 
+**When Unhealthy**: There are 3 options of what to do when a container is considered unhealthy. `Take no action` means that the container will remain in unhealthy state. `Re-create` means that Rancher will destroy the unhealthy container and create a new container for the service.  `Re-create, only when at least X container is healthy` means that if there are `X` number of containers healthy, then the unhealthy container will be destroyed and re-created.
 
 ### Adding Health Checks in the UI
 
@@ -48,16 +47,16 @@ For [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/ad
 
 Using [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/), health checks can be added in the `rancher-compose.yml`.
 
-In our example, we show the health check configuration for the three different strategies if a container is found unhealthy. 
+In our example, we show the health check configuration for the three different strategies if a container is found unhealthy.
 
 ```yaml
 service1:
-  scale: 1 
+  scale: 1
   health_check:
     # Which port to perform the check against
     port: 80
     # For TCP, request_line needs to be '' or not shown
-    # TCP Example: 
+    # TCP Example:
     # request_line: ''
     request_line: GET /healthcheck HTTP/1.0
     # Interval is measured in milliseconds
@@ -71,7 +70,7 @@ service1:
     # Response timeout is measured in milliseconds
     response_timeout: 2000
 service2:
-  scale: 1 
+  scale: 1
   health_check:
     # Which port to perform the check against
     port: 80
@@ -86,7 +85,7 @@ service2:
     # Response timeout is measured in milliseconds
     response_timeout: 2000
 service3:
-  scale: 1 
+  scale: 1
   health_check:
     # Which port to perform the check against
     port: 80
@@ -95,7 +94,7 @@ service3:
     initializing_timeout: 60000
     unhealthy_threshold: 3
     # Strategy for what to do when unhealthy
-    # In this service, Rancher will recreate any healthy containers only if there is at least 1 container 
+    # In this service, Rancher will recreate any healthy containers only if there is at least 1 container
     # that is healthy
     strategy: recreateOnQuorum
     recreate_on_quorum_strategy_config:
@@ -121,5 +120,3 @@ Depending on the result of health checks, a container is either in the green or 
 The time taken to detect a failure is controlled through the 'interval' value, which is defined when creating the health check through either compose or the UI.
 
 > **Note:** The failure recovery actions are only executed after the container has become _green_. That is if a service has a long start-up time, the container won't be immediately restarted because the service takes longer than 2000ms to start. The Health Check first need to turn the container green before taking any other actions.
-
-

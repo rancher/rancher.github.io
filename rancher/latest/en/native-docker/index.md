@@ -1,20 +1,19 @@
 ---
-title: Using Native Docker CLI with Rancher 
+title: Using Native Docker CLI with Rancher
 layout: rancher-default
 version: latest
 lang: en
-redirect_from:
-  - rancher/native-docker/
+
 ---
 
-## Using Native Docker CLI with Rancher 
+## Using Native Docker CLI with Rancher
 ---
 
 Rancher integrates with the native docker CLI so that it can be used alongside other DevOps and Docker tools. At a high level, this means that if you start, stop, or destroy containers outside of Rancher, Rancher will detect those changes and update accordingly.
 
 ### Docker Event Monitoring
 
-Rancher updates in real time by monitoring Docker events on all hosts. So when a container is started, stopped, or destroyed outside of Rancher (for example by executing `docker stop sad_einstein` directly on a host), Rancher will detect that change and update its states accordingly. 
+Rancher updates in real time by monitoring Docker events on all hosts. So when a container is started, stopped, or destroyed outside of Rancher (for example by executing `docker stop sad_einstein` directly on a host), Rancher will detect that change and update its states accordingly.
 
 > **Note:** One current limitation is that we wait until containers are started (not created) to import them to Rancher. Running `docker create ubuntu` will not cause the container to appear in the Rancher UI, but running `docker start ubuntu` or `docker run ubuntu` will.
 

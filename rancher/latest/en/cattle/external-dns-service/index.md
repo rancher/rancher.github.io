@@ -3,8 +3,7 @@ title: External DNS Service using Route53
 layout: rancher-default
 version: latest
 lang: en
-redirect_from:
-  - rancher/rancher-services/dns-service/
+
 ---
 
 ## External DNS Service using Route53
@@ -15,13 +14,13 @@ As part of the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{pag
 ### Best Practices
 
 * For every environment in your Rancher setup, there should be a `route53` service of scale 1.
-* Multiple Rancher instances should not share the same `hosted zone`. 
+* Multiple Rancher instances should not share the same `hosted zone`.
 
 ### Launching Route53 Service
 
-From the **Catalog** tab, you can select the **Route53 DNS Stack**. 
+From the **Catalog** tab, you can select the **Route53 DNS Stack**.
 
-Provide a **Name**, and if desired, **Description** for the stack. 
+Provide a **Name**, and if desired, **Description** for the stack.
 
 In the **Configuration Options**, you'll need to provide the following:
 
@@ -45,7 +44,7 @@ The `route53` service will generate DNS records for only services that have port
 fqdn=<serviceName>.<stackName>.<environmentName>.<yourHostedZoneName>
 ```
 
-On Route 53 in AWS, it will get represented as a Record Set with name=fqdn and value=[ip address of the host(s) where the service is deployed]. Rancher `route53` service will manage only Record Sets that end with <environmentName>.<yourHostedZoneName>. Currently, the default TTL is 300 seconds. 
+On Route 53 in AWS, it will get represented as a Record Set with name=fqdn and value=[ip address of the host(s) where the service is deployed]. Rancher `route53` service will manage only Record Sets that end with <environmentName>.<yourHostedZoneName>. Currently, the default TTL is 300 seconds.
 
 Once DNS record is set on Route 53 on AWS, the generated fqdn will get propagated back to Rancher, and will be set on the **service.fqdn** field. You can find the fqdn field by using the **View in API** from the drop down menu of the service and searching for **fqdn**.
 
@@ -56,7 +55,7 @@ When using the fqdn in a browser, it will be directed to one of the containers i
 
 ### Removing Route53 Service
 
-When the `route53` service is removed from Rancher, the record sets in Amazon Route 53 is **NOT** removed. Those will need to be manually removed by yourself in your Amazon account. 
+When the `route53` service is removed from Rancher, the record sets in Amazon Route 53 is **NOT** removed. Those will need to be manually removed by yourself in your Amazon account.
 
 ### Using a Specific IP for External DNS
 
@@ -67,4 +66,3 @@ Before launching external DNS services, please add the following label to your h
 ```
 io.rancher.host.external_dns_ip=<IP_TO_BE_USED_FOR_EXTERNAL_DNS>
 ```
-

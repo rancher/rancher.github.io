@@ -3,14 +3,13 @@ title: Labels in Rancher
 layout: rancher-default
 version: latest
 lang: en
-redirect_from:
-  - rancher/labels/
+
 ---
 
 ## Labels in Rancher
 ---
 
-Rancher uses labels on services/containers and hosts to help manage different features of Rancher. 
+Rancher uses labels on services/containers and hosts to help manage different features of Rancher.
 
 ### Rancher Compose Labels for Services
 
@@ -23,13 +22,13 @@ Key | Value |Description
 `io.rancher.container.dns`| `true` | Service is able to use Rancher DNS based service discovery to resolve other services and to be resolved by other services. This label is required if you require DNS, when networking is set to `host`.
 `io.rancher.container.hostname_override` | `container_name` | Used to set the hostname of the container to the name of the container (e.g. StackName_ServiceName_CreateIndex)
 `io.rancher.container.start_once` |`true` | Used to run a container once and have it remain in stopped state while the service remains in `active` state
-`io.rancher.container.pull_image` | `always` | Used to always pull a new image before deploying container. 
+`io.rancher.container.pull_image` | `always` | Used to always pull a new image before deploying container.
 `io.rancher.container.requested_ip` | An IP from the 10.42.0.0/16 address space | Allows you to pick a specific IP for a container. Note: If the IP is not available on any host, container will start with a random IP.
-`io.rancher.service.selector.container` |  [_Selector Label_ Values]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/labels/#selector-labels) | Used on a service so that  standalone containers can be selected to join the service DNS. Note: As standalone containers, none of the service actions will affect the standalone container (i.e. deactivate/delete/edit service, healthcheck, etc). 
-`io.rancher.service.selector.link` | [_Selector Label_ Values]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/labels/#selector-labels) | Used on a service to allow  services to be linked to the service based on service labels. Example: Service1 has a label `io.rancher.service.selector.link: foo=bar`. Any services that are added to Rancher that have a `foo=bar` label will automatically be linked to Service1. 
+`io.rancher.service.selector.container` |  [_Selector Label_ Values]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/labels/#selector-labels) | Used on a service so that  standalone containers can be selected to join the service DNS. Note: As standalone containers, none of the service actions will affect the standalone container (i.e. deactivate/delete/edit service, healthcheck, etc).
+`io.rancher.service.selector.link` | [_Selector Label_ Values]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/labels/#selector-labels) | Used on a service to allow  services to be linked to the service based on service labels. Example: Service1 has a label `io.rancher.service.selector.link: foo=bar`. Any services that are added to Rancher that have a `foo=bar` label will automatically be linked to Service1.
 `io.rancher.scheduler.global` | `true` | Used to set [global services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#global-service)
-`io.rancher.scheduler.affinity:host_label` | Key Value Pair of Host Label| Used to schedule containers on hosts based on [host label]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#finding-hosts-with-host-labels) 
-`io.rancher.scheduler.affinity:container_label` | Key Value Pair of Any Container Label | Used to schedule containers on hosts based on [container label or service name]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#finding-hosts-with-container-labels) 
+`io.rancher.scheduler.affinity:host_label` | Key Value Pair of Host Label| Used to schedule containers on hosts based on [host label]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#finding-hosts-with-host-labels)
+`io.rancher.scheduler.affinity:container_label` | Key Value Pair of Any Container Label | Used to schedule containers on hosts based on [container label or service name]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#finding-hosts-with-container-labels)
 `io.rancher.scheduler.affinity:container` | Name of Container | Used to schedule containers on hosts based on [container name]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#finding-hosts-with-container-names)
 
 <br>
@@ -38,12 +37,12 @@ Key | Value |Description
 
 #### Selector Labels
 
-Using a _selector label_ (i.e. `io.rancher.service.selector.link`, `io.rancher.service.selector.container`), Rancher can identify services/containers by their labels and have them automatically linked to the service. _Selector labels_ are evaluated in two scenarios. Scenario 1 is when a _selector label_ is added to a service. In Scenario 1, all existing labels are evaluated to see if they match the _selector label_. Scenario 2 is when a service already has a _selector label_. In Scenario 2, any new services/containers added to Rancher is checked to see if it qualifies to be linked. A _selector label_ can be made of multiple requirements, which are comma separated. If there are multiple requirements, all requirements must be satisfied so the comma separator acts as an **AND** logical operator. 
+Using a _selector label_ (i.e. `io.rancher.service.selector.link`, `io.rancher.service.selector.container`), Rancher can identify services/containers by their labels and have them automatically linked to the service. _Selector labels_ are evaluated in two scenarios. Scenario 1 is when a _selector label_ is added to a service. In Scenario 1, all existing labels are evaluated to see if they match the _selector label_. Scenario 2 is when a service already has a _selector label_. In Scenario 2, any new services/containers added to Rancher is checked to see if it qualifies to be linked. A _selector label_ can be made of multiple requirements, which are comma separated. If there are multiple requirements, all requirements must be satisfied so the comma separator acts as an **AND** logical operator.
 
 ```
 # One of the container labels must have a key equal to `foo1` and value equal to `bar1`
 foo1 = bar1
-# One of the container labels must have a key equal to `foo2` with a value not equal to `bar2` 
+# One of the container labels must have a key equal to `foo2` with a value not equal to `bar2`
 foo2 != bar2
 # One of the container labels must have a key equal to `foo3`, value of the label does not matter
 foo3
@@ -54,12 +53,12 @@ foo5 notin (bar3, bar4)
 ```
 <br>
 
-> **Note:** If there is a label with a value that contains a comma in it, the selector will not be able to match with the label as the _selector label_ can match on any key with no associated value. Example: A label of `io.rancher.service.selector.link: foo=bar1,bar2` would translate to any service that have one label must be key equals to `foo` and value equal to `bar1` **AND** another label with key equal to `bar2`. It would NOT pick up a service that has a label with key equal to `foo` and value equal to `bar1,bar2`. 
+> **Note:** If there is a label with a value that contains a comma in it, the selector will not be able to match with the label as the _selector label_ can match on any key with no associated value. Example: A label of `io.rancher.service.selector.link: foo=bar1,bar2` would translate to any service that have one label must be key equals to `foo` and value equal to `bar1` **AND** another label with key equal to `bar2`. It would NOT pick up a service that has a label with key equal to `foo` and value equal to `bar1,bar2`.
 
 #### Example of a comma separated list
 
 ```
-service1: 
+service1:
   labels:
     # Selector label added to pick up other services
     io.rancher.service.selector.link: hello != world, hello1 in (world1, world2), foo = bar
@@ -96,7 +95,7 @@ Key | Description
 
 ### Host Labels
 
-[Host labels]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) can be added to a host during registration of a host or added later by **Editing** the host. 
+[Host labels]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) can be added to a host during registration of a host or added later by **Editing** the host.
 
 Key | Value |Description
 ----|-----|---

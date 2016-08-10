@@ -3,10 +3,7 @@ title: Overview of Rancher
 layout: rancher-default
 version: latest
 lang: en
-redirect_from:
-  - /
-  - rancher/
-  - rancher/latest/
+
 ---
 
 ## Overview of Rancher
@@ -18,7 +15,7 @@ Rancher software consists of four major components:
 
 ### Infrastructure Orchestration
 
-Rancher takes in raw computing resources from any public or private cloud in the form of Linux [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/). Each Linux host can be a virtual machine or physical machine. Rancher does not expect more from each host than CPU, memory, local disk storage, and network connectivity. From Rancher’s perspective, a VM instance from a cloud provider and a bare metal server hosted at a colo facility are indistinguishable. 
+Rancher takes in raw computing resources from any public or private cloud in the form of Linux [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/). Each Linux host can be a virtual machine or physical machine. Rancher does not expect more from each host than CPU, memory, local disk storage, and network connectivity. From Rancher’s perspective, a VM instance from a cloud provider and a bare metal server hosted at a colo facility are indistinguishable.
 
 Rancher implements a portable layer of infrastructure services designed specifically to power containerized applications. Rancher infrastructure services include [networking]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking), [storage]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/storage-service/), [load balancer]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/load-balancer/), [DNS]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/dns-service/), and security. Rancher infrastructure services are typically deployed as containers themselves, so that the same Rancher infrastructure service can run on any Linux hosts from any cloud.
 

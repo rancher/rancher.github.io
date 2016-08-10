@@ -3,8 +3,6 @@ title: Setting up Access Control using the API
 layout: rancher-default
 version: latest
 lang: en
-redirect_from:
-  - /rancher/api/access-control 
 ---
 
 ## Setting up Access Control using the API

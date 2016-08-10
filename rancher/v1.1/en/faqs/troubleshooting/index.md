@@ -3,7 +3,8 @@ title: Troubleshooting FAQs about Rancher
 layout: rancher-default-v1.1
 version: v1.1
 lang: en
-
+redirect_from:
+  - /rancher/v1.1/en/faqs/
 ---
 
 ## Troubleshooting FAQs
@@ -13,13 +14,13 @@ Please read more detailed FAQs about [Rancher Server]({{site.baseurl}}/rancher/{
 
 This section assumes you were able to successfully start Rancher server and add hosts.
 
-### Services/Containers 
+### Services/Containers
 
-#### Why can I only edit the name of a container? 
+#### Why can I only edit the name of a container?
 
-Docker containers are immutable (not changeable) after creation. The only things you can edit are things that we store that aren't really part of the Docker container. This includes restarting, it's still the same container if you stop and start it. You will need to remove and recreate a container to change anything else. 
+Docker containers are immutable (not changeable) after creation. The only things you can edit are things that we store that aren't really part of the Docker container. This includes restarting, it's still the same container if you stop and start it. You will need to remove and recreate a container to change anything else.
 
-You can **Clone**, which will pre-fill the **Add Container** screen with all the settings from an existing container. If you forget one thing, you can clone the container, change it, and then delete the old container. 
+You can **Clone**, which will pre-fill the **Add Container** screen with all the settings from an existing container. If you forget one thing, you can clone the container, change it, and then delete the old container.
 
 #### How do linked containers/services work in Rancher?
 
@@ -35,7 +36,7 @@ If you run docker logs -f rancher-agent and the logs show messages about an expi
 
 ### Cross Host Communication
 
-If containers on different hosts cannot ping each other, there are some common scenarios that could be the issue. 
+If containers on different hosts cannot ping each other, there are some common scenarios that could be the issue.
 
 #### Are the IPs of the hosts correct in the UI?
 
@@ -100,7 +101,7 @@ DEFAULT_FORWARD_POLICY="ACCEPT"
 
 #### The subnet used by Rancher is already used in my network and prohibiting the managed network. How do I change the subnet?
 
-In order for Rancher to work with a new subnet, you will need to update a setting in the API and create new environments. None of the existing environments in Rancher server (including the Default one) will use the new subnet after changing the setting. 
+In order for Rancher to work with a new subnet, you will need to update a setting in the API and create new environments. None of the existing environments in Rancher server (including the Default one) will use the new subnet after changing the setting.
 
 To change the setting in your API, you need to go to the following API page:
 
@@ -108,13 +109,13 @@ To change the setting in your API, you need to go to the following API page:
 http://<rancher_server_ip>:8080/v1/settings/docker.network.subnet.cidr
 ```
 
-Click on the **Edit** under the **Operations** section. Update the value from `10.42.0.0/16` to a subnet that works for you. 
+Click on the **Edit** under the **Operations** section. Update the value from `10.42.0.0/16` to a subnet that works for you.
 
-Click on **Show Request** and finally **Send Request**. After the request is sent, you can click on **Reload** and see that the value has been updated in the API. 
+Click on **Show Request** and finally **Send Request**. After the request is sent, you can click on **Reload** and see that the value has been updated in the API.
 
-After the value is updated, you'll need to create new environments to have containers start using the new subnet for the managed network. 
+After the value is updated, you'll need to create new environments to have containers start using the new subnet for the managed network.
 
-> **Note:** Any existing environment prior to the API change will not be updated to use the new subnet. 
+> **Note:** Any existing environment prior to the API change will not be updated to use the new subnet.
 
 ### Network Agents
 
@@ -122,21 +123,21 @@ After the value is updated, you'll need to create new environments to have conta
 
 ### How can I see if my DNS is set up correctly?
 
-If you want to see the configuration of the Rancher DNS setup, you will need to exec into any network agent in your setup. You can use the UI and select **Execute Shell** on the container. 
+If you want to see the configuration of the Rancher DNS setup, you will need to exec into any network agent in your setup. You can use the UI and select **Execute Shell** on the container.
 
 ```bash
 $ cat /var/lib/cattle/etc/cattle/dns/answers.json
 ```
 
-#### My network agent keeps restarting. Why? 
+#### My network agent keeps restarting. Why?
 
-If your host has IPV6, it will cause the network agent to keep restarting. Currently, Rancher doesn't support hosts with IPV6. 
+If your host has IPV6, it will cause the network agent to keep restarting. Currently, Rancher doesn't support hosts with IPV6.
 
 ### Networking
 
 #### Where can I find logs for networking?
 
-If you are having issues with networking inside Rancher, you can obtain the following logs from the **Network Agent** container. 
+If you are having issues with networking inside Rancher, you can obtain the following logs from the **Network Agent** container.
 
 ```
 /var/log/rancher-net.log
@@ -147,7 +148,7 @@ If you are having issues with networking inside Rancher, you can obtain the foll
 
 ##### Why are my containers unable to connect to network?
 
-If you run a container on the host (i.e. `docker run -it ubuntu`) and the container cannot talk to the internet or anything outside the host, then you might have hit a networking issue. 
+If you run a container on the host (i.e. `docker run -it ubuntu`) and the container cannot talk to the internet or anything outside the host, then you might have hit a networking issue.
 
 CentOS will by default set `/proc/sys/net/ipv4/ip_forward` to `0`, which will essentially bork all networking for Docker.  Docker sets this value to `1` but if you run `service restart networking` on CentOS it sets it back to `0`.
 
@@ -157,13 +158,13 @@ CentOS will by default set `/proc/sys/net/ipv4/ip_forward` to `0`, which will es
 
 #### How can I see the configuration of my Load Balancer?
 
-If you want to see the configuration of the load balancer, you will need to exec into the specific _LB Agent_ container and look for the configuration file. You can use the UI and select **Execute Shell** on the container. 
+If you want to see the configuration of the load balancer, you will need to exec into the specific _LB Agent_ container and look for the configuration file. You can use the UI and select **Execute Shell** on the container.
 
 ```bash
 $ cat /etc/haproxy/haproxy.cfg
 ```
 
-This file will provide all the configuration details of the load balancer. 
+This file will provide all the configuration details of the load balancer.
 
 ### Authentication
 
@@ -171,13 +172,13 @@ This file will provide all the configuration details of the load balancer.
 
 #### Help! I turned on [Access Control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) and can no longer access Rancher. How do I reset Rancher to disable Access Control?
 
-If something goes wrong with your authentication (like your GitHub authentication getting corrupted), then you may be locked out of Rancher. To re-gain access to Rancher, you'll need to turn off Access Control in the database. In order to do so, you'll need access to the machine that is running Rancher Server. 
+If something goes wrong with your authentication (like your GitHub authentication getting corrupted), then you may be locked out of Rancher. To re-gain access to Rancher, you'll need to turn off Access Control in the database. In order to do so, you'll need access to the machine that is running Rancher Server.
 
 ```bash
 $ docker exec -it <rancher_server_container_ID> mysql
 ```
 
-> **Note:** The `<rancher_server_container_ID>` will be the container that has the Rancher database. If you [upgraded]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/) and created a Rancher data container, you'll need to use the ID of the Rancher data container instead of the Rancher server container. 
+> **Note:** The `<rancher_server_container_ID>` will be the container that has the Rancher database. If you [upgraded]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/) and created a Rancher data container, you'll need to use the ID of the Rancher data container instead of the Rancher server container.
 
 Access the cattle database.
 
@@ -204,7 +205,4 @@ Confirm the changes have been made in the `setting` table.
 mysql> select * from setting;  
 ```
 
-It may take ~1 minute before the authentication will be turned off in the UI, but you will be able to refresh the webpage and access Rancher with access control turned off. 
-
-
-
+It may take ~1 minute before the authentication will be turned off in the UI, but you will be able to refresh the webpage and access Rancher with access control turned off.

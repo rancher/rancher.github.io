@@ -3,14 +3,13 @@ title: How to use the Rancher API
 layout: rancher-default
 version: latest
 lang: en
-redirect_from:
-  - /rancher/api/
+
 ---
 
 ## How to use the API
 ---
 
-The API has its own user interface accessible from a web browser.  This is an easy way to see resources, perform actions, and see the equivalent cURL or HTTP request & response.  To access it, click on **API** to find the URL endpoint. 
+The API has its own user interface accessible from a web browser.  This is an easy way to see resources, perform actions, and see the equivalent cURL or HTTP request & response.  To access it, click on **API** to find the URL endpoint.
 
 ### Terminology
 
