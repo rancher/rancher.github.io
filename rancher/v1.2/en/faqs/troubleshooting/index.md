@@ -13,7 +13,7 @@ redirect_from:
 ## Troubleshooting FAQs
 ---
 
-Please read more detailed FAQs about [Rancher Server]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/faqs/server) and [Rancher Agent/Hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/faqs/agent/).
+Please read more detailed FAQs about [Rancher Server]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/faqs/server) and [Rancher Agent/Hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/faqs/agents/).
 
 This section assumes you were able to successfully start Rancher server and add hosts.
 
