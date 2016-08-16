@@ -43,13 +43,13 @@ When RancherOS console has reloaded, you will have logged into the persistent co
 
 #### Installing ZFS on Ubuntu Console
 
-Based on the [Ubuntu ZFS docs](https://wiki.ubuntu.com/Kernel/Reference/ZFS), you only need to install `zfsutils-linux` package into the Ubuntu console to enable ZFS (all the other necessary packages will be installed as its dependencies).
+Based on the [Ubuntu ZFS docs](https://wiki.ubuntu.com/Kernel/Reference/ZFS), you only need to install `zfs` package into the Ubuntu console to enable ZFS (all the other necessary packages will be installed as its dependencies).
 
 ```bash
 # Adding ZFS PPA and updating the package cache
 $ sudo apt update
 $ sudo apt upgrade
-$ sudo apt install zfsutils-linux
+$ sudo apt install zfs
 ```
 
 #### Mounting ZFS filesystems on boot
@@ -99,16 +99,17 @@ First, you need to stop `docker` system service and wipe out `/var/lib/docker` f
 
 ```bash
 $ sudo system-docker stop docker
+$ sudo rm -rf /var/lib/docker/*
 ```
 
-To enable ZFS as the storage driver for Docker, you'll need to create a ZFS filesystem for Docker:
+To enable ZFS as the storage driver for Docker, you'll need to create a ZFS filesystem for Docker (and make sure it's mounted):
 
 ```bash
 $ sudo zfs create zpool1/docker
 $ sudo zfs list -o name,mountpoint,mounted
 ```
 
-At this point you'll have a ZFS filesystem created and mounted at `/zpool1/docker`. According to [Docker ZFS storage docs](https://docs.docker.com/engine/userguide/storagedriver/zfs-driver/), if `/var/lib/docker` is a ZFS filesystem, Docker daemon will automatically use `zfs` as its storage driver.
+At this point you'll have a ZFS filesystem created and mounted at `/zpool1/docker`. According to [Docker ZFS storage docs](https://docs.docker.com/engine/userguide/storagedriver/zfs-driver/), if docker root dir is a ZFS filesystem, Docker daemon will automatically use `zfs` as its storage driver.
 
 Now you'll need to remove `-s overlay` (or any other storage driver) from docker daemon args to allow docker to automatically detect `zfs`:
 
