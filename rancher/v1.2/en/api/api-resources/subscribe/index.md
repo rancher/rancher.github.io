@@ -1,7 +1,7 @@
 ---
 title: Rancher API - subscribe
 layout: rancher-api-default
-version: latest
+version: v1.2
 lang: en
 ---
 

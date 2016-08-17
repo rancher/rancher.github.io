@@ -13,9 +13,9 @@ All resources in Rancher are owned or created by an account.
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-description | string | Optional | Yes | - |
+description | string | Optional | Yes | - | 
 id | int | - | - | - | The unique identifier for the account
-name | string | Optional | Yes | - |
+name | string | Optional | Yes | - | 
 
 <br>
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
@@ -48,3 +48,5 @@ deactivate
 
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/account/">account</a> resource</span>
 </div></div>
+
+

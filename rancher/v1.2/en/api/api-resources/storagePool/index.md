@@ -1,7 +1,7 @@
 ---
 title: Rancher API - storagePool
 layout: rancher-api-default
-version: latest
+version: v1.2
 lang: en
 ---
 

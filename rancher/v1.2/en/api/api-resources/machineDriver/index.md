@@ -1,7 +1,7 @@
 ---
 title: Rancher API - machineDriver
 layout: rancher-api-default
-version: latest
+version: v1.2
 lang: en
 ---
 
@@ -18,7 +18,7 @@ builtin | boolean | Optional | - | - |
 checksum | string | Optional | Yes | - | 
 defaultActive | boolean | - | - | - | 
 description | string | Optional | Yes | - | 
-externalId | string | Optional | - | - | 
+externalId | string | Optional | Yes | - | 
 id | int | - | - | - | The unique identifier for the machineDriver
 name | string | - | - | - | 
 uiUrl | string | Optional | Yes | - | 
