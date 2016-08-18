@@ -19,7 +19,7 @@ Development is easiest done with QEMU on Linux. OS X works too, although QEMU do
 * make
 * Docker 1.10.3+ 
 
-```bash
+```
 $ make
 ```
 

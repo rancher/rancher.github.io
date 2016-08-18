@@ -15,7 +15,7 @@ Once you've installed your AWS CLI, use this command to launch an EC2 instance w
 
 > **Note:** Check the RancherOS [README](https://github.com/rancher/os/blob/master/README.md) for AMI names for each region. We support PV and HVM types of AMIs. 
 
-```bash
+```
 $ aws ec2 run-instances --image-id ami-ID# --count 1 --instance-type t2.micro --key-name MySSHKeyName --security-groups sg-name
 ```
 
@@ -55,13 +55,13 @@ Let’s walk through how to import and create a RancherOS on EC2 machine using t
 
 From a command line, log into the EC2 Instance.
 
-```bash
+```
 $ ssh -i /Directory/of/MySSHKeyName.pem rancher@<ip-of-ec2-instance>
 ```
 
 If you have issues logging into RancherOS, try using this command to help debug the issue.
 
-```bash
+```
 $ ssh -v -i /Directory/of/MySSHKeyName.pem rancher@<ip-of-ec2-instance>
 ```
 

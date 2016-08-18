@@ -16,7 +16,7 @@ Remember, all `ros` commands needs to be used with `sudo` or as a `root` user.
 
 To have docker secured by TLS you need to set `rancher.docker.tls` to `true`, and generate a set of server and client keys and certificates:
 
-```sh
+```
 $ sudo ros c set rancher.docker.tls true
 $ sudo ros tls gen --server -H localhost -H <hostname1> -H <hostname2> ... -H <hostnameN>
 $ sudo system-docker restart docker
@@ -31,7 +31,7 @@ When you've done that, all the necessary server certificate and key files have b
 You also need client cert and key to access Docker via a TCP socket now:
 
 
-```sh
+```
 $ sudo ros tls gen
   INFO[0000] Out directory (-d, --dir) not specified, using default: /home/rancher/.docker
 ```
@@ -42,7 +42,7 @@ All the docker client TLS files are in `~/.docker` dir now.
 
 Now you can use your client cert to check if you can access Docker via TCP:
 
-```sh
+```
 $ docker --tlsverify version
 ```
 
@@ -53,7 +53,7 @@ Copy the files from `/home/rancher/.docker` to `$HOME/.docker` on your client ma
 On your client machine, set the Docker host and test out if Docker commands work.
 
 
-```bash
+```
 $ export DOCKER_HOST=tcp://<hostname>:2376 DOCKER_TLS_VERIFY=1
 $ docker ps
 ```

@@ -13,7 +13,7 @@ A few services are containers in `created` state. Their purpose is to provide vo
 
 Provides user accessible persistent storage directories, used by console service:
 
-```bash
+```
 /home
 /opt
 ```
@@ -22,7 +22,7 @@ Provides user accessible persistent storage directories, used by console service
 
 Provides docker storage directory, used by console service (and, indirectly, by docker)
 
-```bash
+```
 /var/lib/docker
 ```
 
@@ -30,7 +30,7 @@ Provides docker storage directory, used by console service (and, indirectly, by 
 
 Provides necessary command binaries (read-only), used by system services:
 
-```bash
+```
 /usr/bin/docker-containerd.dist
 /usr/bin/docker-containerd-shim.dist
 /usr/bin/docker-runc.dist
@@ -54,7 +54,7 @@ Provides necessary command binaries (read-only), used by system services:
 
 Provides necessary persistent directories, used by system services:
 
-```bash
+```
 /host/dev
 /etc/docker
 /etc/hosts

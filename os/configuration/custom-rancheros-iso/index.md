@@ -10,7 +10,7 @@ It's easy to build your own RancherOS ISO.
 
 1. Create a clone of the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`.
 
-   ```bash
+   ```
    $ git clone https://github.com/rancher/os.git
    ```
 
@@ -20,7 +20,7 @@ It's easy to build your own RancherOS ISO.
 
      Build Requirements: `bash`, `make`, `docker` (Docker version >= 1.10.3)
 
-   ```bash
+   ```
    $ make
    $ cd dist/artifacts
    $ ls
@@ -77,15 +77,15 @@ NOTE: For faster builds You can use `"kvm"` as the `accelerator` field value if 
 
 Run:
 
-```bash
-packer build gce-qemu.json
+```
+$ packer build gce-qemu.json
 ```
 
 Packer places its output into `output-qemu-googlecompute/packer-qemu-googlecompute` - it's a raw VM disk image. Now you just need to name it `disk.raw` and package it as sparse .tar.gz:
 
-```bash
-mv output-qemu-googlecompute/packer-qemu-googlecompute disk.raw
-tar -czSf rancheros-<RancherOS-Version>.tar.gz disk.raw
+```
+$ mv output-qemu-googlecompute/packer-qemu-googlecompute disk.raw
+$ tar -czSf rancheros-<RancherOS-Version>.tar.gz disk.raw
 ```
 
 NOTE: the last command should be using GNU tar. It might be named `gtar` on your system.

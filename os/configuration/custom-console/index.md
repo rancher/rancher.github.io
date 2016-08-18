@@ -35,7 +35,7 @@ rancher:
 
 You can easily list the available consoles in RancherOS and what their status is with `sudo ros console list`. 
 
-```bash
+```
 $ sudo ros console list
 disabled centos
 disabled debian
@@ -50,7 +50,7 @@ You can view which console is being used by RancherOS by checking which console 
 
 For our example, we'll switch to the Ubuntu console. 
 
-```bash
+```
 $ sudo ros console switch ubuntu
 Switching consoles will
 1. destroy the current console container
@@ -81,7 +81,7 @@ Connection to 127.0.0.1 closed by remote host.
 
 After logging back, you'll be in the Ubuntu console. 
 
-```bash
+```
 $ sudo system-docker ps
 CONTAINER ID        IMAGE                                 COMMAND                  CREATED              STATUS              PORTS               NAMES
 6bf33541b2dc        rancher/os-ubuntuconsole:v0.5.0-rc3   "/usr/sbin/entry.sh /"   About a minute ago   Up About a minute  
@@ -95,7 +95,7 @@ CONTAINER ID        IMAGE                                 COMMAND               
 
 All consoles except the default (busybox) console are persistent. Persistent console means that the console container will remain the same and preserves changes made to its filesystem across reboots. If a container is deleted/rebuilt, state in the console will be lost except what is in the persisted directories.
 
-```bash
+```
 /home
 /opt
 /var/lib/docker
@@ -108,7 +108,7 @@ You can also enable a console that will be changed at the next reboot.
 
 For our example, we'll switch to the Debian console.
 
-```bash
+```
 # Check the console running in System Docker
 $ sudo system-docker ps
 CONTAINER ID        IMAGE                              COMMAND                  CREATED             STATUS              PORTS               NAMES
