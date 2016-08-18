@@ -45,6 +45,23 @@ $ rancher-compose --url http://server_ip:8080 --access-key <username_of_environm
 
 Now, you can use any `docker-compose.yml` file with Rancher Compose to [launch services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#adding-services-with-rancher-compose). The services will automatically be launched in your Rancher instance in the [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) that the environment API key is located in.
 
+### Debugging with Rancher Compose
+
+When working with Rancher Compose, you can set the environment variable, `RANCHER_CLIENT_DEBUG`, to `true`,  which will have all CLI commands print out verbose messages of the API calls being made.
+
+```bash
+# Print verbose messages for all CLI calls
+$ export RANCHER_CLIENT_DEBUG=true
+```
+
+<br>
+
+If you don't want the verbose response on every CLI command, you can pass in `--debug` to the specific command to get the verbose messages.
+
+```bash
+$ rancher-compose --debug up -d
+```
+
 ### Deleting Services/Container
 
 By default, Rancher Compose will not delete containers/services.  This means that if you do two `up` commands in a row, the second `up` will do nothing.  This is because the first up will create everything and leave it running.  Even if you do not pass `-d` to `up`, Rancher Compose will not delete your services.  To delete a service you must use `rm`.
