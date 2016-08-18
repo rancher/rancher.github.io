@@ -124,6 +124,11 @@ Here is an Apache configuration.
 
 </VirtualHost>
 ```
+The mod proxy_wstunnel has to be enabled.
+
+```bash
+$ sudo a2enmod proxy_wstunnel
+```
 
 ## Updating Host Registration
 ---
