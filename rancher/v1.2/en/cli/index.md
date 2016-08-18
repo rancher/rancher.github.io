@@ -44,8 +44,6 @@ Select: 1
 INFO[0017] Saving config to /Users/<username>/.rancher/cli.json
 ```
 
-<br>
-
 #### Using Environment Variables
 
 You can set the following environment variables, `RANCHER_URL`, `RANCHER_ACCESS_KEY` and `RANCHER_SECRET_KEY`.
@@ -68,8 +66,6 @@ If there is more than one environment in your Rancher server you'll also need to
 $ export RANCHER_ENVIRONMENT=<environment_id>
 ```
 
-<br>
-
 #### Passing Options
 
 If you choose not to run `rancher config` or set environment variables, you can pass the same values as options as part of any `rancher` command.
@@ -78,7 +74,20 @@ If you choose not to run `rancher config` or set environment variables, you can 
 $ rancher --url http://server_ip:8080 --access-key <accessKey_of_account_api_key> --secret-key <secretKey_of_account_api_key> --env <environment_id> ps
 ```
 
+### Debugging with Rancher CLI
+
+When working with Rancher CLI, you can set the environment variable, `RANCHER_CLIENT_DEBUG`, to `true`, which will have all CLI commands print out verbose messages of the API calls being made.
+
+```bash
+# Print verbose messages for all CLI calls
+$ export RANCHER_CLIENT_DEBUG=true
+```
 <br>
+If you don't want the verbose response on every CLI command, you can pass in `--debug` to the specific command to get the verbose messages.
+
+```bash
+$ rancher --debug env create newEnv
+```
 
 ### Working with  Environments
 
@@ -91,8 +100,6 @@ ID        NAME        STATE     CATALOG                           SYSTEM    DETA
 1e2       Default     healthy                                     false     
 1e3       App1        healthy                                     false     
 ```
-
-<br>
 
 ### Working with a Specific Host
 
@@ -120,8 +127,6 @@ $ rancher docker ps
 # List the containers running on host-2
 $ rancher --host host-2 docker ps
 ```
-
-<br>
 
 ### Working with Services and Containers
 

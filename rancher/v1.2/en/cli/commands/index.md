@@ -63,7 +63,7 @@ Name | Description
 
 #### Waiting For resources
 
-There is a global flag, i.e. `-w`,  that can be used for commands to reach resting state. When scripting your Rancher commands, using `-w` allows you to wait until the resources are ready before moving on to the next command. 
+There is a global flag, i.e. `-w`,  that can be used for commands to reach resting state. When scripting your Rancher commands, using `-w` allows you to wait until the resources are ready before moving on to the next command.
 
 ### Rancher Catalog Reference
 
@@ -231,8 +231,6 @@ The `rancher exec` command allows you to directly exec into any container in Ran
 # Exec into a container
 $ rancher exec -i -t 1i10
 ```
-
-<br>
 
 #### Options
 
