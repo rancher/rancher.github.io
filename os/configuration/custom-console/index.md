@@ -13,7 +13,7 @@ You can select which console you want RancherOS to start with using the [cloud-c
 
 ### Enabling Consoles using Cloud-Config 
 
-When launching RancherOS with a [cloud-config]({[site.baseurl}}/os/cloud-config/) file, you can select which console you want Rancher to use. 
+When launching RancherOS with a [cloud-config]({[site.baseurl}}/os/cloud-config/) file, you can select which console you want to use. 
 
 Currently, the list of available consoles are:
 
