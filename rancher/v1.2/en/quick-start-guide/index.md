@@ -20,6 +20,12 @@ To install Docker on the server, follow the instructions from [Docker](https://d
 
 > **Note:** Currently, Docker for Windows and Docker for Mac are not supported.
 
+### Rancher Server Tags
+
+The `rancher/server:latest` tag will be our stable release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version.
+
+If you are interested in trying one of our latest development builds which will have been validated through our CI automation framework, please check our [releases page](https://github.com/rancher/rancher/releases) to find the latest development release tag. These releases are not meant for deployment in production. All development builds will be appended with a `*-pre{n}` suffix to denote that it's a development release.
+
 ### Start Rancher Server
 
 All you need is one command to launch Rancher server. After launching the container, we'll tail the logs to see when the server is up and running.
