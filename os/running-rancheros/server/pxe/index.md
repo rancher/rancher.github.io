@@ -6,7 +6,7 @@ layout: os-default
 ## Booting RancherOS via iPXE
 ----
 
-```bash
+```
 #!ipxe
 # Boot a persistent RancherOS to RAM
 

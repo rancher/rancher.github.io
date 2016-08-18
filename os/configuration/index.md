@@ -20,7 +20,7 @@ As a convenience we provide the `ros config` command which makes it easy to modi
 
 You can easily get any value that's been set in the `/var/lib/rancher/conf/cloud-config.yml` file. Let's see how easy it is to get the DNS configuration of the system.
 
-```sh
+```
 $ sudo ros config get rancher.network.dns.nameservers
 - 8.8.8.8
 - 8.8.4.4
@@ -32,13 +32,13 @@ You can set values in the `/var/lib/rancher/conf/cloud-config.yml` file.
 
 Setting a list in the `/var/lib/rancher/conf/cloud-config.yml`
 
-```bash
+```
 $ sudo ros config set rancher.network.dns.nameservers "['8.8.8.8','8.8.4.4']"
 ```
 
 Setting a simple value in the `/var/lib/rancher/conf/cloud-config.yml`
 
-```bash
+```
 $ sudo ros config set rancher.docker.tls true
 ```
 
@@ -50,7 +50,7 @@ You can export the existing configuration from `/var/lib/rancher/conf/cloud-conf
 
 You can export your configuration directly to a file using `-o` or `--output` and specifying the name and location of where you want the file to be exported to. 
 
-```bash
+```
 $ sudo ros config export -o localcloudconfig.yml
 ```
 

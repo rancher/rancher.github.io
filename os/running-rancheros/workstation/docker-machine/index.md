@@ -23,7 +23,7 @@ You can use Docker Machine to launch VMs for various providers. Currently only V
 
 Before moving forward, you'll need to have VirtualBox installed. Download it directly from [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Once you have VirtualBox and Docker Machine installed, it's just one command to get RancherOS running. 
 
-```bash
+```
 $ docker-machine create -d virtualbox --virtualbox-boot2docker-url <LOCATION-OF-RANCHEROS-ISO> <MACHINE-NAME>
 ```
 
@@ -33,13 +33,13 @@ $ docker-machine create -d virtualbox --virtualbox-boot2docker-url <LOCATION-OF-
 
 Example using the RancherOS latest link:
 
-```bash
+```
 $ docker-machine create -d virtualbox --virtualbox-boot2docker-url https://releases.rancher.com/os/latest/rancheros.iso <MACHINE-NAME>
 ```
 
 That's it! You should now have a RancherOS host running on VirtualBox. You can verify that you have a VirtualBox VM running on your host.
 
-```bash
+```
 $ VBoxManage list runningvms | grep <MACHINE-NAME>
 ```
 
@@ -49,7 +49,7 @@ This command will print out the newly created machine. If not, something went wr
 
 Logging into RancherOS follows the standard Docker Machine commands. To login into your newly provisioned RancherOS VM.
 
-```bash
+```
 $ docker-machine ssh <MACHINE-NAME>
 ```
 
@@ -63,19 +63,19 @@ With Docker Machine, you can point the docker client on your host to the docker 
 
 To point your docker client to the docker daemon inside the VM, use the following command:
 
-```bash
+```
 $ eval $(docker-machine env <MACHINE-NAME>)
 ```
 
 After setting this up, you can run any docker command in your host, and it will execute the command in your RancherOS VM. 
 
-```bash
+```
 $ docker run -p 80:80 -p 443:443 -d nginx
 ```
 
 In your VM, a nginx container will start on your VM. To access the container, you will need the IP address of the VM. 
 
-```bash
+```
 $ docker-machine ip <MACHINE-NAME>
 ```
 

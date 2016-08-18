@@ -33,7 +33,7 @@ See [here](https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.tx
 
 In order to start using ZFS, you'll need to first enable one of the [persistent consoles]({{site.baseurl}}/os/configuration/custom-console/#console-persistence) and enable [kernel headers]({{site.baseurl}}/os/configuration/kernel-modules-kernel-headers/).
 
-```bash
+```
 $ sudo ros console switch ubuntu
 $ sudo ros service enable kernel-headers
 $ sudo ros service up -d kernel-headers
@@ -45,7 +45,7 @@ When RancherOS console has reloaded, you will have logged into the persistent co
 
 Based on the [Ubuntu ZFS docs](https://wiki.ubuntu.com/Kernel/Reference/ZFS), you only need to install `zfsutils-linux` package into the Ubuntu console to enable ZFS (all the other necessary packages will be installed as its dependencies).
 
-```bash
+```
 # Adding ZFS PPA and updating the package cache
 $ sudo apt update
 $ sudo apt upgrade
@@ -56,7 +56,7 @@ $ sudo apt install zfsutils-linux
 
 In order for ZFS to load on boot, it needs to be added to `modules` list in the config. Prior to adding it to the list of modules, you'll need to check to see if there are other modules that are currently enabled. 
 
-```bash
+```
 # Check to see what modules currently exist
 $ sudo ros config get rancher.modules
 # Make sure to include any modules that were already enabled

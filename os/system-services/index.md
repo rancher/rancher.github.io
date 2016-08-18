@@ -14,7 +14,7 @@ You can also create your own system service in the [Docker Compose](https://docs
 
 `ros service` allows you to enable/disable different system services. For any services that are listed from the `ros service list`, they can be enabled by running a single command, i.e. `ros service enable <system-service-name>`. In order for the changes take effect, you will also need to reboot. In the future, the reboot will be dynamic.
 
-```bash
+```
 # List all available system services
 $ sudo ros service list
 disabled amazon-ecs-agent
@@ -60,13 +60,13 @@ nginxapp:
 
 To enable a custom system service from a file location, the command must indicate the file location if saved in RancherOS.
 
-```bash
+```
 $ sudo ros service enable /var/lib/rancher/conf/example.yml
 ```
 
 If the file is saved at a http(s) url, just use the http(s) url when enabling/disabling.
 
-```bash
+```
 $ sudo ros service enable http://mydomain.com/example.yml
 ```
 

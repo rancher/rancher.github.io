@@ -12,7 +12,7 @@ In RancherOS, you can change the default Docker version with a custom Docker ver
 
 In order to update the Docker binary, you will need to be in a [persistent console]({{site.baseurl}}/os/configuration/custom-console/#console-persistence). To confirm what console is running, run `sudo ros console list` to see what console container is currently running.
 
-```bash
+```
 $ sudo ros console list
 disabled centos
 disabled debian
@@ -25,7 +25,7 @@ If you are in the default console then you will need to [switch consoles]({{site
 
 After you are logged into a persistent console, you can download the Docker binary and symlink as `/usr/local/bin/docker`.
 
-```bash
+```
 $ curl -OL https://github.com/rancher/docker/releases/download/v1.8.2-rc1-ros/docker-1.8.2-rc1
 $ chmod +x ./docker-1.8.2-rc1
 $ sudo cp ./docker-1.8.2-rc1 /usr/local/bin/ 
@@ -35,7 +35,7 @@ $ sudo reboot
 
 In order to have the Docker version to be updated, you'll need to reboot. When you log back into RancherOS, you'll be running the new Docker version. 
 
-```bash
+```
 $ docker version
 
 Client:
@@ -63,7 +63,7 @@ In order to change both Docker and System Docker, you'll have to [build a custom
 
 1. Create a clone of the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`. 
 
-   ```bash
+   ```
    $ git clone https://github.com/rancher/os.git
    ```
 
@@ -85,7 +85,7 @@ In order to change both Docker and System Docker, you'll have to [build a custom
 
      Build Requirements: `bash`, `make`, `docker` (docker version >= 1.8.0)
 
-   ```bash
+   ```
    $ ./build.sh
    $ cd dist/artifacts
    $ ls
