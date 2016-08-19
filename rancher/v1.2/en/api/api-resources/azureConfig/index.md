@@ -1,53 +1,29 @@
 ---
-title: Rancher API - azureConfig
+title: API
 layout: rancher-api-default
 version: v1.2
 lang: en
 ---
 
-## AzureConfig
+## azureConfig
+
 
 The configuration to launch an instance in Microsoft Azure. For all cloud providers, Rancher is calling `docker-machine`, so any available options in `docker-machine` are exposed in Rancher. The default fields from `docker-machine` are not listed in the Rancher API, and they can be found in the `docker-machine` documentation.
 
+
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Notes
----|---|---|---|---|---
-dockerPort | string | Optional | - | 2376 | 
-dockerSwarmMasterPort | string | Optional | - | 3376 | 
-image | string | Optional | - | - | 
-location | string | Optional | - | West US | 
-password | string | Optional | - | - | 
-publishSettingsFile | string | Optional | - | - | 
-size | string | Optional | - | Small | 
-sshPort | string | Optional | - | 22 | The port to ssh into the host
-subscriptionCert | string | Optional | - | - | 
-subscriptionId | string | Optional | - | - | 
-username | string | Optional | - | ubuntu | 
-
-<br>
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
-
-### Operations
-{::options parse_block_html="true" /}
-<a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/azureConfigs</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-{
-	"dockerPort": "2376",
-	"dockerSwarmMasterPort": "3376",
-	"image": "",
-	"location": "West US",
-	"password": "",
-	"publishSettingsFile": "",
-	"size": "Small",
-	"sshPort": "22",
-	"subscriptionCert": "",
-	"subscriptionId": "",
-	"username": "ubuntu"
-}
-{% endhighlight %}
-</div>
-</div>
+Field | Type | Required | Default | Description
+---|---|---|---|---
+dockerPort | string | false | 2376 | 
+dockerSwarmMasterPort | string | false | 3376 | 
+image | string | false |  | 
+location | string | false | West US | 
+password | string | false |  | 
+publishSettingsFile | string | false |  | 
+size | string | false | Small | 
+sshPort | string | false | 22 | The port to ssh into the host
+subscriptionCert | string | false |  | 
+subscriptionId | string | false |  | 
+username | string | false | ubuntu | 
 
