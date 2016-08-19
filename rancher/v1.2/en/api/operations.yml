@@ -1,0 +1,141 @@
+
+      
+      
+      
+      apiKey-create:
+      
+      apiKey-update:
+      
+      apiKey-delete:
+      
+      
+      
+      
+      
+      
+      backup-delete:
+      backupTarget-create:
+      
+      
+      backupTarget-delete:
+      certificate-create:
+      
+      certificate-update:
+      
+      certificate-delete:
+      container-create:
+      
+      container-update:
+      
+      container-delete:
+      
+      
+      
+      dnsService-create:
+      
+      dnsService-update:
+      
+      dnsService-delete:
+      environment-create:
+      
+      environment-update:
+      
+      environment-delete:
+      externalService-create:
+      
+      externalService-update:
+      
+      externalService-delete:
+      
+      
+      
+      
+      
+      host-update:
+      
+      host-delete:
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      kubernetesStack-create:
+      
+      kubernetesStack-update:
+      
+      kubernetesStack-delete:
+      kubernetesStackUpgrade-create:
+      
+      
+      loadBalancerService-create:
+      
+      loadBalancerService-update:
+      
+      loadBalancerService-delete:
+      machine-create:
+      
+      
+      machine-delete:
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      pullTask-create:
+      
+      
+      registrationToken-create:
+      
+      
+      registry-create:
+      
+      registry-update:
+      
+      registry-delete:
+      registryCredential-create:
+      
+      registryCredential-update:
+      
+      registryCredential-delete:
+      service-create:
+      
+      service-update:
+      
+      service-delete:
+      
+      
+      
+      
+      
+      
+      serviceProxy-create:
+      
+      
+      
+      
+      
+      
+      
+      
+      snapshot-delete:
+      
+      
+      
+      subscribe-create:
+      
+      
+      volume-create:
+      
+      
+      volume-delete:
