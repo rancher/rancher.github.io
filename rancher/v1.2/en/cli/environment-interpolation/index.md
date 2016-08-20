@@ -1,6 +1,6 @@
 ---
 title: Environment Interpolation in Rancher CLI
-layout: rancher-default
+layout: rancher-default-v1.2
 version: latest
 lang: en
 ---
@@ -23,7 +23,7 @@ On our machine running `rancher`, we have an environment variable, `IMAGE_TAG=14
 $ env | grep IMAGE
 IMAGE_TAG=14.04
 # Run rancher
-$ rancher up 
+$ rancher up
 ```
 
 **Example `docker-compose.yml`**

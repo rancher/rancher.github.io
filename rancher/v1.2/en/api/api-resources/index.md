@@ -28,18 +28,6 @@ An API Key provides access to the Rancher API if access control has been turned 
 
 <br>
 
-[Backup]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/backup/)|
----|
- |
-
-<br>
-
-[BackupTarget]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/backupTarget/)|
----|
- |
-
-<br>
-
 [Certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/certificate/)|
 ---|
 A certificate is used to add in SSL termination to load balancers. |
@@ -49,12 +37,6 @@ A certificate is used to add in SSL termination to load balancers. |
 [Container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/container/)|
 ---|
 A container is a representation of a Docker container on a host. |
-
-<br>
-
-[Credential]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/credential/)|
----|
- |
 
 <br>
 
@@ -91,30 +73,6 @@ Hosts are the most basic unit of resource within Rancher and is represented as a
 [Identity]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/identity/)|
 ---|
 An identity is Rancher's representation of an object(i.e. `ldap_group`, `github_user`) when Rancher has turned on [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/). The `externalId` in an identity is the unique identifier in the authentication system that represents the object. The role of an identity is always null unless it is being returned as the identity of a [projectMember]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/projectMember/). |
-
-<br>
-
-[Image]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/image/)|
----|
- |
-
-<br>
-
-[Instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/)|
----|
- |
-
-<br>
-
-[IpAddress]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/ipAddress/)|
----|
- |
-
-<br>
-
-[KubernetesStack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/kubernetesStack/)|
----|
- |
 
 <br>
 
@@ -196,27 +154,9 @@ Rancher adopts the standard Docker Compose terminology for services and defines 
 
 <br>
 
-[ServiceProxy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceProxy/)|
----|
- |
-
-<br>
-
 [Setting]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/setting/)|
 ---|
  |
-
-<br>
-
-[Snapshot]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/snapshot/)|
----|
- |
-
-<br>
-
-[StoragePool]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/storagePool/)|
----|
-A storage pool is a list of hosts that can participate in shared storage. |
 
 <br>
 

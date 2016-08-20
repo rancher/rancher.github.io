@@ -1,6 +1,6 @@
 ---
 title: External DNS Service using Route53
-layout: rancher-default
+layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:

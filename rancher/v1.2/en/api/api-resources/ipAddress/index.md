@@ -1,26 +1,23 @@
 ---
-title: Rancher API - ipAddress
+title: API
 layout: rancher-api-default
 version: v1.2
 lang: en
 ---
 
-## IpAddress
+## ipAddress
+
+
 
 
 
 ### Resource Fields
 
-Field | Type | Create | Update | Default | Notes
----|---|---|---|---|---
-address | string | - | - | - | 
-description | string | Optional | Yes | - | 
-id | int | - | - | - | The unique identifier for the ipAddress
-name | string | Optional | Yes | - | 
-networkId | [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/network/) | - | - | - | 
-
-<br>
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
-
-
+Field | Type | Required | Default | Description
+---|---|---|---|---
+address | string | false |  | 
+description | string | false |  | 
+id | int | false |  | The unique identifier for the ipAddress
+name | string | false |  | 
+networkId | [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/network/) | false |  | 
 

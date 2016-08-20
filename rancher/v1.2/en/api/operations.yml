@@ -10,14 +10,6 @@
       
       
       
-      
-      
-      
-      backup-delete:
-      backupTarget-create:
-      
-      
-      backupTarget-delete:
       certificate-create:
       
       certificate-update:
@@ -28,9 +20,6 @@
       container-update:
       
       container-delete:
-      
-      
-      
       dnsService-create:
       
       dnsService-update:
@@ -57,20 +46,6 @@
       
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      kubernetesStack-create:
-      
-      kubernetesStack-update:
-      
-      kubernetesStack-delete:
       kubernetesStackUpgrade-create:
       
       
@@ -119,16 +94,6 @@
       
       
       
-      serviceProxy-create:
-      
-      
-      
-      
-      
-      
-      
-      
-      snapshot-delete:
       
       
       
