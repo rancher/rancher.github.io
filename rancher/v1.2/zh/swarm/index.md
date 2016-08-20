@@ -1,6 +1,6 @@
 ---
 title: Swarm in Rancher
-layout: rancher-default
+layout: rancher-default-v1.2
 version: v1.2
 lang: zh
 ---

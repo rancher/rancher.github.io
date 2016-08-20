@@ -1,6 +1,6 @@
 ---
 title: Using Native Docker CLI with Rancher
-layout: rancher-default
+layout: rancher-default-v1.2
 version: v1.2
 lang: zh
 ---

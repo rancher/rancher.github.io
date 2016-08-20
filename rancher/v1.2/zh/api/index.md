@@ -1,6 +1,6 @@
 ---
 title: How to use the Rancher API
-layout: rancher-default
+layout: rancher-default-v1.2
 version: v1.2
 lang: zh
 ---
