@@ -45,3 +45,60 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 </div>
 </div>
 
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/pullTasks</code></span></span>
+<div class="action-contents">
+<figure class="highlight">
+<pre>
+<code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
+{
+	"description": "string",
+	"image": "string",
+	"labels": {
+		"key1": "value1",
+		"key2": "value2",
+		"keyN": "valueN"
+	},
+	"mode": "all",
+	"name": "string"
+}
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/pullTasks'
+</code></pre></figure>
+
+</div>
+</div>
+
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/pullTasks</code></span></span>
+<div class="action-contents">
+<figure class="highlight">
+<pre>
+<code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{
+	"description": "string",
+	"image": "string",
+	"labels": {
+		"key1": "value1",
+		"key2": "value2",
+		"keyN": "valueN"
+	},
+	"mode": "all",
+	"name": "string"
+}' \
+'http://RANCHER_URL:8080/v1/pullTasks'
+</code></pre></figure>
+
+</div>
+</div>
+
+
+
+

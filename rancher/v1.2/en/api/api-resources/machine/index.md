@@ -142,7 +142,236 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 }
 {% endhighlight %}
 </div>
-</div><a id="delete"></a>
+</div>
+
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/machines</code></span></span>
+<div class="action-contents">
+<figure class="highlight">
+<pre>
+<code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
+{
+	"amazonec2Config": {
+		"accessKey": "",
+		"ami": "",
+		"deviceName": "/dev/sda1",
+		"iamInstanceProfile": "",
+		"instanceType": "t2.micro",
+		"monitoring": true,
+		"privateAddressOnly": true,
+		"region": "us-east-1",
+		"requestSpotInstance": true,
+		"rootSize": "16",
+		"secretKey": "",
+		"securityGroup": "docker-machine",
+		"sessionToken": "",
+		"spotPrice": "0.50",
+		"sshKeypath": "",
+		"sshUser": "ubuntu",
+		"subnetId": "",
+		"tags": "",
+		"useEbsOptimizedInstance": true,
+		"usePrivateAddress": true,
+		"volumeType": "gp2",
+		"vpcId": "",
+		"zone": "a"
+	},
+	"authCertificateAuthority": "string",
+	"authKey": "string",
+	"azureConfig": {
+		"dockerPort": "2376",
+		"dockerSwarmMasterPort": "3376",
+		"image": "",
+		"location": "West US",
+		"password": "",
+		"publishSettingsFile": "",
+		"size": "Small",
+		"sshPort": "22",
+		"subscriptionCert": "",
+		"subscriptionId": "",
+		"username": "ubuntu"
+	},
+	"description": "string",
+	"digitaloceanConfig": {
+		"accessToken": "",
+		"backups": true,
+		"image": "ubuntu-15-10-x64",
+		"ipv6": true,
+		"privateNetworking": true,
+		"region": "nyc3",
+		"size": "512mb",
+		"sshPort": "22",
+		"sshUser": "root",
+		"userdata": ""
+	},
+	"dockerVersion": "string",
+	"engineEnv": {
+		"key1": "value1",
+		"key2": "value2",
+		"keyN": "valueN"
+	},
+	"engineInsecureRegistry": [
+		"string1",
+		"string2",
+		"...stringN"
+	],
+	"engineInstallUrl": "string",
+	"engineLabel": {
+		"key1": "value1",
+		"key2": "value2",
+		"keyN": "valueN"
+	},
+	"engineOpt": {
+		"key1": "value1",
+		"key2": "value2",
+		"keyN": "valueN"
+	},
+	"engineRegistryMirror": [
+		"string1",
+		"string2",
+		"...stringN"
+	],
+	"engineStorageDriver": "string",
+	"labels": {
+		"key1": "value1",
+		"key2": "value2",
+		"keyN": "valueN"
+	},
+	"name": "string",
+	"packetConfig": {
+		"apiKey": "",
+		"billingCycle": "hourly",
+		"facilityCode": "ewr1",
+		"os": "ubuntu_14_04",
+		"plan": "baremetal_1",
+		"projectId": ""
+	}
+}
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/machines'
+</code></pre></figure>
+
+</div>
+</div>
+
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/machines</code></span></span>
+<div class="action-contents">
+<figure class="highlight">
+<pre>
+<code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{
+	"amazonec2Config": {
+		"accessKey": "",
+		"ami": "",
+		"deviceName": "/dev/sda1",
+		"iamInstanceProfile": "",
+		"instanceType": "t2.micro",
+		"monitoring": true,
+		"privateAddressOnly": true,
+		"region": "us-east-1",
+		"requestSpotInstance": true,
+		"rootSize": "16",
+		"secretKey": "",
+		"securityGroup": "docker-machine",
+		"sessionToken": "",
+		"spotPrice": "0.50",
+		"sshKeypath": "",
+		"sshUser": "ubuntu",
+		"subnetId": "",
+		"tags": "",
+		"useEbsOptimizedInstance": true,
+		"usePrivateAddress": true,
+		"volumeType": "gp2",
+		"vpcId": "",
+		"zone": "a"
+	},
+	"authCertificateAuthority": "string",
+	"authKey": "string",
+	"azureConfig": {
+		"dockerPort": "2376",
+		"dockerSwarmMasterPort": "3376",
+		"image": "",
+		"location": "West US",
+		"password": "",
+		"publishSettingsFile": "",
+		"size": "Small",
+		"sshPort": "22",
+		"subscriptionCert": "",
+		"subscriptionId": "",
+		"username": "ubuntu"
+	},
+	"description": "string",
+	"digitaloceanConfig": {
+		"accessToken": "",
+		"backups": true,
+		"image": "ubuntu-15-10-x64",
+		"ipv6": true,
+		"privateNetworking": true,
+		"region": "nyc3",
+		"size": "512mb",
+		"sshPort": "22",
+		"sshUser": "root",
+		"userdata": ""
+	},
+	"dockerVersion": "string",
+	"engineEnv": {
+		"key1": "value1",
+		"key2": "value2",
+		"keyN": "valueN"
+	},
+	"engineInsecureRegistry": [
+		"string1",
+		"string2",
+		"...stringN"
+	],
+	"engineInstallUrl": "string",
+	"engineLabel": {
+		"key1": "value1",
+		"key2": "value2",
+		"keyN": "valueN"
+	},
+	"engineOpt": {
+		"key1": "value1",
+		"key2": "value2",
+		"keyN": "valueN"
+	},
+	"engineRegistryMirror": [
+		"string1",
+		"string2",
+		"...stringN"
+	],
+	"engineStorageDriver": "string",
+	"labels": {
+		"key1": "value1",
+		"key2": "value2",
+		"keyN": "valueN"
+	},
+	"name": "string",
+	"packetConfig": {
+		"apiKey": "",
+		"billingCycle": "hourly",
+		"facilityCode": "ewr1",
+		"os": "ubuntu_14_04",
+		"plan": "baremetal_1",
+		"projectId": ""
+	}
+}' \
+'http://RANCHER_URL:8080/v1/machines'
+</code></pre></figure>
+
+</div>
+</div>
+
+
+<a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/machines/${ID}</code></span></span>
 <div class="action-contents">
 {% highlight json %}
@@ -150,4 +379,41 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {% endhighlight %}
 </div>
 </div>
+
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/machines/${ID}</code></span></span>
+<div class="action-contents">
+<figure class="highlight">
+<pre>
+<code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
+
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/machines/${ID}'
+</code></pre></figure>
+
+</div>
+</div>
+
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/machines/${ID}</code></span></span>
+<div class="action-contents">
+<figure class="highlight">
+<pre>
+<code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '' \
+'http://RANCHER_URL:8080/v1/machines/${ID}'
+</code></pre></figure>
+
+</div>
+</div>
+
+
+
 

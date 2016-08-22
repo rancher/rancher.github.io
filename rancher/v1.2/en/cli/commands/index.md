@@ -7,7 +7,7 @@ redirect_from:
   - rancher/cli/commands/
 ---
 
-## Rancher CLI Commands and Options
+## Commands and Options
 ---
 
 The Rancher CLI is able to manipulate environments, hosts, stacks, services and containers in Rancher.
