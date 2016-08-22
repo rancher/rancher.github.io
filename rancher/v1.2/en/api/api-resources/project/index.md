@@ -66,9 +66,19 @@ setmembers
 <span class="input">
 <strong>Input:</strong> setProjectMembersInput</span>
 
-<br>{% highlight json %}{
+<br>
+
+<figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}{
 	"members": "array[projectMember]"
-}{% endhighlight %}<br>
+}{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/projects/${ID}?action=setmembers'
+</code></pre></figure>
+<br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/setProjectMembersInput/">setProjectMembersInput</a> resource</span>
 </div></div>
 

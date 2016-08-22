@@ -37,24 +37,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="create"></a>
 <div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/certificates</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-{
-	"cert": "string",
-	"certChain": "string",
-	"description": "string",
-	"key": "string",
-	"name": "string"
-}
-{% endhighlight %}
-</div>
-</div>
-
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/certificates</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
+<div class="action-contents"><figure class="highlight"><pre><code>
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
 -H 'Accept: application/json' \
@@ -70,47 +53,11 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 {% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/certificates'
 </code></pre></figure>
-
-</div>
-</div>
-
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/certificates</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X POST \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '{
-	"cert": "string",
-	"certChain": "string",
-	"description": "string",
-	"key": "string",
-	"name": "string"
-}' \
-'http://RANCHER_URL:8080/v1/certificates'
-</code></pre></figure>
-
-</div>
-</div>
-
+</div></div>
 
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/certificates/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-
-{% endhighlight %}
-</div>
-</div>
-
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/certificates/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
+<div class="action-contents"><figure class="highlight"><pre><code>
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
 -H 'Accept: application/json' \
@@ -120,47 +67,11 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 {% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/certificates/${ID}'
 </code></pre></figure>
-
-</div>
-</div>
-
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/certificates/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X DELETE \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '' \
-'http://RANCHER_URL:8080/v1/certificates/${ID}'
-</code></pre></figure>
-
-</div>
-</div>
-
+</div></div>
 
 <a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/certificates/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-{
-	"cert": "string",
-	"certChain": "string",
-	"description": "string",
-	"key": "string",
-	"name": "string"
-}
-{% endhighlight %}
-</div>
-</div>
-
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/certificates/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
+<div class="action-contents"><figure class="highlight"><pre><code>
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X PUT \
 -H 'Accept: application/json' \
@@ -176,32 +87,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 {% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/certificates/${ID}'
 </code></pre></figure>
-
-</div>
-</div>
-
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/certificates/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X PUT \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '{
-	"cert": "string",
-	"certChain": "string",
-	"description": "string",
-	"key": "string",
-	"name": "string"
-}' \
-'http://RANCHER_URL:8080/v1/certificates/${ID}'
-</code></pre></figure>
-
-</div>
-</div>
-
+</div></div>
 
 
 

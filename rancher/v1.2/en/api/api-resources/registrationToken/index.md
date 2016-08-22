@@ -28,21 +28,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="create"></a>
 <div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/registrationTokens</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-{
-	"description": "string",
-	"name": "string"
-}
-{% endhighlight %}
-</div>
-</div>
-
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/registrationTokens</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
+<div class="action-contents"><figure class="highlight"><pre><code>
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
 -H 'Accept: application/json' \
@@ -55,29 +41,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 {% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/registrationTokens'
 </code></pre></figure>
-
-</div>
-</div>
-
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/registrationTokens</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X POST \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"name": "string"
-}' \
-'http://RANCHER_URL:8080/v1/registrationTokens'
-</code></pre></figure>
-
-</div>
-</div>
-
+</div></div>
 
 
 

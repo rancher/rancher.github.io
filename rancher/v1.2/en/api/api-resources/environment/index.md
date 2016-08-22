@@ -33,41 +33,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="create"></a>
 <div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/environments</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-{
-	"description": "string",
-	"dockerCompose": "string",
-	"environment": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"externalId": "string",
-	"name": "string",
-	"outputs": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"previousEnvironment": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"previousExternalId": "string",
-	"rancherCompose": "string",
-	"startOnCreate": true
-}
-{% endhighlight %}
-</div>
-</div>
-
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/environments</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
+<div class="action-contents"><figure class="highlight"><pre><code>
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
 -H 'Accept: application/json' \
@@ -95,69 +61,16 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	},
 	"previousExternalId": "string",
 	"rancherCompose": "string",
-	"startOnCreate": true
+	"startOnCreate": false
 }
 {% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/environments'
 </code></pre></figure>
-
-</div>
-</div>
-
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/environments</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X POST \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"dockerCompose": "string",
-	"environment": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"externalId": "string",
-	"name": "string",
-	"outputs": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"previousEnvironment": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"previousExternalId": "string",
-	"rancherCompose": "string",
-	"startOnCreate": true
-}' \
-'http://RANCHER_URL:8080/v1/environments'
-</code></pre></figure>
-
-</div>
-</div>
-
+</div></div>
 
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/environments/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-
-{% endhighlight %}
-</div>
-</div>
-
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/environments/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
+<div class="action-contents"><figure class="highlight"><pre><code>
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
 -H 'Accept: application/json' \
@@ -167,56 +80,11 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 {% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/environments/${ID}'
 </code></pre></figure>
-
-</div>
-</div>
-
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/environments/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X DELETE \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '' \
-'http://RANCHER_URL:8080/v1/environments/${ID}'
-</code></pre></figure>
-
-</div>
-</div>
-
+</div></div>
 
 <a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/environments/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-{
-	"description": "string",
-	"externalId": "string",
-	"name": "string",
-	"outputs": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"previousEnvironment": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"previousExternalId": "string"
-}
-{% endhighlight %}
-</div>
-</div>
-
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/environments/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
+<div class="action-contents"><figure class="highlight"><pre><code>
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X PUT \
 -H 'Accept: application/json' \
@@ -241,41 +109,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 {% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/environments/${ID}'
 </code></pre></figure>
-
-</div>
-</div>
-
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/environments/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X PUT \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"externalId": "string",
-	"name": "string",
-	"outputs": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"previousEnvironment": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"previousExternalId": "string"
-}' \
-'http://RANCHER_URL:8080/v1/environments/${ID}'
-</code></pre></figure>
-
-</div>
-</div>
-
+</div></div>
 
 
 
@@ -342,9 +176,19 @@ exportconfig
 <span class="input">
 <strong>Input:</strong> composeConfigInput</span>
 
-<br>{% highlight json %}{
+<br>
+
+<figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}{
 	"serviceIds": "array[reference[service]]"
-}{% endhighlight %}<br>
+}{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/environments/${ID}?action=exportconfig'
+</code></pre></figure>
+<br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/composeConfig/">composeConfig</a> resource</span>
 </div></div>
 
