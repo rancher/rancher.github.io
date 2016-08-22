@@ -31,18 +31,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/hosts/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-
-{% endhighlight %}
-</div>
-</div>
-
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/hosts/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
+<div class="action-contents"><figure class="highlight"><pre><code>
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
 -H 'Accept: application/json' \
@@ -52,49 +41,11 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 {% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/hosts/${ID}'
 </code></pre></figure>
-
-</div>
-</div>
-
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/hosts/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X DELETE \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '' \
-'http://RANCHER_URL:8080/v1/hosts/${ID}'
-</code></pre></figure>
-
-</div>
-</div>
-
+</div></div>
 
 <a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/hosts/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-{
-	"description": "string",
-	"labels": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"name": "string"
-}
-{% endhighlight %}
-</div>
-</div>
-
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/hosts/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
+<div class="action-contents"><figure class="highlight"><pre><code>
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X PUT \
 -H 'Accept: application/json' \
@@ -112,34 +63,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 {% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/hosts/${ID}'
 </code></pre></figure>
-
-</div>
-</div>
-
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/hosts/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X PUT \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"labels": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"name": "string"
-}' \
-'http://RANCHER_URL:8080/v1/hosts/${ID}'
-</code></pre></figure>
-
-</div>
-</div>
-
+</div></div>
 
 
 

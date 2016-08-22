@@ -81,150 +81,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="create"></a>
 <div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/containers</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-{
-	"blkioDeviceOptions": "map[blkioDeviceOption]",
-	"build": {
-		"context": "string",
-		"dockerfile": "string",
-		"forcerm": true,
-		"nocache": true,
-		"remote": "string",
-		"rm": true
-	},
-	"capAdd": "array[enum]",
-	"capDrop": "array[enum]",
-	"command": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"count": 0,
-	"cpuSet": "string",
-	"cpuShares": 0,
-	"dataVolumeMounts": "map[reference[volume]]",
-	"dataVolumes": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"dataVolumesFrom": "array[reference[container]]",
-	"description": "string",
-	"devices": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"dns": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"dnsSearch": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"domainName": "string",
-	"entryPoint": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"environment": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"expose": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"extraHosts": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"healthCheck": {
-		"healthyThreshold": 0,
-		"initializingTimeout": 0,
-		"interval": 0,
-		"name": "string",
-		"port": 0,
-		"recreateOnQuorumStrategyConfig": {
-			"quorum": 0
-		},
-		"reinitializingTimeout": 0,
-		"requestLine": "string",
-		"responseTimeout": 0,
-		"strategy": "recreate",
-		"unhealthyThreshold": 0
-	},
-	"hostname": "string",
-	"imageUuid": "string",
-	"instanceLinks": "map[reference[instance]]",
-	"labels": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"logConfig": {
-		"config": {
-			"key1": "value1",
-			"key2": "value2",
-			"keyN": "valueN"
-		},
-		"driver": "string"
-	},
-	"lxcConf": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"memory": 0,
-	"memorySwap": 0,
-	"name": "string",
-	"networkContainerId": "reference[container]",
-	"networkIds": "array[reference[network]]",
-	"networkMode": "managed",
-	"pidMode": "enum",
-	"ports": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"privileged": false,
-	"publishAllPorts": false,
-	"readOnly": false,
-	"registryCredentialId": "reference[registryCredential]",
-	"requestedHostId": "reference[host]",
-	"restartPolicy": {
-		"maximumRetryCount": 0,
-		"name": "string"
-	},
-	"securityOpt": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"startOnCreate": true,
-	"stdinOpen": false,
-	"tty": false,
-	"user": "string",
-	"volumeDriver": "string",
-	"workingDir": "string"
-}
-{% endhighlight %}
-</div>
-</div>
-
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/containers</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
+<div class="action-contents"><figure class="highlight"><pre><code>
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
 -H 'Accept: application/json' \
@@ -235,10 +92,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"build": {
 		"context": "string",
 		"dockerfile": "string",
-		"forcerm": true,
-		"nocache": true,
+		"forcerm": false,
+		"nocache": false,
 		"remote": "string",
-		"rm": true
+		"rm": false
 	},
 	"capAdd": "array[enum]",
 	"capDrop": "array[enum]",
@@ -366,173 +223,11 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 {% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/containers'
 </code></pre></figure>
-
-</div>
-</div>
-
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/containers</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X POST \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '{
-	"blkioDeviceOptions": "map[blkioDeviceOption]",
-	"build": {
-		"context": "string",
-		"dockerfile": "string",
-		"forcerm": true,
-		"nocache": true,
-		"remote": "string",
-		"rm": true
-	},
-	"capAdd": "array[enum]",
-	"capDrop": "array[enum]",
-	"command": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"count": 0,
-	"cpuSet": "string",
-	"cpuShares": 0,
-	"dataVolumeMounts": "map[reference[volume]]",
-	"dataVolumes": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"dataVolumesFrom": "array[reference[container]]",
-	"description": "string",
-	"devices": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"dns": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"dnsSearch": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"domainName": "string",
-	"entryPoint": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"environment": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"expose": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"extraHosts": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"healthCheck": {
-		"healthyThreshold": 0,
-		"initializingTimeout": 0,
-		"interval": 0,
-		"name": "string",
-		"port": 0,
-		"recreateOnQuorumStrategyConfig": {
-			"quorum": 0
-		},
-		"reinitializingTimeout": 0,
-		"requestLine": "string",
-		"responseTimeout": 0,
-		"strategy": "recreate",
-		"unhealthyThreshold": 0
-	},
-	"hostname": "string",
-	"imageUuid": "string",
-	"instanceLinks": "map[reference[instance]]",
-	"labels": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"logConfig": {
-		"config": {
-			"key1": "value1",
-			"key2": "value2",
-			"keyN": "valueN"
-		},
-		"driver": "string"
-	},
-	"lxcConf": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
-	},
-	"memory": 0,
-	"memorySwap": 0,
-	"name": "string",
-	"networkContainerId": "reference[container]",
-	"networkIds": "array[reference[network]]",
-	"networkMode": "managed",
-	"pidMode": "enum",
-	"ports": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"privileged": false,
-	"publishAllPorts": false,
-	"readOnly": false,
-	"registryCredentialId": "reference[registryCredential]",
-	"requestedHostId": "reference[host]",
-	"restartPolicy": {
-		"maximumRetryCount": 0,
-		"name": "string"
-	},
-	"securityOpt": [
-		"string1",
-		"string2",
-		"...stringN"
-	],
-	"startOnCreate": true,
-	"stdinOpen": false,
-	"tty": false,
-	"user": "string",
-	"volumeDriver": "string",
-	"workingDir": "string"
-}' \
-'http://RANCHER_URL:8080/v1/containers'
-</code></pre></figure>
-
-</div>
-</div>
-
+</div></div>
 
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/containers/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-
-{% endhighlight %}
-</div>
-</div>
-
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/containers/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
+<div class="action-contents"><figure class="highlight"><pre><code>
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
 -H 'Accept: application/json' \
@@ -542,44 +237,11 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 {% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/containers/${ID}'
 </code></pre></figure>
-
-</div>
-</div>
-
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/containers/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X DELETE \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '' \
-'http://RANCHER_URL:8080/v1/containers/${ID}'
-</code></pre></figure>
-
-</div>
-</div>
-
+</div></div>
 
 <a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/containers/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
-{
-	"description": "string",
-	"name": "string"
-}
-{% endhighlight %}
-</div>
-</div>
-
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/containers/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
+<div class="action-contents"><figure class="highlight"><pre><code>
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X PUT \
 -H 'Accept: application/json' \
@@ -592,29 +254,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 {% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/containers/${ID}'
 </code></pre></figure>
-
-</div>
-</div>
-
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/containers/${ID}</code></span></span>
-<div class="action-contents">
-<figure class="highlight">
-<pre>
-<code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X PUT \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"name": "string"
-}' \
-'http://RANCHER_URL:8080/v1/containers/${ID}'
-</code></pre></figure>
-
-</div>
-</div>
-
+</div></div>
 
 
 
@@ -643,7 +283,14 @@ execute
 <span class="input">
 <strong>Input:</strong> containerExec</span>
 
-<br>{% highlight json %}{
+<br>
+
+<figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}{
 	"attachStdin": true,
 	"attachStdout": true,
 	"command": [
@@ -652,7 +299,10 @@ execute
 		"...stringN"
 	],
 	"tty": true
-}{% endhighlight %}<br>
+}{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/containers/${ID}?action=execute'
+</code></pre></figure>
+<br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/hostAccess/">hostAccess</a> resource</span>
 </div></div>
 
@@ -666,10 +316,20 @@ logs
 <span class="input">
 <strong>Input:</strong> containerLogs</span>
 
-<br>{% highlight json %}{
+<br>
+
+<figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}{
 	"follow": true,
 	"lines": 100
-}{% endhighlight %}<br>
+}{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/containers/${ID}?action=logs'
+</code></pre></figure>
+<br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/hostAccess/">hostAccess</a> resource</span>
 </div></div>
 
@@ -683,10 +343,20 @@ proxy
 <span class="input">
 <strong>Input:</strong> containerProxy</span>
 
-<br>{% highlight json %}{
+<br>
+
+<figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}{
 	"port": 80,
 	"scheme": "http"
-}{% endhighlight %}<br>
+}{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/containers/${ID}?action=proxy'
+</code></pre></figure>
+<br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/hostAccess/">hostAccess</a> resource</span>
 </div></div>
 
@@ -726,10 +396,20 @@ stop
 <span class="input">
 <strong>Input:</strong> instanceStop</span>
 
-<br>{% highlight json %}{
-	"remove": true,
+<br>
+
+<figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}{
+	"remove": false,
 	"timeout": 0
-}{% endhighlight %}<br>
+}{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/containers/${ID}?action=stop'
+</code></pre></figure>
+<br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
 </div></div>
 
