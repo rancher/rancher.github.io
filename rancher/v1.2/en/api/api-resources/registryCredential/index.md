@@ -40,14 +40,102 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 }
 {% endhighlight %}
 </div>
-</div><a id="delete"></a>
+</div>
+
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/registryCredentials</code></span></span>
+<div class="action-contents">
+<figure class="highlight">
+<pre>
+<code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
+{
+	"description": "string",
+	"email": "string",
+	"name": "string",
+	"publicValue": "string",
+	"registryId": "reference[registry]",
+	"secretValue": "password"
+}
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/registryCredentials'
+</code></pre></figure>
+
+</div>
+</div>
+
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/registryCredentials</code></span></span>
+<div class="action-contents">
+<figure class="highlight">
+<pre>
+<code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{
+	"description": "string",
+	"email": "string",
+	"name": "string",
+	"publicValue": "string",
+	"registryId": "reference[registry]",
+	"secretValue": "password"
+}' \
+'http://RANCHER_URL:8080/v1/registryCredentials'
+</code></pre></figure>
+
+</div>
+</div>
+
+
+<a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/registryCredentials/${ID}</code></span></span>
 <div class="action-contents">
 {% highlight json %}
 
 {% endhighlight %}
 </div>
-</div><a id="update"></a>
+</div>
+
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/registryCredentials/${ID}</code></span></span>
+<div class="action-contents">
+<figure class="highlight">
+<pre>
+<code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
+
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/registryCredentials/${ID}'
+</code></pre></figure>
+
+</div>
+</div>
+
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/registryCredentials/${ID}</code></span></span>
+<div class="action-contents">
+<figure class="highlight">
+<pre>
+<code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '' \
+'http://RANCHER_URL:8080/v1/registryCredentials/${ID}'
+</code></pre></figure>
+
+</div>
+</div>
+
+
+<a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/registryCredentials/${ID}</code></span></span>
 <div class="action-contents">
 {% highlight json %}
@@ -61,6 +149,55 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {% endhighlight %}
 </div>
 </div>
+
+<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/registryCredentials/${ID}</code></span></span>
+<div class="action-contents">
+<figure class="highlight">
+<pre>
+<code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X PUT \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
+{
+	"description": "string",
+	"email": "string",
+	"name": "string",
+	"publicValue": "string",
+	"secretValue": "password"
+}
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/registryCredentials/${ID}'
+</code></pre></figure>
+
+</div>
+</div>
+
+<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/registryCredentials/${ID}</code></span></span>
+<div class="action-contents">
+<figure class="highlight">
+<pre>
+<code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X PUT \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{
+	"description": "string",
+	"email": "string",
+	"name": "string",
+	"publicValue": "string",
+	"secretValue": "password"
+}' \
+'http://RANCHER_URL:8080/v1/registryCredentials/${ID}'
+</code></pre></figure>
+
+</div>
+</div>
+
+
+
 
 ### Actions
 <div class="action">

@@ -153,8 +153,14 @@
                         <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/private-catalog/">Creating Private Catalogs</a></li>
                     </ul>
                 </li>
-                <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cli/">Rancher CLI</a></li>
-
+                <li class="panel">
+                        <a href="#cli" class="collapsed" data-toggle="collapse" data-parent="#mainmenu">Rancher CLI<i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
+                        <ul class="collapse list-group-submenu" id="cli">
+                          <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cli/">Rancher CLI</a></li>
+                          <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cli/commands/">Commands and Options</a></li>
+                          <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cli/environment-interpolation/">Environment Interpolation</a></li>
+                        </ul>
+                    </li>
             <li class="panel">
                     <a href="#api" class="collapsed" data-toggle="collapse" data-parent="#mainmenu">API<i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
                     <ul class="collapse list-group-submenu" id="api">
