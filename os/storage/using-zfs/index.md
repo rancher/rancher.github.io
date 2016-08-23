@@ -1,35 +1,9 @@
 ---
-title: Configuring Storage in RancherOS
+title: Using ZFS in RancherOS
 layout: os-default
-redirect_from:
-  - os/configuration/additional-mounts/ 
 ---
 
-## Configuring Storage
-
-By default, Docker runs in the console container, which means that it will for the most part act and behave like Docker on any other standard Linux distribution. Customizing the storage that is available to Docker is largely a matter of mounting additional storage into the console.
-
-### Additional Mounts
-
-Additional mounts can be specified as part of your [cloud-config]({{site.baseurl}}/os/cloud-config/). These mounts are applied within the console container. Here's an simple example that mounts `/dev/vdb` to `/mnt/s`.
-
-```yaml
-#cloud-config
-mounts:
-- ["/dev/vdb", "/mnt/s", "ext4", ""]
-```
-
-The four arguments for each mount are the same as those given for [cloud-init](https://cloudinit.readthedocs.io/en/latest/topics/examples.html#adjust-mount-points-mounted). Only the first four arguments are currently supported. The `mount_default_fields` key is not yet implemented.
-
-RancherOS uses the mount syscall rather than the `mount` command behind the scenes. This means that `auto` cannot be used as the filesystem type (third argument) and `defaults` cannot be used for the options (forth argument).
-
-### Shared Mounts
-
-By default, `/media` and `/mnt` are mounted as shared in the console container. This means that mounts within these directories will propogate to the host as well as other system services that mount these folders as shared.
-
-See [here](https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt) for a more detailed overview of shared mounts and their properties.
-
-### Using ZFS
+## Using ZFS
 
 In order to start using ZFS, you'll need to first enable one of the [persistent consoles]({{site.baseurl}}/os/configuration/custom-console/#console-persistence) and enable [kernel headers]({{site.baseurl}}/os/configuration/kernel-modules-kernel-headers/).
 
