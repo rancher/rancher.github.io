@@ -1,7 +1,7 @@
 ---
 title: Rancher API - host
 layout: rancher-api-default
-version: latest
+version: v1.2
 lang: en
 ---
 
@@ -31,15 +31,26 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/hosts/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
 
-{% endhighlight %}
-</div>
-</div><a id="update"></a>
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/hosts/${ID}'
+</code></pre></figure>
+</div></div>
+
+<a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/hosts/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X PUT \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
 {
 	"description": "string",
 	"labels": {
@@ -49,9 +60,12 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 	},
 	"name": "string"
 }
-{% endhighlight %}
-</div>
-</div>
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/hosts/${ID}'
+</code></pre></figure>
+</div></div>
+
+
 
 ### Actions
 <div class="action">

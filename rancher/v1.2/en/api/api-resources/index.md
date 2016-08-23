@@ -1,7 +1,7 @@
 ---
 title: API
 layout: rancher-api-default
-version: latest
+version: v1.2
 lang: en
 ---
 
@@ -13,12 +13,6 @@ lang: en
 [Account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/account/)|
 ---|
 All resources in Rancher are owned or created by an account. |
-
-<br>
-
-[Amazonec2Config]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/amazonec2Config/)|
----|
-The configuration to launch an EC2 instance in Amazon Web Services using [machine]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/machine). Rancher is calling `docker-machine`, so any available options in `docker-machine` for specific drivers are exposed in Rancher. The default fields from `docker-machine` are not listed in the Rancher API, and they can be found in the `docker-machine` documentation. The notes on which fields are **required** are from the `docker-machine` documentation. |
 
 <br>
 
@@ -34,24 +28,6 @@ An API Key provides access to the Rancher API if access control has been turned 
 
 <br>
 
-[AzureConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/azureConfig/)|
----|
-The configuration to launch an instance in Microsoft Azure. For all cloud providers, Rancher is calling `docker-machine`, so any available options in `docker-machine` are exposed in Rancher. The default fields from `docker-machine` are not listed in the Rancher API, and they can be found in the `docker-machine` documentation. |
-
-<br>
-
-[Backup]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/backup/)|
----|
- |
-
-<br>
-
-[BackupTarget]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/backupTarget/)|
----|
- |
-
-<br>
-
 [Certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/certificate/)|
 ---|
 A certificate is used to add in SSL termination to load balancers. |
@@ -61,18 +37,6 @@ A certificate is used to add in SSL termination to load balancers. |
 [Container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/container/)|
 ---|
 A container is a representation of a Docker container on a host. |
-
-<br>
-
-[Credential]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/credential/)|
----|
- |
-
-<br>
-
-[DigitaloceanConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/digitaloceanConfig/)|
----|
-The configuration to launch a droplet in DigitalOcean using [machine]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/machine). Rancher is calling `docker-machine`, so any available options in `docker-machine` for specific drivers are exposed in Rancher. The default fields from `docker-machine` are not listed in the Rancher API, and they can be found in the `docker-machine` documentation. |
 
 <br>
 
@@ -112,30 +76,6 @@ An identity is Rancher's representation of an object(i.e. `ldap_group`, `github_
 
 <br>
 
-[Image]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/image/)|
----|
- |
-
-<br>
-
-[Instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/)|
----|
- |
-
-<br>
-
-[IpAddress]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/ipAddress/)|
----|
- |
-
-<br>
-
-[KubernetesStack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/kubernetesStack/)|
----|
- |
-
-<br>
-
 [KubernetesStackUpgrade]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/kubernetesStackUpgrade/)|
 ---|
  |
@@ -157,12 +97,6 @@ Machines are created whenever Rancher uses `docker-machine` to create hosts in R
 [MachineDriver]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/machineDriver/)|
 ---|
  |
-
-<br>
-
-[PacketConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/packetConfig/)|
----|
-The configuration to launch an instance in Packet. |
 
 <br>
 
@@ -220,27 +154,9 @@ Rancher adopts the standard Docker Compose terminology for services and defines 
 
 <br>
 
-[ServiceProxy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceProxy/)|
----|
- |
-
-<br>
-
 [Setting]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/setting/)|
 ---|
  |
-
-<br>
-
-[Snapshot]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/snapshot/)|
----|
- |
-
-<br>
-
-[StoragePool]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/storagePool/)|
----|
-A storage pool is a list of hosts that can participate in shared storage. |
 
 <br>
 

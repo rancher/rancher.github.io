@@ -1,6 +1,6 @@
 ---
 title: Installing Rancher Server (Single Node)
-layout: rancher-default
+layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
@@ -24,11 +24,9 @@ Rancher is deployed as a set of Docker containers. Running Rancher is a simple a
 
 ### Rancher Server Tags
 
-Rancher supports two version tags for `rancher/server`.
+The `rancher/server:latest` tag will be our stable release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version.
 
-* `rancher/server:latest`: The `latest` tag will be our development builds which will have been validated through our CI automation framework, but these releases are not meant for deployment in production. All development builds will be appended with a `*-dev{n}` suffix to denote that it's a development release.
-
-* `rancher/server:stable`: The `stable` tag will be our feature release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version.
+If you are interested in trying one of our latest development builds which will have been validated through our CI automation framework, please check our [releases page](https://github.com/rancher/rancher/releases) to find the latest development release tag. These releases are not meant for deployment in production. All development builds will be appended with a `*-pre{n}` suffix to denote that it's a development release.
 
 ### Launching Rancher Server
 

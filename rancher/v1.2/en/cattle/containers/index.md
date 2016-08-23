@@ -1,6 +1,6 @@
 ---
 title: Containers
-layout: rancher-default
+layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:

@@ -1,7 +1,7 @@
 ---
 title: Rancher API - machine
 layout: rancher-api-default
-version: latest
+version: v1.2
 lang: en
 ---
 
@@ -41,8 +41,12 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="create"></a>
 <div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/machines</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
 {
 	"amazonec2Config": {
 		"accessKey": "",
@@ -50,10 +54,10 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 		"deviceName": "/dev/sda1",
 		"iamInstanceProfile": "",
 		"instanceType": "t2.micro",
-		"monitoring": true,
-		"privateAddressOnly": true,
+		"monitoring": false,
+		"privateAddressOnly": false,
 		"region": "us-east-1",
-		"requestSpotInstance": true,
+		"requestSpotInstance": false,
 		"rootSize": "16",
 		"secretKey": "",
 		"securityGroup": "docker-machine",
@@ -63,8 +67,8 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 		"sshUser": "ubuntu",
 		"subnetId": "",
 		"tags": "",
-		"useEbsOptimizedInstance": true,
-		"usePrivateAddress": true,
+		"useEbsOptimizedInstance": false,
+		"usePrivateAddress": false,
 		"volumeType": "gp2",
 		"vpcId": "",
 		"zone": "a"
@@ -87,10 +91,10 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 	"description": "string",
 	"digitaloceanConfig": {
 		"accessToken": "",
-		"backups": true,
+		"backups": false,
 		"image": "ubuntu-15-10-x64",
-		"ipv6": true,
-		"privateNetworking": true,
+		"ipv6": false,
+		"privateNetworking": false,
 		"region": "nyc3",
 		"size": "512mb",
 		"sshPort": "22",
@@ -140,14 +144,24 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 		"projectId": ""
 	}
 }
-{% endhighlight %}
-</div>
-</div><a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/machines/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/machines'
+</code></pre></figure>
+</div></div>
 
-{% endhighlight %}
-</div>
-</div>
+<a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/machines/${ID}</code></span></span>
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
+
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/machines/${ID}'
+</code></pre></figure>
+</div></div>
+
+
 

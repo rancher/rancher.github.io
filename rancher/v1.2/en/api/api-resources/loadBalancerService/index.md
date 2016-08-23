@@ -1,7 +1,7 @@
 ---
 title: Rancher API - loadBalancerService
 layout: rancher-api-default
-version: latest
+version: v1.2
 lang: en
 ---
 
@@ -43,8 +43,12 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="create"></a>
 <div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/loadBalancerServices</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
 {
 	"assignServiceIpAddress": false,
 	"certificateIds": "array[reference[certificate]]",
@@ -58,10 +62,10 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 		"build": {
 			"context": "string",
 			"dockerfile": "string",
-			"forcerm": true,
-			"nocache": true,
+			"forcerm": false,
+			"nocache": false,
 			"remote": "string",
-			"rm": true
+			"rm": false
 		},
 		"capAdd": "array[enum]",
 		"capDrop": "array[enum]",
@@ -171,7 +175,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 		"memory": 0,
 		"memoryMb": 0,
 		"memorySwap": 0,
-		"nativeContainer": true,
+		"nativeContainer": false,
 		"networkContainerId": "reference[container]",
 		"networkIds": "array[reference[network]]",
 		"networkLaunchConfig": "string",
@@ -220,16 +224,16 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 		"lbCookieStickinessPolicy": {
 			"cookie": "string",
 			"domain": "string",
-			"indirect": true,
+			"indirect": false,
 			"mode": "enum",
 			"name": "string",
-			"nocache": true,
-			"postonly": true
+			"nocache": false,
+			"postonly": false
 		}
 	},
 	"metadata": "map[json]",
 	"name": "string",
-	"retainIp": true,
+	"retainIp": false,
 	"scale": 1,
 	"scalePolicy": {
 		"increment": 1,
@@ -240,19 +244,33 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 	"startOnCreate": false,
 	"vip": "string"
 }
-{% endhighlight %}
-</div>
-</div><a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/loadBalancerServices/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/loadBalancerServices'
+</code></pre></figure>
+</div></div>
 
-{% endhighlight %}
-</div>
-</div><a id="update"></a>
+<a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/loadBalancerServices/${ID}</code></span></span>
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
+
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/loadBalancerServices/${ID}'
+</code></pre></figure>
+</div></div>
+
+<a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/loadBalancerServices/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X PUT \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
 {
 	"certificateIds": "array[reference[certificate]]",
 	"defaultCertificateId": "reference[certificate]",
@@ -265,16 +283,16 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 		"lbCookieStickinessPolicy": {
 			"cookie": "string",
 			"domain": "string",
-			"indirect": true,
+			"indirect": false,
 			"mode": "enum",
 			"name": "string",
-			"nocache": true,
-			"postonly": true
+			"nocache": false,
+			"postonly": false
 		}
 	},
 	"metadata": "map[json]",
 	"name": "string",
-	"retainIp": true,
+	"retainIp": false,
 	"scale": 1,
 	"scalePolicy": {
 		"increment": 1,
@@ -283,9 +301,12 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 	},
 	"selectorLink": "string"
 }
-{% endhighlight %}
-</div>
-</div>
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/loadBalancerServices/${ID}'
+</code></pre></figure>
+</div></div>
+
+
 
 ### Actions
 <div class="action">
@@ -311,7 +332,14 @@ addservicelink
 <span class="input">
 <strong>Input:</strong> addRemoveLoadBalancerServiceLinkInput</span>
 
-<br>{% highlight json %}{
+<br>
+
+<figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}{
 	"serviceLink": {
 		"ports": [
 			"string1",
@@ -321,7 +349,10 @@ addservicelink
 		"serviceId": "reference[service]",
 		"uuid": "string"
 	}
-}{% endhighlight %}<br>
+}{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/loadBalancerServices/${ID}?action=addservicelink'
+</code></pre></figure>
+<br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
@@ -387,7 +418,14 @@ removeservicelink
 <span class="input">
 <strong>Input:</strong> addRemoveLoadBalancerServiceLinkInput</span>
 
-<br>{% highlight json %}{
+<br>
+
+<figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}{
 	"serviceLink": {
 		"ports": [
 			"string1",
@@ -397,7 +435,10 @@ removeservicelink
 		"serviceId": "reference[service]",
 		"uuid": "string"
 	}
-}{% endhighlight %}<br>
+}{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/loadBalancerServices/${ID}?action=removeservicelink'
+</code></pre></figure>
+<br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
@@ -424,9 +465,19 @@ setservicelinks
 <span class="input">
 <strong>Input:</strong> setLoadBalancerServiceLinksInput</span>
 
-<br>{% highlight json %}{
+<br>
+
+<figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}{
 	"serviceLinks": "array[loadBalancerServiceLink]"
-}{% endhighlight %}<br>
+}{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/loadBalancerServices/${ID}?action=setservicelinks'
+</code></pre></figure>
+<br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
@@ -440,7 +491,14 @@ upgrade
 <span class="input">
 <strong>Input:</strong> serviceUpgrade</span>
 
-<br>{% highlight json %}{
+<br>
+
+<figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}{
 	"inServiceStrategy": {
 		"batchSize": 1,
 		"intervalMillis": 2000,
@@ -450,10 +508,10 @@ upgrade
 			"build": {
 				"context": "string",
 				"dockerfile": "string",
-				"forcerm": true,
-				"nocache": true,
+				"forcerm": false,
+				"nocache": false,
 				"remote": "string",
-				"rm": true
+				"rm": false
 			},
 			"capAdd": "array[enum]",
 			"capDrop": "array[enum]",
@@ -563,7 +621,7 @@ upgrade
 			"memory": 0,
 			"memoryMb": 0,
 			"memorySwap": 0,
-			"nativeContainer": true,
+			"nativeContainer": false,
 			"networkContainerId": "reference[container]",
 			"networkIds": "array[reference[network]]",
 			"networkLaunchConfig": "string",
@@ -610,10 +668,10 @@ upgrade
 			"build": {
 				"context": "string",
 				"dockerfile": "string",
-				"forcerm": true,
-				"nocache": true,
+				"forcerm": false,
+				"nocache": false,
 				"remote": "string",
-				"rm": true
+				"rm": false
 			},
 			"capAdd": "array[enum]",
 			"capDrop": "array[enum]",
@@ -723,7 +781,7 @@ upgrade
 			"memory": 0,
 			"memoryMb": 0,
 			"memorySwap": 0,
-			"nativeContainer": true,
+			"nativeContainer": false,
 			"networkContainerId": "reference[container]",
 			"networkIds": "array[reference[network]]",
 			"networkLaunchConfig": "string",
@@ -773,9 +831,12 @@ upgrade
 		"finalScale": 1,
 		"intervalMillis": 2000,
 		"toServiceId": "reference[service]",
-		"updateLinks": true
+		"updateLinks": false
 	}
-}{% endhighlight %}<br>
+}{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/loadBalancerServices/${ID}?action=upgrade'
+</code></pre></figure>
+<br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
 </div></div>
 

@@ -26,7 +26,7 @@ After the image is uploaded, we can use the `gcloud compute` [command-line tool]
 
 Since the image is private, we need to follow Google's [instructions](https://cloud.google.com/compute/docs/creating-custom-image#start_an_instance_from_a_custom_image). 
 
-```bash
+```
 $ gcloud compute instances create --project <PROJECT_ID> --zone <ZONE_TO_CREATE_INSTANCE> <INSTANCE_NAME> --image <PRIVATE_IMAGE_NAME>
 ```
 
@@ -34,7 +34,7 @@ $ gcloud compute instances create --project <PROJECT_ID> --zone <ZONE_TO_CREATE_
 
 If you want to pass in your own cloud config file that will be processed by [cloud init]({{site.baseurl}}/os/cloud-config), you can pass it as metadata upon creation of the instance during the `gcloud compute` command. The file will need to be stored locally before running the command. The key of the metadata will be `user-data` and the value is the location of the file. If any SSH keys are added in the cloud config file, it will also be added to the **rancher** user.
 
-```bash
+```
 $ gcloud compute instances create --project <PROJECT_ID> --zone <ZONE_TO_CREATE_INSTANCE> <INSTANCE_NAME> --image <PRIVATE_IMAGE_NAME> --metadata-from-file user-data=/Directory/of/Cloud_Config.yml
 ```
 
@@ -42,7 +42,7 @@ $ gcloud compute instances create --project <PROJECT_ID> --zone <ZONE_TO_CREATE_
 
 If you have already created the instance, you can still add the cloud config file after the instance is created. You will just need to reset the machine after you've added the metadata.
     
-```bash
+```
 $ gcloud compute instances add-metadata <INSTANCE_NAME> --metadata-from-file user-data=/Directory/of/File --project <PROJECT_ID> --zone <ZONE_OF_INSTANCE>
 Updated [https://www.googleapis.com/compute/v1/projects/PROJECT_ID/zones/ZONE_OF_INSTANCE/instances/INSTANCE_NAME].
 $ gcloud compute instances reset <INSTANCE_NAME> --project <PROJECT_ID> --zone <ZONE_OF_INSTANCE>
@@ -53,7 +53,7 @@ Updated [https://www.googleapis.com/compute/v1/projects/PROJECT_ID/zones/ZONE_OF
 
 If you want to review the cloud config file for your instance, review the **metadata** section:
 
-```bash
+```
 $ gcloud compute instances describe <INSTANCE_NAME> --project <PROJECT_ID> --zone <ZONE_OF_INSTANCE>
 ```
 
@@ -61,7 +61,7 @@ $ gcloud compute instances describe <INSTANCE_NAME> --project <PROJECT_ID> --zon
 
 If you want to remove your cloud config file, use the following command to remove the metadata.
 
-```bash
+```
 $ gcloud compute instances remove-metadata <INSTANCE_NAME> --project <PROJECT_ID> --zone <ZONE_OF_INSTANCE> --keys user-data
 Updated [https://www.googleapis.com/compute/v1/projects/PROJECT_ID/zones/ZONE_OF_INSTANCE/instances/INSTANCE_NAME].
 ```
@@ -70,7 +70,7 @@ Updated [https://www.googleapis.com/compute/v1/projects/PROJECT_ID/zones/ZONE_OF
 
 After any changes to the cloud config file, you'll need to reset the machine. You can reset either using the console or using this command:
 
-```bash
+```
 $ gcloud compute instances reset <INSTANCE_NAME> --project <PROJECT_ID> --zone <ZONE_OF_INSTANCE>
 Updated [https://www.googleapis.com/compute/v1/projects/PROJECT_ID/zones/ZONE_OF_INSTANCE/instances/INSTANCE_NAME].
 ```
@@ -137,13 +137,13 @@ ssh_authorized_keys:
 
 Remember, the SSH keys are passed to the **rancher** user. The SSH keys can be passed from the project level, the instance level or through the cloud config file. If you add any of these SSH keys after the instance has been created, the instance will need to be reset before the SSH keys are passed through.
 
-```bash
+```
 $ gcloud compute ssh rancher@<INSTANCE_NAME> --project <PROJECT_ID> --zone <ZONE_OF_INSTANCE>
 ```
 
 If you have issues logging into RancherOS, try using this command to help debug the instance.
 
-```bash
+```
 $ gcloud compute instances get-serial-port-output <INSTANCE_NAME> --zone <ZONE_OF_INSTANCE> --project <PROJECT_ID>
 ```
 

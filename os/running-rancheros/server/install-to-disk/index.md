@@ -35,7 +35,7 @@ Copy the public SSH key into RancherOS before installing to disk.
 
 Now that our `cloud-config.yml` contains our public SSH key, we can move on to installing RancherOS to disk!
 
-```bash
+```
 $ sudo ros install -c cloud-config.yml -d /dev/sda
 INFO[0000] No install type specified...defaulting to generic 
 Installing from rancher/os:v0.5.0
@@ -44,7 +44,7 @@ Continue [y/N]:
 
 You will be prompted to see if you want to continue. Type **y**.
 
-```bash
+```
 Unable to find image 'rancher/os:v0.5.0' locally
 v0.5.0: Pulling from rancher/os
 ...
@@ -67,7 +67,7 @@ By default, `ros install` uses the same installer image version as the ISO it is
 
 You can use `ros os list` command to find the list of available RancherOS images/versions.
 
-```bash
+```
 $ sudo ros os list
 rancher/os:v0.4.0 remote
 rancher/os:v0.4.1 remote
@@ -84,7 +84,7 @@ Alternatively, you can set the installer image to any image in System Docker to 
 
 After installing RancherOS, you can ssh into RancherOS using your private key and the **rancher** user.
 
-```bash
+```
 $ ssh -i /path/to/private/key rancher@<ip-address>
 ```
 

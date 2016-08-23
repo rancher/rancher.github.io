@@ -1,7 +1,7 @@
 ---
 title: Rancher API - externalService
 layout: rancher-api-default
-version: latest
+version: v1.2
 lang: en
 ---
 
@@ -35,8 +35,12 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="create"></a>
 <div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/externalServices</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
 {
 	"description": "string",
 	"environmentId": "reference[environment]",
@@ -68,10 +72,10 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 		"build": {
 			"context": "string",
 			"dockerfile": "string",
-			"forcerm": true,
-			"nocache": true,
+			"forcerm": false,
+			"nocache": false,
 			"remote": "string",
-			"rm": true
+			"rm": false
 		},
 		"capAdd": "array[enum]",
 		"capDrop": "array[enum]",
@@ -181,7 +185,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 		"memory": 0,
 		"memoryMb": 0,
 		"memorySwap": 0,
-		"nativeContainer": true,
+		"nativeContainer": false,
 		"networkContainerId": "reference[container]",
 		"networkIds": "array[reference[network]]",
 		"networkLaunchConfig": "string",
@@ -226,19 +230,33 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 	"name": "string",
 	"startOnCreate": false
 }
-{% endhighlight %}
-</div>
-</div><a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/externalServices/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/externalServices'
+</code></pre></figure>
+</div></div>
 
-{% endhighlight %}
-</div>
-</div><a id="update"></a>
+<a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/externalServices/${ID}</code></span></span>
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
+
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/externalServices/${ID}'
+</code></pre></figure>
+</div></div>
+
+<a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/externalServices/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X PUT \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
 {
 	"description": "string",
 	"externalIpAddresses": [
@@ -250,9 +268,12 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 	"metadata": "map[json]",
 	"name": "string"
 }
-{% endhighlight %}
-</div>
-</div>
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/externalServices/${ID}'
+</code></pre></figure>
+</div></div>
+
+
 
 ### Actions
 <div class="action">
@@ -343,7 +364,14 @@ upgrade
 <span class="input">
 <strong>Input:</strong> serviceUpgrade</span>
 
-<br>{% highlight json %}{
+<br>
+
+<figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}{
 	"inServiceStrategy": {
 		"batchSize": 1,
 		"intervalMillis": 2000,
@@ -353,10 +381,10 @@ upgrade
 			"build": {
 				"context": "string",
 				"dockerfile": "string",
-				"forcerm": true,
-				"nocache": true,
+				"forcerm": false,
+				"nocache": false,
 				"remote": "string",
-				"rm": true
+				"rm": false
 			},
 			"capAdd": "array[enum]",
 			"capDrop": "array[enum]",
@@ -466,7 +494,7 @@ upgrade
 			"memory": 0,
 			"memoryMb": 0,
 			"memorySwap": 0,
-			"nativeContainer": true,
+			"nativeContainer": false,
 			"networkContainerId": "reference[container]",
 			"networkIds": "array[reference[network]]",
 			"networkLaunchConfig": "string",
@@ -513,10 +541,10 @@ upgrade
 			"build": {
 				"context": "string",
 				"dockerfile": "string",
-				"forcerm": true,
-				"nocache": true,
+				"forcerm": false,
+				"nocache": false,
 				"remote": "string",
-				"rm": true
+				"rm": false
 			},
 			"capAdd": "array[enum]",
 			"capDrop": "array[enum]",
@@ -626,7 +654,7 @@ upgrade
 			"memory": 0,
 			"memoryMb": 0,
 			"memorySwap": 0,
-			"nativeContainer": true,
+			"nativeContainer": false,
 			"networkContainerId": "reference[container]",
 			"networkIds": "array[reference[network]]",
 			"networkLaunchConfig": "string",
@@ -676,9 +704,12 @@ upgrade
 		"finalScale": 1,
 		"intervalMillis": 2000,
 		"toServiceId": "reference[service]",
-		"updateLinks": true
+		"updateLinks": false
 	}
-}{% endhighlight %}<br>
+}{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=upgrade'
+</code></pre></figure>
+<br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
 </div></div>
 

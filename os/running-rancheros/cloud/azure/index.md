@@ -27,6 +27,6 @@ Review your VM and buy it so that you can **Create** your VM.
 
 After the VM has been provisioned, click on the VM to find the public IP address. SSH into your VM using the _rancher_ username.
 
-```bash
+```
 $ ssh rancher@<public_ip_of_vm> -p 22
 ```

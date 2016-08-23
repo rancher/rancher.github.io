@@ -26,12 +26,3 @@ physicalHost: true
 port: true
 serviceEvent: true
 virtualMachine: true
-addOutputsInput: true
-containerExec: true
-dockerBuild: true
-environmentUpgrade: true
-hostAccess: true
-loadBalancerConfig: true
-scalePolicy: true
-snapshotBackupInput: true
-statsAccess: true

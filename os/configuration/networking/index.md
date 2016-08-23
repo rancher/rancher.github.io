@@ -19,7 +19,7 @@ We'll provide some examples using both the `ros config` or setting it through th
 
 Using `ros config`, you can set the `nameservers`, and `search`, which directly map to the fields of the same name in `/etc/resolv.conf`.
 
-```bash
+```
 $ sudo ros config set rancher.network.dns.search "['mydomain.com','example.com']"
 $ sudo ros config get rancher.network.dns.search
 - mydomain.com
@@ -44,7 +44,7 @@ rancher:
 
 Using `ros config`, you can configure specific interfaces. Wildcard globbing is supported so `eth*` will match `eth1` and `eth2`.  The available options you can configure are `address`, `gateway`, `mtu`, and `dhcp`.
 
-```bash
+```
 $ sudo ros config set rancher.network.interfaces.eth1.address 172.68.1.100/24
 $ sudo ros config set rancher.network.interfaces.eth1.gateway 172.68.1.1
 $ sudo ros config set rancher.network.interfaces.eth1.mtu 1500
@@ -73,7 +73,7 @@ If you want to configure one of multiple network interfaces, you can specify the
 
 Using `ros config`, you can specify the MAC address of the NIC you want to configure as follows:
 
-```bash
+```
 $ sudo ros config set rancher.network.interfaces.”mac=ea:34:71:66:90:12:01”.dhcp true
 ```
 

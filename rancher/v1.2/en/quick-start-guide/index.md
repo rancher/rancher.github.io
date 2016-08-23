@@ -1,6 +1,6 @@
 ---
 title: Quick Start Guide
-layout: rancher-default
+layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
@@ -19,6 +19,12 @@ Provision a Linux host with 64-bit Ubuntu 14.04, which must have a kernel of 3.1
 To install Docker on the server, follow the instructions from [Docker](https://docs.docker.com/installation/ubuntulinux/).
 
 > **Note:** Currently, Docker for Windows and Docker for Mac are not supported.
+
+### Rancher Server Tags
+
+The `rancher/server:latest` tag will be our stable release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version.
+
+If you are interested in trying one of our latest development builds which will have been validated through our CI automation framework, please check our [releases page](https://github.com/rancher/rancher/releases) to find the latest development release tag. These releases are not meant for deployment in production. All development builds will be appended with a `*-pre{n}` suffix to denote that it's a development release.
 
 ### Start Rancher Server
 

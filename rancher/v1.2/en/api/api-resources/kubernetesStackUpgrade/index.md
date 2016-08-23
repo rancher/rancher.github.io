@@ -1,7 +1,7 @@
 ---
 title: Rancher API - kubernetesStackUpgrade
 layout: rancher-api-default
-version: latest
+version: v1.2
 lang: en
 ---
 
@@ -24,8 +24,12 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="create"></a>
 <div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/kubernetesStackUpgrades</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
 {
 	"environment": {
 		"key1": "value1",
@@ -39,7 +43,10 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 		"keyN": "valueN"
 	}
 }
-{% endhighlight %}
-</div>
-</div>
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/kubernetesStackUpgrades'
+</code></pre></figure>
+</div></div>
+
+
 

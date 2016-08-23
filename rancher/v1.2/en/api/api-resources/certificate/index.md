@@ -1,7 +1,7 @@
 ---
 title: Rancher API - certificate
 layout: rancher-api-default
-version: latest
+version: v1.2
 lang: en
 ---
 
@@ -37,8 +37,12 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="create"></a>
 <div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/certificates</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
 {
 	"cert": "string",
 	"certChain": "string",
@@ -46,19 +50,33 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 	"key": "string",
 	"name": "string"
 }
-{% endhighlight %}
-</div>
-</div><a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/certificates/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/certificates'
+</code></pre></figure>
+</div></div>
 
-{% endhighlight %}
-</div>
-</div><a id="update"></a>
+<a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/certificates/${ID}</code></span></span>
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
+
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/certificates/${ID}'
+</code></pre></figure>
+</div></div>
+
+<a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/certificates/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X PUT \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
 {
 	"cert": "string",
 	"certChain": "string",
@@ -66,7 +84,10 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 	"key": "string",
 	"name": "string"
 }
-{% endhighlight %}
-</div>
-</div>
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/certificates/${ID}'
+</code></pre></figure>
+</div></div>
+
+
 

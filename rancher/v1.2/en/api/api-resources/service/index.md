@@ -1,7 +1,7 @@
 ---
 title: Rancher API - service
 layout: rancher-api-default
-version: latest
+version: v1.2
 lang: en
 ---
 
@@ -43,8 +43,12 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="create"></a>
 <div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/services</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
 {
 	"assignServiceIpAddress": false,
 	"description": "string",
@@ -56,10 +60,10 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 		"build": {
 			"context": "string",
 			"dockerfile": "string",
-			"forcerm": true,
-			"nocache": true,
+			"forcerm": false,
+			"nocache": false,
 			"remote": "string",
-			"rm": true
+			"rm": false
 		},
 		"capAdd": "array[enum]",
 		"capDrop": "array[enum]",
@@ -169,7 +173,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 		"memory": 0,
 		"memoryMb": 0,
 		"memorySwap": 0,
-		"nativeContainer": true,
+		"nativeContainer": false,
 		"networkContainerId": "reference[container]",
 		"networkIds": "array[reference[network]]",
 		"networkLaunchConfig": "string",
@@ -212,7 +216,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 	},
 	"metadata": "map[json]",
 	"name": "string",
-	"retainIp": true,
+	"retainIp": false,
 	"scale": 1,
 	"scalePolicy": {
 		"increment": 1,
@@ -225,24 +229,38 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 	"startOnCreate": false,
 	"vip": "string"
 }
-{% endhighlight %}
-</div>
-</div><a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/services/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/services'
+</code></pre></figure>
+</div></div>
 
-{% endhighlight %}
-</div>
-</div><a id="update"></a>
+<a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/services/${ID}</code></span></span>
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
+
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/services/${ID}'
+</code></pre></figure>
+</div></div>
+
+<a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/services/${ID}</code></span></span>
-<div class="action-contents">
-{% highlight json %}
+<div class="action-contents"><figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X PUT \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}
 {
 	"description": "string",
 	"metadata": "map[json]",
 	"name": "string",
-	"retainIp": true,
+	"retainIp": false,
 	"scale": 1,
 	"scalePolicy": {
 		"increment": 1,
@@ -252,9 +270,12 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 	"selectorContainer": "string",
 	"selectorLink": "string"
 }
-{% endhighlight %}
-</div>
-</div>
+{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/services/${ID}'
+</code></pre></figure>
+</div></div>
+
+
 
 ### Actions
 <div class="action">
@@ -280,13 +301,23 @@ addservicelink
 <span class="input">
 <strong>Input:</strong> addRemoveServiceLinkInput</span>
 
-<br>{% highlight json %}{
+<br>
+
+<figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}{
 	"serviceLink": {
 		"name": "string",
 		"serviceId": "reference[service]",
 		"uuid": "string"
 	}
-}{% endhighlight %}<br>
+}{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/services/${ID}?action=addservicelink'
+</code></pre></figure>
+<br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
@@ -352,13 +383,23 @@ removeservicelink
 <span class="input">
 <strong>Input:</strong> addRemoveServiceLinkInput</span>
 
-<br>{% highlight json %}{
+<br>
+
+<figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}{
 	"serviceLink": {
 		"name": "string",
 		"serviceId": "reference[service]",
 		"uuid": "string"
 	}
-}{% endhighlight %}<br>
+}{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/services/${ID}?action=removeservicelink'
+</code></pre></figure>
+<br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
@@ -372,12 +413,22 @@ restart
 <span class="input">
 <strong>Input:</strong> serviceRestart</span>
 
-<br>{% highlight json %}{
+<br>
+
+<figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}{
 	"rollingRestartStrategy": {
 		"batchSize": 1,
 		"intervalMillis": 2000
 	}
-}{% endhighlight %}<br>
+}{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/services/${ID}?action=restart'
+</code></pre></figure>
+<br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
@@ -404,9 +455,19 @@ setservicelinks
 <span class="input">
 <strong>Input:</strong> setServiceLinksInput</span>
 
-<br>{% highlight json %}{
+<br>
+
+<figure class="highlight"><pre><code>
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{% highlight json %}{
 	"serviceLinks": "array[serviceLink]"
-}{% endhighlight %}<br>
+}{% endhighlight %}' \
+'http://RANCHER_URL:8080/v1/services/${ID}?action=setservicelinks'
+</code></pre></figure>
+<br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
 </div></div>
 

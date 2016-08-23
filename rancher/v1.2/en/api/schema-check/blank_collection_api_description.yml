@@ -1,14 +1,11 @@
 account-description: 
-amazonec2Config-description: 
 apiKey-description: 
 auditLog-description: 
-azureConfig-description: 
 backup-description: 
 backupTarget-description: 
 certificate-description: 
 container-description: 
 credential-description: 
-digitaloceanConfig-description: 
 dnsService-description: 
 environment-description: 
 externalService-description: 
@@ -23,7 +20,6 @@ kubernetesStackUpgrade-description:
 loadBalancerService-description: 
 machine-description: 
 machineDriver-description: 
-packetConfig-description: 
 project-description: 
 projectMember-description: 
 pullTask-description: 
