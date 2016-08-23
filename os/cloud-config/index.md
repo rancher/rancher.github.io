@@ -137,7 +137,7 @@ Key | Value |Description
 `io.rancher.os.reloadconfig` | Default: `false`| When set to `true`, it reloads the configuration. 
 
 
-Read more about [system services]({{site.baseurl}}/os/configuration/system-services) in RancherOS. 
+Read more about [system services]({{site.baseurl}}/os/system-services/adding-system-services/) in RancherOS. 
 
 ### RancherOS Specific Configuration 
 
