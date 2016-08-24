@@ -33,4 +33,4 @@ Valid [datasources](https://github.com/rancher/os/blob/3338c4ac63597940bcde7e600
 
 ### Cloud-Config
  
-If you want to configure RancherOS using a [cloud-config file]({{site.baseurl}}/os/cloud-config/), please review what's [supported]({{site.baseurl}}/os/cloud-config/#supported-cloud-config-directives).
+When booting via iPXE, RancherOS can be configured using a [cloud-config file]({{site.baseurl}}/os/configuration/#cloud-config).

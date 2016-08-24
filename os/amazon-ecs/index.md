@@ -21,7 +21,7 @@ When launching the RancherOS AMI, you'll need to specify the **IAM Role** and **
 
 For the **IAM Role**, you'll need to be sure to select the ECS Container Instance IAM role. 
 
-For the **User Data**, you'll need to pass in the [cloud-config]({{site.baseurl}}/os/cloud-config/) file.
+For the **User Data**, you'll need to pass in the [cloud-config]({{site.baseurl}}/os/configuration/#cloud-config) file.
 
 ```yaml
 #cloud-config
@@ -38,7 +38,7 @@ rancher:
 
 By default, the ECS agent will be using the `latest` tag for the `amazon-ecs-agent` image. In v0.5.0, we introduced the ability to select which version of the `amazon-ecs-agent`. 
 
-To select the version, you can update your [cloud-config]({{site.baseurl}}/os/cloud-config/) file.
+To select the version, you can update your [cloud-config]({{site.baseurl}}/os/configuration/#cloud-config) file.
 
 ```yaml
 #cloud-config

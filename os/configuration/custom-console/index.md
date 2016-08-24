@@ -9,11 +9,11 @@ layout: os-default
 
 When [booting from the ISO]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso/), RancherOS starts with the default console, which is based on busybox.
 
-You can select which console you want RancherOS to start with using the [cloud-config]({{site.baseurl}}/os/cloud-config/).
+You can select which console you want RancherOS to start with using the [cloud-config]({{site.baseurl}}/os/configuration/#cloud-config).
 
 ### Enabling Consoles using Cloud-Config 
 
-When launching RancherOS with a [cloud-config]({[site.baseurl}}/os/cloud-config/) file, you can select which console you want to use. 
+When launching RancherOS with a [cloud-config]({[site.baseurl}}/os/configuration/#cloud-config) file, you can select which console you want to use. 
 
 Currently, the list of available consoles are:
 

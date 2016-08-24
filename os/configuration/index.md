@@ -1,22 +1,46 @@
 ---
 title: Configuring RancherOS
 layout: os-default
-
+redirect_from:
+  - os/cloud-config/
 ---
 
 ## Configuring RancherOS
 ---
-The configuration of RancherOS is derived from two sources.
+There are two ways that RancherOS can be configured.
 
-1. RancherOS ships with a default configuration. The default configuration cannot be changed, but it can be extended or overridden by [cloud-config file]({{site.baseurl}}/os/cloud-config).
+1. A cloud-config file can be used to provide configuration when first booting RancherOS.
 
-2. [Cloud-config]({{site.baseurl}}/os/cloud-config) extends and overrides RancherOS default config. Cloud-config is obtained on boot from several sources by the cloud-init program running as a system container inside RancherOS.  Additionally the cloud-config is read from disk if you wish to make local changes.
+2. Manually changing configuration with the `ros config` command.
 
-As a convenience we provide the `ros config` command which makes it easy to modify the cloud-config on disk.
+Typically, when you first boot the server, you pass in a cloud-config file to configure the initialization of the server. After the first boot, if you have any changes for the configuration, it's recommended that you use `ros config` to set the necessary configuration properties. Any changes will be saved on disk and a reboot will be required for changes to be applied.
 
-> **Note:** For any changes made with `sudo ros config`, you must reboot for them to take effect. 
+### Cloud-Config
 
-### Getting Values 
+Cloud-config is a declarative configuration file format supported by many Linux distributions and is the primary configuration mechanism for RancherOS.
+
+A Linux OS supporting cloud-config will invoke a cloud-init process during startup to parse the cloud-config file and configure the operating system. RancherOS runs its own cloud-init process in a system container. The cloud-init process will attempt to retrieve a cloud-config file from a variety of data sources. Once cloud-init obtains a cloud-config file, it configures the Linux OS according to the content of the cloud-config file.
+
+When you create a RancherOS instance on AWS, for example, you can optionally provide cloud-config passed in the `user-data` field. Inside the RancherOS instance, cloud-init process will retrieve the cloud-config content through its AWS cloud-config data source, which simply extracts the content of user-data received by the VM instance. If the file starts with "`#cloud-config`", cloud-init will interpret that file as a cloud-config file. If the file starts with `#!<interpreter>` (e.g., `#!/bin/sh`), cloud-init will simply execute that file. You can place any configuration commands in the file as scripts.
+
+A cloud-config file uses the YAML format. YAML is easy to understand and easy to parse. For more information on YAML, please read more at the [YAML site](http://www.yaml.org/start.html). The most important formatting principle is indentation or whitespace. This indentation indicates relationships of the items to one another. If something is indented more than the previous line, it is a sub-item of the top item that is less indented.
+
+Example: Notice how both are indented underneath `ssh-authorized-keys`.
+
+```yaml
+#cloud-config
+ssh_authorized_keys:
+  - ssh-rsa AAA...ZZZ example1@rancher
+  - ssh-rsa BBB...ZZZ example2@rancher
+```
+
+In our example above, we have our `#cloud-config` line to indicate it's a cloud-config file. We have 1 top-level property, `ssh_authorized_keys`. Its value is a list of public keys that are represented as a dashed list under `ssh_authorized_keys:`.
+
+### Manually Changing Configuration
+
+To update RancherOS configuration after booting, the `ros config` command can be used.
+
+#### Getting Values
 
 You can easily get any value that's been set in the `/var/lib/rancher/conf/cloud-config.yml` file. Let's see how easy it is to get the DNS configuration of the system.
 
@@ -26,15 +50,9 @@ $ sudo ros config get rancher.network.dns.nameservers
 - 8.8.4.4
 ```
 
-### Setting Values 
+#### Setting Values 
 
 You can set values in the `/var/lib/rancher/conf/cloud-config.yml` file.
-
-Setting a list in the `/var/lib/rancher/conf/cloud-config.yml`
-
-```
-$ sudo ros config set rancher.network.dns.nameservers "['8.8.8.8','8.8.4.4']"
-```
 
 Setting a simple value in the `/var/lib/rancher/conf/cloud-config.yml`
 
@@ -42,22 +60,24 @@ Setting a simple value in the `/var/lib/rancher/conf/cloud-config.yml`
 $ sudo ros config set rancher.docker.tls true
 ```
 
-### Reviewing the RancherOS configuration
-
-You can export the existing configuration from `/var/lib/rancher/conf/cloud-config.yml`. By default, only changes from the default values will be exported. If you run the command without any options, it will output into the shell what is in the `/var/lib/rancher/conf/cloud-config.yml` file.
-
-#### Outputting the Configuration to a File
-
-You can export your configuration directly to a file using `-o` or `--output` and specifying the name and location of where you want the file to be exported to. 
+Setting a list in the `/var/lib/rancher/conf/cloud-config.yml`
 
 ```
-$ sudo ros config export -o localcloudconfig.yml
+$ sudo ros config set rancher.network.dns.nameservers "['8.8.8.8','8.8.4.4']"
 ```
 
-#### Exporting Certificates and Private Keys
+#### Exporting the Current Configuration
 
-By default, certificates and private keys are not included in the export, but can be added by adding in the `-p` or `--private` option. The private information is located at `/var/lib/rancher/conf/cloud-config.d/private.yml`.
+To output and review the current configuration state you can use the `ros config export` command.
 
-#### Viewing the entire RancherOS configuration
-
-You can view the entire RancherOS configuration in its entirety by typing `sudo ros config export --full`. The full configuration will be anything in the default OS configuration, the `/var/lib/rancher/conf/cloud-config.d/boot.yml` and the `/var/lib/rancher/conf/cloud-config.yml` files. None of the certificates or private keys will be shown unless the `-p` flag is included.
+```
+$ sudo ros config export
+rancher:
+  docker:
+    tls: true
+  network:
+    dns:
+      nameservers:
+      - 8.8.8.8
+      - 8.8.4.4
+```

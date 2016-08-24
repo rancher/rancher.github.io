@@ -7,7 +7,7 @@ layout: os-default
 ## Private Registries
 ---
 
-When launching services through a [cloud-config]({{site.baseurl}}/os/cloud-config/), it is sometimes necessary to pull a private image from DockerHub or from a private registry. Authentication for these can be embedded in your cloud config.
+When launching services through a [cloud-config]({{site.baseurl}}/os/configuration/#cloud-config), it is sometimes necessary to pull a private image from DockerHub or from a private registry. Authentication for these can be embedded in your cloud config.
 
 For example, to add authentication for DockerHub:
 
@@ -42,9 +42,30 @@ rancher:
       password: password
 ```
 
+### Docker Client Authentication
+
+Configuring authentication for the Docker client is not handled by the `registry_auth` key. Instead, the `write_files` directive can be used to write credentials to the standard Docker configuration location.
+
+```
+#cloud-config
+write_files:
+  - path: /home/rancher/.docker/config.json
+    permissions: "0755"
+    owner: rancher
+    content: |
+      {
+        "auths": {
+          "https://index.docker.io/v1/": {
+            "auth": "asdf=",
+            "email": "not@val.id"
+          }
+        }
+      }
+```
+
 ### Certificates for Private Registries
 
-Certificates can be stored in the standard locations (i.e. `/etc/docker/certs.d`) following the [Docker documentation](https://docs.docker.com/registry/insecure). By using the `write_files` directive of the [Cloud Config]({{site.baseurl}}/os/cloud-config/), the certificates can be written directly into `/etc/docker/certs.d`.
+Certificates can be stored in the standard locations (i.e. `/etc/docker/certs.d`) following the [Docker documentation](https://docs.docker.com/registry/insecure). By using the `write_files` directive of the [Cloud Config]({{site.baseurl}}/os/configuration/#cloud-config), the certificates can be written directly into `/etc/docker/certs.d`.
 
 ```yaml
 #cloud-config
