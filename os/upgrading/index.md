@@ -119,9 +119,13 @@ During an upgrade, the template of the upgrade is downloaded from the rancher/os
 $ sudo ros os upgrade -s -i rancher/os:v0.5.0
 ```
 
+### Custom Upgrade Sources
 
+In the `upgrade` key, the `url` is used to find the list of available and current versions of RancherOS. This can be modified to track custom builds and releases.
 
-
-
-
-
+```yaml
+rancher:
+  upgrade:
+    url: https://releases.rancher.com/os/releases.yml
+    image: rancher/os
+```

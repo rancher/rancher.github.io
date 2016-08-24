@@ -13,7 +13,7 @@ The `ros install` command orchestrates the installation from the `rancher/os` co
 
 #### Cloud Config
 
-The easiest way to log in is to pass a `cloud-config.yml` file containing your public SSH keys. To learn more about what's supported in our cloud-config, please read our [documentation]({{site.baseurl}}/os/cloud-config/). 
+The easiest way to log in is to pass a `cloud-config.yml` file containing your public SSH keys. To learn more about what's supported in our cloud-con`fig, please read our [documentation]({{site.baseurl}}/os/configuration/#cloud-config).
 
 The `ros install` command will process your `cloud-config.yml` file specified with the `-c` flag. This file will also be placed onto the disk and installed to `/var/lib/rancher/conf/`. It will be evaluated on every boot.
 
@@ -59,7 +59,7 @@ Status: Downloaded newer image for rancher/os:v0.5.0
 Continue with reboot [y/N]:
 ```
 
-After installing RancherOS to disk, the rancher/rancher user/password will no longer be valid, unless you've booted off the ISO again. You'll need to have added in SSH keys within your [cloud config file]({{site.baseurl}}/os/cloud-config/).
+After installing RancherOS to disk, the rancher/rancher user/password will no longer be valid, unless you've booted off the ISO again. You'll need to have added in SSH keys within your [cloud config file]({{site.baseurl}}/os/configuration/#cloud-config).
 
 #### Installing a Different Version
 

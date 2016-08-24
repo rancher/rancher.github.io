@@ -32,7 +32,7 @@ To delete a service that you added, run `ros service delete <system-service-name
 
 ### Adding Custom System Services
 
-After creating your own custom service, you can launch the services in RancherOS in two different methods. The service could be directly added to the [cloud-config]({{site.baseurl}}/os/cloud-config/) that you start RancherOS with or a `docker-compose.yml` file could be saved in a http(s) url location or in a directory of RancherOS.
+After creating your own custom service, you can launch the services in RancherOS in two different methods. The service could be directly added to the [cloud-config]({{site.baseurl}}/os/configuration/#cloud-config) that you start RancherOS with or a `docker-compose.yml` file could be saved in a http(s) url location or in a directory of RancherOS.
 
 #### Launching Services through Cloud-Config
 
