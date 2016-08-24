@@ -52,7 +52,7 @@ It is configured by the `rancher.cloud_init.datasources` list in [cloud-config](
 
 During this service, networking is set up, e.g. hostname, interfaces, and DNS. 
 
-It is configured by `hostname` and `rancher.network`[settings]({{site.baseurl}}/os/configuration/networking) in [cloud-config]({{site.baseurl}}/os/cloud-config/).
+It is configured by `hostname` and `rancher.network`[settings]({{site.baseurl}}/os/networking/) in [cloud-config]({{site.baseurl}}/os/cloud-config/).
 
 ### ntp
 
