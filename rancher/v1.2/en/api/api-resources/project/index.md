@@ -39,8 +39,14 @@ activate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/account/">account</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/projects/${ID}?action=activate'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/account/">account</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -52,8 +58,14 @@ deactivate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/account/">account</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/projects/${ID}?action=deactivate'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/account/">account</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -64,22 +76,56 @@ setmembers
 
 <br>
 <span class="input">
-<strong>Input:</strong> setProjectMembersInput</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/setProjectMembersInput/">SetProjectMembersInput</a></span>
 
 <br>
-
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}{
+-d '{
 	"members": "array[projectMember]"
-}{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/projects/${ID}?action=setmembers'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/projects/${ID}?action=setmembers'
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/setProjectMembersInput/">setProjectMembersInput</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/setProjectMembersInput/">setProjectMembersInput</a> resource</span>
+</div></div>
+
+
+
+
+### Actions
+<div class="action">
+<span class="header">
+activate
+<span class="headerright">POST:  <code>/v1/projects/${ID}?action=activate</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new project, send a POST request to <code>/v1/projects/${ID}?action=activate</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+deactivate
+<span class="headerright">POST:  <code>/v1/projects/${ID}?action=deactivate</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new project, send a POST request to <code>/v1/projects/${ID}?action=deactivate</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+setmembers
+<span class="headerright">POST:  <code>/v1/projects/${ID}?action=setmembers</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new project, send a POST request to <code>/v1/projects/${ID}?action=setmembers</code>.
+
 </div></div>
 
 

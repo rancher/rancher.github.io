@@ -36,8 +36,14 @@ activate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/projectMember/">projectMember</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/projectMembers/${ID}?action=activate'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/projectMember/">projectMember</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -49,8 +55,40 @@ deactivate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/projectMembers/${ID}?action=deactivate'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/projectMember/">projectMember</a> resource</span>
+</div></div>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/projectMember/">projectMember</a> resource</span>
+
+
+
+### Actions
+<div class="action">
+<span class="header">
+activate
+<span class="headerright">POST:  <code>/v1/projectMembers/${ID}?action=activate</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new projectMember, send a POST request to <code>/v1/projectMembers/${ID}?action=activate</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+deactivate
+<span class="headerright">POST:  <code>/v1/projectMembers/${ID}?action=deactivate</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new projectMember, send a POST request to <code>/v1/projectMembers/${ID}?action=deactivate</code>.
+
 </div></div>
 
 

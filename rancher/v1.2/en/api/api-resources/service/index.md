@@ -43,198 +43,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="create"></a>
 <div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/services</code></span></span>
-<div class="action-contents"><figure class="highlight"><pre><code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X POST \
--H 'Content-Type: application/json' \
--d '{% highlight json %}
-{
-	"assignServiceIpAddress": false,
-	"description": "string",
-	"environmentId": "reference[environment]",
-	"externalId": "string",
-	"launchConfig": {
-		"accountId": "reference[account]",
-		"blkioDeviceOptions": "map[blkioDeviceOption]",
-		"build": {
-			"context": "string",
-			"dockerfile": "string",
-			"forcerm": false,
-			"nocache": false,
-			"remote": "string",
-			"rm": false
-		},
-		"capAdd": "array[enum]",
-		"capDrop": "array[enum]",
-		"command": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"count": 0,
-		"cpuSet": "string",
-		"cpuShares": 0,
-		"createIndex": 0,
-		"created": "date",
-		"dataVolumeMounts": "map[reference[volume]]",
-		"dataVolumes": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"dataVolumesFrom": "array[reference[container]]",
-		"dataVolumesFromLaunchConfigs": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"deploymentUnitUuid": "string",
-		"description": "string",
-		"devices": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"disks": "array[virtualMachineDisk]",
-		"dns": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"dnsSearch": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"domainName": "string",
-		"entryPoint": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"environment": {
-			"key1": "value1",
-			"key2": "value2",
-			"keyN": "valueN"
-		},
-		"expose": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"externalId": "string",
-		"extraHosts": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"firstRunning": "date",
-		"healthCheck": {
-			"healthyThreshold": 0,
-			"initializingTimeout": 0,
-			"interval": 0,
-			"name": "string",
-			"port": 0,
-			"recreateOnQuorumStrategyConfig": {
-				"quorum": 0
-			},
-			"reinitializingTimeout": 0,
-			"requestLine": "string",
-			"responseTimeout": 0,
-			"strategy": "recreate",
-			"unhealthyThreshold": 0
-		},
-		"healthState": "enum",
-		"hostId": "reference[host]",
-		"hostname": "string",
-		"id": 0,
-		"imageUuid": "string",
-		"instanceLinks": "map[reference[instance]]",
-		"kind": "container",
-		"labels": {
-			"key1": "value1",
-			"key2": "value2",
-			"keyN": "valueN"
-		},
-		"logConfig": {
-			"config": {
-				"key1": "value1",
-				"key2": "value2",
-				"keyN": "valueN"
-			},
-			"driver": "string"
-		},
-		"lxcConf": {
-			"key1": "value1",
-			"key2": "value2",
-			"keyN": "valueN"
-		},
-		"memory": 0,
-		"memoryMb": 0,
-		"memorySwap": 0,
-		"nativeContainer": false,
-		"networkContainerId": "reference[container]",
-		"networkIds": "array[reference[network]]",
-		"networkLaunchConfig": "string",
-		"networkMode": "managed",
-		"pidMode": "enum",
-		"ports": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"primaryIpAddress": "string",
-		"privileged": false,
-		"publishAllPorts": false,
-		"readOnly": false,
-		"registryCredentialId": "reference[registryCredential]",
-		"removed": "date",
-		"requestedHostId": "reference[host]",
-		"requestedIpAddress": "string",
-		"securityOpt": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"startCount": 0,
-		"startOnCreate": true,
-		"state": "enum",
-		"stdinOpen": false,
-		"systemContainer": "enum",
-		"transitioning": "enum",
-		"transitioningMessage": "string",
-		"transitioningProgress": 0,
-		"tty": false,
-		"user": "string",
-		"userdata": "string",
-		"uuid": "string",
-		"vcpu": 1,
-		"version": "0",
-		"volumeDriver": "string",
-		"workingDir": "string"
-	},
-	"metadata": "map[json]",
-	"name": "string",
-	"retainIp": false,
-	"scale": 1,
-	"scalePolicy": {
-		"increment": 1,
-		"max": 1,
-		"min": 1
-	},
-	"secondaryLaunchConfigs": "array[secondaryLaunchConfig]",
-	"selectorContainer": "string",
-	"selectorLink": "string",
-	"startOnCreate": false,
-	"vip": "string"
-}
-{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/services'
-</code></pre></figure>
-
-<br>
-
-<figure class="highlight"><pre><code>
+<div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
 -H 'Content-Type: application/json' \
@@ -417,473 +226,22 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"selectorLink": "string",
 	"startOnCreate": false,
 	"vip": "string"
-}' \
-'http://RANCHER_URL:8080/v1/services'
-</code></pre></figure>
-
-<br>
-{% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X POST \
--H 'Content-Type: application/json' \
--d '{
-	"assignServiceIpAddress": false,
-	"description": "string",
-	"environmentId": "reference[environment]",
-	"externalId": "string",
-	"launchConfig": {
-		"accountId": "reference[account]",
-		"blkioDeviceOptions": "map[blkioDeviceOption]",
-		"build": {
-			"context": "string",
-			"dockerfile": "string",
-			"forcerm": false,
-			"nocache": false,
-			"remote": "string",
-			"rm": false
-		},
-		"capAdd": "array[enum]",
-		"capDrop": "array[enum]",
-		"command": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"count": 0,
-		"cpuSet": "string",
-		"cpuShares": 0,
-		"createIndex": 0,
-		"created": "date",
-		"dataVolumeMounts": "map[reference[volume]]",
-		"dataVolumes": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"dataVolumesFrom": "array[reference[container]]",
-		"dataVolumesFromLaunchConfigs": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"deploymentUnitUuid": "string",
-		"description": "string",
-		"devices": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"disks": "array[virtualMachineDisk]",
-		"dns": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"dnsSearch": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"domainName": "string",
-		"entryPoint": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"environment": {
-			"key1": "value1",
-			"key2": "value2",
-			"keyN": "valueN"
-		},
-		"expose": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"externalId": "string",
-		"extraHosts": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"firstRunning": "date",
-		"healthCheck": {
-			"healthyThreshold": 0,
-			"initializingTimeout": 0,
-			"interval": 0,
-			"name": "string",
-			"port": 0,
-			"recreateOnQuorumStrategyConfig": {
-				"quorum": 0
-			},
-			"reinitializingTimeout": 0,
-			"requestLine": "string",
-			"responseTimeout": 0,
-			"strategy": "recreate",
-			"unhealthyThreshold": 0
-		},
-		"healthState": "enum",
-		"hostId": "reference[host]",
-		"hostname": "string",
-		"id": 0,
-		"imageUuid": "string",
-		"instanceLinks": "map[reference[instance]]",
-		"kind": "container",
-		"labels": {
-			"key1": "value1",
-			"key2": "value2",
-			"keyN": "valueN"
-		},
-		"logConfig": {
-			"config": {
-				"key1": "value1",
-				"key2": "value2",
-				"keyN": "valueN"
-			},
-			"driver": "string"
-		},
-		"lxcConf": {
-			"key1": "value1",
-			"key2": "value2",
-			"keyN": "valueN"
-		},
-		"memory": 0,
-		"memoryMb": 0,
-		"memorySwap": 0,
-		"nativeContainer": false,
-		"networkContainerId": "reference[container]",
-		"networkIds": "array[reference[network]]",
-		"networkLaunchConfig": "string",
-		"networkMode": "managed",
-		"pidMode": "enum",
-		"ports": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"primaryIpAddress": "string",
-		"privileged": false,
-		"publishAllPorts": false,
-		"readOnly": false,
-		"registryCredentialId": "reference[registryCredential]",
-		"removed": "date",
-		"requestedHostId": "reference[host]",
-		"requestedIpAddress": "string",
-		"securityOpt": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"startCount": 0,
-		"startOnCreate": true,
-		"state": "enum",
-		"stdinOpen": false,
-		"systemContainer": "enum",
-		"transitioning": "enum",
-		"transitioningMessage": "string",
-		"transitioningProgress": 0,
-		"tty": false,
-		"user": "string",
-		"userdata": "string",
-		"uuid": "string",
-		"vcpu": 1,
-		"version": "0",
-		"volumeDriver": "string",
-		"workingDir": "string"
-	},
-	"metadata": "map[json]",
-	"name": "string",
-	"retainIp": false,
-	"scale": 1,
-	"scalePolicy": {
-		"increment": 1,
-		"max": 1,
-		"min": 1
-	},
-	"secondaryLaunchConfigs": "array[secondaryLaunchConfig]",
-	"selectorContainer": "string",
-	"selectorLink": "string",
-	"startOnCreate": false,
-	"vip": "string"
-}' \
-'http://RANCHER_URL:8080/v1/services'
+}' 'http://RANCHER_URL:8080/v1/services'
 {% endhighlight %}
-
-<br>
-
-**CURL EXAMPLE**
-<figure class="highlight"><pre><code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" -X POST -H 'Content-Type: application/json' -d '' 'http://RANCHER_URL:8080/v1/services'
-</code></pre></figure>
-<br>
-**REQUEST HEADERS**
-<figure class="highlight"><pre><code>
-Content-Type: application/json
-</code></pre></figure>
-<br>
-
-**REQUEST BODY**
-{% highlight json %}
-{
-	"assignServiceIpAddress": false,
-	"description": "string",
-	"environmentId": "reference[environment]",
-	"externalId": "string",
-	"launchConfig": {
-		"accountId": "reference[account]",
-		"blkioDeviceOptions": "map[blkioDeviceOption]",
-		"build": {
-			"context": "string",
-			"dockerfile": "string",
-			"forcerm": false,
-			"nocache": false,
-			"remote": "string",
-			"rm": false
-		},
-		"capAdd": "array[enum]",
-		"capDrop": "array[enum]",
-		"command": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"count": 0,
-		"cpuSet": "string",
-		"cpuShares": 0,
-		"createIndex": 0,
-		"created": "date",
-		"dataVolumeMounts": "map[reference[volume]]",
-		"dataVolumes": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"dataVolumesFrom": "array[reference[container]]",
-		"dataVolumesFromLaunchConfigs": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"deploymentUnitUuid": "string",
-		"description": "string",
-		"devices": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"disks": "array[virtualMachineDisk]",
-		"dns": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"dnsSearch": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"domainName": "string",
-		"entryPoint": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"environment": {
-			"key1": "value1",
-			"key2": "value2",
-			"keyN": "valueN"
-		},
-		"expose": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"externalId": "string",
-		"extraHosts": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"firstRunning": "date",
-		"healthCheck": {
-			"healthyThreshold": 0,
-			"initializingTimeout": 0,
-			"interval": 0,
-			"name": "string",
-			"port": 0,
-			"recreateOnQuorumStrategyConfig": {
-				"quorum": 0
-			},
-			"reinitializingTimeout": 0,
-			"requestLine": "string",
-			"responseTimeout": 0,
-			"strategy": "recreate",
-			"unhealthyThreshold": 0
-		},
-		"healthState": "enum",
-		"hostId": "reference[host]",
-		"hostname": "string",
-		"id": 0,
-		"imageUuid": "string",
-		"instanceLinks": "map[reference[instance]]",
-		"kind": "container",
-		"labels": {
-			"key1": "value1",
-			"key2": "value2",
-			"keyN": "valueN"
-		},
-		"logConfig": {
-			"config": {
-				"key1": "value1",
-				"key2": "value2",
-				"keyN": "valueN"
-			},
-			"driver": "string"
-		},
-		"lxcConf": {
-			"key1": "value1",
-			"key2": "value2",
-			"keyN": "valueN"
-		},
-		"memory": 0,
-		"memoryMb": 0,
-		"memorySwap": 0,
-		"nativeContainer": false,
-		"networkContainerId": "reference[container]",
-		"networkIds": "array[reference[network]]",
-		"networkLaunchConfig": "string",
-		"networkMode": "managed",
-		"pidMode": "enum",
-		"ports": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"primaryIpAddress": "string",
-		"privileged": false,
-		"publishAllPorts": false,
-		"readOnly": false,
-		"registryCredentialId": "reference[registryCredential]",
-		"removed": "date",
-		"requestedHostId": "reference[host]",
-		"requestedIpAddress": "string",
-		"securityOpt": [
-			"string1",
-			"string2",
-			"...stringN"
-		],
-		"startCount": 0,
-		"startOnCreate": true,
-		"state": "enum",
-		"stdinOpen": false,
-		"systemContainer": "enum",
-		"transitioning": "enum",
-		"transitioningMessage": "string",
-		"transitioningProgress": 0,
-		"tty": false,
-		"user": "string",
-		"userdata": "string",
-		"uuid": "string",
-		"vcpu": 1,
-		"version": "0",
-		"volumeDriver": "string",
-		"workingDir": "string"
-	},
-	"metadata": "map[json]",
-	"name": "string",
-	"retainIp": false,
-	"scale": 1,
-	"scalePolicy": {
-		"increment": 1,
-		"max": 1,
-		"min": 1
-	},
-	"secondaryLaunchConfigs": "array[secondaryLaunchConfig]",
-	"selectorContainer": "string",
-	"selectorLink": "string",
-	"startOnCreate": false,
-	"vip": "string"
-}
-{% endhighlight %}
-
-
 </div></div>
 
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/services/${ID}</code></span></span>
-<div class="action-contents"><figure class="highlight"><pre><code>
+<div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
--H 'Content-Type: application/json' \
--d '{% highlight json %}
-
-{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/services/${ID}'
-</code></pre></figure>
-
-<br>
-
-<figure class="highlight"><pre><code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X DELETE \
--H 'Content-Type: application/json' \
--d '' \
-'http://RANCHER_URL:8080/v1/services/${ID}'
-</code></pre></figure>
-
-<br>
-{% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X DELETE \
--H 'Content-Type: application/json' \
--d '' \
 'http://RANCHER_URL:8080/v1/services/${ID}'
 {% endhighlight %}
-
-<br>
-
-**CURL EXAMPLE**
-<figure class="highlight"><pre><code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" -X DELETE -H 'Content-Type: application/json' -d '' 'http://RANCHER_URL:8080/v1/services/${ID}'
-</code></pre></figure>
-<br>
-**REQUEST HEADERS**
-<figure class="highlight"><pre><code>
-Content-Type: application/json
-</code></pre></figure>
-<br>
-
-
 </div></div>
 
 <a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/services/${ID}</code></span></span>
-<div class="action-contents"><figure class="highlight"><pre><code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X PUT \
--H 'Content-Type: application/json' \
--d '{% highlight json %}
-{
-	"description": "string",
-	"metadata": "map[json]",
-	"name": "string",
-	"retainIp": false,
-	"scale": 1,
-	"scalePolicy": {
-		"increment": 1,
-		"max": 1,
-		"min": 1
-	},
-	"selectorContainer": "string",
-	"selectorLink": "string"
-}
-{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/services/${ID}'
-</code></pre></figure>
-
-<br>
-
-<figure class="highlight"><pre><code>
+<div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X PUT \
 -H 'Content-Type: application/json' \
@@ -900,64 +258,8 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	},
 	"selectorContainer": "string",
 	"selectorLink": "string"
-}' \
-'http://RANCHER_URL:8080/v1/services/${ID}'
-</code></pre></figure>
-
-<br>
-{% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X PUT \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"metadata": "map[json]",
-	"name": "string",
-	"retainIp": false,
-	"scale": 1,
-	"scalePolicy": {
-		"increment": 1,
-		"max": 1,
-		"min": 1
-	},
-	"selectorContainer": "string",
-	"selectorLink": "string"
-}' \
-'http://RANCHER_URL:8080/v1/services/${ID}'
+}' 'http://RANCHER_URL:8080/v1/services/${ID}'
 {% endhighlight %}
-
-<br>
-
-**CURL EXAMPLE**
-<figure class="highlight"><pre><code>
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" -X PUT -H 'Content-Type: application/json' -d '' 'http://RANCHER_URL:8080/v1/services/${ID}'
-</code></pre></figure>
-<br>
-**REQUEST HEADERS**
-<figure class="highlight"><pre><code>
-Content-Type: application/json
-</code></pre></figure>
-<br>
-
-**REQUEST BODY**
-{% highlight json %}
-{
-	"description": "string",
-	"metadata": "map[json]",
-	"name": "string",
-	"retainIp": false,
-	"scale": 1,
-	"scalePolicy": {
-		"increment": 1,
-		"max": 1,
-		"min": 1
-	},
-	"selectorContainer": "string",
-	"selectorLink": "string"
-}
-{% endhighlight %}
-
-
 </div></div>
 
 
@@ -973,15 +275,13 @@ activate
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
 <br>
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Content-Type: application/json' \
-
 'http://RANCHER_URL:8080/v1/services/${ID}?action=activate'
-</code></pre></figure>
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -992,24 +292,23 @@ addservicelink
 
 <br>
 <span class="input">
-<strong>Input:</strong> addRemoveServiceLinkInput</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/addRemoveServiceLinkInput/">AddRemoveServiceLinkInput</a></span>
 
 <br>
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}{
+-d '{
 	"serviceLink": {
 		"name": "string",
 		"serviceId": "reference[service]",
 		"uuid": "string"
 	}
-}{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/services/${ID}?action=addservicelink'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/services/${ID}?action=addservicelink'
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -1022,15 +321,13 @@ cancelrollback
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
 <br>
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Content-Type: application/json' \
-
 'http://RANCHER_URL:8080/v1/services/${ID}?action=cancelrollback'
-</code></pre></figure>
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -1043,15 +340,13 @@ cancelupgrade
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
 <br>
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Content-Type: application/json' \
-
 'http://RANCHER_URL:8080/v1/services/${ID}?action=cancelupgrade'
-</code></pre></figure>
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -1064,15 +359,13 @@ deactivate
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
 <br>
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Content-Type: application/json' \
-
 'http://RANCHER_URL:8080/v1/services/${ID}?action=deactivate'
-</code></pre></figure>
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -1085,15 +378,13 @@ finishupgrade
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
 <br>
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Content-Type: application/json' \
-
 'http://RANCHER_URL:8080/v1/services/${ID}?action=finishupgrade'
-</code></pre></figure>
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -1104,24 +395,23 @@ removeservicelink
 
 <br>
 <span class="input">
-<strong>Input:</strong> addRemoveServiceLinkInput</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/addRemoveServiceLinkInput/">AddRemoveServiceLinkInput</a></span>
 
 <br>
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}{
+-d '{
 	"serviceLink": {
 		"name": "string",
 		"serviceId": "reference[service]",
 		"uuid": "string"
 	}
-}{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/services/${ID}?action=removeservicelink'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/services/${ID}?action=removeservicelink'
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -1132,23 +422,22 @@ restart
 
 <br>
 <span class="input">
-<strong>Input:</strong> serviceRestart</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceRestart/">ServiceRestart</a></span>
 
 <br>
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}{
+-d '{
 	"rollingRestartStrategy": {
 		"batchSize": 1,
 		"intervalMillis": 2000
 	}
-}{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/services/${ID}?action=restart'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/services/${ID}?action=restart'
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -1161,15 +450,13 @@ rollback
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
 <br>
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Content-Type: application/json' \
-
 'http://RANCHER_URL:8080/v1/services/${ID}?action=rollback'
-</code></pre></figure>
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -1180,20 +467,19 @@ setservicelinks
 
 <br>
 <span class="input">
-<strong>Input:</strong> setServiceLinksInput</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/setServiceLinksInput/">SetServiceLinksInput</a></span>
 
 <br>
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}{
+-d '{
 	"serviceLinks": "array[serviceLink]"
-}{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/services/${ID}?action=setservicelinks'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/services/${ID}?action=setservicelinks'
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 
@@ -1207,7 +493,7 @@ activate
 <div class="action-contents">
 
 <br>
-To create a new, send a POST request to <code>/v1/services/${ID}?action=activate</code>.
+To create a new service, send a POST request to <code>/v1/services/${ID}?action=activate</code>.
 
 </div></div>
 
@@ -1218,7 +504,7 @@ addservicelink
 <div class="action-contents">
 
 <br>
-To create a new, send a POST request to <code>/v1/services/${ID}?action=addservicelink</code>.
+To create a new service, send a POST request to <code>/v1/services/${ID}?action=addservicelink</code>.
 
 </div></div>
 
@@ -1229,7 +515,7 @@ cancelrollback
 <div class="action-contents">
 
 <br>
-To create a new, send a POST request to <code>/v1/services/${ID}?action=cancelrollback</code>.
+To create a new service, send a POST request to <code>/v1/services/${ID}?action=cancelrollback</code>.
 
 </div></div>
 
@@ -1240,7 +526,7 @@ cancelupgrade
 <div class="action-contents">
 
 <br>
-To create a new, send a POST request to <code>/v1/services/${ID}?action=cancelupgrade</code>.
+To create a new service, send a POST request to <code>/v1/services/${ID}?action=cancelupgrade</code>.
 
 </div></div>
 
@@ -1251,7 +537,7 @@ deactivate
 <div class="action-contents">
 
 <br>
-To create a new, send a POST request to <code>/v1/services/${ID}?action=deactivate</code>.
+To create a new service, send a POST request to <code>/v1/services/${ID}?action=deactivate</code>.
 
 </div></div>
 
@@ -1262,7 +548,7 @@ finishupgrade
 <div class="action-contents">
 
 <br>
-To create a new, send a POST request to <code>/v1/services/${ID}?action=finishupgrade</code>.
+To create a new service, send a POST request to <code>/v1/services/${ID}?action=finishupgrade</code>.
 
 </div></div>
 
@@ -1273,7 +559,7 @@ removeservicelink
 <div class="action-contents">
 
 <br>
-To create a new, send a POST request to <code>/v1/services/${ID}?action=removeservicelink</code>.
+To create a new service, send a POST request to <code>/v1/services/${ID}?action=removeservicelink</code>.
 
 </div></div>
 
@@ -1284,7 +570,7 @@ restart
 <div class="action-contents">
 
 <br>
-To create a new, send a POST request to <code>/v1/services/${ID}?action=restart</code>.
+To create a new service, send a POST request to <code>/v1/services/${ID}?action=restart</code>.
 
 </div></div>
 
@@ -1295,7 +581,7 @@ rollback
 <div class="action-contents">
 
 <br>
-To create a new, send a POST request to <code>/v1/services/${ID}?action=rollback</code>.
+To create a new service, send a POST request to <code>/v1/services/${ID}?action=rollback</code>.
 
 </div></div>
 
@@ -1306,7 +592,7 @@ setservicelinks
 <div class="action-contents">
 
 <br>
-To create a new, send a POST request to <code>/v1/services/${ID}?action=setservicelinks</code>.
+To create a new service, send a POST request to <code>/v1/services/${ID}?action=setservicelinks</code>.
 
 </div></div>
 
