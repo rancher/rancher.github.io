@@ -8,6 +8,7 @@ layout: os-default
 RancherOS will store its state in a single partition specified by the `dev` field.  The field can be a device such as `/dev/sda1` or a logical name such `LABEL=state` or `UUID=123124`.  The default value is `LABEL=RANCHER_STATE`.  The file system type of that partition can be set to `auto` or a specific file system type such as `ext4`.
 
 ```yaml
+#cloud-config
 rancher:
   state:
     fstype: auto
