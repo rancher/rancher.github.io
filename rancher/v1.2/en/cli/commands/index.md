@@ -27,14 +27,15 @@ Name | Description
 `logs`           |   [Fetch the logs of a container](#rancher-hosts-reference)
 `ps`            |    [Show services/containers](#rancher-ps-reference)
 `restart`       |   [Restart service, container](#rancher-restart-reference)
-`rm`          |      [Delete resources](#rancher-rm-reference)
+`rm`          |      [Delete service, container, host, machine](#rancher-rm-reference)
 `run`         |     [Run services](#rancher-run-reference)
 `scale`       |      [Set number of containers to run for a service](#rancher-scale-reference)
 `ssh`         |      [SSH into host](#rancher-ssh-reference)
 `stacks`, `stack`  |   [Operations on stacks](#rancher-stacks-reference)
 `start`, `activate`  | [Start or activate service, container, host](#rancher-startactivate-reference)
-`stop`, `deactivate` | [Stop or deactivate service, container, host, account](#rancher-stopdeactivate-reference)
+`stop`, `deactivate` | [Stop or deactivate service, container, host](#rancher-stopdeactivate-reference)
 `up`           |     [Bring all services up](#rancher-up-reference)
+`inspect`           [View details for service, container, host, enviroment, stack](#rancher-inspect-reference)
 `wait`        |      [Wait for resources service, container, host, environment, machine](#rancher-wait-reference)
 `help`        |     Shows a list of commands or help for one command
 
@@ -61,7 +62,7 @@ Name | Description
 
 <br>
 
-#### Waiting For resources
+#### Waiting For Resources
 
 There is a global flag, i.e. `-w`,  that can be used for commands to reach resting state. When scripting your Rancher commands, using `-w` allows you to wait until the resources are ready before moving on to the next command.
 
@@ -330,7 +331,7 @@ Name | Description
 # Get the logs for the last 50 lines using container ID
 $ rancher logs --tail 50 <ID>
 # Tail the logs using container name
-$ rancher logs -f <stackName_serviceName>
+$ rancher logs -f <stackName>/<serviceName>
 ```
 
 ### Rancher ps reference
@@ -383,7 +384,7 @@ Name | Description
 # Restart by ID of service, container, host
 $ rancher restart <ID>
 # Restart by name of service, container, host
-$ rancher restart <stackName_serviceName>
+$ rancher restart <stackName>/<serviceName>
 ```
 
 <br>
@@ -414,7 +415,7 @@ $ rancher -p 2368:2368 --name blog ghost
 By default, when you start a service using `rancher run`, the scale of the service will be 1. You can use the `rancher scale` command to increase the scale of any service. You can select the service by name, i.e. `stackName/serviceName`, or by service ID.
 
 ```bash
-$ rancher scale <stackName/serviceName>=5 <serviceID>=3
+$ rancher scale <stackName>/<serviceName>=5 <serviceID>=3
 ```
 
 ### Rancher ssh reference
@@ -481,7 +482,7 @@ Name | Description
 # Start by ID of service, container, host
 $ rancher start <ID>
 # Start by name of service, container, host
-$ rancher start <stackName_serviceName>
+$ rancher start <stackName>/<serviceName>
 ```
 
 > **Note:** The service name will always include the stack name to ensure that we're referencing the correct service.
@@ -502,14 +503,58 @@ Name | Description
 # Stop by ID of service, container, host
 $ rancher stop <ID>
 # Stop by name of service, container, host
-$ rancher stop <stackName_serviceName>
+$ rancher stop <stackName>/<serviceName>
 ```
 
 > **Note:** The service name will always include the stack name to ensure that we're referencing the correct service.
 
 ### Rancher up Reference
 
-The `rancher up` command is similar to the Docker Compose up command.
+The `rancher up` command is similar to the Docker Compose `up` command.
+
+#### Options
+
+Name | Description
+---|----
+`--pull`, `-p` |                         Before doing the upgrade do an image pull on all hosts that have the image already
+`-d`                             |   Do not block and log
+`--upgrade`, `-u`, `--recreate` |          Upgrade if service has changed
+`--force-upgrade`, `--force-recreate` |  Upgrade regardless if service has changed
+`--confirm-upgrade`, `-c`    |          Confirm that the upgrade was success and delete old containers
+`--rollback`, `-r`            |         Rollback to the previous deployed version
+`--batch-size` value          |       Number of containers to upgrade at once (default: 2)
+`--interval` value            |       Update interval in milliseconds (default: 1000)
+`--rancher-file` value        |       Specify an alternate Rancher compose file (default: rancher-compose.yml)
+`--env-file` value, `-e` value     |    Specify a file from which to read environment variables
+`--file` value, `-f` value       |      Specify one or more alternate compose files (default: docker-compose.yml) [$COMPOSE_FILE]
+`--stack` value, `-s` value       |     Specify an alternate project name (default: directory name)
+
+
+```bash
+$ rancher up -s <stackName> -d
+```
+
+### Rancher inspect Reference
+
+The `rancher inspect` provides detail on the resource.
+
+Name | Description
+---|----
+`--type` value  |  Restrict restart to specific types (service, container, host)
+`--links`       |  Include URLs to actions and links in resource output
+`--format` value  | 'json' or Custom format: {{.id]} {{.name}} (default: "json")
+
+
+```bash
+# Inspect by ID of service, container, host
+$ rancher inspect <ID>
+# Inspect by name of service, container, host
+$ rancher inspect <stackName>/<serviceName>
+```
+
+<br>
+
+> **Note:** The service name will always include the stack name to ensure that we're referencing the correct service.
 
 ### Rancher wait Reference
 
