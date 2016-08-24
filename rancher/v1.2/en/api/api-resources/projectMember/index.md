@@ -66,29 +66,3 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 </div></div>
 
 
-
-
-### Actions
-<div class="action">
-<span class="header">
-activate
-<span class="headerright">POST:  <code>/v1/projectMembers/${ID}?action=activate</code></span></span>
-<div class="action-contents">
-
-<br>
-To create a new projectMember, send a POST request to <code>/v1/projectMembers/${ID}?action=activate</code>.
-
-</div></div>
-
-<div class="action">
-<span class="header">
-deactivate
-<span class="headerright">POST:  <code>/v1/projectMembers/${ID}?action=deactivate</code></span></span>
-<div class="action-contents">
-
-<br>
-To create a new projectMember, send a POST request to <code>/v1/projectMembers/${ID}?action=deactivate</code>.
-
-</div></div>
-
-
