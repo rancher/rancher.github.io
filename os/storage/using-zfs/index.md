@@ -15,11 +15,11 @@ $ sudo ros service enable kernel-headers
 $ sudo ros service up -d kernel-headers
 ```
 
-When RancherOS console has reloaded, you will have logged into the persistent console and the current kernel headers will have been downloaded and unpacked.
+When RancherOS console has reloaded, you will have logged into the persistent console. The current kernel headers will need to be downloaded using the `ros service enable` and the service will be started with `ros service up -d kernel-headers`.
 
 #### Installing ZFS on Ubuntu Console
 
-Based on the [Ubuntu ZFS docs](https://wiki.ubuntu.com/Kernel/Reference/ZFS), you only need to install `zfs` package into the Ubuntu console to enable ZFS (all the other necessary packages will be installed as its dependencies).
+Based on the [Ubuntu ZFS docs](https://wiki.ubuntu.com/Kernel/Reference/ZFS), you only need to install `zfs` package into the Ubuntu console to enable ZFS. Aall the other necessary packages will be installed as its dependencies.
 
 ```
 # Adding ZFS PPA and updating the package cache
@@ -30,7 +30,7 @@ $ sudo apt install zfs
 
 #### Mounting ZFS filesystems on boot
 
-In order for ZFS to load on boot, it needs to be added to `modules` list in the config. Prior to adding it to the list of modules, you'll need to check to see if there are other modules that are currently enabled. 
+In order for ZFS to load on boot, it needs to be added to `modules` list in the config. Prior to adding it to the list of modules, you'll need to check to see if there are other modules that are currently enabled.
 
 ```
 # Check to see what modules currently exist
@@ -71,23 +71,23 @@ To experiment with ZFS, you can create zpool backed by just ordinary files, not 
 
 ## ZFS storage for Docker on RancherOS
 
-First, you need to stop `docker` system service and wipe out `/var/lib/docker` folder:
+First, you need to stop  the`docker` system service and wipe out `/var/lib/docker` folder:
 
 ```bash
 $ sudo system-docker stop docker
 $ sudo rm -rf /var/lib/docker/*
 ```
 
-To enable ZFS as the storage driver for Docker, you'll need to create a ZFS filesystem for Docker (and make sure it's mounted):
+To enable ZFS as the storage driver for Docker, you'll need to create a ZFS filesystem for Docker and make sure it's mounted.
 
 ```bash
 $ sudo zfs create zpool1/docker
 $ sudo zfs list -o name,mountpoint,mounted
 ```
 
-At this point you'll have a ZFS filesystem created and mounted at `/zpool1/docker`. According to [Docker ZFS storage docs](https://docs.docker.com/engine/userguide/storagedriver/zfs-driver/), if docker root dir is a ZFS filesystem, Docker daemon will automatically use `zfs` as its storage driver.
+At this point you'll have a ZFS filesystem created and mounted at `/zpool1/docker`. According to [Docker ZFS storage docs](https://docs.docker.com/engine/userguide/storagedriver/zfs-driver/), if the Docker root dir is a ZFS filesystem, the Docker daemon will automatically use `zfs` as its storage driver.
 
-Now you'll need to remove `-s overlay` (or any other storage driver) from docker daemon args to allow docker to automatically detect `zfs`:
+Now you'll need to remove `-s overlay` (or any other storage driver) from the Docker daemon args to allow docker to automatically detect `zfs`.
 
 ```bash
 $ sudo ros config set rancher.docker.args "[daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -G, docker, -H, 'unix:///var/run/docker.sock', -g, '/zpool1/docker']"
