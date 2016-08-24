@@ -45,7 +45,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"externalId": "string",
 	"externalIpAddresses": [
 		"string1",
-		"string2",
 		"...stringN"
 	],
 	"healthCheck": {
@@ -79,7 +78,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"capDrop": "array[enum]",
 		"command": [
 			"string1",
-			"string2",
 			"...stringN"
 		],
 		"count": 0,
@@ -90,53 +88,43 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"dataVolumeMounts": "map[reference[volume]]",
 		"dataVolumes": [
 			"string1",
-			"string2",
 			"...stringN"
 		],
 		"dataVolumesFrom": "array[reference[container]]",
 		"dataVolumesFromLaunchConfigs": [
 			"string1",
-			"string2",
 			"...stringN"
 		],
 		"deploymentUnitUuid": "string",
 		"description": "string",
 		"devices": [
 			"string1",
-			"string2",
 			"...stringN"
 		],
 		"disks": "array[virtualMachineDisk]",
 		"dns": [
 			"string1",
-			"string2",
 			"...stringN"
 		],
 		"dnsSearch": [
 			"string1",
-			"string2",
 			"...stringN"
 		],
 		"domainName": "string",
 		"entryPoint": [
 			"string1",
-			"string2",
 			"...stringN"
 		],
 		"environment": {
-			"key1": "value1",
-			"key2": "value2",
-			"keyN": "valueN"
+			"key": "value-pairs"
 		},
 		"expose": [
 			"string1",
-			"string2",
 			"...stringN"
 		],
 		"externalId": "string",
 		"extraHosts": [
 			"string1",
-			"string2",
 			"...stringN"
 		],
 		"firstRunning": "date",
@@ -163,22 +151,16 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"instanceLinks": "map[reference[instance]]",
 		"kind": "container",
 		"labels": {
-			"key1": "value1",
-			"key2": "value2",
-			"keyN": "valueN"
+			"key": "value-pairs"
 		},
 		"logConfig": {
 			"config": {
-				"key1": "value1",
-				"key2": "value2",
-				"keyN": "valueN"
+				"key": "value-pairs"
 			},
 			"driver": "string"
 		},
 		"lxcConf": {
-			"key1": "value1",
-			"key2": "value2",
-			"keyN": "valueN"
+			"key": "value-pairs"
 		},
 		"memory": 0,
 		"memoryMb": 0,
@@ -191,7 +173,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"pidMode": "enum",
 		"ports": [
 			"string1",
-			"string2",
 			"...stringN"
 		],
 		"primaryIpAddress": "string",
@@ -204,7 +185,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"requestedIpAddress": "string",
 		"securityOpt": [
 			"string1",
-			"string2",
 			"...stringN"
 		],
 		"startCount": 0,
@@ -224,10 +204,12 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"volumeDriver": "string",
 		"workingDir": "string"
 	},
-	"metadata": "map[json]",
+	"metadata": {
+		"key": "value-pairs"
+	},
 	"name": "string",
 	"startOnCreate": false
-}' 'http://RANCHER_URL:8080/v1/externalServices'
+}' 'http://${RANCHER_URL}:8080/v1/externalServices'
 {% endhighlight %}
 </div></div>
 
@@ -236,7 +218,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
-'http://RANCHER_URL:8080/v1/externalServices/${ID}'
+'http://${RANCHER_URL}:8080/v1/externalServices/${ID}'
 {% endhighlight %}
 </div></div>
 
@@ -250,13 +232,14 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"description": "string",
 	"externalIpAddresses": [
 		"string1",
-		"string2",
 		"...stringN"
 	],
 	"hostname": "string",
-	"metadata": "map[json]",
+	"metadata": {
+		"key": "value-pairs"
+	},
 	"name": "string"
-}' 'http://RANCHER_URL:8080/v1/externalServices/${ID}'
+}' 'http://${RANCHER_URL}:8080/v1/externalServices/${ID}'
 {% endhighlight %}
 </div></div>
 
@@ -276,7 +259,7 @@ activate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=activate'
+'http://${RANCHER_URL}:8080/v1/externalServices/${ID}?action=activate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
@@ -295,7 +278,7 @@ cancelrollback
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=cancelrollback'
+'http://${RANCHER_URL}:8080/v1/externalServices/${ID}?action=cancelrollback'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
@@ -314,7 +297,7 @@ cancelupgrade
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=cancelupgrade'
+'http://${RANCHER_URL}:8080/v1/externalServices/${ID}?action=cancelupgrade'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
@@ -333,7 +316,7 @@ deactivate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=deactivate'
+'http://${RANCHER_URL}:8080/v1/externalServices/${ID}?action=deactivate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
@@ -352,7 +335,7 @@ finishupgrade
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=finishupgrade'
+'http://${RANCHER_URL}:8080/v1/externalServices/${ID}?action=finishupgrade'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
@@ -371,7 +354,7 @@ rollback
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=rollback'
+'http://${RANCHER_URL}:8080/v1/externalServices/${ID}?action=rollback'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
@@ -411,7 +394,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"capDrop": "array[enum]",
 			"command": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"count": 0,
@@ -422,53 +404,43 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"dataVolumeMounts": "map[reference[volume]]",
 			"dataVolumes": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"dataVolumesFrom": "array[reference[container]]",
 			"dataVolumesFromLaunchConfigs": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"deploymentUnitUuid": "string",
 			"description": "string",
 			"devices": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"disks": "array[virtualMachineDisk]",
 			"dns": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"dnsSearch": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"domainName": "string",
 			"entryPoint": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"environment": {
-				"key1": "value1",
-				"key2": "value2",
-				"keyN": "valueN"
+				"key": "value-pairs"
 			},
 			"expose": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"externalId": "string",
 			"extraHosts": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"firstRunning": "date",
@@ -495,22 +467,16 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"instanceLinks": "map[reference[instance]]",
 			"kind": "container",
 			"labels": {
-				"key1": "value1",
-				"key2": "value2",
-				"keyN": "valueN"
+				"key": "value-pairs"
 			},
 			"logConfig": {
 				"config": {
-					"key1": "value1",
-					"key2": "value2",
-					"keyN": "valueN"
+					"key": "value-pairs"
 				},
 				"driver": "string"
 			},
 			"lxcConf": {
-				"key1": "value1",
-				"key2": "value2",
-				"keyN": "valueN"
+				"key": "value-pairs"
 			},
 			"memory": 0,
 			"memoryMb": 0,
@@ -523,7 +489,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"pidMode": "enum",
 			"ports": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"primaryIpAddress": "string",
@@ -536,7 +501,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"requestedIpAddress": "string",
 			"securityOpt": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"startCount": 0,
@@ -571,7 +535,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"capDrop": "array[enum]",
 			"command": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"count": 0,
@@ -582,53 +545,43 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"dataVolumeMounts": "map[reference[volume]]",
 			"dataVolumes": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"dataVolumesFrom": "array[reference[container]]",
 			"dataVolumesFromLaunchConfigs": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"deploymentUnitUuid": "string",
 			"description": "string",
 			"devices": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"disks": "array[virtualMachineDisk]",
 			"dns": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"dnsSearch": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"domainName": "string",
 			"entryPoint": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"environment": {
-				"key1": "value1",
-				"key2": "value2",
-				"keyN": "valueN"
+				"key": "value-pairs"
 			},
 			"expose": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"externalId": "string",
 			"extraHosts": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"firstRunning": "date",
@@ -655,22 +608,16 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"instanceLinks": "map[reference[instance]]",
 			"kind": "container",
 			"labels": {
-				"key1": "value1",
-				"key2": "value2",
-				"keyN": "valueN"
+				"key": "value-pairs"
 			},
 			"logConfig": {
 				"config": {
-					"key1": "value1",
-					"key2": "value2",
-					"keyN": "valueN"
+					"key": "value-pairs"
 				},
 				"driver": "string"
 			},
 			"lxcConf": {
-				"key1": "value1",
-				"key2": "value2",
-				"keyN": "valueN"
+				"key": "value-pairs"
 			},
 			"memory": 0,
 			"memoryMb": 0,
@@ -683,7 +630,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"pidMode": "enum",
 			"ports": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"primaryIpAddress": "string",
@@ -696,7 +642,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"requestedIpAddress": "string",
 			"securityOpt": [
 				"string1",
-				"string2",
 				"...stringN"
 			],
 			"startCount": 0,
@@ -727,7 +672,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"toServiceId": "reference[service]",
 		"updateLinks": false
 	}
-}' 'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=upgrade'
+}' 'http://${RANCHER_URL}:8080/v1/externalServices/${ID}?action=upgrade'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>

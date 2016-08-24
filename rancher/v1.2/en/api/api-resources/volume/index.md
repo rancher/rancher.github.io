@@ -40,12 +40,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"description": "string",
 	"driver": "string",
 	"driverOpts": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"name": "string"
-}' 'http://RANCHER_URL:8080/v1/volumes'
+}' 'http://${RANCHER_URL}:8080/v1/volumes'
 {% endhighlight %}
 </div></div>
 
@@ -54,7 +52,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
-'http://RANCHER_URL:8080/v1/volumes/${ID}'
+'http://${RANCHER_URL}:8080/v1/volumes/${ID}'
 {% endhighlight %}
 </div></div>
 
@@ -78,7 +76,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"backupId": "reference[backup]"
-}' 'http://RANCHER_URL:8080/v1/volumes/${ID}?action=restorefrombackup'
+}' 'http://${RANCHER_URL}:8080/v1/volumes/${ID}?action=restorefrombackup'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/volume/">volume</a> resource</span>
@@ -101,7 +99,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"snapshotId": "reference[snapshot]"
-}' 'http://RANCHER_URL:8080/v1/volumes/${ID}?action=reverttosnapshot'
+}' 'http://${RANCHER_URL}:8080/v1/volumes/${ID}?action=reverttosnapshot'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/volume/">volume</a> resource</span>
@@ -124,7 +122,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"name": "string"
-}' 'http://RANCHER_URL:8080/v1/volumes/${ID}?action=snapshot'
+}' 'http://${RANCHER_URL}:8080/v1/volumes/${ID}?action=snapshot'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/snapshot/">snapshot</a> resource</span>

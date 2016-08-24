@@ -36,13 +36,11 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"description": "string",
 	"image": "string",
 	"labels": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"mode": "all",
 	"name": "string"
-}' 'http://RANCHER_URL:8080/v1/pullTasks'
+}' 'http://${RANCHER_URL}:8080/v1/pullTasks'
 {% endhighlight %}
 </div></div>
 

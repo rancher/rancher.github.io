@@ -99,7 +99,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"capDrop": "array[enum]",
 	"command": [
 		"string1",
-		"string2",
 		"...stringN"
 	],
 	"count": 0,
@@ -108,45 +107,36 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"dataVolumeMounts": "map[reference[volume]]",
 	"dataVolumes": [
 		"string1",
-		"string2",
 		"...stringN"
 	],
 	"dataVolumesFrom": "array[reference[container]]",
 	"description": "string",
 	"devices": [
 		"string1",
-		"string2",
 		"...stringN"
 	],
 	"dns": [
 		"string1",
-		"string2",
 		"...stringN"
 	],
 	"dnsSearch": [
 		"string1",
-		"string2",
 		"...stringN"
 	],
 	"domainName": "string",
 	"entryPoint": [
 		"string1",
-		"string2",
 		"...stringN"
 	],
 	"environment": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"expose": [
 		"string1",
-		"string2",
 		"...stringN"
 	],
 	"extraHosts": [
 		"string1",
-		"string2",
 		"...stringN"
 	],
 	"healthCheck": {
@@ -168,22 +158,16 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"imageUuid": "string",
 	"instanceLinks": "map[reference[instance]]",
 	"labels": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"logConfig": {
 		"config": {
-			"key1": "value1",
-			"key2": "value2",
-			"keyN": "valueN"
+			"key": "value-pairs"
 		},
 		"driver": "string"
 	},
 	"lxcConf": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"memory": 0,
 	"memorySwap": 0,
@@ -194,7 +178,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"pidMode": "enum",
 	"ports": [
 		"string1",
-		"string2",
 		"...stringN"
 	],
 	"privileged": false,
@@ -208,7 +191,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	},
 	"securityOpt": [
 		"string1",
-		"string2",
 		"...stringN"
 	],
 	"startOnCreate": true,
@@ -217,7 +199,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"user": "string",
 	"volumeDriver": "string",
 	"workingDir": "string"
-}' 'http://RANCHER_URL:8080/v1/containers'
+}' 'http://${RANCHER_URL}:8080/v1/containers'
 {% endhighlight %}
 </div></div>
 
@@ -226,7 +208,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
-'http://RANCHER_URL:8080/v1/containers/${ID}'
+'http://${RANCHER_URL}:8080/v1/containers/${ID}'
 {% endhighlight %}
 </div></div>
 
@@ -239,7 +221,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -d '{
 	"description": "string",
 	"name": "string"
-}' 'http://RANCHER_URL:8080/v1/containers/${ID}'
+}' 'http://${RANCHER_URL}:8080/v1/containers/${ID}'
 {% endhighlight %}
 </div></div>
 
@@ -260,7 +242,7 @@ console
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/containers/${ID}?action=console'
+'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=console'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instanceConsole/">instanceConsole</a> resource</span>
@@ -286,11 +268,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"attachStdout": true,
 	"command": [
 		"string1",
-		"string2",
 		"...stringN"
 	],
 	"tty": true
-}' 'http://RANCHER_URL:8080/v1/containers/${ID}?action=execute'
+}' 'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=execute'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/hostAccess/">hostAccess</a> resource</span>
@@ -314,7 +295,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -d '{
 	"follow": true,
 	"lines": 100
-}' 'http://RANCHER_URL:8080/v1/containers/${ID}?action=logs'
+}' 'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=logs'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/hostAccess/">hostAccess</a> resource</span>
@@ -338,7 +319,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -d '{
 	"port": 80,
 	"scheme": "http"
-}' 'http://RANCHER_URL:8080/v1/containers/${ID}?action=proxy'
+}' 'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=proxy'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/hostAccess/">hostAccess</a> resource</span>
@@ -357,7 +338,7 @@ restart
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/containers/${ID}?action=restart'
+'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=restart'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/">instance</a> resource</span>
@@ -376,7 +357,7 @@ start
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/containers/${ID}?action=start'
+'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=start'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/">instance</a> resource</span>
@@ -400,7 +381,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -d '{
 	"remove": false,
 	"timeout": 0
-}' 'http://RANCHER_URL:8080/v1/containers/${ID}?action=stop'
+}' 'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=stop'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/">instance</a> resource</span>

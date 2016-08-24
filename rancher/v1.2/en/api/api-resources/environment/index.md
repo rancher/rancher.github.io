@@ -41,26 +41,20 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"description": "string",
 	"dockerCompose": "string",
 	"environment": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"externalId": "string",
 	"name": "string",
 	"outputs": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"previousEnvironment": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"previousExternalId": "string",
 	"rancherCompose": "string",
 	"startOnCreate": false
-}' 'http://RANCHER_URL:8080/v1/environments'
+}' 'http://${RANCHER_URL}:8080/v1/environments'
 {% endhighlight %}
 </div></div>
 
@@ -69,7 +63,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
-'http://RANCHER_URL:8080/v1/environments/${ID}'
+'http://${RANCHER_URL}:8080/v1/environments/${ID}'
 {% endhighlight %}
 </div></div>
 
@@ -84,17 +78,13 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"externalId": "string",
 	"name": "string",
 	"outputs": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"previousEnvironment": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"previousExternalId": "string"
-}' 'http://RANCHER_URL:8080/v1/environments/${ID}'
+}' 'http://${RANCHER_URL}:8080/v1/environments/${ID}'
 {% endhighlight %}
 </div></div>
 
@@ -114,7 +104,7 @@ activateservices
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/environments/${ID}?action=activateservices'
+'http://${RANCHER_URL}:8080/v1/environments/${ID}?action=activateservices'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
@@ -133,7 +123,7 @@ cancelrollback
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/environments/${ID}?action=cancelrollback'
+'http://${RANCHER_URL}:8080/v1/environments/${ID}?action=cancelrollback'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
@@ -152,7 +142,7 @@ cancelupgrade
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/environments/${ID}?action=cancelupgrade'
+'http://${RANCHER_URL}:8080/v1/environments/${ID}?action=cancelupgrade'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
@@ -171,7 +161,7 @@ deactivateservices
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/environments/${ID}?action=deactivateservices'
+'http://${RANCHER_URL}:8080/v1/environments/${ID}?action=deactivateservices'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
@@ -194,7 +184,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"serviceIds": "array[reference[service]]"
-}' 'http://RANCHER_URL:8080/v1/environments/${ID}?action=exportconfig'
+}' 'http://${RANCHER_URL}:8080/v1/environments/${ID}?action=exportconfig'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/composeConfig/">composeConfig</a> resource</span>
@@ -213,7 +203,7 @@ finishupgrade
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/environments/${ID}?action=finishupgrade'
+'http://${RANCHER_URL}:8080/v1/environments/${ID}?action=finishupgrade'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
@@ -232,7 +222,7 @@ rollback
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/environments/${ID}?action=rollback'
+'http://${RANCHER_URL}:8080/v1/environments/${ID}?action=rollback'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
