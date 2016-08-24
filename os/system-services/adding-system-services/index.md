@@ -1,14 +1,16 @@
 ---
 title: Adding System Services in RancherOS
 layout: os-default
-
+redirect_from:
+  - os/system-services/
+  - os/configuration/system-services/
 ---
 
 ## Adding New System Services
 
 A system service is a container that can be run in either System Docker or Docker. Rancher provides services that are already available in RancherOS by adding them to the [os-services repo](https://github.com/rancher/os-services). Anything in the `index.yml` file from the repo will be an option shown when using the `ros service list` command. This command will list all system services and whether they are enabled or disabled.
 
-You can also create your own system service in the [Docker Compose](https://docs.docker.com/compose/) format. 
+You can also create your own system service in the [Docker Compose](https://docs.docker.com/compose/) format.
 
 ### Enabling/Disabling System Services
 
@@ -30,7 +32,7 @@ To delete a service that you added, run `ros service delete <system-service-name
 
 ### Adding Custom System Services
 
-After creating your own custom service, you can launch the services in RancherOS in two different methods. The service could be directly added to the [cloud-config]({{site.baseurl}}/os/cloud-config/) that you start RancherOS with or a `docker-compose.yml` file could be saved in a http(s) url location or in a directory of RancherOS. 
+After creating your own custom service, you can launch the services in RancherOS in two different methods. The service could be directly added to the [cloud-config]({{site.baseurl}}/os/cloud-config/) that you start RancherOS with or a `docker-compose.yml` file could be saved in a http(s) url location or in a directory of RancherOS.
 
 #### Launching Services through Cloud-Config
 
@@ -39,15 +41,15 @@ If you want to boot RancherOS with a system service running, you can add the ser
 ```yaml
 #cloud-config
 rancher:
-  services: 
+  services:
     nginxapp:
       image: nginx
       restart: always
 ```      
 
-#### Launching Services inside RancherOS 
+#### Launching Services inside RancherOS
 
-If you want to add a system service to a running RancherOS, a `docker-compose.yml` file must be saved in `/var/lib/rancher/conf/` in order for it to be enabled. 
+If you want to add a system service to a running RancherOS, a `docker-compose.yml` file must be saved in `/var/lib/rancher/conf/` in order for it to be enabled.
 
 ```yaml
 nginxapp:
@@ -88,9 +90,9 @@ Key | Value |Description
 ----|-----|---
 `io.rancher.os.detach` | Default: `true` | Equivalent of `docker run -d`. If set to `false`, equivalent of `docker run --detach=false`
 `io.rancher.os.scope` | `system` | Use this label to have the container deployed in System Docker instead of Docker.
-`io.rancher.os.before`/`io.rancher.os.after` | Service Names (Comma separated list is accepted) | Used to determine order of when containers should be started. 
+`io.rancher.os.before`/`io.rancher.os.after` | Service Names (Comma separated list is accepted) | Used to determine order of when containers should be started.
 `io.rancher.os.createonly` | Default: `false` | When set to `true`, only a `docker create` will be performed and not a `docker start`.
-`io.rancher.os.reloadconfig` | Default: `false`| When set to `true`, it reloads the configuration. 
+`io.rancher.os.reloadconfig` | Default: `false`| When set to `true`, it reloads the configuration.
 
 
 #### Example of how to order container deployment
@@ -101,6 +103,5 @@ foo:
     # Start foo before bar is launched
     io.rancher.os.before: bar
     # Start foo after baz has been launched
-    io.rancher.os.after: baz 
+    io.rancher.os.after: baz
 ```
-
