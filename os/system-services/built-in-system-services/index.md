@@ -82,7 +82,7 @@ This service provides the RancherOS user interface by running `sshd` and `getty`
    * Writes files specified by the `write_files` [cloud-config]({{site.baseurl}}/os/configuration/write-files/) setting.
    * Resizes the device specified by the `rancher.resize_device` [cloud-config]({{site.baseurl}}/os/configuration/resizing-device-partition/) setting.
    * Mount devices specified in the `mounts` [cloud-config]({{site.baseurl}}/os/configuration/additional-mounts/) setting.
-   * Set sysctl parameters specified in  the`rancher.sysctl` [cloud-config]({{site.baseurl}}/os/configuration/#cloud-config) setting.
+   * Set sysctl parameters specified in  the`rancher.sysctl` [cloud-config]({{site.baseurl}}/os/configuration/sysctl/) setting.
 
 4. If user-data contained a file that started with `#!`, then a file would be saved at `/var/lib/rancher/conf/cloud-config-script` during cloud-init and then executed. Any errors are ignored.
 
