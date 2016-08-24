@@ -81,13 +81,11 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="create"></a>
 <div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/containers</code></span></span>
-<div class="action-contents"><figure class="highlight"><pre><code>
+<div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}
-{
+-d '{
 	"blkioDeviceOptions": "map[blkioDeviceOption]",
 	"build": {
 		"context": "string",
@@ -219,41 +217,30 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"user": "string",
 	"volumeDriver": "string",
 	"workingDir": "string"
-}
-{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/containers'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/containers'
+{% endhighlight %}
 </div></div>
 
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/containers/${ID}</code></span></span>
-<div class="action-contents"><figure class="highlight"><pre><code>
+<div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '{% highlight json %}
-
-{% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/containers/${ID}'
-</code></pre></figure>
+{% endhighlight %}
 </div></div>
 
 <a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/containers/${ID}</code></span></span>
-<div class="action-contents"><figure class="highlight"><pre><code>
+<div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X PUT \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}
-{
+-d '{
 	"description": "string",
 	"name": "string"
-}
-{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/containers/${ID}'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/containers/${ID}'
+{% endhighlight %}
 </div></div>
 
 
@@ -267,10 +254,16 @@ console
 
 <br>
 <span class="input">
-<strong>Input:</strong> instanceConsoleInput</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instanceConsoleInput/">InstanceConsoleInput</a></span>
 
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instanceConsole/">instanceConsole</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/containers/${ID}?action=console'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instanceConsole/">instanceConsole</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -281,16 +274,14 @@ execute
 
 <br>
 <span class="input">
-<strong>Input:</strong> containerExec</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/containerExec/">ContainerExec</a></span>
 
 <br>
-
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}{
+-d '{
 	"attachStdin": true,
 	"attachStdout": true,
 	"command": [
@@ -299,11 +290,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"...stringN"
 	],
 	"tty": true
-}{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/containers/${ID}?action=execute'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/containers/${ID}?action=execute'
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/hostAccess/">hostAccess</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/hostAccess/">hostAccess</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -314,23 +304,20 @@ logs
 
 <br>
 <span class="input">
-<strong>Input:</strong> containerLogs</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/containerLogs/">ContainerLogs</a></span>
 
 <br>
-
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}{
+-d '{
 	"follow": true,
 	"lines": 100
-}{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/containers/${ID}?action=logs'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/containers/${ID}?action=logs'
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/hostAccess/">hostAccess</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/hostAccess/">hostAccess</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -341,23 +328,20 @@ proxy
 
 <br>
 <span class="input">
-<strong>Input:</strong> containerProxy</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/containerProxy/">ContainerProxy</a></span>
 
 <br>
-
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}{
+-d '{
 	"port": 80,
 	"scheme": "http"
-}{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/containers/${ID}?action=proxy'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/containers/${ID}?action=proxy'
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/hostAccess/">hostAccess</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/hostAccess/">hostAccess</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -369,8 +353,14 @@ restart
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/containers/${ID}?action=restart'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/">instance</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -382,8 +372,14 @@ start
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/containers/${ID}?action=start'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/">instance</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -394,23 +390,101 @@ stop
 
 <br>
 <span class="input">
-<strong>Input:</strong> instanceStop</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instanceStop/">InstanceStop</a></span>
 
 <br>
-
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}{
+-d '{
 	"remove": false,
 	"timeout": 0
-}{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/containers/${ID}?action=stop'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/containers/${ID}?action=stop'
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/">instance</a> resource</span>
+</div></div>
+
+
+
+
+### Actions
+<div class="action">
+<span class="header">
+console
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=console</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new container, send a POST request to <code>/v1/containers/${ID}?action=console</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+execute
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=execute</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new container, send a POST request to <code>/v1/containers/${ID}?action=execute</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+logs
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=logs</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new container, send a POST request to <code>/v1/containers/${ID}?action=logs</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+proxy
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=proxy</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new container, send a POST request to <code>/v1/containers/${ID}?action=proxy</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+restart
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=restart</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new container, send a POST request to <code>/v1/containers/${ID}?action=restart</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+start
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=start</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new container, send a POST request to <code>/v1/containers/${ID}?action=start</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+stop
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=stop</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new container, send a POST request to <code>/v1/containers/${ID}?action=stop</code>.
+
 </div></div>
 
 

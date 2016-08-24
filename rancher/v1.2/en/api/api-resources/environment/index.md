@@ -33,13 +33,11 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="create"></a>
 <div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/environments</code></span></span>
-<div class="action-contents"><figure class="highlight"><pre><code>
+<div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}
-{
+-d '{
 	"description": "string",
 	"dockerCompose": "string",
 	"environment": {
@@ -62,35 +60,26 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"previousExternalId": "string",
 	"rancherCompose": "string",
 	"startOnCreate": false
-}
-{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/environments'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/environments'
+{% endhighlight %}
 </div></div>
 
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/environments/${ID}</code></span></span>
-<div class="action-contents"><figure class="highlight"><pre><code>
+<div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '{% highlight json %}
-
-{% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/environments/${ID}'
-</code></pre></figure>
+{% endhighlight %}
 </div></div>
 
 <a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/environments/${ID}</code></span></span>
-<div class="action-contents"><figure class="highlight"><pre><code>
+<div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X PUT \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}
-{
+-d '{
 	"description": "string",
 	"externalId": "string",
 	"name": "string",
@@ -105,10 +94,8 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"keyN": "valueN"
 	},
 	"previousExternalId": "string"
-}
-{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/environments/${ID}'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/environments/${ID}'
+{% endhighlight %}
 </div></div>
 
 
@@ -123,8 +110,14 @@ activateservices
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/environment/">environment</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/environments/${ID}?action=activateservices'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -136,8 +129,14 @@ cancelrollback
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/environment/">environment</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/environments/${ID}?action=cancelrollback'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -149,8 +148,14 @@ cancelupgrade
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/environment/">environment</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/environments/${ID}?action=cancelupgrade'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -162,8 +167,14 @@ deactivateservices
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/environment/">environment</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/environments/${ID}?action=deactivateservices'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -174,22 +185,19 @@ exportconfig
 
 <br>
 <span class="input">
-<strong>Input:</strong> composeConfigInput</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/composeConfigInput/">ComposeConfigInput</a></span>
 
 <br>
-
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}{
+-d '{
 	"serviceIds": "array[reference[service]]"
-}{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/environments/${ID}?action=exportconfig'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/environments/${ID}?action=exportconfig'
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/composeConfig/">composeConfig</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/composeConfig/">composeConfig</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -201,8 +209,14 @@ finishupgrade
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/environment/">environment</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/environments/${ID}?action=finishupgrade'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -214,8 +228,95 @@ rollback
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/environments/${ID}?action=rollback'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
+</div></div>
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/environment/">environment</a> resource</span>
+
+
+
+### Actions
+<div class="action">
+<span class="header">
+activateservices
+<span class="headerright">POST:  <code>/v1/environments/${ID}?action=activateservices</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new environment, send a POST request to <code>/v1/environments/${ID}?action=activateservices</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+cancelrollback
+<span class="headerright">POST:  <code>/v1/environments/${ID}?action=cancelrollback</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new environment, send a POST request to <code>/v1/environments/${ID}?action=cancelrollback</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+cancelupgrade
+<span class="headerright">POST:  <code>/v1/environments/${ID}?action=cancelupgrade</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new environment, send a POST request to <code>/v1/environments/${ID}?action=cancelupgrade</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+deactivateservices
+<span class="headerright">POST:  <code>/v1/environments/${ID}?action=deactivateservices</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new environment, send a POST request to <code>/v1/environments/${ID}?action=deactivateservices</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+exportconfig
+<span class="headerright">POST:  <code>/v1/environments/${ID}?action=exportconfig</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new environment, send a POST request to <code>/v1/environments/${ID}?action=exportconfig</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+finishupgrade
+<span class="headerright">POST:  <code>/v1/environments/${ID}?action=finishupgrade</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new environment, send a POST request to <code>/v1/environments/${ID}?action=finishupgrade</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+rollback
+<span class="headerright">POST:  <code>/v1/environments/${ID}?action=rollback</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new environment, send a POST request to <code>/v1/environments/${ID}?action=rollback</code>.
+
 </div></div>
 
 

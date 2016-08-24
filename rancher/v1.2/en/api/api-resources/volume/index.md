@@ -32,13 +32,11 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="create"></a>
 <div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/volumes</code></span></span>
-<div class="action-contents"><figure class="highlight"><pre><code>
+<div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}
-{
+-d '{
 	"description": "string",
 	"driver": "string",
 	"driverOpts": {
@@ -47,24 +45,17 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"keyN": "valueN"
 	},
 	"name": "string"
-}
-{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/volumes'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/volumes'
+{% endhighlight %}
 </div></div>
 
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/volumes/${ID}</code></span></span>
-<div class="action-contents"><figure class="highlight"><pre><code>
+<div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '{% highlight json %}
-
-{% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/volumes/${ID}'
-</code></pre></figure>
+{% endhighlight %}
 </div></div>
 
 
@@ -78,22 +69,19 @@ restorefrombackup
 
 <br>
 <span class="input">
-<strong>Input:</strong> restoreFromBackupInput</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/restoreFromBackupInput/">RestoreFromBackupInput</a></span>
 
 <br>
-
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}{
+-d '{
 	"backupId": "reference[backup]"
-}{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/volumes/${ID}?action=restorefrombackup'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/volumes/${ID}?action=restorefrombackup'
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/volume/">volume</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/volume/">volume</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -104,22 +92,19 @@ reverttosnapshot
 
 <br>
 <span class="input">
-<strong>Input:</strong> revertToSnapshotInput</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/revertToSnapshotInput/">RevertToSnapshotInput</a></span>
 
 <br>
-
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}{
+-d '{
 	"snapshotId": "reference[snapshot]"
-}{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/volumes/${ID}?action=reverttosnapshot'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/volumes/${ID}?action=reverttosnapshot'
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/volume/">volume</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/volume/">volume</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -130,22 +115,56 @@ snapshot
 
 <br>
 <span class="input">
-<strong>Input:</strong> volumeSnapshotInput</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/volumeSnapshotInput/">VolumeSnapshotInput</a></span>
 
 <br>
-
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}{
+-d '{
 	"name": "string"
-}{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/volumes/${ID}?action=snapshot'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/volumes/${ID}?action=snapshot'
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/snapshot/">snapshot</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/snapshot/">snapshot</a> resource</span>
+</div></div>
+
+
+
+
+### Actions
+<div class="action">
+<span class="header">
+restorefrombackup
+<span class="headerright">POST:  <code>/v1/volumes/${ID}?action=restorefrombackup</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new volume, send a POST request to <code>/v1/volumes/${ID}?action=restorefrombackup</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+reverttosnapshot
+<span class="headerright">POST:  <code>/v1/volumes/${ID}?action=reverttosnapshot</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new volume, send a POST request to <code>/v1/volumes/${ID}?action=reverttosnapshot</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+snapshot
+<span class="headerright">POST:  <code>/v1/volumes/${ID}?action=snapshot</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new volume, send a POST request to <code>/v1/volumes/${ID}?action=snapshot</code>.
+
 </div></div>
 
 

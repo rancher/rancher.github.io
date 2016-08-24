@@ -1,5 +1,5 @@
 .highlight .c { color: #66767C; font-style: italic } /* Comment */
-.highlight .err { color: #ffffff; background-color: #F15354 } /* Error */
+.highlight .err { color: #ffffff } /* Error */
 .highlight .k { font-weight: bold } /* Keyword */
 .highlight .o { font-weight: bold } /* Operator */
 .highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
@@ -34,7 +34,7 @@
 .highlight .nf { color: #78C9CF; font-weight: bold } /* Name.Function */
 .highlight .nn { color: #555555 } /* Name.Namespace */
 .highlight .nt { color: #F15354 } /* Name.Tag */
-.highlight .nv { color: #FFFFFF } /* Name.Variable */ 
+.highlight .nv { color: #FFFFFF } /* Name.Variable */
 .highlight .ow { font-weight: bold } /* Operator.Word */
 .highlight .w { color: #bbbbbb } /* Text.Whitespace */
 .highlight .mf { color: #0075A8 } /* Literal.Number.Float */

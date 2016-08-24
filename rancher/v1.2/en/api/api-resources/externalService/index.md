@@ -35,13 +35,11 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 {::options parse_block_html="true" /}
 <a id="create"></a>
 <div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/externalServices</code></span></span>
-<div class="action-contents"><figure class="highlight"><pre><code>
+<div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}
-{
+-d '{
 	"description": "string",
 	"environmentId": "reference[environment]",
 	"externalId": "string",
@@ -229,35 +227,26 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"metadata": "map[json]",
 	"name": "string",
 	"startOnCreate": false
-}
-{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/externalServices'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/externalServices'
+{% endhighlight %}
 </div></div>
 
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/externalServices/${ID}</code></span></span>
-<div class="action-contents"><figure class="highlight"><pre><code>
+<div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
--H 'Accept: application/json' \
--H 'Content-Type: application/json' \
--d '{% highlight json %}
-
-{% endhighlight %}' \
 'http://RANCHER_URL:8080/v1/externalServices/${ID}'
-</code></pre></figure>
+{% endhighlight %}
 </div></div>
 
 <a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/externalServices/${ID}</code></span></span>
-<div class="action-contents"><figure class="highlight"><pre><code>
+<div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X PUT \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}
-{
+-d '{
 	"description": "string",
 	"externalIpAddresses": [
 		"string1",
@@ -267,10 +256,8 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"hostname": "string",
 	"metadata": "map[json]",
 	"name": "string"
-}
-{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/externalServices/${ID}'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/externalServices/${ID}'
+{% endhighlight %}
 </div></div>
 
 
@@ -285,8 +272,14 @@ activate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=activate'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -298,8 +291,14 @@ cancelrollback
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=cancelrollback'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -311,8 +310,14 @@ cancelupgrade
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=cancelupgrade'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -324,8 +329,14 @@ deactivate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=deactivate'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -337,8 +348,14 @@ finishupgrade
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=finishupgrade'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -350,8 +367,14 @@ rollback
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=rollback'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
 <div class="action">
@@ -362,16 +385,14 @@ upgrade
 
 <br>
 <span class="input">
-<strong>Input:</strong> serviceUpgrade</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceUpgrade/">ServiceUpgrade</a></span>
 
 <br>
-
-<figure class="highlight"><pre><code>
+{% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
--H 'Accept: application/json' \
 -H 'Content-Type: application/json' \
--d '{% highlight json %}{
+-d '{
 	"inServiceStrategy": {
 		"batchSize": 1,
 		"intervalMillis": 2000,
@@ -706,11 +727,91 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"toServiceId": "reference[service]",
 		"updateLinks": false
 	}
-}{% endhighlight %}' \
-'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=upgrade'
-</code></pre></figure>
+}' 'http://RANCHER_URL:8080/v1/externalServices/${ID}?action=upgrade'
+{% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/service/">service</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
+</div></div>
+
+
+
+
+### Actions
+<div class="action">
+<span class="header">
+activate
+<span class="headerright">POST:  <code>/v1/externalServices/${ID}?action=activate</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new externalService, send a POST request to <code>/v1/externalServices/${ID}?action=activate</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+cancelrollback
+<span class="headerright">POST:  <code>/v1/externalServices/${ID}?action=cancelrollback</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new externalService, send a POST request to <code>/v1/externalServices/${ID}?action=cancelrollback</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+cancelupgrade
+<span class="headerright">POST:  <code>/v1/externalServices/${ID}?action=cancelupgrade</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new externalService, send a POST request to <code>/v1/externalServices/${ID}?action=cancelupgrade</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+deactivate
+<span class="headerright">POST:  <code>/v1/externalServices/${ID}?action=deactivate</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new externalService, send a POST request to <code>/v1/externalServices/${ID}?action=deactivate</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+finishupgrade
+<span class="headerright">POST:  <code>/v1/externalServices/${ID}?action=finishupgrade</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new externalService, send a POST request to <code>/v1/externalServices/${ID}?action=finishupgrade</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+rollback
+<span class="headerright">POST:  <code>/v1/externalServices/${ID}?action=rollback</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new externalService, send a POST request to <code>/v1/externalServices/${ID}?action=rollback</code>.
+
+</div></div>
+
+<div class="action">
+<span class="header">
+upgrade
+<span class="headerright">POST:  <code>/v1/externalServices/${ID}?action=upgrade</code></span></span>
+<div class="action-contents">
+
+<br>
+To create a new externalService, send a POST request to <code>/v1/externalServices/${ID}?action=upgrade</code>.
+
 </div></div>
 
 
