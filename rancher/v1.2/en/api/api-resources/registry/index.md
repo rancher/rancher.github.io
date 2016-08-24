@@ -38,7 +38,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"description": "string",
 	"name": "string",
 	"serverAddress": "string"
-}' 'http://RANCHER_URL:8080/v1/registries'
+}' 'http://${RANCHER_URL}:8080/v1/registries'
 {% endhighlight %}
 </div></div>
 
@@ -47,7 +47,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
-'http://RANCHER_URL:8080/v1/registries/${ID}'
+'http://${RANCHER_URL}:8080/v1/registries/${ID}'
 {% endhighlight %}
 </div></div>
 
@@ -60,7 +60,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -d '{
 	"description": "string",
 	"name": "string"
-}' 'http://RANCHER_URL:8080/v1/registries/${ID}'
+}' 'http://${RANCHER_URL}:8080/v1/registries/${ID}'
 {% endhighlight %}
 </div></div>
 
@@ -80,7 +80,7 @@ activate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/registries/${ID}?action=activate'
+'http://${RANCHER_URL}:8080/v1/registries/${ID}?action=activate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/storagePool/">storagePool</a> resource</span>
@@ -99,7 +99,7 @@ deactivate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/registries/${ID}?action=deactivate'
+'http://${RANCHER_URL}:8080/v1/registries/${ID}?action=deactivate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/storagePool/">storagePool</a> resource</span>

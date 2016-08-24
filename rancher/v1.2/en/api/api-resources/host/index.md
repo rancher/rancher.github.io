@@ -34,7 +34,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
-'http://RANCHER_URL:8080/v1/hosts/${ID}'
+'http://${RANCHER_URL}:8080/v1/hosts/${ID}'
 {% endhighlight %}
 </div></div>
 
@@ -47,12 +47,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -d '{
 	"description": "string",
 	"labels": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"name": "string"
-}' 'http://RANCHER_URL:8080/v1/hosts/${ID}'
+}' 'http://${RANCHER_URL}:8080/v1/hosts/${ID}'
 {% endhighlight %}
 </div></div>
 
@@ -72,7 +70,7 @@ activate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/hosts/${ID}?action=activate'
+'http://${RANCHER_URL}:8080/v1/hosts/${ID}?action=activate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/host/">host</a> resource</span>
@@ -91,7 +89,7 @@ deactivate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/hosts/${ID}?action=deactivate'
+'http://${RANCHER_URL}:8080/v1/hosts/${ID}?action=deactivate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/host/">host</a> resource</span>
@@ -110,7 +108,7 @@ dockersocket
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/hosts/${ID}?action=dockersocket'
+'http://${RANCHER_URL}:8080/v1/hosts/${ID}?action=dockersocket'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/hostAccess/">hostAccess</a> resource</span>

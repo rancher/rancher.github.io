@@ -40,7 +40,7 @@ activate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/projectMembers/${ID}?action=activate'
+'http://${RANCHER_URL}:8080/v1/projectMembers/${ID}?action=activate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/projectMember/">projectMember</a> resource</span>
@@ -59,7 +59,7 @@ deactivate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/projectMembers/${ID}?action=deactivate'
+'http://${RANCHER_URL}:8080/v1/projectMembers/${ID}?action=deactivate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/projectMember/">projectMember</a> resource</span>

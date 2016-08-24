@@ -43,7 +43,7 @@ activate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/projects/${ID}?action=activate'
+'http://${RANCHER_URL}:8080/v1/projects/${ID}?action=activate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/account/">account</a> resource</span>
@@ -62,7 +62,7 @@ deactivate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://RANCHER_URL:8080/v1/projects/${ID}?action=deactivate'
+'http://${RANCHER_URL}:8080/v1/projects/${ID}?action=deactivate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/account/">account</a> resource</span>
@@ -85,7 +85,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"members": "array[projectMember]"
-}' 'http://RANCHER_URL:8080/v1/projects/${ID}?action=setmembers'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${ID}?action=setmembers'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/setProjectMembersInput/">setProjectMembersInput</a> resource</span>

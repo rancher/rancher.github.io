@@ -47,7 +47,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"description": "string",
 	"key": "string",
 	"name": "string"
-}' 'http://RANCHER_URL:8080/v1/certificates'
+}' 'http://${RANCHER_URL}:8080/v1/certificates'
 {% endhighlight %}
 </div></div>
 
@@ -56,7 +56,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
-'http://RANCHER_URL:8080/v1/certificates/${ID}'
+'http://${RANCHER_URL}:8080/v1/certificates/${ID}'
 {% endhighlight %}
 </div></div>
 
@@ -72,7 +72,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"description": "string",
 	"key": "string",
 	"name": "string"
-}' 'http://RANCHER_URL:8080/v1/certificates/${ID}'
+}' 'http://${RANCHER_URL}:8080/v1/certificates/${ID}'
 {% endhighlight %}
 </div></div>
 

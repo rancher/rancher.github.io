@@ -101,36 +101,26 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	},
 	"dockerVersion": "string",
 	"engineEnv": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"engineInsecureRegistry": [
 		"string1",
-		"string2",
 		"...stringN"
 	],
 	"engineInstallUrl": "string",
 	"engineLabel": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"engineOpt": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"engineRegistryMirror": [
 		"string1",
-		"string2",
 		"...stringN"
 	],
 	"engineStorageDriver": "string",
 	"labels": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"name": "string",
 	"packetConfig": {
@@ -141,7 +131,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"plan": "baremetal_1",
 		"projectId": ""
 	}
-}' 'http://RANCHER_URL:8080/v1/machines'
+}' 'http://${RANCHER_URL}:8080/v1/machines'
 {% endhighlight %}
 </div></div>
 
@@ -150,7 +140,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
-'http://RANCHER_URL:8080/v1/machines/${ID}'
+'http://${RANCHER_URL}:8080/v1/machines/${ID}'
 {% endhighlight %}
 </div></div>
 

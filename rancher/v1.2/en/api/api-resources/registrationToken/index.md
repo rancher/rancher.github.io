@@ -35,7 +35,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -d '{
 	"description": "string",
 	"name": "string"
-}' 'http://RANCHER_URL:8080/v1/registrationTokens'
+}' 'http://${RANCHER_URL}:8080/v1/registrationTokens'
 {% endhighlight %}
 </div></div>
 

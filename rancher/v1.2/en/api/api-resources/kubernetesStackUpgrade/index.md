@@ -30,17 +30,13 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"environment": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	},
 	"externalId": "string",
 	"templates": {
-		"key1": "value1",
-		"key2": "value2",
-		"keyN": "valueN"
+		"key": "value-pairs"
 	}
-}' 'http://RANCHER_URL:8080/v1/kubernetesStackUpgrades'
+}' 'http://${RANCHER_URL}:8080/v1/kubernetesStackUpgrades'
 {% endhighlight %}
 </div></div>
 

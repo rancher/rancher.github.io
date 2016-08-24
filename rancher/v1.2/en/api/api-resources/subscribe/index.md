@@ -29,10 +29,9 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -d '{
 	"eventNames": [
 		"string1",
-		"string2",
 		"...stringN"
 	]
-}' 'http://RANCHER_URL:8080/v1/subscribe'
+}' 'http://${RANCHER_URL}:8080/v1/subscribe'
 {% endhighlight %}
 </div></div>
 
