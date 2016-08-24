@@ -26,5 +26,3 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 
 
 
-
-

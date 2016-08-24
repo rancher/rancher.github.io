@@ -37,5 +37,3 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 
 
 
-
-
