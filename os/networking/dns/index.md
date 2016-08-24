@@ -1,7 +1,8 @@
 ---
 title: Configuring DNS in RancherOS
 layout: os-default
-
+redirect_from:
+  - os/configuration/networking/#dns
 ---
 
 ## DNS

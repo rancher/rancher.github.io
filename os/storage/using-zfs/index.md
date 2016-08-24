@@ -1,6 +1,8 @@
 ---
 title: Using ZFS in RancherOS
 layout: os-default
+redirect_from:
+  - os/configuration/storage/
 ---
 
 ## Using ZFS

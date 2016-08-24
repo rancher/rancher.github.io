@@ -1,7 +1,8 @@
 ---
 title: Configuring Network Interfaces in RancherOS
 layout: os-default
-
+redirect_from:
+  - os/configuration/networking/
 ---
 
 ## Interfaces
