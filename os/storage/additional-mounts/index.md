@@ -2,18 +2,20 @@
 title: Additional Mounts in RancherOS
 layout: os-default
 redirect_from:
-  - os/configuration/additional-mounts/ 
+  - os/configuration/additional-mounts/
 ---
 
 ## Additional Mounts
 
-Additional mounts can be specified as part of your [cloud-config]({{site.baseurl}}/os/cloud-config/). These mounts are applied within the console container. Here's an simple example that mounts `/dev/vdb` to `/mnt/s`.
+Additional mounts can be specified as part of your [cloud-config]({{site.baseurl}}/os/cloud-config/). These mounts are applied within the console container. Here's a simple example that mounts `/dev/vdb` to `/mnt/s`.
 
 ```yaml
 #cloud-config
 mounts:
 - ["/dev/vdb", "/mnt/s", "ext4", ""]
 ```
+
+<br>
 
 The four arguments for each mount are the same as those given for [cloud-init](https://cloudinit.readthedocs.io/en/latest/topics/examples.html#adjust-mount-points-mounted). Only the first four arguments are currently supported. The `mount_default_fields` key is not yet implemented.
 
