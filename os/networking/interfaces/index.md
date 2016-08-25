@@ -81,3 +81,16 @@ rancher:
 ```
 
 In this example two physical NICs (with MACs `0c:c4:d7:b2:14:d2` and `0c:c4:d7:b2:14:d3`) are aggregated into a virtual one `bond0`.
+
+### VLANS
+
+In this example, you can create an interface `eth0.100` which is tied to VLAN 100 and an interface `foobar` that will be tied to VLAN 200.
+
+```
+#cloud-config
+rancher:
+  network:
+    interfaces:
+      eth0:
+        vlans: 100,200:foobar
+```
