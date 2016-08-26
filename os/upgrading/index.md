@@ -111,6 +111,10 @@ $ sudo ros -v
 ros version 0.4.4
 ```
 
+<br>
+
+> **Note:** If you are using a [persistent console]({{site.baseurl}}/os/configuration/custom-console/#console-persistence) and in the current version's console, rolling back is not supported. For example, rolling back to v0.4.5 when using a v0.5.0 persistent console is not supported.
+
 ### Staging an Upgrade
 
 During an upgrade, the template of the upgrade is downloaded from the rancher/os repository. You can download this template ahead of time so that it's saved locally. This will decrease the time it takes to upgrade. We'll use the `-s` option to stage the specific template. You will need to specify the image name with the `-i` option, otherwise it will automatically stage the current version.

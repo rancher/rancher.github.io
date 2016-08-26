@@ -4,7 +4,7 @@ layout: os-default
 
 ---
 
-## Docker Machine 
+## Docker Machine
 ---
 
 Before we get started, you'll need to make sure that you have docker machine installed. Download it directly from the docker machine [releases](https://github.com/docker/machine/releases).  
@@ -21,7 +21,7 @@ You can use Docker Machine to launch VMs for various providers. Currently only V
 
 #### Using Docker Machine with VirtualBox
 
-Before moving forward, you'll need to have VirtualBox installed. Download it directly from [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Once you have VirtualBox and Docker Machine installed, it's just one command to get RancherOS running. 
+Before moving forward, you'll need to have VirtualBox installed. Download it directly from [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Once you have VirtualBox and Docker Machine installed, it's just one command to get RancherOS running.
 
 ```
 $ docker-machine create -d virtualbox --virtualbox-boot2docker-url <LOCATION-OF-RANCHEROS-ISO> <MACHINE-NAME>
@@ -29,7 +29,7 @@ $ docker-machine create -d virtualbox --virtualbox-boot2docker-url <LOCATION-OF-
 
 <br>
 
-> **Note:** Instead of downloading the ISO, you can directly use the URL for the `rancheros.iso`. 
+> **Note:** Instead of downloading the ISO, you can directly use the URL for the `rancheros.iso`.
 
 Example using the RancherOS latest link:
 
@@ -38,6 +38,8 @@ $ docker-machine create -d virtualbox --virtualbox-boot2docker-url https://relea
 ```
 
 That's it! You should now have a RancherOS host running on VirtualBox. You can verify that you have a VirtualBox VM running on your host.
+
+> **Note:** After the machine is created, Docker Machine may display some errors regarding creation, but if the VirtualBox VM is running, you should be able to [log in](#logging-into-rancheros).
 
 ```
 $ VBoxManage list runningvms | grep <MACHINE-NAME>
@@ -59,7 +61,7 @@ If you want to exit out of RancherOS, you can exit by pressing `Ctrl+D`.
 
 ### Docker Machine Benefits
 
-With Docker Machine, you can point the docker client on your host to the docker daemon running inside of the VM. This allows you to run your docker commands as if you had installed docker on your host. 
+With Docker Machine, you can point the docker client on your host to the docker daemon running inside of the VM. This allows you to run your docker commands as if you had installed docker on your host.
 
 To point your docker client to the docker daemon inside the VM, use the following command:
 
@@ -67,13 +69,13 @@ To point your docker client to the docker daemon inside the VM, use the followin
 $ eval $(docker-machine env <MACHINE-NAME>)
 ```
 
-After setting this up, you can run any docker command in your host, and it will execute the command in your RancherOS VM. 
+After setting this up, you can run any docker command in your host, and it will execute the command in your RancherOS VM.
 
 ```
 $ docker run -p 80:80 -p 443:443 -d nginx
 ```
 
-In your VM, a nginx container will start on your VM. To access the container, you will need the IP address of the VM. 
+In your VM, a nginx container will start on your VM. To access the container, you will need the IP address of the VM.
 
 ```
 $ docker-machine ip <MACHINE-NAME>
