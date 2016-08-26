@@ -104,7 +104,7 @@ All consoles except the default (busybox) console are persistent. Persistent con
 
 <br>
 
-> **Note:** When using a persistent console and in hte current version's console, [rolling back]({{site.baseurl}}/os/upgrading/#rolling-back-an-upgrade) is not supported. For example, rolling back to v0.4.5 when using a v0.5.0 persistent console is not supported.
+> **Note:** When using a persistent console and in the current version's console, [rolling back]({{site.baseurl}}/os/upgrading/#rolling-back-an-upgrade) is not supported. For example, rolling back to v0.4.5 when using a v0.5.0 persistent console is not supported.
 
 ### Enabling Consoles
 
