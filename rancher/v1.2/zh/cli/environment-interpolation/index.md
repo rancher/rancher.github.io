@@ -2,7 +2,7 @@
 title: Environment Interpolation in Rancher CLI
 layout: rancher-default-v1.2
 version: v1.2
-lang: en
+lang: zh
 ---
 
 ## Environment Interpolation
