@@ -28,7 +28,7 @@ By default, the [catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}
 
 An [admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/#admin) has the ability to add private catalogs to Rancher. Adding a catalog is as simple as adding a catalog name and the git URL. The correct format of the git URL can be found [here](https://git-scm.com/docs/git-clone#_git_urls_a_id_urls_a). Whenever you add a catalog, it will be immediately available in the catalog.
 
-If you want to create your own private catalog to add, the git repository must be set up in a [specific format]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/#creating-private-catalogs).
+If you want to create your own private catalog to add, the git repository must be set up in a [specific format]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/#creating-private-catalog).
 
 ## Machine Drivers
 ---
