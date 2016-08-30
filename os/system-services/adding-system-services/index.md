@@ -86,7 +86,7 @@ To enable a custom system service from the file location, the command must indic
 # Enable the system service saved in /var/lib/rancher/conf
 $ sudo ros service enable /var/lib/rancher/conf/example.yml
 # Enable a system service saved at a http(s) url
-$ sudo ros service enable http://mydomain.com/example.yml
+$ sudo ros service enable https://mydomain.com/example.yml
 ```
 
 <br>
