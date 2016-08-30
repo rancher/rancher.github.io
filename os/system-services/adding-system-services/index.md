@@ -6,37 +6,60 @@ redirect_from:
   - os/configuration/system-services/
 ---
 
-## Adding New System Services
+## System Services
 
-A system service is a container that can be run in either System Docker or Docker. Rancher provides services that are already available in RancherOS by adding them to the [os-services repo](https://github.com/rancher/os-services). Anything in the `index.yml` file from the repo will be an option shown when using the `ros service list` command. This command will list all system services and whether they are enabled or disabled.
+A system service is a container that can be run in either System Docker or Docker. Rancher provides services that are already available in RancherOS by adding them to the [os-services repo](https://github.com/rancher/os-services). Anything in the `index.yml` file from the repository for the tagged release will be an available system service when using the `ros service list` command.
 
-You can also create your own system service in the [Docker Compose](https://docs.docker.com/compose/) format.
+### Enabling and Starting System Services
 
-### Enabling/Disabling System Services
-
-For any services that are listed from the `ros service list`, they can be enabled by running a single command. In order for the changes take effect, you will also need to reboot. In the future, the reboot will be dynamic.
+For any services that are listed from the `ros service list`, they can be enabled by running a single command. After enabling a service, you will need to run start the service.
 
 ```
+# List out available system services
 $ sudo ros service list
 disabled amazon-ecs-agent
 disabled kernel-headers
 disabled kernel-headers-system-docker
 disabled open-vm-tools
+# Enable a system service
 $ sudo ros service enable kernel-headers
-$ sudo reboot
+# Start a system service
+$ sudo ros service up -d kernel-headers
 ```
 
-To turn off a system service, run `ros service disable <system-service-name>`. This will only turn off the service, and it will not remove the service from RancherOS. Similar to when we enabled the service, we will need to reboot in order for the disabling to take effect.
+### Disabling and Removing System Services
 
-To delete a service that you added, run `ros service delete <system-service-name>`. This will remove the service from the list of services.
+In order to stop a system service from running, you will need to stop and disable the system service.
 
-### Adding Custom System Services
+```
+# List out available system services
+$ sudo ros service list
+disabled amazon-ecs-agent
+enabled kernel-headers
+disabled kernel-headers-system-docker
+disabled open-vm-tools
+# Disable a system service
+$ sudo ros service disable kernel-headers
+# Stop a system service
+$ sudo ros service stop kernel-headers
+# Remove the containers associated with the system service
+$ sudo ros service down kernel-headers
+```
 
-After creating your own custom service, you can launch the services in RancherOS in two different methods. The service could be directly added to the [cloud-config]({{site.baseurl}}/os/configuration/#cloud-config) that you start RancherOS with or a `docker-compose.yml` file could be saved in a http(s) url location or in a directory of RancherOS.
+<br>
+If you want to remove a system service from the list of service, just delete the service.
+
+```
+$ sudo ros service delete <serviceName>
+```
+
+### Custom System Services
+
+You can also create your own system service in [Docker Compose](https://docs.docker.com/compose/) format. After creating your own custom service, you can launch it in RancherOS in a couple of methods. The service could be directly added to the [cloud-config]({{site.baseurl}}/os/configuration/#cloud-config), or a `docker-compose.yml` file could be saved at a http(s) url location or in a specific directory of RancherOS.
 
 #### Launching Services through Cloud-Config
 
-If you want to boot RancherOS with a system service running, you can add the service to the cloud-config that is passed to RancherOS.
+If you want to boot RancherOS with a system service running, you can add the service to the cloud-config that is passed to RancherOS. When RancherOS starts, this service will automatically be started.
 
 ```yaml
 #cloud-config
@@ -47,9 +70,9 @@ rancher:
       restart: always
 ```      
 
-#### Launching Services inside RancherOS
+#### Launching Custom System Services inside RancherOS
 
-If you want to add a system service to a running RancherOS, a `docker-compose.yml` file must be saved in `/var/lib/rancher/conf/` in order for it to be enabled.
+If you already have RancherOS running, you can start a system service by saving a `docker-compose.yml` file at `/var/lib/rancher/conf/`.
 
 ```yaml
 nginxapp:
@@ -57,21 +80,24 @@ nginxapp:
   restart: always
 ```     
 
-To enable a custom system service from a file location, the command must indicate the file location if saved in RancherOS.
+To enable a custom system service from the file location, the command must indicate the file location if saved in RancherOS. If the file is saved at a http(s) url, just use the http(s) url when enabling/disabling.
 
 ```
+# Enable the system service saved in /var/lib/rancher/conf
 $ sudo ros service enable /var/lib/rancher/conf/example.yml
-```
-
-If the file is saved at a http(s) url, just use the http(s) url when enabling/disabling.
-
-```
-$ sudo ros service enable http://mydomain.com/example.yml
+# Enable a system service saved at a http(s) url
+$ sudo ros service enable https://mydomain.com/example.yml
 ```
 
 <br>
 
-> **Note:** You will need to reboot in order for the services to start.
+After the custom system service is enabled, you can start the service using `sudo ros service up -d <serviceName>`. The `<serviceName>` will be the names of the services inside the `docker-compose.yml`.
+
+```
+$ sudo ros service up -d nginxapp
+# If you have more than 1 service in your docker-compose.yml, add all service names to the command
+$ sudo ros service up -d service1 service2 service3
+```
 
 ### System Docker vs. Docker
 
