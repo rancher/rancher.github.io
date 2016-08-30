@@ -23,9 +23,9 @@ RancherOS does not currently expand the root partition to fill the remainder of 
 5. `sudo reboot` to reboot and reload the new partition table
 6. `sudo mkdir /mnt/docker` to create the directory to be used as the new Docker root
 7. `sudo ros config set rancher.docker.extra_args [-g,/mnt/docker]` to configure Docker to use the new root
-8. `sudo mount /dev/mmcblk0p3 /mnt/docker` to mount the Docker root
+8. `sudo mkfs.ext4 /dev/mmcblk0p3` to format the disk
 9. `sudo ros config set mounts "[['/dev/mmcblk0p3','/mnt/docker','ext4','']]"` to preserve this mount after reboots
-10. `sudo mkfs.ext4 /dev/mmcblk0p3` to format the disk
+10. `sudo mount /dev/mmcblk0p3 /mnt/docker` to mount the Docker root
 11. `sudo system-docker restart docker` to restart Docker using the new root
 
 If this is not a new installation, you'll have to copy over your existing Docker root (`/var/lib/docker`) to the new root (`/mnt/docker`).
