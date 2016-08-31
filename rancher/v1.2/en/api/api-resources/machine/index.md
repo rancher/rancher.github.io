@@ -1,6 +1,6 @@
 ---
 title: Rancher API - machine
-layout: rancher-api-default
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: en
 ---
@@ -11,6 +11,8 @@ Machines are created whenever Rancher uses `docker-machine` to create hosts in R
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 amazonec2Config | [amazonec2Config]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/amazonec2Config/) | Optional | - | - | 
@@ -20,7 +22,6 @@ azureConfig | [azureConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lan
 description | string | Optional | Yes | - | 
 digitaloceanConfig | [digitaloceanConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/digitaloceanConfig/) | Optional | - | - | 
 dockerVersion | string | Optional | - | - | 
-driver | string | - | - | - | 
 engineEnv | map[string] | Optional | - | - | 
 engineInsecureRegistry | array[string] | Optional | - | - | 
 engineInstallUrl | string | Optional | - | - | 
@@ -28,13 +29,22 @@ engineLabel | map[string] | Optional | - | - |
 engineOpt | map[string] | Optional | - | - | 
 engineRegistryMirror | array[string] | Optional | - | - | 
 engineStorageDriver | string | Optional | - | - | 
-externalId | string | - | - | - | 
-id | int | - | - | - | The unique identifier for the machine
 labels | map[string] | Optional | - | - | A map of key value pairs to be used as labels for the machine
 name | string | Yes | - | - | 
 packetConfig | [packetConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/packetConfig/) | Optional | - | - | 
 
+
+#### Read Only Fields
+
+Field | Type   | Notes
+---|---|---
+driver | string  | 
+externalId | string  | 
+id | int  | The unique identifier for the machine
+
+
 <br>
+
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
@@ -134,7 +144,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 }' 'http://${RANCHER_URL}:8080/v1/machines'
 {% endhighlight %}
 </div></div>
-
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/machines/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}

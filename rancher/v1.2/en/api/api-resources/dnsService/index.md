@@ -1,6 +1,6 @@
 ---
 title: Rancher API - dnsService
-layout: rancher-api-default
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: en
 ---
@@ -11,24 +11,34 @@ A "dnsService" in the API is referred to as a Service Alias in the UI and the Ra
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 assignServiceIpAddress | boolean | Optional | - | - | 
 description | string | Optional | Yes | - | 
 environmentId | [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/) | Yes | - | - | 
 externalId | string | Optional | - | - | 
-fqdn | string | - | - | - | 
-healthState | string | - | - | - | 
-id | int | - | - | - | The unique identifier for the dnsService
 launchConfig | [launchConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/launchConfig/) | Optional | - | - | 
 metadata | map[json] | Optional | Yes | - | 
 name | string | Yes | Yes | - | 
 retainIp | boolean | Optional | Yes | - | 
 selectorLink | string | Optional | Yes | - | 
 startOnCreate | boolean | Optional | - | - | 
-upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceUpgrade/) | - | - | - | 
+
+
+#### Read Only Fields
+
+Field | Type   | Notes
+---|---|---
+fqdn | string  | 
+healthState | string  | 
+id | int  | The unique identifier for the dnsService
+upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceUpgrade/)  | 
+
 
 <br>
+
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
@@ -195,7 +205,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 }' 'http://${RANCHER_URL}:8080/v1/dnsServices'
 {% endhighlight %}
 </div></div>
-
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/dnsServices/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
@@ -204,7 +213,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v1/dnsServices/${ID}'
 {% endhighlight %}
 </div></div>
-
 <a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/dnsServices/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
@@ -226,6 +234,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 
 
 ### Actions
+
 <div class="action">
 <span class="header">
 activate
@@ -235,6 +244,7 @@ activate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -254,6 +264,7 @@ deactivate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -273,6 +284,10 @@ removeservicelink
 <br>
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/addRemoveServiceLinkInput/">AddRemoveServiceLinkInput</a></span>
+
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+serviceLink | [serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceLink/) | Yes |  | <br>
 
 <br>
 {% highlight json %}
@@ -300,6 +315,7 @@ rollback
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -319,6 +335,10 @@ setservicelinks
 <br>
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/setServiceLinksInput/">SetServiceLinksInput</a></span>
+
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+serviceLinks | array[[serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceLink/)] | No |  | <br>
 
 <br>
 {% highlight json %}
@@ -342,6 +362,10 @@ upgrade
 <br>
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceUpgrade/">ServiceUpgrade</a></span>
+
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+inServiceStrategy | [inServiceUpgradeStrategy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/inServiceUpgradeStrategy/) | No |  | toServiceStrategy | [toServiceUpgradeStrategy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/toServiceUpgradeStrategy/) | No |  | <br>
 
 <br>
 {% highlight json %}

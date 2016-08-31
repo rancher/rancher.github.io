@@ -1,6 +1,6 @@
 ---
 title: Rancher API - kubernetesStackUpgrade
-layout: rancher-api-default
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: en
 ---
@@ -11,13 +11,18 @@ lang: en
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 environment | map[string] | Optional | - | - | 
 externalId | string | Optional | - | - | 
 templates | map[string] | Optional | - | - | 
 
+
+
 <br>
+
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations

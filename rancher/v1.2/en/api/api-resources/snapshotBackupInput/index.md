@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-api-default
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: en
 ---
@@ -10,11 +10,4 @@ lang: en
 
 
 
-
-### Resource Fields
-
-Field | Type | Required | Default | Description
----|---|---|---|---
-backupTargetId | [backupTarget]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/backupTarget/) | true |  | 
-name | string | false |  | 
 

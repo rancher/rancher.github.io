@@ -1,7 +1,7 @@
 ---
 title: API
-layout: rancher-default
-version: latest
+layout: rancher-api-default-v1.2
+version: v1.2
 lang: zh
 ---
 
@@ -10,10 +10,4 @@ lang: zh
 
 
 
-
-### Resource Fields
-
-Field | Type | Required | Default | Description
----|---|---|---|---
-serviceLink | [loadBalancerServiceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/loadBalancerServiceLink/) | true |  | 
 

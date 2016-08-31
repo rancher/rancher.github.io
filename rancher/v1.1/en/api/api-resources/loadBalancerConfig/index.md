@@ -1,15 +1,17 @@
 ---
-title: API
-layout: rancher-default
-version: latest
+title: Rancher API - loadBalancerConfig
+layout: rancher-api-default-v1.1
+version: v1.1
 lang: en
 ---
 
-## loadBalancerConfig
+## LoadBalancerConfig
 
 
 
 ### Resource Fields
+
+#### Writeable Fields
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
@@ -17,122 +19,67 @@ haproxyConfig | [haproxyConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page
 lbCookieStickinessPolicy | [loadBalancerCookieStickinessPolicy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/loadBalancerCookieStickinessPolicy/) | Optional | Yes | - | 
 
 
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). 
-These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
+<br>
+
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
 {::options parse_block_html="true" /}
-
-
-
-<div class="action">
-<span class="header">
-Create
-<span class="headerright">POST:  <code>/v1/loadBalancerConfig</code></span></span>
-<div class="action-contents">
-{% highlight json %} 
-{
-
+<a id="create"></a>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/loadBalancerConfigs</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
 	"haproxyConfig": {
-
 		"defaults": "string",
-
 		"global": "string"
-
 	},
-
 	"lbCookieStickinessPolicy": {
-
 		"cookie": "string",
-
 		"domain": "string",
-
-		"indirect": true,
-
+		"indirect": false,
 		"mode": "enum",
-
 		"name": "string",
-
-		"nocache": true,
-
-		"postonly": true
-
+		"nocache": false,
+		"postonly": false
 	}
-
-} 
+}' 'http://${RANCHER_URL}:8080/v1/loadBalancerConfigs'
 {% endhighlight %}
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="action">
-<span class="header">
-Update
-<span class="headerright">PUT:  <code>${links.self}</code></span></span>
-<div class="action-contents">
-{% highlight json %} 
-{
-
+</div></div>
+<a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/loadBalancerConfigs/${ID}</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+'http://${RANCHER_URL}:8080/v1/loadBalancerConfigs/${ID}'
+{% endhighlight %}
+</div></div>
+<a id="update"></a>
+<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/loadBalancerConfigs/${ID}</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X PUT \
+-H 'Content-Type: application/json' \
+-d '{
 	"haproxyConfig": {
-
 		"defaults": "string",
-
 		"global": "string"
-
 	},
-
 	"lbCookieStickinessPolicy": {
-
 		"cookie": "string",
-
 		"domain": "string",
-
-		"indirect": true,
-
+		"indirect": false,
 		"mode": "enum",
-
 		"name": "string",
-
-		"nocache": true,
-
-		"postonly": true
-
+		"nocache": false,
+		"postonly": false
 	}
-
-} 
+}' 'http://${RANCHER_URL}:8080/v1/loadBalancerConfigs/${ID}'
 {% endhighlight %}
-</div>
-</div>
-
-
-
-
-
-
-
-<div class="action">
-<span class="header">
-Delete
-<span class="headerright">DELETE:  <code>${links.self}</code></span></span>
-<div class="action-contents">
-{% highlight json %} 
- 
-{% endhighlight %}
-</div>
-</div>
-
+</div></div>
 
 
 

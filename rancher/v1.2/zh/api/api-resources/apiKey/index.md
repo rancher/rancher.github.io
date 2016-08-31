@@ -1,98 +1,71 @@
 ---
-title: API
-layout: rancher-default
-version: latest
+title: Rancher API - apiKey
+layout: rancher-api-default-v1.2
+version: v1.2
 lang: zh
 ---
 
-## apiKey
+## ApiKey
 
 An API Key provides access to the Rancher API if access control has been turned on. The access key and secret key pair are created per environment and can be used to directly call the API or used with [rancher-compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose).
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 description | string | Optional | Yes | - | 
-id | int | - | - | - | The unique identifier for the apiKey
 name | string | Optional | Yes | - | 
-publicValue | string | - | - | - | The public value of the apiKey
-secretValue | [password]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/password/) | - | - | - | The secret value of the apiKey
 
 
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). 
-These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+#### Read Only Fields
 
+Field | Type   | Notes
+---|---|---
+id | int  | The unique identifier for the apiKey
+publicValue | string  | The public value of the apiKey
+secretValue | [password]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/password/)  | The secret value of the apiKey
+
+
+<br>
+
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
 {::options parse_block_html="true" /}
-
-
-
-<div class="action">
-<span class="header">
-Create
-<span class="headerright">POST:  <code>/v1/apiKey</code></span></span>
-<div class="action-contents">
-{% highlight json %} 
-{
-
+<a id="create"></a>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/apiKeys</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
 	"description": "string",
-
 	"name": "string"
-
-} 
+}' 'http://${RANCHER_URL}:8080/v1/apiKeys'
 {% endhighlight %}
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="action">
-<span class="header">
-Update
-<span class="headerright">PUT:  <code>${links.self}</code></span></span>
-<div class="action-contents">
-{% highlight json %} 
-{
-
+</div></div>
+<a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/apiKeys/${ID}</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+'http://${RANCHER_URL}:8080/v1/apiKeys/${ID}'
+{% endhighlight %}
+</div></div>
+<a id="update"></a>
+<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/apiKeys/${ID}</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X PUT \
+-H 'Content-Type: application/json' \
+-d '{
 	"description": "string",
-
 	"name": "string"
-
-} 
+}' 'http://${RANCHER_URL}:8080/v1/apiKeys/${ID}'
 {% endhighlight %}
-</div>
-</div>
-
-
-
-
-
-
-
-<div class="action">
-<span class="header">
-Delete
-<span class="headerright">DELETE:  <code>${links.self}</code></span></span>
-<div class="action-contents">
-{% highlight json %} 
- 
-{% endhighlight %}
-</div>
-</div>
-
-
+</div></div>
 
 
 
@@ -101,76 +74,41 @@ Delete
 <div class="action">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>${actions.activate}</code></span></span>
+<span class="headerright">POST:  <code>/v1/apiKeys/${ID}?action=activate</code></span></span>
 <div class="action-contents">
-To activate the apiKey
-<br>
 
+<br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-<br>
 
 <br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource</span>
-</div>
-</div>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://${RANCHER_URL}:8080/v1/apiKeys/${ID}?action=activate'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/credential/">credential</a> resource</span>
+</div></div>
 
 <div class="action">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>${actions.deactivate}</code></span></span>
+<span class="headerright">POST:  <code>/v1/apiKeys/${ID}?action=deactivate</code></span></span>
 <div class="action-contents">
-To deactivate the apiKey
-<br>
 
+<br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-<br>
 
 <br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
-purge
-<span class="headerright">POST:  <code>${actions.purge}</code></span></span>
-<div class="action-contents">
-To purge the apiKey
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://${RANCHER_URL}:8080/v1/apiKeys/${ID}?action=deactivate'
+{% endhighlight %}
 <br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/credential/">credential</a> resource</span>
+</div></div>
 
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
-remove
-<span class="headerright">POST:  <code>${actions.remove}</code></span></span>
-<div class="action-contents">
-To remove the apiKey
-<br>
-
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/credential/">credential</a> resource</span>
-</div>
-</div>
 

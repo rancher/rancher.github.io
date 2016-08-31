@@ -1,7 +1,7 @@
 ---
 title: API
-layout: rancher-default
-version: latest
+layout: rancher-api-default-v1.1
+version: v1.1
 lang: zh
 ---
 

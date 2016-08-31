@@ -1,7 +1,7 @@
 ---
 title: API
-layout: rancher-default
-version: latest
+layout: rancher-api-default-v1.1
+version: v1.1
 lang: en
 ---
 
@@ -10,13 +10,4 @@ lang: en
 
 
 
-
-### Resource Fields
-
-Field | Type | Required | Default | Description
----|---|---|---|---
-activeValue | json | false |  | 
-id | string | false |  | The unique identifier for the activeSetting
-name | string | false |  | 
-value | string | false |  | 
 

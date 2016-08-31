@@ -1,68 +1,50 @@
 ---
-title: API
-layout: rancher-default
-version: latest
+title: Rancher API - containerExec
+layout: rancher-api-default-v1.1
+version: v1.1
 lang: zh
 ---
 
-## containerExec
+## ContainerExec
 
 
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-attachStdin | boolean | Optional | - | true | Attach to standard in stream. <code>-a stdin</code> in a <code>docker run</code> command
-attachStdout | boolean | Optional | - | true | Attach to standard out stream. <code>-a stdout</code> in a <code>docker run</code> command
-command | array[string] | Yes | - | - | Overwrite the default commands set by the image
-tty | boolean | Optional | - | true | Allocate a pseudo-tty. <code>-t</code> in a <code>docker run</code> command
+attachStdin | boolean | Optional | - | true | 
+attachStdout | boolean | Optional | - | true | 
+command | array[string] | Yes | - | - | 
+tty | boolean | Optional | - | true | 
 
 
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). 
-These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
+<br>
+
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
 {::options parse_block_html="true" /}
-
-
-
-<div class="action">
-<span class="header">
-Create
-<span class="headerright">POST:  <code>/v1/containerExec</code></span></span>
-<div class="action-contents">
-{% highlight json %} 
-{
-
+<a id="create"></a>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/containerExecs</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
 	"attachStdin": true,
-
 	"attachStdout": true,
-
 	"command": [
-
 		"string1",
-
-		"string2",
-
 		"...stringN"
-
 	],
-
 	"tty": true
-
-} 
+}' 'http://${RANCHER_URL}:8080/v1/containerExecs'
 {% endhighlight %}
-</div>
-</div>
-
-
-
-
-
-
-
+</div></div>
 
 
 

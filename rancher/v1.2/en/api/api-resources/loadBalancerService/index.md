@@ -1,6 +1,6 @@
 ---
 title: Rancher API - loadBalancerService
-layout: rancher-api-default
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: en
 ---
@@ -11,32 +11,42 @@ Rancher implements a managed load balancer using HAProxy that can be manually sc
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 assignServiceIpAddress | boolean | Optional | - | - | 
 certificateIds | array[[certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/certificate/)] | Optional | Yes | - | 
-currentScale | int | - | - | - | 
 defaultCertificateId | [certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/certificate/) | Optional | Yes | - | 
 description | string | Optional | Yes | - | 
 environmentId | [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/) | Yes | - | - | 
 externalId | string | Optional | - | - | 
-fqdn | string | - | - | - | 
-healthState | string | - | - | - | 
-id | int | - | - | - | The unique identifier for the loadBalancerService
 launchConfig | [launchConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/launchConfig/) | Optional | - | - | 
 loadBalancerConfig | [loadBalancerConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/loadBalancerConfig/) | Optional | Yes | - | 
 metadata | map[json] | Optional | Yes | - | 
 name | string | Yes | Yes | - | 
-publicEndpoints | array[[publicEndpoint]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/publicEndpoint/)] | - | - | - | 
 retainIp | boolean | Optional | Yes | - | 
 scale | int | Optional | Yes | 1 | 
 scalePolicy | [scalePolicy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/scalePolicy/) | Optional | Yes | - | 
 selectorLink | string | Optional | Yes | - | 
 startOnCreate | boolean | Optional | - | - | 
-upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceUpgrade/) | - | - | - | 
 vip | string | Optional | - | - | 
 
+
+#### Read Only Fields
+
+Field | Type   | Notes
+---|---|---
+currentScale | int  | 
+fqdn | string  | 
+healthState | string  | 
+id | int  | The unique identifier for the loadBalancerService
+publicEndpoints | array[[publicEndpoint]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/publicEndpoint/)]  | 
+upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceUpgrade/)  | 
+
+
 <br>
+
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
@@ -227,7 +237,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 }' 'http://${RANCHER_URL}:8080/v1/loadBalancerServices'
 {% endhighlight %}
 </div></div>
-
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/loadBalancerServices/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
@@ -236,7 +245,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v1/loadBalancerServices/${ID}'
 {% endhighlight %}
 </div></div>
-
 <a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/loadBalancerServices/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
@@ -281,6 +289,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 
 
 ### Actions
+
 <div class="action">
 <span class="header">
 activate
@@ -290,6 +299,7 @@ activate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -309,6 +319,10 @@ addservicelink
 <br>
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/addRemoveLoadBalancerServiceLinkInput/">AddRemoveLoadBalancerServiceLinkInput</a></span>
+
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+serviceLink | [loadBalancerServiceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/loadBalancerServiceLink/) | Yes |  | <br>
 
 <br>
 {% highlight json %}
@@ -339,6 +353,7 @@ cancelrollback
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -358,6 +373,7 @@ cancelupgrade
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -377,6 +393,7 @@ deactivate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -396,6 +413,7 @@ finishupgrade
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -415,6 +433,10 @@ removeservicelink
 <br>
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/addRemoveLoadBalancerServiceLinkInput/">AddRemoveLoadBalancerServiceLinkInput</a></span>
+
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+serviceLink | [loadBalancerServiceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/loadBalancerServiceLink/) | Yes |  | <br>
 
 <br>
 {% highlight json %}
@@ -445,6 +467,7 @@ rollback
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -464,6 +487,10 @@ setservicelinks
 <br>
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/setLoadBalancerServiceLinksInput/">SetLoadBalancerServiceLinksInput</a></span>
+
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+serviceLinks | array[[loadBalancerServiceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/loadBalancerServiceLink/)] | No |  | <br>
 
 <br>
 {% highlight json %}
@@ -487,6 +514,10 @@ upgrade
 <br>
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/serviceUpgrade/">ServiceUpgrade</a></span>
+
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+inServiceStrategy | [inServiceUpgradeStrategy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/inServiceUpgradeStrategy/) | No |  | toServiceStrategy | [toServiceUpgradeStrategy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/toServiceUpgradeStrategy/) | No |  | <br>
 
 <br>
 {% highlight json %}

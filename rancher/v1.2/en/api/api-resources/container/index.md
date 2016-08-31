@@ -1,6 +1,6 @@
 ---
 title: Rancher API - container
-layout: rancher-api-default
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: en
 ---
@@ -10,6 +10,8 @@ lang: en
 A container is a representation of a Docker container on a host.
 
 ### Resource Fields
+
+#### Writeable Fields
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
@@ -21,11 +23,9 @@ command | array[string] | Optional | - | - |
 count | int | Optional | - | - | 
 cpuSet | string | Optional | - | - | 
 cpuShares | int | Optional | - | - | 
-createIndex | int | - | - | - | 
 dataVolumeMounts | map[[volume]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/volume/)] | Optional | - | - | 
 dataVolumes | array[string] | Optional | - | - | 
 dataVolumesFrom | array[[container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/container/)] | Optional | - | - | 
-deploymentUnitUuid | string | - | - | - | 
 description | string | Optional | Yes | - | 
 devices | array[string] | Optional | - | - | 
 dns | array[string] | Optional | - | - | 
@@ -34,14 +34,9 @@ domainName | string | Optional | - | - |
 entryPoint | array[string] | Optional | - | - | 
 environment | map[string] | Optional | - | - | 
 expose | array[string] | Optional | - | - | 
-externalId | string | - | - | - | 
 extraHosts | array[string] | Optional | - | - | 
-firstRunning | date | - | - | - | 
 healthCheck | [instanceHealthCheck]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instanceHealthCheck/) | Optional | - | - | 
-healthState | enum | - | - | - | 
-hostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/host/) | - | - | - | The unique identifier for the associated host
 hostname | string | Optional | - | - | 
-id | int | - | - | - | The unique identifier for the container
 imageUuid | string | Optional | - | - | 
 instanceLinks | map[[instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/)] | Optional | - | - | 
 labels | map[string] | Optional | - | - | A map of key value pairs to be used as labels for the container
@@ -50,13 +45,11 @@ lxcConf | map[string] | Optional | - | - |
 memory | int | Optional | - | - | 
 memorySwap | int | Optional | - | - | 
 name | string | Optional | Yes | - | 
-nativeContainer | boolean | - | - | - | 
 networkContainerId | [container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/container/) | Optional | - | - | 
 networkIds | array[[network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/network/)] | Optional | - | - | 
 networkMode | enum | Optional | - | managed | 
 pidMode | enum | Optional | - | - | 
 ports | array[string] | Optional | - | - | 
-primaryIpAddress | string | - | - | - | 
 privileged | boolean | Optional | - | - | 
 publishAllPorts | boolean | Optional | - | - | 
 readOnly | boolean | Optional | - | - | 
@@ -64,17 +57,34 @@ registryCredentialId | [registryCredential]({{site.baseurl}}/rancher/{{page.vers
 requestedHostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/host/) | Optional | - | - | 
 restartPolicy | [restartPolicy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/restartPolicy/) | Optional | - | - | 
 securityOpt | array[string] | Optional | - | - | 
-startCount | int | - | - | - | 
 startOnCreate | boolean | Optional | - | true | 
 stdinOpen | boolean | Optional | - | - | 
-systemContainer | enum | - | - | - | 
 tty | boolean | Optional | - | - | 
 user | string | Optional | - | - | 
-version | string | - | - | 0 | 
 volumeDriver | string | Optional | - | - | 
 workingDir | string | Optional | - | - | 
 
+
+#### Read Only Fields
+
+Field | Type   | Notes
+---|---|---
+createIndex | int  | 
+deploymentUnitUuid | string  | 
+externalId | string  | 
+firstRunning | date  | 
+healthState | enum  | 
+hostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/host/)  | The unique identifier for the associated host
+id | int  | The unique identifier for the container
+nativeContainer | boolean  | 
+primaryIpAddress | string  | 
+startCount | int  | 
+systemContainer | enum  | 
+version | string  | 
+
+
 <br>
+
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
@@ -202,7 +212,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 }' 'http://${RANCHER_URL}:8080/v1/containers'
 {% endhighlight %}
 </div></div>
-
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/containers/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
@@ -211,7 +220,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v1/containers/${ID}'
 {% endhighlight %}
 </div></div>
-
 <a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/containers/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
@@ -228,6 +236,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 
 
 ### Actions
+
 <div class="action">
 <span class="header">
 console
@@ -237,6 +246,7 @@ console
 <br>
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instanceConsoleInput/">InstanceConsoleInput</a></span>
+
 
 <br>
 {% highlight json %}
@@ -257,6 +267,10 @@ execute
 <br>
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/containerExec/">ContainerExec</a></span>
+
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+attachStdin |  | No | true | attachStdout |  | No | true | command | array[string] | Yes |  | tty |  | No | true | <br>
 
 <br>
 {% highlight json %}
@@ -287,6 +301,10 @@ logs
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/containerLogs/">ContainerLogs</a></span>
 
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+follow |  | No | true | lines |  | No | 100 | <br>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -311,6 +329,10 @@ proxy
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/containerProxy/">ContainerProxy</a></span>
 
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+port |  | No | 80 | scheme |  | No | http | <br>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -334,6 +356,7 @@ restart
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -353,6 +376,7 @@ start
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -372,6 +396,10 @@ stop
 <br>
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instanceStop/">InstanceStop</a></span>
+
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+remove |  | No |  | timeout |  | No |  | <br>
 
 <br>
 {% highlight json %}

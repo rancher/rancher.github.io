@@ -1,6 +1,6 @@
 ---
 title: Rancher API - volume
-layout: rancher-api-default
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: en
 ---
@@ -11,21 +11,31 @@ A volume can be associated to containers or storage pools. <br><br> * A containe
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-accessMode | string | - | - | - | 
 description | string | Optional | Yes | - | 
 driver | string | Yes | - | - | 
 driverOpts | map[string] | Optional | - | - | 
-externalId | string | - | - | - | 
-id | int | - | - | - | The unique identifier for the volume
-imageId | [image]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/image/) | - | - | - | 
-instanceId | [instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/) | - | - | - | The unique identifier for the associated instance
-isHostPath | boolean | - | - | - | 
 name | string | Yes | - | - | 
-uri | string | - | - | - | 
+
+
+#### Read Only Fields
+
+Field | Type   | Notes
+---|---|---
+accessMode | string  | 
+externalId | string  | 
+id | int  | The unique identifier for the volume
+imageId | [image]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/image/)  | 
+instanceId | [instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/)  | The unique identifier for the associated instance
+isHostPath | boolean  | 
+uri | string  | 
+
 
 <br>
+
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
@@ -46,7 +56,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 }' 'http://${RANCHER_URL}:8080/v1/volumes'
 {% endhighlight %}
 </div></div>
-
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/volumes/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
@@ -59,6 +68,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 
 
 ### Actions
+
 <div class="action">
 <span class="header">
 restorefrombackup
@@ -68,6 +78,10 @@ restorefrombackup
 <br>
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/restoreFromBackupInput/">RestoreFromBackupInput</a></span>
+
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+backupId | [backup]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/backup/) | Yes |  | <br>
 
 <br>
 {% highlight json %}
@@ -92,6 +106,10 @@ reverttosnapshot
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/revertToSnapshotInput/">RevertToSnapshotInput</a></span>
 
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+snapshotId | [snapshot]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/snapshot/) | Yes |  | <br>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -114,6 +132,10 @@ snapshot
 <br>
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/volumeSnapshotInput/">VolumeSnapshotInput</a></span>
+
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+name |  | No |  | <br>
 
 <br>
 {% highlight json %}

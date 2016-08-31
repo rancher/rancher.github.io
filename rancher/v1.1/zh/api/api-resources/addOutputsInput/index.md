@@ -1,26 +1,27 @@
 ---
-title: API
-layout: rancher-default
-version: latest
+title: Rancher API - addOutputsInput
+layout: rancher-api-default-v1.1
+version: v1.1
 lang: zh
 ---
 
-## addOutputsInput
+## AddOutputsInput
 
 
 
 ### Resource Fields
+
+#### Writeable Fields
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 outputs | map[string] | Yes | - | - | 
 
 
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). 
-These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
+<br>
 
-
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 
 

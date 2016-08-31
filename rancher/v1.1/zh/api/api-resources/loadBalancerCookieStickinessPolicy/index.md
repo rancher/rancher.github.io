@@ -1,7 +1,7 @@
 ---
 title: API
-layout: rancher-default
-version: latest
+layout: rancher-api-default-v1.1
+version: v1.1
 lang: zh
 ---
 
@@ -10,16 +10,4 @@ lang: zh
 
 
 
-
-### Resource Fields
-
-Field | Type | Required | Default | Description
----|---|---|---|---
-cookie | string | false |  | 
-domain | string | false |  | 
-indirect | boolean | false |  | Whether or not to have an indirect cookie
-mode | enum | false |  | 
-name | string | false |  | 
-nocache | boolean | false |  | 
-postonly | boolean | false |  | Whether or not to only set cookie on POST
 

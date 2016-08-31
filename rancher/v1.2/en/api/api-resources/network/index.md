@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-api-default
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: en
 ---
@@ -10,12 +10,4 @@ lang: en
 
 
 
-
-### Resource Fields
-
-Field | Type | Required | Default | Description
----|---|---|---|---
-description | string | false |  | 
-id | int | false |  | The unique identifier for the network
-name | string | false |  | 
 

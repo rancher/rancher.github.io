@@ -1,6 +1,6 @@
 ---
 title: Rancher API - machineDriver
-layout: rancher-api-default
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: en
 ---
@@ -11,25 +11,37 @@ lang: en
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 activateOnCreate | boolean | Optional | - | - | 
 builtin | boolean | Optional | - | - | 
 checksum | string | Optional | Yes | - | 
-defaultActive | boolean | - | - | - | 
 description | string | Optional | Yes | - | 
 externalId | string | Optional | Yes | - | 
-id | int | - | - | - | The unique identifier for the machineDriver
-name | string | - | - | - | 
 uiUrl | string | Optional | Yes | - | 
 url | string | Yes | Yes | - | 
 
+
+#### Read Only Fields
+
+Field | Type   | Notes
+---|---|---
+defaultActive | boolean  | 
+id | int  | The unique identifier for the machineDriver
+name | string  | 
+
+
 <br>
+
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 
 
+
 ### Actions
+
 <div class="action">
 <span class="header">
 activate
@@ -39,6 +51,7 @@ activate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -58,6 +71,7 @@ deactivate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -77,6 +91,7 @@ reactivate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
