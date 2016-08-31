@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-api-default
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: en
 ---
@@ -10,15 +10,4 @@ lang: en
 
 
 
-
-### Resource Fields
-
-Field | Type | Required | Default | Description
----|---|---|---|---
-accessKey | string | false |  | 
-description | string | false |  | 
-id | int | false |  | The unique identifier for the register
-key | string | true |  | 
-name | string | false |  | 
-secretKey | string | false |  | 
 

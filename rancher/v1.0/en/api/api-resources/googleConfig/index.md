@@ -1,15 +1,17 @@
 ---
-title: API
-layout: rancher-default-v1.0
+title: Rancher API - googleConfig
+layout: rancher-api-default-v1.0
 version: v1.0
 lang: en
 ---
 
-## googleConfig
+## GoogleConfig
 
 
 
 ### Resource Fields
+
+#### Writeable Fields
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
@@ -28,60 +30,36 @@ username | string | Optional | Yes | - |
 zone | string | Optional | Yes | - | 
 
 
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). 
-These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
+<br>
+
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
 {::options parse_block_html="true" /}
-
-
-
-<div class="action">
-<span class="header">
-Create
-<span class="headerright">POST:  <code>/v1/googleConfig</code></span></span>
-<div class="action-contents">
-{% highlight json %} 
-{
-
+<a id="create"></a>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/googleConfigs</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
 	"address": "string",
-
 	"diskSize": "string",
-
 	"diskType": "string",
-
 	"machineImage": "string",
-
 	"machineType": "string",
-
-	"preemptible": true,
-
+	"preemptible": false,
 	"project": "string",
-
 	"scopes": "string",
-
 	"tags": "string",
-
-	"useExisting": true,
-
-	"useInternalIp": true,
-
+	"useExisting": false,
+	"useInternalIp": false,
 	"username": "string",
-
 	"zone": "string"
-
-} 
+}' 'http://${RANCHER_URL}:8080/v1/googleConfigs'
 {% endhighlight %}
-</div>
-</div>
-
-
-
-
-
-
-
+</div></div>
 
 
 

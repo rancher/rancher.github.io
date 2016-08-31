@@ -1,7 +1,7 @@
 ---
 title: API
-layout: rancher-default
-version: latest
+layout: rancher-api-default-v1.1
+version: v1.1
 lang: en
 ---
 
@@ -10,16 +10,4 @@ lang: en
 
 
 
-
-### Resource Fields
-
-Field | Type | Required | Default | Description
----|---|---|---|---
-cookie | string | true |  | 
-maxLength | int | true |  | 
-mode | enum | false |  | 
-name | string | false |  | 
-prefix | boolean | false |  | 
-requestLearn | boolean | false |  | 
-timeout | int | true |  | 
 

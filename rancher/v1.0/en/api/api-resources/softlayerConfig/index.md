@@ -1,93 +1,69 @@
 ---
-title: API
-layout: rancher-default-v1.0
+title: Rancher API - softlayerConfig
+layout: rancher-api-default-v1.0
 version: v1.0
 lang: en
 ---
 
-## softlayerConfig
+## SoftlayerConfig
 
-The configuration to launch a server in SoftLayer. For all cloud providers, Rancher is calling `docker-machine`, so any available options in `docker-machine` are exposed in Rancher. The default fields from `docker-machine` are not listed in the Rancher API, and they can be found in the `docker-machine` documentation.
+
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-apiEndpoint | string | Optional | Yes | - | The SoftLayer API endpoint to use
-apiKey | string | Optional | Yes | - | <strong>required</strong> Your API key for your user account.
-cpu | string | Optional | Yes | - | The number of CPUs for the machine
-diskSize | string | Optional | Yes | - | A value of 0 will set the SoftLayer default.
-domain | string | Optional | Yes | - | <strong>required</strong> The domain name for the machine
-hostname | string | Optional | Yes | - | The hostname for the machine
-hourlyBilling | boolean | Optional | Yes | - | Whether or not use hourly billing, if `false`, monthly billing is used
-image | string | Optional | Yes | - | The OS image to use
-localDisk | boolean | Optional | Yes | - | Whether or not to use local machine disk instead of SoftLayer SAN
-memory | string | Optional | Yes | - | The memory for host in MB
-privateNetOnly | boolean | Optional | Yes | - | Whether or not to disable public networking
-privateVlanId | string | Optional | Yes | - | The private VLAN ID
-publicVlanId | string | Optional | Yes | - | The public VLAN ID
-region | string | Optional | Yes | - | The SoftLayer region
-user | string | Optional | Yes | - | <strong>required</strong> Your username for your SoftLayer account
+apiEndpoint | string | Optional | Yes | - | 
+apiKey | string | Optional | Yes | - | 
+cpu | string | Optional | Yes | - | 
+diskSize | string | Optional | Yes | - | 
+domain | string | Optional | Yes | - | 
+hostname | string | Optional | Yes | - | 
+hourlyBilling | boolean | Optional | Yes | - | 
+image | string | Optional | Yes | - | 
+localDisk | boolean | Optional | Yes | - | 
+memory | string | Optional | Yes | - | 
+privateNetOnly | boolean | Optional | Yes | - | 
+privateVlanId | string | Optional | Yes | - | 
+publicVlanId | string | Optional | Yes | - | 
+region | string | Optional | Yes | - | The region to use when launching the host
+user | string | Optional | Yes | - | 
 
 
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). 
-These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
+<br>
+
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
 {::options parse_block_html="true" /}
-
-
-
-<div class="action">
-<span class="header">
-Create
-<span class="headerright">POST:  <code>/v1/softlayerConfig</code></span></span>
-<div class="action-contents">
-{% highlight json %} 
-{
-
+<a id="create"></a>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/softlayerConfigs</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
 	"apiEndpoint": "string",
-
 	"apiKey": "string",
-
 	"cpu": "string",
-
 	"diskSize": "string",
-
 	"domain": "string",
-
 	"hostname": "string",
-
-	"hourlyBilling": true,
-
+	"hourlyBilling": false,
 	"image": "string",
-
-	"localDisk": true,
-
+	"localDisk": false,
 	"memory": "string",
-
-	"privateNetOnly": true,
-
+	"privateNetOnly": false,
 	"privateVlanId": "string",
-
 	"publicVlanId": "string",
-
 	"region": "string",
-
 	"user": "string"
-
-} 
+}' 'http://${RANCHER_URL}:8080/v1/softlayerConfigs'
 {% endhighlight %}
-</div>
-</div>
-
-
-
-
-
-
-
+</div></div>
 
 
 

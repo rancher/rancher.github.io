@@ -1,117 +1,85 @@
 ---
-title: API
-layout: rancher-default
-version: latest
+title: Rancher API - amazonec2Config
+layout: rancher-api-default-v1.1
+version: v1.1
 lang: zh
 ---
 
-## amazonec2Config
+## Amazonec2Config
 
 The configuration to launch an EC2 instance in Amazon Web Services using [machine]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/machine). Rancher is calling `docker-machine`, so any available options in `docker-machine` for specific drivers are exposed in Rancher. The default fields from `docker-machine` are not listed in the Rancher API, and they can be found in the `docker-machine` documentation. The notes on which fields are **required** are from the `docker-machine` documentation.
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-accessKey | string | Optional | Yes | - | <strong>required</strong> Your access key id for the Amazon Web Services API
-ami | string | Optional | Yes | - | The AMI ID of the instance to use
-deviceName | string | Optional | Yes | - | 
-iamInstanceProfile | string | Optional | Yes | - | The AWS IAM instance role name to be used as the instance profile
-instanceType | string | Optional | Yes | - | The AWS instance type to run
-monitoring | boolean | Optional | Yes | - | Whether or not to enable CloudWatch Monitoring
-privateAddressOnly | boolean | Optional | Yes | - | Whether or not to use the AWS EC2 private IP address
-region | string | Optional | Yes | - | The region to use when launching the instance.
-requestSpotInstance | boolean | Optional | Yes | - | Whether or not to use AWS EC2 spot instances
-rootSize | string | Optional | Yes | - | The root disk size of the AWS EC2 instance (in GB)
-secretKey | string | Optional | Yes | - | <strong>required</strong> Your secret access key for the Amazon Web Services API
-securityGroup | string | Optional | Yes | - | The AWS VPC security group name to use when launching your instance
-sessionToken | string | Optional | Yes | - | The session token for the AWS API
-spotPrice | string | Optional | Yes | - | The spot instance bid price (in dollars) if the `requestSpotInstance` is `true`.
-sshKeypath | string | Optional | Yes | - | 
-sshUser | string | Optional | Yes | - | The SSH login user name
-subnetId | string | Optional | Yes | - | The AWS VPC subnet ID
-tags | string | Optional | Yes | - | 
-useEbsOptimizedInstance | boolean | Optional | Yes | - | 
-usePrivateAddress | boolean | Optional | Yes | - | Whether or not to use the AWS EC2 private IP address
-volumeType | string | Optional | Yes | - | 
-vpcId | string | Optional | Yes | - | <strong>required</strong> The VPC ID to launch the instance in
-zone | string | Optional | Yes | - | The AWS zone to launch the instance in (i.e. one of a, b, c, d, e)
+accessKey | string | Optional | - | - | 
+ami | string | Optional | - | - | 
+deviceName | string | Optional | - | /dev/sda1 | 
+iamInstanceProfile | string | Optional | - | - | 
+instanceType | string | Optional | - | t2.micro | 
+monitoring | boolean | Optional | - | - | 
+privateAddressOnly | boolean | Optional | - | - | 
+region | string | Optional | - | us-east-1 | The region to use when launching the host
+requestSpotInstance | boolean | Optional | - | - | 
+rootSize | string | Optional | - | 16 | 
+secretKey | string | Optional | - | - | 
+securityGroup | string | Optional | - | docker-machine | 
+sessionToken | string | Optional | - | - | 
+spotPrice | string | Optional | - | 0.50 | 
+sshKeypath | string | Optional | - | - | 
+sshUser | string | Optional | - | ubuntu | The ssh username to use to ssh into the host
+subnetId | string | Optional | - | - | 
+tags | string | Optional | - | - | 
+useEbsOptimizedInstance | boolean | Optional | - | - | 
+usePrivateAddress | boolean | Optional | - | - | 
+volumeType | string | Optional | - | gp2 | 
+vpcId | string | Optional | - | - | 
+zone | string | Optional | - | a | 
 
 
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). 
-These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
+<br>
+
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
 {::options parse_block_html="true" /}
-
-
-
-<div class="action">
-<span class="header">
-Create
-<span class="headerright">POST:  <code>/v1/amazonec2Config</code></span></span>
-<div class="action-contents">
-{% highlight json %} 
-{
-
-	"accessKey": "string",
-
-	"ami": "string",
-
-	"deviceName": "string",
-
-	"iamInstanceProfile": "string",
-
-	"instanceType": "string",
-
-	"monitoring": true,
-
-	"privateAddressOnly": true,
-
-	"region": "string",
-
-	"requestSpotInstance": true,
-
-	"rootSize": "string",
-
-	"secretKey": "string",
-
-	"securityGroup": "string",
-
-	"sessionToken": "string",
-
-	"spotPrice": "string",
-
-	"sshKeypath": "string",
-
-	"sshUser": "string",
-
-	"subnetId": "string",
-
-	"tags": "string",
-
-	"useEbsOptimizedInstance": true,
-
-	"usePrivateAddress": true,
-
-	"volumeType": "string",
-
-	"vpcId": "string",
-
-	"zone": "string"
-
-} 
+<a id="create"></a>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/amazonec2Configs</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
+	"accessKey": "",
+	"ami": "",
+	"deviceName": "/dev/sda1",
+	"iamInstanceProfile": "",
+	"instanceType": "t2.micro",
+	"monitoring": false,
+	"privateAddressOnly": false,
+	"region": "us-east-1",
+	"requestSpotInstance": false,
+	"rootSize": "16",
+	"secretKey": "",
+	"securityGroup": "docker-machine",
+	"sessionToken": "",
+	"spotPrice": "0.50",
+	"sshKeypath": "",
+	"sshUser": "ubuntu",
+	"subnetId": "",
+	"tags": "",
+	"useEbsOptimizedInstance": false,
+	"usePrivateAddress": false,
+	"volumeType": "gp2",
+	"vpcId": "",
+	"zone": "a"
+}' 'http://${RANCHER_URL}:8080/v1/amazonec2Configs'
 {% endhighlight %}
-</div>
-</div>
-
-
-
-
-
-
-
+</div></div>
 
 
 

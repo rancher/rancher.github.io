@@ -1,6 +1,6 @@
 ---
 title: Rancher API - projectMember
-layout: rancher-api-default
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: en
 ---
@@ -11,22 +11,34 @@ A "project member" in the API is referred to as an environment members in the UI
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 description | string | Optional | Yes | - | 
 externalId | string | Optional | - | - | 
 externalIdType | enum | Optional | - | rancher_id | 
-id | int | - | - | - | The unique identifier for the projectMember
-name | string | - | - | - | 
-projectId | [project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/project/) | - | - | - | 
 role | enum | Optional | - | member | 
 
+
+#### Read Only Fields
+
+Field | Type   | Notes
+---|---|---
+id | int  | The unique identifier for the projectMember
+name | string  | 
+projectId | [project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/project/)  | 
+
+
 <br>
+
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 
 
+
 ### Actions
+
 <div class="action">
 <span class="header">
 activate
@@ -36,6 +48,7 @@ activate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -55,6 +68,7 @@ deactivate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \

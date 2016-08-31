@@ -1,6 +1,6 @@
 ---
 title: Rancher API - certificate
-layout: rancher-api-default
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: en
 ---
@@ -11,26 +11,36 @@ A certificate is used to add in SSL termination to load balancers.
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-CN | string | - | - | - | 
-algorithm | string | - | - | - | 
 cert | string | Yes | Yes | - | 
 certChain | string | Optional | Yes | - | 
-certFingerprint | string | - | - | - | 
 description | string | Optional | Yes | - | 
-expiresAt | string | - | - | - | 
-id | int | - | - | - | The unique identifier for the certificate
-issuedAt | string | - | - | - | 
-issuer | string | - | - | - | 
 key | string | Yes | Yes | - | 
-keySize | int | - | - | - | 
 name | string | Yes | Yes | - | 
-serialNumber | string | - | - | - | 
-subjectAlternativeNames | array[string] | - | - | - | 
-version | string | - | - | - | 
+
+
+#### Read Only Fields
+
+Field | Type   | Notes
+---|---|---
+CN | string  | 
+algorithm | string  | 
+certFingerprint | string  | 
+expiresAt | string  | 
+id | int  | The unique identifier for the certificate
+issuedAt | string  | 
+issuer | string  | 
+keySize | int  | 
+serialNumber | string  | 
+subjectAlternativeNames | array[string]  | 
+version | string  | 
+
 
 <br>
+
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
@@ -50,7 +60,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 }' 'http://${RANCHER_URL}:8080/v1/certificates'
 {% endhighlight %}
 </div></div>
-
 <a id="delete"></a>
 <div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/certificates/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
@@ -59,7 +68,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v1/certificates/${ID}'
 {% endhighlight %}
 </div></div>
-
 <a id="update"></a>
 <div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/certificates/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}

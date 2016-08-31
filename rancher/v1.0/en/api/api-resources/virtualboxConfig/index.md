@@ -1,84 +1,63 @@
 ---
-title: API
-layout: rancher-default-v1.0
+title: Rancher API - virtualboxConfig
+layout: rancher-api-default-v1.0
 version: v1.0
 lang: en
 ---
 
-## virtualboxConfig
+## VirtualboxConfig
 
-The configuration to launch a local VM using VirtualBox. Rancher is calling `docker-machine`, so any available options in `docker-machine` are exposed in Rancher. The default fields from `docker-machine` are not listed in the Rancher API, and they can be found in the `docker-machine` documentation.
+
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-boot2dockerUrl | string | Optional | Yes | - | The URL of the boot2docker image. Defaults to the latest available version
-cpuCount | string | Optional | Yes | - | The number of CPUs to use to create the VM. Defaults to single CPU
-diskSize | string | Optional | Yes | - | The size of disk for the host in MB
+boot2dockerUrl | string | Optional | Yes | - | 
+cpuCount | string | Optional | Yes | - | 
+diskSize | string | Optional | Yes | - | 
 dnsProxy | boolean | Optional | Yes | - | 
 hostDnsResolver | boolean | Optional | Yes | - | 
-hostonlyCidr | string | Optional | Yes | - | The CIDR of the host only adapter
+hostonlyCidr | string | Optional | Yes | - | 
 hostonlyNicpromisc | string | Optional | Yes | - | 
 hostonlyNictype | string | Optional | Yes | - | 
-importBoot2dockerVm | string | Optional | Yes | - | The name of a Boot2Docker VM to import
-memory | string | Optional | Yes | - | The size of memory for the host in MB
-noShare | boolean | Optional | Yes | - | Whether or not to disable the mount of your home directory
+importBoot2dockerVm | string | Optional | Yes | - | 
+memory | string | Optional | Yes | - | 
+noShare | boolean | Optional | Yes | - | 
 noVtxCheck | boolean | Optional | Yes | - | 
 
 
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). 
-These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
+<br>
+
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
 {::options parse_block_html="true" /}
-
-
-
-<div class="action">
-<span class="header">
-Create
-<span class="headerright">POST:  <code>/v1/virtualboxConfig</code></span></span>
-<div class="action-contents">
-{% highlight json %} 
-{
-
+<a id="create"></a>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/virtualboxConfigs</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
 	"boot2dockerUrl": "string",
-
 	"cpuCount": "string",
-
 	"diskSize": "string",
-
-	"dnsProxy": true,
-
-	"hostDnsResolver": true,
-
+	"dnsProxy": false,
+	"hostDnsResolver": false,
 	"hostonlyCidr": "string",
-
 	"hostonlyNicpromisc": "string",
-
 	"hostonlyNictype": "string",
-
 	"importBoot2dockerVm": "string",
-
 	"memory": "string",
-
-	"noShare": true,
-
-	"noVtxCheck": true
-
-} 
+	"noShare": false,
+	"noVtxCheck": false
+}' 'http://${RANCHER_URL}:8080/v1/virtualboxConfigs'
 {% endhighlight %}
-</div>
-</div>
-
-
-
-
-
-
-
+</div></div>
 
 
 

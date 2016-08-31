@@ -1,6 +1,6 @@
 ---
 title: Rancher API - project
-layout: rancher-api-default
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: en
 ---
@@ -11,10 +11,11 @@ A "project" in the API is referred to as an environment in the UI and Rancher do
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 description | string | Optional | Yes | - | 
-id | int | - | - | - | The unique identifier for the project
 kubernetes | boolean | Optional | Yes | - | 
 members | array[[projectMember]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/projectMember/)] | Optional | - | - | 
 mesos | boolean | Optional | Yes | - | 
@@ -24,12 +25,23 @@ servicesPortRange | [servicesPortRange]({{site.baseurl}}/rancher/{{page.version}
 swarm | boolean | Optional | Yes | - | 
 virtualMachine | boolean | Optional | Yes | - | 
 
+
+#### Read Only Fields
+
+Field | Type   | Notes
+---|---|---
+id | int  | The unique identifier for the project
+
+
 <br>
+
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 
 
+
 ### Actions
+
 <div class="action">
 <span class="header">
 activate
@@ -39,6 +51,7 @@ activate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -58,6 +71,7 @@ deactivate
 <br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
+
 <br>
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
@@ -77,6 +91,10 @@ setmembers
 <br>
 <span class="input">
 <strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/setProjectMembersInput/">SetProjectMembersInput</a></span>
+
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+members | array[[projectMember]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/projectMember/)] | Yes |  | <br>
 
 <br>
 {% highlight json %}

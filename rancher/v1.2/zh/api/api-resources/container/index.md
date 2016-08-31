@@ -1,408 +1,237 @@
 ---
-title: API
-layout: rancher-default
-version: latest
+title: Rancher API - container
+layout: rancher-api-default-v1.2
+version: v1.2
 lang: zh
 ---
 
-## container
+## Container
 
 A container is a representation of a Docker container on a host.
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+blkioDeviceOptions | map[[blkioDeviceOption]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/blkioDeviceOption/)] | Optional | - | - | 
 build | [dockerBuild]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/dockerBuild/) | Optional | - | - | 
-capAdd | array[enum] | Optional | - | - | Add Linux capabilities. <code>--cap-add</code> in a <code>docker run</code> command
-capDrop | array[enum] | Optional | - | - | Drop Linux capabilities. <code>--cap-drop</code> in a <code>docker run</code> command
-command | array[string] | Optional | - | - | Overwrite the default commands set by the image
+capAdd | array[enum] | Optional | - | - | 
+capDrop | array[enum] | Optional | - | - | 
+command | array[string] | Optional | - | - | 
 count | int | Optional | - | - | 
-cpuSet | string | Optional | - | - | CPUs in which to allow execution (0-3, 0,1). <code>--cpuset</code> in a <code>docker run</code> command
-cpuShares | int | Optional | - | - | CPU shares (relative weight). <code>--cpu-shares</code> in a <code>docker run</code> command
-createIndex | int | - | - | - | The order that the container was created in a service.
+cpuSet | string | Optional | - | - | 
+cpuShares | int | Optional | - | - | 
 dataVolumeMounts | map[[volume]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/volume/)] | Optional | - | - | 
 dataVolumes | array[string] | Optional | - | - | 
 dataVolumesFrom | array[[container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/container/)] | Optional | - | - | 
-deploymentUnitUuid | string | - | - | - | 
 description | string | Optional | Yes | - | 
-devices | array[string] | Optional | - | - | Allows you to run devices inside the container without the <code>--privileged</code> flag
-dns | array[string] | Optional | - | - | Set custom dns servers for the container. <code>--dns</code> in a <code>docker run</code> command
+devices | array[string] | Optional | - | - | 
+dns | array[string] | Optional | - | - | 
 dnsSearch | array[string] | Optional | - | - | 
 domainName | string | Optional | - | - | 
-entryPoint | array[string] | Optional | - | - | Overwrite the default entrypoint set by the image. <code>--entrypoint</code> in a <code>docker run</code> command
+entryPoint | array[string] | Optional | - | - | 
 environment | map[string] | Optional | - | - | 
 expose | array[string] | Optional | - | - | 
-externalId | string | - | - | - | 
 extraHosts | array[string] | Optional | - | - | 
-firstRunning | date | - | - | - | 
-healthCheck | [instanceHealthCheck]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instanceHealthCheck/) | Optional | - | - | The configuration of the health monitoring for managed network services
-healthState | enum | - | - | - | 
-hostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/host/) | - | - | - | The unique identifier for the associated host
+healthCheck | [instanceHealthCheck]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instanceHealthCheck/) | Optional | - | - | 
 hostname | string | Optional | - | - | 
-id | int | - | - | - | The unique identifier for the container
 imageUuid | string | Optional | - | - | 
 instanceLinks | map[[instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/)] | Optional | - | - | 
-labels | map[string] | Optional | - | - | 
-logConfig | [logConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/logConfig/) | Optional | - | - | The logging configuration. <code>--log-driver</code> in a <code>docker run</code> command
-lxcConf | map[string] | Optional | - | - | Add custom lxc options. <code>--lxc-conf</code> in a <code>docker run</code> command
+labels | map[string] | Optional | - | - | A map of key value pairs to be used as labels for the container
+logConfig | [logConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/logConfig/) | Optional | - | - | 
+lxcConf | map[string] | Optional | - | - | 
 memory | int | Optional | - | - | 
-memorySwap | int | Optional | - | - | Total memory limit (memory + swap, `<number>[<unit>]`, where unit = b, k, m or g). <code>--memory-swap</code> in a <code>docker run</code> command
+memorySwap | int | Optional | - | - | 
 name | string | Optional | Yes | - | 
-nativeContainer | boolean | - | - | - | 
 networkContainerId | [container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/container/) | Optional | - | - | 
 networkIds | array[[network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/network/)] | Optional | - | - | 
-networkMode | enum | Optional | - | managed | Set the Network mode for the container. <code>--net</code> in a <code>docker run</code> command <br> `bridge` - creates a new network stack for the container on the docker bridge<br> `none` -no networking for this container<br> `container<colon><name|id>` - reuses another container network stack<br> `host` - use the host network stack inside the container
-pidMode | enum | Optional | - | - | Set the PID (Process) Namespace mode for the container. `host` - use the host's PID namespace inside the container.  <code>--pid</code> in a <code>docker run</code> command
+networkMode | enum | Optional | - | managed | 
+pidMode | enum | Optional | - | - | 
 ports | array[string] | Optional | - | - | 
-primaryIpAddress | string | - | - | - | 
-privileged | boolean | Optional | - | - | Give extended privileges to this container. <code>--privileged</code> in a <code>docker run</code> command
-publishAllPorts | boolean | Optional | - | - | Publish all exposed ports to the host interfaces
+privileged | boolean | Optional | - | - | 
+publishAllPorts | boolean | Optional | - | - | 
 readOnly | boolean | Optional | - | - | 
 registryCredentialId | [registryCredential]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/registryCredential/) | Optional | - | - | 
 requestedHostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/host/) | Optional | - | - | 
-restartPolicy | [restartPolicy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/restartPolicy/) | Optional | - | - | Specify a restart policy for how a container should or should not be restarted on exit.
-securityOpt | array[string] | Optional | - | - | Override the default labeling scheme for each container. <code>--security-opt</code> in a <code>docker run</code> command
-startCount | int | - | - | - | The number of times the container was started
-startOnCreate | boolean | Optional | - | true | Whether or not the services in the stack should be started after creation
-stdinOpen | boolean | Optional | - | - | Keep STDIN open even if not attached. <code>-i</code> in a <code>docker run</code> command
-systemContainer | enum | - | - | - | 
-tty | boolean | Optional | - | - | Allocate a pseudo-tty. <code>-t</code> in a <code>docker run</code> command
+restartPolicy | [restartPolicy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/restartPolicy/) | Optional | - | - | 
+securityOpt | array[string] | Optional | - | - | 
+startOnCreate | boolean | Optional | - | true | 
+stdinOpen | boolean | Optional | - | - | 
+tty | boolean | Optional | - | - | 
 user | string | Optional | - | - | 
-version | string | - | - | 0 | 
 volumeDriver | string | Optional | - | - | 
-workingDir | string | Optional | - | - | The working directory inside the container
+workingDir | string | Optional | - | - | 
 
 
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). 
-These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+#### Read Only Fields
 
+Field | Type   | Notes
+---|---|---
+createIndex | int  | 
+deploymentUnitUuid | string  | 
+externalId | string  | 
+firstRunning | date  | 
+healthState | enum  | 
+hostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/host/)  | The unique identifier for the associated host
+id | int  | The unique identifier for the container
+nativeContainer | boolean  | 
+primaryIpAddress | string  | 
+startCount | int  | 
+systemContainer | enum  | 
+version | string  | 
+
+
+<br>
+
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 ### Operations
 {::options parse_block_html="true" /}
-
-
-
-<div class="action">
-<span class="header">
-Create
-<span class="headerright">POST:  <code>/v1/container</code></span></span>
-<div class="action-contents">
-{% highlight json %} 
-{
-
+<a id="create"></a>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/containers</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
+	"blkioDeviceOptions": "map[blkioDeviceOption]",
 	"build": {
-
 		"context": "string",
-
 		"dockerfile": "string",
-
-		"forcerm": true,
-
-		"nocache": true,
-
+		"forcerm": false,
+		"nocache": false,
 		"remote": "string",
-
-		"rm": true
-
+		"rm": false
 	},
-
 	"capAdd": "array[enum]",
-
 	"capDrop": "array[enum]",
-
 	"command": [
-
 		"string1",
-
-		"string2",
-
 		"...stringN"
-
 	],
-
 	"count": 0,
-
 	"cpuSet": "string",
-
 	"cpuShares": 0,
-
 	"dataVolumeMounts": "map[reference[volume]]",
-
 	"dataVolumes": [
-
 		"string1",
-
-		"string2",
-
 		"...stringN"
-
 	],
-
 	"dataVolumesFrom": "array[reference[container]]",
-
 	"description": "string",
-
 	"devices": [
-
 		"string1",
-
-		"string2",
-
 		"...stringN"
-
 	],
-
 	"dns": [
-
 		"string1",
-
-		"string2",
-
 		"...stringN"
-
 	],
-
 	"dnsSearch": [
-
 		"string1",
-
-		"string2",
-
 		"...stringN"
-
 	],
-
 	"domainName": "string",
-
 	"entryPoint": [
-
 		"string1",
-
-		"string2",
-
 		"...stringN"
-
 	],
-
 	"environment": {
-
-		"key1": "value1",
-
-		"key2": "value2",
-
-		"keyN": "valueN"
-
+		"key": "value-pairs"
 	},
-
 	"expose": [
-
 		"string1",
-
-		"string2",
-
 		"...stringN"
-
 	],
-
 	"extraHosts": [
-
 		"string1",
-
-		"string2",
-
 		"...stringN"
-
 	],
-
 	"healthCheck": {
-
 		"healthyThreshold": 0,
-
 		"initializingTimeout": 0,
-
 		"interval": 0,
-
 		"name": "string",
-
 		"port": 0,
-
 		"recreateOnQuorumStrategyConfig": {
-
 			"quorum": 0
-
 		},
-
 		"reinitializingTimeout": 0,
-
 		"requestLine": "string",
-
 		"responseTimeout": 0,
-
 		"strategy": "recreate",
-
 		"unhealthyThreshold": 0
-
 	},
-
 	"hostname": "string",
-
 	"imageUuid": "string",
-
 	"instanceLinks": "map[reference[instance]]",
-
 	"labels": {
-
-		"key1": "value1",
-
-		"key2": "value2",
-
-		"keyN": "valueN"
-
+		"key": "value-pairs"
 	},
-
 	"logConfig": {
-
 		"config": {
-
-			"key1": "value1",
-
-			"key2": "value2",
-
-			"keyN": "valueN"
-
+			"key": "value-pairs"
 		},
-
 		"driver": "string"
-
 	},
-
 	"lxcConf": {
-
-		"key1": "value1",
-
-		"key2": "value2",
-
-		"keyN": "valueN"
-
+		"key": "value-pairs"
 	},
-
 	"memory": 0,
-
 	"memorySwap": 0,
-
 	"name": "string",
-
 	"networkContainerId": "reference[container]",
-
 	"networkIds": "array[reference[network]]",
-
 	"networkMode": "managed",
-
 	"pidMode": "enum",
-
 	"ports": [
-
 		"string1",
-
-		"string2",
-
 		"...stringN"
-
 	],
-
 	"privileged": false,
-
 	"publishAllPorts": false,
-
 	"readOnly": false,
-
 	"registryCredentialId": "reference[registryCredential]",
-
 	"requestedHostId": "reference[host]",
-
 	"restartPolicy": {
-
 		"maximumRetryCount": 0,
-
 		"name": "string"
-
 	},
-
 	"securityOpt": [
-
 		"string1",
-
-		"string2",
-
 		"...stringN"
-
 	],
-
 	"startOnCreate": true,
-
 	"stdinOpen": false,
-
 	"tty": false,
-
 	"user": "string",
-
 	"volumeDriver": "string",
-
 	"workingDir": "string"
-
-} 
+}' 'http://${RANCHER_URL}:8080/v1/containers'
 {% endhighlight %}
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="action">
-<span class="header">
-Update
-<span class="headerright">PUT:  <code>${links.self}</code></span></span>
-<div class="action-contents">
-{% highlight json %} 
-{
-
+</div></div>
+<a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/containers/${ID}</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+'http://${RANCHER_URL}:8080/v1/containers/${ID}'
+{% endhighlight %}
+</div></div>
+<a id="update"></a>
+<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/containers/${ID}</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X PUT \
+-H 'Content-Type: application/json' \
+-d '{
 	"description": "string",
-
 	"name": "string"
-
-} 
+}' 'http://${RANCHER_URL}:8080/v1/containers/${ID}'
 {% endhighlight %}
-</div>
-</div>
-
-
-
-
-
-
-
-<div class="action">
-<span class="header">
-Delete
-<span class="headerright">DELETE:  <code>${links.self}</code></span></span>
-<div class="action-contents">
-{% highlight json %} 
- 
-{% endhighlight %}
-</div>
-</div>
-
-
+</div></div>
 
 
 
@@ -410,431 +239,180 @@ Delete
 
 <div class="action">
 <span class="header">
-allocate
-<span class="headerright">POST:  <code>${actions.allocate}</code></span></span>
-<div class="action-contents">
-To allocate the container
-<br>
-
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
 console
-<span class="headerright">POST:  <code>${actions.console}</code></span></span>
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=console</code></span></span>
 <div class="action-contents">
-To console the container
-<br>
 
+<br>
 <span class="input">
-<strong>Input:</strong> instanceConsoleInput
-</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instanceConsoleInput/">InstanceConsoleInput</a></span>
+
 
 <br>
-
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=console'
+{% endhighlight %}
 <br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instanceConsole/">instanceConsole</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
-deallocate
-<span class="headerright">POST:  <code>${actions.deallocate}</code></span></span>
-<div class="action-contents">
-To deallocate the container
-<br>
-
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
-error
-<span class="headerright">POST:  <code>${actions.error}</code></span></span>
-<div class="action-contents">
-To error the container
-<br>
-
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
-</div>
-</div>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instanceConsole/">instanceConsole</a> resource</span>
+</div></div>
 
 <div class="action">
 <span class="header">
 execute
-<span class="headerright">POST:  <code>${actions.execute}</code></span></span>
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=execute</code></span></span>
 <div class="action-contents">
-To execute the container
-<br>
 
+<br>
 <span class="input">
-<strong>Input:</strong> containerExec
-</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/containerExec/">ContainerExec</a></span>
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-attachStdin | boolean | No | true | Attach to standard in stream. <code>-a stdin</code> in a <code>docker run</code> command
-attachStdout | boolean | No | true | Attach to standard out stream. <code>-a stdout</code> in a <code>docker run</code> command
-command | array[string] | Yes |  | Overwrite the default commands set by the image
-tty | boolean | No | true | Allocate a pseudo-tty. <code>-t</code> in a <code>docker run</code> command
-
+attachStdin |  | No | true | attachStdout |  | No | true | command | array[string] | Yes |  | tty |  | No | true | <br>
 
 <br>
-{% highlight json %}{
-
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
 	"attachStdin": true,
-
 	"attachStdout": true,
-
 	"command": [
-
 		"string1",
-
-		"string2",
-
 		"...stringN"
-
 	],
-
 	"tty": true
-
-}{% endhighlight %}
-
+}' 'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=execute'
+{% endhighlight %}
 <br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/hostAccess/">hostAccess</a> resource</span>
-</div>
-</div>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/hostAccess/">hostAccess</a> resource</span>
+</div></div>
 
 <div class="action">
 <span class="header">
 logs
-<span class="headerright">POST:  <code>${actions.logs}</code></span></span>
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=logs</code></span></span>
 <div class="action-contents">
-To logs the container
-<br>
 
+<br>
 <span class="input">
-<strong>Input:</strong> containerLogs
-</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/containerLogs/">ContainerLogs</a></span>
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-follow | boolean | No | true | 
-lines | int | No | 100 | 
-
+follow |  | No | true | lines |  | No | 100 | <br>
 
 <br>
-{% highlight json %}{
-
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
 	"follow": true,
-
 	"lines": 100
-
-}{% endhighlight %}
-
+}' 'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=logs'
+{% endhighlight %}
 <br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/hostAccess/">hostAccess</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
-migrate
-<span class="headerright">POST:  <code>${actions.migrate}</code></span></span>
-<div class="action-contents">
-To migrate the container
-<br>
-
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
-</div>
-</div>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/hostAccess/">hostAccess</a> resource</span>
+</div></div>
 
 <div class="action">
 <span class="header">
 proxy
-<span class="headerright">POST:  <code>${actions.proxy}</code></span></span>
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=proxy</code></span></span>
 <div class="action-contents">
-To proxy the container
-<br>
 
+<br>
 <span class="input">
-<strong>Input:</strong> containerProxy
-</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/containerProxy/">ContainerProxy</a></span>
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-port | int | No | 80 | 
-scheme | enum | No | http | 
-
+port |  | No | 80 | scheme |  | No | http | <br>
 
 <br>
-{% highlight json %}{
-
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
 	"port": 80,
-
 	"scheme": "http"
-
-}{% endhighlight %}
-
+}' 'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=proxy'
+{% endhighlight %}
 <br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/hostAccess/">hostAccess</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
-purge
-<span class="headerright">POST:  <code>${actions.purge}</code></span></span>
-<div class="action-contents">
-To purge the container
-<br>
-
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
-remove
-<span class="headerright">POST:  <code>${actions.remove}</code></span></span>
-<div class="action-contents">
-To remove the container
-<br>
-
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
-</div>
-</div>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/hostAccess/">hostAccess</a> resource</span>
+</div></div>
 
 <div class="action">
 <span class="header">
 restart
-<span class="headerright">POST:  <code>${actions.restart}</code></span></span>
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=restart</code></span></span>
 <div class="action-contents">
-To restart the container
-<br>
 
+<br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-<br>
 
 <br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
-restore
-<span class="headerright">POST:  <code>${actions.restore}</code></span></span>
-<div class="action-contents">
-To restore the container
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=restart'
+{% endhighlight %}
 <br>
-
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
-setlabels
-<span class="headerright">POST:  <code>${actions.setlabels}</code></span></span>
-<div class="action-contents">
-To setlabels the container
-<br>
-
-<span class="input">
-<strong>Input:</strong> setLabelsInput
-</span>
-
-Field | Type | Required | Default | Notes
----|---|---|---|---
-labels | json | No |  | 
-
-
-<br>
-{% highlight json %}{
-
-	"labels": "json"
-
-}{% endhighlight %}
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/container/">container</a> resource</span>
-</div>
-</div>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/">instance</a> resource</span>
+</div></div>
 
 <div class="action">
 <span class="header">
 start
-<span class="headerright">POST:  <code>${actions.start}</code></span></span>
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=start</code></span></span>
 <div class="action-contents">
-To start the container
-<br>
 
+<br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-<br>
 
 <br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
-</div>
-</div>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=start'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/">instance</a> resource</span>
+</div></div>
 
 <div class="action">
 <span class="header">
 stop
-<span class="headerright">POST:  <code>${actions.stop}</code></span></span>
+<span class="headerright">POST:  <code>/v1/containers/${ID}?action=stop</code></span></span>
 <div class="action-contents">
-To stop the container
-<br>
 
+<br>
 <span class="input">
-<strong>Input:</strong> instanceStop
-</span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instanceStop/">InstanceStop</a></span>
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-remove | boolean | No |  | 
-timeout | int | No |  | 
-
+remove |  | No |  | timeout |  | No |  | <br>
 
 <br>
-{% highlight json %}{
-
-	"remove": true,
-
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
+	"remove": false,
 	"timeout": 0
-
-}{% endhighlight %}
-
+}' 'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=stop'
+{% endhighlight %}
 <br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/">instance</a> resource</span>
+</div></div>
 
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
-updatehealthy
-<span class="headerright">POST:  <code>${actions.updatehealthy}</code></span></span>
-<div class="action-contents">
-To updatehealthy the container
-<br>
-
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
-updatereinitializing
-<span class="headerright">POST:  <code>${actions.updatereinitializing}</code></span></span>
-<div class="action-contents">
-To updatereinitializing the container
-<br>
-
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
-updateunhealthy
-<span class="headerright">POST:  <code>${actions.updateunhealthy}</code></span></span>
-<div class="action-contents">
-To updateunhealthy the container
-<br>
-
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/instance/">instance</a> resource</span>
-</div>
-</div>
 

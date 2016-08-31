@@ -1,54 +1,38 @@
 ---
-title: API
-layout: rancher-default
-version: latest
+title: Rancher API - serviceConsumeMap
+layout: rancher-api-default-v1.1
+version: v1.1
 lang: en
 ---
 
-## serviceConsumeMap
+## ServiceConsumeMap
 
 
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-consumedServiceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/) | - | - | - | The unique identifier of the consumed service
 description | string | Optional | Yes | - | 
-id | int | - | - | - | The unique identifier for the serviceConsumeMap
-name | string | - | - | - | 
-ports | array[string] | - | - | - | 
-serviceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/) | - | - | - | The unique identifier of the associated service
 
 
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). 
-These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+#### Read Only Fields
 
+Field | Type   | Notes
+---|---|---
+consumedServiceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/)  | 
+id | int  | The unique identifier for the serviceConsumeMap
+name | string  | 
+ports | array[string]  | 
+serviceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/)  | The unique identifier of the associated service
 
-
-
-
-
-
-
-### Actions
-
-<div class="action">
-<span class="header">
-remove
-<span class="headerright">POST:  <code>${actions.remove}</code></span></span>
-<div class="action-contents">
-To remove the serviceConsumeMap
-<br>
-
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
 
 <br>
 
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/serviceConsumeMap/">serviceConsumeMap</a> resource</span>
-</div>
-</div>
+
+
 

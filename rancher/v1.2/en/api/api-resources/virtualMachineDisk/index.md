@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-api-default
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: en
 ---
@@ -10,16 +10,4 @@ lang: en
 
 
 
-
-### Resource Fields
-
-Field | Type | Required | Default | Description
----|---|---|---|---
-driver | string | false |  | 
-name | string | false |  | 
-opts | map[string] | false |  | 
-readIops | int | false |  | 
-root | boolean | false |  | 
-size | string | false | 40g | 
-writeIops | int | false |  | 
 

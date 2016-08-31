@@ -1,6 +1,6 @@
 ---
 title: API
-layout: rancher-api-default
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: en
 ---
@@ -10,14 +10,4 @@ lang: en
 
 
 
-
-### Resource Fields
-
-Field | Type | Required | Default | Description
----|---|---|---|---
-description | string | false |  | 
-externalId | string | false |  | 
-hostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/host/) | false |  | The unique identifier for the associated host
-id | int | false |  | The unique identifier for the instance
-name | string | false |  | 
 

@@ -1,29 +1,34 @@
 ---
-title: API
-layout: rancher-default
-version: latest
+title: Rancher API - account
+layout: rancher-api-default-v1.1
+version: v1.1
 lang: en
 ---
 
-## account
+## Account
 
 All resources in Rancher are owned or created by an account.
 
 ### Resource Fields
 
+#### Writeable Fields
+
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 description | string | Optional | Yes | - | 
-id | int | - | - | - | The unique identifier for the account
 name | string | Optional | Yes | - | 
 
 
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). 
-These fields are read only and applicable to almost every resource. We have segregated them from the list above.
+#### Read Only Fields
+
+Field | Type   | Notes
+---|---|---
+id | int  | The unique identifier for the account
 
 
+<br>
 
-
+Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
 
 
@@ -33,95 +38,41 @@ These fields are read only and applicable to almost every resource. We have segr
 <div class="action">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>${actions.activate}</code></span></span>
+<span class="headerright">POST:  <code>/v1/accounts/${ID}?action=activate</code></span></span>
 <div class="action-contents">
-To activate the account
-<br>
 
+<br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-<br>
 
 <br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/account/">account</a> resource</span>
-</div>
-</div>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://${RANCHER_URL}:8080/v1/accounts/${ID}?action=activate'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/account/">account</a> resource</span>
+</div></div>
 
 <div class="action">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>${actions.deactivate}</code></span></span>
+<span class="headerright">POST:  <code>/v1/accounts/${ID}?action=deactivate</code></span></span>
 <div class="action-contents">
-To deactivate the account
-<br>
 
+<br>
 <span class="input">
 <strong>Input:</strong>This action has no inputs</span>
-<br>
 
 <br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/account/">account</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
-purge
-<span class="headerright">POST:  <code>${actions.purge}</code></span></span>
-<div class="action-contents">
-To purge the account
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://${RANCHER_URL}:8080/v1/accounts/${ID}?action=deactivate'
+{% endhighlight %}
 <br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/account/">account</a> resource</span>
+</div></div>
 
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/account/">account</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
-remove
-<span class="headerright">POST:  <code>${actions.remove}</code></span></span>
-<div class="action-contents">
-To remove the account
-<br>
-
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/account/">account</a> resource</span>
-</div>
-</div>
-
-<div class="action">
-<span class="header">
-restore
-<span class="headerright">POST:  <code>${actions.restore}</code></span></span>
-<div class="action-contents">
-To restore the account
-<br>
-
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-<br>
-
-<br>
-
-
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="/rancher/api/api-resources/account/">account</a> resource</span>
-</div>
-</div>
 
