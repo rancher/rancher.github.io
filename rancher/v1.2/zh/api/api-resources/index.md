@@ -1,11 +1,11 @@
 ---
-title: API
+title: API Resources
 layout: rancher-api-default-v1.2
 version: v1.2
 lang: zh
 ---
 
-## Resource Types
+## API Resources
 
 
 <br>

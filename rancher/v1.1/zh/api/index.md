@@ -1,6 +1,6 @@
 ---
 title: How to use the Rancher API
-layout: rancher-default-v1.1
+layout: rancher-api-default-v1.1
 version: v1.1
 lang: zh
 ---
@@ -8,7 +8,7 @@ lang: zh
 ## How to use the API
 ---
 
-The API has its own user interface accessible from a web browser.  This is an easy way to see resources, perform actions, and see the equivalent cURL or HTTP request & response.  To access it, click on **API** to find the URL endpoint. 
+The API has its own user interface accessible from a web browser.  This is an easy way to see resources, perform actions, and see the equivalent cURL or HTTP request & response.  To access it, click on **API** to find the URL endpoint.
 
 ### Terminology
 

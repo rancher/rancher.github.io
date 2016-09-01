@@ -40,7 +40,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 
 ### Actions
 
-<div class="action">
+<div class="action" id="activate">
 <span class="header">
 activate
 <span class="headerright">POST:  <code>/v1/projects/${ID}?action=activate</code></span></span>
@@ -60,7 +60,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/account/">account</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="deactivate">
 <span class="header">
 deactivate
 <span class="headerright">POST:  <code>/v1/projects/${ID}?action=deactivate</code></span></span>
@@ -80,7 +80,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/account/">account</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="setmembers">
 <span class="header">
 setmembers
 <span class="headerright">POST:  <code>/v1/projects/${ID}?action=setmembers</code></span></span>

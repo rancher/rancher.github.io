@@ -258,7 +258,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 
 ### Actions
 
-<div class="action">
+<div class="action" id="activate">
 <span class="header">
 activate
 <span class="headerright">POST:  <code>/v1/services/${ID}?action=activate</code></span></span>
@@ -278,7 +278,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="addservicelink">
 <span class="header">
 addservicelink
 <span class="headerright">POST:  <code>/v1/services/${ID}?action=addservicelink</code></span></span>
@@ -309,7 +309,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="cancelrollback">
 <span class="header">
 cancelrollback
 <span class="headerright">POST:  <code>/v1/services/${ID}?action=cancelrollback</code></span></span>
@@ -329,7 +329,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="cancelupgrade">
 <span class="header">
 cancelupgrade
 <span class="headerright">POST:  <code>/v1/services/${ID}?action=cancelupgrade</code></span></span>
@@ -349,7 +349,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="deactivate">
 <span class="header">
 deactivate
 <span class="headerright">POST:  <code>/v1/services/${ID}?action=deactivate</code></span></span>
@@ -369,7 +369,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="finishupgrade">
 <span class="header">
 finishupgrade
 <span class="headerright">POST:  <code>/v1/services/${ID}?action=finishupgrade</code></span></span>
@@ -389,7 +389,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="removeservicelink">
 <span class="header">
 removeservicelink
 <span class="headerright">POST:  <code>/v1/services/${ID}?action=removeservicelink</code></span></span>
@@ -420,7 +420,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="restart">
 <span class="header">
 restart
 <span class="headerright">POST:  <code>/v1/services/${ID}?action=restart</code></span></span>
@@ -450,7 +450,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="rollback">
 <span class="header">
 rollback
 <span class="headerright">POST:  <code>/v1/services/${ID}?action=rollback</code></span></span>
@@ -470,7 +470,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/">service</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="setservicelinks">
 <span class="header">
 setservicelinks
 <span class="headerright">POST:  <code>/v1/services/${ID}?action=setservicelinks</code></span></span>

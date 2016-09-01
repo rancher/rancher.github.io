@@ -69,7 +69,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 
 ### Actions
 
-<div class="action">
+<div class="action" id="restorefrombackup">
 <span class="header">
 restorefrombackup
 <span class="headerright">POST:  <code>/v1/volumes/${ID}?action=restorefrombackup</code></span></span>
@@ -96,7 +96,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/volume/">volume</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="reverttosnapshot">
 <span class="header">
 reverttosnapshot
 <span class="headerright">POST:  <code>/v1/volumes/${ID}?action=reverttosnapshot</code></span></span>
@@ -123,7 +123,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/volume/">volume</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="snapshot">
 <span class="header">
 snapshot
 <span class="headerright">POST:  <code>/v1/volumes/${ID}?action=snapshot</code></span></span>

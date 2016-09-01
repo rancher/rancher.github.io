@@ -1,6 +1,6 @@
 ---
 title: API Common Resource Fields
-layout: rancher-default-v1.1
+layout: rancher-api-default-v1.1
 version: v1.1
 lang: zh
 ---
