@@ -100,7 +100,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 
 ### Actions
 
-<div class="action">
+<div class="action" id="activateservices">
 <span class="header">
 activateservices
 <span class="headerright">POST:  <code>/v1/environments/${ID}?action=activateservices</code></span></span>
@@ -120,7 +120,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="cancelrollback">
 <span class="header">
 cancelrollback
 <span class="headerright">POST:  <code>/v1/environments/${ID}?action=cancelrollback</code></span></span>
@@ -140,7 +140,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="cancelupgrade">
 <span class="header">
 cancelupgrade
 <span class="headerright">POST:  <code>/v1/environments/${ID}?action=cancelupgrade</code></span></span>
@@ -160,7 +160,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="deactivateservices">
 <span class="header">
 deactivateservices
 <span class="headerright">POST:  <code>/v1/environments/${ID}?action=deactivateservices</code></span></span>
@@ -180,7 +180,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="exportconfig">
 <span class="header">
 exportconfig
 <span class="headerright">POST:  <code>/v1/environments/${ID}?action=exportconfig</code></span></span>
@@ -207,7 +207,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/composeConfig/">composeConfig</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="finishupgrade">
 <span class="header">
 finishupgrade
 <span class="headerright">POST:  <code>/v1/environments/${ID}?action=finishupgrade</code></span></span>
@@ -227,7 +227,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment/">environment</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="rollback">
 <span class="header">
 rollback
 <span class="headerright">POST:  <code>/v1/environments/${ID}?action=rollback</code></span></span>

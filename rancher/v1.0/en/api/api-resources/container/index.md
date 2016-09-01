@@ -235,7 +235,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 
 ### Actions
 
-<div class="action">
+<div class="action" id="console">
 <span class="header">
 console
 <span class="headerright">POST:  <code>/v1/containers/${ID}?action=console</code></span></span>
@@ -256,7 +256,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instanceConsole/">instanceConsole</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="execute">
 <span class="header">
 execute
 <span class="headerright">POST:  <code>/v1/containers/${ID}?action=execute</code></span></span>
@@ -289,7 +289,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/hostAccess/">hostAccess</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="logs">
 <span class="header">
 logs
 <span class="headerright">POST:  <code>/v1/containers/${ID}?action=logs</code></span></span>
@@ -317,7 +317,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/hostAccess/">hostAccess</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="proxy">
 <span class="header">
 proxy
 <span class="headerright">POST:  <code>/v1/containers/${ID}?action=proxy</code></span></span>
@@ -345,7 +345,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/hostAccess/">hostAccess</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="restart">
 <span class="header">
 restart
 <span class="headerright">POST:  <code>/v1/containers/${ID}?action=restart</code></span></span>
@@ -365,7 +365,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/">instance</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="start">
 <span class="header">
 start
 <span class="headerright">POST:  <code>/v1/containers/${ID}?action=start</code></span></span>
@@ -385,7 +385,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/instance/">instance</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="stop">
 <span class="header">
 stop
 <span class="headerright">POST:  <code>/v1/containers/${ID}?action=stop</code></span></span>

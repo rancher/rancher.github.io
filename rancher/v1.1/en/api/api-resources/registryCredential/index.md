@@ -80,7 +80,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 
 ### Actions
 
-<div class="action">
+<div class="action" id="activate">
 <span class="header">
 activate
 <span class="headerright">POST:  <code>/v1/registryCredentials/${ID}?action=activate</code></span></span>
@@ -100,7 +100,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/credential/">credential</a> resource</span>
 </div></div>
 
-<div class="action">
+<div class="action" id="deactivate">
 <span class="header">
 deactivate
 <span class="headerright">POST:  <code>/v1/registryCredentials/${ID}?action=deactivate</code></span></span>

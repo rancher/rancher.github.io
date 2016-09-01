@@ -1,6 +1,6 @@
 ---
 title: Setting up Access Control using the API
-layout: rancher-default-v1.2
+layout: rancher-api-default-v1.2
 version: v1.2
 lang: zh
 ---
