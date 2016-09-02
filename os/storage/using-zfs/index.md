@@ -43,7 +43,7 @@ $ sudo ros config set rancher.modules [zfs]
 
 You will also need to have the zpool cache imported on boot:
 
-```bash
+```
 [ -f /etc/zfs/zpool.cache ] && zpool import -c /etc/zfs/zpool.cache -a
 ```
 
@@ -51,7 +51,7 @@ You will also need to have the zpool cache imported on boot:
 
 A cloud-config `runcmd` instruction will do it for you:
 
-```bash
+```
 # check current 'runcmd' list
 $ sudo ros config get runcmd
 []
@@ -63,11 +63,13 @@ $ sudo ros config set runcmd "[[sh, -c, '[ -f /etc/zfs/zpool.cache ] && zpool im
 
 After it's installed, it should be ready to use!
 
-```bash
+```
 $ sudo modprobe zfs
 $ sudo zpool list
 $ sudo zpool create zpool1 /dev/<some-disk-dev>
 ```
+
+<br>
 
 To experiment with ZFS, you can create zpool backed by just ordinary files, not necessarily real block devices. In fact, you can mix storage devices in your ZFS pools; it's perfectly fine to create a zpool backed by real devices **and** ordinary files.
 
@@ -75,14 +77,14 @@ To experiment with ZFS, you can create zpool backed by just ordinary files, not 
 
 First, you need to stop  the`docker` system service and wipe out `/var/lib/docker` folder:
 
-```bash
+```
 $ sudo system-docker stop docker
 $ sudo rm -rf /var/lib/docker/*
 ```
 
 To enable ZFS as the storage driver for Docker, you'll need to create a ZFS filesystem for Docker and make sure it's mounted.
 
-```bash
+```
 $ sudo zfs create zpool1/docker
 $ sudo zfs list -o name,mountpoint,mounted
 ```
@@ -91,7 +93,7 @@ At this point you'll have a ZFS filesystem created and mounted at `/zpool1/docke
 
 Now you'll need to remove `-s overlay` (or any other storage driver) from the Docker daemon args to allow docker to automatically detect `zfs`.
 
-```bash
+```
 $ sudo ros config set rancher.docker.args "[daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -G, docker, -H, 'unix:///var/run/docker.sock', -g, '/zpool1/docker']"
 # After editing Docker daemon args, you'll need to start Docker
 $ sudo system-docker start docker
@@ -99,7 +101,7 @@ $ sudo system-docker start docker
 
 After customizing the Docker daemon arguments and restarting `docker` system service, ZFS will be used as Docker storage driver:
 
-```bash
+```
 $ docker info
 Containers: 1
  Running: 0
