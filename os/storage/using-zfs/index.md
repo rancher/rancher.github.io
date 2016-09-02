@@ -41,7 +41,7 @@ $ sudo ros config set rancher.modules [zfs]
 
 <br>
 
-You will need to create a file called `/opt/rancher/bin/start.sh`, which will contain:
+You will also need to have the zpool cache imported on boot:
 
 ```bash
 [ -f /etc/zfs/zpool.cache ] && zpool import -c /etc/zfs/zpool.cache -a
@@ -49,12 +49,14 @@ You will need to create a file called `/opt/rancher/bin/start.sh`, which will co
 
 <br>
 
+A cloud-config `runcmd` instruction will do it for you:
+
 ```bash
-# Create the directory
-$ sudo mkdir -p /opt/rancher/bin
-# Create the file
-$ sudo vi /opt/rancher/bin/start.sh
-$ sudo chmod +x /opt/rancher/bin/start.sh
+# check current 'runcmd' list
+$ sudo ros config get runcmd
+[]
+# add the command we need to run on boot
+$ sudo ros config set runcmd "[[sh, -c, '[ -f /etc/zfs/zpool.cache ] && zpool import -c /etc/zfs/zpool.cache -a']]"
 ```
 
 #### Using ZFS
@@ -99,36 +101,41 @@ After customizing the Docker daemon arguments and restarting `docker` system ser
 
 ```bash
 $ docker info
-
-Containers: 0
+Containers: 1
  Running: 0
  Paused: 0
- Stopped: 0
-Images: 0
-Server Version: 1.11.2
+ Stopped: 1
+Images: 1
+Server Version: 1.12.1
 Storage Driver: zfs
  Zpool: zpool1
  Zpool Health: ONLINE
  Parent Dataset: zpool1/docker
- Space Used By Parent: 19968
- Space Available: 4128138240
+ Space Used By Parent: 27761152
+ Space Available: 4100088320
  Parent Quota: no
  Compression: off
 Logging Driver: json-file
 Cgroup Driver: cgroupfs
 Plugins:
  Volume: local
- Network: bridge null host
-Kernel Version: 4.4.10-rancher
-Operating System: RancherOS (containerized)
+ Network: host null bridge overlay
+Swarm: inactive
+Runtimes: runc
+Default Runtime: runc
+Security Options: seccomp
+Kernel Version: 4.4.16-rancher
+Operating System: RancherOS v0.6.0-rc8
 OSType: linux
 Architecture: x86_64
-CPUs: 1
-Total Memory: 1.955 GiB
-Name: rancher-dev
-ID: YNXU:HZ7N:H4RI:TFND:YHJT:JJFZ:33II:7M7V:FBAO:7WWF:GTCH:WZ3K
-Docker Root Dir: /var/lib/docker
-Debug mode (client): false
-Debug mode (server): false
+CPUs: 2
+Total Memory: 1.938 GiB
+Name: rancher
+ID: EK7Q:WTBH:33KR:UCRY:YAPI:N7RX:D25K:S7ZH:DRNY:ZJ3J:25XE:P3RF
+Docker Root Dir: /zpool1/docker
+Debug Mode (client): false
+Debug Mode (server): false
 Registry: https://index.docker.io/v1/
+Insecure Registries:
+ 127.0.0.0/8
 ```
