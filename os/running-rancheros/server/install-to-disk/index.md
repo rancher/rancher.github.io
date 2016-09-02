@@ -59,7 +59,7 @@ Status: Downloaded newer image for rancher/os:v0.5.0
 Continue with reboot [y/N]:
 ```
 
-After installing RancherOS to disk, the rancher/rancher user/password will no longer be valid, unless you've booted off the ISO again. You'll need to have added in SSH keys within your [cloud-config file]({{site.baseurl}}/os/configuration/#cloud-config).
+After installing RancherOS to disk, you will no longer be automatically logged in as the `rancher` user. You'll need to have added in SSH keys within your [cloud-config file]({{site.baseurl}}/os/configuration/#cloud-config).
 
 #### Installing a Different Version
 
