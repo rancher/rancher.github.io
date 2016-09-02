@@ -10,20 +10,11 @@ redirect_from:
 
 The version of User Docker used in RancherOS can be configured using a [cloud-config]({{site.baseurl}}/os/configuration/#cloud-config) file or by using the `ros engine` command.
 
-### Setting the Docker engine using cloud-config
+> **Note:** There are known issues in Docker when switching between versions. For production systems, we recommend setting the Docker engine only once [using a cloud-config](#setting-the-docker-engine-using-cloud-config).
 
-To define which Docker engine should be used when RancherOS boots, a cloud-config file can be used. For example, RancherOS will use Docker 1.10.3 when booted with the following cloud-config.
+### Available Docker engines
 
-```yaml
-#cloud-config
-rancher:
-  docker:
-    engine: docker-1.10.3
-```
-
-### Listing available Docker engines
-
-The `ros engine list` command can be used to show which Docker engines are currently available for use.
+The `ros engine list` command can be used to show which Docker engines are available to switch to. This command will also provide details of which Docker engine is currently being used.
 
 ```
 $ sudo ros engine list
@@ -32,9 +23,20 @@ disabled docker-1.11.2
 current  docker-1.12.1
 ```
 
+### Setting the Docker engine using cloud-config
+
+RancherOS supports defining which Docker engine to use through the cloud-config file. To change the Docker version from the default packaged version, you can use the following cloud-config setting and select one of the available engines. In the following example, we'll use the cloud-config file to set RancherOS to use Docker 1.10.3 for User Docker.
+
+```yaml
+#cloud-config
+rancher:
+  docker:
+    engine: docker-1.10.3
+```
+
 ### Changing Docker engines after RancherOS has started
 
-To change the Docker engine once RancherOS has started the `ros engine switch` command can be used. For example, you can switch to Docker 1.11.2 with the following command.
+If you've already started RancherOS and want to switch Docker engines, you can change the Docker engine by using the `ros engine switch` command. In our example, we'll switch to Docker 1.11.2.
 
 ```
 $ sudo ros engine switch docker-1.11.2
@@ -42,12 +44,12 @@ INFO[0000] Project [os]: Starting project
 INFO[0000] [0/19] [docker]: Starting                    
 Pulling docker (rancher/os-docker:1.11.2)...
 1.11.2: Pulling from rancher/os-docker
-2a6bbb293656: Pull complete 
+2a6bbb293656: Pull complete
 Digest: sha256:ec57fb24f6d4856d737e14c81a20f303afbeef11fc896d31b4e498829f5d18b2
 Status: Downloaded newer image for rancher/os-docker:1.11.2
 INFO[0007] Recreating docker                            
 INFO[0007] [1/19] [docker]: Started                     
-INFO[0007] Project [os]: Project started 
+INFO[0007] Project [os]: Project started
 $ docker version
 Client:
  Version:      1.11.2
@@ -67,8 +69,10 @@ Server:
 
 ```
 
-> **Note:** There are known issues in Docker when switching between versions. For production systems, we recommend setting the Docker engine only once using a cloud-config.
-
 ### Enabling Docker engines
 
-To set which version of Docker should be used after the next reboot, the `ros engine enable` command can be used.
+If you don't want to automatically switch Docker engines, you can also set which version of Docker to use after the next reboot by enabling a Docker engine.
+
+```
+$ sudo ros engine enable docker-1.10.3
+```
