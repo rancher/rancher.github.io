@@ -63,7 +63,7 @@ After installing RancherOS to disk, you will no longer be automatically logged i
 
 #### Installing a Different Version
 
-By default, `ros install` uses the same installer image version as the ISO it is run from. The `-i` option specifies the particular image to install from. To keep the ISO as small as possible, the installer image is downloaded from DockerHub and used in System Docekr. For example for RancherOS v0.5.0 the default installer image would be `rancher/os:v0.5.0`.
+By default, `ros install` uses the same installer image version as the ISO it is run from. The `-i` option specifies the particular image to install from. To keep the ISO as small as possible, the installer image is downloaded from DockerHub and used in System Docker. For example for RancherOS v0.5.0 the default installer image would be `rancher/os:v0.5.0`.
 
 You can use `ros os list` command to find the list of available RancherOS images/versions.
 
