@@ -9,5 +9,15 @@ lang: zh
 
 
 
+### Resource Fields
+
+#### Writeable Fields
+
+Field | Type | Create | Update | Default | Notes
+---|---|---|---|---|---
+maximumRetryCount | int | Optional | - | - | 
+name | string | Optional | Yes | - | 
 
 
+
+<br>

@@ -9,5 +9,16 @@ lang: en
 
 
 
+### Resource Fields
 
 
+#### Read Only Fields
+
+Field | Type   | Notes
+---|---|---
+kind | string  | 
+password | string  | 
+url | string  | 
+
+
+<br>

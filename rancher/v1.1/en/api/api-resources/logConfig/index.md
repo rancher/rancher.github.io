@@ -9,5 +9,15 @@ lang: en
 
 
 
+### Resource Fields
+
+#### Writeable Fields
+
+Field | Type | Create | Update | Default | Notes
+---|---|---|---|---|---
+config | map[string] | Optional | - | - | 
+driver | string | Optional | - | - | 
 
 
+
+<br>

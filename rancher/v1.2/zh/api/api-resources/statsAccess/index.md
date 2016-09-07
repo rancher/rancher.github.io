@@ -9,5 +9,15 @@ lang: zh
 
 
 
+### Resource Fields
 
 
+#### Read Only Fields
+
+Field | Type   | Notes
+---|---|---
+token | string  | 
+url | string  | 
+
+
+<br>

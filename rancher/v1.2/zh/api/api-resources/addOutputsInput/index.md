@@ -9,5 +9,14 @@ lang: zh
 
 
 
+### Resource Fields
+
+#### Writeable Fields
+
+Field | Type | Create | Update | Default | Notes
+---|---|---|---|---|---
+outputs | map[string] | Yes | - | - | 
 
 
+
+<br>

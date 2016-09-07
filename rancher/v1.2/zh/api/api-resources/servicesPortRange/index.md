@@ -9,5 +9,15 @@ lang: zh
 
 
 
+### Resource Fields
+
+#### Writeable Fields
+
+Field | Type | Create | Update | Default | Notes
+---|---|---|---|---|---
+endPort | int | Yes | Yes | - | 
+startPort | int | Yes | Yes | - | 
 
 
+
+<br>

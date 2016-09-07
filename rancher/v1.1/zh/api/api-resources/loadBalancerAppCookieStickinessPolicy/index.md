@@ -9,5 +9,20 @@ lang: zh
 
 
 
+### Resource Fields
+
+#### Writeable Fields
+
+Field | Type | Create | Update | Default | Notes
+---|---|---|---|---|---
+cookie | string | Yes | Yes | - | 
+maxLength | int | Yes | Yes | - | 
+mode | enum | Optional | Yes | - | 
+name | string | Optional | Yes | - | 
+prefix | boolean | Optional | Yes | - | 
+requestLearn | boolean | Optional | Yes | - | 
+timeout | int | Yes | Yes | - | 
 
 
+
+<br>

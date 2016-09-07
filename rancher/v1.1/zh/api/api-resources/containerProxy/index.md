@@ -9,5 +9,15 @@ lang: zh
 
 
 
+### Resource Fields
+
+#### Writeable Fields
+
+Field | Type | Create | Update | Default | Notes
+---|---|---|---|---|---
+port | int | Optional | - | 80 | 
+scheme | enum | Optional | - | http | 
 
 
+
+<br>

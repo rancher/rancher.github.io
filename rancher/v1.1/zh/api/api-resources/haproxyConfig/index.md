@@ -9,5 +9,15 @@ lang: zh
 
 
 
+### Resource Fields
+
+#### Writeable Fields
+
+Field | Type | Create | Update | Default | Notes
+---|---|---|---|---|---
+defaults | string | Optional | Yes | - | 
+global | string | Optional | Yes | - | 
 
 
+
+<br>
