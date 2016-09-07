@@ -9,5 +9,16 @@ lang: en
 
 
 
+### Resource Fields
+
+#### Writeable Fields
+
+Field | Type | Create | Update | Default | Notes
+---|---|---|---|---|---
+increment | int | Optional | - | 1 | 
+max | int | Optional | - | 1 | 
+min | int | Yes | - | 1 | 
 
 
+
+<br>

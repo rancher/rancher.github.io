@@ -9,5 +9,15 @@ lang: en
 
 
 
+### Resource Fields
+
+#### Writeable Fields
+
+Field | Type | Create | Update | Default | Notes
+---|---|---|---|---|---
+newSecret | string | Yes | - | - | 
+oldSecret | string | Yes | - | - | 
 
 
+
+<br>

@@ -9,5 +9,17 @@ lang: zh
 
 
 
+### Resource Fields
+
+#### Writeable Fields
+
+Field | Type | Create | Update | Default | Notes
+---|---|---|---|---|---
+dockerCompose | string | Optional | - | - | 
+environment | map[string] | Optional | - | - | 
+externalId | string | Optional | - | - | 
+rancherCompose | string | Optional | - | - | 
 
 
+
+<br>

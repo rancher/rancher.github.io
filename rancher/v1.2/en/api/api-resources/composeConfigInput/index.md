@@ -9,5 +9,14 @@ lang: en
 
 
 
+### Resource Fields
+
+#### Writeable Fields
+
+Field | Type | Create | Update | Default | Notes
+---|---|---|---|---|---
+serviceIds | array[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/service/)] | Optional | - | - | 
 
 
+
+<br>

@@ -9,5 +9,14 @@ lang: en
 
 
 
+### Resource Fields
+
+#### Writeable Fields
+
+Field | Type | Create | Update | Default | Notes
+---|---|---|---|---|---
+serviceLinks | array[[loadBalancerServiceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/loadBalancerServiceLink/)] | Optional | - | - | 
 
 
+
+<br>

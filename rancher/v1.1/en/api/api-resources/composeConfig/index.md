@@ -9,5 +9,15 @@ lang: en
 
 
 
+### Resource Fields
 
 
+#### Read Only Fields
+
+Field | Type   | Notes
+---|---|---
+dockerComposeConfig | string  | 
+rancherComposeConfig | string  | 
+
+
+<br>

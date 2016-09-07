@@ -9,5 +9,16 @@ lang: zh
 
 
 
+### Resource Fields
+
+#### Writeable Fields
+
+Field | Type | Create | Update | Default | Notes
+---|---|---|---|---|---
+mountOptions | string | Optional | - | - | 
+server | string | Yes | - | - | 
+share | string | Yes | - | - | 
 
 
+
+<br>

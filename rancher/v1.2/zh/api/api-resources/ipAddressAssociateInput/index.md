@@ -9,5 +9,14 @@ lang: zh
 
 
 
+### Resource Fields
+
+#### Writeable Fields
+
+Field | Type | Create | Update | Default | Notes
+---|---|---|---|---|---
+ipAddressId | [ipAddress]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/ipAddress/) | Optional | - | - | 
 
 
+
+<br>
