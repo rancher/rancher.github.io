@@ -29,7 +29,7 @@ service1:
     - service2:mysql
   # If the other service is in a different stack
   external_links:
-    # <service_name>:<service_alias>
+    # <service_name>.<stack_name>:<service_alias>
     - service3:mysql
 ```
 
