@@ -26,9 +26,9 @@ service1:
     # <service_name>:<service_alias>
     - service2:mysql
     # If the other service is in a different stack
-    external_links:
-      # <stackname>/<service_name>:<service_alias>
-      - Default/service3:mysql
+  external_links:
+    # <stackname>/<service_name>:<service_alias>
+    - Default/service3:mysql
 ```
 
 ### Sidekicks and Linking
