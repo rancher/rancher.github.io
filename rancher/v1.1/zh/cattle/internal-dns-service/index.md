@@ -5,12 +5,12 @@ version: v1.1
 lang: zh
 ---
 
-## Internal DNS Service in Cattle Environments 
+## Internal DNS Service in Cattle Environments
 ---
 
-Within Rancher, we have our own internal DNS service that allows all services within one [cattle environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) to resolve to any other in the environment. 
+Within Rancher, we have our own internal DNS service that allows all services within one [cattle environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) to resolve to any other in the environment.
 
-All services in the environment are resolvable by `<service_name>` and there is no linking required between the services. For any services that are in a different stack, you'd resolve by `<service_name>.<stack_name>` instead of just `<service_name>`. If you would like to resolve a service by a different name, you could set a link so that the service could be resolvable by the service alias. 
+All services in the environment are resolvable by `<service_name>` and there is no linking required between the services. For any services that are in a different stack, you'd resolve by `<service_name>.<stack_name>` instead of just `<service_name>`. If you would like to resolve a service by a different name, you could set a link so that the service could be resolvable by the service alias.
 
 ### Setting Service Alias via linking
 
@@ -25,31 +25,31 @@ service1:
   links:
     # <service_name>:<service_alias>
     - service2:mysql
-  # If the other service is in a different stack
-  external_links:
-    # <service_name>:<service_alias>
-    - service3:mysql
+    # If the other service is in a different stack
+    external_links:
+      # <stackname>/<service_name>:<service_alias>
+      - Default/service3:mysql
 ```
 
 ### Sidekicks and Linking
 
-When launching a service, you may require services to be launched together on the same host all the time. Specific use cases include when trying to use a `volumes_from` or `net` from another service. When creating a [sidekick relationship]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#sidekick-services), the services are automatically resolvable to each other by their name. We currently do not support creating a service alias via links/external_links inside a sidekick service. 
+When launching a service, you may require services to be launched together on the same host all the time. Specific use cases include when trying to use a `volumes_from` or `net` from another service. When creating a [sidekick relationship]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#sidekick-services), the services are automatically resolvable to each other by their name. We currently do not support creating a service alias via links/external_links inside a sidekick service.
 
 When creating a sidekick relationship, there is always a primary service and sidekick service(s). Together, they are considered as a single launch configuration. This launch configuration would be deployed onto a host as a group of containers, 1 from the primary service and 1 from each sidekick defined. Within any service in the launch configuration, you can resolve the primary and sidekick(s) by their names. For any service outside of the launch configuration, the primary service is resolvable by name, but the sidekick services are only resolvable by `<sidekick_name>.<primary_service_name>`.
 
 ### Container Names
 
-All containers are resolvable globally by their name as every service's container name is unique within each environment. There is no need to append service name or stack name. 
+All containers are resolvable globally by their name as every service's container name is unique within each environment. There is no need to append service name or stack name.
 
 ### Examples
 
 #### Pinging Services in the Same Stack
 
-If you exec into the shell of a container, you are able to ping other services in the same stack by the service name. 
+If you exec into the shell of a container, you are able to ping other services in the same stack by the service name.
 
 In our example, there is a stack named `stackA` with two services, `foo` and `bar`.
 
-After execing into one of the containers in the `foo` service, you can ping the `bar` service. 
+After execing into one of the containers in the `foo` service, you can ping the `bar` service.
 
 ```bash
 $ ping bar
@@ -63,9 +63,9 @@ PING bar.stacka.rancher.internal (10.42.x.x) 58(84) bytes of data.
 
 For services that are in different stacks, you can ping the services in a different stack by using `<service_name>.<stack_name>`.
 
-In our example, we have a stack called `stackA`, which contains a service called `foo`, and we also have a stack called `stackB`, which contains a service called `bar`. 
+In our example, we have a stack called `stackA`, which contains a service called `foo`, and we also have a stack called `stackB`, which contains a service called `bar`.
 
-If we exec into one of the containers in the `foo` service, you can ping the `bar` service with `bar.stackb`. 
+If we exec into one of the containers in the `foo` service, you can ping the `bar` service with `bar.stackb`.
 
 ```bash
 $ ping bar.stackb
@@ -77,11 +77,11 @@ PING bar.stackb (10.42.x.x) 56(84) bytes of data.
 
 #### Pinging Sidekick Services
 
-Depending on which service you ping from, you can reach a sidekick service by either `<sidekick_name>` or `<sidekick_name>.<primary_service_name>`. 
+Depending on which service you ping from, you can reach a sidekick service by either `<sidekick_name>` or `<sidekick_name>.<primary_service_name>`.
 
 In our example, we have a stack called `stackA`, which contains a service called `foo`, which has a sidekick `bar` and a service called `hello`. We also have a stack called `stackB`, which contains a service `world`.
 
-If we exec into one of the containers in the `foo` service, you can ping the `bar` service directly by its name. 
+If we exec into one of the containers in the `foo` service, you can ping the `bar` service directly by its name.
 
 ```bash
 # Inside  one of the containers in the `foo` service, which `bar` is a sidekick to.
@@ -134,7 +134,7 @@ From any container, you can ping another container in the environment by their n
 
 In our example, we have a stack called `stackA`, which contains a service called `foo`. We also have another stack called `stackB`, which contains a service called `bar`. The names of containers are `<stack_name>_<service_name>_<number>`.
 
-If we exec into one of the containers in the `foo` service, you can ping the container in the `bar` service. 
+If we exec into one of the containers in the `foo` service, you can ping the container in the `bar` service.
 
 ```bash
 $ ping stackB_bar_1
@@ -143,5 +143,3 @@ PING stackB_bar_1.rancher.internal (10.42.x.x): 56 data bytes
 64 bytes from 10.42.x.x: icmp_seq=2 ttl=62 time=1.090 ms
 64 bytes from 10.42.x.x: icmp_seq=3 ttl=62 time=1.100 ms
 ```
-
-
