@@ -11,8 +11,6 @@ redirect_from:
 ## Setting up Access Control using the API
 ---
 
-[API Keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/apikey)
-
 Each access control provider has its own top-level API type for configuration specific to that type of authentication:
 
 * Active Directory: `/v2-beta/ldapconfig`
