@@ -5,7 +5,7 @@ version: v1.2
 lang: en
 redirect_from:
   - rancher/configuration/environments/
-  - rancher/latest/en/configuration/environments/
+  - rancher/v1.2/en/configuration/environments/
 ---
 
 ## Environments
