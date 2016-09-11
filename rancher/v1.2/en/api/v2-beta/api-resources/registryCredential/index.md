@@ -8,7 +8,7 @@ apiVersion: v2-beta
 
 ## RegistryCredential
 
-A registry credential is used to authenticate against a [registry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/registry).
+A registry credential is used to authenticate against a [registry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/registry).
 
 ### Resource Fields
 
