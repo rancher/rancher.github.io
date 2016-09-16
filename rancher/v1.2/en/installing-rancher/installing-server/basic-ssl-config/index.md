@@ -126,6 +126,45 @@ Here is an Apache configuration.
 </VirtualHost>
 ```
 
+### EXAMPLE HAProxy CONFIGURATION
+Here is the minimum HAProxy configuration that will need to be configured. You should customize your configuration to meet your needs.
+
+#### Notes on the Settings
+
+* `<rancher_server_X_IP>` is the IP address for your rancher servers.
+
+
+```
+global
+  maxconn 4096
+  ssl-server-verify none
+
+defaults
+  mode tcp
+  balance roundrobin
+  option redispatch
+  option forwardfor
+
+  timeout connect 5s
+  timeout queue 5s
+  timeout client 36000s
+  timeout server 36000s
+
+frontend http-in
+  mode tcp
+  bind *:443 ssl crt /etc/haproxy/certificate.pem
+  default_backend rancher_servers
+
+  acl is_websocket hdr(Upgrade) -i WebSocket
+  acl is_websocket hdr_beg(Host) -i ws
+  use_backend rancher_servers if is_websocket
+
+backend rancher_servers
+  server websrv1 <rancher_server_1_IP>:443 weight 1 maxconn 1024 ssl
+  server websrv2 <rancher_server_2_IP>:443 weight 1 maxconn 1024 ssl
+  server websrv3 <rancher_server_3_IP>:443 weight 1 maxconn 1024 ssl
+```
+
 ### Updating Host Registration
 
 After Rancher is launched with these settings, the UI will be up and running at `https://<your domain>/`.
