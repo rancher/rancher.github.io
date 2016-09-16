@@ -10,7 +10,7 @@ redirect_from:
 ## Installing Rancher Server With SSL
 ---
 
-In order to run Rancher server from an `https` URL, you will need to terminate SSL with a proxy that is capable of setting headers. We've provided an example of how it could be set up with NGINX or Apache, but other tools could be used.
+In order to run Rancher server from an `https` URL, you will need to terminate SSL with a proxy that is capable of setting headers. We've provided an example of how it could be set up with NGINX, HAProxy, or Apache, but other tools could be used.
 
 ### Requirements
 
