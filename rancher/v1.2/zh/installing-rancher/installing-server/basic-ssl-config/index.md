@@ -8,7 +8,7 @@ lang: zh
 ## Installing Rancher Server With SSL
 ---
 
-In order to run Rancher server from an `https` URL, you will need to terminate SSL with a proxy that is capable of setting headers. We've provided an example of how it could be set up with NGINX or Apache, but other tools could be used.
+In order to run Rancher server from an `https` URL, you will need to terminate SSL with a proxy that is capable of setting headers. We've provided an example of how it could be set up with NGINX, HAProxy, or Apache, but other tools could be used.
 
 ### Requirements
 
@@ -24,7 +24,7 @@ In our example configuration, all traffic will pass through the proxy and be sen
 Start Rancher server. We have added in `--name=rancher-server` to this command in order to link the proxy container to the Rancher server container.
 
 ```bash
-$ sudo docker run -d --restart=always --name=rancher-server rancher/server
+$ sudo docker run -d --restart=unless-stopped --name=rancher-server rancher/server
 ```
 <br>
 
@@ -35,8 +35,6 @@ If you are converting an existing Rancher instance, the upgrade to the new Ranch
 * For Rancher instances using the MySQL database inside the Rancher server container, follow the [upgrade instructions]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#upgrading-rancher-by-creating-a-data-container) of creating a data container and adding in the `--volumes-from=<data_container>` when launching your new Rancher server instance.
 * For Rancher instances with a [bind mounted database]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#bind-mount-mysql-volume), follow the [upgrade instructions for bind mounted instances]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#upgrading-rancher-launched-using-bind-mounts).
 * For Rancher instances launched using an external database, stop and remove the existing Rancher container. Launch the new container using the same [instructions for connecting to an external database]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#external-db).
-
-> **Note:** After your new Rancher server is running, please make sure to **remove** the old Rancher instance. Otherwise, if your machine is rebooted, your old Rancher instance will start up as we have included `--restart=always` to the `docker run` commands.
 
 ### Example Nginx Configuration
 
@@ -67,7 +65,7 @@ server {
         proxy_pass http://rancher;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
+        proxy_set_header Connection "Upgrade";
         # This allows the ability for the execute shell window to remain open for up to 15 minutes. Without this parameter, the default is 1 minute and will automatically close.
         proxy_read_timeout 900s;
     }
@@ -124,6 +122,45 @@ Here is an Apache configuration.
 </VirtualHost>
 ```
 
+### EXAMPLE HAProxy CONFIGURATION
+Here is the minimum HAProxy configuration that will need to be configured. You should customize your configuration to meet your needs.
+
+#### Notes on the Settings
+
+* `<rancher_server_X_IP>` is the IP address for your rancher servers.
+
+
+```
+global
+  maxconn 4096
+  ssl-server-verify none
+
+defaults
+  mode tcp
+  balance roundrobin
+  option redispatch
+  option forwardfor
+
+  timeout connect 5s
+  timeout queue 5s
+  timeout client 36000s
+  timeout server 36000s
+
+frontend http-in
+  mode tcp
+  bind *:443 ssl crt /etc/haproxy/certificate.pem
+  default_backend rancher_servers
+
+  acl is_websocket hdr(Upgrade) -i WebSocket
+  acl is_websocket hdr_beg(Host) -i ws
+  use_backend rancher_servers if is_websocket
+
+backend rancher_servers
+  server websrv1 <rancher_server_1_IP>:443 weight 1 maxconn 1024 ssl
+  server websrv2 <rancher_server_2_IP>:443 weight 1 maxconn 1024 ssl
+  server websrv3 <rancher_server_3_IP>:443 weight 1 maxconn 1024 ssl
+```
+
 ### Updating Host Registration
 
 After Rancher is launched with these settings, the UI will be up and running at `https://<your domain>/`.
@@ -169,7 +206,7 @@ Rancher Compose CLI will require the CA certificate as part of the default store
 
 
    ```bash
-   $ sudo docker run -d --restart=always -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server
+   $ sudo docker run -d --restart=unless-stopped -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server
    ```
     <br>
 
