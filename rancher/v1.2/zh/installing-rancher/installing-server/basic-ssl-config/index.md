@@ -24,7 +24,7 @@ In our example configuration, all traffic will pass through the proxy and be sen
 Start Rancher server. We have added in `--name=rancher-server` to this command in order to link the proxy container to the Rancher server container.
 
 ```bash
-$ sudo docker run -d --restart=always --name=rancher-server rancher/server
+$ sudo docker run -d --restart=unless-stopped --name=rancher-server rancher/server
 ```
 <br>
 
@@ -36,7 +36,7 @@ If you are converting an existing Rancher instance, the upgrade to the new Ranch
 * For Rancher instances with a [bind mounted database]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#bind-mount-mysql-volume), follow the [upgrade instructions for bind mounted instances]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#upgrading-rancher-launched-using-bind-mounts).
 * For Rancher instances launched using an external database, stop and remove the existing Rancher container. Launch the new container using the same [instructions for connecting to an external database]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#external-db).
 
-> **Note:** After your new Rancher server is running, please make sure to **remove** the old Rancher instance. Otherwise, if your machine is rebooted, your old Rancher instance will start up as we have included `--restart=always` to the `docker run` commands.
+> **Note:** After your new Rancher server is running, please make sure to **remove** the old Rancher instance. Otherwise, if your machine is rebooted, your old Rancher instance will start up as we have included `--restart=unless-stopped` to the `docker run` commands.
 
 ### Example Nginx Configuration
 
@@ -169,7 +169,7 @@ Rancher Compose CLI will require the CA certificate as part of the default store
 
 
    ```bash
-   $ sudo docker run -d --restart=always -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server
+   $ sudo docker run -d --restart=unless-stopped -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server
    ```
     <br>
 

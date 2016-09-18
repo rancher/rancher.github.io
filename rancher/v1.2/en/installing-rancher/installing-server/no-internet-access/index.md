@@ -56,7 +56,7 @@ On your machine, start Rancher server to use the specific Rancher images. We rec
 Using the v1.0.1 example:
 
 ```bash
-$ sudo docker run -d --restart=always -p 8080:8080 \
+$ sudo docker run -d --restart=unless-stopped -p 8080:8080 \
     -e CATTLE_BOOTSTRAP_REQUIRED_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v1.0.1 \
     -e CATTLE_AGENT_INSTANCE_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.8.1 \
     <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.0.1
@@ -101,7 +101,7 @@ In the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it p
 Rancher server does not need to be launched using any environment variables when using a proxy. Therefore, the command to start Rancher server will be the same as a regular installation.
 
 ```bash
-sudo docker run -d --restart=always -p 8080:8080 rancher/server
+sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server
 ```
 
 #### Rancher UI

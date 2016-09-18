@@ -31,7 +31,7 @@ If you are interested in trying one of our latest development builds which will 
 All you need is one command to launch Rancher server. After launching the container, we'll tail the logs to see when the server is up and running.
 
 ```bash
-$ sudo docker run -d --restart=always -p 8080:8080 rancher/server
+$ sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server
 # Tail the logs to show Rancher
 $ sudo docker logs -f containerid
 ```

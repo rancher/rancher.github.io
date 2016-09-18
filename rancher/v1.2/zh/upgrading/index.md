@@ -11,7 +11,7 @@ lang: zh
 
 If you have launched Rancher server **without** using an [external DB]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#external-db), the Rancher server database is inside your Rancher server container. We will use the running Rancher server container to create a data container. This data container will be used to start new Rancher server containers by using a `--volumes-from`. Alternatively, you can copy the database out of the container to a directory on the host and bind mount the database.
 
-> **Note:** If you used an external DB, you can stop the original Rancher server container and launch a new version of Rancher server using the same [external DB instructions]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#external-db). After the new server is up and running, you can remove the old Rancher server container. Note: If you only stop the container, the container will be restarted if your machine is rebooted due to the `--restart=always`.
+> **Note:** If you used an external DB, you can stop the original Rancher server container and launch a new version of Rancher server using the same [external DB instructions]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#external-db). After the new server is up and running, you can remove the old Rancher server container.
 
 ### Rancher Server Tags
 
@@ -47,13 +47,13 @@ Rancher supports two version tags for `rancher/server`.
     > **Note**: Depending on how long you've had Rancher server, certain database migrations may take longer than expected. Please do not stop upgrades in the middle of upgrading as you will hit a database migration error the next time you upgrade.
 
    ```bash
-   $ docker run -d --volumes-from rancher-data --restart=always \
+   $ docker run -d --volumes-from rancher-data --restart=unless-stopped \
      -p 8080:8080 rancher/server:latest
    ```
 
     > **Note:** If you set any environment variables or passed in a [ldap certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#enabling-active-directory-or-openldap-for-tls) in your original Rancher server setup, you'll need to add those environment variables or certificate in the command.
 
-5. Remove the old Rancher server container. Note: If you only stop the container, the container will be restarted if your machine is rebooted due to the `--restart=always`. We recommend removing the container after your upgrade has been successful.
+5. Remove the old Rancher server container. We recommend removing the container after your upgrade has been successful.
 
 ### Upgrading Rancher launched using Bind Mounts
 
@@ -79,7 +79,7 @@ Rancher supports two version tags for `rancher/server`.
 
    ```bash
    $ docker run -d -v <path_on_host>:/var/lib/mysql -p 8080:8080 \
-     --restart=always rancher/server:latest
+     --restart=unless-stopped rancher/server:latest
    ```
   <br>
 

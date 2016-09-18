@@ -85,7 +85,7 @@ In order to get your server into a responsive state, you'll need to add more mem
 If you run the Rancher server command again, just add an additional option, `-e JAVA_OPTS="-Xmx4096m"` to the command.
 
 ```bash
-$ docker run -d -p 8080:8080 --restart=always -e JAVA_OPTS="-Xmx4096m" rancher/server
+$ docker run -d -p 8080:8080 --restart=unless-stopped -e JAVA_OPTS="-Xmx4096m" rancher/server
 ```
 
 Depending on how the MySQL database is setup, you may need to do an [upgrade]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/) to add the additional command.
