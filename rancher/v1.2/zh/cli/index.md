@@ -30,7 +30,7 @@ You can run `rancher config` to set up your configuration with Rancher server.
 
 ```bash
 $ rancher config
-URL []: http://<server_ip>:8080/v1
+URL []: http://<server_ip>:8080
 Access Key []: <accessKey_of_account_api_key>
 Secret Key []:  <secretKey_of_account_api_key>
 # If there are more than one environment,
@@ -48,7 +48,7 @@ You can set the following environment variables, `RANCHER_URL`, `RANCHER_ACCESS_
 
 ```bash
 # Set the url that Rancher is on
-$ export RANCHER_URL=http://<server_ip>:8080/v1
+$ export RANCHER_URL=http://<server_ip>:8080
 # Set the access key, i.e. username
 $ export RANCHER_ACCESS_KEY=<accessKey_of_account_api_key>
 # Set the secret key, i.e. password
