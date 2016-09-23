@@ -144,6 +144,7 @@ $ sudo docker run -d \
     -e http_proxy=<proxyURL> \
     -e https_proxy=<proxyURL> \
     -e no_proxy="localhost,127.0.0.1" \
+    -e NO_PROXY="localhost,127.0.0.1" \
     --restart=unless-stopped -p 8080:8080 rancher/server
 ```
 
