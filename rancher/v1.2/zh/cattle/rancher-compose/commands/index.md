@@ -8,7 +8,7 @@ lang: zh
 ## Command and Options
 ---
 
-The Rancher Compose tool works just like the popular Docker Compose and supports the V1 version of  `docker-compose.yml` files. To enable features that are supported in Rancher, you can also have a `rancher-compose.yml` which extends and overwrites the `docker-compose.yml`. For example, scale of servives and health checks would be in the `rancher-compose.yml` file.
+The Rancher Compose tool works just like the popular Docker Compose and supports the V1 version of  `docker-compose.yml` files. To enable features that are supported in Rancher, you can also have a `rancher-compose.yml` which extends and overwrites the `docker-compose.yml`. For example, scale of services and health checks would be in the `rancher-compose.yml` file.
 
 ### Rancher-Compose Commands
 

@@ -79,7 +79,7 @@ Rancher supports two version tags for `rancher/server`.
 
    ```bash
    $ docker run -d -v <path_on_host>:/var/lib/mysql -p 8080:8080 \
-     --restart=unless-stopped rancher/server:latest
+       --restart=unless-stopped rancher/server:latest
    ```
   <br>
 
