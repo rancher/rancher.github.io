@@ -435,6 +435,39 @@ web1:
   scale: 1
 ```
 
+<br>
+
+#### SSL Termination
+
+Rancher Compose uses labels to define the SSL ports to be used in SSL termination. The [certificates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/) must be added into Rancher and are defined in the `rancher-compose.yml`.
+
+##### Example `docker-compose.yml`
+
+```yaml
+lb:
+  ports:
+  - 443:443
+  labels:
+    io.rancher.loadbalancer.ssl.ports: '443'
+  image: rancher/load-balancer-service
+  links:
+  - web1:web1
+```
+
+<br>
+
+##### Example `rancher-compose.yml`
+
+```yaml
+lb:
+  scale: 1
+  certs:
+  - certName
+  load_balancer_config:
+    name: lb
+  default_cert: defaultCertName
+```
+
 #### Custom `haproxy.cfg`
 
 For advanced users, you can specify `global` and `defaults` configuration to the load balancer in the `rancher-compose.yml`. Please refer to the [HAProxy documentation](http://cbonte.github.io/haproxy-dconv/configuration-1.5.html) for details on the available options you can add.
