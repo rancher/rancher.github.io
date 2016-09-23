@@ -425,7 +425,7 @@ From `kubectl`, you can see the ingress created, but the UI will only show the l
 
 #### Example customization
 
-In Rancher, our load balancers run HAProxy software. If you want to customize the `global` and `defaults` sections of the load balancer, they can be configured through ingress annotations. 
+In Rancher, our load balancers run HAProxy software. If you want to customize the `global` and `defaults` sections of the load balancer, they can be configured through ingress annotations.
 
 Example `custom-ingress.yml`
 
@@ -442,4 +442,4 @@ spec:
     servicePort: 80
 ```
 
-In our configuration, the `defaults` and `global` keywords identify the customizable sections and every new parameter should be followed by a new line.
+In our configuration, the `defaults` and `global` keywords identify the customizable sections and should be followed by a new line. Every parameter in these sections should be followed by a new line.
