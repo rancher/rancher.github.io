@@ -422,3 +422,24 @@ spec:
 Let's create the ingress using `kubectl`. After you create the ingress, the ingress controller will trigger the load balancer service to be created and visible in the **kubernetes-ingress-lbs** stack within the **Kubernetes** -> **System** tab. By default, the load balancer service will only have 1 instance of the load balancer deployed.
 
 From `kubectl`, you can see the ingress created, but the UI will only show the load balancer. The ingress controller has already done all the translations of the requests in the ingress to a Rancher load balancer.
+
+#### Example customization
+
+In Rancher, our load balancers run HAProxy software. If you want to customize the `global` and `defaults` sections of the load balancer, they can be configured through ingress annotations. 
+
+Example `custom-ingress.yml`
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: customlb
+  annotations:
+    config: "defaults\nbalance source\ntimeout server 70000\nglobal\nmaxconnrate 60"
+spec:
+  backend:
+    serviceName: nginx-service
+    servicePort: 80
+```
+
+In our configuration, the `defaults` and `global` keywords identify the customizable sections and every new parameter should be followed by a new line.
