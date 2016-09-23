@@ -96,7 +96,7 @@ The `rancher config` command sets up your [configuration with Rancher server]({{
 
 ```bash
 $ rancher config
-URL []: http://<server_ip>:8080/v1
+URL []: http://<server_ip>:8080
 Access Key []: <accessKey_of_account_api_key>
 Secret Key []:  <secretKey_of_account_api_key>
 # If there are more than one environment,
