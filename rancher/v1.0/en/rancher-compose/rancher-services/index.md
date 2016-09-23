@@ -25,7 +25,7 @@ wordpress:
     interval: 2000
     unhealthy_threshold: 3
     # For TCP, request_line needs to be ''
-    # TCP Example: 
+    # TCP Example:
     # request_line: ''
     request_line: GET /healthcheck HTTP/1.0
     healthy_threshold: 2
@@ -35,7 +35,7 @@ wordpress:
 
 Read more details about [Health Checks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/health-checks/).
 
-> **Note:** If a host is down in Rancher (i.e. in `reconnecting` or `inactive` state), you will need to implement a health check in order for Rancher to launch the containers on your service on to a different host. 
+> **Note:** If a host is down in Rancher (i.e. in `reconnecting` or `inactive` state), you will need to implement a health check in order for Rancher to launch the containers on your service on to a different host.
 
 ## Custom Rancher Services
 ---
@@ -55,9 +55,9 @@ A load balancer can be scheduled like any other service. Read more about [schedu
 
 Rancher supports L4 load balancing by adding ports and linking target services. Any traffic directed to any of source port(s) will be sent to the private port(s) of the linked service(s).
 
-> **Note:**  Port `42` cannot be used as a source port for load balancers because it's internally used for [health checks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/health-checks). 
+> **Note:**  Port `42` cannot be used as a source port for load balancers because it's internally used for [health checks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/health-checks).
 
-When working with services that contains [sidekicks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/#sidekicks), you need to link the [primary service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/#primary-service), which is the service that contains the `sidekick` label. 
+When working with services that contains [sidekicks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/#sidekicks), you need to link the [primary service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/#primary-service), which is the service that contains the `sidekick` label.
 
 > **Note:** Load balancers will only work for services that are using the managed network. If you select any other network choice for your target services, it will **not** work with the load balancer.
 
@@ -69,7 +69,7 @@ When working with services that contains [sidekicks]({{site.baseurl}}/rancher/{{
 lb:
   image: rancher/load-balancer-service
   ports:
-  # Assign a random public port and direct traffic to private port 80 of the service. 
+  # Assign a random public port and direct traffic to private port 80 of the service.
   - 80
   # Listen on public port 80 and direct traffic to private port 80 of the service
   - 80:80
@@ -77,7 +77,7 @@ lb:
   - 82:81
   # Assign a random public port and direct traffic to private port 9999 using TCP and not HTTP
   - 9999/tcp
-  links: 
+  links:
   # Target services in the same stack will be listed as a link
   - web1:web1
   - web2:web2
@@ -98,7 +98,7 @@ web1:
   scale: 1
 web2:
   scale: 1
-web3: 
+web3:
   scale: 1
 ```
 
@@ -116,13 +116,13 @@ Label Key | Label Value
 
 > **Note:** If you use a source port with the advanced routing options, the source port must also be listed in `ports` section of the `docker-compose.yml`
 
-#### Linking Services in a Different Stack 
+#### Linking Services in a Different Stack
 
-In the label for target services, `<SERVICE_NAME>` is the name of the service. If your service is in another stack, the `<SERVICE_NAME>` will need to include stack name using the following format `<STACK_NAME>/<SERVICE_NAME>`. The link to the target service of other stacks will be under `external_links`. 
+In the label for target services, `<SERVICE_NAME>` is the name of the service. If your service is in another stack, the `<SERVICE_NAME>` will need to include stack name using the following format `<STACK_NAME>/<SERVICE_NAME>`. The link to the target service of other stacks will be under `external_links`.
 
-#### Syntax of the Combination of all Optional Fields 
+#### Syntax of the Combination of all Optional Fields
 
-Since the fields are optional, we support all combinations of the fields. Here is the syntax for all combinations using request host, source port, path and target port. 
+Since the fields are optional, we support all combinations of the fields. Here is the syntax for all combinations using request host, source port, path and target port.
 
 Request Host | Source Port | Path | Target Port | Label Value
 ---|---|---|---| ---
@@ -135,11 +135,11 @@ example.com | | /path | | `example.com/path`
 example.com| | | 81 | `example.com=81`
 example.com | | | | `example.com`
  | 80| /path | 81 | `80/path=81`
- | 80 |/path | | `80/path` 
+ | 80 |/path | | `80/path`
  |80 | | 81 | `80=81`
  | | /path | 81| `/path=81`
  | | /path | | `/path`
- | | | 81 | `'81'` *See Note 
+ | | | 81 | `'81'` *See Note
 
 <br>
 
@@ -182,7 +182,7 @@ lb:
   - 82:81
   # Listen on public port 9999 using TCP and not HTTP
   - 9999/tcp
-  links: 
+  links:
   # Target services in the same stack will be listed as a link
   - web1:web1a
   - web2:web2a
@@ -194,7 +194,7 @@ lb:
     io.rancher.scheduler.affinity:host_label: lb=true
     # Requests to http://app.example.com/foo:80 should be routed to web1 over port 8000
     io.rancher.loadbalancer.target.web1: app.example.com:80/foo=8000
-    # Requests to http://app.example.com/foo should be routed to web2 over port 8000 
+    # Requests to http://app.example.com/foo should be routed to web2 over port 8000
     # and http://app.example.com/foo/bar over port 8001
     io.rancher.loadbalancer.target.web2: app.example.com/foo=8000,app.example.com/foo/bar=8001
     # Requests routed to web3 go to port 8000, overriding the default configuration
@@ -214,11 +214,11 @@ web1:
   scale: 1
 web2:
   scale: 1
-web3: 
+web3:
   scale: 1
 ```
 
-### Internal Load Balancer 
+### Internal Load Balancer
 
 To set an internal load balancer, the listening ports are listed under `expose` instead of `ports`.
 
@@ -228,12 +228,12 @@ To set an internal load balancer, the listening ports are listed under `expose` 
 lb:
   image: rancher/load-balancer-service
   # Instead of using ports, we use expose to define that it will be private ports
-  expose: 
+  expose:
   # Listen on private port 80 and direct traffic to private port 80 of the service
   - 80:80
   # Listen on private port 82 and by default forward traffic to private port 81 using HTTP
   - 82:81
-  links: 
+  links:
   # Any service that is a target will be listed as a link
   - web1:web1
 ```
@@ -251,9 +251,43 @@ web1:
   scale: 1
 ```
 
+<br>
+
+#### SSL Termination
+
+Rancher Compose uses labels to define the SSL ports to be used in SSL termination. The [certificates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/) must be added into Rancher and are defined in the `rancher-compose.yml`.
+
+##### Example `docker-compose.yml`
+
+```yaml
+lb:
+  ports:
+  - 443:443
+  labels:
+    io.rancher.loadbalancer.ssl.ports: '443'
+  image: rancher/load-balancer-service
+  links:
+  - web1:web1
+```
+
+<br>
+
+##### Example `rancher-compose.yml`
+
+```yaml
+lb:
+  scale: 1
+  certs:
+  - certName
+  load_balancer_config:
+    name: lb
+  default_cert: defaultCertName
+```
+
+
 ### Custom haproxy.cfg
 
-For advanced users, you can specify `global` and `defaults` configuration to the load balancer in the `rancher-compose.yml`. Please refer to the [HAProxy documentation](http://cbonte.github.io/haproxy-dconv/configuration-1.5.html) for details on the available options you can add. 
+For advanced users, you can specify `global` and `defaults` configuration to the load balancer in the `rancher-compose.yml`. Please refer to the [HAProxy documentation](http://cbonte.github.io/haproxy-dconv/configuration-1.5.html) for details on the available options you can add.
 
 **Sample `rancher-compose.yml`**
 
@@ -331,5 +365,3 @@ web1:
 web2:
   image: nginx
 ```
-
-
