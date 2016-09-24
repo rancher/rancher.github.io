@@ -41,6 +41,10 @@ If you run docker logs -f rancher-agent and the logs show messages about an expi
 
 If containers on different hosts cannot ping each other, there are some common scenarios that could be the issue.
 
+#### How to test if cross host communication is working?
+
+Exec into one of the network agents and ping the internal IP (i.e. 10.42.x.x) of another network agent. Depending on your Rancher version, your network agents may be hidden on the hosts page. To view them, select the "Show System" checkbox in the upper right corner.
+
 #### Are the IPs of the hosts correct in the UI?
 
 Every so often, the IP of the host will accidentally pick up the docker bridge IP instead of the actual IP. These are typically `172.17.42.1` or starting with `172.17.x.x`. If this is the case, you need to re-register your host with the correct IP by explicitly setting the `CATTLE_AGENT_IP` environment variable in the `docker run` command.
@@ -158,6 +162,10 @@ CentOS will by default set `/proc/sys/net/ipv4/ip_forward` to `0`, which will es
 <a id="lb-config"></a>
 
 ### Load Balancer
+
+#### Why is my load balancer stuck in `Initializing`>?
+
+Load balancers automatically have [health checks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks/) enabled on them. If the load balancer is stuck in `initializing` state, then most likely the [cross host communication](#cross-host-communication) between the hosts is not working.
 
 #### How can I see the configuration of my Load Balancer?
 
