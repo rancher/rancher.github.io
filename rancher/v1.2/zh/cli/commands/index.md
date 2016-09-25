@@ -225,7 +225,9 @@ The `rancher events` command lists out all active events occurring inside the Ra
 
 Name | Description
 ---|----
-   `--reconnect`, `-r` | Reconnect on error
+`--format` value  |  'json' or Custom format: {{.Id}} {{.Name}}
+`--reconnect`, `-r` | Reconnect on error
+
 
 ### Rancher Exec Reference
 
@@ -323,6 +325,8 @@ The `rancher logs` allows you to fetch the logs of a container by container ID o
 
 Name | Description
 ----|-----
+`--service`, `-s`    | Show service logs
+`--sub-log`       |  Show service sub logs
 `--follow`, `-f` |     Follow log output
 `--tail` value  |    Number of lines to show from the end of the logs (default: 100)
 `--since` value  |   Show logs since timestamp
