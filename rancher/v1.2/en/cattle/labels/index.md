@@ -100,7 +100,7 @@ Key | Description
 
 Key | Value |Description
 ----|-----|---
-`io.rancher.host.external_dns_ip` | IP to be used for [External DNS]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/external-dns-service/), e.g. a.b.c.d | To be used for external DNS services and and requiring the programming of the DNS records [using an IP other than the host IP]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/external-dns-service/#using-a-specific-ip-for-external-dns)
+`io.rancher.host.external_dns_ip` | IP to be used for [External DNS]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/external-dns-service/), e.g. a.b.c.d | To be used for external DNS services and requiring the programming of the DNS records [using an IP other than the host IP]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/external-dns-service/#using-a-specific-ip-for-external-dns)
 
 ### Automatically Applied Host Labels
 
