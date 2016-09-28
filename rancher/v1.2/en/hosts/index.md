@@ -13,6 +13,7 @@ redirect_from:
 Hosts are the most basic unit of resource within Rancher and is represented as any Linux server, virtual or physical, with the following minimum requirements:
 
 * Any modern Linux distribution that supports Docker 1.10.3+. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
+* On RHEL/CentOS ensure the default storage driver for docker, devicemapper using loopback, is changed. Refer to the docker documentation for help selecting a production grade performant replacement.
 * 1GB RAM
 * Recommended CPU w/ AES-NI
 * Ability to communicate with a Rancher server via http or https through the pre-configured port. Default is 8080.
