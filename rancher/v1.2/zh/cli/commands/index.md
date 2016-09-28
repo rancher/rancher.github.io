@@ -571,4 +571,4 @@ The `rancher wait` command waits for a resource to complete it's action. This is
 ```bash
 $ rancher start 1i1
 $ rancher wait 1i1
-```
+```t me 
