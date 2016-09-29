@@ -4,7 +4,8 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - rancher/rancher-ui/applications/stacks/adding-external-services/
+  - /rancher/rancher-ui/applications/stacks/adding-external-services/
+  - /rancher/latest/en/cattle/adding-external-services/
 ---
 
 ## Adding External Services

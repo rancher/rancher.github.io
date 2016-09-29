@@ -3,6 +3,8 @@ title: Containers
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
+redirect_from:
+  - /rancher/latest/zh/cattle/containers/
 ---
 
 ## Containers

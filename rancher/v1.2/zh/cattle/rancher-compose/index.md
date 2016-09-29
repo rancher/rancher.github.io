@@ -3,6 +3,8 @@ title: Rancher Compose
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
+redirect_from:
+  - /rancher/latest/zh/cattle/rancher-compose/
 ---
 
 ## Rancher Compose
@@ -10,7 +12,7 @@ lang: zh
 
 The Rancher Compose tool is a multi-host version of Docker Compose. It operates within the scope of a [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/stacks/) in the Rancher UI, which belongs to one [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) and has many [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/). The containers started by Rancher Compose will be deployed on any of the hosts in the environment that satisfy the [scheduling rules]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/). If there are no scheduling rules, then the containers of the service are launched on the hosts with the fewest containers. These containers are launched just as if you had started a service in the UI as Rancher Compose is making the same API calls.
 
-The Rancher Compose tool works just like the popular Docker COmpose and supports the V1 version of  `docker-compose.yml` files. To enable features that are supported in Rancher, you can also have a `rancher-compose.yml` which extends and overwrites the `docker-compose.yml`. For example, scale of services and health checks would be in the `rancher-compose.yml` file.
+The Rancher Compose tool works just like the popular Docker Compose and supports the V1 version of  `docker-compose.yml` files. To enable features that are supported in Rancher, you can also have a `rancher-compose.yml` which extends and overwrites the `docker-compose.yml`. For example, scale of services and health checks would be in the `rancher-compose.yml` file.
 
 The documentation for Rancher Compose expects users to have an understanding of Docker Compose. Please read through the [Docker Compose documentation](https://docs.docker.com/compose/) before starting to work with Rancher Compose.
 
@@ -42,6 +44,23 @@ $ rancher-compose --url http://server_ip:8080 --access-key <username_of_environm
 <br>
 
 Now, you can use any `docker-compose.yml` file with Rancher Compose to [launch services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#adding-services-with-rancher-compose). The services will automatically be launched in your Rancher instance in the [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) that the environment API key is located in.
+
+### Debugging with Rancher Compose
+
+When working with Rancher Compose, you can set the environment variable, `RANCHER_CLIENT_DEBUG`, to `true`,  which will have all CLI commands print out verbose messages of the API calls being made.
+
+```bash
+# Print verbose messages for all CLI calls
+$ export RANCHER_CLIENT_DEBUG=true
+```
+
+<br>
+
+If you don't want the verbose response on every CLI command, you can pass in `--debug` to the specific command to get the verbose messages.
+
+```bash
+$ rancher-compose --debug up -d
+```
 
 ### Deleting Services/Container
 

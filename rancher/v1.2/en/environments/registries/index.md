@@ -4,8 +4,8 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - rancher/configuration/registries/
-  - rancher/1.2/en/configuration/environments/
+  - /rancher/configuration/registries/
+  - /rancher/latest/en/environments/registries/
 ---
 
 ## Registries

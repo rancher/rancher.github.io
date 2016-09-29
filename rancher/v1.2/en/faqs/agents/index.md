@@ -4,7 +4,8 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - rancher/faqs/agents/
+  - /rancher/faqs/agents/
+  - /rancher/latest/en/faqs/agents/
 ---
 
 ## FAQs about Rancher Agent/Hosts

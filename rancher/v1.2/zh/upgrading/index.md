@@ -3,6 +3,8 @@ title: Upgrading Rancher (Single Node)
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
+redirect_from:
+  - /rancher/latest/zh/upgrading/
 ---
 
 ## Upgrading Rancher Server (Single Node)
@@ -53,7 +55,7 @@ Rancher supports two version tags for `rancher/server`.
 
     > **Note:** If you set any environment variables or passed in a [ldap certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#enabling-active-directory-or-openldap-for-tls) in your original Rancher server setup, you'll need to add those environment variables or certificate in the command.
 
-5. Remove the old Rancher server container. We recommend removing the container after your upgrade has been successful.
+5. Remove the old Rancher server container.
 
 ### Upgrading Rancher launched using Bind Mounts
 
@@ -79,7 +81,7 @@ Rancher supports two version tags for `rancher/server`.
 
    ```bash
    $ docker run -d -v <path_on_host>:/var/lib/mysql -p 8080:8080 \
-       --restart=unless-stopped rancher/server:latest
+     --restart=unless-stopped rancher/server:latest
    ```
   <br>
 

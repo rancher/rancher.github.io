@@ -4,8 +4,9 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - rancher/rancher-ui/infrastructure/hosts/amazon/
-  - rancher/v1.2/en/rancher-ui/infrastructure/hosts/amazon/
+  - /rancher/rancher-ui/infrastructure/hosts/amazon/
+  - /rancher/v1.2/en/rancher-ui/infrastructure/hosts/amazon/
+  - /rancher/latest/en/hosts/amazon/
 ---
 
 ## Adding Amazon EC2 Hosts

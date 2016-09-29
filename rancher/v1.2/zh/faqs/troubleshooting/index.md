@@ -5,6 +5,9 @@ version: v1.2
 lang: zh
 redirect_from:
   - /rancher/v1.2/zh/faqs/
+  - /rancher/latest/zh/faqs/troubleshooting/
+  - /rancher/latest/zh/faqs/
+
 ---
 
 ## Troubleshooting FAQs

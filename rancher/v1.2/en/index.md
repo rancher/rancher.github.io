@@ -7,6 +7,7 @@ redirect_from:
   - /
   - rancher/
   - rancher/latest/
+  - rancher/latest/en/
 ---
 
 ## Overview of Rancher

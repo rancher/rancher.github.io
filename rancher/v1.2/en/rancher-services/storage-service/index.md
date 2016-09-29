@@ -4,7 +4,8 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - rancher/rancher-services/storage-service/
+  - /rancher/rancher-services/storage-service/
+  - /rancher/latest/en/rancher-services/storage-service/
 ---
 
 ## Persistent Storage Service

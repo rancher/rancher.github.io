@@ -3,6 +3,8 @@ title: What are API Keys
 layout: rancher-api-default-v1.2
 version: v1.2
 lang: zh
+redirect_from:
+  - /rancher/latest/zh/api/api-keys/
 ---
 
 ## What are API Keys

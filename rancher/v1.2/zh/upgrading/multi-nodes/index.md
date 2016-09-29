@@ -3,6 +3,8 @@ title: Upgrading Rancher (Multi Nodes)
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
+redirect_from:
+  - /rancher/latest/zh/upgrading/multi-nodes/
 ---
 
 ## Upgrading Rancher Server (Multi Nodes)

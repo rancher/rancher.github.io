@@ -3,6 +3,9 @@ title: Environments in Rancher
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
+redirect_from:
+  - /rancher/v1.2/zh/configuration/environments/
+  - /rancher/latest/zh/environments/
 ---
 
 ## Environments

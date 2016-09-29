@@ -5,6 +5,7 @@ version: v1.2
 lang: en
 redirect_from:
   - rancher/contributing/
+  - /rancher/latest/en/contributing/
 ---
 
 ## Contributing to Rancher

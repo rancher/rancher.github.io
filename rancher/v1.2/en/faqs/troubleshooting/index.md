@@ -7,6 +7,8 @@ redirect_from:
   - /rancher/faqs/
   - /rancher/faqs/troubleshooting/
   - /rancher/v1.2/en/faqs/
+  - /rancher/latest/en/faqs/troubleshooting/
+  - /rancher/latest/en/faqs/
 
 ---
 

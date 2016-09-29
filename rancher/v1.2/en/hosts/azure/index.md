@@ -4,7 +4,8 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - rancher/rancher-ui/infrastructure/hosts/azure/
+  - /rancher/rancher-ui/infrastructure/hosts/azure/
+  - /rancher/latest/en/hosts/azure/
 ---
 
 ## Adding Azure Hosts
