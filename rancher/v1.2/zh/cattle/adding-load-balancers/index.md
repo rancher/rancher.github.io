@@ -3,6 +3,8 @@ title: Adding Load Balancers
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
+redirect_from:
+  - /rancher/latest/zh/cattle/adding-load-balancers/
 ---
 
 ## Adding Load Balancers
@@ -467,6 +469,7 @@ lb:
     name: lb
   default_cert: defaultCertName
 ```
+
 
 #### Custom `haproxy.cfg`
 

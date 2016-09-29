@@ -4,7 +4,8 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - rancher/rancher-ui/infrastructure/hosts/custom/
+  - /rancher/rancher-ui/infrastructure/hosts/custom/
+  - /rancher/latest/en/hosts/custom/
 ---
 
 ## Adding Custom Hosts

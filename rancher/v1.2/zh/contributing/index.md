@@ -3,6 +3,8 @@ title: Contributing to Rancher
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
+redirect_from:
+  - /rancher/latest/zh/contributing/
 ---
 
 ## Contributing to Rancher

@@ -4,7 +4,8 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - rancher/v1.2/en/rancher-ui/infrastructure/hosts/exoscale/
+  - /rancher/v1.2/en/rancher-ui/infrastructure/hosts/exoscale/
+  - /rancher/latest/en/hosts/exoscale/
 ---
 
 ## Adding Exoscale Hosts

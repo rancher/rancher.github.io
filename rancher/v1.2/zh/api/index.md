@@ -3,6 +3,8 @@ title: How to use the Rancher API
 layout: rancher-api-default-v1.2
 version: v1.2
 lang: zh
+redirect_from:
+  - /rancher/latest/zh/api/
 ---
 
 ## How to use the API

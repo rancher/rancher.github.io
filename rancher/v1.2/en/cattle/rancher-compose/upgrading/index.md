@@ -4,7 +4,8 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - rancher/rancher-compose/upgrading/
+  - /rancher/rancher-compose/upgrading/
+  - /rancher/latest/en/cattle/rancher-compose/upgrading/
 ---
 
 ## Upgrading Services

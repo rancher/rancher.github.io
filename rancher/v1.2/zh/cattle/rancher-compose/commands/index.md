@@ -3,6 +3,8 @@ title: Commands and Options in Rancher Compose
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
+redirect_from:
+  - /rancher/latest/zh/cattle/rancher-compose/commands/
 ---
 
 ## Command and Options
@@ -134,7 +136,7 @@ When you run the `up` command with Rancher Compose, after all the tasks are comp
 # If you do not use the -d flag, Rancher Compose will continue to run until you Ctrl+C to quit
 $ rancher-compose up
 
-# Use the -d flag for Rancher Compose to exit after running
+# Use the -d flag for rancher-compose to exit after running
 $ rancher-compose up -d
 ```
 

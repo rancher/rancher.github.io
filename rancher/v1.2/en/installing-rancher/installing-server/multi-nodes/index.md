@@ -4,7 +4,8 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - rancher/installing-rancher/installing-server/multi-nodes/
+  - /rancher/installing-rancher/installing-server/multi-nodes/
+  - /rancher/latest/en/installing-rancher/installing-server/multi-nodes/
 ---
 
 ## Installing Rancher Server (Multi Nodes)
@@ -35,7 +36,7 @@ redirect_from:
 ### Preparing for the High Availability (HA) Setup
 
 1. Prepare a MySQL database with at least 1 GB RAM following the same directions as [starting a single node using an external database]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#using-an-external-database), but do not launch Rancher server according to those instructions. By default, users will only be able to access the database from localhost. You will need to grant access to the new user for the network where your Rancher nodes will reside.
-2. Configure an external load balancer that will balance traffic on ports 80 and 443 across a pool of nodes that will be running Rancher server. Depending on your cloud provider, it may be necessary to start the nodes before being able to configure the external load balancer. Your load balancer must support websockets and forwarded-for headers, in order for Rancher to function properly. See [SSL settings page](http://docs.rancher.com/rancher/latest/en/installing-rancher/installing-server/basic-ssl-config/) for example configuration settings.
+2. Configure an external load balancer that will balance traffic on ports 80 and 443 across a pool of nodes that will be running Rancher server. Depending on your cloud provider, it may be necessary to start the nodes before being able to configure the external load balancer. Your load balancer must support websockets and forwarded-for headers, in order for Rancher to function properly. See [SSL settings page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}//installing-rancher/installing-server/basic-ssl-config/) for example configuration settings.
 3. Prepare the nodes that will be used in the HA setup. These nodes should meet the same [requirements]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#requirements) as a single node setup of Rancher. (Optional) Pre-pulling the `rancher/server` image onto the Rancher nodes.
 
     Currently, our HA setup supports 3 cluster sizes.

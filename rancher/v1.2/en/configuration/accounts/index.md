@@ -4,7 +4,8 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - rancher/configuration/accounts/
+  - /rancher/configuration/accounts/
+  - /rancher/latest/en/configuration/accounts/
 ---
 
 ## Accounts

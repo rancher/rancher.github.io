@@ -3,6 +3,8 @@ title: Internal DNS Service in Kubernetes Environments
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
+redirect_from:
+  - /rancher/latest/zh/kubernetes/k8s-internal-dns-service/
 ---
 
 ## Internal DNS Service in Kubernetes Environments

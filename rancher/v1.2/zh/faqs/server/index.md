@@ -3,6 +3,8 @@ title: FAQS about Rancher Server
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
+redirect_from:
+  - /rancher/latest/zh/faqs/server/
 ---
 
 ## FAQs about Rancher Server

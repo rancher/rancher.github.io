@@ -3,8 +3,6 @@ title: Registries in Rancher
 layout: rancher-default-v1.1
 version: v1.1
 lang: en
-redirect_from:
-  - rancher/1.1/en/configuration/environments/
 ---
 
 ## Registries

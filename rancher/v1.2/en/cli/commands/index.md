@@ -128,7 +128,7 @@ $ rancher config --print
 The `rancher docker` command allows you to run any Docker command on a specific host.
 
 ```bash
-$ rancher --env 1h1 docker ps
+$ rancher --host 1h1 docker ps
 ```
 
 <br>

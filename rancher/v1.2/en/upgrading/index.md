@@ -4,7 +4,8 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - rancher/upgrading/
+  - /rancher/upgrading/
+  - /rancher/latest/en/upgrading/
 ---
 
 ## Upgrading Rancher Server (Single Node)
