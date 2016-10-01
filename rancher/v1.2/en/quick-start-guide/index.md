@@ -31,9 +31,11 @@ If you are interested in trying one of our latest development builds which will 
 All you need is one command to launch Rancher server. After launching the container, we'll tail the logs to see when the server is up and running.
 
 ```bash
-$ sudo docker run -d --restart=always --name rancher-server -p 8080:8080 rancher/server
+$ sudo docker run -d --restart=always -p 8080:8080 rancher/server
+# The container doesn't have an explicit name to easily support upgrades, but you can get the name with
+ RANCHER_SERVER=$(sudo docker ps | grep "rancher/server" | cut -d" " -f1)
 # Tail the logs to show Rancher
-$ sudo docker logs -f rancher-server
+$ sudo docker logs -f $RANCHER_SERVER
 ```
 
 It will take a couple of minutes for Rancher server to start up. When the logs show `.... Startup Succeeded, Listening on port...`, Rancher UI is up and running. There could be more logs afterwards like `... Creating schema machine...`, so check that is hasn't already being outputted.
@@ -79,10 +81,10 @@ If you click on the dropdown of the **_first-container_**, you will be able to p
 Rancher will display any containers on the host even if the container is created outside of the UI. Create a container in the host's shell terminal.
 
 ```bash
-$ docker run -it --name=second-container ubuntu:14.04.2
+$ docker run -d -it --name=second-container ubuntu:14.04.2
 ```
 
-In the UI, you will see **_second-container_** pop up on your host! If you terminate the container by exiting the shell, the Rancher UI will immediately show the stopped state of the container.
+In the UI, you will see **_second-container_** pop up on your host!
 
 Rancher reacts to events that happen out of the band and just does the right thing to reconcile its view of the world with reality. You can read more about using Rancher with the [native docker CLI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/native-docker/).
 
@@ -91,7 +93,7 @@ If you look at the IP address of the **_second-container_**, you will notice tha
 What if we want to create a Docker container through CLI and still give it an IP address from Rancher’s overlay network? All we need to do is add a label in the command.
 
 ```bash
-$ docker run -it --name=third-container --label io.rancher.container.network=true ubuntu:14.04.2
+$ docker run -d -it --name=third-container --label io.rancher.container.network=true ubuntu:14.04.2
 ```
 <br>
 The label `io.rancher.container.network` enables us to pass a hint through the Docker command line so Rancher will set up the container to connect to the overlay network.
