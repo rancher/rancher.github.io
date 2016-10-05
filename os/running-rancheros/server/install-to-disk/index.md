@@ -27,8 +27,6 @@ ssh_authorized_keys:
 
 <br>
 
-> **Note:** Currently, RancherOS doesn't support adding other users to RancherOS. If this is in your cloud-config file, RancherOS will not boot up.
-
 You can generate a new SSH key for `cloud-config.yml` file by following this [article](https://help.github.com/articles/generating-ssh-keys/).
 
 Copy the public SSH key into RancherOS before installing to disk.
