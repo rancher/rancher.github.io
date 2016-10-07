@@ -54,6 +54,11 @@ upstream rancher {
     server rancher-server:8080;
 }
 
+map $http_upgrade $connection_upgrade {
+    default Upgrade;
+    ''      close;
+}
+
 server {
     listen 443 ssl;
     server_name <server>;
@@ -68,7 +73,7 @@ server {
         proxy_pass http://rancher;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "Upgrade";
+        proxy_set_header Connection $connection_upgrade;
         # This allows the ability for the execute shell window to remain open for up to 15 minutes. Without this parameter, the default is 1 minute and will automatically close.
         proxy_read_timeout 900s;
     }
