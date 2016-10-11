@@ -29,7 +29,7 @@ If you're building a version of RancherOS used for development and not for a rel
 
 ### Testing
 
-Run `make integration-tests` to run the all integration tests. The tests will run in a Docker container named "ros-ci".
+Run `make integration-tests` to run the all integration tests in a container, or `./scripts/integration-tests` to run them outside a container (they use QEMU to test the OS.)
 
 ### Running
 
@@ -42,6 +42,12 @@ You can SSH in using `./scripts/ssh`.  Your SSH keys should have been populated 
 
 If you're on OS X, you can run RancherOS using [_xhyve_](https://github.com/mist64/xhyve) instead of QEMU: just pass `--xhyve` to `./scripts/run` and `./scripts/ssh`.
 
+### Debugging and logging.
+
+You can enable extra log information by setting them using `sudo ros config set`,
+or as kernel boot parameters.
+Enable all logging by setting `rancher.debug` true
+or you can set `rancher.docker.debug`, `racher.system_docker.debug`, `rancher.bootstrap_docker.debug`, or `rancher.log` individually.
 
 ## Repositories
 

@@ -8,7 +8,7 @@ layout: os-default
 
 `ros tls generate` is used to generate both the client and server TLS certificates for Docker.
 
-Remember, all `ros` commands needs to be used with `sudo` or as a `root` user.
+Remember, all `ros` commands need to be used with `sudo` or as a `root` user.
 
 ### End to end example
 
