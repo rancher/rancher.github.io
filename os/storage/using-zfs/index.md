@@ -19,12 +19,11 @@ When RancherOS console has reloaded, you will have logged into the persistent co
 
 #### Installing ZFS on Ubuntu Console
 
-Based on the [Ubuntu ZFS docs](https://wiki.ubuntu.com/Kernel/Reference/ZFS), you only need to install `zfs` package into the Ubuntu console to enable ZFS. Aall the other necessary packages will be installed as its dependencies.
+Based on the [Ubuntu ZFS docs](https://wiki.ubuntu.com/Kernel/Reference/ZFS), you only need to install `zfs` package into the Ubuntu console to enable ZFS. All the other necessary packages will be installed as its dependencies.
 
 ```
-# Adding ZFS PPA and updating the package cache
-$ sudo apt-get update
-$ sudo apt-get install zfs
+$ sudo apt update
+$ sudo apt install zfs
 ```
 
 #### Mounting ZFS filesystems on boot
@@ -93,7 +92,8 @@ At this point you'll have a ZFS filesystem created and mounted at `/zpool1/docke
 Now you'll need to remove `-s overlay` (or any other storage driver) from the Docker daemon args to allow docker to automatically detect `zfs`.
 
 ```
-$ sudo ros config set rancher.docker.args "[daemon, --log-opt, max-size=25m, --log-opt, max-file=2, -G, docker, -H, 'unix:///var/run/docker.sock', -g, '/zpool1/docker']"
+$ sudo ros config set rancher.docker.storage_driver ''
+$ sudo ros config set rancher.docker.graph /zpool1/docker
 # After editing Docker daemon args, you'll need to start Docker
 $ sudo system-docker start docker
 ```
