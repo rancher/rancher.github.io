@@ -11,13 +11,18 @@ redirect_from:
 ## Launching Rancher Server with No Internet Access
 ---
 
-Rancher Server is able to run without internet, but the web browser accessing the UI will need access to the private network. Rancher can be configured with either a private registry or with a HTTP proxy.
+Rancher Server is able to run without internet, but the web browser accessing the UI will need access to the private network. Rancher can be configured with either a private registry or with an HTTP proxy.
 
 When launching Rancher server with no internet access, there will be a couple of features that will no longer work properly.
 
-* Launching Hosts using the UI for Cloud Providers - Since Rancher is calling `docker-machine` to create hosts in the cloud providers, this functionality will not work. You will add [custom hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) to your Rancher setup.
-* GitHub Authentication
-* Templates from the [Rancher Catalog](https://github.com/rancher/rancher-catalog) and [Community Catalog](https://github.com/rancher/community-catalog) - These catalogs rely on being cloned from Github, but you will be able to [add internal private catalogs]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/private-catalogs) into Rancher.
+* Launching Hosts using the UI for Cloud Providers - Since Rancher is calling Docker Machine to create hosts in the cloud providers, this functionality will not work. You will only be able to add [custom hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) to your Rancher setup.
+* Github Authentication
+
+### Rancher Server Tags
+
+The `rancher/server:latest` tag will be our stable release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version.
+
+If you are interested in trying one of our latest development builds which will have been validated through our CI automation framework, please check our [releases page](https://github.com/rancher/rancher/releases) to find the latest development release tag. These releases are not meant for deployment in production. All development builds will be appended with a `*-pre{n}` suffix to denote that it's a development release. For any release with a `rc{n}` suffix, please do not use this tag. These `rc` builds are meant for the Rancher team to test out the development builds.
 
 ### Using Private Registry
 
@@ -71,7 +76,7 @@ The UI and API will be available on the exposed port `8080`. You can access the 
 
 After accessing the UI, click on the **Add Host** button. This will immediately bring you to the **Host Registration** page. Click **Save**.
 
-The cloud providers will not work as Rancher uses `docker-machine` to provision the hosts through the cloud providers. Click on the **Custom** icon to add the host.
+The cloud providers will not work as Rancher uses Docker Machine to provision the hosts through the cloud providers. Click on the **Custom** icon to add the host.
 
 The command from the UI will be configured to use the private registry image for the Rancher agent.
 
@@ -85,9 +90,9 @@ $ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock <
 
 Reminder, in this setup, the web browser accessing the UI will need access only the private network.
 
-#### Configuring Docker to use a HTTP Proxy
+#### Configuring Docker to use an HTTP Proxy
 
-In order to set up a HTTP proxy, the Docker daemon will need to be modified to point to the proxy for Rancher server and Rancher hosts. Before launching Rancher server or Rancher agents, edit the `/etc/default/docker` file to point to your proxy and restart Docker.
+In order to set up an HTTP proxy, the Docker daemon will need to be modified to point to the proxy for Rancher server and Rancher hosts. Before launching Rancher server or Rancher agents, edit the `/etc/default/docker` file to point to your proxy and restart Docker.
 
 ```bash
 $ sudo vi /etc/default/docker
