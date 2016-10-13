@@ -18,11 +18,9 @@ If you have launched Rancher server **without** using an [external DB]({{site.ba
 
 ### Rancher Server Tags
 
-Rancher supports two version tags for `rancher/server`.
+The `rancher/server:latest` tag will be our stable release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version.
 
-* `rancher/server:latest`: The `latest` tag will be our development builds which will have been validated through our CI automation framework, but these releases are not meant for deployment in production. All development builds will be appended with a `*-dev{n}` suffix to denote that it's a development release.
-
-* `rancher/server:stable`: The `stable` tag will be our feature release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version.
+If you are interested in trying one of our latest development builds which will have been validated through our CI automation framework, please check our [releases page](https://github.com/rancher/rancher/releases) to find the latest development release tag. These releases are not meant for deployment in production. All development builds will be appended with a `*-pre{n}` suffix to denote that it's a development release. Please do not use any release with a `rc{n}` suffix. These `rc` builds are meant for the Rancher team to test out the development builds.
 
 ### Upgrading Rancher by Creating a Data Container
 
@@ -47,12 +45,13 @@ Rancher supports two version tags for `rancher/server`.
 
 4. Launch a new Rancher Server container using the database from the `rancher-data` container. Any changes in Rancher will be saved in the `rancher-data` container. If you seen an exception in the server regarding a log lock, please refer to [how to fix the log lock]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/faqs/server/#databaselock).
 
-    > **Note**: Depending on how long you've had Rancher server, certain database migrations may take longer than expected. Please do not stop upgrades in the middle of upgrading as you will hit a database migration error the next time you upgrade.
+    > **Note:** Depending on how long you've had Rancher server, certain database migrations may take longer than expected. Please do not stop upgrades in the middle of upgrading as you will hit a database migration error the next time you upgrade.
 
    ```bash
    $ docker run -d --volumes-from rancher-data --restart=unless-stopped \
      -p 8080:8080 rancher/server:latest
    ```
+    <br>
 
     > **Note:** If you set any environment variables or passed in a [ldap certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#enabling-active-directory-or-openldap-for-tls) in your original Rancher server setup, you'll need to add those environment variables or certificate in the command.
 
@@ -94,6 +93,9 @@ Users without internet will need to download the latest `rancher/agent-instance`
 
 ### Rancher Agents
 
-Each Rancher agent version is pinned to a Rancher server version. If you upgrade Rancher server and Rancher agents require an upgrade, it will automatically upgrade the agents to the latest version of Rancher agent.
+Each Rancher agent version is pinned to a Rancher server version. If you upgrade Rancher server and Rancher agents require an upgrade, we will automatically upgrade the agents to the latest version of Rancher agent.
 
-For anything using the `rancher/agent-instance` image, the running container gets upgraded even if the image of the container is not updated to the latest version. For the _Network Agent_, this occurs when there is a trigger regarding networking (e.g. adding another container, deleting a container). For the _Load Balancers_, the upgrade occurs by the next load balancer configuration update (e.g. target instance gets restarted, new target service is added, hostname routing rules change, load balacner instance restart, etc).
+For anything using the `rancher/agent-instance` image, the running container gets upgraded even if the image of the container is not updated to the latest version.
+
+* For the _Network Agent_, this occurs when there is a trigger regarding networking (e.g. adding another container, deleting a container).
+* For the _Load Balancers_, the upgrade occurs by the next load balancer configuration update (e.g. target instance gets restarted, new target service is added, hostname routing rules change, load balancer instance restart, etc).

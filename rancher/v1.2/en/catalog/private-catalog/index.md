@@ -16,10 +16,10 @@ The Rancher catalog service requires private catalogs to be structured in a spec
 
 Catalog templates are displayed in Rancher based on what cluster management type of environment that you are in.
 
-* _Cattle_ environment: Entries in the UI are from the `templates` folder
-* _[Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/)_ environment: Entries in the UI are from the `kubernetes-templates` folder
-* _[Swarm]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/swarm/)_ environment: Entries in the UI are from the `swarm-templates` folder
-* _[Mesos]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/mesos/)_ environment: Entries in the UI are from the `mesos-templates` folder
+* _Cattle_ orchestration: Entries in the UI are from the `templates` folder
+* _[Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/)_ orchestration: Entries in the UI are from the `kubernetes-templates` folder
+* _[Swarm]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/swarm/)_ orchestration: Entries in the UI are from the `swarm-templates` folder
+* _[Mesos]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/mesos/)_ orchestration: Entries in the UI are from the `mesos-templates` folder
 
 ```
 -- templates OR kubernetes-templates OR swarm-templates
@@ -82,10 +82,18 @@ An optional `README.md` is possible to be created, which provides a lengthy desc
   name: # Name of the versioned template of the Catalog Entry
   version: # Version of the versioned template of the Catalog Entry
   description: # Description of the versioned template of the Catalog Entry
-  minimum_rancher_version: # The minimum version of Rancher that supports the template
+  minimum_rancher_version: # The minimum version of Rancher that supports the template, v1.0.1 and 1.0.1 are acceptable inputs
+  maximum_rancher_version: # The minimum version of Rancher that supports the template, v1.0.1 and 1.0.1 are acceptable inputs
+  upgrade_from: # The previous versions that this template can be upgraded from
   questions: #Used to request user input for configuration options
 ```
 <br>
+
+For `upgrade_from`, there are three types of values that can be used.
+
+1. Allowing upgrading only from 1 version: `1.0.0`
+2. Being able to select higher or lower than a specific version: `>=1.0.0.`, `<=2.0.0`
+3. Being able to define a [range of versions](https://github.com/blang/semver#ranges): `>1.0.0 <2.0.0 || >3.0.0`
 
 ### Questions in the `rancher-compose.yml`
 

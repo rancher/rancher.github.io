@@ -1,5 +1,5 @@
 ---
-title: Adding Services
+title: Services
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
@@ -9,7 +9,7 @@ redirect_from:
   - /rancher/latest/en/cattle/adding-services/
 ---
 
-## Adding Services
+## Services
 ---
 
 Rancher adopts the standard Docker Compose terminology for services and defines a basic service as one or more containers created from the same Docker image.  Once a service (consumer) is linked to another service (producer) within the same [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/stacks/), a [DNS record]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/internal-dns-service/) mapped to each container instance is automatically created and discoverable by containers from the "consuming" service. Other benefits of creating a service under Rancher include:
