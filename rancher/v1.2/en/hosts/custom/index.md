@@ -11,7 +11,7 @@ redirect_from:
 ## Adding Custom Hosts
 ---
 
-If you already have Linux machines deployed and just want to add them into Rancher, click the **Custom** icon. In the UI, you will be provided a docker command to run on any host. The `docker` command launches the `rancher/agent`container on the host.
+If you already have Linux machines deployed and just want to add them into Rancher, click the **Custom** icon. In the UI, you will be provided a docker command to run on any host. The `docker` command launches the `rancher/agent` container on the host.
 
 If you are using different [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/), the command provided through the UI will be unique to whatever **environment** that you are in.
 
@@ -53,7 +53,7 @@ For any hosts that are added, ensure that any security groups or firewalls allow
 
 ### Adding Hosts to the same machine as Rancher Server
 
-If you are adding an agent host on the same machine as Rancher server, you must edit the command provided from the UI. In the UI, you can specify the IP that you want the Rancher agent container to use to comminicate to your Rancher server. It will automatically add in an environment variable to the command. 
+If you are adding an agent host on the same machine as Rancher server, you must edit the command provided from the UI. In the UI, you can specify the IP that you want the Rancher agent container to use to comminicate to your Rancher server. It will automatically add in an environment variable to the command.
 
 ```bash
 $ sudo docker run -d -e CATTLE_AGENT_IP=<IP_OF_RANCHER_SERVER> -v /var/run/docker....
