@@ -23,9 +23,8 @@ Based on the [Ubuntu ZFS docs](https://wiki.ubuntu.com/Kernel/Reference/ZFS), yo
 
 ```
 # Adding ZFS PPA and updating the package cache
-$ sudo apt update
-$ sudo apt upgrade
-$ sudo apt install zfs
+$ sudo apt-get update
+$ sudo apt-get install zfs
 ```
 
 #### Mounting ZFS filesystems on boot
