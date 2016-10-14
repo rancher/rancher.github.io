@@ -17,7 +17,7 @@ Remember, all `ros` commands need to be used with `sudo` or as a `root` user.
 To have docker secured by TLS you need to set `rancher.docker.tls` to `true`, and generate a set of server and client keys and certificates:
 
 ```
-$ sudo ros c set rancher.docker.tls true
+$ sudo ros config set rancher.docker.tls true
 $ sudo ros tls gen --server -H localhost -H <hostname1> -H <hostname2> ... -H <hostnameN>
 $ sudo system-docker restart docker
 ```
