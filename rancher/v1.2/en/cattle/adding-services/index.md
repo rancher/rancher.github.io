@@ -12,7 +12,7 @@ redirect_from:
 ## Services
 ---
 
-Rancher adopts the standard Docker Compose terminology for services and defines a basic service as one or more containers created from the same Docker image.  Once a service (consumer) is linked to another service (producer) within the same [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/stacks/), a [DNS record]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/internal-dns-service/) mapped to each container instance is automatically created and discoverable by containers from the "consuming" service. Other benefits of creating a service under Rancher include:
+Cattle adopts the standard Docker Compose terminology for services and defines a basic service as one or more containers created from the same Docker image.  Once a service (consumer) is linked to another service (producer) within the same [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/stacks/), a [DNS record]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/internal-dns-service/) mapped to each container instance is automatically created and discoverable by containers from the "consuming" service. Other benefits of creating a service under Rancher include:
 
 * Service High Availability (HA): Rancher constantly monitors the state of your containers within a service and actively manages to ensure the desired scale of the service.  This can be triggered when there are fewer (or even more) healthy containers than the desired scale of your service, a host becomes unavailable, a container fails, or is unable to meet a health check.
 
