@@ -28,7 +28,7 @@ By default, RancherOS ships with the kernel provided by the [os-kernel repositor
 
     <br>
 
-    > **Note:** `COMPILED_KERNEL_URL` should point to a Linux kernel, compiled and packaged in a specific way. You can fork [os-kernel repository](https://github.com/rancher/os-kernel) to package your own kernel.
+    > **Note:** `KERNEL_URL` settings should point to a Linux kernel, compiled and packaged in a specific way. You can fork [os-kernel repository](https://github.com/rancher/os-kernel) to package your own kernel.
 
     Your kernel should be packaged and published as a set of files of the following format:
 
@@ -45,9 +45,9 @@ By default, RancherOS ships with the kernel provided by the [os-kernel repositor
                  ...
     ```
 
-    `build.tar.gz` contains build headers to build additional modules (e.g. using DKMS): it is a subset of the kernel sources tarball. These files will be installed into `/usr/src/<os-kernel-tag>`.
+    `build.tar.gz` contains build headers to build additional modules (e.g. using DKMS): it is a subset of the kernel sources tarball. These files will be installed into `/usr/src/<os-kernel-tag>` using the `kernel-headers-system-docker` and `kernel-headers` services.
 
-    `extra.tar.gz` contains extra modules and firmware for your kernel:
+    `extra.tar.gz` contains extra modules and firmware for your kernel and should be built into a `kernel-extras` service:
 
     ```
     lib/
@@ -87,11 +87,13 @@ We build the kernel for RancherOS at the [os-kernel repository](https://github.c
    : ${DIST:=$(pwd)/dist}
    ```
 
-3. After you've replaced the `KERNEL_URL` and `KERNEL_SHA1`, run `./build.sh` in the root `os-kernel` directory. After the build is completed, a `./dist/kernel` directory will be created with the freshly built kernel tarball and headers. 
+3. After you've replaced the `KERNEL_URL` and `KERNEL_SHA1`, run `make` in the root `os-kernel` directory. After the build is completed, a `./dist/kernel` directory will be created with the freshly built kernel tarball and headers. 
    
    ```
-   $ ./build.sh
+   $ make
    $ cd dist/kernel
    $ ls
-   headers    <name_of_kernel>.tar.gz
+   build.tar.gz                     extra.tar.gz    <name_of_kernel>.tar.gz
    ```
+
+The `build.tar.gz` and `extra.tar.gz` files are used to build the `rancher/os-extras` and `rancher/os-headers` images for your RancherOS release - see https://github.com/rancher/os-images and https://github.com/rancher/os-services for how to build the images and make them available.
