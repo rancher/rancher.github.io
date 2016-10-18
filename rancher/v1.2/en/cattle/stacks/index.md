@@ -11,6 +11,8 @@ redirect_from:
 ## Stacks
 ---
 
+A stack is a group of services. Stacks can be used to group together services that together implement an application. 
+
 ### Adding Stacks
 
 In the **Stacks** page, click **Add Stack**. You will need to provide a **Name** and click **Create**.
