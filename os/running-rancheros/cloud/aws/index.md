@@ -53,7 +53,8 @@ Let’s walk through how to import and create a RancherOS on EC2 machine using t
 ## Logging into RancherOS
 ----
 
-From a command line, log into the EC2 Instance.
+From a command line, log into the EC2 Instance. If you added ssh keys using a cloud-config,
+both those keys, and the one you selected in the AWS UI will be installed.
 
 ```
 $ ssh -i /Directory/of/MySSHKeyName.pem rancher@<ip-of-ec2-instance>
