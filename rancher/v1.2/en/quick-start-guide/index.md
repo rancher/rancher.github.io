@@ -17,7 +17,7 @@ In this guide, we will create a simple Rancher install, which is a single host i
 
 Provision a Linux host with 64-bit Ubuntu 16.04, which must have a kernel of 3.10+. You can use your laptop, a virtual machine, or a physical server. Please make sure the Linux host has at least **1GB** memory. Install [Docker](https://www.docker.com/) onto the host.
 
-To install Docker on the server, follow the instructions from [Docker](https://docs.docker.com/installation/ubuntulinux/).
+To install Docker on the server, follow the instructions from [Docker](https://docs.docker.com/engine/installation/linux/ubuntulinux/).
 
 > **Note:** Currently, Docker for Windows and Docker for Mac are not supported.
 
