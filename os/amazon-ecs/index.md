@@ -72,5 +72,6 @@ eu-central-1 | HVM - ECS Enabled |  [ami-632ed70c](https://console.aws.amazon.co
 eu-west-1 | HVM - ECS Enabled |  [ami-b3f3bcc0](https://console.aws.amazon.com/ec2/home?region=eu-west-1#launchInstanceWizard:ami=ami-b3f3bcc0)
 sa-east-1 | HVM - ECS Enabled |  [ami-f8158894](https://console.aws.amazon.com/ec2/home?region=sa-east-1#launchInstanceWizard:ami=ami-f8158894)
 us-east-1 | HVM - ECS Enabled |  [ami-e3bfeff4](https://console.aws.amazon.com/ec2/home?region=us-east-1#launchInstanceWizard:ami=ami-e3bfeff4)
+us-east-2 | HVM - ECS Enabled |  [ami-883a60ed](https://console.aws.amazon.com/ec2/home?region=us-east-1#launchInstanceWizard:ami=ami-883a60ed)
 us-west-1 | HVM - ECS Enabled |  [ami-9cf4bcfc](https://console.aws.amazon.com/ec2/home?region=us-west-1#launchInstanceWizard:ami=ami-9cf4bcfc)
 us-west-2 | HVM - ECS Enabled |  [ami-4906a329](https://console.aws.amazon.com/ec2/home?region=us-west-2#launchInstanceWizard:ami=ami-4906a329)
