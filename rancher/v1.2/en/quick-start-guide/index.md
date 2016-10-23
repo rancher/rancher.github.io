@@ -139,11 +139,11 @@ services:
     - mywordpress:mywordpress
     stdin_open: true
   database:
+    tty: true
+    image: mysql
+    stdin_open: true
     environment:
       MYSQL_ROOT_PASSWORD: pass1
-      tty: true
-      image: mysql
-      stdin_open: true
 ```
 
 #### Example rancher-compose.yml
