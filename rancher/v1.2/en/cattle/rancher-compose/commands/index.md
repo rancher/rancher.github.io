@@ -166,7 +166,6 @@ If you want the start process to exit after completion, you'll need to add in th
 
 Name | Description
 ---|----
-`--lines "100"` |	number of lines to tail
 `--follow` | Follow log output
 
 #### Restart Command
