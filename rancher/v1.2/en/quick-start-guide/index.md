@@ -122,28 +122,26 @@ In the previous section, we created a Wordpress application with a load balancer
 #### Example docker-compose.yml
 
 ```yaml
-version: '2'
-services:
-  mywordpress:
-    tty: true
-    image: wordpress
-    links:
-    - database:mysql
-    stdin_open: true
-  wordpresslb:
-    ports:
-    - 80:80
-    tty: true
-    image: rancher/load-balancer-service
-    links:
-    - mywordpress:mywordpress
-    stdin_open: true
-  database:
-    tty: true
-    image: mysql
-    stdin_open: true
-    environment:
-      MYSQL_ROOT_PASSWORD: pass1
+mywordpress:
+  tty: true
+  image: wordpress
+  links:
+  - database:mysql
+  stdin_open: true
+wordpresslb:
+  ports:
+  - 80:80
+  tty: true
+  image: rancher/load-balancer-service
+  links:
+  - mywordpress:mywordpress
+  stdin_open: true
+database:
+  tty: true
+  image: mysql
+  stdin_open: true
+  environment:
+    MYSQL_ROOT_PASSWORD: pass1
 ```
 
 #### Example rancher-compose.yml
