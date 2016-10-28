@@ -55,22 +55,26 @@ To get started, you can create a simple `docker-compose.yml` file and optionally
 ##### Example `docker-compose.yml`
 
 ```yaml
-web:
-  image: nginx
-db:
-  image: mysql
-  environment:
-    MYSQL_ROOT_PASSWORD: test    
+version: '2'
+services:
+  web:
+    image: nginx
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: test    
 ```
 
 ##### Example `rancher-compose.yml`
 
 ```yaml
 # Reference the service that you want to extend
-web:
-  scale: 2
-db:
-  scale: 1
+version: '2'
+services:
+  web:
+    scale: 2
+  db:
+    scale: 1
 ```
 
 After your files are created, you can launch the services into Rancher server.
@@ -107,12 +111,14 @@ MYSQL_ROOT_PASSWORD=test
 ##### Example `docker-compose.yml`
 
 ```yaml
-db:
-image: mysql
-environment:
-# Just like Docker Compose, if there is only a key, Rancher Compose will resolve to
-# the values on the machine or the file passed in using --env-file
-MYSQL_ROOT_PASSWORD:
+version: '2'
+services:
+  db:
+    image: mysql
+    environment:
+    # Just like Docker Compose, if there is only a key, Rancher Compose will resolve to
+    # the values on the machine or the file passed in using --env-file
+      MYSQL_ROOT_PASSWORD:
 ```
 
 You can launch your service and pass in the `secrets` file.

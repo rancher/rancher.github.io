@@ -122,45 +122,51 @@ In the previous section, we created a Wordpress application with a load balancer
 #### Example docker-compose.yml
 
 ```yaml
-mywordpress:
-  tty: true
-  image: wordpress
-  links:
-  - database:mysql
-  stdin_open: true
-wordpresslb:
-  ports:
-  - 80:80
-  tty: true
-  image: rancher/load-balancer-service
-  links:
-  - mywordpress:mywordpress
-  stdin_open: true
-database:
-  tty: true
-  image: mysql
-  stdin_open: true
-  environment:
-    MYSQL_ROOT_PASSWORD: pass1
+version: '2'
+services:
+  mywordpress:
+    tty: true
+    image: wordpress
+    links:
+    - database:mysql
+    stdin_open: true
+  wordpresslb:
+    ports:
+    - 80
+    tty: true
+    image: rancher/lb-service-haproxy:latest
+    stdin_open: true
+  database:
+    tty: true
+    image: mysql
+    stdin_open: true
+    environment:
+      MYSQL_ROOT_PASSWORD: pass1
 ```
 
 #### Example rancher-compose.yml
 
 ```yaml
-mywordpress:
-  scale: 2
-wordpresslb:
-  scale: 1
-  load_balancer_config:
-    haproxy_config: {}
-  health_check:
-    port: 42
-    interval: 2000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-database:
-  scale: 1
+version: '2'
+services:
+  mywordpress:
+    scale: 2
+  wordpresslb:
+    scale: 1
+    lb_config:
+      port_rules:
+        - source_port: 80
+          target_port: 80
+          service: mywordpress
+          protocol: http
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  database:
+    scale: 1
 ```
 
 Download the Rancher Compose binary from the Rancher UI by clicking on `Download CLI`, which is located on the right side of the footer. We provide the ability to download binaries for Windows, Mac, and Linux.

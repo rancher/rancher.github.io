@@ -52,58 +52,60 @@ Using [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/
 In our example, we show the health check configuration for the three different strategies if a container is found unhealthy.
 
 ```yaml
-service1:
-  scale: 1
-  health_check:
-    # Which port to perform the check against
-    port: 80
-    # For TCP, request_line needs to be '' or not shown
-    # TCP Example:
-    # request_line: ''
-    request_line: GET /healthcheck HTTP/1.0
-    # Interval is measured in milliseconds
-    interval: 2000
-    initializing_timeout: 60000
-    unhealthy_threshold: 3
-    # Strategy for what to do when unhealthy
-    # In this service, no action will occur when a container is found unhealthy
-    strategy: none
-    healthy_threshold: 2
-    # Response timeout is measured in milliseconds
-    response_timeout: 2000
-service2:
-  scale: 1
-  health_check:
-    # Which port to perform the check against
-    port: 80
-    # Interval is measured in milliseconds
-    interval: 2000
-    initializing_timeout: 60000
-    unhealthy_threshold: 3
-    # Strategy for what to do when unhealthy
-    # In this service, Rancher will recreate any unhealthy containers
-    strategy: recreate
-    healthy_threshold: 2
-    # Response timeout is measured in milliseconds
-    response_timeout: 2000
-service3:
-  scale: 1
-  health_check:
-    # Which port to perform the check against
-    port: 80
-    # Interval is measured in milliseconds
-    interval: 2000
-    initializing_timeout: 60000
-    unhealthy_threshold: 3
-    # Strategy for what to do when unhealthy
-    # In this service, Rancher will recreate any healthy containers only if there is at least 1 container
-    # that is healthy
-    strategy: recreateOnQuorum
-    recreate_on_quorum_strategy_config:
-      quorum: 1
-    healthy_threshold: 2
-    # Response timeout is measured in milliseconds
-    response_timeout: 2000
+version: '2'
+services:
+  service1:
+    scale: 1
+    health_check:
+      # Which port to perform the check against
+      port: 80
+      # For TCP, request_line needs to be '' or not shown
+      # TCP Example:
+      # request_line: ''
+      request_line: GET /healthcheck HTTP/1.0
+      # Interval is measured in milliseconds
+      interval: 2000
+      initializing_timeout: 60000
+      unhealthy_threshold: 3
+      # Strategy for what to do when unhealthy
+      # In this service, no action will occur when a container is found unhealthy
+      strategy: none
+      healthy_threshold: 2
+      # Response timeout is measured in milliseconds
+      response_timeout: 2000
+  service2:
+    scale: 1
+    health_check:
+      # Which port to perform the check against
+      port: 80
+      # Interval is measured in milliseconds
+      interval: 2000
+      initializing_timeout: 60000
+      unhealthy_threshold: 3
+      # Strategy for what to do when unhealthy
+      # In this service, Rancher will recreate any unhealthy containers
+      strategy: recreate
+      healthy_threshold: 2
+      # Response timeout is measured in milliseconds
+      response_timeout: 2000
+  service3:
+    scale: 1
+    health_check:
+      # Which port to perform the check against
+      port: 80
+      # Interval is measured in milliseconds
+      interval: 2000
+      initializing_timeout: 60000
+      unhealthy_threshold: 3
+      # Strategy for what to do when unhealthy
+      # In this service, Rancher will recreate any healthy containers only if there   is at least 1 container
+      # that is healthy
+      strategy: recreateOnQuorum
+      recreate_on_quorum_strategy_config:
+        quorum: 1
+      healthy_threshold: 2
+      # Response timeout is measured in milliseconds
+      response_timeout: 2000
 ```
 
 

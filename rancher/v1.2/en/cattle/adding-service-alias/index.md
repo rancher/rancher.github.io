@@ -35,15 +35,17 @@ A service alias creates a pointer to service(s). In the example below, `web[.sta
 #### Example `docker-compose.yml`
 
 ```yaml
-web:
-  image: rancher/dns-service
-  links:
-  - web1
-  - web2
+version: '2'
+services:
+  web:
+    image: rancher/dns-service
+    links:
+    - web1
+    - web2
 
-web1:
-  image: nginx
+  web1:
+    image: nginx
 
-web2:
-  image: nginx
+  web2:
+    image: nginx
 ```

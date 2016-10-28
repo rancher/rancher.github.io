@@ -45,13 +45,15 @@ After your storage service has been launched, a storage pool has been created an
 After the storage service has been launched, you can start using the storage service as a `volume_driver` in the `docker-compose.yml`. The `volume_driver` would be the name of the storage pool.
 
 ```yaml
-test:
-  tty: true
-  image: ubuntu:14.04.3
-  stdin_open: true
-  volumes:
-  - volume_name_on_host:/path/in/container
-  volume_driver: <name_of_storage_pool>
+version: '2'
+services:
+  test:
+    tty: true
+    image: ubuntu:14.04.3
+    stdin_open: true
+    volumes:
+    - volume_name_on_host:/path/in/container
+    volume_driver: <name_of_storage_pool>
 ```
 
 #### Adding Volumes to Storage Pools

@@ -95,9 +95,11 @@ $ rancher-compose upgrade service1 service2 --interval "30000"
 By default, the in-service upgrade stops the existing containers, and then launch the new containers. To start the new containers before stopping the old containers, you must provide additional content in the `rancher-compose.yml`.
 
 ```yaml
-myservice:
-  upgrade_strategy:
-    start_first: true
+version: '2'
+services:
+  myservice:
+    upgrade_strategy:
+      start_first: true
 ```
 
 <br>
@@ -140,13 +142,15 @@ Inside the `docker-compose.yml`, both names of the services will need to be incl
 #### Example `docker-compose.yml`
 
 ```yaml
-service1:
-# Nothing needs to actually be placed in the file as the service is already running
-service2:
-  image: wordpress
-  links:
-  # Define any outbound links to other services in the stack
-  - db:mysql
+version: '2'
+services:
+  service1:
+  # Nothing needs to actually be placed in the file as the service is already running
+  service2:
+    image: wordpress
+    links:
+    # Define any outbound links to other services in the stack
+    - db:mysql
 ```
 
 By default, any load balancers or services linked to `service1` (i.e. inbound links) will automatically be updated with a new link to `service2`. If you do not wish for these links to be created, you can [set an option to not have them created]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/upgrading/#updating-inbound-links).
