@@ -110,12 +110,14 @@ For services in the same stack, any service is DNS resolvable by it's native `se
 ##### Example  `docker-compose.yml`
 
 ```yaml
-wordpress:
-  image: wordpress
-  links:
-  - db:mysql
-db:
-  image: mysql
+version: '2'
+services:
+  wordpress:
+    image: wordpress
+    links:
+    - db:mysql
+  db:
+    image: mysql
 ```
 In this example, the `db` would be resolvable as `mysql`. Without the link, `db` would be resolvable as `db`.
 
@@ -125,10 +127,12 @@ For services in a different stack, the service is DNS already resolvable by `ser
 ##### Example  `docker-compose.yml`
 
 ```yaml
-wordpress:
-  image: wordpress
-  external_links:
-  - alldbs/db1:mysql
+version: '2'
+services:
+  wordpress:
+    image: wordpress
+    external_links:
+    - alldbs/db1:mysql
 ```
 <br>
 
@@ -145,23 +149,26 @@ We'll set up the same example that we used above in the UI example. To get start
 #### Example `docker-compose.yml`
 
 ```yaml
-mongodb:
-  image: mongo
-letschat:
-  image: sdelements/lets-chat
-  links:
-  - mongodb:mongo
+version: '2'
+services:
+  mongodb:
+    image: mongo
+  letschat:
+    image: sdelements/lets-chat
+    links:
+    - mongodb:mongo
 ```
 
 #### Example `rancher-compose.yml`
 
 ```yaml
 # Reference the service that you want to extend
-mongodb:
-  scale: 1
-letschat:
-  scale: 2
-
+version: '2'
+services:
+  mongodb:
+    scale: 1
+  letschat:
+    scale: 2
 ```
 
 After your files are created, you can launch the services into Rancher server.
@@ -209,30 +216,34 @@ When using [load balancers]({{site.baseurl}}/rancher/{{page.version}}/{{page.lan
 Example `docker-compose.yml`
 
 ```yaml
-test:
-  tty: true
-  image: ubuntu:14.04.2
-  stdin_open: true
-  volumes_from:
-  - test-data
-  labels:
-    io.rancher.sidekicks: test-data
-test-data:
-  tty: true
-  command:
-  - cat
-  image: ubuntu:14.04.2
-  stdin_open: true
+version: '2'
+services:
+  test:
+    tty: true
+    image: ubuntu:14.04.2
+    stdin_open: true
+    volumes_from:
+    - test-data
+    labels:
+      io.rancher.sidekicks: test-data
+  test-data:
+    tty: true
+    command:
+    - cat
+    image: ubuntu:14.04.2
+    stdin_open: true
 ```
 
 <br>
 Example `rancher-compose.yml`
 
 ```yaml
-test:
-  scale: 2
-test-data:
-  scale: 2
+version: '2'
+services:
+  test:
+    scale: 2
+  test-data:
+    scale: 2
 ```
 
 ##### Example of Sidekicks in Rancher Compose: Multiple services using the same service for `volumes_from`
@@ -242,24 +253,26 @@ If you have multiple services that will be using the same container to do a `vol
 Example `docker-compose.yml`
 
 ```yaml
-test-data:
-  tty: true
-  command:
-  - cat
-  image: ubuntu:14.04.2
-  stdin_open: true
-test1:
-  tty: true
-  image: ubuntu:14.04.2
-  stdin_open: true
-  labels:
-    io.rancher.sidekicks: test-data, test2
-  volumes_from:
-  - test-data
-test2:
-  tty: true
-  image: ubuntu:14.04.2
-  stdin_open: true
-  volumes_from:
-  - test-data
+version: '2'
+services:
+  test-data:
+    tty: true
+    command:
+    - cat
+    image: ubuntu:14.04.2
+    stdin_open: true
+  test1:
+    tty: true
+    image: ubuntu:14.04.2
+    stdin_open: true
+    labels:
+      io.rancher.sidekicks: test-data, test2
+    volumes_from:
+    - test-data
+  test2:
+    tty: true
+    image: ubuntu:14.04.2
+    stdin_open: true
+    volumes_from:
+    - test-data
 ```

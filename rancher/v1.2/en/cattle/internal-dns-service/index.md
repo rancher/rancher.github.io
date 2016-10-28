@@ -22,14 +22,16 @@ In the UI, when [adding a service]({{site.baseurl}}/rancher/{{page.version}}/{{p
 If you're using Rancher Compose to [add the service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/services/#adding-services-with-rancher-compose), the `docker-compose.yml` would use either the `links` or `external_links` directive.
 
 ```yaml
-service1:
-  image: wordpress
-  # If the other service is in the same stack
-  links:
+version: '2'
+services:
+  service1:
+    image: wordpress
+    # If the other service is in the same stack
+    links:
     # <service_name>:<service_alias>
     - service2:mysql
-  # If the other service is in a different stack
-  external_links:
+    # If the other service is in a different stack
+    external_links:
     # <stackname>/<service_name>:<service_alias>
     - Default/service3:mysql
 ```

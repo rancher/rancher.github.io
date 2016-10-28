@@ -192,16 +192,20 @@ To start adding services into Rancher, you can create a simple `docker-compose.y
 Sample `docker-compose.yml`
 
 ```yaml
-service1:
-  image: nginx
+version: '2'
+services:
+  service1:
+    image: nginx
 ```
 
 Sample `rancher-compose.yml`
 
 ```yaml
-# Reference the service that you want to extend
-service1:
-  scale: 2
+version: '2'
+services:
+  # Reference the service that you want to extend
+  service1:
+    scale: 2
 ```
 
 After your files are created, you can launch the services into Rancher server.
