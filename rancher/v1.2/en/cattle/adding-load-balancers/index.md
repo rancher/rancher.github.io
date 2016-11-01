@@ -11,7 +11,9 @@ redirect_from:
 ## Load Balancers
 ---
 
-Rancher implements a managed load balancer using HAProxy that can be manually scaled to multiple hosts.  A load balancer can be used to distribute network and application traffic to individual containers by adding rules to target services. Any target service will have all its underlying containers automatically registered as load balancer targets by Rancher. With Rancher, it's easy to add a load balancer to your stack. We'll review the options for our load balancer as if you were using the UI and show examples using the [UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/#adding-a-load-balancer-in-the-ui) and [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/#adding-a-load-balancer-with-rancher-compose).
+Rancher provides the ability to use different load balancer drivers within Rancher. A load balancer can be used to distribute network and application traffic to individual containers by adding rules to target services. Any target service will have all its underlying containers automatically registered as load balancer targets by Rancher. With Rancher, it's easy to add a load balancer to your stack.
+
+By default, Rancher has provided a managed load balancer using HAProxy that can be manually scaled to multiple hosts. The rest of our examples in this document will cover the different options for load balancers, but specifically referencing our HAProxy load balancer service. We'll review the options for our load balancer for the [UI](#load-balancer-options-in-the-UI) and [Rancher Compose](#load-balancer-options-in-rancher-compose) and show examples using the [UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/#adding-a-load-balancer-in-the-ui) and [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/#adding-a-load-balancer-with-rancher-compose).
 
 ### Adding a Load Balancer in the UI
 
@@ -208,7 +210,6 @@ services:
       - source_port: 80
         target_port: 80
         service: web1
-        protocol: http
     health_check:
       port: 42
       interval: 2000
@@ -242,16 +243,16 @@ The target port is the private port on the service. This port correlates to the 
 
 ##### Protocol
 
-There are multiple protocol types that are supported in the Rancher HAProxy load balancer.
+There are multiple protocol types that are supported in the Rancher load balancer drivers.
 
 * `http` - By default, if no protocol is set, the load balancer uses `http`.
 * `tcp`
 * `https`
 * `tls`
 * `sni`
-* `udp`
+* `udp` - This is not supported for Rancher's HAProxy load balancer.
 
-For `https` and `tls`, the [certificates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/) must be added into Rancher. After they are added into Rancher, you select them in the load balancer configuration.
+For any protocol requiring SSL termination, the [certificates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/) must be added into Rancher before being used in Rancher Compose. After they are added into Rancher, you use the [certificates in the load balancer configuration](#certificates).
 
 ##### Service
 
