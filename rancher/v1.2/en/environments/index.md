@@ -32,7 +32,7 @@ There are two ways to add members to an environment. Provide the username and cl
 
 For each member (i.e. individual, team, or organization), you can define the role to be either an [owner](#owners), [member](#members), [restricted user](#restricted) or [read only user](#read-only). By default, they are added to the list as a member. You can change their role in the dropdown next to their name. As an owner, you can always change the list of members and their roles at any time, but only owners have the ability to change the membership and membership roles of the environment.
 
-> **Note:** Only owners will be able to see infrastructure services of an environment.
+> **Note:** Only owners and admins will be able to see infrastructure services of an environment.
 
 Click on **Create** and the environment will immediately be available to anyone on the member list. After the environment is created and hosts added, the infrastructure services enabled for the environment will begin to deploy.
 
