@@ -6,7 +6,7 @@ lang: en
 apiVersion: v2-beta
 ---
 
-## ipAddressAssociateInput
+## lbTargetConfig
 
 
 
@@ -16,7 +16,7 @@ apiVersion: v2-beta
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-ipAddressId | [ipAddress]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/ipAddress/) | Optional | - | - | 
+portRules | array[[targetPortRule]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/targetPortRule/)] | Optional | Yes | - | 
 
 
 

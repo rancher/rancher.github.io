@@ -32,7 +32,7 @@ kind | string  |
 path | string  | 
 permissions | string  | 
 removed | date  | The date of when the mount was removed
-state | enum  | The current state of the mount. The options are [activating, active, deactivating, inactive, removed, removing, requested].
+state | enum  | The current state of the mount. The options are activating, active, deactivating, inactive, removed, removing, requested.
 transitioning | enum  | Whether or not the mount is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state
 transitioningProgress | int  | The percentage remaining in the transitioning process of the mount

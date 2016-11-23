@@ -39,10 +39,13 @@ currentScale | int  |
 fqdn | string  | 
 healthState | string  | 
 id | int  | The unique identifier for the composeService
+instanceIds | array[[instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)]  | 
 kind | string  | 
+linkedServices | map[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
 publicEndpoints | array[[publicEndpoint]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/publicEndpoint/)]  | 
 removed | date  | The date of when the composeService was removed
-state | enum  | The current state of the composeService. The options are [activating, active, canceled-upgrade, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+state | enum  | The current state of the composeService. The options are activating, active, canceled-upgrade, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading.
+system | boolean  | 
 transitioning | enum  | Whether or not the composeService is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state
 transitioningProgress | int  | The percentage remaining in the transitioning process of the composeService

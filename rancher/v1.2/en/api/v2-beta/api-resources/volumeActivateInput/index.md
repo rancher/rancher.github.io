@@ -6,7 +6,7 @@ lang: en
 apiVersion: v2-beta
 ---
 
-## haproxyConfig
+## volumeActivateInput
 
 
 
@@ -16,8 +16,7 @@ apiVersion: v2-beta
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-defaults | string | Optional | Yes | - | 
-global | string | Optional | Yes | - | 
+hostId | reference | Optional | - | - | The unique identifier for the associated host
 
 
 

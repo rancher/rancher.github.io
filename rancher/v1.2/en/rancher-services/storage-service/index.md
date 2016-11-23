@@ -123,4 +123,4 @@ volumes:
     external: true
 ```
 
-If a volume by the name of `bar` is not found at the environment level when launching this stack, then an error will be thrown. Environment scoped volumes cam only be removed from the UI.
+If a volume by the name of `bar` is not found at the environment level when launching this stack, then an error will be thrown. Environment scoped volumes can only be removed from the UI.
