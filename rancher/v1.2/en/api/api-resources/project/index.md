@@ -59,7 +59,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v1/projects/${ID}?action=activate'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/account/">account</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/project/">project</a> resource</span>
 </div></div>
 
 <div class="action" id="deactivate">
@@ -79,7 +79,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v1/projects/${ID}?action=deactivate'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/account/">account</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/project/">project</a> resource</span>
 </div></div>
 
 <div class="action" id="setmembers">
