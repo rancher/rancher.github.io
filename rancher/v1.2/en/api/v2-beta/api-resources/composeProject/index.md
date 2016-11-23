@@ -20,6 +20,7 @@ binding | [binding]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/
 description | string | Optional | Yes | - | 
 environment | map[string] | Optional | - | - | 
 externalId | string | Optional | Yes | - | 
+group | string | Optional | Yes | - | 
 name | string | Yes | - | - | 
 previousEnvironment | map[string] | Optional | Yes | - | 
 previousExternalId | string | Optional | Yes | - | 
@@ -36,7 +37,9 @@ healthState | string  |
 id | int  | The unique identifier for the composeProject
 kind | string  | 
 removed | date  | The date of when the composeProject was removed
-state | enum  | The current state of the composeProject. The options are [activating, active, canceled-upgrade, canceling-upgrade, error, erroring, finishing-upgrade, removed, removing, requested, rolling-back, updating-active, upgraded, upgrading].
+serviceIds | array[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
+state | enum  | The current state of the composeProject. The options are activating, active, canceled-upgrade, canceling-upgrade, error, erroring, finishing-upgrade, removed, removing, requested, rolling-back, updating-active, upgraded, upgrading.
+system | boolean  | 
 transitioning | enum  | Whether or not the composeProject is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state
 transitioningProgress | int  | The percentage remaining in the transitioning process of the composeProject

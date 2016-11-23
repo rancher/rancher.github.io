@@ -11,7 +11,6 @@ redirect_from:
 ## Upgrading Rancher Server (Single Node)
 ---
 
-
 If you have launched Rancher server **without** using an [external DB]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#external-db), the Rancher server database is inside your Rancher server container. We will use the running Rancher server container to create a data container. This data container will be used to start new Rancher server containers by using a `--volumes-from`. Alternatively, you can copy the database out of the container to a directory on the host and bind mount the database.
 
 > **Note:** If you used an external DB, you can stop the original Rancher server container and launch a new version of Rancher server using the same [external DB instructions]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#external-db). After the new server is up and running, you can remove the old Rancher server container.

@@ -11,7 +11,7 @@ redirect_from:
 ## DNS Service
 ---
 
-Rancher implements a distributed DNS service by using its own light-weight DNS server coupled with a highly available control plane. Each healthy container is automatically added to the DNS service when linked to another service or added to a Service Alias. When queried by the service name, the DNS service returns a randomized list of IP addresses of the healthy containers implementing that service.
+Rancher provides an infrastructure service for a distributed DNS service by using its own lightweight DNS server coupled with a highly available control plane. Each healthy container is automatically added to the DNS service when linked to another service or added to a Service Alias. When queried by the service name, the DNS service returns a randomized list of IP addresses of the healthy containers implementing that service.
 
 * By default, all services within the same stack are added to the DNS service without requiring explicit links.
 * You can resolve containers within the same stacks by the service names.

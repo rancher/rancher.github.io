@@ -8,7 +8,7 @@ apiVersion: v2-beta
 
 ## AuditLog
 
-
+The audit log provides a list of API requests. It logs the environment as well as the API call. After access control is enabled, it also logs the user.
 
 ### Resource Fields
 
@@ -17,7 +17,7 @@ apiVersion: v2-beta
 
 Field | Type   | Notes
 ---|---|---
-authType | enum  | 
+authType | enum  | The options are AdminAuth, BasicAuth, RegistrationToken, TokenAccount, TokenAuth.
 authenticatedAsAccountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | 
 authenticatedAsIdentityId | [identity]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/identity/)  | 
 clientIp | string  | 

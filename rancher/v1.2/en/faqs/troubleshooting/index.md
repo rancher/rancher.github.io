@@ -39,13 +39,19 @@ Since the agent is potentially open to the public internet, requests to the agen
 
 If you run docker logs -f rancher-agent and the logs show messages about an expired token, then please check that the date/time of the Rancher Server host and Rancher Agent host are in sync.
 
+#### Where can I see logs of my service?
+
+In the service details, we provide service logs in a tab called **Log**. In the **Log** tab, it lists out all events related to the service including a timestamp and description of the event.
+
 ### Cross Host Communication
 
 If containers on different hosts cannot ping each other, there are some common scenarios that could be the issue.
 
-#### How to test if cross host communication is working?
+#### How to check if cross host communication is working?
 
-Exec into one of the network agents and ping the internal IP (i.e. 10.42.x.x) of another network agent. Depending on your Rancher version, your network agents may be hidden on the hosts page. To view them, select the "Show System" checkbox in the upper right corner.
+In the **Stacks** -> **Infrastructure Stacks**, check the status of the `healthcheck` stack. If the stack is active, then cross host communication is working.
+
+To manually test, you can exec into any container and ping the internal IP (i.e. 10.42.x.x) of another container. The containers from infrastructure stacks may be hidden on the hosts page. To view them, select the "Show System" checkbox in the upper right corner.
 
 #### Are the IPs of the hosts correct in the UI?
 
@@ -110,37 +116,23 @@ DEFAULT_FORWARD_POLICY="ACCEPT"
 
 #### The subnet used by Rancher is already used in my network and prohibiting the managed network. How do I change the subnet?
 
-In order for Rancher to work with a new subnet, you will need to update a setting in the API and create new environments. None of the existing environments in Rancher server (including the Default one) will use the new subnet after changing the setting.
+To change the subnet used for networking of containers, you will need to ensure the networking infrastructure service that you want to use has the correct [subnet]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking/#subnets) in the `default_network` in the `rancher-compose.yml` file.
 
-To change the setting in your API, you need to go to the following API page:
+To change Rancher's IPsec network driver, you can export the yaml files and update the `subnet` address in the `rancher-compose.yml` file. After the files are updated, you can launch the infrastructure service independently.
 
-```
-http://<rancher_server_ip>:8080/v1/settings/docker.network.subnet.cidr
-```
+> **Note:** The previous method of updating the subnet through the API will no longer be applicable as Rancher has moved to infrastructure services.
 
-Click on the **Edit** under the **Operations** section. Update the value from `10.42.0.0/16` to a subnet that works for you.
-
-Click on **Show Request** and finally **Send Request**. After the request is sent, you can click on **Reload** and see that the value has been updated in the API.
-
-After the value is updated, you'll need to create new environments to have containers start using the new subnet for the managed network.
-
-> **Note:** Any existing environment prior to the API change will not be updated to use the new subnet.
-
-### Network Agents
+### DNS
 
 <a id="dns-config"></a>
 
 ### How can I see if my DNS is set up correctly?
 
-If you want to see the configuration of the Rancher DNS setup, you will need to exec into any network agent in your setup. You can use the UI and select **Execute Shell** on the container.
+If you want to see the configuration of the Rancher DNS setup, go to the **Stacks** -> **Infrastructure Stacks**. Find the `dns` stack and exec into any of the containers. You can use the UI and select **Execute Shell** on the container.
 
 ```bash
-$ cat /var/lib/cattle/etc/cattle/dns/answers.json
+$ cat /etc/rancher-dns/answers.json
 ```
-
-#### My network agent keeps restarting. Why?
-
-If your host has IPV6, it will cause the network agent to keep restarting. Currently, Rancher doesn't support hosts with IPV6.
 
 ### Networking
 
@@ -171,13 +163,21 @@ Load balancers automatically have [health checks]({{site.baseurl}}/rancher/{{pag
 
 #### How can I see the configuration of my Load Balancer?
 
-If you want to see the configuration of the load balancer, you will need to exec into the specific _LB Agent_ container and look for the configuration file. You can use the UI and select **Execute Shell** on the container.
+If you want to see the configuration of the load balancer, you will need to exec into the specific load balancer container and look for the configuration file. You can use the UI and select **Execute Shell** on the container.
 
 ```bash
 $ cat /etc/haproxy/haproxy.cfg
 ```
 
 This file will provide all the configuration details of the load balancer.
+
+#### Where can I find the logs of HAProxy?
+
+The logs of HAProxy can be found inside the load balancer container. `docker logs` of the load balancer container will only provide details of the service related to load balancer, but not the actual HAProxy logging.
+
+```
+$ cat /var/log/haproxy
+```
 
 ### Authentication
 

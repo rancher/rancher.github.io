@@ -8,7 +8,7 @@ apiVersion: v2-beta
 
 ## LoadBalancerService
 
-Rancher implements a managed load balancer using HAProxy that can be manually scaled to multiple hosts.  A load balancer can be used to distribute network and application traffic to individual containers by directly adding them or "linked" to a basic service.  A basic service that is "linked" will have all its underlying containers automatically registered as load balancer targets by Rancher.
+Rancher implements a managed load balancer using HAProxy that can be manually scaled to multiple hosts. A load balancer can be used to distribute network and application traffic to individual containers by directly adding them or "linked" to a basic service. A basic service that is "linked" will have all its underlying containers automatically registered as load balancer targets by Rancher.
 
 ### Resource Fields
 
@@ -17,12 +17,10 @@ Rancher implements a managed load balancer using HAProxy that can be manually sc
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 assignServiceIpAddress | boolean | Optional | - | - | 
-certificateIds | array[[certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/certificate/)] | Optional | Yes | - | 
-defaultCertificateId | [certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/certificate/) | Optional | Yes | - | 
 description | string | Optional | Yes | - | 
 externalId | string | Optional | - | - | 
-launchConfig | [launchConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/launchConfig/) | Optional | - | - | 
-loadBalancerConfig | [loadBalancerConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/loadBalancerConfig/) | Optional | Yes | - | 
+launchConfig | [launchConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/launchConfig/) | Yes | Yes | - | 
+lbConfig | [lbConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/lbConfig/) | Yes | Yes | - | 
 metadata | map[json] | Optional | Yes | - | 
 name | string | Yes | Yes | - | 
 retainIp | boolean | Optional | Yes | - | 
@@ -42,7 +40,10 @@ currentScale | int  |
 fqdn | string  | 
 healthState | string  | 
 id | int  | The unique identifier for the loadBalancerService
+instanceIds | array[[instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)]  | 
+linkedServices | map[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
 publicEndpoints | array[[publicEndpoint]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/publicEndpoint/)]  | 
+system | boolean  | 
 upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceUpgrade/)  | 
 
 
@@ -60,13 +61,12 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"assignServiceIpAddress": false,
-	"certificateIds": "array[reference[certificate]]",
-	"defaultCertificateId": "reference[certificate]",
 	"description": "string",
 	"externalId": "string",
 	"launchConfig": {
 		"accountId": "reference[account]",
 		"blkioDeviceOptions": "map[blkioDeviceOption]",
+		"blkioWeight": 0,
 		"build": {
 			"context": "string",
 			"dockerfile": "string",
@@ -77,12 +77,18 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		},
 		"capAdd": "array[enum]",
 		"capDrop": "array[enum]",
+		"cgroupParent": "string",
 		"command": [
 			"string1",
 			"...stringN"
 		],
 		"count": 0,
+		"cpuCount": 0,
+		"cpuPercent": 0,
+		"cpuPeriod": 0,
+		"cpuQuota": 0,
 		"cpuSet": "string",
+		"cpuSetMems": "string",
 		"cpuShares": 0,
 		"createIndex": 0,
 		"created": "date",
@@ -102,8 +108,13 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"string1",
 			"...stringN"
 		],
+		"diskQuota": 0,
 		"disks": "array[virtualMachineDisk]",
 		"dns": [
+			"string1",
+			"...stringN"
+		],
+		"dnsOpt": [
 			"string1",
 			"...stringN"
 		],
@@ -129,6 +140,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"...stringN"
 		],
 		"firstRunning": "date",
+		"groupAdd": [
+			"string1",
+			"...stringN"
+		],
 		"healthCheck": {
 			"healthyThreshold": 0,
 			"initializingTimeout": 0,
@@ -144,12 +159,27 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"strategy": "recreate",
 			"unhealthyThreshold": 0
 		},
+		"healthCmd": [
+			"string1",
+			"...stringN"
+		],
+		"healthInterval": 0,
+		"healthRetries": 0,
 		"healthState": "enum",
+		"healthTimeout": 0,
 		"hostId": "reference[host]",
 		"hostname": "string",
 		"id": 0,
 		"imageUuid": "string",
 		"instanceLinks": "map[reference[instance]]",
+		"instanceTriggeredStop": "stop",
+		"ioMaximumBandwidth": 0,
+		"ioMaximumIOps": 0,
+		"ip": "string",
+		"ip6": "string",
+		"ipcMode": "string",
+		"isolation": "string",
+		"kernelMemory": 0,
 		"kind": "container",
 		"labels": {
 			"key": "value-pairs"
@@ -165,18 +195,30 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		},
 		"memory": 0,
 		"memoryMb": 0,
+		"memoryReservation": 0,
 		"memorySwap": 0,
+		"memorySwappiness": 0,
+		"milliCpuReservation": 0,
+		"mounts": "array[mountEntry]",
 		"nativeContainer": false,
+		"netAlias": [
+			"string1",
+			"...stringN"
+		],
 		"networkContainerId": "reference[container]",
 		"networkIds": "array[reference[network]]",
 		"networkLaunchConfig": "string",
 		"networkMode": "managed",
+		"oomKillDisable": false,
+		"oomScoreAdj": 0,
 		"pidMode": "enum",
+		"pidsLimit": 0,
 		"ports": [
 			"string1",
 			"...stringN"
 		],
 		"primaryIpAddress": "string",
+		"primaryNetworkId": "reference[network]",
 		"privileged": false,
 		"publishAllPorts": false,
 		"readOnly": false,
@@ -188,33 +230,48 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"string1",
 			"...stringN"
 		],
+		"serviceIds": "array[reference[service]]",
+		"shmSize": 0,
 		"startCount": 0,
 		"startOnCreate": true,
 		"state": "enum",
 		"stdinOpen": false,
-		"systemContainer": "enum",
+		"stopSignal": "string",
+		"storageOpt": {
+			"key": "value-pairs"
+		},
+		"sysctls": {
+			"key": "value-pairs"
+		},
+		"system": false,
+		"tmpfs": {
+			"key": "value-pairs"
+		},
 		"transitioning": "enum",
 		"transitioningMessage": "string",
 		"transitioningProgress": 0,
 		"tty": false,
+		"ulimits": "array[ulimit]",
 		"user": "string",
 		"userdata": "string",
+		"usernsMode": "string",
+		"uts": "string",
 		"uuid": "string",
 		"vcpu": 1,
 		"version": "0",
 		"volumeDriver": "string",
 		"workingDir": "string"
 	},
-	"loadBalancerConfig": {
-		"haproxyConfig": {
-			"defaults": "string",
-			"global": "string"
-		},
-		"lbCookieStickinessPolicy": {
+	"lbConfig": {
+		"certificateIds": "array[reference[certificate]]",
+		"config": "string",
+		"defaultCertificateId": "reference[certificate]",
+		"portRules": "array[portRule]",
+		"stickinessPolicy": {
 			"cookie": "string",
 			"domain": "string",
 			"indirect": false,
-			"mode": "enum",
+			"mode": "insert",
 			"name": "string",
 			"nocache": false,
 			"postonly": false
@@ -253,19 +310,216 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X PUT \
 -H 'Content-Type: application/json' \
 -d '{
-	"certificateIds": "array[reference[certificate]]",
-	"defaultCertificateId": "reference[certificate]",
 	"description": "string",
-	"loadBalancerConfig": {
-		"haproxyConfig": {
-			"defaults": "string",
-			"global": "string"
+	"launchConfig": {
+		"accountId": "reference[account]",
+		"blkioDeviceOptions": "map[blkioDeviceOption]",
+		"blkioWeight": 0,
+		"build": {
+			"context": "string",
+			"dockerfile": "string",
+			"forcerm": false,
+			"nocache": false,
+			"remote": "string",
+			"rm": false
 		},
-		"lbCookieStickinessPolicy": {
+		"capAdd": "array[enum]",
+		"capDrop": "array[enum]",
+		"cgroupParent": "string",
+		"command": [
+			"string1",
+			"...stringN"
+		],
+		"count": 0,
+		"cpuCount": 0,
+		"cpuPercent": 0,
+		"cpuPeriod": 0,
+		"cpuQuota": 0,
+		"cpuSet": "string",
+		"cpuSetMems": "string",
+		"cpuShares": 0,
+		"createIndex": 0,
+		"created": "date",
+		"dataVolumeMounts": "map[reference[volume]]",
+		"dataVolumes": [
+			"string1",
+			"...stringN"
+		],
+		"dataVolumesFrom": "array[reference[container]]",
+		"dataVolumesFromLaunchConfigs": [
+			"string1",
+			"...stringN"
+		],
+		"deploymentUnitUuid": "string",
+		"description": "string",
+		"devices": [
+			"string1",
+			"...stringN"
+		],
+		"diskQuota": 0,
+		"disks": "array[virtualMachineDisk]",
+		"dns": [
+			"string1",
+			"...stringN"
+		],
+		"dnsOpt": [
+			"string1",
+			"...stringN"
+		],
+		"dnsSearch": [
+			"string1",
+			"...stringN"
+		],
+		"domainName": "string",
+		"entryPoint": [
+			"string1",
+			"...stringN"
+		],
+		"environment": {
+			"key": "value-pairs"
+		},
+		"expose": [
+			"string1",
+			"...stringN"
+		],
+		"externalId": "string",
+		"extraHosts": [
+			"string1",
+			"...stringN"
+		],
+		"firstRunning": "date",
+		"groupAdd": [
+			"string1",
+			"...stringN"
+		],
+		"healthCheck": {
+			"healthyThreshold": 0,
+			"initializingTimeout": 0,
+			"interval": 0,
+			"name": "string",
+			"port": 0,
+			"recreateOnQuorumStrategyConfig": {
+				"quorum": 0
+			},
+			"reinitializingTimeout": 0,
+			"requestLine": "string",
+			"responseTimeout": 0,
+			"strategy": "recreate",
+			"unhealthyThreshold": 0
+		},
+		"healthCmd": [
+			"string1",
+			"...stringN"
+		],
+		"healthInterval": 0,
+		"healthRetries": 0,
+		"healthState": "enum",
+		"healthTimeout": 0,
+		"hostId": "reference[host]",
+		"hostname": "string",
+		"id": 0,
+		"imageUuid": "string",
+		"instanceLinks": "map[reference[instance]]",
+		"instanceTriggeredStop": "stop",
+		"ioMaximumBandwidth": 0,
+		"ioMaximumIOps": 0,
+		"ip": "string",
+		"ip6": "string",
+		"ipcMode": "string",
+		"isolation": "string",
+		"kernelMemory": 0,
+		"kind": "container",
+		"labels": {
+			"key": "value-pairs"
+		},
+		"logConfig": {
+			"config": {
+				"key": "value-pairs"
+			},
+			"driver": "string"
+		},
+		"lxcConf": {
+			"key": "value-pairs"
+		},
+		"memory": 0,
+		"memoryMb": 0,
+		"memoryReservation": 0,
+		"memorySwap": 0,
+		"memorySwappiness": 0,
+		"milliCpuReservation": 0,
+		"mounts": "array[mountEntry]",
+		"nativeContainer": false,
+		"netAlias": [
+			"string1",
+			"...stringN"
+		],
+		"networkContainerId": "reference[container]",
+		"networkIds": "array[reference[network]]",
+		"networkLaunchConfig": "string",
+		"networkMode": "managed",
+		"oomKillDisable": false,
+		"oomScoreAdj": 0,
+		"pidMode": "enum",
+		"pidsLimit": 0,
+		"ports": [
+			"string1",
+			"...stringN"
+		],
+		"primaryIpAddress": "string",
+		"primaryNetworkId": "reference[network]",
+		"privileged": false,
+		"publishAllPorts": false,
+		"readOnly": false,
+		"registryCredentialId": "reference[registryCredential]",
+		"removed": "date",
+		"requestedHostId": "reference[host]",
+		"requestedIpAddress": "string",
+		"securityOpt": [
+			"string1",
+			"...stringN"
+		],
+		"serviceIds": "array[reference[service]]",
+		"shmSize": 0,
+		"startCount": 0,
+		"startOnCreate": true,
+		"state": "enum",
+		"stdinOpen": false,
+		"stopSignal": "string",
+		"storageOpt": {
+			"key": "value-pairs"
+		},
+		"sysctls": {
+			"key": "value-pairs"
+		},
+		"system": false,
+		"tmpfs": {
+			"key": "value-pairs"
+		},
+		"transitioning": "enum",
+		"transitioningMessage": "string",
+		"transitioningProgress": 0,
+		"tty": false,
+		"ulimits": "array[ulimit]",
+		"user": "string",
+		"userdata": "string",
+		"usernsMode": "string",
+		"uts": "string",
+		"uuid": "string",
+		"vcpu": 1,
+		"version": "0",
+		"volumeDriver": "string",
+		"workingDir": "string"
+	},
+	"lbConfig": {
+		"certificateIds": "array[reference[certificate]]",
+		"config": "string",
+		"defaultCertificateId": "reference[certificate]",
+		"portRules": "array[portRule]",
+		"stickinessPolicy": {
 			"cookie": "string",
 			"domain": "string",
 			"indirect": false,
-			"mode": "enum",
+			"mode": "insert",
 			"name": "string",
 			"nocache": false,
 			"postonly": false
@@ -319,11 +573,11 @@ addservicelink
 
 <br>
 <span class="input">
-<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/addRemoveLoadBalancerServiceLinkInput/">AddRemoveLoadBalancerServiceLinkInput</a></span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/addRemoveServiceLinkInput/">AddRemoveServiceLinkInput</a></span>
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLink | [loadBalancerServiceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/loadBalancerServiceLink/) | Yes |  | <br>
+serviceLink | [serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceLink/) | Yes |  | <br>
 
 <br>
 {% highlight json %}
@@ -332,10 +586,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"serviceLink": {
-		"ports": [
-			"string1",
-			"...stringN"
-		],
+		"name": "string",
 		"serviceId": "reference[service]",
 		"uuid": "string"
 	}
@@ -433,11 +684,11 @@ removeservicelink
 
 <br>
 <span class="input">
-<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/addRemoveLoadBalancerServiceLinkInput/">AddRemoveLoadBalancerServiceLinkInput</a></span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/addRemoveServiceLinkInput/">AddRemoveServiceLinkInput</a></span>
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLink | [loadBalancerServiceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/loadBalancerServiceLink/) | Yes |  | <br>
+serviceLink | [serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceLink/) | Yes |  | <br>
 
 <br>
 {% highlight json %}
@@ -446,10 +697,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"serviceLink": {
-		"ports": [
-			"string1",
-			"...stringN"
-		],
+		"name": "string",
 		"serviceId": "reference[service]",
 		"uuid": "string"
 	}
@@ -487,11 +735,11 @@ setservicelinks
 
 <br>
 <span class="input">
-<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/setLoadBalancerServiceLinksInput/">SetLoadBalancerServiceLinksInput</a></span>
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/setServiceLinksInput/">SetServiceLinksInput</a></span>
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLinks | array[[loadBalancerServiceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/loadBalancerServiceLink/)] | No |  | <br>
+serviceLinks | array[[serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceLink/)] | No |  | <br>
 
 <br>
 {% highlight json %}
@@ -499,7 +747,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
 -H 'Content-Type: application/json' \
 -d '{
-	"serviceLinks": "array[loadBalancerServiceLink]"
+	"serviceLinks": "array[serviceLink]"
 }' 'http://${RANCHER_URL}:8080/v2-beta/loadBalancerServices/${ID}?action=setservicelinks'
 {% endhighlight %}
 <br>
@@ -532,6 +780,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"launchConfig": {
 			"accountId": "reference[account]",
 			"blkioDeviceOptions": "map[blkioDeviceOption]",
+			"blkioWeight": 0,
 			"build": {
 				"context": "string",
 				"dockerfile": "string",
@@ -542,12 +791,18 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			},
 			"capAdd": "array[enum]",
 			"capDrop": "array[enum]",
+			"cgroupParent": "string",
 			"command": [
 				"string1",
 				"...stringN"
 			],
 			"count": 0,
+			"cpuCount": 0,
+			"cpuPercent": 0,
+			"cpuPeriod": 0,
+			"cpuQuota": 0,
 			"cpuSet": "string",
+			"cpuSetMems": "string",
 			"cpuShares": 0,
 			"createIndex": 0,
 			"created": "date",
@@ -567,8 +822,13 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"string1",
 				"...stringN"
 			],
+			"diskQuota": 0,
 			"disks": "array[virtualMachineDisk]",
 			"dns": [
+				"string1",
+				"...stringN"
+			],
+			"dnsOpt": [
 				"string1",
 				"...stringN"
 			],
@@ -594,6 +854,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"...stringN"
 			],
 			"firstRunning": "date",
+			"groupAdd": [
+				"string1",
+				"...stringN"
+			],
 			"healthCheck": {
 				"healthyThreshold": 0,
 				"initializingTimeout": 0,
@@ -609,12 +873,27 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"strategy": "recreate",
 				"unhealthyThreshold": 0
 			},
+			"healthCmd": [
+				"string1",
+				"...stringN"
+			],
+			"healthInterval": 0,
+			"healthRetries": 0,
 			"healthState": "enum",
+			"healthTimeout": 0,
 			"hostId": "reference[host]",
 			"hostname": "string",
 			"id": 0,
 			"imageUuid": "string",
 			"instanceLinks": "map[reference[instance]]",
+			"instanceTriggeredStop": "stop",
+			"ioMaximumBandwidth": 0,
+			"ioMaximumIOps": 0,
+			"ip": "string",
+			"ip6": "string",
+			"ipcMode": "string",
+			"isolation": "string",
+			"kernelMemory": 0,
 			"kind": "container",
 			"labels": {
 				"key": "value-pairs"
@@ -630,18 +909,30 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			},
 			"memory": 0,
 			"memoryMb": 0,
+			"memoryReservation": 0,
 			"memorySwap": 0,
+			"memorySwappiness": 0,
+			"milliCpuReservation": 0,
+			"mounts": "array[mountEntry]",
 			"nativeContainer": false,
+			"netAlias": [
+				"string1",
+				"...stringN"
+			],
 			"networkContainerId": "reference[container]",
 			"networkIds": "array[reference[network]]",
 			"networkLaunchConfig": "string",
 			"networkMode": "managed",
+			"oomKillDisable": false,
+			"oomScoreAdj": 0,
 			"pidMode": "enum",
+			"pidsLimit": 0,
 			"ports": [
 				"string1",
 				"...stringN"
 			],
 			"primaryIpAddress": "string",
+			"primaryNetworkId": "reference[network]",
 			"privileged": false,
 			"publishAllPorts": false,
 			"readOnly": false,
@@ -653,17 +944,32 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"string1",
 				"...stringN"
 			],
+			"serviceIds": "array[reference[service]]",
+			"shmSize": 0,
 			"startCount": 0,
 			"startOnCreate": true,
 			"state": "enum",
 			"stdinOpen": false,
-			"systemContainer": "enum",
+			"stopSignal": "string",
+			"storageOpt": {
+				"key": "value-pairs"
+			},
+			"sysctls": {
+				"key": "value-pairs"
+			},
+			"system": false,
+			"tmpfs": {
+				"key": "value-pairs"
+			},
 			"transitioning": "enum",
 			"transitioningMessage": "string",
 			"transitioningProgress": 0,
 			"tty": false,
+			"ulimits": "array[ulimit]",
 			"user": "string",
 			"userdata": "string",
+			"usernsMode": "string",
+			"uts": "string",
 			"uuid": "string",
 			"vcpu": 1,
 			"version": "0",
@@ -673,6 +979,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"previousLaunchConfig": {
 			"accountId": "reference[account]",
 			"blkioDeviceOptions": "map[blkioDeviceOption]",
+			"blkioWeight": 0,
 			"build": {
 				"context": "string",
 				"dockerfile": "string",
@@ -683,12 +990,18 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			},
 			"capAdd": "array[enum]",
 			"capDrop": "array[enum]",
+			"cgroupParent": "string",
 			"command": [
 				"string1",
 				"...stringN"
 			],
 			"count": 0,
+			"cpuCount": 0,
+			"cpuPercent": 0,
+			"cpuPeriod": 0,
+			"cpuQuota": 0,
 			"cpuSet": "string",
+			"cpuSetMems": "string",
 			"cpuShares": 0,
 			"createIndex": 0,
 			"created": "date",
@@ -708,8 +1021,13 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"string1",
 				"...stringN"
 			],
+			"diskQuota": 0,
 			"disks": "array[virtualMachineDisk]",
 			"dns": [
+				"string1",
+				"...stringN"
+			],
+			"dnsOpt": [
 				"string1",
 				"...stringN"
 			],
@@ -735,6 +1053,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"...stringN"
 			],
 			"firstRunning": "date",
+			"groupAdd": [
+				"string1",
+				"...stringN"
+			],
 			"healthCheck": {
 				"healthyThreshold": 0,
 				"initializingTimeout": 0,
@@ -750,12 +1072,27 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"strategy": "recreate",
 				"unhealthyThreshold": 0
 			},
+			"healthCmd": [
+				"string1",
+				"...stringN"
+			],
+			"healthInterval": 0,
+			"healthRetries": 0,
 			"healthState": "enum",
+			"healthTimeout": 0,
 			"hostId": "reference[host]",
 			"hostname": "string",
 			"id": 0,
 			"imageUuid": "string",
 			"instanceLinks": "map[reference[instance]]",
+			"instanceTriggeredStop": "stop",
+			"ioMaximumBandwidth": 0,
+			"ioMaximumIOps": 0,
+			"ip": "string",
+			"ip6": "string",
+			"ipcMode": "string",
+			"isolation": "string",
+			"kernelMemory": 0,
 			"kind": "container",
 			"labels": {
 				"key": "value-pairs"
@@ -771,18 +1108,30 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			},
 			"memory": 0,
 			"memoryMb": 0,
+			"memoryReservation": 0,
 			"memorySwap": 0,
+			"memorySwappiness": 0,
+			"milliCpuReservation": 0,
+			"mounts": "array[mountEntry]",
 			"nativeContainer": false,
+			"netAlias": [
+				"string1",
+				"...stringN"
+			],
 			"networkContainerId": "reference[container]",
 			"networkIds": "array[reference[network]]",
 			"networkLaunchConfig": "string",
 			"networkMode": "managed",
+			"oomKillDisable": false,
+			"oomScoreAdj": 0,
 			"pidMode": "enum",
+			"pidsLimit": 0,
 			"ports": [
 				"string1",
 				"...stringN"
 			],
 			"primaryIpAddress": "string",
+			"primaryNetworkId": "reference[network]",
 			"privileged": false,
 			"publishAllPorts": false,
 			"readOnly": false,
@@ -794,17 +1143,32 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"string1",
 				"...stringN"
 			],
+			"serviceIds": "array[reference[service]]",
+			"shmSize": 0,
 			"startCount": 0,
 			"startOnCreate": true,
 			"state": "enum",
 			"stdinOpen": false,
-			"systemContainer": "enum",
+			"stopSignal": "string",
+			"storageOpt": {
+				"key": "value-pairs"
+			},
+			"sysctls": {
+				"key": "value-pairs"
+			},
+			"system": false,
+			"tmpfs": {
+				"key": "value-pairs"
+			},
 			"transitioning": "enum",
 			"transitioningMessage": "string",
 			"transitioningProgress": 0,
 			"tty": false,
+			"ulimits": "array[ulimit]",
 			"user": "string",
 			"userdata": "string",
+			"usernsMode": "string",
+			"uts": "string",
 			"uuid": "string",
 			"vcpu": 1,
 			"version": "0",

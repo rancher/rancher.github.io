@@ -6,7 +6,7 @@ lang: en
 apiVersion: v2-beta
 ---
 
-## setLoadBalancerServiceLinksInput
+## targetPortRule
 
 
 
@@ -16,7 +16,10 @@ apiVersion: v2-beta
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-serviceLinks | array[[loadBalancerServiceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/loadBalancerServiceLink/)] | Optional | - | - | 
+backendName | string | Optional | - | - | 
+hostname | string | Optional | - | - | 
+path | string | Optional | - | - | 
+targetPort | int | Yes | - | - | 
 
 
 

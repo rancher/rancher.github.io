@@ -19,10 +19,13 @@ Field | Type | Create | Update | Default | Notes
 accessKey | string | Optional | - | - | 
 ami | string | Optional | - | - | 
 deviceName | string | Optional | - | /dev/sda1 | 
+endpoint | string | Optional | - | - | 
 iamInstanceProfile | string | Optional | - | - | 
+insecureTransport | boolean | Optional | - | - | 
 instanceType | string | Optional | - | t2.micro | 
 keypairName | string | Optional | - | - | 
 monitoring | boolean | Optional | - | - | 
+openPort | array[string] | Optional | - | - | 
 privateAddressOnly | boolean | Optional | - | - | 
 region | string | Optional | - | us-east-1 | The region to use when launching the host
 requestSpotInstance | boolean | Optional | - | - | 

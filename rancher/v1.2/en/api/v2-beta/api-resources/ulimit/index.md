@@ -6,7 +6,7 @@ lang: en
 apiVersion: v2-beta
 ---
 
-## setLabelsInput
+## ulimit
 
 
 
@@ -16,7 +16,9 @@ apiVersion: v2-beta
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-labels | json | Optional | - | - | A map of key value pairs to be used as labels for the setLabelsInput
+hard | int | Optional | - | - | 
+name | string | Optional | - | - | 
+soft | int | Optional | - | - | 
 
 
 

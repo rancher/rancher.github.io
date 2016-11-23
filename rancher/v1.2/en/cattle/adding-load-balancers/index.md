@@ -1,5 +1,5 @@
 ---
-title: Adding Load Balancers
+title: Load Balancers
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
@@ -8,70 +8,58 @@ redirect_from:
   - /rancher/latest/en/cattle/adding-load-balancers/
 ---
 
-## Adding Load Balancers
+## Load Balancers
 ---
 
-Rancher implements a managed load balancer using HAProxy that can be manually scaled to multiple hosts.  A load balancer can be used to distribute network and application traffic to individual containers by directly adding them or "linked" to a basic service.  A basic service that is "linked" will have all its underlying containers automatically registered as load balancer targets by Rancher.
+Rancher provides the ability to use different load balancer drivers within Rancher. A load balancer can be used to distribute network and application traffic to individual containers by adding rules to target services. Any target service will have all its underlying containers automatically registered as load balancer targets by Rancher. With Rancher, it's easy to add a load balancer to your stack.
 
-After adding multiple services to your stack, you might have decided that you want to load balance your web applications. With Rancher, it's easy to add a load balancer to your stack. We'll review the options for our load balancer as if you were using the UI and show examples using the [UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/#adding-a-load-balancer-in-the-ui) and [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/#adding-a-load-balancer-with-rancher-compose).
+By default, Rancher has provided a managed load balancer using HAProxy that can be manually scaled to multiple hosts. The rest of our examples in this document will cover the different options for load balancers, but specifically referencing our HAProxy load balancer service. We are planning to add in additional load balancer providers, and the options for all load balancers will be the same regardless of load balancer provider. We'll review the options for our load balancer for the [UI](#load-balancer-options-in-the-UI) and [Rancher Compose](#load-balancer-options-in-rancher-compose) and show examples using the [UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/#adding-a-load-balancer-in-the-ui) and [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/#adding-a-load-balancer-with-rancher-compose).
+
+### Adding a Load Balancer in the UI
+
+We'll walk through how to set up a load balancer for our "letschat" application created earlier in the [adding services section]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#adding-services-in-the-ui).
+
+First, you start by creating a load balancer, by clicking on the dropdown icon next to "Add Service" and clicking **Add Load Balancer**. By default, the scale will be of 1 container. Provide a name like "LetsChatLB".
+
+For the port rules, use the default `Public` access, the default `http` protocol, a source port of `80`, select the "letschat" service, and use a target port of `8080`. Click on **Create**.
+
+Now, let's see the load balancer in action. In the stack view, there is a link to  port `80` that you've used as the source port for your load balancer. If you click on it, it will automatically bring up a new tab in your browser and point to one of the hosts that has the load balancer launched. The request is re-directed to one of the "LetsChat" containers. If you were to refresh, the load balancer would redirect the new request to the other container in the "letschat" service. By default, we use the round robin algorithm to distribute traffic to the target services. The algorithm can be customized in the [custom HAProxy configuration](#custom-haproxy-configuration).
 
 ### Load Balancer Options in the UI
 
-Our load balancer has HAProxy software installed on the load balancer agent containers. The load balancer uses a round robin algorithm from HAProxy to select the target services.
+Rancher provides a load balancer running HAProxy software inside the container to direct traffic to the target services.
 
 > **Note:** Load balancers will only work for services that are using the managed network. If you select any other network choice for your target services, it will **not** work with the load balancer.
 
 You add a load balancer by clicking the dropdown icon next to the **Add Service** button and selecting **Add Load Balancer**.
 
-You can use the slider to select the scale, i.e. how many containers of the load balancer. Alternatively, you can select **Always run one instance of this container on every host**. With this option, your load balancer will scale for any additional hosts that are added to your [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/). If you have scheduling rules in the **Scheduling** section, Rancher will only start containers on the hosts that meet the host labels rules. If you add a host to your environment that doesn't meet the scheduling rules, a container will not be started on the host. Please select the "Always run one instance of this container on every host".
+You can use the slider to select the scale, i.e. how many containers of the load balancer. Alternatively, you can select **Always run one instance of this container on every host**. With this option, your load balancer will scale for any additional hosts that are added to your [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/). If you have scheduling rules in the **Scheduling** section, Rancher will only start containers on the hosts that meet the scheduling rules. If you add a host to your environment that does not meet the scheduling rules, a container will not be started on the host.
 
 > **Note:** The scale of the load balancer cannot exceed the number of hosts in the environment, otherwise there will be a port conflict and the load balancer service will be stuck in an activating state. It will continue to try and find an available host and open port until you edit the scale of this load balancer or [add additional hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/).
 
 You will need to provide a **Name** and if desired, **Description** of the load balancer.
 
-Next, you'll define the listening ports of the load balancer. The **source port** is the port that is exposed on the host. You can select the **Protocol** and decide if you want to use **SSL** termination for that port. The **target port** is the exposed port on a container that traffic will be directed to. If no target port is defined, the source port will also be used as the target port.
+Next, you'll define the port rules for a load balancer. There are two types of port rules that can be created. There are service rules that target existing services and selector rules that will target services that match the selector criteria.
 
-In the *Accesss* section, you will decide if this load balancer port will be accessible publicly (i.e. accessible outside of the host) or only internally on the host.
+When creating service and selector rules, the hostname and path rules are matched top-to-bottom in the order shown in the UI.
+
+#### Service rule
+
+Service rules are port rules to target existing services in Rancher.
+
+In the **Access** section, you will decide if this load balancer port will be accessible publicly (i.e. accessible outside of the host) or only internally in the environment. By default, Rancher has assumed you want the port to be public, but you can select `Internal` if you want the port to only be accessed by services within the same environment.
+
+Select the **Protocol**. Read more about our [protocol options](#protocol).  If you choose to select a protocol that requires SSL termination (i.e. `https` or `tls`), you will add in your certificates in the **SSL Termination** tab.
+
+Next, you'll provide the **request host**, **source port** and **path** for where the traffic will be coming from.
 
 > **Note:** Port `42` cannot be used as a source port for load balancers because Rancher uses this port for [health checks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks).
 
-#### Basic Load Balancing
+##### Request Host/Path
 
-Rancher supports L4 load balancing by simply adding listening ports and linking target services. We can add as many listening ports and services as we'd like. We've made the assumption that the access is set as `public` for every listening ports. The source port(s) of the load balancer will use the round robin algorithm to forward traffic to **all service(s)**.
+The request host can be a specific HTTP host header for each service. The request path can be a specific path. The request host and request path can be used independently or in conjunction to create a specific request.
 
-#### Example:
-
-When we set up 2 listening ports and 3 services, the load balancer will direct traffic on both listening ports across all services.
-
-Source Port | Target Port
----|---
-`80` | `8080`
-`81` | `8081`
-
-<br>
-
-|Target Services|
-|---|
-|Service1|
-|Service2|
-|Service3|
-
-<br>
-In our example, any traffic directed to port `80` on the host of the load balancer would get round robin-ed to  Service1, Service2, Service3 on the target port `8080` and `8081`. Any traffic directed to port `81` on the host of the load balancer would get round robin-ed to Service1, Service2, Service3 on port `8080` and `8081`.
-
-#### Internal Load Balancing
-
-You will have the option to not publish source ports to the host by setting the access level of each individual “Listening Port” to `Internal`.  All internal ports can only be accessed by services within the same environment.
-
-#### Advanced Routing Options
-
-Rancher supports L7 load balancing with our advanced routing options. To expand the advanced options, click on the **Show advanced routing options**. The only required field is **Target Service**, which would be the equivalent of L4 load balancing. All of the other fields for L7 load balancing are optional. Since all the fields are optional, the listening ports are default when adding host/request paths, and the ports will be overridden if you specify source/target ports for a service. For each option, we cover some basic examples, but you can use all or some of these options together to define exactly how you want your load balancer to direct traffic to your services.
-
-##### Request Host/Request Path
-
-The request host can be a specific HTTP host header used for each service. The request path can be a specific path. The request host and request path can be used independently or in conjunction to create a specific request.
-
-**Example:**
+###### Example:
 
 ```
 domain1.com -> Service1
@@ -81,9 +69,7 @@ domain3.com -> Service1
 domain3.com/admin -> Service2
 ```
 
-Since source/target ports are optional, the listening ports are used as defaults to direct traffic based on the request. If a source port is defined, traffic coming to a specific host header/path will need to match a specific rule in order to be directed to the target.
-
-**Wildcards**
+###### Wildcards
 
 Rancher supports wildcards when adding host based routing. The following wildcard syntax is supported.
 
@@ -91,60 +77,35 @@ Rancher supports wildcards when adding host based routing. The following wildcar
 *.domain.com -> hdr_end(host) -i .domain.com
 domain.com.* -> hdr_beg(host) -i domain.com.
 ```
-<br>
 
-**Priority with Multiple Hostname Routing Rules**
+##### Target Service and Port
 
-When there are multiple hostname routing rules, the order of priority is as follows:
+For each service rule, you select the specific **target** service to direct traffic to. The list of services is based on all the services within that environment. Along with the service, you select which **port** to direct the traffic to on the service. This private port on the service is typically the exposed port on the image.
 
-1. Hostname with no wildcards and URL
-2. Hostname with no wildcards
-3. Hostname with wildcards and URL
-4. Hostname with wildcards
-5. URL
-6. Default (no hostname, no URL)
+#### Selector rule
 
-##### Target Port
+For a selector rule, instead of targeting a specific service, you would provide a [selector value]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/labels/#selector-labels). The selector is used to pick up target services based on the labels of a service. When the load balancer is created, the selector rules will be evaluated against any existing services in the environment to see if there are any existing target services. Any additional services or changes to labels on a service would be compared against the selector values to see if the service should be a target service.
 
-For each service, you can override the target port defined in the listening port section. This would allow you to direct traffic to services on different ports from the same source port.
+For each **source port**, you can add in **request host** and/or **path**. The [selector value]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/labels/#selector-labels) is provided under **target** and you can provide a specific **port** to direct the traffic to on the service. This private port on the service is typically the exposed port on the image.
 
-**Example**
+##### Example: 2 Selector Rules
 
-Source Port| Default Target Port
----|---
-80 | 80
+1. Source Port: `100`; Selector: `foo=bar`; Port: `80`
+2. Source Port: `200`; Selector: `foo1=bar1`; Port: `80`
 
-<br>
+* Service A has a `foo=bar` label and would match the first selector rule. Any traffic to `100` would be directed to Service A.
+* Service B has a `foo1=bar` label and would match the second selector rule. Any traffic to `200` would be directed to Service B.
+* Service C has both `foo=bar` and `foo1=bar1` labels and match both selector rules. Traffic from either source port would be directed to Service C.
 
-|Target Services| Target Ports|
-|---| ---|
-|Service1| None|
-|Service2 | `90`|
-
-<br>
-In our example above, the load balancer will direct traffic to different ports depending on the service. Since the load balancer is using a round robin algorithm, any traffic to the source port `80` will be directed alternatively between the services. When traffic is being directed to Service1, it will use the default target port `80`. When traffic is directed to Service2, it will use the target port `90`, that was defined with Service2.
-
-##### Source Port
-
-For any source port defined in in the listening port section, you can create specific routes for services. This might be helpful if you had multiple source ports and want to direct traffic differently for each source port. You would only add a source port if you also have defined a request host/path or target port.
-
-> **Note:** If you choose a source port in the advanced section, you must add it in the listening ports section.
+> **Note:** Currently, if you want to use one selector source port rule for multiple hostnames/paths, you would need to use [Rancher Compose](#selector) to set the hostname/path values on the target services.
 
 #### SSL Termination
 
-To add SSL termination to your load balancer, you can enable the **SSL** checkbox for your listening port. When you enable the checkbox, the **SSL Termination** tab will provide the ability to add certificates. In the **Certificate** dropdown, you can select the main certificate for the load balancers.
+The **SSL Termination** tab provides the ability to add certificates to use for the `https` and `tls` protocols. In the **Certificate** dropdown, you can select the main certificate for the load balancers.
 
 To add a certificate to Rancher, please read about [how to add certificates in the **Infrastructure** tab]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/).
 
-For example, if you were load balancing a web server and wanted both `http` and `https` being served on ports 80 and 443 respectively, you would do the following:
-
-1. [Add a certificate to the infrastructure]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/).
-2. Create the load balancer service.
-3. In the *Listening Ports* section of the screen, create an entry to map the incoming port 80, with the `http` protocol and SSL _unchecked_.
-4. And then add another port mapping the incoming port 443, `http` protocol and SSL _checked_.
-5. In the *SSL Termination* section, select the certificate to use for the SSL port.
-
-It is possible to provide multiple certificates for the load balancer such that the appropriate certificate is presented to the client based on the hostname requested (see [Server Name Indication](https://en.wikipedia.org/wiki/Server_Name_Indication)). This may not work with older clients which don't support SNI (those will get the main certificate). For modern clients, they will be offered the certificate from the list for which there is a match or the main certficate if there is no match.
+It is possible to provide multiple certificates for the load balancer such that the appropriate certificate is presented to the client based on the hostname requested (see [Server Name Indication](https://en.wikipedia.org/wiki/Server_Name_Indication)). This may not work with older clients, which don't support SNI (those will get the main certificate). For modern clients, they will be offered the certificate from the list for which there is a match or the main certificate if there is no match.
 
 #### Stickiness Policy for Load Balancers
 
@@ -155,128 +116,240 @@ The two options supported in Rancher are:
 * **None**: This option means that no cookie policy is in place.
 * **Create new cookie**: This option means that the cookie will be defined outside of your application. This cookie is what the load balancer would set on requests and responses. This cookie would determine the stickiness policy.
 
-#### Custom haproxy.cfg
+#### Custom HAProxy Configuration
 
-Since Rancher is using HAProxy software, we have allowed the ability to define your own `global` and `defaults` configuration to your load balancer. Whatever you define in these sections will be appended to the configuration generated by Rancher.
+Since Rancher is using an HAProxy specific load balancer, you can customize the HAProxy configuration of the load balancer. Whatever you define in this section will be appended to the configuration generated by Rancher.
+
+##### Example of a Custom HAProxy Configuration
+
+```
+global
+    maxconn 4096
+    maxpipes 1024
+
+defaults
+    log global
+    mode    tcp
+    option  tcplog
+
+frontend 80
+    balance leastconn
+
+frontend 90
+    balance roundrobin
+
+backend mystack_foo
+    cookie my_cookie insert indirect nocache postonly
+    server $IP <server parameters>
+
+backend customUUID
+    server $IP <server parameters>
+```
 
 #### Labels/Scheduling Load Balancers
 
 We provide the ability to add labels to load balancers and schedule where the load balancer will be launched. Read more details about labels and scheduling [here]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#scheduling-options-in-the-ui).
 
-### Adding a Load Balancer in the UI
+### Adding a Load Balancer with Rancher Compose
 
-We'll walk through how to set up a load balancer for our "letschat" application created earlier in the [adding services section]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#adding-services-in-the-ui).
+We'll walk through how to set up a load balancer for our "letschat" application created earlier in the [adding services section]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#adding-services-with-rancher-compose).
 
-First, you start by creating a load balancer, by clicking on the dropdown icon next to "Add Service" and clicking **Add Load Balancer**. By default, the scale will be of 1 container. Provide a name like "LetsChatLB". For the listening ports section, use a source port of `80`, use the default `http` protocol, use a target port of `8080`, and use the default `Public` access.
+Read more about how to [set up Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/).
 
-Next, let's add our targets for our load balancer. We can select the "letschat" service and click on **Save**.
+> **Note**: In our examples, we will use `<version>` as the image tag for our load balancers. Each version of Rancher will have a specific version of `lb-service-haproxy` that is supported for load balancers.
 
-Now, let's see the load balancer in action. In the stack view, there is a link to  port `80` that you've used as the source port for your load balancer. If you click on it, it will automatically bring up a new tab in your browser and point to one of the hosts that has the load balancer launched. The request is re-directed to one of the "LetsChat" containers. If you were to refresh, the load balancer would redirect the new request to the other container in the "letschat" service as we use the round robin algorithm to distribute traffic to the targetted services.
+We'll set up the same example that we used above in the UI example. To get started, you will need to create a `docker-compose.yml` file and a `rancher-compose.yml` file. With Rancher Compose, we can launch the load balancer.
+
+#### Example `docker-compose.yml`
+
+```yaml
+version: '2'
+services:
+  letschatlb:
+    ports:
+    - 80
+    image: rancher/lb-service-haproxy:<version>
+```
+
+#### Example `rancher-compose.yml`
+
+```yaml
+version: '2'
+services:
+  letschatlb:
+    scale: 1
+    lb_config:
+      port_rules:
+      - source_port: 80
+        target_port: 8080
+        service: letschat
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+```
 
 ### Load Balancer Options in Rancher Compose
 
-A load balancer can be scheduled like any other service. Read more about [scheduling]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#adding-labels-in-rancher-compose) services and load balancers using Rancher Compose.
-
-Rancher supports L4 load balancing by adding ports and linking target services. Any traffic directed to any of source port(s) will be sent to the private port(s) of the linked service(s).
-
-> **Note:**  Port `42` cannot be used as a source port for load balancers because it's internally used for [health checks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks).
-
-When working with services that contains [sidekicks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#sidekick-services), you need to link the [primary service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#primary-service), which is the service that contains the `sidekick` label.
+Rancher provides a load balancer running HAProxy software inside the container to direct traffic to the target services.
 
 > **Note:** Load balancers will only work for services that are using the managed network. If you select any other network choice for your target services, it will **not** work with the load balancer.
 
-#### Load Balancer Example (L4)
+A load balancer can be scheduled like any other service. Read more about [scheduling]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#adding-labels-in-rancher-compose) load balancers using Rancher Compose.
 
-##### Example `docker-compose.yml`
+Load balancing is configured with a combination of ports exposed on a host and a load balancer configuration, which can include specific port rules for each target service, custom configuration and stickiness policies.
 
-```yaml
-lb:
-  image: rancher/load-balancer-service
-  ports:
-  # Assign a random public port and direct traffic to private port 80 of the service.
-  - 80
-  # Listen on public port 80 and direct traffic to private port 80 of the service
-  - 80:80
-  # Listen on public port 82 and by default forward traffic to private port 81 using HTTP
-  - 82:81
-  # Assign a random public port and direct traffic to private port 9999 using TCP and not HTTP
-  - 9999/tcp
-  links:
-  # Target services in the same stack will be listed as a link
-  - web1:web1
-  - web2:web2
-  external_links:
-  # Target services in a different stack will be listed as an external link
-  - differentstack/web3:web3
-```
+When working with services that contain [sidekicks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#sidekick-services), you need to use the [primary service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#primary-service) as a target service, which is the service that contains the `sidekick` label.
 
-##### Example `rancher-compose.yml`
+### Source Ports
+
+When creating a load balancer, you can add any ports you want exposed on the host. Any of these ports can be used as source ports in the port rules of a load balancer. If you want an internal load balancer, you would not expose any ports on the load balancer, and only add in port rules in the load balancer configuration.
+
+> **Note:**  Port `42` cannot be used as a port for load balancers because it's internally used for [health checks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks).
+
+#### Example `docker-compose.yml`
 
 ```yaml
-lb:
-  # Two load balancer containers
-  scale: 2
-  load_balancer_config:
-    name: lb config
-  health_check:
-    port: 42
-    interval: 2000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-web1:
-  scale: 1
-web2:
-  scale: 1
-web3:
-  scale: 1
+version: '2'
+services:
+  lb1:
+    image: rancher/lb-service-haproxy:<version>
+    # Any ports listed will be exposed on the host that is running the load balancer
+    # To direct traffic to specific service, a port rule will need to be added.
+    ports:
+    - 80
+    - 81
+    - 90
 ```
 
-#### Advanced Load Balancing (L7)
+### Load Balancer configuration
 
-We also support L7 load balancing with advanced routing options, which include using host headers, host paths and specific target ports. Advanced routing options use `labels` in the `docker-compose.yml` file.
+All load balancer configuration options are defined in the `rancher-compose.yml` under the `lb_config` key.
 
+```yaml
+version: '2'
+services:
+  lb1:
+    scale: 1
+    # All load balancer options are configured in this key
+    lb_config:
+      port_rules:
+      - source_port: 80
+        target_port: 80
+        service: web1
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  web1:
+    scale: 2
+```
 
-Here's the basic syntax for applying the label. You would only use this label if you were going to do some advanced routing rules. Advanced routing rules are optional and all of the fields  are optional as well. This syntax shows if you were to use all the options.
+#### Port rules
 
-Label Key | Label Value
----| ---
-`io.rancher.loadbalancer.target.<SERVICE_NAME>` | `<REQUEST_HOST>:<SOURCE_PORT>/<REQUEST_PATH>=<TARGET_PORT>`
+Port rules are defined in the `rancher-compose.yml`. Since port rules are defined individually, there may be multiple port rules defined for the same service. By default, Rancher will prioritize these port rules based on a specific priority ordering. If you would like to change the ordering of the prioritization, you can also set a specific [priority](#priority) order of the rules.
 
-<br>
+#### Default Priority Order
 
-> **Note:** If you use a source port with the advanced routing options, the source port must also be listed in `ports` section of the `docker-compose.yml`
+1. Hostname with no wildcards and URL
+2. Hostname with no wildcards
+3. Hostname with wildcards and URL
+4. Hostname with wildcards
+5. URL
+6. Default (no hostname, no URL)
 
-##### Linking Services in a Different Stack
+##### Source Port
 
-In the label for target services, `<SERVICE_NAME>` is the name of the service. If your service is in another stack, the `<SERVICE_NAME>` will need to include stack name using the following format `<STACK_NAME>/<SERVICE_NAME>`. The link to the target service of other stacks will be under `external_links`.
+The source port is one of the ports exposed on the host (i.e. a port that is in the `docker-compose.yml`).
 
-##### Syntax of the Combination of all Optional Fields
+If you want to create internal load balancer, then the source port does not need to match any of the ports in the `docker-compose.yml` file.
 
-Since the fields are optional, we support all combinations of the fields. Here is the syntax for all combinations using request host, source port, path and target port.
+##### Target Port
 
-Request Host | Source Port | Path | Target Port | Label Value
----|---|---|---| ---
-example.com | 80 | /path | 81 | `example.com:80/path=81`
-example.com | 80 | /path/a | | `example.com:80/path/a`
-example.com | 80||81 | `example.com:80=81`
-example.com |80 | | | `example.com:80`
-example.com | | /path/b/c | 81 | `example.com/path/b/c=81`
-example.com | | /path | | `example.com/path`
-example.com| | | 81 | `example.com=81`
-example.com | | | | `example.com`
-| 80| /path | 81 | `80/path=81`
-| 80 |/path | | `80/path`
-|80 | | 81 | `80=81`
-| | /path | 81| `/path=81`
-| | /path | | `/path`
-| | | 81 | `'81'` *See Note
+The target port is the private port on the service. This port correlates to the port exposed on the image used to start your service.
 
-<br>
+##### Protocol
 
-> **Note:** It is assumed that if you have only a port in the label, then the port is for the target port of the service. When using only a target port, it must be surrounded by single quotes.
+There are multiple protocol types that are supported in the Rancher load balancer drivers.
 
-**Wildcards**
+* `http` - By default, if no protocol is set, the load balancer uses `http`. HAProxy doesn't decrypt the traffic and passes the traffic directly through
+* `tcp` - HAProxy doesn't decrypt the traffic and passes the traffic directly through
+* `https` - SSL termination is required. Traffic is decrypted by HAProxy using the provided [certificates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/), which must be added into Rancher before being used in a load balancer. Traffic from the load balancer to the target service is unencrypted.
+* `tls` - SSL termination is required. Traffic is decrypted by HAProxy using the provided [certificates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/), which must be added into Rancher before being used in a load balancer. Traffic from the load balancer to the target service is unencrypted.
+* `sni` - Traffic is encrypted to the load balancer and to the services. Multiple certificates are provided for the load balancer such that the appropriate certificate is presented to the client based on the hostname requested. (see [Server Name Indication](https://en.wikipedia.org/wiki/Server_Name_Indication) for more details).
+* `udp` - This is not supported for Rancher's HAProxy provider.
+
+Any additional load balancer providers might support only a subset of the protocols.
+
+###### Hostname Routing
+
+Hostname routing is only supported for `http`, `https` and `sni`. Only `http` and `https` support path based routing as well.
+
+##### Service
+
+The service name that you want the load balancer to direct traffic to. If the service is in the same stack, then you use the service name. If the service is in a different stack, then you would use `<stack_name>/<service_name>`.
+
+###### Example `rancher-compose.yml`
+
+```yaml
+version: '2'
+services:
+  lb1:
+    scale: 1
+    lb_config:
+      port_rules:
+      - source_port: 81
+        target_port: 2368
+        # Service in the same stack
+        service: ghost
+      - source_port: 80
+        target_port: 80
+        # Target a service in a different stack
+        service: differentstack/web1
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  ghost:
+    scale: 2
+```
+
+##### Hostname and Path
+
+Rancher's HAProxy load balancer supports L7 load balancing by being able to specify host header and path in the port rules.
+
+###### Example `rancher-compose.yml`
+
+```yaml
+version: '2'
+services:
+  lb1:
+    scale: 1
+    lb_config:
+      port_rules:
+      - source_port: 81
+        target_port: 2368
+        service: ghost
+        protocol: http
+        hostname: example.com
+        path: /path/a
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  ghost:
+    scale: 2
+```
+
+##### Wildcards
 
 Rancher supports wildcards when adding host based routing. The following wildcard syntax is supported.
 
@@ -285,137 +358,252 @@ Rancher supports wildcards when adding host based routing. The following wildcar
 domain.com.* -> hdr_beg(host) -i domain.com.
 ```
 
-##### Multiple Routing Rules for the Same Service
+##### Priority
 
-In Rancher Compose, you can configure multiple hostname routing rules to the same service by separating each rule with a comma. See the example for service `web2`.
+By default, Rancher [prioritizes port rules](#default-priority-order) targeting the same service, but if you wanted to, you could customize your own prioritization of the port rules.
 
-**Priority**
-
-When there are multiple hostname routing rules, the order of priority is as follows:
-
-1. Hostname and URL
-2. Hostname only
-3. URL
-4. Default (no hostname, no URL)
-
-#### Load Balancer Example (L7)
-
-##### Example `docker-compose.yml`
+###### Example `rancher-compose.yml`
 
 ```yaml
-lb:
-  image: rancher/load-balancer-service
-  ports:
-  # Listen on public port 80 and direct traffic to private port 80 of the service
-  - 80:80
-  # Listen on public port 82 and by default forward traffic to private port 81 using HTTP
-  - 82:81
-  # Listen on public port 9999 using TCP and not HTTP
-  - 9999/tcp
-  links:
-  # Target services in the same stack will be listed as a link
-  - web1:web1a
-  - web2:web2a
-  external_links:
-  # Target services in a different stack will be listed as an external link
-  - differentstack/web3:web3a
-  labels:
-    # Put load balancer containers on hosts with label lb=true
-    io.rancher.scheduler.affinity:host_label: lb=true
-    # Requests to http://app.example.com/foo:80 should be routed to web1 over port 8000
-    io.rancher.loadbalancer.target.web1: app.example.com:80/foo=8000
-    # Requests to http://app.example.com/foo should be routed to web2 over port 8000
-    # and http://app.example.com/foo/bar over port 8001
-    io.rancher.loadbalancer.target.web2: app.example.com/foo=8000,app.example.com/foo/bar=8001
-    # Requests routed to web3 go to port 8000, overriding the default configuration
-    # of 82:81
-    io.rancher.loadbalancer.target.differentstack/web3: 82=8000
+version: '2'
+services:
+  lb1:
+    scale: 1
+    lb_config:
+      port_rules:
+      - source_port: 88
+        target_port: 2368
+        service: web1
+        protocol: http
+        hostname: foo.com
+        priority: 2
+      - source_port: 80
+        target_port: 80
+        service: web2
+        protocol: http
+        priority: 1
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  web1:
+    scale: 2
 ```
+
+##### Selector
+
+Instead of targeting a specific service, you can set up a [selector](({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/labels/#selector-labels)). By using selectors, you can define the service links and hostname routing rules on the target service instead of on the load balancer. Services with labels matching the selector become a target in the load balancer.
+
+When using a selector in a load balancer, the `lb_config` can be set on the load balancer and any  target services that are matching the selector.
+
+In the load balancer, the [selector value]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/labels/#selector-labels) is set in the `lb_config` under `selector`. The port rule in the `lb_config` of the load balancer cannot have a service and would typically not have a target port. Instead, the target port is set in port rules on the target service. If you choose to use hostname routing, the hostname and path would be set on the target service.
+
+>**Note:** For any load balancers using the v1 load balancer yaml fields that uses selector labels will not be converted to the v2 load balancer as the port rules on the service would not be updated.
+
+###### Example `docker-compose.yml`
+
+```yaml
+version: '2'
+services:
+  lb1:
+    image: rancher/lb-service-haproxy:<version>
+    ports:
+    - 81
+  # These services (web1 and web2) will be picked up by the load balancer as a target
+  web1:
+    image: nginx
+      labels:
+      foo: bar
+  web1:
+    image: nginx
+    labels:
+      foo: bar
+```
+
+###### Example `rancher-compose.yml`
+
+```yaml
+version: '2'
+services:
+  lb1:
+    scale: 1
+    lb_config:
+      port_rules:
+      - source_port: 81
+        # Target any service that has foo=bar as a label
+        selector: foo=bar
+        protocol: http
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  # web1 and web2 are targeted with the same source port but with the different hostname and path rules
+  web1:
+    scale: 1
+    lb_config:
+      port_rules:
+      - target_port: 80
+        hostname: test.com
+  web2:
+    scale: 1
+    lb_config:
+      port_rules:
+      - target_port: 80
+        hostname: example.com/test     
+```
+
+##### Backend Name
+
+If you want to explicitly label your backend in your load balancer configuration, you would use the `backend_name`. This option can be useful if you want to configure custom config parameters for a particular backend.
+
+#### certificates
+
+If you are using `https` or `tls` [protocol](#protocol), then you reference the certificates in the `rancher-compose.yml`.
 
 ##### Example `rancher-compose.yml`
 
 ```yaml
-lb:
-  # Two load balancer containers
-  scale: 2
-  load_balancer_config:
-    name: lb config
+version: '2'
+services:
+  lb:
+    scale: 1
+    lb_config:
+      certs:
+      - <certName>
+      default_cert: <defaultCertName>
+```
+
+#### Custom configuration
+
+For advanced users, you can specify custom configuration to the load balancer in the `rancher-compose.yml`. Please refer to the [HAProxy documentation](http://cbonte.github.io/haproxy-dconv/configuration-1.5.html) for details on the available options you can add for the Rancher's HAProxy load balancer.
+
+##### Example `rancher-compose.yml`
+
+```yaml
+version: '2'
+services:
+  lb:
+    scale: 1
+    lb_config:
+      config: |-
+        global
+            maxconn 4096
+            maxpipes 1024
+
+        defaults
+            log global
+            mode    tcp
+            option  tcplog
+
+        frontend 80
+            balance leastconn
+
+        frontend 90
+            balance roundrobin
+
+        backend mystack_foo
+            cookie my_cookie insert indirect nocache postonly
+            server $$IP <server parameters>
+
+        backend customUUID
   health_check:
     port: 42
     interval: 2000
     unhealthy_threshold: 3
     healthy_threshold: 2
     response_timeout: 2000
-web1:
-  scale: 1
-web2:
-  scale: 1
-web3:
-  scale: 1
 ```
 
-##### Examples of Using Multiple Ports in Advanced Routing Options
+#### Stickiness Policy
 
-Regardless of the priority, every service specified on the load balancer is registered for every load balancer listening port.
+If you want to specify stickiness policy, you can update the policies in `rancher-compose.yml`.
 
-Example:
+##### Example `rancher-compose.yml`
 
 ```yaml
-lb-test:
-  ports:
-  - 80:80
-  - 81:81
-  labels:
-    io.rancher.loadbalancer.target.service1: 80=80
-    io.rancher.loadbalancer.target.service2: 81=81
-  tty: true
-  image: rancher/load-balancer-service
-  links:
-  - service1:service1
-  - service2:service2
-  stdin_open: true
+version: '2'
+services:
+  lb:
+    scale: 1
+    lb_config:
+      stickiness_policy:
+        name: <policyName>
+        cookie: <cookieInfo>
+        domain: <domainName>
+        indirect: false
+        nocache: false
+        postonly: false
+        mode: <mode>
+  health_check:
+    port: 42
+    interval: 2000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
 ```
 
-In our example, with hostname routing rules, every service is still registered for all the ports listed in `ports`. This is by design as we originally had only supported L4 load balancing. In order to force the traffic to only be service specific, you will need to include some dummy hostname routing rules to exclude the unneeded target service from the specific port.
+### Rancher Compose Examples
 
-```yaml
-lb-test:
-  ports:
-  - 80:80
-  - 81:81
-  labels:
-    io.rancher.loadbalancer.target.service1: 80=80
-    # Add in dummy rule for service1 to force the traffic coming to 81 to not be redirected to service1
-    io.rancher.loadbalancer.target.service1: dummy1:81=81
-    io.rancher.loadbalancer.target.service2: 81=81
-    # Add in dummy rule for service2 to force the traffic coming to 80 to not be redirected to service1
-    io.rancher.loadbalancer.target.service2: dummy2:80=80
-  tty: true
-  image: rancher/load-balancer-service
-  links:
-  - service1:service1
-  - service2:service2
-  stdin_open: true
-```
-
-#### Internal Load Balancer
-
-To set an internal load balancer, the listening ports are listed under `expose` instead of `ports`.
+#### Load Balancer Example (L7)
 
 ##### Example `docker-compose.yml`
 
 ```yaml
-lb:
-  image: rancher/load-balancer-service
-  # Instead of using ports, we use expose to define that it will be private ports
-  expose:
-  # Listen on private port 80 and direct traffic to private port 80 of the service
-  - 80:80
-  # Listen on private port 82 and by default forward traffic to private port 81 using HTTP
-  - 82:81
-  links:
-  # Any service that is a target will be listed as a link
-  - web1:web1
+version: '2'
+services:
+  web:
+    image: nginx
+  lb:
+    image: rancher/lb-service-haproxy
+  ports:
+  - 80
+  - 82
+```
+
+##### Example `rancher-compose.yml`
+
+```yaml
+version: '2'
+services:
+  lb:
+    scale: 1
+    lb_config:
+      port_rules:
+      - source_port: 80
+        target_port: 8080
+        service: web1
+        hostname: app.example.com
+        path: /foo
+      - source_port: 82
+        target_port: 8081
+        service: web2
+        hostname: app.example.com
+        path: /foo/bar
+  health_check:
+    port: 42
+    interval: 2000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+```
+
+#### Internal Load Balancer Example
+
+To set up an internal load balancer, no ports are listed, but you can still set up port rules to direct traffic to the service.
+
+##### Example `docker-compose.yml`
+
+```yaml
+version: '2'
+services:
+  lb:
+    image: rancher/lb-service-haproxy
+  web:
+    image: nginx
 ```
 
 <br>
@@ -423,38 +611,40 @@ lb:
 ##### Example  `rancher-compose.yml`
 
 ```yaml
-lb:
-  # Two load balancer containers
-  scale: 2
-  load_balancer_config:
-    name: lb config
-  health_check:
-    port: 42
-    interval: 2000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-web1:
-  scale: 1
+version: '2'
+services:
+  lb:
+    scale: 1
+    lb_config:
+      port_rules:
+      - source_port: 80
+        target_port: 80
+        service: web
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  web:
+    scale: 1
 ```
 
-<br>
+#### SSL Termination Example
 
-#### SSL Termination
-
-Rancher Compose uses labels to define the SSL ports to be used in SSL termination. The [certificates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/) must be added into Rancher and are defined in the `rancher-compose.yml`.
+The [certificates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/) must be added into Rancher and are defined in the `rancher-compose.yml`.
 
 ##### Example `docker-compose.yml`
 
 ```yaml
-lb:
-  ports:
-  - 443:443
-  labels:
-    io.rancher.loadbalancer.ssl.ports: '443'
-  image: rancher/load-balancer-service
-  links:
-  - web1:web1
+version: '2'
+services:
+  lb:
+    image: rancher/lb-service-haproxy
+    ports:
+    - 443
+  web:
+    image: nginx
 ```
 
 <br>
@@ -462,67 +652,19 @@ lb:
 ##### Example `rancher-compose.yml`
 
 ```yaml
-lb:
-  scale: 1
-  certs:
-  - certName
-  load_balancer_config:
-    name: lb
-  default_cert: defaultCertName
-```
-
-
-#### Custom `haproxy.cfg`
-
-For advanced users, you can specify `global` and `defaults` configuration to the load balancer in the `rancher-compose.yml`. Please refer to the [HAProxy documentation](http://cbonte.github.io/haproxy-dconv/configuration-1.5.html) for details on the available options you can add.
-
-##### Example `rancher-compose.yml`
-
-```yaml
-lb:
-  scale: 1
-  load_balancer_config:
-    haproxy_config:
-      defaults: <DEFAULTS_INPUTS>
-      global: <GLOBAL_INPUTS>
-  health_check:
-    port: 42
-    interval: 2000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-```
-
-### Adding a Load Balancer with Rancher Compose
-
-We'll walk through how to set up a load balancer for our "letschat" application created earlier in the [adding services section]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#adding-services-with-rancher-compose).
-
-Read more about how to [set up Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/).
-
-We'll set up the same example that we used above in the UI example. To get started, you will need to create a `docker-compose.yml` file and a `rancher-compose.yml` file. With Rancher Compose, we can launch the load balancer.
-
-#### Example `docker-compose.yml`
-
-```yaml
-letschatlb:
-  ports:
-  - 80:8080
-  image: rancher/load-balancer-service
-  links:
-  - letschat:letschat
-```
-
-#### Example `rancher-compose.yml`
-
-```yaml
-letschatlb:
-  scale: 1
-  load_balancer_config:
-    haproxy_config: {}
-  health_check:
-    port: 42
-    interval: 2000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
+version: '2'
+services:
+  lb:
+    scale: 1
+    lb_config:
+      certs:
+      - <certName>
+      default_cert: <defaultCertName>
+      port_rules:
+      - source_port: 443
+        target_port: 443
+        service: web
+        protocol: https
+  web:
+    scale: 1
 ```
