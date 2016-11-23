@@ -1,6 +1,6 @@
 ---
 title: Telemetry
-layout: rancher-default
+layout: rancher-default-v1.2
 ---
 
 ## Telemetry
