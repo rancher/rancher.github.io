@@ -156,6 +156,8 @@ We'll walk through how to set up a load balancer for our "letschat" application 
 
 Read more about how to [set up Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/).
 
+> **Note**: In our examples, we will use `<version>` as the image tag for our load balancers. Each version of Rancher will have a specific version of `lb-service-haproxy` that is supported for load balancers.
+
 We'll set up the same example that we used above in the UI example. To get started, you will need to create a `docker-compose.yml` file and a `rancher-compose.yml` file. With Rancher Compose, we can launch the load balancer.
 
 #### Example `docker-compose.yml`
@@ -166,7 +168,7 @@ services:
   letschatlb:
     ports:
     - 80
-    image: rancher/lb-service-haproxy
+    image: rancher/lb-service-haproxy:<version>
 ```
 
 #### Example `rancher-compose.yml`
@@ -213,7 +215,7 @@ When creating a load balancer, you can add any ports you want exposed on the hos
 version: '2'
 services:
   lb1:
-    image: rancher/lb-service-haproxy
+    image: rancher/lb-service-haproxy:<version>
     # Any ports listed will be exposed on the host that is running the load balancer
     # To direct traffic to specific service, a port rule will need to be added.
     ports:
@@ -406,7 +408,7 @@ In the load balancer, the [selector value]({{site.baseurl}}/rancher/{{page.versi
 version: '2'
 services:
   lb1:
-    image: rancher/lb-service-haproxy
+    image: rancher/lb-service-haproxy:<version>
     ports:
     - 81
   # These services (web1 and web2) will be picked up by the load balancer as a target

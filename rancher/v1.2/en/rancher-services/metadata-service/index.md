@@ -17,7 +17,6 @@ With Rancher's metadata service, you can exec into any container using the Ranch
 
 Containers can be launched in the Rancher managed network in several ways. Read more about how [networking]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking) works in Rancher.
 
-
 > **Note:** Metadata service is not available for system containers, i.e. Network Agent and LB Agent.
 
 ### How to Get the Metadata
