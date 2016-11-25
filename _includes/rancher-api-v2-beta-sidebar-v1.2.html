@@ -75,17 +75,6 @@
             </ul>
           </li>
           <li class="panel">
-            <a href="#binding"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">Binding <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
-            <ul class="collapse list-group-submenu" id="binding">
-              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/binding/" data-toggle="refresh">Binding</a></li>
-              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/binding/#create" data-toggle="refresh">Create</a></li>
-              
-              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/binding/#update" data-toggle="refresh">Update</a></li>
-              
-              
-            </ul>
-          </li>
-          <li class="panel">
             <a href="#certificate"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">Certificate <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
             <ul class="collapse list-group-submenu" id="certificate">
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/certificate/" data-toggle="refresh">Certificate</a></li>
@@ -155,20 +144,10 @@
             </ul>
           </li>
           <li class="panel">
-            <a href="#healthcheckInstanceHostMap"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">HealthcheckInstanceHostMap <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
-            <ul class="collapse list-group-submenu" id="healthcheckInstanceHostMap">
-              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/healthcheckInstanceHostMap/" data-toggle="refresh">HealthcheckInstanceHostMap</a></li>
-              
-              
-              
-              
-            </ul>
-          </li>
-          <li class="panel">
             <a href="#host"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">Host <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
             <ul class="collapse list-group-submenu" id="host">
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/" data-toggle="refresh">Host</a></li>
-              
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/#create" data-toggle="refresh">Create</a></li>
               
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/#update" data-toggle="refresh">Update</a></li>
               
@@ -176,6 +155,7 @@
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/#activate" data-toggle="refresh">Activate</a></li>
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/#deactivate" data-toggle="refresh">Deactivate</a></li>
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/#dockersocket" data-toggle="refresh">Dockersocket</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/#error" data-toggle="refresh">Error</a></li>
               
             </ul>
           </li>
@@ -217,6 +197,7 @@
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/machine/" data-toggle="refresh">Machine</a></li>
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/machine/#create" data-toggle="refresh">Create</a></li>
               
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/machine/#update" data-toggle="refresh">Update</a></li>
               
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/machine/#delete" data-toggle="refresh">Delete</a></li>
               
@@ -229,9 +210,51 @@
               
               
               
-              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/machineDriver/#activate" data-toggle="refresh">Activate</a></li>
-              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/machineDriver/#deactivate" data-toggle="refresh">Deactivate</a></li>
-              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/machineDriver/#reactivate" data-toggle="refresh">Reactivate</a></li>
+              
+            </ul>
+          </li>
+          <li class="panel">
+            <a href="#network"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">Network <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
+            <ul class="collapse list-group-submenu" id="network">
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/" data-toggle="refresh">Network</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/#create" data-toggle="refresh">Create</a></li>
+              
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/#update" data-toggle="refresh">Update</a></li>
+              
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/#delete" data-toggle="refresh">Delete</a></li>
+              
+            </ul>
+          </li>
+          <li class="panel">
+            <a href="#networkDriver"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">NetworkDriver <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
+            <ul class="collapse list-group-submenu" id="networkDriver">
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriver/" data-toggle="refresh">NetworkDriver</a></li>
+              
+              
+              
+              
+            </ul>
+          </li>
+          <li class="panel">
+            <a href="#networkDriverService"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">NetworkDriverService <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
+            <ul class="collapse list-group-submenu" id="networkDriverService">
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriverService/" data-toggle="refresh">NetworkDriverService</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriverService/#create" data-toggle="refresh">Create</a></li>
+              
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriverService/#update" data-toggle="refresh">Update</a></li>
+              
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriverService/#delete" data-toggle="refresh">Delete</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriverService/#activate" data-toggle="refresh">Activate</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriverService/#addservicelink" data-toggle="refresh">Addservicelink</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriverService/#cancelupgrade" data-toggle="refresh">Cancelupgrade</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriverService/#continueupgrade" data-toggle="refresh">Continueupgrade</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriverService/#deactivate" data-toggle="refresh">Deactivate</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriverService/#finishupgrade" data-toggle="refresh">Finishupgrade</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriverService/#removeservicelink" data-toggle="refresh">Removeservicelink</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriverService/#restart" data-toggle="refresh">Restart</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriverService/#rollback" data-toggle="refresh">Rollback</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriverService/#setservicelinks" data-toggle="refresh">Setservicelinks</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriverService/#upgrade" data-toggle="refresh">Upgrade</a></li>
               
             </ul>
           </li>
@@ -257,6 +280,16 @@
               
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/projectMember/#activate" data-toggle="refresh">Activate</a></li>
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/projectMember/#deactivate" data-toggle="refresh">Deactivate</a></li>
+              
+            </ul>
+          </li>
+          <li class="panel">
+            <a href="#projectTemplate"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">ProjectTemplate <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
+            <ul class="collapse list-group-submenu" id="projectTemplate">
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/projectTemplate/" data-toggle="refresh">ProjectTemplate</a></li>
+              
+              
+              
               
             </ul>
           </li>
@@ -331,37 +364,6 @@
             </ul>
           </li>
           <li class="panel">
-            <a href="#serviceBinding"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">ServiceBinding <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
-            <ul class="collapse list-group-submenu" id="serviceBinding">
-              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceBinding/" data-toggle="refresh">ServiceBinding</a></li>
-              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceBinding/#create" data-toggle="refresh">Create</a></li>
-              
-              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceBinding/#update" data-toggle="refresh">Update</a></li>
-              
-              
-            </ul>
-          </li>
-          <li class="panel">
-            <a href="#serviceConsumeMap"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">ServiceConsumeMap <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
-            <ul class="collapse list-group-submenu" id="serviceConsumeMap">
-              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceConsumeMap/" data-toggle="refresh">ServiceConsumeMap</a></li>
-              
-              
-              
-              
-            </ul>
-          </li>
-          <li class="panel">
-            <a href="#serviceExposeMap"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">ServiceExposeMap <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
-            <ul class="collapse list-group-submenu" id="serviceExposeMap">
-              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceExposeMap/" data-toggle="refresh">ServiceExposeMap</a></li>
-              
-              
-              
-              
-            </ul>
-          </li>
-          <li class="panel">
             <a href="#serviceLog"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">ServiceLog <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
             <ul class="collapse list-group-submenu" id="serviceLog">
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceLog/" data-toggle="refresh">ServiceLog</a></li>
@@ -403,6 +405,49 @@
             </ul>
           </li>
           <li class="panel">
+            <a href="#storageDriver"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">StorageDriver <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
+            <ul class="collapse list-group-submenu" id="storageDriver">
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriver/" data-toggle="refresh">StorageDriver</a></li>
+              
+              
+              
+              
+            </ul>
+          </li>
+          <li class="panel">
+            <a href="#storageDriverService"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">StorageDriverService <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
+            <ul class="collapse list-group-submenu" id="storageDriverService">
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/" data-toggle="refresh">StorageDriverService</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/#create" data-toggle="refresh">Create</a></li>
+              
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/#update" data-toggle="refresh">Update</a></li>
+              
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/#delete" data-toggle="refresh">Delete</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/#activate" data-toggle="refresh">Activate</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/#addservicelink" data-toggle="refresh">Addservicelink</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/#cancelupgrade" data-toggle="refresh">Cancelupgrade</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/#continueupgrade" data-toggle="refresh">Continueupgrade</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/#deactivate" data-toggle="refresh">Deactivate</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/#finishupgrade" data-toggle="refresh">Finishupgrade</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/#removeservicelink" data-toggle="refresh">Removeservicelink</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/#restart" data-toggle="refresh">Restart</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/#rollback" data-toggle="refresh">Rollback</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/#setservicelinks" data-toggle="refresh">Setservicelinks</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/#upgrade" data-toggle="refresh">Upgrade</a></li>
+              
+            </ul>
+          </li>
+          <li class="panel">
+            <a href="#subnet"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">Subnet <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
+            <ul class="collapse list-group-submenu" id="subnet">
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/subnet/" data-toggle="refresh">Subnet</a></li>
+              
+              
+              
+              
+            </ul>
+          </li>
+          <li class="panel">
             <a href="#subscribe"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">Subscribe <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
             <ul class="collapse list-group-submenu" id="subscribe">
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/subscribe/" data-toggle="refresh">Subscribe</a></li>
@@ -418,11 +463,22 @@
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volume/" data-toggle="refresh">Volume</a></li>
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volume/#create" data-toggle="refresh">Create</a></li>
               
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volume/#update" data-toggle="refresh">Update</a></li>
               
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volume/#delete" data-toggle="refresh">Delete</a></li>
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volume/#restorefrombackup" data-toggle="refresh">Restorefrombackup</a></li>
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volume/#reverttosnapshot" data-toggle="refresh">Reverttosnapshot</a></li>
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volume/#snapshot" data-toggle="refresh">Snapshot</a></li>
+              
+            </ul>
+          </li>
+          <li class="panel">
+            <a href="#volumeTemplate"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">VolumeTemplate <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
+            <ul class="collapse list-group-submenu" id="volumeTemplate">
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volumeTemplate/" data-toggle="refresh">VolumeTemplate</a></li>
+              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volumeTemplate/#create" data-toggle="refresh">Create</a></li>
+              
+              
               
             </ul>
           </li>

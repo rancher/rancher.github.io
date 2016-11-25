@@ -21,6 +21,7 @@ description | string | Optional | Yes | - |
 dockerCompose | string | Optional | - | - | 
 environment | map[string] | Optional | - | - | 
 externalId | string | Optional | Yes | - | 
+group | string | Optional | Yes | - | 
 name | string | Yes | Yes | - | 
 outputs | map[string] | Optional | Yes | - | 
 previousEnvironment | map[string] | Optional | Yes | - | 
@@ -35,6 +36,8 @@ Field | Type   | Notes
 ---|---|---
 healthState | string  | 
 id | int  | The unique identifier for the stack
+serviceIds | array[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
+system | boolean  | 
 
 
 <br>
@@ -59,6 +62,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"key": "value-pairs"
 	},
 	"externalId": "string",
+	"group": "string",
 	"name": "string",
 	"outputs": {
 		"key": "value-pairs"
@@ -92,6 +96,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	},
 	"description": "string",
 	"externalId": "string",
+	"group": "string",
 	"name": "string",
 	"outputs": {
 		"key": "value-pairs"

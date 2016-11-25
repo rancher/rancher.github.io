@@ -31,7 +31,7 @@ created | date  | The date of when the password was created.
 id | int  | The unique identifier for the password
 kind | string  | 
 removed | date  | The date of when the password was removed
-state | enum  | The current state of the password. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
+state | enum  | The current state of the password. The options are activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive.
 transitioning | enum  | Whether or not the password is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state
 transitioningProgress | int  | The percentage remaining in the transitioning process of the password

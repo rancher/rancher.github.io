@@ -150,26 +150,23 @@ Instead of specific services, you can view all the containers in the environment
 
 ```bash
 $ rancher ps -c
-ID      NAME                       IMAGE                           STATE     HOST   IP              DOCKER         DETAIL
-1i1     zookeeper_zk_zk-volume_1   rawmind/alpine-volume:0.0.1-1   stopped   1h1                    a92b6d3dad18   
-1i2     zookeeper_zk_zk-conf_1     rawmind/rancher-zk:0.3.3        stopped   1h1                    2e8085a4b517   
-1i3     zookeeper_zk_1             rawmind/alpine-zk:3.4.8-4       healthy   1h1    10.42.150.2     e3ef1c6ff70e   
-1i4     Network Agent              rancher/agent-instance:v0.8.3   running   1h1    10.42.143.53    d41268df57ef   
-1i5     zookeeper_zk_zk-volume_2   rawmind/alpine-volume:0.0.1-1   stopped   1h2                    e716f562e0a4   
-1i6     zookeeper_zk_zk-conf_2     rawmind/rancher-zk:0.3.3        stopped   1h2                    5cd1cebea5a3   
-1i7     zookeeper_zk_2             rawmind/alpine-zk:3.4.8-4       healthy   1h2    10.42.88.102    21984a4445d1   
-1i8     Network Agent              rancher/agent-instance:v0.8.3   running   1h2    10.42.166.165   54b5d3b0c7e0   
-1i9     zookeeper_zk_zk-volume_3   rawmind/alpine-volume:0.0.1-1   stopped   1h3                    7c614003f08c   
-1i10    zookeeper_zk_zk-conf_3     rawmind/rancher-zk:0.3.3        stopped   1h3                    53fb77cd8ae0   
-1i11    zookeeper_zk_3             rawmind/alpine-zk:3.4.8-4       healthy   1h3    10.42.249.162   84a80eb8e037   
-1i12    Network Agent              rancher/agent-instance:v0.8.3   running   1h3    10.42.6.213     326f85dbb956   
-1i13    Default_nginxApp_1         nginx                           running   1h1    10.42.107.28    e1195a563280   
-1i15    App1_db1_1                 mysql                           running   1h3    10.42.116.171   0624e0a7f2fc   
-1i16    App1_wordpress_1           wordpress                       running   1h1    10.42.66.199    4bb77abebc08   
-1i17    App1_wordpress-lb_1        rancher/agent-instance:v0.8.3   healthy   1h2    10.42.199.163   5d3a005278d3   
-1i18    App1_wordpress_2           wordpress                       running   1h2    10.42.88.114    01ec967c49ac   
-1i19    App1_wordpress_3           wordpress                       running   1h3    10.42.218.81    3aae3fc6163a   
-1i20    App1_wordpress_4           wordpress                       running   1h1    10.42.202.31    0b67ef86db22   
+ID      NAME                       IMAGE                              STATE     HOST   IP              DOCKER         DETAIL
+1i1     zookeeper_zk_zk-volume_1   rawmind/alpine-volume:0.0.1-1      stopped   1h1                    a92b6d3dad18   
+1i2     zookeeper_zk_zk-conf_1     rawmind/rancher-zk:0.3.3           stopped   1h1                    2e8085a4b517   
+1i3     zookeeper_zk_1             rawmind/alpine-zk:3.4.8-4          healthy   1h1    10.42.150.2     e3ef1c6ff70e   
+1i5     zookeeper_zk_zk-volume_2   rawmind/alpine-volume:0.0.1-1      stopped   1h2                    e716f562e0a4   
+1i6     zookeeper_zk_zk-conf_2     rawmind/rancher-zk:0.3.3           stopped   1h2                    5cd1cebea5a3   
+1i7     zookeeper_zk_2             rawmind/alpine-zk:3.4.8-4          healthy   1h2    10.42.88.102    21984a4445d1   
+1i9     zookeeper_zk_zk-volume_3   rawmind/alpine-volume:0.0.1-1      stopped   1h3                    7c614003f08c   
+1i10    zookeeper_zk_zk-conf_3     rawmind/rancher-zk:0.3.3           stopped   1h3                    53fb77cd8ae0   
+1i11    zookeeper_zk_3             rawmind/alpine-zk:3.4.8-4          healthy   1h3    10.42.249.162   84a80eb8e037   
+1i13    Default_nginxApp_1         nginx                              running   1h1    10.42.107.28    e1195a563280   
+1i15    App1_db1_1                 mysql                              running   1h3    10.42.116.171   0624e0a7f2fc   
+1i16    App1_wordpress_1           wordpress                          running   1h1    10.42.66.199    4bb77abebc08   
+1i17    App1_wordpress-lb_1        rancher/lb-service-haproxy:v0.4.2  healthy   1h2    10.42.199.163   5d3a005278d3   
+1i18    App1_wordpress_2           wordpress                          running   1h2    10.42.88.114    01ec967c49ac   
+1i19    App1_wordpress_3           wordpress                          running   1h3    10.42.218.81    3aae3fc6163a   
+1i20    App1_wordpress_4           wordpress                          running   1h1    10.42.202.31    0b67ef86db22   
 ```
 
 #### Listing Containers of a Specific Service
@@ -192,16 +189,20 @@ To start adding services into Rancher, you can create a simple `docker-compose.y
 Sample `docker-compose.yml`
 
 ```yaml
-service1:
-  image: nginx
+version: '2'
+services:
+  service1:
+    image: nginx
 ```
 
 Sample `rancher-compose.yml`
 
 ```yaml
-# Reference the service that you want to extend
-service1:
-  scale: 2
+version: '2'
+services:
+  # Reference the service that you want to extend
+  service1:
+    scale: 2
 ```
 
 After your files are created, you can launch the services into Rancher server.

@@ -29,7 +29,7 @@ created | date  | The date of when the snapshot was created.
 id | int  | The unique identifier for the snapshot
 kind | string  | 
 removed | date  | The date of when the snapshot was removed
-state | enum  | The current state of the snapshot. The options are [created, creating, removed, removing, requested].
+state | enum  | The current state of the snapshot. The options are created, creating, removed, removing, requested.
 transitioning | enum  | Whether or not the snapshot is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state
 transitioningProgress | int  | The percentage remaining in the transitioning process of the snapshot

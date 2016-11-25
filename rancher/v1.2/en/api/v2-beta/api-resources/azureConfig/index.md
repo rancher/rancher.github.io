@@ -20,6 +20,7 @@ availabilitySet | string | Optional | - | docker-machine |
 clientId | string | Optional | - | - | 
 clientSecret | string | Optional | - | - | 
 customData | string | Optional | - | - | 
+dns | string | Optional | - | - | 
 dockerPort | string | Optional | - | 2376 | 
 environment | string | Optional | - | AzurePublicCloud | 
 image | string | Optional | - | canonical:UbuntuServer:16.04.0-LTS:latest | 

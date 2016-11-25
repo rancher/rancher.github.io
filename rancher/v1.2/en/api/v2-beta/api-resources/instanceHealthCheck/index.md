@@ -25,7 +25,7 @@ recreateOnQuorumStrategyConfig | [recreateOnQuorumStrategyConfig]({{site.baseurl
 reinitializingTimeout | int | Optional | - | - | 
 requestLine | string | Optional | - | - | 
 responseTimeout | int | Optional | - | - | 
-strategy | enum | Optional | - | recreate | 
+strategy | enum | Optional | - | recreate | The options are none, recreate, recreateOnQuorum.
 unhealthyThreshold | int | Optional | - | - | 
 
 

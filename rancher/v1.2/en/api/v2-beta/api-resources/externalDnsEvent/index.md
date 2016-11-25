@@ -27,7 +27,7 @@ kind | string  |
 reportedAccountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | 
 serviceName | string  | 
 stackName | string  | 
-state | enum  | The current state of the externalDnsEvent. The options are [created, creating, removed, removing, requested].
+state | enum  | The current state of the externalDnsEvent. The options are created, creating, removed, removing, requested.
 transitioning | enum  | Whether or not the externalDnsEvent is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state
 transitioningProgress | int  | The percentage remaining in the transitioning process of the externalDnsEvent
