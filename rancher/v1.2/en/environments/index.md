@@ -14,7 +14,7 @@ redirect_from:
 
 ### What is an Environment?
 
-Rancher supports grouping resources into multiple environments. Each environment starts with a set of infrastructure services defined by the [environment template](#what-is-an-environment-template) used to create the environment. Each environment has its own set of resources, and is owned by one or more users or groups. For example, you might create separate "dev", "test", and "production" environments to keep things isolated from each other, and give "dev" access to your entire organization but restrict the "production" environment to a smaller team.
+Rancher supports grouping resources into multiple environments. Each environment starts with a set of [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) defined by the [environment template](#what-is-an-environment-template) used to create the environment. Each environment has its own set of resources, and is owned by one or more users or groups. For example, you might create separate "dev", "test", and "production" environments to keep things isolated from each other, and give "dev" access to your entire organization but restrict the "production" environment to a smaller team.
 
 All hosts and any Rancher resources, such as containers, infrastructure services, and so on are created in and belong to an environment.
 
@@ -32,7 +32,7 @@ There are two ways to add members to an environment. Provide the username and cl
 
 For each member (i.e. individual, team, or organization), you can define the role to be either an [owner](#owners), [member](#members), [restricted user](#restricted) or [read only user](#read-only). By default, they are added to the list as a member. You can change their role in the dropdown next to their name. As an owner, you can always change the list of members and their roles at any time, but only owners have the ability to change the membership and membership roles of the environment.
 
-> **Note:** Only owners and admins will be able to see infrastructure services of an environment.
+> **Note:** Only owners and admins will be able to see [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) of an environment.
 
 Click on **Create** and the environment will immediately be available to anyone on the member list. After the environment is created and hosts added, the infrastructure services enabled for the environment will begin to deploy.
 
@@ -40,7 +40,7 @@ Click on **Create** and the environment will immediately be available to anyone 
 
 After creating environments, owners might want to deactivate or delete the environment.
 
-Deactivating an environment will remove the viewing ability from any members of the environment. All owners will still be able to view and activate the environment. You will not be able to change the membership of the environment until it's been re-activated. Nothing will change with your services or infrastructure. Therefore, if you want to make any changes to your services/infrastructure, you'll need to make these changes before your environment is deactivated.
+Deactivating an environment will remove the viewing ability from any members of the environment. All owners will still be able to view and activate the environment. You will not be able to change the membership of the environment until it's been re-activated. Nothing will change with your services or infrastructure. Therefore, if you want to make any changes to your infrastructure services, you'll need to make these changes before your environment is deactivated.
 
 In order to delete an environment, you will need to first deactivate it. All registries, balancers and API keys created in the environment will be removed from Rancher. Any hosts created through the Rancher UI, which launches hosts using Docker Machine, will also be removed from the cloud provider by using Docker Machine. If you have added a host using the [custom]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) option, then the host will not be removed from the cloud provider.
 
@@ -58,11 +58,11 @@ Owners can also change the roles of anyone on the member list. Just select the r
 
 An owner of an environment has the ability to change the status or the membership of an environment. Within the membership list, the owner can also change the roles of other members of the environment.
 
-Owners have the ability to change infrastructure services of an environment through the [catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog), as there is no method to edit environment templates. Environment templates are only used when creating an environment.
+Owners have the ability to change [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) of an environment through the [catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog), as there is no method to edit environment templates. Environment templates are only used when creating an environment.
 
 #### Members
 
-A member of an environment can perform any actions in Rancher that do not affect the environment. They will not be able to add/remove members or change the membership roles of existing members or view any of the infrastructure services.
+A member of an environment can perform any actions in Rancher that do not affect the environment. They will not be able to add/remove members or change the membership roles of existing members or view any of the [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/).
 
 #### Restricted
 
@@ -97,7 +97,7 @@ After navigating to the **Environments** page, you will see a list of environmen
 
 Pick a **Name** and **Description** for the template. Select how you want to share your template. Templates can either be private (i.e. only visible to yourself) or public (i.e. visible to admins).
 
-Infrastructure services include but not limited to selecting container orchestration, storage, and networking. The default infrastructure services required to have a working environment are automatically enabled.
+[Infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) include but not limited to selecting container orchestration, [storage]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/storage-service/), and [networking]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking). The default infrastructure services required to have a working environment are automatically enabled.
 
 ### Editing & Deleting Environment Templates
 

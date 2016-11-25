@@ -23,9 +23,9 @@ After a Kubernetes environment has been created, you can navigate to the environ
 
 ### Starting Kubernetes
 
-After a Kubernetes environment has been created, the infrastructure services will not be started until you add at least one host to your environment. The process of [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) is the same steps for all container orchestration types. Once the first host has been added, Rancher will automatically start the deployment of the infrastructure services including the Kubernetes services (i.e. master, kubelet, etcd, proxy, etc.). You can see the progress of the deployment by accessing the **Kubernetes** -> **Infrastructure Stacks** tab.
+After a Kubernetes environment has been created, the [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) will not be started until you add at least one host to your environment. The process of [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) is the same steps for all container orchestration types. Once the first host has been added, Rancher will automatically start the deployment of the infrastructure services including the Kubernetes services (i.e. master, kubelet, etcd, proxy, etc.). You can see the progress of the deployment by accessing the **Kubernetes** -> **Infrastructure Stacks** tab.
 
-> **Note:** Only admins of Rancher or owners of the environment will be able to view the infrastructure services.
+> **Note:** Only admins of Rancher or owners of the environment will be able to view the [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/).
 
 When adding hosts to Kubernetes, the hostnames are used as unique identifiers for Kubernetes nodes when using `kubectl get nodes`.
 

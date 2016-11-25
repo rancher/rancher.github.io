@@ -62,48 +62,6 @@ $ sudo docker run -d -e CATTLE_AGENT_IP=<HOST_IP> --privileged \
     -v /var/run/docker.sock:/var/run/docker.sock \
     rancher/agent:v0.8.2 http://SERVER_IP:8080/v1/scripts/xxxx
 ```
-
-#### Containers on hosts unable to ping each other, how to check that the hosts can ping each other?
-
-Log onto Host A. Ping Host B using the IP reported in the Rancher UI. It is important to use the IP reported in the UI because this is the IP that Rancher uses to establish connections between hosts. The ping command is simply: `ping <IP of Host B>`. Note also that the host must be accessible to each other on UDP ports `500` and `4500`.
-
-If the ping works fine, ensure there is a network agent container running on each host using this command:
-
-```bash
-$ docker ps | grep 'rancher/agent-instance'
-```
-
-That should return one running container with output similar to this:
-
-```bash
-5923dd05b7d3        rancher/agent-instance:v0.4.1   "/etc/init.d/agent-i   15 minutes ago      Up 15 minutes       0.0.0.0:500->500/udp, 0.0.0.0:4500->4500/udp   4139cada-035f-4aa8-bd3a-f4c1dcbb3bab
-```
-
-If the container is there and running, you can check its logs for errors: `docker logs <id_of_container_from_above>`.
-
-#### How to check IPtables rules are not being malformed?
-
-Here is an iptables command that will provide useful debugging information.
-
-```bash
-# On the host
-$ iptables -L -n --line-numbers -t nat
-```
-
-The CATTLE_PREROUTING chain will be of most interest. It lists rules that are necessary for exposing ports that you've specified in Rancher. Here is some sample output:
-
-```bash
-Chain CATTLE_PREROUTING (1 references)
-num  target     prot opt source               destination
-1    DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            ADDRTYPE match dst-type LOCAL tcp dpt:80 to:10.42.160.45:8080
-2    DNAT       udp  --  0.0.0.0/0            0.0.0.0/0            ADDRTYPE match dst-type LOCAL udp dpt:4500 to:10.42.179.222:4500
-3    DNAT       udp  --  0.0.0.0/0            0.0.0.0/0            ADDRTYPE match dst-type LOCAL udp dpt:500 to:10.42.179.222:500
-```
-
-The first rule is an example of a rule for a user-defined container in which the user mapped host port `80` to container port `8080`. The ip `10.42.160.45` is the IP the Rancher assigned to the container. If Rancher is working properly, you should a rule for each port mapping you defined for each container running on the host. The second two rules are for the Rancher network agent container that runs on each host to provide Rancher networking. We always use ports `500` and `4500`.
-
-If it seems that you are missing rules, try deploying another container from the Rancher UI and specify a port mapping. When the container is deployed, all rules will be synced up with the Rancher database. This obviously is not a permanent fix to the problem, but is useful for debugging and short-term fixes.
-
 #### Running Ubuntu, and containers are unable to communicate with each other.
 
 If you have `UFW` enabled, you can either disable `UFW` OR change `/etc/default/ufw` to:
@@ -132,17 +90,6 @@ If you want to see the configuration of the Rancher DNS setup, go to the **Stack
 
 ```bash
 $ cat /etc/rancher-dns/answers.json
-```
-
-### Networking
-
-#### Where can I find logs for networking?
-
-If you are having issues with networking inside Rancher, you can obtain the following logs from the **Network Agent** container.
-
-```
-/var/log/rancher-net.log
-/var/log/charon.log
 ```
 
 #### CentOS
