@@ -22,50 +22,46 @@ When launching Rancher server with no internet access, there will be a couple of
 
 The `rancher/server:latest` tag will be our stable release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version.
 
-If you are interested in trying one of our latest development builds which will have been validated through our CI automation framework, please check our [releases page](https://github.com/rancher/rancher/releases) to find the latest development release tag. These releases are not meant for deployment in production. All development builds will be appended with a `*-pre{n}` suffix to denote that it's a development release. For any release with a `rc{n}` suffix, please do not use this tag. These `rc` builds are meant for the Rancher team to test out the development builds.
+If you are interested in trying one of our latest development builds which will have been validated through our CI automation framework, please check our [releases page](https://github.com/rancher/rancher/releases) to find the latest development release tag. These releases are not meant for deployment in production. All development builds will be appended with a `*-pre{n}` suffix to denote that it's a development release. For any release with a `rc{n}` suffix, please do not use this tag. These `rc` builds are meant for the Rancher QA team to test out the development builds.
 
-### Using Private Registry
+### Using A Private Registry
 
 It is assumed you either have your own private registry or other means of distributing docker images to your machine. If you need help with creating a private registry, please refer to the [Docker documentation for private registries](https://docs.docker.com/registry/).
 
 #### Pushing Images to Private Registry
 
-It is **very important** that all images (i.e. rancher/server, rancher/agent, rancher/agent-instance) are distributed before attempting to install/upgrade Rancher Server. If these versions are not available in your private registry, Rancher Server will become unstable.
+It is **very important** that all images (e.g.. `rancher/server`, `rancher/agent`, and any [infrastructure service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) images) are distributed before attempting to install/upgrade Rancher Server. If these versions are not available in your private registry, Rancher Server will become unstable.
 
-For each release of Rancher server, the corresponding Rancher agent and Rancher agent instance versions will be available in the release notes.
+For each release of Rancher server, the corresponding Rancher agent and Rancher agent instance versions will be available in the release notes. In order to find the images for your infrastructure services, you would need to reference the `infra-templates` folders in our [Rancher catalog](https://github.com/rancher/rancher-catalog) and [community catalog](https://github.com/rancher/community-catalog) to see which infrastructure services that you'd like to include and the associated images in those templates from those [catalogs]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/).
 
-**Commands to Push Images to Private Registry**
+##### Commands to Push Images to Private Registry
 
-These examples are for the v1.0.1 release using a machine that has access to both DockerHub and your private registry. We recommend tagging the version of the images in your private registry as the same version.
+These examples are for the `rancher/server` and `rancher/agent` images using a machine that has access to both DockerHub and your private registry. We recommend tagging the version of the images in your private registry as the same version that exist in DockerHub.
 
 ```bash
 # rancher/server
-$ docker pull rancher/server:v1.0.1
-$ docker tag rancher/server:v1.0.1 localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.0.1
-$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.0.1
+$ docker pull rancher/server:v1.2.0
+$ docker tag rancher/server:v1.2.0 localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.2.0
+$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.2.0
 
 # rancher/agent
-$ docker pull rancher/agent:v1.0.1
-$ docker tag rancher/agent:v1.0.1 localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v1.0.1
-$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v1.0.1
-
-# rancher/agent-instance
-$ docker pull rancher/agent-instance:v0.8.1
-$ docker tag rancher/agent-instance:v0.8.1 localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.8.1
-$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.8.1
+$ docker pull rancher/agent:v1.1.0
+$ docker tag rancher/agent:v1.1.0 localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v1.1.0
+$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v1.1.0
 ```
+
+> **Note:** For any infrastructure services images, you would have to follow the same steps.
 
 #### Launching Rancher Server with Private Registry
 
-On your machine, start Rancher server to use the specific Rancher images. We recommend using specific version tags instead of the `latest` tag to ensure you are working with the correct versions.
+On your machine, start Rancher server to use the specific Rancher Agent image. We recommend using specific version tags instead of the `latest` tag to ensure you are working with the correct versions.
 
 Using the v1.0.1 example:
 
 ```bash
 $ sudo docker run -d --restart=unless-stopped -p 8080:8080 \
-    -e CATTLE_BOOTSTRAP_REQUIRED_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v1.0.1 \
-    -e CATTLE_AGENT_INSTANCE_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.8.1 \
-    <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.0.1
+    -e CATTLE_BOOTSTRAP_REQUIRED_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v1.1.0 \
+    <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.2.0
 ```
 
 #### Rancher UI
@@ -83,7 +79,7 @@ The command from the UI will be configured to use the private registry image for
 ##### Example Add Custom Host Command
 
 ```bash
-$ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v1.0.1 http://<SERVER_IP>:8080/v1/scripts/<security_credentials>
+$ sudo docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v1.1.0 http://<SERVER_IP>:8080/v1/scripts/<security_credentials>
 ```
 
 ### Using HTTP Proxy
