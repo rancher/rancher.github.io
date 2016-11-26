@@ -10,9 +10,9 @@ redirect_from:
 ## Networking
 ---
 
-Rancher implements a [CNI](https://github.com/containernetworking/cni) framework, which allows you to use different network drivers within Rancher. To leverage our CNI framework, your [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments) will need to have the **Network Manager** infrastructure service deployed. By default, all [environment templates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template) have the **Network Manager** enabled.
+Rancher implements a [CNI](https://github.com/containernetworking/cni) framework, which allows you to use different network drivers within Rancher. To leverage our CNI framework, your [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments) will need to have the **Network Services** infrastructure service deployed. By default, all [environment templates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template) have the **Network Services** enabled.
 
-Besides the **Network Manager**, you can select which type of networking that you'd like your services to use. In our default environment templates, we have enabled **IPsec** network driver to create a simple and secure overlay network using IPsec tunneling.
+Besides the **Network Services** infrastructure service, you select which type of networking that you'd like your services to use. In our default environment templates, we have enabled **IPsec** network driver to create a simple and secure overlay network using IPsec tunneling.
 
 When a network driver is deployed into your environment, it automatically creates a default network. Any services using the `managed` network will be using this default network. By default, all services launched through the UI or CLI will be using the `managed` network. Besides selecting the `managed` network when starting a service, you could directly select a network based on the name of the network driver.
 
@@ -28,11 +28,11 @@ Using Rancher's IPsec networking, a container will be assigned both a Docker bri
 
 If you are facing issues with cross host communication, please refer to our troubleshooting [documentation]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/faqs/troubleshooting/#cross-host-communication).
 
-### Example of Rancher's IPSec Network Driver
+### Example of Rancher's IPSec Network Service
 
-In a network driver in Rancher, there are several options that are defined.
+To leverage the CNI framework, you can enable a network infrastructure service, which is created from a network driver in a yaml file. In the `network_driver` key of the yaml, there are several options that are defined.
 
-Here is an example of Rancher's IPsec network driver, which is configured in the `rancher-compose.yml` file.
+Here is an example of Rancher's IPsec infrastructure service. The `network_driver` is configured in the `rancher-compose.yml` file.
 
 ```yaml
 ipsec:

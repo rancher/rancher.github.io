@@ -23,7 +23,7 @@ redirect_from:
     * 50 connections per Rancher server node (e.g. A 3 node setup will need to support at least 150 connections)
 * External Load Balancer
 
-> **Note:** Currently, Docker for Windows and Docker for Mac are not supported.
+> **Note:** Currently, Docker for Windows and Docker for Mac are not supported in Rancher.
 
 ### Recommendations for Larger Deployments
 
@@ -31,11 +31,17 @@ redirect_from:
 * MySQL database should have fast disks
 * For true HA, a replicated MySQL database with proper backups is recommended. Using Galera and forcing writes to a single node, due to transaction locks, would be an alternative.
 
+### Rancher Server Tags
+
+The `rancher/server:latest` tag will be our stable release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version.
+
+If you are interested in trying one of our latest development builds which will have been validated through our CI automation framework, please check our [releases page](https://github.com/rancher/rancher/releases) to find the latest development release tag. These releases are not meant for deployment in production. All development builds will be appended with a `*-pre{n}` suffix to denote that it's a development release. Please do not use any release with a `rc{n}` suffix. These `rc` builds are meant for the Rancher team to test out the development builds.
+
 
 ### Preparing for the High Availability (HA) Setup
 
 1. Prepare a MySQL database with at least 1 GB RAM following the same directions as [starting a single node using an external database]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#using-an-external-database), but do not launch Rancher server according to those instructions. By default, users will only be able to access the database from localhost. You will need to grant access to the new user for the network where your Rancher nodes will reside.
-2. Configure an external load balancer that will balance traffic on ports 80 and 443 across a pool of nodes that will be running Rancher server. Depending on your cloud provider, it may be necessary to start the nodes before being able to configure the external load balancer. Your load balancer must support websockets and forwarded-for headers, in order for Rancher to function properly. See [SSL settings page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/basic-ssl-config/) for example configuration settings.
+2. Configure an external load balancer that will balance traffic on ports 80 and 443 across a pool of nodes that will be running Rancher server. Depending on your cloud provider, it may be necessary to start the nodes before being able to configure the external load balancer. Your load balancer must support websockets and forwarded-for headers, in order for Rancher to function properly. See [SSL settings page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}//installing-rancher/installing-server/basic-ssl-config/) for example configuration settings.
 3. Prepare the nodes that will be used in the HA setup. These nodes should meet the same [requirements]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#requirements) as a single node setup of Rancher. (Optional) Pre-pulling the `rancher/server` image onto the Rancher nodes.
 
     Currently, our HA setup supports 3 cluster sizes.
@@ -46,7 +52,7 @@ redirect_from:
 
     > **Note:** The nodes can be split between data centers connected with high speed low latency links within a region, but should not be attempted acrosss larger geographic regions. If you choose to split the nodes within a region, Zookeeper is used in our HA setup and requires a quorum to stay active. If you split the nodes between data centers, you will only be able to survive the region with the fewest nodes going down.
 
-4. On one of the nodes, launch a Rancher server that will be used to generate the HA startup scripts. This script generating Rancher server will connect to the external MySQL database and populate the database schema. It will be used to bootstrap the HA deployment process. Eventually, the Rancher server container used in this step will be replaced with a HA configured Rancher server.   
+4. On one of the nodes, launch a Rancher server that will be used to generate the HA startup scripts. This script generating Rancher server will connect to the external MySQL database and populate the database schema. It will be used to bootstrap the HA deployment process. Eventually, the Rancher server container used in this step will be replaced with an HA configured Rancher server.   
 
 
    ```bash
@@ -65,7 +71,6 @@ redirect_from:
     > **Note:** Please be patient with this step, initialization may take up to 15 minutes to complete.
 
 5.  While the initialization is taking place for the script generating Rancher server, you can pre-pull images onto your nodes that will be used in the setup.
-
    ```bash
    # The version would be whatever was used in Step 4
    $ sudo docker pull rancher/server

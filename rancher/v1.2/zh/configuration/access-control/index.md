@@ -46,11 +46,20 @@ Select the **Local** icon. Create an admin user by providing the **Login Usernam
 
 Select the **OpenLDAP** icon. If you want to use a OpenLDAP using TLS, ensure that you have [started Rancher server with the appropriate certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#ldap). Fill in the sections and authenticate Rancher by clicking **Authenticate**. When OpenLDAP is enabled, you'll automatically be logged in as the username that was authenticated. You will also be logged in as an admin of Rancher.
 
+#### Shibboleth
+
+Select the **Shibboleth** icon. Fill in the configuration for the Shibboleth account, **Save** the information and **Test** that access control is working.
+
+With Shibboleth, there are some known issues that you should be aware of if you are configuring to validate against it.
+
+* There is no search or lookup support. When adding in users, the exact IDs must be inputted for the correct users to get access.
+* When adding users to an [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/), group IDs are not supported unless the admin, who turned on access control, is a member of the group.
+
 ### Site Access
 
 Depending on your authentication type, Rancher provides different levels of site access.
 
-#### Active Directory/GitHub
+#### Active Directory/GitHub/Shibboleth
 
 If you have authenticated with AD or GitHub, there will be 3 options available.
 

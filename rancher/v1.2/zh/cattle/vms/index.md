@@ -2,9 +2,10 @@
 title: Virtual Machines
 layout: rancher-default-v1.2
 version: v1.2
-lang: zh
+lang: en
 redirect_from:
-  - /rancher/latest/zh/cattle/vms/
+  - /rancher/rancher-ui/infrastructure/vms/
+  - /rancher/latest/en/cattle/vms/
 ---
 
 ## Getting Started with Virtual Machines

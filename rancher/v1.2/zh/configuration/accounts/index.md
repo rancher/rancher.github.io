@@ -12,13 +12,13 @@ redirect_from:
 
 ### What are Accounts?
 
-Accounts are the users who have access to Rancher.
+Every user who has access to Rancher has an account in Rancher. For local authentication setups, you create accounts for users, where as for other authentication providers, an account is created for the user when they have logged into Rancher.
 
-### Active Directory/GitHub/OpenLDAP Authentication
+#### Active Directory/GitHub/OpenLDAP Authentication
 
 When [Active Directory]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#active-directory), [Azure AD]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#azure-ad), [GitHub]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#github), or [OpenLDAP]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#openldap) authentication is enabled, the **Accounts** tab displays the list of users who have logged in and authenticated against Rancher. In order to log in, they must be either given the privilege to have the [site access]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#site-access) or added to an [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/).
 
-### Local Authentication
+#### Local Authentication
 
 When [local authentication is enabled]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#local-authentication), accounts can be added to Rancher in the **Accounts** tab. Click the **Add Account** button to add accounts into the Rancher database. When creating accounts, the account type can be specified as an admin or user.
 

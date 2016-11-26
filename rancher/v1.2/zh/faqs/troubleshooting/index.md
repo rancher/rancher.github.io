@@ -37,13 +37,19 @@ Since the agent is potentially open to the public internet, requests to the agen
 
 If you run docker logs -f rancher-agent and the logs show messages about an expired token, then please check that the date/time of the Rancher Server host and Rancher Agent host are in sync.
 
+#### Where can I see logs of my service?
+
+In the service details, we provide service logs in a tab called **Log**. In the **Log** tab, it lists out all events related to the service including a timestamp and description of the event.
+
 ### Cross Host Communication
 
 If containers on different hosts cannot ping each other, there are some common scenarios that could be the issue.
 
-#### How to test if cross host communication is working?
+#### How to check if cross host communication is working?
 
-Exec into one of the network agents and ping the internal IP (i.e. 10.42.x.x) of another network agent. Depending on your Rancher version, your network agents may be hidden on the hosts page. To view them, select the "Show System" checkbox in the upper right corner.
+In the **Stacks** -> **Infrastructure Stacks**, check the status of the `healthcheck` stack. If the stack is active, then cross host communication is working.
+
+To manually test, you can exec into any container and ping the internal IP (i.e. 10.42.x.x) of another container. The containers from infrastructure stacks may be hidden on the hosts page. To view them, select the "Show System" checkbox in the upper right corner.
 
 #### Are the IPs of the hosts correct in the UI?
 
@@ -54,48 +60,6 @@ $ sudo docker run -d -e CATTLE_AGENT_IP=<HOST_IP> --privileged \
     -v /var/run/docker.sock:/var/run/docker.sock \
     rancher/agent:v0.8.2 http://SERVER_IP:8080/v1/scripts/xxxx
 ```
-
-#### Containers on hosts unable to ping each other, how to check that the hosts can ping each other?
-
-Log onto Host A. Ping Host B using the IP reported in the Rancher UI. It is important to use the IP reported in the UI because this is the IP that Rancher uses to establish connections between hosts. The ping command is simply: `ping <IP of Host B>`. Note also that the host must be accessible to each other on UDP ports `500` and `4500`.
-
-If the ping works fine, ensure there is a network agent container running on each host using this command:
-
-```bash
-$ docker ps | grep 'rancher/agent-instance'
-```
-
-That should return one running container with output similar to this:
-
-```bash
-5923dd05b7d3        rancher/agent-instance:v0.4.1   "/etc/init.d/agent-i   15 minutes ago      Up 15 minutes       0.0.0.0:500->500/udp, 0.0.0.0:4500->4500/udp   4139cada-035f-4aa8-bd3a-f4c1dcbb3bab
-```
-
-If the container is there and running, you can check its logs for errors: `docker logs <id_of_container_from_above>`.
-
-#### How to check IPtables rules are not being malformed?
-
-Here is an iptables command that will provide useful debugging information.
-
-```bash
-# On the host
-$ iptables -L -n --line-numbers -t nat
-```
-
-The CATTLE_PREROUTING chain will be of most interest. It lists rules that are necessary for exposing ports that you've specified in Rancher. Here is some sample output:
-
-```bash
-Chain CATTLE_PREROUTING (1 references)
-num  target     prot opt source               destination
-1    DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            ADDRTYPE match dst-type LOCAL tcp dpt:80 to:10.42.160.45:8080
-2    DNAT       udp  --  0.0.0.0/0            0.0.0.0/0            ADDRTYPE match dst-type LOCAL udp dpt:4500 to:10.42.179.222:4500
-3    DNAT       udp  --  0.0.0.0/0            0.0.0.0/0            ADDRTYPE match dst-type LOCAL udp dpt:500 to:10.42.179.222:500
-```
-
-The first rule is an example of a rule for a user-defined container in which the user mapped host port `80` to container port `8080`. The ip `10.42.160.45` is the IP the Rancher assigned to the container. If Rancher is working properly, you should a rule for each port mapping you defined for each container running on the host. The second two rules are for the Rancher network agent container that runs on each host to provide Rancher networking. We always use ports `500` and `4500`.
-
-If it seems that you are missing rules, try deploying another container from the Rancher UI and specify a port mapping. When the container is deployed, all rules will be synced up with the Rancher database. This obviously is not a permanent fix to the problem, but is useful for debugging and short-term fixes.
-
 #### Running Ubuntu, and containers are unable to communicate with each other.
 
 If you have `UFW` enabled, you can either disable `UFW` OR change `/etc/default/ufw` to:
@@ -108,47 +72,22 @@ DEFAULT_FORWARD_POLICY="ACCEPT"
 
 #### The subnet used by Rancher is already used in my network and prohibiting the managed network. How do I change the subnet?
 
-In order for Rancher to work with a new subnet, you will need to update a setting in the API and create new environments. None of the existing environments in Rancher server (including the Default one) will use the new subnet after changing the setting.
+To change the subnet used for networking of containers, you will need to ensure the networking infrastructure service that you want to use has the correct [subnet]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking/#subnets) in the `default_network` in the `rancher-compose.yml` file.
 
-To change the setting in your API, you need to go to the following API page:
+To change Rancher's IPsec network driver, you can export the yaml files and update the `subnet` address in the `rancher-compose.yml` file. After the files are updated, you can launch the infrastructure service independently.
 
-```
-http://<rancher_server_ip>:8080/v1/settings/docker.network.subnet.cidr
-```
+> **Note:** The previous method of updating the subnet through the API will no longer be applicable as Rancher has moved to infrastructure services.
 
-Click on the **Edit** under the **Operations** section. Update the value from `10.42.0.0/16` to a subnet that works for you.
-
-Click on **Show Request** and finally **Send Request**. After the request is sent, you can click on **Reload** and see that the value has been updated in the API.
-
-After the value is updated, you'll need to create new environments to have containers start using the new subnet for the managed network.
-
-> **Note:** Any existing environment prior to the API change will not be updated to use the new subnet.
-
-### Network Agents
+### DNS
 
 <a id="dns-config"></a>
 
 ### How can I see if my DNS is set up correctly?
 
-If you want to see the configuration of the Rancher DNS setup, you will need to exec into any network agent in your setup. You can use the UI and select **Execute Shell** on the container.
+If you want to see the configuration of the Rancher DNS setup, go to the **Stacks** -> **Infrastructure Stacks**. Find the `dns` stack and exec into any of the containers. You can use the UI and select **Execute Shell** on the container.
 
 ```bash
-$ cat /var/lib/cattle/etc/cattle/dns/answers.json
-```
-
-#### My network agent keeps restarting. Why?
-
-If your host has IPV6, it will cause the network agent to keep restarting. Currently, Rancher doesn't support hosts with IPV6.
-
-### Networking
-
-#### Where can I find logs for networking?
-
-If you are having issues with networking inside Rancher, you can obtain the following logs from the **Network Agent** container.
-
-```
-/var/log/rancher-net.log
-/var/log/charon.log
+$ cat /etc/rancher-dns/answers.json
 ```
 
 #### CentOS
@@ -169,13 +108,27 @@ Load balancers automatically have [health checks]({{site.baseurl}}/rancher/{{pag
 
 #### How can I see the configuration of my Load Balancer?
 
-If you want to see the configuration of the load balancer, you will need to exec into the specific _LB Agent_ container and look for the configuration file. You can use the UI and select **Execute Shell** on the container.
+If you want to see the configuration of the load balancer, you will need to exec into the specific load balancer container and look for the configuration file. You can use the UI and select **Execute Shell** on the container.
 
 ```bash
 $ cat /etc/haproxy/haproxy.cfg
 ```
 
 This file will provide all the configuration details of the load balancer.
+
+#### Where can I find the logs of HAProxy?
+
+The logs of HAProxy can be found inside the load balancer container. `docker logs` of the load balancer container will only provide details of the service related to load balancer, but not the actual HAProxy logging.
+
+```
+$ cat /var/log/haproxy
+```
+
+### HA
+
+#### Rancher Compose Executor and Go-Machine-Service are continuously restarting.
+
+In an HA set, if rancher-compose-executor and go-machine-service are continuously restarting, if you are behind a proxy, please ensure that proxy protocol is being used.
 
 ### Authentication
 

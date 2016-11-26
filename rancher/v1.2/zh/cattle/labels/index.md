@@ -1,5 +1,5 @@
 ---
-title: Labels in Rancher
+title: Labels
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
@@ -7,7 +7,7 @@ redirect_from:
   - /rancher/latest/zh/cattle/labels/
 ---
 
-## Labels in Rancher
+## Labels
 ---
 
 Rancher uses labels on services/containers and hosts to help manage different features of Rancher.

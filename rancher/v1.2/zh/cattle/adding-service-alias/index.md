@@ -1,5 +1,5 @@
 ---
-title: Adding Service Alias
+title: Service Alias
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
@@ -7,10 +7,10 @@ redirect_from:
   - /rancher/latest/zh/cattle/adding-service-alias/
 ---
 
-## Adding Service Alias
+## Service Alias
 ---
 
-By adding a service alias, it provides the ability to point to service aliases instead of directly at services.
+By adding a service alias, it provides the ability to point to service aliases instead of directly at services. O
 
 ### Adding Service Aliases in the UI
 
@@ -34,15 +34,17 @@ A service alias creates a pointer to service(s). In the example below, `web[.sta
 #### Example `docker-compose.yml`
 
 ```yaml
-web:
-  image: rancher/dns-service
-  links:
-  - web1
-  - web2
+version: '2'
+services:
+  web:
+    image: rancher/dns-service
+    links:
+    - web1
+    - web2
 
-web1:
-  image: nginx
+  web1:
+    image: nginx
 
-web2:
-  image: nginx
+  web2:
+    image: nginx
 ```

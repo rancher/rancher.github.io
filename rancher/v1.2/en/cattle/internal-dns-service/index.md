@@ -13,7 +13,7 @@ redirect_from:
 
 Within Rancher, we have our own internal DNS service that allows all services within one [cattle environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) to resolve to any other in the environment.
 
-All services in the stack are resolvable by `<service_name>` and there is no linking required between the services. For any services that are in a different stack, you'd resolve by `<service_name>.<stack_name>` instead of just `<service_name>`. If you would like to resolve a service by a different name, you could set a link so that the service could be resolvable by the service alias.
+All services in the stack are resolvable by `<service_name>` and there is no need to set a service link between the services. When creating services, you can define **Service Links** to link services together. For any services that are in a different stack, you'd resolve by `<service_name>.<stack_name>` instead of just `<service_name>`. If you would like to resolve a service by a different name, you could set a service link so that the service could be resolvable by the service alias.
 
 ### Setting Service Alias via linking
 

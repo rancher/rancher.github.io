@@ -365,10 +365,7 @@ $ rancher ps -c
 ID        NAME             IMAGE                           STATE     HOST      DETAIL
 1i1       Default_blog_1   ghost                           running   1h1       
 1i2       Default_blog_2   ghost                           running   1h2       
-1i3       Default_blog_3   ghost                           running   1h3       
-1i4       Network Agent    rancher/agent-instance:v0.8.1   running   1h1       
-1i5       Network Agent    rancher/agent-instance:v0.8.1   running   1h3       
-1i6       Network Agent    rancher/agent-instance:v0.8.1   running   1h2   
+1i3       Default_blog_3   ghost                           running   1h3  
 ```
 
 The `detail` column will provide the current status of the service.

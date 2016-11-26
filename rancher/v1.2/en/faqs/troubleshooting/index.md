@@ -126,6 +126,12 @@ The logs of HAProxy can be found inside the load balancer container. `docker log
 $ cat /var/log/haproxy
 ```
 
+### HA
+
+#### Rancher Compose Executor and Go-Machine-Service are continuously restarting.
+
+In an HA set, if rancher-compose-executor and go-machine-service are continuously restarting, if you are behind a proxy, please ensure that proxy protocol is being used. 
+
 ### Authentication
 
 <a id="manually-turn-off-github"></a>

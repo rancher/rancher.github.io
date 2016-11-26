@@ -2,22 +2,27 @@
 title: Setting up Access Control using the API
 layout: rancher-api-v2-beta-default-v1.2
 version: v1.2
-lang: en
+lang: zh
 apiVersion: v2-beta
-redirect_from:
-  - /rancher/api/v2-beta/access-control/
 ---
 
 ## Setting up Access Control using the API
 ---
 
-Each access control provider has its own top-level API type for configuration specific to that type of authentication:
+Rancher has two methods of authentication in the API. There is our original method of authentication which has its own top-level API type for configuration specific to each authentication provider.  
+There is also an [authentication service that runs as a separate go micro-service](https://github.com/rancher/rancher-auth-service/wiki), which has a general configuration that can be used for many authentication providers.
+
+### Authentication Providers using top-level API
 
 * Active Directory: `/v2-beta/ldapconfig`
-* Azure AD: `/v2-beta/azureadconfig` (_Available as of v1.1-dev5_) (this is a web service available Azure and has nothing to do with actual Active Directory)
+* Azure AD: `/v2-beta/azureadconfig` (this is a web service available Azure and has nothing to do with actual Active Directory)
 * OpenLDAP: `/v2-beta/openldapconfig`
-* Public & Enterprise Github: `/v2-beta/githubconfig`
 * Local Rancher DB: `/v2-beta/localauthconfig`
+
+### Authentication Providers using Authentication service
+
+* Public & Enterprise Github: `/v1-auth/config`
+* Shibboleth (SAML): `v1-auth/config`
 
 ### Access Modes
 
@@ -30,8 +35,9 @@ Provider         | Config URL          | Config Schema   | Unrestricted | Restri
 Active Directory | `/v2-beta/ldapconfig`      | ldapconfig      | 1.0          | 1.1-dev5      | 1.1-dev5
 Azure AD         | `/v2-beta/azureadconfig`   | azureadconfig   | 1.1-dev5     | Future        | Future
 OpenLDAP         | `/v2-beta/openldapconfig`  | openldapconfig  | 1.0          | Future        | Future
-GitHub*          | `/v2-beta/githubconfig`    | githubconfig    | 1.0          | 1.0           | 1.1-dev5         
+GitHub*          | `/v1-auth/config`    | config    | 1.0       | 1.0           | 1.1-dev5         
 Rancher Local    | `/v2-beta/localauthconfig` | localauthconfig | 1.0          | N/A**          | N/A**
+Shibboleth          | `/v1-auth/config`    | config    | 1.2        | 1.2           | 1.2        
 
 <br>
 
@@ -54,7 +60,9 @@ The Rancher UI performs a 3-step process to safely enable access control.  If yo
 
 #### Configure the desired provider
 
-Generate a completed config object for the desired provider, with `enabled: false`.  Submit it as the body of `POST /v2-beta/<desired provider config>`.
+Generate a completed config object for the desired provider, with `enabled: false`.  
+
+Depending on your provider, you either submit it as the body of `POST /v2-beta/<desired provider config>` or `POST /v1-auth/config`.
 
 #### Test the generation of an access token
 
@@ -64,7 +72,7 @@ See [Generating an Auth Token](#generating-an-auth-token) below for more info.  
 
 #### Enabling
 
-Re-submit the config object to `POST /v2-beta/<desired provider config>`, this time with `enabled:true`.
+Re-submit the config object to `POST /v2-beta/<desired provider config>` or `POST /v1-auth/config`, this time with `enabled:true`.
 
 ##### Generating an Auth Token
 `POST /v2-beta/token {code: "<code string for provider>"}`
@@ -89,7 +97,7 @@ In supported provider configs there is an `allowedIdentities` array which contai
 
 ### Disabling Access Control
 
-`POST /v2-beta/<enabled provider config>` with `enabled: false`
+`POST /v2-beta/<enabled provider config>` or `POST /v1-auth/config` with `enabled: false`
 
 ### Changing Access Control providers
 

@@ -12,9 +12,7 @@ redirect_from:
 
 With Rancher, you can add credentials to access private registries from DockerHub, Quay.io, or any address that you have a private registry. By having the ability to access your private registries, it enables Rancher to use your private images. In each [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/), you can only use one credential per registry address. This makes it a simple request to launch images from private addresses. If you have added multiple credentials for the same address, Rancher will always use the most recently added one.
 
-Rancher supports different registries for each [enviroment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/).
-
-> **Note:** Currently, registries are only supported for **Cattle** and **Kubernetes** environments.
+Rancher supports different registries for Cattle and Kubernetes container orchestration types.
 
 ### Adding Registries
 
@@ -29,8 +27,6 @@ If you add a credential for an address that already exists, Rancher will start u
 #### Insecure Registries
 
 In order to access an insecure registry, you'll need to configure your Docker daemon on your host(s). `DOMAIN` and `PORT` are the domain and port where the private registry is hosted.
-
-> **Note:** Whenever you restart docker on the host, you may encounter issues with Network Agent being stuck in _Starting_ state. To workaround the issue, please reboot the host.
 
 ```bash
 # Edit the config file "/etc/default/docker"

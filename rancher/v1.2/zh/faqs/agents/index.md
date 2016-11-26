@@ -30,23 +30,7 @@ The workaround for this is to run the following command on the cloned VM `rm -rf
 
 ### Where can I find detailed logs of the Rancher Agent container?
 
-Running `docker logs` will on the Rancher agent container will provide a set of basic logs. To get more detailed logs of rancher agent, you will need to have SSH into your host. In the host, you will navigate to the logs for rancher.
-
-```bash
-# On the host with issues, navigate to the specific folder
-$ cd /var/log/rancher/
-$ cat agent.log
-```
-
-`agent.log` will be the most recent list of logs. We create a new file for logging after the log file has reached a certain size or a new rancher agent has been launched.
-
-#### Copying Rancher Agent logs to the Host
-
-Here's the command to copy the Rancher agent logs from the container to the host.
-
-```bash
-$ docker cp <container_id>:/var/log/rancher /local/path
-```
+As of v1.2.0, running `docker logs` on the Rancher agent container will provide a set of all logs related to the agent.
 
 ### How to check your host registration is set correctly?
 
@@ -78,9 +62,9 @@ $ sudo docker run -d -e CATTLE_AGENT_IP=<NEW_HOST_IP> --privileged \
 
 ### What happens if my host is deleted outside of Rancher?
 
-If your host is deleted outside of Rancher, then Rancher server will continue to show the host until it’s removed. Typically, these hosts will show up in a _Reconnecting_ state and never be able to reconnect. You will be able to **Delete** these hosts to remove them from the UI.
+If your host is deleted outside of Rancher, then Rancher server will continue to show the host until it’s removed. These hosts will initially be in _Reconnecting_ state before moving to `Disconnected` state. You will be able to **Delete** these hosts to remove them from the UI.
 
-If you have services that have deployed containers onto the `Reconnecting` hosts, they will only be re-scheduled to other hosts if you have added [health checks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks/).
+If you have services that have deployed containers onto the `Disconnected` hosts, they will only be re-scheduled to other hosts if you have added [health checks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks/).
 
 ### Why is the same host showing up in the UI multiple times?
 

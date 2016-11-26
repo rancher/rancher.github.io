@@ -10,13 +10,13 @@ redirect_from:
 ## Adding Custom Hosts
 ---
 
-If you already have Linux machines deployed and just want to add them into Rancher, click the **Custom** icon. In the UI, you will be provided a docker command to run on any host. The `docker` command launches the _rancher-agent_ container on the host.
+If you already have Linux machines deployed and just want to add them into Rancher, click the **Custom** icon. In the UI, you will be provided a docker command to run on any host. The `docker` command launches the `rancher/agent` container on the host.
 
 If you are using different [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/), the command provided through the UI will be unique to whatever **environment** that you are in.
 
-Ensure that you are in the environment that you want to add hosts to. The environment is displayed in the upper right corner next to the account drop-down. When you first log in to the Rancher instance, you are in the **Default** environment.
+Ensure that you are in the environment that you want to add hosts to. The environment is displayed in the upper left corner. When you first log in to the Rancher instance, you are in the **Default** environment.
 
-Once your hosts are added to Rancher, they are available for [our services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/).
+Once your hosts are added to Rancher, they are available for [adding services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/).
 
 > **Note:** Ensure that the time stamp of your host on your server and hosts are the same and you have the access to the containers on the host. For more information, see [Rancher accesses the shell/logs of a container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/faqs/troubleshooting/#container-access).
 
@@ -52,7 +52,7 @@ For any hosts that are added, ensure that any security groups or firewalls allow
 
 ### Adding Hosts to the same machine as Rancher Server
 
-If you are adding an agent host on the same machine as Rancher server, you must edit the command provided from the UI. Additionally, in order for the _rancher-agent_ container to be launched correctly, set the `CATTLE_AGENT_IP` environment variable to the public IP of the VM that Rancher server is running on.
+If you are adding an agent host on the same machine as Rancher server, you must edit the command provided from the UI. In the UI, you can specify the IP that you want the Rancher agent container to use to comminicate to your Rancher server. It will automatically add in an environment variable to the command.
 
 ```bash
 $ sudo docker run -d -e CATTLE_AGENT_IP=<IP_OF_RANCHER_SERVER> -v /var/run/docker....
@@ -62,7 +62,7 @@ If you have added a host onto the same host as Rancher server, note that you wil
 
 ### Hosts behind a Proxy
 
-In order to set up a HTTP proxy, configure the docker daemon to point to the proxy. Before you add the custom host, edit the `/etc/default/docker` file to point to your proxy and restart docker.
+In order to set up an HTTP proxy, configure the docker daemon to point to the proxy. Before you add the custom host, edit the `/etc/default/docker` file to point to your proxy and restart docker.
 
 ```bash
 $ sudo vi /etc/default/docker
@@ -76,12 +76,12 @@ No additional environment variables need to be added to the command to launch Ra
 
 ### VMs with Private and Public IP Addresses
 
-By default, the IP of a VM with a private IP and public IP will be set to match the IP specified in the registration URL. For example, if a private IP is used in the registration URL, then the host's private IP will be used. If you wanted to change the host's IP address, you’ll need to edit the command provided from the UI. In order for the rancher-agent container to be launched correctly, set the CATTLE_AGENT_IP environment variable to the desired IP address. All the hosts within Rancher will need to be on the same network as Rancher server.
+By default, the IP of a VM with a private IP and public IP will be set to match the IP specified in the registration URL. For example, if a private IP is used in the registration URL, then the host's private IP will be used. If you wanted to change the host's IP address, you’ll need to edit the command provided from the UI. In order for the Rancher agent container to be launched correctly, set the `CATTLE_AGENT_IP` environment variable to the desired IP address. All the hosts within Rancher will need to be on the same network as Rancher server.
 
 ```bash
 $ sudo docker run -d -e CATTLE_AGENT_IP=<PRIVATE_IP> -v /var/run/docker....
 ```
 
-If you need to correct the IP of your host after the agent has connected, re-run the custom command. If the network agent has already started on your hosts, you'll need to restart the network on agents in your environment for the IPsec rules inside the network agent to be configured properly.
+If you need to correct the IP of your host after the agent has connected, re-run the custom command.
 
 > **Note:** When setting the private IP address, any existing containers in Rancher will not be part of the same managed network.

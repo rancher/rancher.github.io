@@ -10,17 +10,11 @@ redirect_from:
 ## Metadata Service
 ---
 
-Rancher offers data for both your services and containers. This data can be used to manage your running Docker instances in the form of a metadata service accessed directly through a HTTP based API.  These data can include static information when creating your Docker containers, Rancher Services, or runtime data such as discovery information about peer containers within the same service.
+Rancher offers data for both your services and containers through our metadata infrastructure service. This data can be used to manage your running Docker instances in the form of a metadata service accessed directly through a HTTP based API.  These data can include static information when creating your Docker containers, Rancher Services, or runtime data such as discovery information about peer containers within the same service.
 
 With Rancher's metadata service, you can exec into any container using the Rancher managed network and retrieve information about containers in Rancher. The metadata could be related to the container, the service or stack that the container is part of, or the host that the container is on. The metadata is in a JSON format.
 
-In a Cattle environment, containers can be launched in the Rancher managed network in several ways.
-
-* In the [UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#adding-services-in-the-ui), the service was started with _Managed_ as the network option. By default, the network of a service is set to _Managed_.
-* Using [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#adding-services-with-rancher-compose), any service, that doesn't have another networking mode (`net`) specified, is launched in the managed network.
-* When [using native docker]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/native-docker/#joining-natively-started-containers-to-the-rancher-network), if you add the label `io.rancher.container.network=true` to your `docker run` command, then the container will join the Rancher managed network.
-
-> **Note:** Metadata service is not available for system containers, i.e. Network Agent and LB Agent.
+Containers can be launched in the Rancher managed network in several ways. Read more about how [networking]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking) works in Rancher.
 
 ### How to Get the Metadata
 

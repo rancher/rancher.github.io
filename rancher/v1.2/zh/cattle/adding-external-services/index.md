@@ -33,32 +33,37 @@ With external services, you can set either external IP(s) **OR** a domain name. 
 #### Example `docker-compose.yml`
 
 ```yaml
-db:
-image: rancher/external-service
-
-redis:
-image: redis
+version: '2'
+services:
+  db:
+    image: rancher/external-service
+  redis:
+    image: redis
 ```
 
 #### Example `rancher-compose.yml` using external IPs
 
 ```yaml
-db:
-  external_ips:
-  - 1.1.1.1
-  - 2.2.2.2
+version: '2'
+services:
+  db:
+    external_ips:
+    - 1.1.1.1
+    - 2.2.2.2
 
-# Override any service to become an external service
-redis:
-  image: redis
-  external_ips:
-  - 1.1.1.1
-  - 2.2.2.2
+  # Override any service to become an external service
+  redis:
+    image: redis
+    external_ips:
+    - 1.1.1.1
+    - 2.2.2.2
 ```
 
 #### Example `rancher-compose.yml` using hostname
 
 ```yaml
-db:
-  hostname: example.com
+version: '2'
+services:
+  db:
+    hostname: example.com
 ```

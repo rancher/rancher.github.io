@@ -1,5 +1,5 @@
 ---
-title: External DNS Service using Route53
+title: External DNS Service
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
@@ -7,10 +7,10 @@ redirect_from:
   - /rancher/latest/zh/cattle/external-dns-service/
 ---
 
-## External DNS Service using Route53
+## External DNS Service
 ---
 
-As part of the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/), Rancher provides a DNS service that is integrated with Amazon Route53 DNS. When launching the service, a single route53 container is launched in Rancher. This container will listen for rancher-metadata events, generate DNS records based on the metadata changes, and update Route53 accordingly.
+As part of the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/), Rancher provides a multiple DNS services that listen to rancher-metadata events, and generate DNS records based on the metadata changes. The examples will use Route53 as an example for how the external DNS service works, but Rancher also has community contributed services with other DNS providers.
 
 ### Best Practices
 

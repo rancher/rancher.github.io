@@ -26,7 +26,11 @@ All of repositories are located within our main GitHub [page](https://github.com
 
 [UI Repo](https://github.com/rancher/ui): This repo is where all the UI for Rancher is developed.
 
+[Rancher Catalog Repo](https://github.com/rancher/rancher-catalog): This repo has the majority of the [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) templates for the [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog) in the `infra-templates` folder, which are used in [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) as part of [environment templates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template). We welcome community contributions to the Rancher catalog for additional [load balancer providers]({{{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/}}).
+
 [Community Catalog Repo](https://github.com/rancher/community-catalog): This repo has all community contributed templates for the [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog). We welcome community contributions to the Rancher templates.
+
+[Rancher CLI Repo](https://github.com/rancher/cli): This repo is what the [Rancher CLI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cli/) CLI is based on.
 
 [Rancher Compose Repo](https://github.com/rancher/rancher-compose): This repo is what the [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/) CLI is based on. It's synced with docker/libcompose.
 
