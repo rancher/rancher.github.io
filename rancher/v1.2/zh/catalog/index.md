@@ -10,11 +10,17 @@ redirect_from:
 ## Catalog
 ---
 
-Rancher provides a catalog of application templates that make it easy to deploy these complex stacks. By accessing the **Catalog** tab, you can view all the templates that are available in the [enabled catalogs]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#catalog). The **Library** catalog contains templates from the [Rancher certified catalog](https://github.com/rancher/rancher-catalog) and the [community-catalog](https://github.com/rancher/community-catalog). Rancher will only be maintaining support for the _certified_ templates in the library.
+Rancher provides a catalog of application templates that make it easy to deploy these complex stacks. By accessing the **Catalog** tab, you can view all the templates that are available in the [enabled catalogs]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#catalog). The **Library** catalog contains templates from the [Rancher certified catalog](https://github.com/rancher/rancher-catalog) and the **Community** catalog contains templates from the  [community-catalog](https://github.com/rancher/community-catalog). Rancher will only be maintaining support for the _certified_ templates in the library.
 
 An [admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#admin) of Rancher has the ability to add or remove catalogs to Rancher. The catalogs within Rancher can be found at **Admin** -> **Settings**. Adding a catalog is as simple as adding a catalog name, a URL and branch name. The URL needs to one that `git clone` [can handle](https://git-scm.com/docs/git-clone#_git_urls_a_id_urls_a). The branch name must be a branch that is in your catalog URL. It will use `master` by default. Whenever you add a catalog entry, it will be immediately available in your catalog.
 
 If you are running Rancher server behind a proxy, you will need to [start Rancher with certain environment variables]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#http-proxy) in order for the Rancher catalog to work in Rancher.  
+
+### Infrastructure Services in the Catalog
+
+The [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) that are available to be enabled in an [environment template]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template), are from the `infra-templates` folder of any catalog enabled in Rancher.
+
+These services are also available from the **Catalog** tab, and you will be able to see all the infrastructure services even though they may not work with the selected orchestration type. It's recommended to select infrastructure services during environment template creation versus launching them directly from the catalog.  
 
 ### Launching Templates
 
@@ -29,7 +35,7 @@ After you click on **Create**, the stack is immediately created, but none of the
 
 ### Upgrading Templates
 
-The great thing about Rancher is that if a newer version of a template has been uploaded to the catalog, we'll inform you that a newer version is available to upgrade to. When you click on **Upgrade Available**, you can select which version you want to upgrade to. After selecting the version, the **Configuration Options** will need to be reviewed before clicking on **Save**.
+The great thing about Rancher is that if a newer version of a template has been uploaded to the catalog, we'll inform you that a newer version is available to upgrade to. When you click on **Upgrade Available**, you can select which version you want to upgrade to. Always review the information about the version before upgrading, so that you are aware of all potential risks. After selecting the version, the **Configuration Options** will need to be reviewed before clicking on **Save**.
 
 After all the services have been upgraded, the stack and services will be in an **Upgraded** state. If you are satisfied with your upgrade, the last step is to confirm the upgrade by clicking on the **Finish Upgrade** in the stack dropdown menu. **Note: Once you have finished your upgrade, you will not be able to revert to the older version.**
 

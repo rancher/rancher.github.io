@@ -31,10 +31,12 @@ $ rancher-compose up
 **Example `docker-compose.yml`**
 
 ```yaml
-ubuntu:
-  tty: true
-  image: ubuntu:$IMAGE_TAG
-  stdin_open: true
+version: '2'
+services:
+  ubuntu:
+    tty: true
+    image: ubuntu:$IMAGE_TAG
+    stdin_open: true
 ```
 
 <br>
@@ -46,24 +48,26 @@ In Rancher, an `ubuntu` service will be deployed with an `ubuntu:14.04` image.
 Rancher Compose supports the same formats as Docker Compose.
 
 ```yaml
-web:
-  # unbracketed name
-  image: "$IMAGE"
+version: '2'
+services:
+  web:
+    # unbracketed name
+    image: "$IMAGE"
 
-  # bracketed name
-  command: "${COMMAND}"
+    # bracketed name
+    command: "${COMMAND}"
 
-  # array element
-  ports:
-  - "${HOST_PORT}:8000"
+    # array element
+    ports:
+    - "${HOST_PORT}:8000"
 
-  # dictionary item value
-  labels:
-    mylabel: "${LABEL_VALUE}"
+    # dictionary item value
+    labels:
+      mylabel: "${LABEL_VALUE}"
 
-  # unset value - this will expand to "host-"
-  hostname: "host-${UNSET_VALUE}"
+    # unset value - this will expand to "host-"
+    hostname: "host-${UNSET_VALUE}"
 
-  # escaped interpolation - this will expand to "${ESCAPED}"
-  command: "$${ESCAPED}"
+    # escaped interpolation - this will expand to "${ESCAPED}"
+    command: "$${ESCAPED}"
 ```

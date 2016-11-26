@@ -21,13 +21,13 @@ Rancher is deployed as a set of Docker containers. Running Rancher is a simple a
     * Option 1: Run with Antelope with default of `COMPACT`
     * Option 2: Run MySQL 5.7 with Barracuda where the default `ROW_FORMAT` is `Dynamic`
 
-> **Note:** Currently, Docker for Windows and Docker for Mac are not supported.
+> **Note:** Currently, Docker for Windows and Docker for Mac are not supported by Rancher.
 
 ### Rancher Server Tags
 
 The `rancher/server:latest` tag will be our stable release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version.
 
-If you are interested in trying one of our latest development builds which will have been validated through our CI automation framework, please check our [releases page](https://github.com/rancher/rancher/releases) to find the latest development release tag. These releases are not meant for deployment in production. All development builds will be appended with a `*-pre{n}` suffix to denote that it's a development release.
+If you are interested in trying one of our latest development builds which will have been validated through our CI automation framework, please check our [releases page](https://github.com/rancher/rancher/releases) to find the latest development release tag. These releases are not meant for deployment in production. All development builds will be appended with a `*-pre{n}` suffix to denote that it's a development release. Please do not use any release with a `rc{n}` suffix. These `rc` builds are meant for the Rancher team to test out the development builds.
 
 ### Launching Rancher Server
 
@@ -41,15 +41,15 @@ $ sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server
 
 The UI and API will be available on the exposed port `8080`. After the docker image is downloaded, it will take a minute or two before Rancher has successfully started and is available to view.
 
-Navigate to the following URL: `http://<SERVER_IP>:8080`. The `<SERVER_IP` is the public IP address of the host that is running Rancher server.
+Navigate to the following URL: `http://<SERVER_IP>:8080`. The `<SERVER_IP>` is the public IP address of the host that is running Rancher server.
 
-Once the UI is up and running, you can start [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) in the `Default` Cattle [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/). After the hosts are added into Rancher, you can start adding [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/) or launch templates from the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/).
+Once the UI is up and running, you can start by [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) or select a container orchestration from the Infrastructure catalog. By default, if a different container orchestration type is not selected, the environment will be using cattle. After the hosts are added into Rancher, you can start adding [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/) or launch templates from the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/).
 
 <a id="ldap"></a>
 
 ### Enabling Active Directory or OpenLDAP for TLS
 
-In order to enable Active Directory or OpenLDAP for Rancher server with TLS, the Rancher server container will need to be started with the ldap certificate. On the Linux machine that you want to launch Rancher server on, save the certificate.
+In order to enable Active Directory or OpenLDAP for Rancher server with TLS, the Rancher server container will need to be started with the LDAP certificate, provided by your LDAP setup. On the Linux machine that you want to launch Rancher server on, save the certificate.
 
 Start Rancher by bind mounting the volume that has the certificate. The certificate **must** be called `ca.crt` inside the container.
 
@@ -126,9 +126,9 @@ $ sudo docker run -d --restart=unless-stopped -p 8080:8080 \
 
 <a id="http-proxy"></a>
 
-### Launching Rancher Server behind a HTTP proxy
+### Launching Rancher Server behind an HTTP proxy
 
-In order to set up a HTTP proxy, the Docker daemon will need to be modified to point to the proxy. Before starting Rancher server, edit the `/etc/default/docker` file to point to your proxy and restart Docker.
+In order to set up an HTTP proxy, the Docker daemon will need to be modified to point to the proxy. Before starting Rancher server, edit the `/etc/default/docker` file to point to your proxy and restart Docker.
 
 ```bash
 $ sudo vi /etc/default/docker
@@ -151,4 +151,4 @@ $ sudo docker run -d \
 
 If the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) will not be used, run the Rancher server command as you normally would.
 
-When [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) to Rancher, there is no additional requirements behind a HTTP proxy.
+When [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) to Rancher, there is no additional requirements behind an HTTP proxy.

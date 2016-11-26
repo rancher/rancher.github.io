@@ -2,9 +2,11 @@
 title: Scheduling Services in Cattle Environments
 layout: rancher-default-v1.2
 version: v1.2
-lang: zh
+lang: en
 redirect_from:
-  - /rancher/latest/zh/cattle/scheduling/
+  - /rancher/rancher-compose/scheduling/
+  - /rancher/rancher-ui/scheduling/
+  - /rancher/latest/en/cattle/scheduling/
 ---
 
 ## Scheduling Services
@@ -111,18 +113,20 @@ Currently, we only support global services with host labels fields that are usin
 ##### Example `docker-compose.yml`
 
 ```yaml
-wordpress:
-  labels:
-    # Make wordpress a global service
-    io.rancher.scheduler.global: 'true'
-    # Make wordpress only run containers on hosts with a key1=value1 label
-    io.rancher.scheduler.affinity:host_label: key1=value1
-    # Make wordpress only run on hosts that do not have a key2=value2 label
-    io.rancher.scheduler.affinity:host_label_ne: key2=value2
-  image: wordpress
-  links:
+version: '2'
+services:
+  wordpress:
+    labels:
+      # Make wordpress a global service
+      io.rancher.scheduler.global: 'true'
+      # Make wordpress only run containers on hosts with a key1=value1 label
+      io.rancher.scheduler.affinity:host_label: key1=value1
+      # Make wordpress only run on hosts that do not have a key2=value2 label
+      io.rancher.scheduler.affinity:host_label_ne: key2=value2
+    image: wordpress
+    links:
     - db: mysql
-  stdin_open: true
+    stdin_open: true
 ```
 
 #### Finding Hosts with Host Labels

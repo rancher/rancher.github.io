@@ -2,16 +2,25 @@
 title: How to use the Rancher API
 layout: rancher-api-v2-beta-default-v1.2
 version: v1.2
-lang: en
+lang: zh
 apiVersion: v2-beta
-redirect_from:
-  - /rancher/api/v2-beta/
 ---
 
 ## How to use the API
 ---
 
 The API has its own user interface accessible from a web browser.  This is an easy way to see resources, perform actions, and see the equivalent cURL or HTTP request & response.  To access it, click on **API** to find the URL endpoint.
+
+### Terminology
+
+Some of the resource type names used in the API do not match the current terminology used in the UI.  In particular:
+
+| UI | API | Description |
+|----|-----|-------------|
+| [Environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) | [project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/project) | A group of physical resources, such as [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/host) |
+
+<br>
+In the documentation, we have used the UI term in descriptions and have provided additional disclaimers on the differences.  This confusion will be cleared up in a future version of the API.
 
 ### Authentication
 

@@ -1,5 +1,5 @@
 ---
-title: Adding Services
+title: Services
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
@@ -8,14 +8,14 @@ redirect_from:
   - /rancher/latest/zh/cattle/adding-services/
 ---
 
-## Adding Services
+## Services
 ---
 
-Rancher adopts the standard Docker Compose terminology for services and defines a basic service as one or more containers created from the same Docker image.  Once a service (consumer) is linked to another service (producer) within the same [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/stacks/), a [DNS record]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/internal-dns-service/) mapped to each container instance is automatically created and discoverable by containers from the "consuming" service. Other benefits of creating a service under Rancher include:
+Cattle adopts the standard Docker Compose terminology for services and defines a basic service as one or more containers created from the same Docker image.  Once a service (consumer) is linked to another service (producer) within the same [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/stacks/), a [DNS record]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/internal-dns-service/) mapped to each container instance is automatically created and discoverable by containers from the "consuming" service. Other benefits of creating a service under Rancher include:
 
 * Service High Availability (HA): Rancher constantly monitors the state of your containers within a service and actively manages to ensure the desired scale of the service.  This can be triggered when there are fewer (or even more) healthy containers than the desired scale of your service, a host becomes unavailable, a container fails, or is unable to meet a health check.
 
-* [Health Monitoring]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks/): Rancher implements a health monitoring system by running managed network agents across its hosts to coordinate the distributed health checking of containers and services. These network agents internally utilize HAProxy to validate the health status of your applications. When health checks are enabled either on an individual container or a service, each container is then monitored
+* [Health Monitoring]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks/): Rancher implements a health monitoring system by running a `healthcheck` infrastructure service across its hosts to coordinate the distributed health checking of containers and services. These `healthcheck` containers internally utilize HAProxy to validate the health status of your applications. When health checks are enabled either on an individual container or a service, each container is then monitored.
 
 ### Services Options in the UI
 
@@ -83,20 +83,17 @@ Read more details about [labels and scheduling]({{site.baseurl}}/rancher/{{page.
 
 ### Adding Services in the UI  
 
-First, let's create our MongoDB service by setting the scale to be 1 container, giving it a name like "mongodb", and using the `mongo:latest` as the image. There are no other options that need to be set to get this service running, so click on **Create**.
+First, let's create our _database_ service by setting the scale to be 1 container, giving it a name `database`, and using the `mongo:latest` as the image. There are no other options that need to be set to get this service running, so click on **Create**. The service will immediately start to launch.
 
-The service will immediately start to launch. If this is your first container launched on the host, a _Network Agent_ container will be launched onto the host, which is a system container created by Rancher to handle tasks such as cross-host networking, health checking, etc.
-
-Now that we've launched our "mongodb" service, we'll add the "letschat" service to our stack. This time, we'll set the scale of the service as 2 containers in our service, provide another name like "letschat" and use  `sdelements/lets-chat` as the image. We will not expose any ports in the "letschat" service as we will plan on load balancing this application. Since we've already created the database service, we'll pick the "mongodb" service in the **Service Links** and put the "as name" to be `mongo` in the service links. Click on **Create** and our "letschat" app is ready to have a load balancer pointed to it.
+Now that we've launched our _database_ service, we'll add the _web_ service to our stack. This time, we'll set the scale of the service as 2 containers in our service, provide another name `web` and use `sdelements/lets-chat` as the image. We will not expose any ports in the _web_ service as we will plan on load balancing to this service. Since we've already created the _database_ service, we'll pick the _database_ service in the **Service Links** and put the "as name" to be `mongo` in the service links. Click on **Create** and our [LetsChat](http://sdelements.github.io/lets-chat/) app is ready to have a load balancer pointed to it.
 
 ### Service Options in Rancher Compose
 
 Read more about how to [set up Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/).
 
-The  Rancher Compose tool works just like the popular Docker Compose and supports the V1 version of  `docker-compose.yml` files. To enable features that are supported in Rancher, you can also have a `rancher-compose.yml` which extends and overwrites the `docker-compose.yml`. For example, scale of services and health checks would be in the `rancher-compose.yml` file.
+The  Rancher Compose tool works just like the popular Docker Compose and supports the V1 version of `docker-compose.yml` files. To enable features that are supported in Rancher, you can also have a `rancher-compose.yml` which extends and overwrites the `docker-compose.yml`. For example, scale of services and health checks would be in the `rancher-compose.yml` file.
 
-If you're new to Docker Compose or Rancher Compose, we recommend using the UI to start your services. Within a single stack view, you can view the configuration of the stack (i.e. the equivalent `docker-compose.yml` and `rancher-compose.yml` files of your stack).
-
+If you're new to Docker Compose or Rancher Compose, we recommend using the UI to start your services. IF you click on a stack name, you can view the configuration of the entire stack (i.e. the equivalent `docker-compose.yml` and `rancher-compose.yml` files of your stack) by clicking on **View Config** in the stack drop down.
 
 #### Linking Services
 
@@ -109,29 +106,41 @@ For services in the same stack, any service is DNS resolvable by it's native `se
 ##### Example  `docker-compose.yml`
 
 ```yaml
-wordpress:
-  image: wordpress
-  links:
-  - db:mysql
-db:
-  image: mysql
+version: '2'
+services:
+  web:
+    labels:
+      io.rancher.container.pull_image: always
+    tty: true
+    image: sdelements/lets-chat
+    links:
+    - database:mongo
+    stdin_open: true
+  database:
+    labels:
+      io.rancher.container.pull_image: always
+    tty: true
+    image: mongo
+    stdin_open: true
 ```
-In this example, the `db` would be resolvable as `mysql`. Without the link, `db` would be resolvable as `db`.
-
+<br>
+In this example, the `database` would be resolvable as `mongo`. Without the link, `database` would be resolvable as `database` fro the _web_ service.
 
 For services in a different stack, the service is DNS already resolvable by `service_name.stack_name`. If you'd prefer to use a specific alias for DNS resolution, you can use `external_links` in the `docker-compose.yml`.
 
 ##### Example  `docker-compose.yml`
 
 ```yaml
-wordpress:
-  image: wordpress
-  external_links:
-  - alldbs/db1:mysql
+version: '2'
+services:
+  web:
+    image: sdelements/lets-chat
+    external_links:
+    - alldbs/db1:mongo
 ```
 <br>
 
-In this example, the `alldbs` stack has a `db1` service that the wordpress service will link to. In the `wordpress` service, `db1` would be resolvable as `mysql`. Without the external link, `db1` would be resolvable as `db1.alldbs`.
+In this example, the `alldbs` stack has a `db1` service that the `web` service will link to. In the `web` service, `db1` would be resolvable as `mongo`. Without the external link, `db1` would be resolvable as `db1.alldbs`.
 
 > **Note:** Cross stack discovery is limited by environment (by design). Cross environment discovery is not supported.
 
@@ -144,35 +153,46 @@ We'll set up the same example that we used above in the UI example. To get start
 #### Example `docker-compose.yml`
 
 ```yaml
-mongodb:
-  image: mongo
-letschat:
-  image: sdelements/lets-chat
-  links:
-  - mongodb:mongo
+version: '2'
+services:
+  web:
+    labels:
+      io.rancher.container.pull_image: always
+    tty: true
+    image: sdelements/lets-chat
+    links:
+    - database:mongo
+    stdin_open: true
+  database:
+    labels:
+      io.rancher.container.pull_image: always
+    tty: true
+    image: mongo
+    stdin_open: true
 ```
 
 #### Example `rancher-compose.yml`
 
 ```yaml
 # Reference the service that you want to extend
-mongodb:
-  scale: 1
-letschat:
-  scale: 2
-
+version: '2'
+services:
+  web:
+    scale: 2
+  database:
+    scale: 1
 ```
-
+<br>
 After your files are created, you can launch the services into Rancher server.
 
 ```bash
 # Creating and starting a service without environment variables and selecting a stack
 # If no stack is provided, the stack name will be the folder name that the command is running from
 # If the stack does not exist in Rancher, it will be created
-$ rancher-compose --url URL_of_Rancher --access-key <username_of_environment_api_key> --secret-key <password_of_environment_api_key> -p stack1 up
+$ rancher-compose --url URL_of_Rancher --access-key <username_of_environment_api_key> --secret-key <password_of_environment_api_key> -p LetsChatApp up -d
 
 # Creating and starting a service with environment variables already set
-$ rancher-compose -p stack1 up
+$ rancher-compose -p LetsChatApp up -d
 ```
 
 ### Sidekick Services
@@ -208,30 +228,34 @@ When using [load balancers]({{site.baseurl}}/rancher/{{page.version}}/{{page.lan
 Example `docker-compose.yml`
 
 ```yaml
-test:
-  tty: true
-  image: ubuntu:14.04.2
-  stdin_open: true
-  volumes_from:
-  - test-data
-  labels:
-    io.rancher.sidekicks: test-data
-test-data:
-  tty: true
-  command:
-  - cat
-  image: ubuntu:14.04.2
-  stdin_open: true
+version: '2'
+services:
+  test:
+    tty: true
+    image: ubuntu:14.04.2
+    stdin_open: true
+    volumes_from:
+    - test-data
+    labels:
+      io.rancher.sidekicks: test-data
+  test-data:
+    tty: true
+    command:
+    - cat
+    image: ubuntu:14.04.2
+    stdin_open: true
 ```
 
 <br>
 Example `rancher-compose.yml`
 
 ```yaml
-test:
-  scale: 2
-test-data:
-  scale: 2
+version: '2'
+services:
+  test:
+    scale: 2
+  test-data:
+    scale: 2
 ```
 
 ##### Example of Sidekicks in Rancher Compose: Multiple services using the same service for `volumes_from`
@@ -241,24 +265,26 @@ If you have multiple services that will be using the same container to do a `vol
 Example `docker-compose.yml`
 
 ```yaml
-test-data:
-  tty: true
-  command:
-  - cat
-  image: ubuntu:14.04.2
-  stdin_open: true
-test1:
-  tty: true
-  image: ubuntu:14.04.2
-  stdin_open: true
-  labels:
-    io.rancher.sidekicks: test-data, test2
-  volumes_from:
-  - test-data
-test2:
-  tty: true
-  image: ubuntu:14.04.2
-  stdin_open: true
-  volumes_from:
-  - test-data
+version: '2'
+services:
+  test-data:
+    tty: true
+    command:
+    - cat
+    image: ubuntu:14.04.2
+    stdin_open: true
+  test1:
+    tty: true
+    image: ubuntu:14.04.2
+    stdin_open: true
+    labels:
+      io.rancher.sidekicks: test-data, test2
+    volumes_from:
+    - test-data
+  test2:
+    tty: true
+    image: ubuntu:14.04.2
+    stdin_open: true
+    volumes_from:
+    - test-data
 ```

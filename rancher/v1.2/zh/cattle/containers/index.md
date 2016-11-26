@@ -39,7 +39,7 @@ In the **Infrastructure** -> **Container** page, click on **Add Container**. Any
 
     There is also the ability to add labels to a container as well as apply scheduling rules. More details about labels and scheduling can be read [here]({{{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/scheduling/).
 
-5. When you have completed filling out your container options, click **Create**. If this is the first container on the host to be launched by Rancher, it will automatically deploy a container named _Network Agent_ in the Rancher UI. This container is what Rancher uses to allow containers between different hosts be able to communicate with each other. The _Network Agent_ runs using the `rancher/agent-instance` image. Rancher will automatically pull the correct version tag for this container.
+5. When you have completed filling out your container options, click **Create**.
 
 ## Editing Containers
 ---

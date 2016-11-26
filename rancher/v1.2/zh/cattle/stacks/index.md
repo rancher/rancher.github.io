@@ -2,13 +2,16 @@
 title: Stacks in Cattle Environments
 layout: rancher-default-v1.2
 version: v1.2
-lang: zh
+lang: en
 redirect_from:
-  - /rancher/latest/zh/cattle/stacks/
+  - /rancher/rancher-ui/applications/stacks/
+  - /rancher/latest/en/cattle/stacks/
 ---
 
 ## Stacks
 ---
+
+A stack is a group of services. Stacks can be used to group together services that together implement an application.
 
 ### Adding Stacks
 
@@ -45,8 +48,6 @@ The following are the options to export the configuration files.
 Option 1: Download a zip file that contains both `docker-compose.yml` and `rancher-compose.yml` by selecting **Export Config** in the stack drop-down menu.
 
 Option 2: Copy the file to your clipboard by clicking the icon next to the filename that you want to copy. You can copy either the `docker-compose.yml` file or the `rancher-compose.yml` file.
-
-![Services Options on Rancher 1]({{site.baseurl}}/img/rancher/rancher_stacks_1.png)
 
 ### Graph View
 

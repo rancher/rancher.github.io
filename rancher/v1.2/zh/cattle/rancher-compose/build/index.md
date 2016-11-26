@@ -22,22 +22,26 @@ Docker builds are supported in two ways.  First is to set `build:` to a git or H
 In our example, we'll define our application in the `docker-compose.yml` and place the file in a `composetest` directory. The compose file defines a service called `web`, that opens port `5000` of the container to be exposed on the host. There is also a link to a service called `redis`. The application running inside the `web` container will also be able to reach the `redis` container by its hostname `redis`.
 
 ```yaml
-web:
-  build: .
-  ports:
-    - "5000:5000"
-  links:
-    - redis
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    links:
+      - redis
 
-redis:
-  image: redis
+  redis:
+    image: redis
 ```
 
 We'll also add a `rancher-compose.yml` file to the same `composetest` directory to be able use the `scale` attribute for Rancher. By default, if there is no `rancher-compose.yml` file or the service is not defined, the scale of the service will be one container.
 
 ```yaml
-web:
-  scale: 3
+version: '2'
+services:
+  web:
+    scale: 3
 ```
 
 Once the files are set for Rancher Compose, the next step is to write the application itself and steps to build it.

@@ -2,7 +2,7 @@
 title: Internal DNS Service in Cattle Environments
 layout: rancher-default-v1.2
 version: v1.2
-lang: zh
+lang:
 redirect_from:
   - /rancher/latest/zh/cattle/internal-dns-service/
 ---
@@ -12,7 +12,7 @@ redirect_from:
 
 Within Rancher, we have our own internal DNS service that allows all services within one [cattle environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) to resolve to any other in the environment.
 
-All services in the environment are resolvable by `<service_name>` and there is no linking required between the services. For any services that are in a different stack, you'd resolve by `<service_name>.<stack_name>` instead of just `<service_name>`. If you would like to resolve a service by a different name, you could set a link so that the service could be resolvable by the service alias.
+All services in the stack are resolvable by `<service_name>` and there is no need to set a service link between the services. When creating services, you can define **Service Links** to link services together. For any services that are in a different stack, you'd resolve by `<service_name>.<stack_name>` instead of just `<service_name>`. If you would like to resolve a service by a different name, you could set a service link so that the service could be resolvable by the service alias.
 
 ### Setting Service Alias via linking
 
@@ -21,14 +21,16 @@ In the UI, when [adding a service]({{site.baseurl}}/rancher/{{page.version}}/{{p
 If you're using Rancher Compose to [add the service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/services/#adding-services-with-rancher-compose), the `docker-compose.yml` would use either the `links` or `external_links` directive.
 
 ```yaml
-service1:
-  image: wordpress
-  # If the other service is in the same stack
-  links:
+version: '2'
+services:
+  service1:
+    image: wordpress
+    # If the other service is in the same stack
+    links:
     # <service_name>:<service_alias>
     - service2:mysql
-  # If the other service is in a different stack
-  external_links:
+    # If the other service is in a different stack
+    external_links:
     # <stackname>/<service_name>:<service_alias>
     - Default/service3:mysql
 ```

@@ -54,30 +54,43 @@ To get started, you can create a simple `docker-compose.yml` file and optionally
 ##### Example `docker-compose.yml`
 
 ```yaml
-web:
-  image: nginx
+version: '2'
+services:
+  web:
+    image: nginx
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: test    
 ```
 
 ##### Example `rancher-compose.yml`
 
 ```yaml
 # Reference the service that you want to extend
-web:
-  scale: 2
+version: '2'
+services:
+  web:
+    scale: 2
+  db:
+    scale: 1
 ```
 
 After your files are created, you can launch the services into Rancher server.
 
 ```bash
-# Creating and starting a service without environment variables and selecting a stack
+# Creating and starting services without environment variables and selecting a stack
 # If the stack does not exist in Rancher, it will be created in Rancher
 $ rancher-compose --url URL_of_Rancher --access-key <username_of_environment_api_key> --secret-key <password_of_environment_api_key> -p stack1 up
 
-# Creating and starting a service with environment variables already set
+# Creating and starting services with environment variables already set
 $ rancher-compose -p stack1 up
 
 # To change the scale of an existing service
-$ rancher-compose -p stack1 scale service1=3
+$ rancher-compose -p stack1 scale web=3
+
+# To launch a specific service in the docker-compose.yml
+$ rancher-compose -p stack1 up web
 ```
 
 <br>
@@ -97,12 +110,14 @@ MYSQL_ROOT_PASSWORD=test
 ##### Example `docker-compose.yml`
 
 ```yaml
-db:
-image: mysql
-environment:
-# Just like Docker Compose, if there is only a key, Rancher Compose will resolve to
-# the values on the machine or the file passed in using --env-file
-MYSQL_ROOT_PASSWORD:
+version: '2'
+services:
+  db:
+    image: mysql
+    environment:
+    # Just like Docker Compose, if there is only a key, Rancher Compose will resolve to
+    # the values on the machine or the file passed in using --env-file
+      MYSQL_ROOT_PASSWORD:
 ```
 
 You can launch your service and pass in the `secrets` file.
@@ -156,7 +171,6 @@ If you want the start process to exit after completion, you'll need to add in th
 
 Name | Description
 ---|----
-`--lines "100"` |	number of lines to tail
 `--follow` | Follow log output
 
 #### Restart Command
