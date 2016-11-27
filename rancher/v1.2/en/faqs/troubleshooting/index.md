@@ -41,7 +41,7 @@ If you run docker logs -f rancher-agent and the logs show messages about an expi
 
 #### Where can I see logs of my service?
 
-In the service details, we provide service logs in a tab called **Log**. In the **Log** tab, it lists out all events related to the service including a timestamp and description of the event.
+In the service details, we provide service logs in a tab called **Log**. In the **Log** tab, it lists out all events related to the service including a timestamp and description of the event that occurs in the API. These logs are kept for 24 hours before being deleted. 
 
 ### Cross Host Communication
 
@@ -130,7 +130,7 @@ $ cat /var/log/haproxy
 
 #### Rancher Compose Executor and Go-Machine-Service are continuously restarting.
 
-In an HA set, if rancher-compose-executor and go-machine-service are continuously restarting, if you are behind a proxy, please ensure that proxy protocol is being used. 
+In an HA set, if rancher-compose-executor and go-machine-service are continuously restarting, if you are behind a proxy, please ensure that proxy protocol is being used.
 
 ### Authentication
 

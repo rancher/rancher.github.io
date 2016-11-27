@@ -79,9 +79,9 @@ Re-submit the config object to `POST /v2-beta/<desired provider config>` or `POS
 ##### Generating an Auth Token
 `POST /v2-beta/token {code: "<code string for provider>"}`
 
-For GitHub, the code string is the value sent back from the GitHub Oauth redirect.  For other providers, the string is "<username>:<password>".
+For GitHub, the code string is the value sent back from the GitHub Oauth redirect.  For other providers, the string is separated by a colon between user credentials (i.e. `<username>:<password>`).
 
-If authentication succeeds a token good for 12 hours will be returned and the configuration is working.  This can be sent as an `Authorization: Bearer <token>` header to authenticate future requests.
+If authentication succeeds a token good for 16 hours will be returned and the configuration is working.  This can be sent as an `Authorization: Bearer <token>` header to authenticate future requests.
 
 ### Looking up Identities
 
@@ -95,7 +95,7 @@ In supported provider configs there is an `allowedIdentities` array which contai
 
 ### Getting the currently enabled access control provider
 
-`GET /v2-beta/token` with no Authorization information sent will return the provider that is configured, along with the public pieces of information needed to use it.  For example with GitHub the protocol and Enterprise `hostname`, if configured.
+`GET /v2-beta/token` with no Authorization information sent will return the provider that is configured, along with the public pieces of information needed to use it.  For example, with Github a `redirectUrl` which contains the protocol and Enterprise `hostname`, if configured, will be returned.
 
 ### Disabling Access Control
 
