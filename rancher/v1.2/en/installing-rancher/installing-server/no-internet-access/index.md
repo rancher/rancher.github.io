@@ -50,6 +50,8 @@ $ docker tag rancher/agent:v1.1.0 localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IM
 $ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v1.1.0
 ```
 
+<br>
+
 > **Note:** For any infrastructure services images, you would have to follow the same steps.
 
 #### Launching Rancher Server with Private Registry

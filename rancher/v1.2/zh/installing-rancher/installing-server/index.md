@@ -117,6 +117,7 @@ Most of the options to pass in also have default values and are not required.
 --db-name               MySQL database name to use (default: cattle)
 ```
 
+<br>
 > **Note:** In previous versions of Rancher server, we had connected to an external database using environment variables, those environment variables will continue to work, but moving forward, Rancher recommends using the arguments instead.
 
 <a id="http-proxy"></a>
