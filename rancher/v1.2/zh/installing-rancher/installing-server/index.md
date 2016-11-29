@@ -13,7 +13,7 @@ Rancher is deployed as a set of Docker containers. Running Rancher is a simple a
 
 ### Requirements
 
-* Any modern Linux distribution that supports Docker 1.10.3. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
+* Any modern Linux distribution that supports Docker 1.10.3+. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
   * For RHEL/CentOS, the default storage driver, i.e. devicemapper using loopback, is not recommended by [Docker](https://docs.docker.com/engine/reference/commandline/dockerd/#/storage-driver-options). Please refer to the Docker documentation on how to change it.
 * 1GB RAM
 * MySQL server should have a max_connections setting > 150
@@ -21,11 +21,11 @@ Rancher is deployed as a set of Docker containers. Running Rancher is a simple a
     * Option 1: Run with Antelope with default of `COMPACT`
     * Option 2: Run MySQL 5.7 with Barracuda where the default `ROW_FORMAT` is `Dynamic`
 
-> **Note:** Currently, Docker for Windows and Docker for Mac are not supported by Rancher.
+> **Note:** Currently, Docker for Windows and Docker for Mac are not supported in Rancher.
 
 ### Rancher Server Tags
 
-The `rancher/server:latest` tag will be our stable release builds, which Rancher recommends for deployment in production. For each minor release tag, we will provide documentation for the specific version.
+The `rancher/server:latest` tag will be our stable release builds, which Rancher recommends for deployment in production. For each major release tag, we will provide documentation for the specific version.
 
 If you are interested in trying one of our latest development builds which will have been validated through our CI automation framework, please check our [releases page](https://github.com/rancher/rancher/releases) to find the latest development release tag. These releases are not meant for deployment in production. All development builds will be appended with a `*-pre{n}` suffix to denote that it's a development release. Please do not use any release with a `rc{n}` suffix. These `rc` builds are meant for the Rancher team to test out the development builds.
 
@@ -87,20 +87,11 @@ With this command, the database will persist on the host. If you have an existin
 
 <a id="external-db"></a>
 
-### Using an external Database
+### Using an External Database
 
-If you would prefer to use an external database to run Rancher server, please follow these instructions to connect Rancher server to the database. Your database will already need to be created, but does not need any schemas created. Rancher will automatically create all the schemas related to Rancher.
+If you would prefer to use an external database to run Rancher server, you run the same command as before, but add in additional arguments to connect to the external database.
 
-The following environment variables will need to be passed within the `docker run` command to launch Rancher server using your external database.
-
-* CATTLE_DB_CATTLE_MYSQL_HOST: `hostname or IP of MySQL instance`
-* CATTLE_DB_CATTLE_MYSQL_PORT: `3306`
-* CATTLE_DB_CATTLE_MYSQL_NAME: `Name of Database`
-* CATTLE_DB_CATTLE_USERNAME: `Username`
-* CATTLE_DB_CATTLE_PASSWORD: `Password`
-
-
-> **Note:** The name and user of the database must already exist in order for Rancher to be able to create the database schema. Rancher will not create the database.
+> **Note:** Your database, name and user of the database will already need to be created, but no schemas will need to be created. Rancher will automatically create all the schemas related to Rancher.
 
 Here is an example of a SQL command to create a database and users.
 
@@ -110,19 +101,23 @@ Here is an example of a SQL command to create a database and users.
 > GRANT ALL ON cattle.* TO 'cattle'@'localhost' IDENTIFIED BY 'cattle';
 ```
 
-<br>
-
-After the database and user is created, launch rancher server with the environment variables.
+To start Rancher connecting to an external database, you pass in additional arguments as part of the command for the container.
 
 ```bash
-$ sudo docker run -d --restart=unless-stopped -p 8080:8080 \
-    -e CATTLE_DB_CATTLE_MYSQL_HOST=<hostname or IP of MySQL instance> \
-    -e CATTLE_DB_CATTLE_MYSQL_PORT=<port> \
-    -e CATTLE_DB_CATTLE_MYSQL_NAME=<Name of Database> \
-    -e CATTLE_DB_CATTLE_USERNAME=<Username> \
-    -e CATTLE_DB_CATTLE_PASSWORD=<Password> \
-    rancher/server
+$ sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server --db-host myhost.example.com --db-port 3306 --db-user username --db-pass password --db-name cattle
 ```
+
+Most of the options to pass in also have default values and are not required.
+
+```bash
+--db-host               IP or hostname of MySQL server
+--db-port               port of MySQL server (default: 3306)
+--db-user               username for MySQL login (default: cattle)
+--db-pass               password for MySQL login (default: cattle)
+--db-name               MySQL database name to use (default: cattle)
+```
+
+> **Note:** In previous versions of Rancher server, we had connected to an external database using environment variables, those environment variables will continue to work, but moving forward, Rancher recommends using the arguments instead.
 
 <a id="http-proxy"></a>
 
