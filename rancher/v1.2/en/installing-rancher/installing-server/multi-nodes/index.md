@@ -39,12 +39,18 @@ If you are interested in trying one of our latest development builds which will 
 
 ### Launching Rancher Server in HA
 
-1. On each of your nodes, run the following command:
+1. On each of your nodes that you want to add into the HA setup, run the following command:
 
-```bash
-$ sudo docker run -d --restart=unless-stopped -p 8080:8080 -p 9345:9345 rancher/server --db-host myhost.example.com --db-port 3306 --db-user username --db-pass password --db-name cattle --advertise-address <IP_of_Node>
-```
+   ```
+   $ sudo docker run -d --restart=unless-stopped -p 8080:8080 -p 9345:9345 rancher/server --db-host myhost.example.com --db-port 3306 --db-user username --db-pass password --db-name cattle --advertise-address <IP_of_the_Node>
+  ```
+
+For each node, the ` <IP_of_the_Node>` will be unqiue to each node, as it will be the IP of each specific node that is being added into the HA cluster.
 
 2. Configure an external load balancer that will balance traffic on ports `80` and `443` across a pool of nodes that will be running Rancher server and target the nodes on port `8080`. Your load balancer must support websockets and forwarded-for headers, in order for Rancher to function properly. See [SSL settings page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}//installing-rancher/installing-server/basic-ssl-config/) for example configuration settings.
 
 3. Your HA setup is now complete and you can start launching [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/), or start launching templates from the [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/)!
+
+### Rancher Server Nodes
+
+If the IP of your Rancher server node changes, your node will no longer be part of the Rancher HA cluster. You must stop the old Rancher server container using the incorrect IP for `--advertise-address` and start a new Rancher server with the correct IP for `--advertise-address`.
