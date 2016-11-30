@@ -16,18 +16,13 @@ If you have launched Rancher server in [High Availability (HA)]({{site.baseurl}}
 
 1. Before upgrading your Rancher server, we recommend backing up your external database.
 
-2. On each node in the HA setup, stop and remove the running Rancher containers and then execute the HA generating script with the latest rancher/server version.
+2. On each node in the HA setup, stop and remove the running Rancher containers and then start a new Rancher server container using the same command that you had used when [installing Rancher server]({{site.baseurl}}), but with a new Rancher server image tag.
 
    ```bash
-   # Removing all the running Rancher containers
-   $ sudo docker rm -f $(sudo docker ps -a | grep rancher | awk {'print $1'})
+   # On all nodes, stop all Rancher server containers
+   $ docker stop <container_name_of_original_server>
    # Execute the scrip with the latest rancher/server version
-   $ sudo sh rancher-ha.sh rancher/server:v1.1.0
+   $ docker run -d --restart=unless-stopped -p 8080:8080 -p 9345:9345 rancher/server --db-host myhost.example.com --db-port 3306 --db-user username --db-pass password --db-name cattle --advertise-address <IP_of_the_Node>
    ```
-
-3. Monitoring your upgrade.
-
-   * Log into the Rancher UI and in the environments drop down, navigate to **System HA**.
-   * Click on **Stacks**. Expand the **Management** stack.
-   * The services that were part of the previous version will automatically upgrade to the version selected in Step 1.
-   * Once all the services have become `Active`, the Rancher HA upgrade will be complete.
+   <br>
+   > **Note:** If you are upgrading from an HA setup that was running the [older version of HA]({{site.baseurl}}/rancher/1.1/{{page.lang}}/installing-rancher/multi-nodes/), you would need to remove all running Rancher HA containers. `$ sudo docker rm -f $(sudo docker ps -a | grep rancher | awk {'print $1'})`
