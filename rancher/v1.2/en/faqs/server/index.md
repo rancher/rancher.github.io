@@ -65,7 +65,7 @@ $ curl -i <Host Registration URL you set in UI>/v1
 ```
 You should get a json response. If authentication is turned on, the response code should be 401. If authentication is not turned on, the response code should be 200.
 
-If you are running in [Multi Node]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/multi-nodes/) setup, then you started go-machine-service in its own container and explicitly provided a URL, access key, and secret key as environment variables upon startup. Verify that the Rancher API server can be reached using those variables. Verify the connectivity by logging into the go-machine-service container and making a curl command using the parameters your provided to the container:
+Verify that the Rancher API server can be reached using those variables. Verify the connectivity by logging into the go-machine-service container and making a curl command using the parameters your provided to the container:
 
 ```bash
 $ docker exec -it <go-machine-service_container_id> bash

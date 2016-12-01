@@ -4,6 +4,9 @@ layout: rancher-api-v2-beta-default-v1.2
 version: v1.2
 lang: zh
 apiVersion: v2-beta
+redirect_from:
+  - /rancher/latest/zh/api/
+  - /rancher/1.2/zh/api/
 ---
 
 ## How to use the API

@@ -3,6 +3,8 @@ title: Infrastructure Services in Rancher
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
+redirect_from:
+  - /rancher/latest/en/rancher-services/
 ---
 
 ## Infrastructure Services
@@ -12,4 +14,4 @@ When starting Rancher, each [environment]({{site.baseurl}}/rancher/{{page.versio
 
 These infrastructure services are based on the templates in the `infra-templates` folder of our [Rancher catalog](https://github.com/rancher/rancher-catalog) and [community catalog](https://github.com/rancher/community-catalog). By default, both the Rancher catalog and community catalog are enabled, which provide a basic list of infrastructure services that can be used in an environment template.
 
-When creating new environment templates, the default set of infrastructure services that are required to have a working environment are automatically enabled. 
+When creating new environment templates, the default set of infrastructure services that are required to have a working environment are automatically enabled.
