@@ -154,7 +154,7 @@ services:
 #### Example rancher-compose.yml
 
 ```yaml
-vversion: '2'
+version: '2'
 services:
   letschatapplb:
     scale: 1
