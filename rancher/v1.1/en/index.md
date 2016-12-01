@@ -5,10 +5,6 @@ version: v1.1
 lang: en
 redirect_from:
   - rancher/1.1
-  - /
-  - rancher/
-  - rancher/latest/
-  - rancher/latest/en/
 ---
 
 ## Overview of Rancher
