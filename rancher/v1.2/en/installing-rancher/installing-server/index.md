@@ -1,16 +1,23 @@
 ---
-title: Installing Rancher Server (Single Node)
+title: Installing Rancher Server 
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
   - /rancher/installing-rancher/installing-server/
   - /rancher/latest/en/installing-rancher/installing-server/
+  - /rancher/installing-rancher/installing-server/multi-nodes/
+  - /rancher/latest/en/installing-rancher/installing-server/multi-nodes/
 ---
 
-## Installing Rancher Server (Single Node)
+## Installing Rancher Server
 ---
 Rancher is deployed as a set of Docker containers. Running Rancher is a simple as launching two containers. One container as the management server and another container on a node as an agent.
+
+* [Rancher Server - Single Container (non-HA)](#single-container)
+* [Rancher Server - Single Container (non-HA) - External database](#single-container-external-database)
+* [Rancher Server - Single Container (non-HA)- Bind mounted MySQL volume](#single-container-bind-mount)
+* [Rancher Server - Full Active/Active HA](#multi-nodes)
 
 ### Requirements
 
@@ -30,21 +37,112 @@ The `rancher/server:latest` tag will be our stable release builds, which Rancher
 
 If you are interested in trying one of our latest development builds which will have been validated through our CI automation framework, please check our [releases page](https://github.com/rancher/rancher/releases) to find the latest development release tag. These releases are not meant for deployment in production. All development builds will be appended with a `*-pre{n}` suffix to denote that it's a development release. Please do not use any release with a `rc{n}` suffix. These `rc` builds are meant for the Rancher team to test out the development builds.
 
-### Launching Rancher Server
+<a id="single-container"></a>
 
-On the Linux machine with Docker installed, the command to start Rancher is simple.
+### Launching Rancher Server - Single Container (non-HA)
+
+On the Linux machine with Docker installed, the command to start a single instance of Rancher is simple.
 
 ```bash
 $ sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server
 ```
 
-#### Rancher UI
+### Rancher UI
 
 The UI and API will be available on the exposed port `8080`. After the docker image is downloaded, it will take a minute or two before Rancher has successfully started and is available to view.
 
 Navigate to the following URL: `http://<SERVER_IP>:8080`. The `<SERVER_IP>` is the public IP address of the host that is running Rancher server.
 
 Once the UI is up and running, you can start by [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) or select a container orchestration from the Infrastructure catalog. By default, if a different container orchestration type is not selected, the environment will be using cattle. After the hosts are added into Rancher, you can start adding [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/) or launch templates from the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/).
+
+<a id="single-container-external-database"></a>
+
+### Launching Rancher Server - Single Container - External Database
+
+Instead of using the internal database that comes with Rancher server, you can start Rancher server pointing to an external database. The command would be the same, but appending in additional arguments to direct how to connect to your external database.
+
+> **Note:** Your database, name and user of the database will already need to be created, but no schemas will need to be created. Rancher will automatically create all the schemas related to Rancher.
+
+Here is an example of a SQL command to create a database and users.
+
+```sql
+> CREATE DATABASE IF NOT EXISTS cattle COLLATE = 'utf8_general_ci' CHARACTER SET = 'utf8';
+> GRANT ALL ON cattle.* TO 'cattle'@'%' IDENTIFIED BY 'cattle';
+> GRANT ALL ON cattle.* TO 'cattle'@'localhost' IDENTIFIED BY 'cattle';
+```
+
+To start Rancher connecting to an external database, you pass in additional arguments as part of the command for the container.
+
+```bash
+$ sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server \
+    --db-host myhost.example.com --db-port 3306 --db-user username --db-pass password --db-name cattle
+```
+
+Most of the options to pass in also have default values and are not required. Only the location of the MySQL server is required.
+
+```bash
+--db-host               IP or hostname of MySQL server
+--db-port               port of MySQL server (default: 3306)
+--db-user               username for MySQL login (default: cattle)
+--db-pass               password for MySQL login (default: cattle)
+--db-name               MySQL database name to use (default: cattle)
+```
+
+<br>
+
+> **Note:** In previous versions of Rancher server, we had connected to an external database using environment variables, those environment variables will continue to work, but Rancher recommends using the arguments instead.
+
+<a id="single-container-bind-mount"></a>
+
+### Launching Rancher Server - Single Container - Bind Mount MySQL Volume
+
+If you would like to persist the database inside your container to a volume on your host, launch Rancher server by bind mounting the MySQL volume.
+
+```bash
+$ sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=unless-stopped -p 8080:8080 rancher/server
+```
+With this command, the database will persist on the host. If you have an existing Rancher container and would like to bind mount the MySQL volume, the instructions are located in our [upgrading documentation]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#single-container-bind-mount).
+
+<a id="multi-nodes"></a>
+
+### Launching Rancher Server - Full Active/Active HA
+
+Running Rancher server in High Availability (HA) is as easy as running [Rancher server using an external database](#using-an-external-database), exposing an additional port, and adding in an additional argument to the command for the external load balancer.
+
+#### Additional Requirements for HA
+
+* HA Nodes:
+    * Port that needs to be opened between nodes: `9345`
+* MySQL database
+    * At least 1 GB RAM
+    * 50 connections per Rancher server node (e.g. A 3 node setup will need to support at least 150 connections)
+* External Load Balancer
+    * Port that needs to be opened between nodes and external load balancer: `8080`
+
+> **Note:** Currently, Docker for Windows and Docker for Mac are not supported in Rancher.
+
+#### Recommendations for Larger Deployments
+
+* Each Rancher server node should have a 4 GB or 8 GB heap size, which requires having at least 8 GB or 16 GB of RAM
+* MySQL database should have fast disks
+* For true HA, a replicated MySQL database with proper backups is recommended. Using Galera and forcing writes to a single node, due to transaction locks, would be an alternative.
+
+1. On each of your nodes that you want to add into the HA setup, run the following command:
+
+   ```bash
+   # Launch on each node in your HA cluster
+   $ docker run -d --restart=unless-stopped -p 8080:8080 -p 9345:9345 rancher/server \
+        --db-host myhost.example.com --db-port 3306 --db-user username --db-pass password --db-name cattle \
+        --advertise-address <IP_of_the_Node>
+   ```
+
+   For each node, the `<IP_of_the_Node>` will be unique to each node, as it will be the IP of each specific node that is being added into the HA setup.
+
+2. Configure an external load balancer that will balance traffic on ports `80` and `443` across a pool of nodes that will be running Rancher server and target the nodes on port `8080`. Your load balancer must support websockets and forwarded-for headers, in order for Rancher to function properly. See [SSL settings page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}//installing-rancher/installing-server/basic-ssl-config/) for example configuration settings.
+
+#### Notes on the Rancher Server Nodes in HA
+
+If the IP of your Rancher server node changes, your node will no longer be part of the Rancher HA cluster. You must stop the old Rancher server container using the incorrect IP for `--advertise-address` and start a new Rancher server with the correct IP for `--advertise-address`.
 
 <a id="ldap"></a>
 
@@ -76,50 +174,6 @@ done.
 done.
 [BOOTSTRAP] Starting Cattle
 ```
-
-### Bind Mount MySQL Volume
-
-If you would like to persist the database inside your container to a volume on your host, launch Rancher server by bind mounting the MySQL volume.
-
-```bash
-$ sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=unless-stopped -p 8080:8080 rancher/server
-```
-With this command, the database will persist on the host. If you have an existing Rancher container and would like to bind mount the MySQL volume, the instructions are located in our [upgrading documentation]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#upgrading-rancher-launched-using-bind-mounts).
-
-<a id="external-db"></a>
-
-### Using an External Database
-
-If you would prefer to use an external database to run Rancher server, you run the same command as before, but add in additional arguments to connect to the external database.
-
-> **Note:** Your database, name and user of the database will already need to be created, but no schemas will need to be created. Rancher will automatically create all the schemas related to Rancher.
-
-Here is an example of a SQL command to create a database and users.
-
-```sql
-> CREATE DATABASE IF NOT EXISTS cattle COLLATE = 'utf8_general_ci' CHARACTER SET = 'utf8';
-> GRANT ALL ON cattle.* TO 'cattle'@'%' IDENTIFIED BY 'cattle';
-> GRANT ALL ON cattle.* TO 'cattle'@'localhost' IDENTIFIED BY 'cattle';
-```
-
-To start Rancher connecting to an external database, you pass in additional arguments as part of the command for the container.
-
-```bash
-$ sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server --db-host myhost.example.com --db-port 3306 --db-user username --db-pass password --db-name cattle
-```
-
-Most of the options to pass in also have default values and are not required.
-
-```bash
---db-host               IP or hostname of MySQL server
---db-port               port of MySQL server (default: 3306)
---db-user               username for MySQL login (default: cattle)
---db-pass               password for MySQL login (default: cattle)
---db-name               MySQL database name to use (default: cattle)
-```
-
-<br>
-> **Note:** In previous versions of Rancher server, we had connected to an external database using environment variables, those environment variables will continue to work, but moving forward, Rancher recommends using the arguments instead.
 
 <a id="http-proxy"></a>
 
