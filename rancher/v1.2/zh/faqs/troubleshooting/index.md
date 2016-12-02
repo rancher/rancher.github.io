@@ -85,7 +85,7 @@ To change Rancher's IPsec network driver, you can export the yaml files and upda
 
 ### How can I see if my DNS is set up correctly?
 
-If you want to see the configuration of the Rancher DNS setup, go to the **Stacks** -> **Infrastructure Stacks**. Find the `dns` stack and exec into any of the containers. You can use the UI and select **Execute Shell** on the container.
+If you want to see the configuration of the Rancher DNS setup, go to the **Stacks** -> **Infrastructure**. Find the `network-services` stack and select the `metadata` service. In the `metadata` service, exec into any of the containers named `network-services-metadata-dns-X`. You can use the UI and select **Execute Shell** on the container.
 
 ```bash
 $ cat /etc/rancher-dns/answers.json
