@@ -41,7 +41,7 @@ If you run docker logs -f rancher-agent and the logs show messages about an expi
 
 #### Where can I see logs of my service?
 
-In the service details, we provide service logs in a tab called **Log**. In the **Log** tab, it lists out all events related to the service including a timestamp and description of the event that occurs in the API. These logs are kept for 24 hours before being deleted. 
+In the service details, we provide service logs in a tab called **Log**. In the **Log** tab, it lists out all events related to the service including a timestamp and description of the event that occurs in the API. These logs are kept for 24 hours before being deleted.
 
 ### Cross Host Communication
 
@@ -87,11 +87,12 @@ To change Rancher's IPsec network driver, you can export the yaml files and upda
 
 ### How can I see if my DNS is set up correctly?
 
-If you want to see the configuration of the Rancher DNS setup, go to the **Stacks** -> **Infrastructure Stacks**. Find the `dns` stack and exec into any of the containers. You can use the UI and select **Execute Shell** on the container.
+If you want to see the configuration of the Rancher DNS setup, go to the **Stacks** -> **Infrastructure**. Find the `network-services` stack and select the `metadata` service. In the `metadata` service, exec into any of the containers named `network-services-metadata-dns-X`. You can use the UI and select **Execute Shell** on the container.
 
 ```bash
 $ cat /etc/rancher-dns/answers.json
 ```
+
 
 #### CentOS
 
