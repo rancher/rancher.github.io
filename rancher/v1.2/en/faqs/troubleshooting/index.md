@@ -62,6 +62,7 @@ $ sudo docker run -d -e CATTLE_AGENT_IP=<HOST_IP> --privileged \
     -v /var/run/docker.sock:/var/run/docker.sock \
     rancher/agent:v0.8.2 http://SERVER_IP:8080/v1/scripts/xxxx
 ```
+
 #### Running Ubuntu, and containers are unable to communicate with each other.
 
 If you have `UFW` enabled, you can either disable `UFW` OR change `/etc/default/ufw` to:
