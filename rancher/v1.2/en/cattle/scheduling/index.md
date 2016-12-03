@@ -106,7 +106,7 @@ labels:
 
 #### Global Service
 
-Making a service into a global service is the equivalent of selecting **Always run one instance of this container on every host** in the UI. This means that a container will be started on any host in the [environment]{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/). If a new host is added to the environment, and the host fulfills the global service's host requirements, the service will automatically be started.
+Making a service into a global service is the equivalent of selecting **Always run one instance of this container on every host** in the UI. This means that a container will be started on any host in the [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/). If a new host is added to the environment, and the host fulfills the global service's host requirements, the service will automatically be started.
 
 Currently, we only support global services with host labels fields that are using the hard condition. This means that only labels that are related to `host_labels` will be adhered to when scheduling and it **must** or **must not** equal the values. Any other label types will be ignored.
 
