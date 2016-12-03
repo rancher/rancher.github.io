@@ -62,7 +62,7 @@ If you have launched Rancher server **without** using an external DB or bind mou
    ```
     <br>
 
-5. Remove the old Rancher server container.
+5. Remove the old Rancher server container. Note: If you only stop the container, the container will be restarted if your machine is rebooted if you had used `--restart=always`. We recommend using `--restart=unless-stopped` and removing the container after your upgrade has been successful.
 
 
 <a id="single-container-external-database"></a>
@@ -103,6 +103,8 @@ If you launched Rancher server using an external database, you can stop the orig
 
    > **Note:** It is important that you have trailing '/' at the end of the host path if you have copied a database out of a previous container. Otherwise, the directory ends up in the wrong place.
 
+5. Remove the old Rancher server container. Note: If you only stop the container, the container will be restarted if your machine is rebooted if you had used `--restart=always`. We recommend using `--restart=unless-stopped` and removing the container after your upgrade has been successful.
+
 <a id="multi-nodes"></a>
 
 ### Upgrading HA setup
@@ -123,7 +125,6 @@ If you have launched Rancher server in [High Availability (HA)]({{site.baseurl}}
    ```
    <br>
    > **Note:** If you are upgrading from an HA setup that was running the [older version of HA]({{site.baseurl}}/rancher/v1.1/{{page.lang}}/installing-rancher/installing-server/multi-nodes/), you would need to remove all running Rancher HA containers. `$ sudo docker rm -f $(sudo docker ps -a | grep rancher | awk {'print $1'})`
-
 
 ### Rancher Server with No Internet Access
 

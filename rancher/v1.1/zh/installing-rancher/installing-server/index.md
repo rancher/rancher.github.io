@@ -32,7 +32,7 @@ If you are interested in trying one of our latest development builds which will 
 On the Linux machine with Docker installed, the command to start Rancher is simple.
 
 ```bash
-$ sudo docker run -d --restart=always -p 8080:8080 rancher/server
+$ sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server
 ```
 
 #### Rancher UI
@@ -52,7 +52,7 @@ In order to enable Active Directory or OpenLDAP for Rancher server with TLS, the
 Start Rancher by bind mounting the volume that has the certificate. The certificate **must** be called `ca.crt` inside the container.
 
 ```bash
-$ sudo docker run -d --restart=always -p 8080:8080 \
+$ sudo docker run -d --restart=unless-stopped -p 8080:8080 \
   -v /dir_that_contains_the_cert/cert.crt:/ca.crt rancher/server
 ```
 
@@ -79,7 +79,7 @@ done.
 If you would like to persist the database inside your container to a volume on your host, launch Rancher server by bind mounting the MySQL volume.
 
 ```bash
-$ sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=always -p 8080:8080 rancher/server
+$ sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=unless-stopped -p 8080:8080 rancher/server
 ```
 With this command, the database will persist on the host. If you have an existing Rancher container and would like to bind mount the MySQL volume, the instructions are located in our [upgrading documentation]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#upgrading-rancher-launched-using-bind-mounts).
 
@@ -113,7 +113,7 @@ Here is an example of a SQL command to create a database and users.
 After the database and user is created, launch rancher server with the environment variables.
 
 ```bash
-$ sudo docker run -d --restart=always -p 8080:8080 \
+$ sudo docker run -d --restart=unless-stopped -p 8080:8080 \
     -e CATTLE_DB_CATTLE_MYSQL_HOST=<hostname or IP of MySQL instance> \
     -e CATTLE_DB_CATTLE_MYSQL_PORT=<port> \
     -e CATTLE_DB_CATTLE_MYSQL_NAME=<Name of Database> \
@@ -144,7 +144,7 @@ $ sudo docker run -d \
     -e https_proxy=<proxyURL> \
     -e no_proxy="localhost,127.0.0.1" \
     -e NO_PROXY="localhost,127.0.0.1" \
-    --restart=always -p 8080:8080 rancher/server
+    --restart=unless-stopped -p 8080:8080 rancher/server
 ```
 
 If the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) will not be used, run the Rancher server command as you normally would.

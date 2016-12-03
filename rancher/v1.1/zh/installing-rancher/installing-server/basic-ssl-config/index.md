@@ -24,19 +24,19 @@ In our example configuration, all traffic will pass through the proxy and be sen
 Start Rancher server. We have added in `--name=rancher-server` to this command in order to link the proxy container to the Rancher server container.
 
 ```bash
-$ sudo docker run -d --restart=always --name=rancher-server rancher/server
+$ sudo docker run -d --restart=unless-stopped --name=rancher-server rancher/server
 ```
 <br>
 
 > **Note:** In our example, we have assumed the proxy will be running in another container. If you are planning to run a proxy from the host, you will need to expose port `8080` locally by adding `-p 127.0.0.1:8080:8080` to the `docker run` command.
 
-If you are converting an existing Rancher instance, the upgrade to the new Rancher instance will depend on how you launched your original Rancher instance. 
+If you are converting an existing Rancher instance, the upgrade to the new Rancher instance will depend on how you launched your original Rancher instance.
 
 * For Rancher instances using the MySQL database inside the Rancher server container, follow the [upgrade instructions]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#upgrading-rancher-by-creating-a-data-container) of creating a data container and adding in the `--volumes-from=<data_container>` when launching your new Rancher server instance.
-* For Rancher instances with a [bind mounted database]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#bind-mount-mysql-volume), follow the [upgrade instructions for bind mounted instances]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#upgrading-rancher-launched-using-bind-mounts). 
+* For Rancher instances with a [bind mounted database]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#bind-mount-mysql-volume), follow the [upgrade instructions for bind mounted instances]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#upgrading-rancher-launched-using-bind-mounts).
 * For Rancher instances launched using an external database, stop and remove the existing Rancher container. Launch the new container using the same [instructions for connecting to an external database]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#external-db).
 
-> **Note:** After your new Rancher server is running, please make sure to **remove** the old Rancher instance. Otherwise, if your machine is rebooted, your old Rancher instance will start up as we have included `--restart=always` to the `docker run` commands.
+> **Note:** After your new Rancher server is running, please make sure to **remove** the old Rancher instance. Otherwise, if your machine is rebooted, your old Rancher instance will start up if you have used `--restart=always` to the `docker run` commands. We recommend using `--restart=unless-stopped`.
 
 ### Example Nginx Configuration
 
@@ -133,7 +133,7 @@ Before [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/ho
 
 ### Running Rancher Server Behind an ELB in AWS with SSL
 
-By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher's websockets to work. 
+By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher's websockets to work.
 
 #### Configuration Requirements for ELB to enable Rancher
 
@@ -144,7 +144,7 @@ $ aws elb create-load-balancer-policy --load-balancer-name my-elb --policy-name 
 $ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name my-elb --instance-port 81 --policy-names my-ProxyProtocol-policy
 $ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name my-elb --instance-port 444 --policy-names my-ProxyProtocol-policy
 ```
- 
+
  * For SSL terminated at the Rancher servers: Configure ELB listener for TLS/SSL:443 for the frontend and TCP:444 for the backend instance protocol:port.
  * For SSL terminated at the ELB: Configure ELB listener for TCP:80 for the frontend and TCP:81 for the backend instance protocol:port.
  * Health check can be configured to use HTTP:80 or HTTPS:443 using `/ping` as your path.
@@ -153,23 +153,23 @@ $ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name my-
 
 #### Disclaimers
 
-This configuration will work for the 'core' services in Rancher running in a standalone mode (Non-HA setup). Currently, none of the certified Rancher templates from the [Rancher catalog](https://github.com/rancher/rancher-catalog) are supported. 
+This configuration will work for the 'core' services in Rancher running in a standalone mode (Non-HA setup). Currently, none of the certified Rancher templates from the [Rancher catalog](https://github.com/rancher/rancher-catalog) are supported.
 
 Rancher Compose CLI will require the CA certificate as part of the default store for the operating system. See [Golang root_*](https://golang.org/src/crypto/x509/).
 
 #### Server Pre-Requisites
 
-* CA certificate file in PEM format 
+* CA certificate file in PEM format
 * Certificate signed by the CA for the Rancher Server
 * An instance of NGINX or Apache configured to terminate SSL and reverse proxy Rancher server
 
 #### Rancher Server
 
-1. Launch the Rancher server container with the modified Docker command. The certificate **must** be called `ca.crt` inside the container. 
+1. Launch the Rancher server container with the modified Docker command. The certificate **must** be called `ca.crt` inside the container.
 
 
    ```bash
-   $ sudo docker run -d --restart=always -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server
+   $ sudo docker run -d --restart=unless-stopped -p 8080:8080 -v /some/dir/cert.crt:/ca.crt rancher/server
    ```
     <br>
 
@@ -189,6 +189,4 @@ Rancher Compose CLI will require the CA certificate as part of the default store
 
 1. On the host that you want to add into Rancher, save the CA certificate, which must be in pem format, into the directory `/var/lib/rancher/etc/ssl` with the file name `ca.crt`.
 
-2. Add the [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/), which is just copying and pasting the command from the UI. The command will already include  `-v /var/lib/rancher:/var/lib/rancher`, so the file will automatically be copied onto your host. 
-
-
+2. Add the [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/), which is just copying and pasting the command from the UI. The command will already include  `-v /var/lib/rancher:/var/lib/rancher`, so the file will automatically be copied onto your host.
