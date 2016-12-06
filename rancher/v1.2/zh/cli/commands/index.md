@@ -535,6 +535,7 @@ Name | Description
 
 
 ```bash
+# Add in -d at the end to not block and log
 $ rancher up -s <stackName> -d
 ```
 
