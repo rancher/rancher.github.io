@@ -42,7 +42,7 @@ For [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/ad
 #### Option 1: Run _all_ containers on a specific host
 By selecting this option, the container/service will be started on a specific host. If your host goes down, then the container will also go down. If you create a container from the container page, even if there is a port conflict, the container will be started. If you create a service of scale greater than 1 and there is a port conflict, your service might get stuck in _Activating_ state until you edit the scale value of the service.
 
-#### Option 2: Automatically pick a host matching scheduling rulesf
+#### Option 2: Automatically pick a host matching scheduling rules
 By selecting this option, you have the flexibility to choose your scheduling rules. Any host that follows all the rules is a host that could have the container started on. You can add rules by clicking on the **+** button.
 
 For [load balancers]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/), only option 2 is available due to port conflicts. You are only given the choice to add scheduling rules. Click on the **Scheduling** tab. You can add as many scheduling rules as you want by clicking on the **Add Scheduling Rule** button.

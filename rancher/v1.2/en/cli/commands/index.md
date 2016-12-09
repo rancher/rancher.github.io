@@ -71,7 +71,6 @@ By default, the timeout for waiting will be ten minutes, but if you want to chan
 
 You can also define which specific state of a resource to be in before exiting, by using `--wait-state`.
 
-
 ### Rancher Catalog Reference
 
 The `rancher catalog` command provides operations around catalog templates.
@@ -106,7 +105,7 @@ $ rancher --env k8sEnv catalog ls
 
 ##### Rancher Catalog install
 
-The `rancher catalog install` command installs catalog templates into your environment. 
+The `rancher catalog install` command installs catalog templates into your environment.
 
 ### Rancher Config Reference
 
@@ -553,6 +552,7 @@ Name | Description
 
 
 ```bash
+# Add in -d at the end to not block and log
 $ rancher up -s <stackName> -d
 ```
 ### Rancher volumes Reference
