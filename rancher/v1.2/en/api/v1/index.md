@@ -53,7 +53,7 @@ Account keys can create new Environments,  and have can be used to access multip
 
 ### Making requests
 
-The API is generally RESTful but has several features to make the definition of everything discoverable by a client so that generic clients can be written instead of having to write specific code for every type of resource.  For painfully detailed info about the generic API spec, [see here](https://github.com/rancher/api-spec/blob/master/specification.md).
+The API is generally RESTful but has several features to make the definition of everything discoverable by a client so that generic clients can be written instead of having to write specific code for every type of resource.  For detailed info about the generic API spec, [see here](https://github.com/rancher/api-spec/blob/master/specification.md).
 
 - Every type has a Schema which describes:
   - The URL to get to the collection of this type of resources
