@@ -116,7 +116,7 @@ ros version 0.0.1
 RancherOS state is controlled by a cloud config file. `ros` is used to edit the configuration of the system, to see for example the dns configuration of the system:
 
 ```
-$ sudo ros config get rancher.dns
+$ sudo ros config get rancher.network.dns.nameservers
 - 8.8.8.8
 - 8.8.4.4
 ```
