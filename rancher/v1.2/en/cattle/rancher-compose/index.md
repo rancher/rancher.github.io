@@ -25,7 +25,9 @@ You can also check the [releases page for Rancher Compose](https://github.com/ra
 
 ### Setting up Rancher Compose with Rancher Server
 
-To enable Rancher Compose to launch services in a Rancher instance, you'll need to set environment variables or pass these variables as an option in the Rancher Compose command. The environment variables that are required are`RANCHER_URL`, `RANCHER_ACCESS_KEY`, and `RANCHER_SECRET_KEY`. The access key and secret key will be an [environment API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/).
+To enable Rancher Compose to launch services in a Rancher instance, you'll need to set environment variables or pass these variables as an option in the Rancher Compose command. The environment variables that are required are`RANCHER_URL`, `RANCHER_ACCESS_KEY`, and `RANCHER_SECRET_KEY`.
+
+> **Note:** The access key and secret key needs to be an [Environment API Key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v1/api-keys/). Since rancher-compose belongs to an environment an Account API Key will NOT be valid.
 
 ```bash
 # Set the url that Rancher is on
