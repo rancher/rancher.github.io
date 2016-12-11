@@ -32,9 +32,9 @@ If you are interested in trying one of our latest development builds which has o
 All you need is one command to launch Rancher server. After launching the container, we'll tail the logs of the container to see when the server is up and running.
 
 ```bash
-$ sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server
+$ sudo docker run -d --name rancher_server --restart=unless-stopped -p 8080:8080 rancher/server
 # Tail the logs to show Rancher
-$ sudo docker logs -f <CONTAINER_ID>
+$ sudo docker logs -f rancher_server
 ```
 
 It will only take a couple of minutes for Rancher server to start up. When the logs show `.... Startup Succeeded, Listening on port...`, the Rancher UI is up and running. This line of the logs is almost immediately after the configuration is complete. There may be additional logs after this output, so please don't assume it will be the last line of the logs upon initialization.
