@@ -6,17 +6,21 @@ lang: en
 apiVersion: v2-beta
 redirect_from:
   - /rancher/api/v2-beta/api-keys/
+  - /rancher/v1.2/en/api/api-keys/
 ---
 
 ## What are API Keys
 ---
 
-There are two types of API keys that Rancher supports, Environment API keys and Account API keys. An environment API key is tied to a specific [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) and can only manipulate resources within the environment. An account API key can add additional [accounts]({{[site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/), CRUD any environment that the account has access to. Usage of account API keys are recommended when [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is turned.
+There are two types of API keys that Rancher supports, Account API keys and Environment API keys.  An account API key can add additional [accounts]({{[site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/), CRUD any environment that the account has access to and be used to work with [Rancher CLI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cli/). An environment API key is tied to a specific [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/), can only manipulate resources within the environment and is used with [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/). Usage of API keys are required when [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is turned on.
+
+Within Rancher, all objects can be viewed in the API by selecting the **View in API** option in the object's dropdown menu. The endpoint URL provided when creating the environment API key also gives all the links to the various portions of the API. Read more about how to use our [API]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/).
 
 ### Account API Keys
 
-Click on **API** -> **Advanced Options** to find the API endpoint for your account. If you are an [admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#admin) of Rancher, you will have the ability to edit Rancher settings and manipulate all environments regardless if you have access to the environment. If you are a [user]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#user) of Rancher, you will only have the ability to manipulate environments that you have access to.
+Click on **API** to find the API endpoint for your account. If you are an [admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#admin) of Rancher, you will have the ability to edit Rancher settings and manipulate all environments regardless if you have access to the environment. If you are a [user]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#user) of Rancher, you will only have the ability to manipulate environments that you have access to.
 
+> **Note:** If you are using [Rancher CLI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cli/), then you use an account API key to configure Rancher and the CLI.
 
 #### Adding Account API Keys
 
@@ -42,13 +46,11 @@ You can **Edit** any key, which allows you to change the name and description of
 
 ### Environment API Keys
 
-Click on **API** to find the API endpoint. Whenever you create an environment API key, the endpoint URL provided will direct you to the specific [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) that you are currently working in.
+Click on **API** -> **Advanced Options** to find the API endpoint for your specific environment. Whenever you create an environment API key, the endpoint URL provided will direct you to the specific [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) that you are currently working in.
 
-If [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is not configured, anyone with the IP address will have access to your Rancher's API. It's highly recommended to enable access control.
+Once access control is enabled, an environment API key will need to be created for each [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) in order to access the API for the specific environment.
 
-Once access control is enabled and not logged in, an environment API key will need to be created for each [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) in order to access the API for the specific environment.
-
-Within Rancher, all objects can be viewed in the API by selecting the **View in API** option in the object's dropdown menu. The endpoint URL provided when creating the environment API key also gives all the links to the various portions of the API. Read more about how to use our [API]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/.
+> **Note:** If you are using [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/), then you would want to use an environment API key to be able to directly launch services into that specific environment. We recommend using [Rancher CLI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cli/) over Rancher Compose as Rancher CLI supports the same functionality to launch services.
 
 #### Adding Environment API Keys
 
