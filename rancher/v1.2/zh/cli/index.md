@@ -16,7 +16,7 @@ The binary can be downloaded directly from the UI. The link can be found in the 
 
 ### Configuring the Rancher Command Line Interface
 
-There are several methods you can configure the settings that the Rancher CLI uses when interacting with Rancher, i.e. Rancher URL and [account API keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/#account-api-keys). Account API keys can be created in **API** -> **Advanced Options**.
+There are several methods you can configure the settings that the Rancher CLI uses when interacting with Rancher, i.e. Rancher URL and [account API keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/#account-api-keys). Account API keys can be created in **API**.
 
 There is a specific load order for what will be used.
 

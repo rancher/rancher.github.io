@@ -4,6 +4,8 @@ layout: rancher-api-v1-default-v1.1
 version: v1.1
 lang: zh
 apiVersion: v1
+redirect_from:
+  - /rancher/v1.1/zh/api/api-keys/
 ---
 
 ## What are API Keys

@@ -84,7 +84,7 @@ The values in DNS and DNS Search  will be autopopulated in the containers.
 
 ### CNI configuration
 
-For the network driver, you can set the CNI configuration within the `cni_config`. Here is an example of the CNI configuration for Rancher's IPsec infrastructure service.
+For the network driver, you can set the CNI configuration within the `cni_config`. The example above shows the CNI configuration for Rancher's IPsec infrastructure service.
 
 ### Network Metadata
 
