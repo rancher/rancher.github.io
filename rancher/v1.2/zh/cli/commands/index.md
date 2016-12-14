@@ -22,7 +22,7 @@ Name | Description
 `exec`       |       [Run a command on a container](#rancher-exec-reference)
 `export`     |      [Export configuration yml for a stack as a tar archive](#rancher-export-reference)
 `hosts`, `host`    |   [Operations on hosts](#rancher-hosts-reference)
-`logs`           |   [Fetch the logs of a container](#rancher-hosts-reference)
+`logs`           |   [Fetch the logs of a container](#rancher-logs-reference)
 `ps`            |    [Show services/containers](#rancher-ps-reference)
 `restart`       |   [Restart service, container](#rancher-restart-reference)
 `rm`          |      [Delete service, container, host, machine](#rancher-rm-reference)
