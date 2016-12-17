@@ -26,7 +26,7 @@ You can also check the [releases page for Rancher Compose](https://github.com/ra
 
 To enable Rancher Compose to launch services in a Rancher instance, you'll need to set environment variables or pass these variables as an option in the Rancher Compose command. The environment variables that are required are`RANCHER_URL`, `RANCHER_ACCESS_KEY`, and `RANCHER_SECRET_KEY`. The access key and secret key will be an [environment API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/). Environment API keys can be created in **API** -> **Advanced Options**.
 
-> **Note:** By default, the API keys under the **API** section are account API keys and you need to create an environment API key, which is in the **Advanced Options**.
+> **Note:** By default, the API keys under the **API** section are **account API keys** and you need to create an **environment API key**, which is in the **Advanced Options**.
 
 ```bash
 # Set the url that Rancher is on
@@ -47,7 +47,7 @@ $ rancher-compose --url http://server_ip:8080 --access-key <username_of_environm
 
 Now, you can use any `docker-compose.yml` file with Rancher Compose to [launch services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#adding-services-with-rancher-compose). The services will automatically be launched in your Rancher instance in the [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) that the environment API key is located in.
 
-Just like in Docker Compose, you can choose to interact with all services in your `docker.compose.yml` or you can select to interact with specific services by listing their names after the command.
+Just like in Docker Compose, you can choose to interact with all services in your `docker-compose.yml` or you can select to interact with specific services by listing their names after the command.
 
 ```baseurl
 $ rancher-compose up servicename1 servicename2

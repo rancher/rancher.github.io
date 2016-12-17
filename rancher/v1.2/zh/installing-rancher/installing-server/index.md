@@ -1,5 +1,5 @@
 ---
-title: Installing Rancher Server 
+title: Installing Rancher Server
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
@@ -10,7 +10,7 @@ redirect_from:
 
 ## Installing Rancher Server
 ---
-Rancher is deployed as a set of Docker containers. Running Rancher is a simple as launching two containers. One container as the management server and another container on a node as an agent.
+Rancher is deployed as a set of Docker containers. Running Rancher is as simple as launching two containers. One container as the management server and another container on a node as an agent.
 
 * [Rancher Server - Single Container (non-HA)](#single-container)
 * [Rancher Server - Single Container (non-HA) - External database](#single-container-external-database)
