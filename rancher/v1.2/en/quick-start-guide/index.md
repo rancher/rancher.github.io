@@ -196,7 +196,7 @@ $ export RANCHER_SECRET_KEY=<password_of_key>
 Now, navigate to the directory where you saved `docker-compose.yml` and `rancher-compose.yml` and run the command.
 
 ```bash
-$ rancher -s NewLetsChatApp up -d
+$ rancher up -d -s NewLetsChatApp
 ```
 <br>
 In Rancher, a new stack will be created called **NewLetsChatApp** with all of the services launched in Rancher.
