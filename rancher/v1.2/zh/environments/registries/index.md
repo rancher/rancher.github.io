@@ -72,3 +72,15 @@ For any **Deactivated** registry, you have two options. You can **Activate** the
 You can **Edit** any registry, which allows you to change the credentials to the registry address. You will not be able to change the registry address. The password is not saved in the "Edit" page, so you will need to re-input it in order to save any changes.
 
 > **Note:** If a registry is invalid (i.e. inactive, removed, or overridden due to a newer credential), any [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/) using a private registry image will continue to run. Since the image has already been pulled onto the host, there will be no restrictions on usage of the image regardless of registry permissions. Therefore, any scaling up of services or additional containers using the image will be able to run. Rancher does not check if the credentials are still valid when running containers as we assume that you've already given the host permissions to access the image.
+
+### Changing the Default Registry
+
+By default, Rancher automatically pulls any image without a registry prefix from DockerHub. If you would like to change the default registry to a private one, a setting (i.e. `registry.default`) in the API would need to be updated.
+
+Under **API**, click on the **Endpoint (v2-beta)** to create a new window. Click on the link for **settings**, which will navigate to `v2-beta/settings`. Find the `registry.default` setting and click the link for `self`. Edit the setting and add the private registry value. Once the `registry.default` setting has been updated, any images without a registry prefix (e.g. `ubuntu:14.0.4`) would be pulled from the default registry instead of DockerHub.
+
+### Limiting which Registries can be used
+
+By default, any user provided registry added into Rancher can be used to pull images. An admin of Rancher may want to limit which registries are approved to be able to pull images. The setting (i.e. `registry.whitelist`) to limit which registries are approved for pulling images can be set in the API.
+
+Under **API**, on the **Endpoint (v2-beta)** to create a new window. Click on the link for **settings**, which will navigate to `v2-beta/settings`. Find the `registry.whitelist` setting and click on the link under `self`. Edit the setting and add the private registry values. Once the `registry.whitelist` setting has been updated, prior to pulling the image, the registry for the image (i.e. default or user provided) would be compared against the `registry.whitelist` value. If the registry is not on the whitelist, then the image pull would fail.
