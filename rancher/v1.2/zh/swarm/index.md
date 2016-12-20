@@ -26,21 +26,7 @@ After a Swarm environment has been created, the [infrastructure services]({{site
 
 > **Note:** Only admins of Rancher or owners of the environment will be able to view the [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/).
 
-### Using Swarm
-
-Once the setup has completed, you can begin to create or manage your own Swarm applications via the following ways:
-
-#### Rancher UI
-
-Rancher provides full CRUD capability of creating projects. In the **Swarm** tab, click on the **Projects** and click **Add Project**. When adding a project, you can input your `docker-compose.yml` either by reading a file or copying and pasting the contents directly into the UI. If your compose-template contains any environment interpolation, you will need to declare the variables by adding **variable substitution**. Click on **Create**.
-
-#### Rancher Catalog
-
-Rancher supports the capability of hosting a catalog of Swarm templates. To use a template, click on the **Catalog** tab. Select the template that you want to launch and click **View Details**. Review and edit the stack name, stack description, and configuration options and click on **Launch**.
-
-If you want to add your own templates to Swarm, you add them to the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) and place your templates in a `swarm-templates` folder.
-
-#### CLI
+### Using Swarm with the CLI
 
 To configure your own workstation to work with swarm, click on **Swarm** -> **CLI** -> **Generate Config** to generate the necessary API key and configuration file into a `docker-cli.zip` file. Follow the instructions in the UI to set up TLS and connect to Docker.
 
