@@ -145,7 +145,7 @@ global
   ssl-server-verify none
 
 defaults
-  mode tcp
+  mode http
   balance roundrobin
   option redispatch
   option forwardfor
@@ -156,7 +156,7 @@ defaults
   timeout server 36000s
 
 frontend http-in
-  mode tcp
+  mode http
   bind *:443 ssl crt /etc/haproxy/certificate.pem
   default_backend rancher_servers
 
