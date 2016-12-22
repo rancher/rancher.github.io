@@ -76,12 +76,16 @@ You can **Edit** any registry, which allows you to change the credentials to the
 
 ### Changing the Default Registry
 
-By default, Rancher automatically pulls any image without a registry prefix from DockerHub. If you would like to change the default registry to a private one, a setting (i.e. `registry.default`) in the API would need to be updated.
+By default, Rancher automatically assumes any image without a registry prefix should be pulled from DockerHub. You can change the default registry from DockerHub to another registry by updating a setting in the API.
 
-Under **API**, click on the **Endpoint (v2-beta)** to create a new window. Click on the link for **settings**, which will navigate to `v2-beta/settings`. Find the `registry.default` setting and click the link for `self`. Edit the setting and add the private registry value. Once the `registry.default` setting has been updated, any images without a registry prefix (e.g. `ubuntu:14.0.4`) would be pulled from the default registry instead of DockerHub.
+Under **API** -> **Account API Keys**, click on the **Endpoint (v2-beta)** link to navigate to the API. Click on the link for **settings**, which will navigate to `/v2-beta/settings`. Search for the **registry.default** setting and click on the link for **self**. Click on the **Edit** button to edit the setting. Add the registry value. Once the **registry.default** setting has been updated, any images without a registry prefix (e.g. `ubuntu:14.0.4`) will be pulled from the default registry instead of DockerHub.
+
+If you are using a private registry requiring credentials, you will need to add the registry to Rancher in order for the default registry to be valid.
 
 ### Limiting which Registries can be used
 
-By default, any user provided registry added into Rancher can be used to pull images. An admin of Rancher may want to limit which registries are approved to be able to pull images. The setting (i.e. `registry.whitelist`) to limit which registries are approved for pulling images can be set in the API.
+By default, any registry added into Rancher can be used to pull images. An admin of Rancher may want to limit which registries are approved. You can limit which registries are approved for pulling images by updating a setting in the API.
 
-Under **API**, on the **Endpoint (v2-beta)** to create a new window. Click on the link for **settings**, which will navigate to `v2-beta/settings`. Find the `registry.whitelist` setting and click on the link under `self`. Edit the setting and add the private registry values. Once the `registry.whitelist` setting has been updated, prior to pulling the image, the registry for the image (i.e. default or user provided) would be compared against the `registry.whitelist` value. If the registry is not on the whitelist, then the image pull would fail.
+Under **API** -> **Account API Keys**, click on the **Endpoint (v2-beta)** link to navigate to the API. Click on the link for **settings**, which will navigate to `/v2-beta/settings`. Search for the **registry.whitelist** setting and click on the link for **self**. Click on the **Edit** button to edit the setting. Add the list of registries that you want to whitelist. If there is more than one registry, the registries should be separated by commas. Once the **registry.whitelist** setting has been updated, prior to pulling the image, the registry for the image will confirm that it is on the list of approved registries before it proceeds with pulling the image. If the registry is not on the approved list, then the image pull will fail.
+
+> **Note:** Once you add any registry to this value, DockerHub will automatically no longer be valid. To include DockerHub, you will need to add `index.docker.io` as one of the registries.
