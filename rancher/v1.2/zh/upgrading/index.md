@@ -29,7 +29,7 @@ If you are interested in trying one of our latest development builds which will 
 
 ### Infrastructure Services
 
-After a Rancher server upgrade, your [infrastructure services] may have an update available. We recommend checking your infrastructure stacks after upgrading Rancher server to see if any stack has an upgrade available. If there is an upgrade available, we recommend upgrading these services.
+After a Rancher server upgrade, your [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) may have an update available. We recommend checking your infrastructure stacks after upgrading Rancher server to see if any stack has an upgrade available. If there is an upgrade available, we recommend upgrading these services.
 <a id="single-container"></a>
 
 ### Upgrading a Single Container (non-HA)
