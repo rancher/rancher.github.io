@@ -27,6 +27,9 @@ The `rancher/server:latest` tag will be our stable release builds, which Rancher
 
 If you are interested in trying one of our latest development builds which will have been validated through our CI automation framework, please check our [releases page](https://github.com/rancher/rancher/releases) to find the latest development release tag. These releases are not meant for deployment in production. All development builds will be appended with a `*-pre{n}` suffix to denote that it's a development release. Please do not use any release with a `rc{n}` suffix. These `rc` builds are meant for the Rancher team to test out the development builds.
 
+### Infrastructure Services
+
+After a Rancher server upgrade, your [infrastructure services] may have an update available. We recommend checking your infrastructure stacks after upgrading Rancher server to see if any stack has an upgrade available. If there is an upgrade available, we recommend upgrading these services.
 <a id="single-container"></a>
 
 ### Upgrading a Single Container (non-HA)
