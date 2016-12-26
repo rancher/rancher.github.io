@@ -17,6 +17,8 @@ Rancher is deployed as a set of Docker containers. Running Rancher is as simple 
 * [Rancher Server - Single Container (non-HA)- Bind mounted MySQL volume](#single-container-bind-mount)
 * [Rancher Server - Full Active/Active HA](#multi-nodes)
 
+> **Note:** You can get all help options for the Rancher server container by running `docker run rancher/server --help`.
+
 ### Requirements
 
 * Any modern Linux distribution that supports Docker 1.10.3+. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
@@ -135,6 +137,10 @@ Running Rancher server in High Availability (HA) is as easy as running [Rancher 
    ```
 
    For each node, the `<IP_of_the_Node>` will be unique to each node, as it will be the IP of each specific node that is being added into the HA setup.
+
+   If you change `-p 8080:8080` to expose a different port, then you would also add `--advertise-http-port` to match the same port as part of the command.
+
+   > **Note:** You can get the help for the commands by running `docker run rancher/server --help`
 
 2. Configure an external load balancer that will balance traffic on ports `80` and `443` across a pool of nodes that will be running Rancher server and target the nodes on port `8080`. Your load balancer must support websockets and forwarded-for headers, in order for Rancher to function properly. See [SSL settings page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}//installing-rancher/installing-server/basic-ssl-config/) for example configuration settings.
 
