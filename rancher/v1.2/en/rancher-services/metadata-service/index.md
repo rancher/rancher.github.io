@@ -111,17 +111,30 @@ When executing the curl command, you'll receive plaintext for the path that was 
 ```bash
 $ curl 'http://rancher-metadata/2015-12-19/self/container'
 create_index
+dns/
+dns_search/
+external_id
+health_check_hosts/
 health_state
 host_uuid
 hostname
 ips/
 labels/
+memory_reservation
+milli_cpu_reservation
 name
+network_from_container_uuid
+network_uuid
 ports/
 primary_ip
+primary_mac_address
+service_index
 service_name
 stack_name
+stack_uuid
 start_count
+state
+system
 uuid
 $ curl 'http://rancher-metadata/2015-12-19/self/container/name'
 # Note: Curl will not provide a new line, so single values will be on same line as the command prompt
@@ -154,18 +167,30 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 | Fields | Description |
 | ----| ----|
 | `create_index` | The order number of which the container was launched in the service, i.e. 2 means it was the second container launched in the service. Note: Create_index is never reused. If you had a service with 2 containers and deleted the 2nd container, the next container that gets launched for the service would have a `create_index` of 3 even though there are only 2 containers in the service.
+| `dns` |
+| `dns_search` |
+| `external_id` |
+| `health_check_hosts` |
 | `health_state` | The state of health for the container if a [health check]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks/) was enabled.
 | `host_uuid` | Unique host identifier that Rancher server assigns to hosts
 | `hostname` | The hostname of the container.
 | `ips` | When multiple NICs are supported, it will be the list of IPs.
 | `labels` | List of [Labels on Container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#labels). Format for labels is `key`:`value`.
+| `memory_reservation` |
+| `milli_cpu_reservation` |
 | `name` | Name of Container
+| `network_from_container_uuid` |
+| `network_uuid` | Unique network identifier that Rancher assigns to networks
 | `ports` | List of [Ports used in the container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#port-mapping). Format for ports is `hostIP:publicIP:privateIP[/protocol]`.
 | `primary_ip` | IP of container
+| `primary_mac_address` |
 | `service_index` | The last number in the container name of the service
 | `service_name` | Name of service (if applicable)
 | `stack_name` | Name of stack that the service is in (if applicable)
+| `stack_uuid` |  Unique stack identifier that Rancher assigns to stacks
 | `start_count` | The number of times the container was started.
+| `state` | The state of the container
+| `system` | Whether or not the container is an [infrastructure service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/)
 | `uuid` | Unique container identifier that Rancher assigns to containers
 
 #### Service
@@ -177,25 +202,34 @@ $ curl --header 'Accept: application/json' 'http://rancher-metadata/2015-12-19/s
 `expose` |
 `external_ips` | List of External IPs for [External Services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-external-services/)
 `fqdn` | Fqdn of the service
+`health_check` | The [health check configuration]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks/) on the service
 `hostname` | CNAME for [External Services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-external-services/)
 `kind` | Type of Rancher Service
 `labels` | List of [Labels on Service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#labels). Format for labels is `key:value`.
+`lb_config` | The configuration of the [load balancer]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/)
 `links` | List of linked services. Format for links is `stack_name/service_name:service_alias`. The `links` would show all the keys (i.e. `stack_name/service_name` for all links) and to retrieve the `service_alias`, you would need to drill down to the specific key.
 `metadata` | [User added metadata]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/metadata-service/#adding-user-metadata-to-a-service)
 `name` | Name of Service
 `ports` | List of [Ports used in the Service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#port-mapping). Format for ports is `hostIP:publicIP:privateIP[/protocol]`.
+`primary_service_name` | The name of the primary service if there are sidekicks
 `scale` | Scale of Service
 `sidekicks` | List of service names that are [sidekicks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#sidekick-services)
 `stack_name` | Name of stack the service is part of
+`stack_uuid` | Unique stack identifier that Rancher assigns to stacks
+`system` | Whether or not the service is an [infrastructure service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/)
+`token` |
 `uuid` | Unique service identifier that Rancher assigns to services
+`vip`|
 
 #### Stack
 
 Fields | Description
 ----|----
 `environment_name` | Name of [Environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) that the Stack is in
+`environment_uuid` | Unique stack identifier that Rancher assigns to stacks
 `name` | Name of [Stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/stacks/)
 `services` | List of Services in the Stack
+`system` | Whether or not the stack is an [infrastructure service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/)
 `uuid` | Unique stack identifier that Rancher assigns to stacks
 
 #### Host
@@ -203,8 +237,11 @@ Fields | Description
 Fields | Description
 ----|----
 `agent_ip` | IP of the Rancher Agent, i.e. the value of the `CATTLE_AGENT_IP` environment variable.
-`hostId` | Identifier of the host in the specific environment
+`hostname` | Name of [Host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/)
 `labels` | List of [Host Labels]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels). Format for labels is `key:value`.
+`local_storage_mb` | Amount of storage on the host in MB
+`memory` | Amount of memory on the host in MB
+`milli_cpu` |
 `name` | Name of [Host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/)
 `uuid` | Unique host identifier that Rancher server assigns to hosts
 

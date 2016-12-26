@@ -20,7 +20,7 @@ Name | Description
 `config`     |       [Setup client configuration](#rancher-config-reference)
 `docker`      |        [Run docker CLI on a host](#rancher-docker-reference)
 `environment`, `env`  | [Interact with environments](#rancher-environment-reference)
-`events`    |        [Displays resource change events](#rancher-events-reference)
+`events`, `event`   |        [Displays resource change events](#rancher-events-reference)
 `exec`       |       [Run a command on a container](#rancher-exec-reference)
 `export`     |      [Export configuration yml for a stack as a tar archive or to local files](#rancher-export-reference)
 `hosts`, `host`    |   [Operations on hosts](#rancher-hosts-reference)
@@ -96,16 +96,41 @@ Name | Description
 
 The `rancher catalog ls` command lists all the templates in the environment.
 
+###### Options
+
+Name | Description
+-----|-----
+`--quiet`, `-q` |     Only display IDs
+`--format` value  | 'json' or Custom format: {{.Id}} {{.Name}}
+`--system`, `-s` |   Show system templates, not user
+
 ```bash
 # Lists all catalog templates
 $ rancher catalog ls
-# Lists all catalog templates in the k8sEnv environment
+# Lists all catalog templates in an environment that is running kubernetes
 $ rancher --env k8sEnv catalog ls
+# Lists the catalog templates that are system templates
+$ rancher catalog ls --system
 ```
 
 ##### Rancher Catalog install
 
 The `rancher catalog install` command installs catalog templates into your environment.
+
+###### Options
+
+Name | Description
+----|-----
+`-answers` value, `-a` value |  Answer file
+`--name` value              |  Name of stack to create
+`--system`, `-s`              |  Install a system template
+
+```bash
+# Install a catalog
+$ rancher install library/route53:v0.6.0-rancher1 --name janitor
+# Install a catalog and label it as a system template
+$ rancher install library/route53:v0.6.0-rancher1 --name route53 --system
+```
 
 ### Rancher Config Reference
 
