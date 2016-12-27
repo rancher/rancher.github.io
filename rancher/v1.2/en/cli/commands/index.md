@@ -20,7 +20,7 @@ Name | Description
 `config`     |       [Setup client configuration](#rancher-config-reference)
 `docker`      |        [Run docker CLI on a host](#rancher-docker-reference)
 `environment`, `env`  | [Interact with environments](#rancher-environment-reference)
-`events`    |        [Displays resource change events](#rancher-events-reference)
+`events`, `event`   |        [Displays resource change events](#rancher-events-reference)
 `exec`       |       [Run a command on a container](#rancher-exec-reference)
 `export`     |      [Export configuration yml for a stack as a tar archive or to local files](#rancher-export-reference)
 `hosts`, `host`    |   [Operations on hosts](#rancher-hosts-reference)
@@ -79,10 +79,9 @@ The `rancher catalog` command provides operations around catalog templates.
 
 Name | Description
 ----|-----
-`--quiet`, `-q`     Only display IDs
-`--format` value  'json' or Custom format: {{.Id}} {{.Name}}
-`--system`, `-s`    Show system templates, not user
-`--help`, `-h`      show help
+`--quiet`, `-q`   |  Only display IDs
+`--format` value  | `json` or Custom format: {{.Id}} {{.Name}}
+`--system`, `-s`  |  Show system templates, not user
 
 #### Subcommands
 
@@ -92,20 +91,49 @@ Name | Description
 `install` |  Install catalog template
 `help`    |  Shows a list of commands or help for one command
 
-##### Rancher Catalog Ls
+#### Rancher Catalog Ls
 
 The `rancher catalog ls` command lists all the templates in the environment.
+
+##### Options
+
+Name | Description
+-----|-----
+`--quiet`, `-q` |     Only display IDs
+`--format` value  | `json` or Custom format: {{.Id}} {{.Name}}
+`--system`, `-s` |   Show system templates, not user
+
+<br>
 
 ```bash
 # Lists all catalog templates
 $ rancher catalog ls
-# Lists all catalog templates in the k8sEnv environment
+# Lists all catalog templates in an environment that is running kubernetes
 $ rancher --env k8sEnv catalog ls
+# Lists the catalog templates that are system templates
+$ rancher catalog ls --system
 ```
 
-##### Rancher Catalog install
+#### Rancher Catalog install
 
 The `rancher catalog install` command installs catalog templates into your environment.
+
+##### Options
+
+Name | Description
+----|-----
+`-answers` value, `-a` value |  Answer file
+`--name` value              |  Name of stack to create
+`--system`, `-s`              |  Install a system template
+
+<br>
+
+```bash
+# Install a catalog
+$ rancher catalog install library/route53:v0.6.0-rancher1 --name route53
+# Install a catalog and label it as a system template
+$ rancher catalog install library/route53:v0.6.0-rancher1 --name route53 --system
+```
 
 ### Rancher Config Reference
 
@@ -140,11 +168,18 @@ $ rancher config --print
 
 ### Rancher Docker Reference
 
-The `rancher docker` command allows you to run any Docker command on a specific host.
+The `rancher docker` command allows you to run any Docker command on a specific host. Uses the ``$RANCHER_DOCKER_HOST` to run Docker commands. Use `--host <hostID>` or `--host <hostName>` to select a different host.
+
 
 ```bash
 $ rancher --host 1h1 docker ps
 ```
+
+#### Options
+
+Name | Description
+----|-----
+`--help-docker` |  Display the `docker --help`
 
 <br>
 
@@ -154,23 +189,39 @@ $ rancher --host 1h1 docker ps
 
 The `rancher environment` command allows you to interact with environments. If you use an [account API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/#account-api-keys), you will be able to create and update environments. If you use an [environment API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/#environment-api-keys), you will not be able to create or update other environments and you will only be able to see your existing environment.
 
+
+#### Options
+
+Name | Description
+----|-----
+`--all`, `-a`    |   Show stop/inactive and recently removed resources
+`--quiet`, `-q`  |  Only display IDs
+`--format` value | `json` or Custom format: {{.Id}} {{.Name}}
+
 #### Subcommands
 
 Name | Description
 ----|-----
-`ls` |      List environments
- `create` | Create an environment
- `rm` |      Remove environment(s) by ID
- `update` |  Update environment
+`ls`                    | List environments
+`create`                | Create an environment
+`templates`, `template` | Interact with environment templates
+`rm`                    | Remove environment(s)
+`deactivate`            | Deactivate environment(s)
+`activate`              | Activate environment(s)
+`help`                  | Shows a list of commands or help for one command
 
-##### Rancher Env Ls
+
+#### Rancher Env Ls
 
 The `rancher env ls` command lists all the environments in the Rancher set up.
 
+##### Options
+
 Name | Description
 ----|-----
+`--all`, `-a`    |   Show stop/inactive and recently removed resources
    `--quiet`, `-q` |     Only display IDs
-   `--format` value  | 'json' or Custom format: {{.Id}} {{.Name}}
+   `--format` value  | `json` or Custom format: {{.Id}} {{.Name}}
 
 <br>
 
@@ -185,26 +236,46 @@ $ rancher env ls -q
 1a6
 ```
 
-##### Rancher Env Create
+#### Rancher Env Create
 
 The `rancher env create` command creates new environments of different orchestration types. By default, the orchestration type will be cattle.
 
-**Options**
+##### Options
 
 Name | Description
 ---|----
-`--orchestration value`, `-o` value | Orchestration framework
+`--template` value, `-t` value | Environment template to create from (default: "Cattle")
 
 <br>
 
 ```bash
-# Create a cattle environment
+# Create a environement
 $ rancher env create newCattleEnv
 # Create a kubernetes environment
-$ rancher env create -o kubernetes newk8sEnv
+$ rancher env create -t kubernetes newk8sEnv
 ```
 
-##### Rancher Env Rm
+#### Rancher Env Template
+
+The `rancher env template` command allows you to export and import templates into Rancher.
+
+##### Options
+
+Name | Description
+---|----
+`--all`, `-a`    |   Show stop/inactive and recently removed resources
+`--quiet`, `-q`  |  Only display IDs
+`--format` value | `json` or Custom format: {{.Id}} {{.Name}}
+
+##### Subcommands
+
+Name | Description
+---|----
+`export` | Export an environment template to STDOUT
+`import` | Import an environment template to from file
+`help`    | Shows a list of commands or help for one command
+
+#### Rancher Env Rm
 
 The `rancher env rm` command removes environments. You can remove with either the environment name or environment ID.
 
@@ -215,34 +286,23 @@ $ rancher env rm newk8sEnv
 $ rancher env rm 1a20
 ```
 
-##### Rancher Env Update
+#### Rancher Env Deactivate
 
-The `rancher env update` command switches the orchestration type of existing environments. You select which environment to update with either environment name or environment ID.
+The `rancher env deactivate` command deactivates the environment. You select which environment to update with either environment name or environment ID.
 
-**Options**
+#### Rancher Env Activate
 
-Name | Description
----|----
-`--orchestration value`, `-o` value | Orchestration framework
-
-<br>
-
-```bash
-# Switch to Kubernetes using environment name
-$ rancher env update -o kubernetes newEnv
-# Switch to cattle using environment ID
-$ rancher env update -o cattle 1a21
-```
+The `rancher env activate` command activates the environment. You select which environment to update with either environment name or environment ID.
 
 ### Rancher Events Reference
 
 The `rancher events` command lists out all active events occurring inside the Rancher server.
 
-**Options**
+#### Options
 
 Name | Description
 ---|----
-`--format` value  |  'json' or Custom format: {{.Id}} {{.Name}}
+`--format` value  |  `json` or Custom format: {{.Id}} {{.Name}}
 `--reconnect`, `-r` | Reconnect on error
 
 
@@ -258,8 +318,8 @@ $ rancher exec -i -t 1i10
 #### Options
 
 Name | Description
----|----
-`--help-docker` | Display the 'docker exec --help'
+----|-----
+`--help-docker` |  Display the `docker exec --help`
 
 After the `rancher exec` command finds the container, it runs the `docker exec` command on the specific host and container. To show the help for the `docker exec` command, you can pass in an option to show the `docker exec --help`.
 
@@ -276,7 +336,8 @@ The `rancher export` command exports the `docker-compose.yml` and `rancher-compo
 
 Name | Description
 ---|----
-`--output` value, `-o` value |  Write to a file, instead of STDOUT
+`--file` value, `-f` value |  Write to a file, instead of local files, use - to write to STDOUT
+`--system`, `-s`   |         If exporting the entire environment, include system
 
 <br>
 
@@ -284,12 +345,20 @@ Name | Description
 # Provide the docker-compose.yml and rancher-compose.yml for
 # all services in a stack as a tar archive
 $ rancher export mystack > files.tar
-$ rancher export -o files.tar mystack
+$ rancher export -f files.tar mystack
 ```
 
 ### Rancher hosts reference
 
 The `rancher hosts` command allows you to interact with hosts in the environment.
+
+#### Options
+
+Name | Description
+----|-----
+  `--all`, `-a`    |    Show stop/inactive and recently removed resources
+  `--quiet`, `-q`  |   Only display IDs
+  `--format` value | `json` or Custom format: {{.Id}} {{.Name}}
 
 #### Subcommands
 
@@ -306,8 +375,9 @@ The `rancher hosts ls` command lists all the hosts.
 
 Name | Description
 ----|-----
-   `--quiet`, `-q` |     Only display IDs
-   `--format` value  | 'json' or Custom format: {{.Id}} {{.Name}}
+`--all`, `-a` |       Show stop/inactive and recently removed resources
+    `--quiet`, `-q` |     Only display IDs
+   `--format` value  | `json` or Custom format: {{.Id}} {{.Name}}
 
 <br>
 
@@ -366,9 +436,11 @@ The `rancher ps` command shows all the services or containers in Rancher. If you
 
 Name | Description
 ---|----
-`--containers`, `-c` |	Display containers
+`--all`, `-a`        |  Show stop/inactive and recently removed resources
+`--system`, `-s`     |  Show system resources
+`--containers`, `-c` |  Display containers
 `--quiet`, `-q` |		Only display IDs
-`--format` value |	'json' or Custom format: {{.Id}} {{.Name}}
+`--format` value |	`json` or Custom format: {{.Id}} {{.Name}}
 
 <br>
 
@@ -395,7 +467,7 @@ You can restart any hosts, services or containers in Rancher using `rancher rest
 
 Name | Description
 ---|----
-`--type` value	| Restrict delete to specific types (default: "service", "container", "host", "environment")
+`--type` value	| Restrict restart to specific types (service, container)
 `--batch-size` value |	Number of containers to restart at a time (default: 1)
 `--interval` value |	Interval in millisecond to wait between restarts (default: 1000)
 
@@ -411,6 +483,23 @@ $ rancher restart <stackName>/<serviceName>
 <br>
 
 > **Note:** The service name will always include the stack name to ensure that we're referencing the correct service.
+
+### Rancher rm reference
+
+The `rancher rm` command removes resources, i.e. hosts, stacks, services, containers or volumes, from Rancher.
+
+#### Options
+
+Name | Description
+---|----
+`--type` value	| Restrict delete to specific types
+`--stop`, `-s`  |  Stop or deactivate resource first if needed before deleting
+
+<br>
+
+```bash
+$ rancher rm <ID>
+```
 
 ### Rancher run reference
 
@@ -451,12 +540,34 @@ $ rancher ssh <hostID>
 
 The `rancher stacks` command interacts with the stacks in the environment.
 
+#### Options
+
 Name | Description
 ----|-----
-   `--quiet`, `-q` |     Only display IDs
-   `--format` value  | 'json' or Custom format: {{.Id}} {{.Name}}
+`--system`, `-s`  |  Show system resources
+ `--quiet`, `-q` |     Only display IDs
+   `--format` value  | `json` or Custom format: {{.Id}} {{.Name}}
 
-   <br>
+#### Commands
+
+Name | Description
+----|-----
+`ls` |     List stacks
+`create` |   Create a stacks
+
+#### Rancher Stacks Ls
+
+The `rancher stacks ls` command lists the stacks in the selected environment.
+
+##### Options
+
+Name | Description
+----|-----
+`--system`, `-s` |    Show system resources
+`--quiet`, `-q`     | Only display IDs
+`--format` value | `json` or Custom format: {{.Id}} {{.Name}}
+
+<br>
 
 ```bash
 #List all stacks
@@ -472,21 +583,31 @@ $ rancher stacks ls -q
 1e3
 ```
 
-### Rancher rm reference
+#### Rancher Stacks Create
 
-The `rancher rm` command removes resources, i.e. hosts, stacks, services, containers, from Rancher.
+The `rancher stacks create` command creates new stacks. The stacks could be empty or created from a `docker-compose.yml` and `rancher-compose.yml`.
 
-#### Options
+##### Options
 
 Name | Description
----|----
-`--type` value	| Restrict delete to specific types
+----|-----
+`--start`                     |       Start stack on create
+`--system`, `-s`              |         Create a system stack
+`--empty`, `-e`               |         Create an empty stack
+`--quiet`, `-q`               |         Only display IDs
+`--docker-compose` value, `-f` value  |  Docker Compose file (default: "docker-compose.yml")
+`--rancher-compose` value, `-r` value |  Rancher Compose file (default: "rancher-compose.yml")
 
 <br>
 
 ```bash
-$ rancher rm <ID>
+# Create an empty stack
+$ rancher stacks create NewStack -e
+# Create a stack from a docker-compose and rancher-compose files
+# Also, start the stack upon creation
+$ rancher stacks create NewStack -f dc.yml -r rc.yml --start
 ```
+
 ### Rancher start/activate reference
 
 The `rancher start` or `rancher activate` command activates specific resource types, i.e. hosts, services or containers.
@@ -495,7 +616,7 @@ The `rancher start` or `rancher activate` command activates specific resource ty
 
 Name | Description
 ---|----
-`--type` value	| Restrict start to specific types (default: "service", "container", "host")
+`--type` value	| Restrict restart to specific types (service, container, host, stack)
 
 <br>
 
@@ -505,6 +626,8 @@ $ rancher start <ID>
 # Start by name of service, container, host
 $ rancher start <stackName>/<serviceName>
 ```
+
+<br>
 
 > **Note:** The service name will always include the stack name to ensure that we're referencing the correct service.
 
@@ -516,7 +639,7 @@ The `rancher stop` or `rancher deactivate` command deactivates specific resource
 
 Name | Description
 ---|----
-`--type` value	| Restrict delete to specific types (default: "service", "container", "host")
+`--type` value	| Restrict restart to specific types (service, container, host, stack)
 
 <br>
 
@@ -526,6 +649,8 @@ $ rancher stop <ID>
 # Stop by name of service, container, host
 $ rancher stop <stackName>/<serviceName>
 ```
+
+<br>
 
 > **Note:** The service name will always include the stack name to ensure that we're referencing the correct service.
 
@@ -555,17 +680,90 @@ Name | Description
 # Add in -d at the end to not block and log
 $ rancher up -s <stackName> -d
 ```
+
 ### Rancher volumes Reference
+
+The `rancher volumes` command allows you to interact with volumes in Rancher.
+
+#### Options
+
+Name | Description
+---|----
+`--all`, `-a`    |   Show stop/inactive and recently removed resources
+`--quiet`, `-q`  |  Only display IDs
+`--format` value | `json` or Custom format: {{.Id}} {{.Name}}
+
+#### Commands
+
+Name | Description
+---|----
+  `ls`  |     List volumes
+  `rm`   |   Delete volume
+  `create` | Create volume
+
+#### Rancher Volume LS
+
+The `rancher volume ls` command lists all volumes in the selected environment.
+
+##### Options
+
+Name | Description
+---|----
+`--all`, `-a`    |   Show stop/inactive and recently removed resources
+`--quiet`, `-q`  |  Only display IDs
+`--format` value | `json` or Custom format: {{.Id}} {{.Name}}
+
+<br>
+
+```bash
+$ rancher volumes ls
+ID        NAME                       STATE      DRIVER        DETAIL
+1v1                                  active                   
+1v2                                  active                   
+1v3                                  detached                 
+1v4                                  active                   
+1v5                                  detached                 
+1v6                                  detached                 
+1v7       rancher-agent-state        active     local         
+```
+
+#### Rancher Volume Rm
+
+The `rancher volume rm` command removes volumes from Rancher.
+
+```bash
+$ rancher volumes rm <VOLUME_ID>
+```
+
+#### Rancher Volume Create
+
+The `rancher volume create` command creates volumes in Rancher.
+
+##### Options
+
+Name | Description
+---|----
+`--driver` value |  Specify volume driver name
+`--opt` value    |  Set driver specific key/value options
+
+ <br>
+
+```bash
+# Create a new volume in the Rancher NFS driver
+$ rancher volume create NewVolume --driver rancher-nfs
+```
 
 ### Rancher inspect Reference
 
 The `rancher inspect` provides detail on the resource.
 
+#### Options
+
 Name | Description
 ---|----
 `--type` value  |  Restrict restart to specific types (service, container, host)
 `--links`       |  Include URLs to actions and links in resource output
-`--format` value  | 'json' or Custom format: {{.Id}} {{.Name}} (default: "json")
+`--format` value  | `json` or Custom format: {{.Id}} {{.Name}} (default: "json")
 
 <br>
 
