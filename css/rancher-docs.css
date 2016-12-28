@@ -1,0 +1,261 @@
+---
+---
+
+header {
+  background-image: url('{{ site.baseurl }}/img/header-bg.png');
+  background-color: #0075A8;
+  background-size: contain;
+  min-height: 200px;
+}
+
+
+img {
+	max-width:100%;
+	height: auto;
+}
+
+/*header {
+  min-height: 200px;
+  background-image: url("{{ site.baseurl }}/img/header-bg.png");
+}*/
+
+.content-container {
+  background-color: white;
+  padding: 40px;
+  margin-top: -130px;
+}
+
+.sidebar {
+}
+
+#menu {
+  margin: 0;
+  padding: 10px;
+  list-style-type: none;
+}
+
+#menu li {
+  list-style-type: none;
+}
+
+#menu li a {
+  text-decoration: none;
+  border-bottom: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  display: block;
+  border-bottom: solid rgba(153, 163, 168, .25) 2px;
+}
+
+#menu li ul {
+  padding: 0;
+  margin-bottom: 10px;
+  background-color: rgba(153, 163, 168, .25);
+  border-left: solid 3px rgba(153, 163, 168, .5);
+}
+
+#menu li ul li ul {
+  margin-left: -3px;
+}
+
+#menu li ul li ul li a i{
+  margin: 0 10px 0 20px;
+}
+
+#menu li i.pull-right.fa.fa-angle-down {
+  line-height: 22px;
+}
+
+/*NESTED SUBMENU*/
+ul.nav.navbar-nav li ul.list-group-submenu {
+    border-left: solid #0075a8 thick;
+    padding: 12px;
+}
+ul.nav.navbar-nav li ul.list-group-submenu li ul{
+border-left: solid rgba(0,0,0,.75) thick;
+    padding-left: 40px;
+    margin-left: -17px;
+}
+ul.nav.navbar-nav li ul.list-group-submenu li ul ul {
+    padding: 0;
+    margin: 0;
+    border: none;
+    margin-left: 27px;
+}
+ul.collapse {
+    padding: 0;
+}
+
+.navbar-inverse .clearfix{
+    background-color:#0075A8;
+}
+
+.sidebar-nav{
+    background-color: #5c686f;
+}
+
+.navbar-inverse .navbar-nav > li > a.active {
+    background: #5c686f;
+    color: white;
+}
+ul.nav.navbar-nav li a.active:after {
+    content: "";
+    border: solid transparent;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    border-color: transparent;
+    border-left-color: #5c686f;
+    border-width: 10px;
+    position: absolute;
+    right: -20px;
+    top: calc(50% - 10px);
+}
+
+ul.nav.navbar-nav .list-group-submenu li a.active:after {
+display: none;
+}
+
+ul.collapse.in a.active {
+  color: #0075A8;
+}
+.panel {
+    margin-bottom: 0px;
+    border: 0px;
+    border-radius: 0px;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+}
+
+/*slicknav*/
+.slicknav_menu {
+  display:none;
+}
+
+@media screen and (max-width: 40em) {
+  #menu {
+    display:none;
+  }
+
+  .slicknav_menu {
+    display:block;
+  }
+}
+
+#menu ul {
+  display: none;
+}
+#menu li.active ul {
+  display: block;
+}
+
+#menu li.active a ul {
+  margin-left: 25px;
+}
+
+#menu li.active > a > i {
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+/*search results*/
+.cse .gsc-control-cse, .gsc-control-cse {
+  background-color: transparent!important;
+  border: 0!important;
+}
+
+form.gsc-search-box {
+  padding: 0!important;
+  border: 0!important;
+  margin-bottom: 0!important;
+}
+
+#___gcse_0 > * {
+  border: 0!important
+}
+
+table.gsc-search-box tr td {
+  padding: 0!important;
+}
+
+table.gsc-search-box tbody tr {
+  border: 0!important;
+}
+
+pre code {
+    display: block;
+    padding: 9.5px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #ECF0F1;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #334851;
+    border: 1px solid #0A141A;
+    border-radius: 4px;
+}
+.language-bash pre code{
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    word-break: break-all;
+    word-wrap: break-word;
+    border-radius: 4px;
+    border: black;
+    background-color: #2B2B2B;
+    color: #ECF0F1;
+}
+.language-sh pre code{
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    word-break: break-all;
+    word-wrap: break-word;
+    border-radius: 4px;
+    border: black;
+    background-color: black;
+    color: white;
+}
+
+
+code {
+  padding: 2px 5px;
+  word-wrap:break-word;
+  border-radius: 3px;
+  color: #444;
+  background-color: #ddd;
+}
+
+/*BLOCKQUOTES*/
+blockquote {
+  border-left: solid thick #0075a8;
+  padding: 1% 5%;
+  position: relative;
+  background: white;
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote:before {
+  content: "";
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: transparent;
+  border-left-color: #0075a8;
+  border-width: 8px;
+  position: absolute;
+  left: 0;
+  top: calc(50% - 8px);
+}
+blockquote strong:first-child{
+  display: block;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: #5c686f;
+}
