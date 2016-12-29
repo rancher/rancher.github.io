@@ -3,19 +3,6 @@ title: Overview of RancherOS
 layout: os-default
 ---
 
-# Test1
-
-## Test2
-
-### Test3
-
-#### Test4
-
-##### Test 5
-
-###### Test 6
-
-
 ## Overview of RancherOS
 ---
 RancherOS is the smallest, easiest way to run Docker in production.  Everything in RancherOS is a container managed by Docker. This includes system services such as `udev` and `syslog`.  RancherOS is dramatically smaller than most traditional operating systems, because it only includes the services necessary to run Docker. By removing unnecessary libraries and services, requirements for security patches and other maintenance are dramatically reduced. This is possible because with Docker, users typically package all necessary libraries into their containers.
@@ -27,7 +14,6 @@ Like other minimalist Linux distributions, RancherOS boots incredibly quickly, g
 Docker is an open-source platform designed for developers, system admins, and DevOps, it is used to build, ship, and run containers, using simple yet powerful CLI (Command Line Interface), you can get started with Docker from [Docker user guide](https://docs.docker.com/userguide/).
 
 ### Hardware Requirements
----
 
 * x86_64 server with at least 512MB of RAM.
 
@@ -35,7 +21,6 @@ Docker is an open-source platform designed for developers, system admins, and De
 
 
 ### How this works
----
 
 Everything in RancherOS is a Docker container. We accomplish this by launching two instances of Docker. One is what we call **System Docker**, the first process on the system. All other system services, like `ntpd`, `syslog`, and `console`, are running in Docker containers. System Docker replaces traditional init systems like `systemd`, and can be used to launch [additional system services]({{site.baseurl}}/os/system-services/adding-system-services/).
 
@@ -47,11 +32,11 @@ System Docker runs a special container called **Docker**, which is another Docke
 ![How it works]({{site.baseurl}}/img/os/rancheroshowitworks.png "How it works")
 
 ### Running RancherOS
----
+
 To find out more about installing RancherOS, jump to our [Quick Start Guide]({{site.baseurl}}/os/quick-start-guide/).
 
 ### Latest Release
----
+
 Please check our repository for the latest release in our [README](https://github.com/rancher/os/blob/master/README.md).
 
 <br>

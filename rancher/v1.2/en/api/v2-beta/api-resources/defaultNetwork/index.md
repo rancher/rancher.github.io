@@ -19,7 +19,7 @@ Field | Type | Create | Update | Default | Notes
 description | string | Optional | Yes | - | 
 dns | array[string] | Optional | - | - | 
 dnsSearch | array[string] | Optional | - | - | 
-hostPorts | boolean | Optional | - | true | 
+hostPorts | boolean | Optional | - | - | 
 metadata | map[json] | Optional | Yes | - | 
 name | string | Optional | Yes | - | 
 subnets | array[[subnet]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/subnet/)] | Optional | - | - | 
@@ -34,7 +34,7 @@ created | date  | The date of when the defaultNetwork was created.
 id | int  | The unique identifier for the defaultNetwork
 kind | string  | 
 removed | date  | The date of when the defaultNetwork was removed
-state | enum  | The current state of the defaultNetwork. The options are activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive.
+state | enum  | The current state of the defaultNetwork. The options are `activating`, `active`, `deactivating`, `inactive`, `purged`, `purging`, `registering`, `removed`, `removing`, `requested`, `restoring`, `updating-active`, `updating-inactive`.
 transitioning | enum  | Whether or not the defaultNetwork is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state
 transitioningProgress | int  | The percentage remaining in the transitioning process of the defaultNetwork

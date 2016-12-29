@@ -46,7 +46,7 @@ healthTimeout | int | Optional | - | - |
 hostname | string | Optional | - | - | 
 imageUuid | string | Optional | - | - | 
 instanceLinks | map[[instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)] | Optional | - | - | 
-instanceTriggeredStop | enum | Optional | - | stop | The options are stop, remove.
+instanceTriggeredStop | enum | Optional | - | stop | The options are `stop`, `remove`.
 ioMaximumBandwidth | int | Optional | - | - | 
 ioMaximumIOps | int | Optional | - | - | 
 ip | string | Optional | - | - | 
@@ -98,7 +98,7 @@ created | date  | The date of when the virtualMachine was created.
 deploymentUnitUuid | string  | 
 externalId | string  | 
 firstRunning | date  | 
-healthState | enum  | The options are healthy, unhealthy, updating-healthy, updating-unhealthy, initializing.
+healthState | enum  | The options are `healthy`, `unhealthy`, `updating-healthy`, `updating-unhealthy`, `initializing`.
 hostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/)  | The unique identifier for the associated host
 id | int  | The unique identifier for the virtualMachine
 kind | string  | 
@@ -109,7 +109,7 @@ primaryNetworkId | [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.la
 removed | date  | The date of when the virtualMachine was removed
 serviceIds | array[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
 startCount | int  | 
-state | enum  | The current state of the virtualMachine. The options are creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped.
+state | enum  | The current state of the virtualMachine. The options are `creating`, `error`, `erroring`, `migrating`, `purged`, `purging`, `removed`, `removing`, `requested`, `restarting`, `restoring`, `running`, `starting`, `stopped`, `stopping`, `updating-running`, `updating-stopped`.
 system | boolean  | 
 transitioning | enum  | Whether or not the virtualMachine is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state

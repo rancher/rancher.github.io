@@ -54,7 +54,7 @@ healthTimeout | int | Optional | - | - |
 hostname | string | Optional | - | - | 
 imageUuid | string | Optional | - | - | 
 instanceLinks | map[[instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)] | Optional | - | - | 
-instanceTriggeredStop | enum | Optional | - | stop | The options are stop, remove.
+instanceTriggeredStop | enum | Optional | - | stop | The options are `stop`, `remove`.
 ioMaximumBandwidth | int | Optional | - | - | 
 ioMaximumIOps | int | Optional | - | - | 
 ip | string | Optional | - | - | 
@@ -77,7 +77,7 @@ networkIds | array[[network]({{site.baseurl}}/rancher/{{page.version}}/{{page.la
 networkMode | string | Optional | - | managed | 
 oomKillDisable | boolean | Optional | - | - | 
 oomScoreAdj | int | Optional | - | - | 
-pidMode | enum | Optional | - | - | The options are host.
+pidMode | enum | Optional | - | - | The options are `host`.
 pidsLimit | int | Optional | - | - | 
 ports | array[string] | Optional | - | - | 
 privileged | boolean | Optional | - | - | 
@@ -111,7 +111,7 @@ createIndex | int  |
 deploymentUnitUuid | string  | 
 externalId | string  | 
 firstRunning | date  | 
-healthState | enum  | The options are healthy, unhealthy, updating-healthy, updating-unhealthy, initializing.
+healthState | enum  | The options are `healthy`, `unhealthy`, `updating-healthy`, `updating-unhealthy`, `initializing`.
 hostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/)  | The unique identifier for the associated host
 id | int  | The unique identifier for the container
 mounts | array[[mountEntry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/mountEntry/)]  | 
@@ -427,7 +427,7 @@ proxy
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-port |  | No | 80 | scheme |  | No | http | The options are http, https.<br>
+port |  | No | 80 | scheme |  | No | http | The options are `http`, `https`.<br>
 
 <br>
 {% highlight json %}

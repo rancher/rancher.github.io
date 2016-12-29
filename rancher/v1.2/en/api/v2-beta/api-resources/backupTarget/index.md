@@ -30,7 +30,7 @@ created | date  | The date of when the backupTarget was created.
 id | int  | The unique identifier for the backupTarget
 kind | string  | 
 removed | date  | The date of when the backupTarget was removed
-state | enum  | The current state of the backupTarget. The options are created, creating, removed, removing, requested.
+state | enum  | The current state of the backupTarget. The options are `created`, `creating`, `removed`, `removing`, `requested`.
 transitioning | enum  | Whether or not the backupTarget is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state
 transitioningProgress | int  | The percentage remaining in the transitioning process of the backupTarget

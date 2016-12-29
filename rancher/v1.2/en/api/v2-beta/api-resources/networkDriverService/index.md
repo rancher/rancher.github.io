@@ -291,7 +291,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"string1",
 				"...stringN"
 			],
-			"hostPorts": true,
+			"hostPorts": false,
 			"id": 0,
 			"kind": "string",
 			"metadata": {
@@ -378,7 +378,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"string1",
 				"...stringN"
 			],
-			"hostPorts": true,
+			"hostPorts": false,
 			"id": 0,
 			"kind": "string",
 			"metadata": {

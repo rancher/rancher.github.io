@@ -8,7 +8,7 @@
         <div class="row body">
         {% include os-header.html %}
 
-            <div class="col span-3 mt-0 sidebar">
+            <div class="col span-3 mt-0 mr-0 sidebar">
                 {% include os-sidebar.html %}
             </div>
             <div class="col span-8">
@@ -39,7 +39,12 @@
     <script src="{{site.baseurl}}/js/jquery.slicknav.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        $('#menu').slicknav();
+      $('#menu').slicknav({
+        label: '',
+        duration: 1000,
+        easingOpen: "easeOutBounce", //available with jQuery UI
+        prependTo:'#demo2'
+      });
     });
     </script>
 </html>

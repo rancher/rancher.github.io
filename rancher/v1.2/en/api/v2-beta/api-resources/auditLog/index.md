@@ -17,7 +17,7 @@ The audit log provides a list of API requests. It logs the environment as well a
 
 Field | Type   | Notes
 ---|---|---
-authType | enum  | The options are AdminAuth, BasicAuth, RegistrationToken, TokenAccount, TokenAuth.
+authType | enum  | The options are `AdminAuth`, `BasicAuth`, `RegistrationToken`, `TokenAccount`, `TokenAuth`.
 authenticatedAsAccountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | 
 authenticatedAsIdentityId | [identity]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/identity/)  | 
 clientIp | string  | 

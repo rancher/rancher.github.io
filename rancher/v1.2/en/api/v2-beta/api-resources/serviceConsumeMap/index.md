@@ -32,7 +32,7 @@ name | string  |
 ports | array[string]  | 
 removed | date  | The date of when the serviceConsumeMap was removed
 serviceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)  | The unique identifier of the associated service
-state | enum  | The current state of the serviceConsumeMap. The options are activating, active, removed, removing, requested, updating-active.
+state | enum  | The current state of the serviceConsumeMap. The options are `activating`, `active`, `removed`, `removing`, `requested`, `updating-active`.
 transitioning | enum  | Whether or not the serviceConsumeMap is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state
 transitioningProgress | int  | The percentage remaining in the transitioning process of the serviceConsumeMap

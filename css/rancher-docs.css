@@ -8,6 +8,9 @@ header {
   min-height: 200px;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: #34495E;
+}
 
 img {
 	max-width:100%;
@@ -30,7 +33,7 @@ img {
 
 #menu {
   margin: 0;
-  padding: 10px;
+  padding: 0;
   list-style-type: none;
 }
 
@@ -183,6 +186,10 @@ table.gsc-search-box tbody tr {
   border: 0!important;
 }
 
+pre {
+  border-radius: 4px;
+}
+
 pre code {
     display: block;
     padding: 9.5px;
@@ -193,7 +200,6 @@ pre code {
     word-wrap: break-word;
     background-color: #334851;
     border: 1px solid #0A141A;
-    border-radius: 4px;
 }
 .language-bash pre code{
     padding: 9.5px;
@@ -229,12 +235,82 @@ code {
   background-color: #ddd;
 }
 
+/*TABLES*/
+table {
+  background: white;
+  width: 100%;
+  border-collapse: collapse;
+  word-wrap:break-word;
+}
+
+tbody {
+  font-size: .75em;
+}
+
+th a {
+  color: #ecf0f1;
+  border-bottom: solid 2px;
+}
+td,
+th {
+  padding: 10px;
+  text-align: left;
+}
+
+td {
+  border: 1px solid #99a3a8;
+}
+
+th {
+  border-right: 1px dotted rgba(255, 255, 255, 0.15);
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.15);
+}
+
+tr:nth-child(even) {
+  background: #ecf0f1;
+}
+td code {
+  background: rgba(0,0,0,.05);
+}
+
+.gsc-search-box td, .gsc-results-wrapper-overlay td {
+  border-color: transparent;
+}
+
+.gsc-table-result td {
+  border-bottom: solid 2px #ecf0f1;
+  padding-bottom: 30px;
+}
+.gsc-search-box td, .gsc-above-wrapper-area-container td {
+  padding: 0;
+  
+}
+.cse .gsc-search-button input.gsc-search-button-v2, input.gsc-search-button-v2 {
+  width: auto!important;
+  height: auto!important; 
+}
+
+.gsc-above-wrapper-area .gsc-selected-option-container {
+    min-width: 100px;
+}
+
+.gsc-results-wrapper-overlay {
+    -webkit-box-shadow: 0 0 0 transparent!important;
+    -moz-box-shadow: 0 0 0 transparent!important;
+    -ms-box-shadow: 0 0 0 transparent!important;
+    -o-box-shadow: 0 0 0 transparent!important;
+    box-shadow: 0 0 0 transparent!important;
+}
+.gsc-modal-background-image {
+  background-color: rgba(153,163,168,.75)!important;
+}
+
 /*BLOCKQUOTES*/
 blockquote {
   border-left: solid thick #0075a8;
   padding: 1% 5%;
   position: relative;
-  background: white;
+  background: rgba(236, 240, 241, .5);
   margin-left: 0;
   margin-right: 0;
 }

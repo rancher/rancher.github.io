@@ -30,7 +30,7 @@ engineLabel | map[string] | Optional | Yes | - |
 engineOpt | map[string] | Optional | Yes | - | 
 engineRegistryMirror | array[string] | Optional | Yes | - | 
 engineStorageDriver | string | Optional | Yes | - | 
-hostname | string | Optional | - | - | 
+hostname | string | Yes | - | - | 
 labels | map[string] | Optional | Yes | - | A map of key value pairs to be used as labels for the host
 localStorageMb | int | Optional | Yes | - | 
 memory | int | Optional | Yes | - | 
