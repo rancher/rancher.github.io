@@ -26,10 +26,6 @@ After a Swarm environment has been created, the [infrastructure services]({{site
 
 > **Note:** Only admins of Rancher or owners of the environment will be able to view the [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/).
 
-### Using Swarm with the CLI
-
-To configure your own workstation to work with swarm, click on **Swarm** -> **CLI** -> **Generate Config** to generate the necessary API key and configuration file into a `docker-cli.zip` file. Follow the instructions in the UI to set up TLS and connect to Docker.
-
 #### CLI via Shell
 
 Rancher provides a convenient shell access to instance that can be used to execute `docker` or `docker-compose` commands.
