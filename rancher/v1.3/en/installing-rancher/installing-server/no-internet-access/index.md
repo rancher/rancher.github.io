@@ -3,6 +3,8 @@ title: Installing Rancher Server with No Internet Access
 layout: rancher-default-v1.3
 version: v1.3
 lang: en
+redirect_from:
+  - /rancher/installing-rancher/installing-server/no-internet-access/
 ---
 
 ## Launching Rancher Server with No Internet Access

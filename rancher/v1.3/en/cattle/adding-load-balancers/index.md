@@ -3,8 +3,6 @@ title: Load Balancers
 layout: rancher-default-v1.3
 version: v1.3
 lang: en
-redirect_from:
-  - /rancher/v1.3/en/rancher-ui/applications/stacks/adding-balancers/
 ---
 
 ## Load Balancers

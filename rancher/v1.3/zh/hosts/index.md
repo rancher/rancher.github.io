@@ -3,8 +3,6 @@ title: Hosts in Rancher
 layout: rancher-default-v1.3
 version: v1.3
 lang: zh
-redirect_from:
-  - /rancher/v1.3/zh/rancher-ui/infrastructure/hosts/
 ---
 
 ## Getting Started with Hosts

@@ -3,6 +3,8 @@ title: Adding Load Balancers
 layout: rancher-default-v1.1
 version: v1.1
 lang: zh
+redirect_from:
+  - /rancher/v1.1/zh/rancher-ui/applications/stacks/adding-balancers/
 ---
 
 ## Adding Load Balancers
