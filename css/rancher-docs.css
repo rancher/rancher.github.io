@@ -5,7 +5,15 @@ header {
   background-image: url('{{ site.baseurl }}/img/header-bg.png');
   background-color: #0075A8;
   background-size: contain;
-  min-height: 200px;
+  min-height: 100px;
+}
+
+.logo {
+  background-image: url('{{ site.baseurl }}/img/rancher-logo-nopadding.svg');
+  background-size: 180px;
+  background-position: center 15px;
+  background-repeat: no-repeat;
+  height: 100px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -26,11 +34,6 @@ img {
 	height: auto;
 }
 
-/*header {
-  min-height: 200px;
-  background-image: url("{{ site.baseurl }}/img/header-bg.png");
-}*/
-
 .gsc-search-box {
    background-color: transparent;
 }
@@ -38,7 +41,7 @@ img {
 .content-container {
   background-color: white;
   padding: 10px 40px;
-  margin-top: -130px;
+  margin-top: -50px;
   position: relative;
 }
 
@@ -153,24 +156,33 @@ ul.collapse.in a.active {
   display:none;
 }
 
-@media screen and (max-width: 40em) {
+@media screen and (max-width: 768px) {
   #menu {
     display:none;
   }
 
+  .logo {
+    height: 45px;
+  }
+
+  .content-container {
+    margin-top: 0;
+  }
+
   .slicknav_menu {
-    display:block;
+    display: block;
   }
 }
 
 #menu ul {
   display: none;
 }
-#menu li.active ul {
+
+#menu li.active > ul {
   display: block;
 }
 
-#menu li.active a ul {
+#menu li.active > ul {
   margin-left: 25px;
 }
 
@@ -178,6 +190,10 @@ ul.collapse.in a.active {
     -ms-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
+}
+
+#menu a.active {
+  font-weight: bold;
 }
 
 /*search results*/
@@ -306,6 +322,9 @@ td code {
 .cse .gsc-search-button input.gsc-search-button-v2, input.gsc-search-button-v2 {
   width: auto!important;
   height: auto!important;
+  margin-top: 3px !important;
+  padding: 5px 20px !important;
+  border-radius: 0 !important;
 }
 
 .gsc-above-wrapper-area .gsc-selected-option-container {
