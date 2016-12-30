@@ -3,8 +3,6 @@ title: Swarm in Rancher
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
-redirect_from:
-  - /rancher/latest/zh/swarm/
 ---
 
 ## Swarm
@@ -25,10 +23,6 @@ After a Swarm environment has been created, you can navigate to the environment 
 After a Swarm environment has been created, the [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) will not be started until you add at least one host to your environment. The **Swarm** service will require ate least 3 hosts to be added.  The process of [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) is the same steps for all  container orchestration types. Once the first host has been added, Rancher will automatically start the deployment of the infrastructure services including the Swarm components (i.e. swarm and swarm-agent).  You can see the progress of the deployment by accessing the **Swarm** tab.
 
 > **Note:** Only admins of Rancher or owners of the environment will be able to view the [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/).
-
-### Using Swarm with the CLI
-
-To configure your own workstation to work with swarm, click on **Swarm** -> **CLI** -> **Generate Config** to generate the necessary API key and configuration file into a `docker-cli.zip` file. Follow the instructions in the UI to set up TLS and connect to Docker.
 
 #### CLI via Shell
 

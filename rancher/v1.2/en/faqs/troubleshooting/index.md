@@ -4,12 +4,7 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - /rancher/faqs/
-  - /rancher/faqs/troubleshooting/
   - /rancher/v1.2/en/faqs/
-  - /rancher/latest/en/faqs/troubleshooting/
-  - /rancher/latest/en/faqs/
-
 ---
 
 ## Troubleshooting FAQs

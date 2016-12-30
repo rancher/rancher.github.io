@@ -2,11 +2,7 @@
 title: Upgrading using Rancher Compose
 layout: rancher-default-v1.2
 version: v1.2
-lang: en
-redirect_from:
-  - /rancher/rancher-compose/upgrading/
-  - /rancher/latest/en/cattle/rancher-compose/upgrading/
-  - /rancher/v1.2/en/cattle/rancher-compose/upgrading/
+lang: zh
 ---
 
 ## Upgrading Services

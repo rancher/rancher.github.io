@@ -1,33 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-            <title>{{ page.title }}</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta name="description" content="{{ site.description }}">
-            <link rel="shortcut icon" type="image/png" href="/favicon.png" sizes="16x16">
-            <link href="{{site.baseurl}}/css/bootstrap.css" rel="stylesheet">
-            <link href="{{site.baseurl}}/css/syntax.css" rel="stylesheet">
-            <link href="{{site.baseurl}}/css/rancher.css" rel="stylesheet">
-            <link rel="stylesheet" href="{{site.baseurl}}/vendor/font-awesome/css/font-awesome.min.css">
-            <link rel="stylesheet" href="{{site.baseurl}}/vendor/lato/lato.css">
-    </head>
-    <body>
-        <div class="container-fluid">
-            <div class="row body" >
-                <div class="col-sm-3">
-                    {% include rancher-api-v1-sidebar-v1.2.html %}
-                </div>
-                <div class="col-sm-9">
-                    <div class="content-container">
-                        {{ content }}
 
-                        <footer class="clearfix">
-                            <div class="copyright pull-left" >Copyright &copy; 2016  <a href="http://rancher.com">Rancher Labs</a>. All Rights Reserved.</div>
-                            <a class="btn btn-primary pull-right" href="https://github.com/rancher/rancher.github.io/tree/master/{{page.path }}">Edit this page <i class="fa fa-pencil"></i></a>
-                            </div>
-                        </footer>
-                </div>
+    <head>
+        {% include rancher-head.html %}
+    </head>
+    <body class="bg-default" class="bg-default">
+        <div class="row body">
+        {% include rancher-header.html %}
+
+            <div class="col span-3 mt-0 mr-0 sidebar">
+                {% include rancher-api-v1-sidebar-v1.2.html %}
+            </div>
+            <div class="col span-8">
+                <div class="content-container">
+                    {{ content }}
+
+                    <footer class="clearfix">
+                        <div class="copyright pull-left" >Copyright &copy; 2017  <a href="http://rancher.com">Rancher Labs</a>. All Rights Reserved.</div>
+                        <a class="btn btn-primary pull-right" href="https://github.com/rancher/rancher.github.io/tree/master/{{page.path }}">Edit this page <i class="fa fa-pencil"></i></a>
+                        </div>
+                    </footer>
             </div>
         </div>
         <!-- Start of Async HubSpot Analytics Code -->
@@ -42,6 +34,17 @@
         <!-- End of Async HubSpot Analytics Code -->
     </body>
     <script src="{{site.baseurl}}/vendor/jquery.js"></script>
-    <script src="{{site.baseurl}}/vendor/bootstrap.js"></script>
-    <script src="{{site.baseurl}}/js/rancher.js"></script>
+    <!--<script src="{{site.baseurl}}/vendor/bootstrap.js"></script>-->
+    <script src="{{site.baseurl}}/js/rancher-docs.js"></script>
+    <script src="{{site.baseurl}}/js/jquery.slicknav.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('#menu').slicknav({
+        label: '',
+        duration: 1000,
+        easingOpen: "easeOutBounce", //available with jQuery UI
+        prependTo:'#demo2'
+      });
+    });
+    </script>
 </html>

@@ -4,10 +4,7 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - /rancher/installing-rancher/installing-server/
   - /rancher/latest/en/installing-rancher/installing-server/
-  - /rancher/installing-rancher/installing-server/multi-nodes/
-  - /rancher/latest/en/installing-rancher/installing-server/multi-nodes/
 ---
 
 ## Installing Rancher Server

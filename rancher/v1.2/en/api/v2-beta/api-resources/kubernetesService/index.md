@@ -35,7 +35,7 @@ kind | string  |
 linkedServices | map[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
 removed | date  | The date of when the kubernetesService was removed
 selectorContainer | string  | 
-state | enum  | The current state of the kubernetesService. The options are activating, active, canceled-upgrade, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading.
+state | enum  | The current state of the kubernetesService. The options are `activating`, `active`, `canceled-upgrade`, `canceling-upgrade`, `deactivating`, `finishing-upgrade`, `inactive`, `registering`, `removed`, `removing`, `requested`, `restarting`, `rolling-back`, `updating-active`, `updating-inactive`, `upgraded`, `upgrading`.
 system | boolean  | 
 template | json  | 
 transitioning | enum  | Whether or not the kubernetesService is in a transitioning state

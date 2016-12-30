@@ -19,7 +19,7 @@ Field | Type | Create | Update | Default | Notes
 description | string | Optional | Yes | - | 
 dns | array[string] | Optional | - | - | 
 dnsSearch | array[string] | Optional | - | - | 
-hostPorts | boolean | Optional | - | true | 
+hostPorts | boolean | Optional | - | - | 
 metadata | map[json] | Optional | Yes | - | 
 name | string | Optional | Yes | - | 
 networkDriverId | [networkDriver]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriver/) | Yes | - | - | 
@@ -55,7 +55,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"string1",
 		"...stringN"
 	],
-	"hostPorts": true,
+	"hostPorts": false,
 	"metadata": {
 		"key": "value-pairs"
 	},

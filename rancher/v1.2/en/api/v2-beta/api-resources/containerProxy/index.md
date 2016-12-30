@@ -17,7 +17,7 @@ apiVersion: v2-beta
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 port | int | Optional | - | 80 | 
-scheme | enum | Optional | - | http | The options are http, https.
+scheme | enum | Optional | - | http | The options are `http`, `https`.
 
 
 

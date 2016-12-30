@@ -4,9 +4,6 @@ layout: rancher-api-v1-default-v1.2
 version: v1.2
 lang: zh
 apiVersion: v1
-redirect_from:
-  - /rancher/latest/zh/api/access-control/
-  - /rancher/1.2/zh/api/access-control/
 ---
 
 ## Setting up Access Control using the API

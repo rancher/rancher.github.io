@@ -4,7 +4,7 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: zh
 redirect_from:
-  - /rancher/latest/zh/cattle/adding-service-alias/
+  - /rancher/v1.2/zh/rancher-ui/applications/stacks/adding-service-alias/
 ---
 
 ## Service Alias

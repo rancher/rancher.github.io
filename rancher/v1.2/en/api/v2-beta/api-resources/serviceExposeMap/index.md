@@ -33,7 +33,7 @@ kind | string  |
 managed | boolean  | 
 removed | date  | The date of when the serviceExposeMap was removed
 serviceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)  | The unique identifier of the associated service
-state | enum  | The current state of the serviceExposeMap. The options are activating, active, removed, removing, requested.
+state | enum  | The current state of the serviceExposeMap. The options are `activating`, `active`, `removed`, `removing`, `requested`.
 transitioning | enum  | Whether or not the serviceExposeMap is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state
 transitioningProgress | int  | The percentage remaining in the transitioning process of the serviceExposeMap

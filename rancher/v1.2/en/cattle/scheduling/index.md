@@ -3,10 +3,6 @@ title: Scheduling Services in Cattle Environments
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
-redirect_from:
-  - /rancher/rancher-compose/scheduling/
-  - /rancher/rancher-ui/scheduling/
-  - /rancher/latest/en/cattle/scheduling/
 ---
 
 ## Scheduling Services

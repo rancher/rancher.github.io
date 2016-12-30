@@ -3,9 +3,6 @@ title: FAQS about Rancher Agents/Hosts
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
-redirect_from:
-  - /rancher/faqs/agents/
-  - /rancher/latest/en/faqs/agents/
 ---
 
 ## FAQs about Rancher Agent/Hosts
@@ -31,7 +28,7 @@ The workaround for this is to run the following command on the cloned VM `rm -rf
 
 ### Where can I find detailed logs of the Rancher Agent container?
 
-As of v1.2.0, running `docker logs` on the Rancher agent container will provide a set of all logs related to the agent. 
+As of v1.2.0, running `docker logs` on the Rancher agent container will provide a set of all logs related to the agent.
 
 ### How to check your host registration is set correctly?
 

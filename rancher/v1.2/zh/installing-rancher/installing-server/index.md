@@ -3,9 +3,6 @@ title: Installing Rancher Server
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
-redirect_from:
-  - /rancher/latest/zh/installing-rancher/installing-server/
-  - /rancher/latestzh/installing-rancher/installing-server/multi-nodes/
 ---
 
 ## Installing Rancher Server

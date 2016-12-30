@@ -3,8 +3,6 @@ title: Installing Rancher Server with No Internet Access
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
-redirect_from:
-  - /rancher/latest/zh/installing-rancher/installing-server/no-internet-access/
 ---
 
 ## Launching Rancher Server with No Internet Access
@@ -57,7 +55,7 @@ $ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v1.1.0
 
 On your machine, start Rancher server to use the specific Rancher Agent image. We recommend using specific version tags instead of the `latest` tag to ensure you are working with the correct versions.
 
-Using the v1.0.1 example:
+Example:
 
 ```bash
 $ sudo docker run -d --restart=unless-stopped -p 8080:8080 \
@@ -90,6 +88,8 @@ In Rancher, all [infrastructure services]({{site.baseurl}}/rancher/{{page.versio
 * **Add the private registry:** In **Infrastructure** -> **Registries** section, add the private registry that contain the images for the infrastructure services.
 
 * **Update the default registry** Under **API**, click on the link for **Endpoint (v2-beta)**. Click on the link for **settings**, which will navigate to `v2-beta/settings`. Find the `registry.default` setting and click on the link under `self`. Edit the setting and add the private registry value. Once the `registry.default` setting has been updated, the infrastructure services will begin to pull from the private registry instead of DockerHub.
+
+* **Create a New Environment:** After updating the default registry, you will need to re-create your environments so that the infrastructure services will be using the updated default registry. Any existing environments prior to the change in default registry would have their infrastructure services still pointing to DockerHub.
 
 ### Using HTTP Proxy
 

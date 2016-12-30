@@ -18,8 +18,8 @@ Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 description | string | Optional | Yes | - | 
 externalId | string | Optional | - | - | 
-externalIdType | enum | Optional | - | rancher_id | The options are rancher_id, ldap_user, ldap_group, openldap_user, openldap_group, azuread_user, azuread_group, github_user, github_org, github_team, shibboleth_user, shibboleth_group.
-role | enum | Optional | - | member | The options are member, owner, readonly, restricted.
+externalIdType | enum | Optional | - | rancher_id | The options are `rancher_id`, `ldap_user`, `ldap_group`, `openldap_user`, `openldap_group`, `azuread_user`, `azuread_group`, `github_user`, `github_org`, `github_team`, `shibboleth_user`, `shibboleth_group`.
+role | enum | Optional | - | member | The options are `member`, `owner`, `readonly`, `restricted`.
 
 
 #### Read Only Fields

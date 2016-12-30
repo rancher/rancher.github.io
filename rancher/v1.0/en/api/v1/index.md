@@ -12,19 +12,17 @@ apiVersion: v1
 The API has its own user interface accessible from a web browser.  This is an easy way to see resources, perform actions, and see the equivalent cURL or HTTP request & response.  To access it, click on **API** to find the URL endpoint.
 
 ## Terminology
----
 
 Some of the resource type names used in the API do not match the current terminology used in the UI.  In particular:
 
 | UI | API | Description |
 |----|-----|-------------|
-| [Environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) | [project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/project) | A group of physical resources, such as [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/host)) |
+| [Environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) | [project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/project) | A group of physical resources, such as [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/host) |
 | [Stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/) | [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment) | An (API) environment is a group of services and the level at which rancher-compose operates. |
 
 In the documentation, we have used the UI term in descriptions and have provided additional disclaimers on the differences.  This confusion will be cleared up in a future `/v2` of the API.
 
 ## Authentication
----
 
 API requests must include authentication information if [Access Control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is enabled.  Authentication is done with HTTP basic authentication using [API Keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/apikey).  API keys can either belong to a single (UI) Environment / (API) [Project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/project}) with access to just that Environment, or to a [Account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/account) with access to all Environments the account belongs to, and the ability to create new ones.  There is also a separate JSON Web Token interface primarily for the UI.
 
@@ -47,7 +45,6 @@ Account API keys are not currently exposed in the UI.  You can create one by cli
 Account keys can create new Environments,  and have can be used to access multiple Environments via `/v1/projects/`.  [Membership roles]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/#membership-roles) apply to these keys and restrict what Environments the account can see and what actions they can take.
 
 ## Scoping
----
 
 - Most resources are owned by an environment and accessible under `/v1/projects/<project_id>/<resource>`
 - Since Environment credentials only ever have access to one Environment (project), you can optionally skip the `/project/<project_id>` part.
@@ -55,7 +52,6 @@ Account keys can create new Environments,  and have can be used to access multip
 - The documentation will generally refer to the shorter `/v1/<type>` version.  If using an Account key, add in the path for the appropriate environment.
 
 ## Making requests
----
 
 The API is generally RESTful but has several features to make the definition of everything discoverable by a client so that generic clients can be written instead of having to write specific code for every type of resource.  For detailed info about the generic API spec, [see here](https://github.com/rancher/api-spec/blob/master/specification.md).
 
@@ -83,22 +79,18 @@ The API is generally RESTful but has several features to make the definition of 
 - To create a new resource, HTTP `POST` to the collection URL in the schema (which is `/v1/<type>`).
 
 ## Filtering
----
 
 Most collections can be filtered on the server-side by common fields using HTTP query parameters.  The `filters` map shows you what fields can be filtered on and what the filtered values were for the request you made.  The API UI has controls to setup filtering and show you the appropriate request.  For simple "equals" matches it's just `field=value`.  Modifiers can be added to the field name, e.g. `field_gt=42` for "field is greater than 42".  See the [API spec](https://github.com/rancher/api-spec/blob/master/specification.md#filtering) for full details.
 
 ## Sorting
----
 
 Most collections can be sorted on the server-side by common fields using HTTP query parameters.  The `sortLinks` map shows you what sorts are available, along with the URL to get the collection sorted by that.  It also includes info about what the current response was sorted by, if specified.
 
 ## Pagination
----
 
 API responses are paginated with a limit of 100 resources per page by default.  This can be increased to up to 1000 with the `limit=1000` query parameter.  The `pagination` map in collection responses tells you whether or not you have the full result set and has a link to the next page if you do not.
 
 ## WebSockets
----
 
 Several Rancher features such as container logs, shell access, and statistics use WebSockets to stream information.  To use these from the API:
 

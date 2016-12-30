@@ -16,7 +16,6 @@ A "project" in the API is referred to as an environment in the UI and Rancher do
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-defaultNetworkId | [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/) | - | Yes | - | 
 description | string | Optional | Yes | - | 
 members | array[[projectMember]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/projectMember/)] | Optional | - | - | 
 name | string | Optional | Yes | - | 
@@ -29,6 +28,7 @@ virtualMachine | boolean | Optional | Yes | - |
 
 Field | Type   | Notes
 ---|---|---
+defaultNetworkId | [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/)  | 
 healthState | string  | 
 id | int  | The unique identifier for the project
 orchestration | string  | 

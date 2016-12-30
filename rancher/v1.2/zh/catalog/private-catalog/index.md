@@ -3,8 +3,6 @@ title: Creating Private Catalogs
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
-redirect_from:
-  - /rancher/latest/zh/private-catalog/
 ---
 
 ## Creating Private Catalogs

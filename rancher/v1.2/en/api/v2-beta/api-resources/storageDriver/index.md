@@ -25,9 +25,9 @@ name | string | Optional | Yes | - |
 Field | Type   | Notes
 ---|---|---
 id | int  | The unique identifier for the storageDriver
-scope | enum  | The options are local, environment, custom.
+scope | enum  | The options are `local`, `environment`, `custom`.
 serviceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)  | The unique identifier of the associated service
-volumeAccessMode | enum  | The options are singleHostRW, singleInstanceRW, multiHostRW.
+volumeAccessMode | enum  | The options are `singleHostRW`, `singleInstanceRW`, `multiHostRW`.
 
 
 <br>

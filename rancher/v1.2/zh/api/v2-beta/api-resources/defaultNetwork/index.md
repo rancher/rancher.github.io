@@ -19,7 +19,7 @@ Field | Type | Create | Update | Default | Notes
 description | string | Optional | Yes | - | 
 dns | array[string] | Optional | - | - | 
 dnsSearch | array[string] | Optional | - | - | 
-hostPorts | boolean | Optional | - | true | 
+hostPorts | boolean | Optional | - | - | 
 metadata | map[json] | Optional | Yes | - | 
 name | string | Optional | Yes | - | 
 subnets | array[[subnet]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/subnet/)] | Optional | - | - | 
