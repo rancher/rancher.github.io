@@ -193,7 +193,7 @@ Rancher Compose CLI will require the CA certificate as part of the default store
 
 #### Rancher Server
 
-1. Launch the Rancher server container with the modified Docker command. The certificate **must** be located and called `/var/lib/rancher/etc/sslca.crt` inside the container.
+1. Launch the Rancher server container with the modified Docker command. The certificate **must** be located and called `/var/lib/rancher/etc/ssl/ca.crt` inside the container.
 
 
    ```bash
