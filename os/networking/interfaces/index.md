@@ -6,6 +6,7 @@ redirect_from:
 ---
 
 ## Interfaces
+---
 
 Using `ros config`, you can configure specific interfaces. Wildcard globbing is supported so `eth*` will match `eth1` and `eth2`.  The available options you can configure are `address`, `gateway`, `mtu`, and `dhcp`.
 
