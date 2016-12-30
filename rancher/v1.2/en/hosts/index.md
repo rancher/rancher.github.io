@@ -4,7 +4,7 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - /rancher/v1.2/en/rancher-ui/infrastructure/hosts/
+  - /rancher/rancher-ui/infrastructure/hosts/
 ---
 
 ## Getting Started with Hosts

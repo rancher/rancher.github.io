@@ -1,7 +1,7 @@
 ---
 title: Telemetry
-layout: rancher-default-v1.2
-version: v1.2
+layout: rancher-default-v1.3
+version: v1.3
 lang: en
 ---
 

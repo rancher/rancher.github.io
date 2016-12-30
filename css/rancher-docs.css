@@ -31,11 +31,19 @@ img {
   background-image: url("{{ site.baseurl }}/img/header-bg.png");
 }*/
 
+.gsc-search-box {
+   background-color: transparent;
+}
+
 .content-container {
   background-color: white;
-  padding: 40px;
+  padding: 10px 40px;
   margin-top: -130px;
   position: relative;
+}
+
+body {
+font-family: 'Lato', sans-serif;
 }
 
 .sidebar {
@@ -293,11 +301,11 @@ td code {
 }
 .gsc-search-box td, .gsc-above-wrapper-area-container td {
   padding: 0;
-  
+
 }
 .cse .gsc-search-button input.gsc-search-button-v2, input.gsc-search-button-v2 {
   width: auto!important;
-  height: auto!important; 
+  height: auto!important;
 }
 
 .gsc-above-wrapper-area .gsc-selected-option-container {
