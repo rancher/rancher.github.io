@@ -4,7 +4,8 @@ layout: rancher-default-v1.2
 version: v1.2
 lang: en
 redirect_from:
-  - /rancher/v1.2/en/rancher-ui/applications/stacks/adding/balancers/
+  - /rancher/v1.2/en/rancher-ui/applications/stacks/adding-balancers/
+  - /rancher/rancher-ui/applications/stacks/adding-balancers/
 ---
 
 ## Load Balancers

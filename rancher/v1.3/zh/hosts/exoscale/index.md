@@ -3,8 +3,6 @@ title: Adding Exoscale Hosts
 layout: rancher-default-v1.3
 version: v1.3
 lang: zh
-redirect_from:
-  - /rancher/v1.3/zh/rancher-ui/infrastructure/hosts/exoscale/
 ---
 
 ## Adding Exoscale Hosts

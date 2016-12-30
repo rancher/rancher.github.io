@@ -3,8 +3,6 @@ title: Service Alias
 layout: rancher-default-v1.3
 version: v1.3
 lang: zh
-redirect_from:
-  - /rancher/v1.3/zh/rancher-ui/applications/stacks/adding-service-alias/
 ---
 
 ## Service Alias

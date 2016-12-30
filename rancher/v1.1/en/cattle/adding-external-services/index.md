@@ -3,18 +3,20 @@ title: Adding External Service
 layout: rancher-default-v1.1
 version: v1.1
 lang: en
+redirect_from:
+  - /rancher/v1.1/en/rancher-ui/applications/stacks/adding-external-services/
 ---
 
 ## Adding External Services
 ---
 
-You may have services hosted outside of Rancher that you want integrated with Rancher. You can add these services into Rancher by adding an external service. 
+You may have services hosted outside of Rancher that you want integrated with Rancher. You can add these services into Rancher by adding an external service.
 
 ### Adding External Services in the UI
 
 Inside your stack, you add an external service by clicking on the dropdown icon next to the **Add Service** button. Select **External Service**. Alternatively, if you are viewing the stacks at the stack level, the same **Add Service** dropdown is visible for each specific stack.
 
-You will need to provide a **Name** and if desired, **Description** of the service. 
+You will need to provide a **Name** and if desired, **Description** of the service.
 
 Add the target(s) that you want. You can select either an external IP(s) or a hostname (i.e. CNAME). Finally, click **Create**.
 
