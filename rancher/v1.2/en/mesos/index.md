@@ -3,9 +3,6 @@ title: Mesos in Rancher
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
-redirect_from:
-  - /rancher/mesos/
-  - /rancher/latest/en/mesos/
 ---
 
 ## Mesos

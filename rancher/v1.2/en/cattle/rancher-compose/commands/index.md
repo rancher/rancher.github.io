@@ -3,9 +3,6 @@ title: Commands and Options in Rancher Compose
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
-redirect_from:
-  - /rancher/rancher-compose/commands/
-  - /rancher/latest/en/cattle/rancher-compose/commands/
 ---
 
 ## Command and Options

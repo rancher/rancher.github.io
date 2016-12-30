@@ -3,9 +3,6 @@ title: Containers
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
-redirect_from:
-  - /rancher/rancher-ui/infrastructure/containers/
-  - /rancher/latest/en/cattle/containers/
 ---
 
 ## Containers
@@ -40,7 +37,7 @@ In the **Infrastructure** -> **Container** page, click on **Add Container**. Any
 
     There is also the ability to add labels to a container as well as apply scheduling rules. More details about labels and scheduling can be read [here]({{{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/scheduling/).
 
-5. When you have completed filling out your container options, click **Create**. 
+5. When you have completed filling out your container options, click **Create**.
 
 ## Editing Containers
 ---

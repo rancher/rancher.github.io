@@ -51,7 +51,7 @@ $ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_INSTANCE_IMAGE>:v0.8.1
 
 On your machine, start Rancher server to use the specific Rancher images. We recommend using specific version tags instead of the `latest` tag to ensure you are working with the correct versions.
 
-Using the v1.0.1 example:
+Example:
 
 ```bash
 $ sudo docker run -d --restart=unless-stopped -p 8080:8080 \

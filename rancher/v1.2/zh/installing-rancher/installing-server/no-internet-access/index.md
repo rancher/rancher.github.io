@@ -3,8 +3,6 @@ title: Installing Rancher Server with No Internet Access
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
-redirect_from:
-  - /rancher/latest/zh/installing-rancher/installing-server/no-internet-access/
 ---
 
 ## Launching Rancher Server with No Internet Access
@@ -57,7 +55,7 @@ $ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v1.1.0
 
 On your machine, start Rancher server to use the specific Rancher Agent image. We recommend using specific version tags instead of the `latest` tag to ensure you are working with the correct versions.
 
-Using the v1.0.1 example:
+Example:
 
 ```bash
 $ sudo docker run -d --restart=unless-stopped -p 8080:8080 \

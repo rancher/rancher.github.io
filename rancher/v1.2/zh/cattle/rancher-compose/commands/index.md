@@ -3,8 +3,6 @@ title: Commands and Options in Rancher Compose
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
-redirect_from:
-  - /rancher/latest/zh/cattle/rancher-compose/commands/
 ---
 
 ## Command and Options

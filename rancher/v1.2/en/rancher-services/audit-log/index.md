@@ -3,9 +3,6 @@ title: Audit Logging in Rancher
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
-redirect_from:
-  - /rancher/rancher-services/audit-log/
-  - /rancher/latest/en/rancher-services/audit-log/
 ---
 
 ## Audit Logging

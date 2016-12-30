@@ -3,9 +3,6 @@ title: Settings in Rancher
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
-redirect_from:
-  - /rancher/configuration/settings/
-  - /rancher/latest/en/configuration/settings/
 ---
 
 ## Settings

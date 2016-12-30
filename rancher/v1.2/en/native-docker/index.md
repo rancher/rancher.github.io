@@ -3,9 +3,6 @@ title: Using Native Docker CLI with Rancher
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
-redirect_from:
-  - /rancher/native-docker/
-  - /rancher/latest/en/native-docker/
 ---
 
 ## Using Native Docker CLI with Rancher

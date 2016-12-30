@@ -3,9 +3,6 @@ title: External DNS Service
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
-redirect_from:
-  - /rancher/rancher-services/dns-service/
-  - /rancher/latest/en/cattle/external-dns-service/
 ---
 
 ## External DNS Service

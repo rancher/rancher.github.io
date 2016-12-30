@@ -4,8 +4,6 @@ layout: rancher-api-v2-beta-default-v1.2
 version: v1.2
 lang: zh
 apiVersion: v2-beta
-redirect_from:
-  - /rancher/v1.2/zh/api/api-keys/
 ---
 
 ## What are API Keys

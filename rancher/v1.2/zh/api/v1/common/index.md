@@ -4,9 +4,6 @@ layout: rancher-api-v1-default-v1.2
 version: v1.2
 lang: zh
 apiVersion: v1
-redirect_from:
-  - /rancher/latest/zh/api/common/
-  - /rancher/1.2/zh/api/common/
 ---
 
 ## Common Resource Fields

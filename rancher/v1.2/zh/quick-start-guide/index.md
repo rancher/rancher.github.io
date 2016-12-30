@@ -3,8 +3,6 @@ title: Quick Start Guide
 layout: rancher-default-v1.2
 version: v1.2
 lang: zh
-redirect_from:
-  - /rancher/latest/zh/quick-start-guide/
 ---
 
 ## Quick Start Guide
