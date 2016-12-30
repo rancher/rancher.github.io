@@ -6,6 +6,7 @@ redirect_from:
 ---
 
 ## Using ZFS
+---
 
 In order to start using ZFS, you'll need to first enable one of the [persistent consoles]({{site.baseurl}}/os/configuration/custom-console/#console-persistence) and enable [kernel headers]({{site.baseurl}}/os/configuration/kernel-modules-kernel-headers/).
 

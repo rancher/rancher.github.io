@@ -5,6 +5,7 @@ layout: os-default
 ---
 
 ## DKMS
+---
 
 DKMS is supported by running the DKMS scripts inside a container. To compile any kernel modules, you first need to [install the kernel headers]({{site.baseurl}}/os/configuration/kernel-modules-kernel-headers/). After kernel headers are enabled, they are installed in `/lib/modules/$(uname -r)/build`. To deploy containers that runs DKMS, you will need to ensure that you bind mount in `/usr/src` and `/lib/modules`.  
 

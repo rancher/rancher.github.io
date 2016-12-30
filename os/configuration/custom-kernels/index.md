@@ -5,12 +5,13 @@ layout: os-default
 ---
 
 ## Custom Kernels
+---
 
-### Changing the Kernel in RancherOS 
+### Changing the Kernel in RancherOS
 
 By default, RancherOS ships with the kernel provided by the [os-kernel repository](https://github.com/rancher/os-kernel). Swapping out the default kernel can by done by [building your own custom RancherOS ISO]({{site.baseurl}}/os/configuration/custom-rancheros-iso/).
 
- 1. Create a clone of the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`. 
+ 1. Create a clone of the main [RancherOS repository](https://github.com/rancher/os) to your local machine with a `git clone`.
 
     ```
     $ git clone https://github.com/rancher/os.git
@@ -57,7 +58,7 @@ By default, RancherOS ships with the kernel provided by the [os-kernel repositor
         firmware/
                  ...
     ```
-  
+
  3. After you've replaced the URL with your custom kernel, you can follow the steps in [building your own custom RancherOS ISO]({{site.baseurl}}/os/configuration/custom-rancheros-iso/).
 
 ### Packaging a Kernel to be used in RancherOS
@@ -66,12 +67,12 @@ We build the kernel for RancherOS at the [os-kernel repository](https://github.c
 
 
 1. Create a clone of the [os-kernel](https://github.com/rancher/os-kernel) repository to your local machine using `git clone`.
-    
+
    ```
    $ git clone https://github.com/rancher/os-kernel.git
    ```
 
-2. In the `./scripts/build-common` file, update the `KERNEL_URL` and `KERNEL_SHA1`. `KERNEL_URL` points to Linux kernel sources archive, packaged as `.tar.gz` or `.tar.xz`. `KERNEL_SHA1` is the `SHA1` sum of the kernel sources archive. 
+2. In the `./scripts/build-common` file, update the `KERNEL_URL` and `KERNEL_SHA1`. `KERNEL_URL` points to Linux kernel sources archive, packaged as `.tar.gz` or `.tar.xz`. `KERNEL_SHA1` is the `SHA1` sum of the kernel sources archive.
 
    `./scripts/build-common` file
 
@@ -87,8 +88,8 @@ We build the kernel for RancherOS at the [os-kernel repository](https://github.c
    : ${DIST:=$(pwd)/dist}
    ```
 
-3. After you've replaced the `KERNEL_URL` and `KERNEL_SHA1`, run `make` in the root `os-kernel` directory. After the build is completed, a `./dist/kernel` directory will be created with the freshly built kernel tarball and headers. 
-   
+3. After you've replaced the `KERNEL_URL` and `KERNEL_SHA1`, run `make` in the root `os-kernel` directory. After the build is completed, a `./dist/kernel` directory will be created with the freshly built kernel tarball and headers.
+
    ```
    $ make
    $ cd dist/kernel
