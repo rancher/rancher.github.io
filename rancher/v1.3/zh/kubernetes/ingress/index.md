@@ -421,6 +421,29 @@ Let's create the ingress using `kubectl`. After you create the ingress, the ingr
 
 From `kubectl`, you can see the ingress created, but the UI will only show the load balancer. The ingress controller has already done all the translations of the requests in the ingress to a Rancher load balancer.
 
+##### Blocking HTTP
+
+By default, port `80` is accessible even if a TLS is being used. In order to block port `80`, you can add in additional annotation `allow.http: "false"` as part of the ingress template.
+
+Example `tls-ingress.yml` and blocking port `80`
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tlslb
+  annotations:
+    https.port: "444"
+    # Added to block HTTP
+    allow.http: "false"
+spec:
+  tls:
+   - secretName: foo
+  backend:
+    serviceName: nginx-service
+    servicePort: 90
+```
+
 #### Example customization
 
 In Rancher, our load balancers run HAProxy software. If you want to customize the `global` and `defaults` sections of the load balancer, they can be configured through ingress annotations.

@@ -3,6 +3,8 @@ title: Rancher Catalog
 layout: rancher-default-v1.3
 version: v1.3
 lang: en
+redirect_from:
+  - /rancher/catalog/
 ---
 
 ## Catalog
