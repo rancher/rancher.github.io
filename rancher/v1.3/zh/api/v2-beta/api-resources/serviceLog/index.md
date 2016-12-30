@@ -1,7 +1,7 @@
 ---
 title: Rancher API - serviceLog
-layout: rancher-api-v2-beta-default-v1.2
-version: v1.2
+layout: rancher-api-v2-beta-default-v1.3
+version: v1.3
 lang: zh
 apiVersion: v2-beta
 ---

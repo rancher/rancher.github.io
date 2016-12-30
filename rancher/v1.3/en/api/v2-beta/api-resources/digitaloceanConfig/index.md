@@ -1,7 +1,7 @@
 ---
 title: API
-layout: rancher-api-v2-beta-default-v1.2
-version: v1.2
+layout: rancher-api-v2-beta-default-v1.3
+version: v1.3
 lang: en
 apiVersion: v2-beta
 ---
@@ -24,6 +24,7 @@ privateNetworking | boolean | Optional | - | - |
 region | string | Optional | - | nyc3 | The region to use when launching the host
 size | string | Optional | - | 512mb | 
 sshKeyFingerprint | string | Optional | - | - | 
+sshKeyPath | string | Optional | - | - | 
 sshPort | string | Optional | - | 22 | The port to ssh into the host
 sshUser | string | Optional | - | root | The ssh username to use to ssh into the host
 userdata | string | Optional | - | - | 

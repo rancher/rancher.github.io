@@ -1,7 +1,7 @@
 ---
 title: API
-layout: rancher-api-v2-beta-default-v1.2
-version: v1.2
+layout: rancher-api-v2-beta-default-v1.3
+version: v1.3
 lang: en
 apiVersion: v2-beta
 ---
@@ -18,6 +18,7 @@ Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 accessKey | string | Optional | - | - | 
 ami | string | Optional | - | - | 
+blockDurationMinutes | string | Optional | - | 0 | 
 deviceName | string | Optional | - | /dev/sda1 | 
 endpoint | string | Optional | - | - | 
 iamInstanceProfile | string | Optional | - | - | 
@@ -41,6 +42,7 @@ subnetId | string | Optional | - | - |
 tags | string | Optional | - | - | 
 useEbsOptimizedInstance | boolean | Optional | - | - | 
 usePrivateAddress | boolean | Optional | - | - | 
+userdata | string | Optional | - | - | 
 volumeType | string | Optional | - | gp2 | 
 vpcId | string | Optional | - | - | 
 zone | string | Optional | - | a | 

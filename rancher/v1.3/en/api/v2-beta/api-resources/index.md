@@ -1,7 +1,7 @@
 ---
 title: API Resources
-layout: rancher-api-v2-beta-default-v1.2
-version: v1.2
+layout: rancher-api-v2-beta-default-v1.3
+version: v1.3
 lang: en
 apiVersion: v2-beta
 ---
@@ -50,6 +50,12 @@ A "dnsService" in the API is referred to as a Service Alias in the UI and the Ra
 [ExternalService]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/externalService/)|
 ---|
 An external service allows the ability to add any IP or hostname as a service to be discovered as a service. |
+
+<br>
+
+[GenericObject]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/genericObject/)|
+---|
+ |
 
 <br>
 

@@ -1,7 +1,7 @@
 ---
 title: Rancher API - pullTask
-layout: rancher-api-v2-beta-default-v1.2
-version: v1.2
+layout: rancher-api-v2-beta-default-v1.3
+version: v1.3
 lang: en
 apiVersion: v2-beta
 ---
@@ -20,7 +20,7 @@ description | string | Optional | Yes | - |
 image | string | Yes | - | - | 
 labels | map[string] | Optional | - | - | A map of key value pairs to be used as labels for the pullTask
 mode | enum | Yes | - | all | The options are `all`, `cached`.
-name | string | Optional | Yes | - | 
+name | string | Optional | - | - | 
 
 
 #### Read Only Fields

@@ -1,7 +1,7 @@
 ---
 title: Rancher API - host
-layout: rancher-api-v2-beta-default-v1.2
-version: v1.2
+layout: rancher-api-v2-beta-default-v1.3
+version: v1.3
 lang: zh
 apiVersion: v2-beta
 ---
@@ -70,6 +70,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"amazonec2Config": {
 		"accessKey": "",
 		"ami": "",
+		"blockDurationMinutes": "0",
 		"deviceName": "/dev/sda1",
 		"endpoint": "",
 		"iamInstanceProfile": "",
@@ -98,6 +99,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"tags": "",
 		"useEbsOptimizedInstance": false,
 		"usePrivateAddress": false,
+		"userdata": "",
 		"volumeType": "gp2",
 		"vpcId": "",
 		"zone": "a"
@@ -141,6 +143,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"region": "nyc3",
 		"size": "512mb",
 		"sshKeyFingerprint": "",
+		"sshKeyPath": "",
 		"sshPort": "22",
 		"sshUser": "root",
 		"userdata": ""
@@ -202,6 +205,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"amazonec2Config": {
 		"accessKey": "",
 		"ami": "",
+		"blockDurationMinutes": "0",
 		"deviceName": "/dev/sda1",
 		"endpoint": "",
 		"iamInstanceProfile": "",
@@ -230,6 +234,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"tags": "",
 		"useEbsOptimizedInstance": false,
 		"usePrivateAddress": false,
+		"userdata": "",
 		"volumeType": "gp2",
 		"vpcId": "",
 		"zone": "a"
@@ -273,6 +278,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"region": "nyc3",
 		"size": "512mb",
 		"sshKeyFingerprint": "",
+		"sshKeyPath": "",
 		"sshPort": "22",
 		"sshUser": "root",
 		"userdata": ""

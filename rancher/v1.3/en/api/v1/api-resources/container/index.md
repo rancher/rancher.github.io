@@ -1,7 +1,7 @@
 ---
 title: Rancher API - container
-layout: rancher-api-v1-default-v1.2
-version: v1.2
+layout: rancher-api-v1-default-v1.3
+version: v1.3
 lang: en
 apiVersion: v1
 ---
