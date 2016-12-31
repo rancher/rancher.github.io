@@ -528,7 +528,7 @@ $ rancher scale <stackName>/<serviceName>=5 <serviceID>=3
 
 ### Rancher ssh reference
 
-The `rancher ssh` allows you to ssh into any host created by the UI. It will not allow you to ssh into a host added by the [custom]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/custom/) command.
+The `rancher ssh` allows you to ssh into any host created by the UI. It will not allow you to ssh into a host added by the [custom]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) command.
 
 ```bash
 $ rancher ssh <hostID>

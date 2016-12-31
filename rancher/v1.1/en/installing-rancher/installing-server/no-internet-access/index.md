@@ -14,7 +14,7 @@ When launching Rancher server with no internet access, there will be a couple of
 
 * Launching Hosts using the UI for Cloud Providers - Since Rancher is calling `docker-machine` to create hosts in the cloud providers, this functionality will not work. You will add [custom hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) to your Rancher setup.
 * GitHub Authentication
-* Templates from the [Rancher Catalog](https://github.com/rancher/rancher-catalog) and [Community Catalog](https://github.com/rancher/community-catalog) - These catalogs rely on being cloned from Github, but you will be able to [add internal private catalogs]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/private-catalogs) into Rancher.
+* Templates from the [Rancher Catalog](https://github.com/rancher/rancher-catalog) and [Community Catalog](https://github.com/rancher/community-catalog) - These catalogs rely on being cloned from Github, but you will be able to [add internal private catalogs]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/private-catalog) into Rancher.
 
 ### Using Private Registry
 
