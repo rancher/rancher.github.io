@@ -2,7 +2,7 @@
 title: Windows in Rancher
 layout: rancher-default-v1.3
 version: v1.3
-lang: en
+lang: zh
 ---
 
 ## Windows (Experimental)
