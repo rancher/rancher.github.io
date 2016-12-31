@@ -22,7 +22,7 @@ After a Windows environment has been created, you can navigate to the environmen
 
 > **Note:** As Rancher adds support for multiple container orchestration frameworks, Rancher currently does not support the ability to switch between environments that already have services running in it.
 
-### Windows hosts
+### Adding Windows hosts
 
 In order to add a host into Windows, you'll need to prepare a host running [Windows Server 2016 with Docker](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/about/index) installed.
 
@@ -30,9 +30,16 @@ In the **Infrastructure** tab, you will get a custom command to launch the Ranch
 
 On the hosts, the agent binary will be download to a folder called `C:/Program Files/rancher` and agent logs will be found at `C:/ProgramData/rancher/agent.log`.
 
+### Removing Windows hosts
+
+As part of adding a host into Rancher, the Rancher agent is installed and registered on the host as a service. In order to re-use a host, you must delete the existing service. In the powershell, run the following command. After the service is deleted, you can re-use the host in a Windows environment.
+
+```bash
+& 'C:\Program Files\rancher\agent.exe' -unregister-service
+```
+
 ### Networking in Windows
 
 By default, we support NAT and transparent [networking](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/container-networking).
 
-Currently, the default _Windows_ environment template supports a transparent network named `transparent`. If you create a network with a different name, you will need to create a new environment template with _Windows_ as the container orchestration. After selecting _Windows_, you can click on **Edit Config** to change the name of the transparent network. After creating the updated environment template, you can create a new environment that will support the newly named transparent network.
- 
+Currently, the default **Windows** environment template supports a transparent network named `transparent`. If you create a network with a different name, you will need to create a new environment template with **Windows** as the container orchestration. After selecting **Windows**, you can click on **Edit Config** to change the name of the transparent network. After creating the updated environment template, you can create a new environment that will support the newly named transparent network.
