@@ -10,7 +10,7 @@ redirect_from:
 ## Upgrading Rancher Server
 ---
 
-> **Note:** If you are upgrading to v1.2.x, please read our release notes on [v1.2.0](https://github.com/rancher/rancher/releases/tag/v1.2.0) regarding what to expect for this upgrade.
+> **Note:** If you are upgrading to v1.3.x, please read our release notes on [v1.3.0](https://github.com/rancher/rancher/releases/tag/v1.3.0) regarding what to expect for this upgrade.
 
 Depending on how you installed Rancher server, your upgrade steps may vary.
 
@@ -18,6 +18,7 @@ Depending on how you installed Rancher server, your upgrade steps may vary.
 * [Rancher Server - Single Container (non-HA) - External database](#single-container-external-database)
 * [Rancher Server - Single Container (non-HA) - Bind mounted MySQL volume](#single-container-bind-mount)
 * [Rancher Server - Full Active/Active HA](#multi-nodes)
+* [Rancher Server - No Internet Access](#rancher-server-with-no-internet-access)
 
 > **Note:** If you set any environment variables or passed in a [ldap certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#enabling-active-directory-or-openldap-for-tls) in your original Rancher server setup, you'll need to add those environment variables or certificate in any new command.
 
@@ -29,8 +30,11 @@ If you are interested in trying one of our latest development builds which will 
 
 ### Infrastructure Services
 
-After a Rancher server upgrade, your [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) may have an update available. We recommend checking your infrastructure stacks after upgrading Rancher server to see if any stack has an upgrade available. If there is an upgrade available, we recommend upgrading these services.
+After a Rancher server upgrade, your [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) may have an upgrade available. We recommend checking your infrastructure stacks after upgrading Rancher server to see if any stack has an upgrade available. If there is an upgrade available, upgrade these stacks one at a time. Please finish the upgrade before moving on to upgrading the next infrastructure stack.
 
+### Rancher Agents
+
+Each Rancher agent version is pinned to a Rancher server version. If you upgrade Rancher server and Rancher agents require an upgrade, we will automatically upgrade the agents to the latest version of Rancher agent.
 <a id="single-container"></a>
 
 ### Upgrading a Single Container (non-HA)
@@ -132,7 +136,3 @@ If you have launched Rancher server in [High Availability (HA)]({{site.baseurl}}
 ### Rancher Server with No Internet Access
 
 Users without internet will need to download the latest [infrastructure service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) images in order for the upgrade to succeed. Without the images in the latest default templates, the infrastructure services will not be able to upgrade.
-
-### Rancher Agents
-
-Each Rancher agent version is pinned to a Rancher server version. If you upgrade Rancher server and Rancher agents require an upgrade, we will automatically upgrade the agents to the latest version of Rancher agent.
