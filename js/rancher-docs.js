@@ -4,7 +4,7 @@ $(document).ready(function(){
   $menu.slicknav({
     label: "Navigation",
     duration: 250,
-    appendTo: "logo"
+    appendTo: "header"
   });
 
   // Expand the tree to the current URL
