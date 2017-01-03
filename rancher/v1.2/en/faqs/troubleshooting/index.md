@@ -72,7 +72,7 @@ DEFAULT_FORWARD_POLICY="ACCEPT"
 
 To change the subnet used for networking of containers, you will need to ensure the networking infrastructure service that you want to use has the correct [subnet]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking/#subnets) in the `default_network` in the `rancher-compose.yml` file.
 
-To change Rancher's IPsec network driver, you can export the yaml files and update the `subnet` address in the `rancher-compose.yml` file. After the files are updated, you can launch the infrastructure service independently.
+To change Rancher's IPsec or VXLAN network driver, you will need to have an [environment template]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template) with an updated infrastructure service. When creating a new environment template or editing an existing one, you edit the configuration of the networking infrastructure service by clicking on **Edit Config**. In the edit screen, you can enter a different subnet and click **Configure**. Any **new** environment using the updated environment template would be using the new subnet. Editing an existing environment template will not update the infrastructure services in existing environments.
 
 > **Note:** The previous method of updating the subnet through the API will no longer be applicable as Rancher has moved to infrastructure services.
 
