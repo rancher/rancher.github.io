@@ -3,7 +3,8 @@ title: Infrastructure Services in Rancher
 layout: rancher-default-v1.3
 version: v1.3
 lang: en
-
+redirect_from:
+  - /rancher/latest/en/rancher-services/
 ---
 
 ## Infrastructure Services

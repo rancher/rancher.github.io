@@ -5,6 +5,7 @@ version: v1.3
 lang: en
 redirect_from:
   - /rancher/installing-rancher/installing-server/
+  - /rancher/latest/en/installing-rancher/installing-server/
 ---
 
 ## Installing Rancher Server

@@ -3,8 +3,6 @@ title: Installing Rancher Server
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
-redirect_from:
-  - /rancher/latest/en/installing-rancher/installing-server/
 ---
 
 ## Installing Rancher Server
