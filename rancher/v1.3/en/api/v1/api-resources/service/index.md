@@ -53,7 +53,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 ### Operations
 {::options parse_block_html="true" /}
 <a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/services</code></span></span>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/services</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
@@ -220,19 +220,19 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"selectorLink": "string",
 	"startOnCreate": false,
 	"vip": "string"
-}' 'http://${RANCHER_URL}:8080/v1/services'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/services'
 {% endhighlight %}
 </div></div>
 <a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/services/${ID}</code></span></span>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/projects/${PROJECT_ID}/services/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
-'http://${RANCHER_URL}:8080/v1/services/${ID}'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/services/${ID}'
 {% endhighlight %}
 </div></div>
 <a id="update"></a>
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/services/${ID}</code></span></span>
+<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/projects/${PROJECT_ID}/services/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X PUT \
@@ -252,7 +252,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	},
 	"selectorContainer": "string",
 	"selectorLink": "string"
-}' 'http://${RANCHER_URL}:8080/v1/services/${ID}'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/services/${ID}'
 {% endhighlight %}
 </div></div>
 
@@ -263,7 +263,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="activate">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>/v1/services/${ID}?action=activate</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/services/${ID}?action=activate</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -274,7 +274,7 @@ activate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v1/services/${ID}?action=activate'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/services/${ID}?action=activate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>
@@ -283,7 +283,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="addservicelink">
 <span class="header">
 addservicelink
-<span class="headerright">POST:  <code>/v1/services/${ID}?action=addservicelink</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/services/${ID}?action=addservicelink</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -305,7 +305,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"serviceId": "reference[service]",
 		"uuid": "string"
 	}
-}' 'http://${RANCHER_URL}:8080/v1/services/${ID}?action=addservicelink'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/services/${ID}?action=addservicelink'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>
@@ -314,7 +314,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="cancelrollback">
 <span class="header">
 cancelrollback
-<span class="headerright">POST:  <code>/v1/services/${ID}?action=cancelrollback</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/services/${ID}?action=cancelrollback</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -325,7 +325,7 @@ cancelrollback
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v1/services/${ID}?action=cancelrollback'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/services/${ID}?action=cancelrollback'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>
@@ -334,7 +334,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="cancelupgrade">
 <span class="header">
 cancelupgrade
-<span class="headerright">POST:  <code>/v1/services/${ID}?action=cancelupgrade</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/services/${ID}?action=cancelupgrade</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -345,7 +345,7 @@ cancelupgrade
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v1/services/${ID}?action=cancelupgrade'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/services/${ID}?action=cancelupgrade'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>
@@ -354,7 +354,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="deactivate">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>/v1/services/${ID}?action=deactivate</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/services/${ID}?action=deactivate</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -365,7 +365,7 @@ deactivate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v1/services/${ID}?action=deactivate'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/services/${ID}?action=deactivate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>
@@ -374,7 +374,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="finishupgrade">
 <span class="header">
 finishupgrade
-<span class="headerright">POST:  <code>/v1/services/${ID}?action=finishupgrade</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/services/${ID}?action=finishupgrade</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -385,7 +385,7 @@ finishupgrade
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v1/services/${ID}?action=finishupgrade'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/services/${ID}?action=finishupgrade'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>
@@ -394,7 +394,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="removeservicelink">
 <span class="header">
 removeservicelink
-<span class="headerright">POST:  <code>/v1/services/${ID}?action=removeservicelink</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/services/${ID}?action=removeservicelink</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -416,7 +416,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"serviceId": "reference[service]",
 		"uuid": "string"
 	}
-}' 'http://${RANCHER_URL}:8080/v1/services/${ID}?action=removeservicelink'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/services/${ID}?action=removeservicelink'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>
@@ -425,7 +425,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="restart">
 <span class="header">
 restart
-<span class="headerright">POST:  <code>/v1/services/${ID}?action=restart</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/services/${ID}?action=restart</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -446,7 +446,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"batchSize": 1,
 		"intervalMillis": 2000
 	}
-}' 'http://${RANCHER_URL}:8080/v1/services/${ID}?action=restart'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/services/${ID}?action=restart'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>
@@ -455,7 +455,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="rollback">
 <span class="header">
 rollback
-<span class="headerright">POST:  <code>/v1/services/${ID}?action=rollback</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/services/${ID}?action=rollback</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -466,7 +466,7 @@ rollback
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v1/services/${ID}?action=rollback'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/services/${ID}?action=rollback'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>
@@ -475,7 +475,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="setservicelinks">
 <span class="header">
 setservicelinks
-<span class="headerright">POST:  <code>/v1/services/${ID}?action=setservicelinks</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/services/${ID}?action=setservicelinks</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -493,7 +493,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"serviceLinks": "array[serviceLink]"
-}' 'http://${RANCHER_URL}:8080/v1/services/${ID}?action=setservicelinks'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/services/${ID}?action=setservicelinks'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>

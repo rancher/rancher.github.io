@@ -51,7 +51,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 ### Operations
 {::options parse_block_html="true" /}
 <a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v2-beta/machines</code></span></span>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v2-beta/projects/${PROJECT_ID}/machines</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
@@ -167,19 +167,19 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"plan": "baremetal_1",
 		"projectId": ""
 	}
-}' 'http://${RANCHER_URL}:8080/v2-beta/machines'
+}' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/machines'
 {% endhighlight %}
 </div></div>
 <a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v2-beta/machines/${ID}</code></span></span>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v2-beta/projects/${PROJECT_ID}/machines/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
-'http://${RANCHER_URL}:8080/v2-beta/machines/${ID}'
+'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/machines/${ID}'
 {% endhighlight %}
 </div></div>
 <a id="update"></a>
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v2-beta/machines/${ID}</code></span></span>
+<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v2-beta/projects/${PROJECT_ID}/machines/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X PUT \
@@ -295,7 +295,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"plan": "baremetal_1",
 		"projectId": ""
 	}
-}' 'http://${RANCHER_URL}:8080/v2-beta/machines/${ID}'
+}' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/machines/${ID}'
 {% endhighlight %}
 </div></div>
 
