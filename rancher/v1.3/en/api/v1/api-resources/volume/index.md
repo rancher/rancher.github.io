@@ -17,14 +17,9 @@ A volume can be associated to containers or storage pools. <br><br> * A containe
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 description | string | Optional | Yes | - | 
-driver | string | Optional | - | - | 
-driverOpts | map[string] | Optional | Yes | - | 
-hostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/) | Optional | Yes | - | The unique identifier for the associated host
+driver | string | Yes | - | - | 
+driverOpts | map[string] | Optional | - | - | 
 name | string | Yes | - | - | 
-sizeMb | int | Optional | - | - | 
-stackId | [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/) | Optional | - | - | 
-storageDriverId | [storageDriver]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriver/) | Optional | - | - | 
-volumeTemplateId | [volumeTemplate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volumeTemplate/) | Optional | - | - | 
 
 
 #### Read Only Fields
@@ -37,7 +32,6 @@ id | int  | The unique identifier for the volume
 imageId | [image]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/image/)  | 
 instanceId | [instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)  | The unique identifier for the associated instance
 isHostPath | boolean  | 
-mounts | array[[mountEntry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/mountEntry/)]  | 
 uri | string  | 
 
 
@@ -59,12 +53,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"driverOpts": {
 		"key": "value-pairs"
 	},
-	"hostId": "reference[host]",
-	"name": "string",
-	"sizeMb": 0,
-	"stackId": "reference[stack]",
-	"storageDriverId": "reference[storageDriver]",
-	"volumeTemplateId": "reference[volumeTemplate]"
+	"name": "string"
 }' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/volumes'
 {% endhighlight %}
 </div></div>
@@ -74,21 +63,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/volumes/${ID}'
-{% endhighlight %}
-</div></div>
-<a id="update"></a>
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/projects/${PROJECT_ID}/volumes/${ID}</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X PUT \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"driverOpts": {
-		"key": "value-pairs"
-	},
-	"hostId": "reference[host]"
-}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/volumes/${ID}'
 {% endhighlight %}
 </div></div>
 

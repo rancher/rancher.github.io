@@ -17,6 +17,7 @@ An external service allows the ability to add any IP or hostname as a service to
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 description | string | Optional | Yes | - | 
+environmentId | [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/environment/) | Yes | - | - | 
 externalId | string | Optional | - | - | 
 externalIpAddresses | array[string] | Optional | Yes | - | 
 healthCheck | [instanceHealthCheck]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instanceHealthCheck/) | Optional | - | - | 
@@ -24,7 +25,6 @@ hostname | string | Optional | Yes | - |
 launchConfig | [launchConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/launchConfig/) | Optional | - | - | 
 metadata | map[json] | Optional | Yes | - | 
 name | string | Yes | Yes | - | 
-stackId | [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/) | Optional | - | - | 
 startOnCreate | boolean | Optional | - | - | 
 
 
@@ -35,9 +35,6 @@ Field | Type   | Notes
 fqdn | string  | 
 healthState | string  | 
 id | int  | The unique identifier for the externalService
-instanceIds | array[[instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)]  | 
-linkedServices | map[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
-system | boolean  | 
 upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceUpgrade/)  | 
 
 
@@ -55,6 +52,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"description": "string",
+	"environmentId": "reference[environment]",
 	"externalId": "string",
 	"externalIpAddresses": [
 		"string1",
@@ -79,7 +77,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"launchConfig": {
 		"accountId": "reference[account]",
 		"blkioDeviceOptions": "map[blkioDeviceOption]",
-		"blkioWeight": 0,
 		"build": {
 			"context": "string",
 			"dockerfile": "string",
@@ -90,18 +87,12 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		},
 		"capAdd": "array[enum]",
 		"capDrop": "array[enum]",
-		"cgroupParent": "string",
 		"command": [
 			"string1",
 			"...stringN"
 		],
 		"count": 0,
-		"cpuCount": 0,
-		"cpuPercent": 0,
-		"cpuPeriod": 0,
-		"cpuQuota": 0,
 		"cpuSet": "string",
-		"cpuSetMems": "string",
 		"cpuShares": 0,
 		"createIndex": 0,
 		"created": "date",
@@ -121,13 +112,8 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"string1",
 			"...stringN"
 		],
-		"diskQuota": 0,
 		"disks": "array[virtualMachineDisk]",
 		"dns": [
-			"string1",
-			"...stringN"
-		],
-		"dnsOpt": [
 			"string1",
 			"...stringN"
 		],
@@ -153,10 +139,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"...stringN"
 		],
 		"firstRunning": "date",
-		"groupAdd": [
-			"string1",
-			"...stringN"
-		],
 		"healthCheck": {
 			"healthyThreshold": 0,
 			"initializingTimeout": 0,
@@ -172,27 +154,12 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"strategy": "recreate",
 			"unhealthyThreshold": 0
 		},
-		"healthCmd": [
-			"string1",
-			"...stringN"
-		],
-		"healthInterval": 0,
-		"healthRetries": 0,
 		"healthState": "enum",
-		"healthTimeout": 0,
 		"hostId": "reference[host]",
 		"hostname": "string",
 		"id": 0,
 		"imageUuid": "string",
 		"instanceLinks": "map[reference[instance]]",
-		"instanceTriggeredStop": "stop",
-		"ioMaximumBandwidth": 0,
-		"ioMaximumIOps": 0,
-		"ip": "string",
-		"ip6": "string",
-		"ipcMode": "string",
-		"isolation": "string",
-		"kernelMemory": 0,
 		"kind": "container",
 		"labels": {
 			"key": "value-pairs"
@@ -208,30 +175,18 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		},
 		"memory": 0,
 		"memoryMb": 0,
-		"memoryReservation": 0,
 		"memorySwap": 0,
-		"memorySwappiness": 0,
-		"milliCpuReservation": 0,
-		"mounts": "array[mountEntry]",
 		"nativeContainer": false,
-		"netAlias": [
-			"string1",
-			"...stringN"
-		],
 		"networkContainerId": "reference[container]",
 		"networkIds": "array[reference[network]]",
 		"networkLaunchConfig": "string",
 		"networkMode": "managed",
-		"oomKillDisable": false,
-		"oomScoreAdj": 0,
 		"pidMode": "enum",
-		"pidsLimit": 0,
 		"ports": [
 			"string1",
 			"...stringN"
 		],
 		"primaryIpAddress": "string",
-		"primaryNetworkId": "reference[network]",
 		"privileged": false,
 		"publishAllPorts": false,
 		"readOnly": false,
@@ -243,32 +198,17 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"string1",
 			"...stringN"
 		],
-		"serviceIds": "array[reference[service]]",
-		"shmSize": 0,
 		"startCount": 0,
 		"startOnCreate": true,
 		"state": "enum",
 		"stdinOpen": false,
-		"stopSignal": "string",
-		"storageOpt": {
-			"key": "value-pairs"
-		},
-		"sysctls": {
-			"key": "value-pairs"
-		},
-		"system": false,
-		"tmpfs": {
-			"key": "value-pairs"
-		},
+		"systemContainer": "enum",
 		"transitioning": "enum",
 		"transitioningMessage": "string",
 		"transitioningProgress": 0,
 		"tty": false,
-		"ulimits": "array[ulimit]",
 		"user": "string",
 		"userdata": "string",
-		"usernsMode": "string",
-		"uts": "string",
 		"uuid": "string",
 		"vcpu": 1,
 		"version": "0",
@@ -279,7 +219,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"key": "value-pairs"
 	},
 	"name": "string",
-	"stackId": "reference[stack]",
 	"startOnCreate": false
 }' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/externalServices'
 {% endhighlight %}
@@ -337,6 +276,26 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>
 </div></div>
 
+<div class="action" id="cancelrollback">
+<span class="header">
+cancelrollback
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/externalServices/${ID}?action=cancelrollback</code></span></span>
+<div class="action-contents">
+
+<br>
+<span class="input">
+<strong>Input:</strong>This action has no inputs</span>
+
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/externalServices/${ID}?action=cancelrollback'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>
+</div></div>
+
 <div class="action" id="cancelupgrade">
 <span class="header">
 cancelupgrade
@@ -352,26 +311,6 @@ cancelupgrade
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/externalServices/${ID}?action=cancelupgrade'
-{% endhighlight %}
-<br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>
-</div></div>
-
-<div class="action" id="continueupgrade">
-<span class="header">
-continueupgrade
-<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/externalServices/${ID}?action=continueupgrade</code></span></span>
-<div class="action-contents">
-
-<br>
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-
-<br>
-{% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X POST \
-'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/externalServices/${ID}?action=continueupgrade'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>
@@ -463,7 +402,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"launchConfig": {
 			"accountId": "reference[account]",
 			"blkioDeviceOptions": "map[blkioDeviceOption]",
-			"blkioWeight": 0,
 			"build": {
 				"context": "string",
 				"dockerfile": "string",
@@ -474,18 +412,12 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			},
 			"capAdd": "array[enum]",
 			"capDrop": "array[enum]",
-			"cgroupParent": "string",
 			"command": [
 				"string1",
 				"...stringN"
 			],
 			"count": 0,
-			"cpuCount": 0,
-			"cpuPercent": 0,
-			"cpuPeriod": 0,
-			"cpuQuota": 0,
 			"cpuSet": "string",
-			"cpuSetMems": "string",
 			"cpuShares": 0,
 			"createIndex": 0,
 			"created": "date",
@@ -505,13 +437,8 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"string1",
 				"...stringN"
 			],
-			"diskQuota": 0,
 			"disks": "array[virtualMachineDisk]",
 			"dns": [
-				"string1",
-				"...stringN"
-			],
-			"dnsOpt": [
 				"string1",
 				"...stringN"
 			],
@@ -537,10 +464,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"...stringN"
 			],
 			"firstRunning": "date",
-			"groupAdd": [
-				"string1",
-				"...stringN"
-			],
 			"healthCheck": {
 				"healthyThreshold": 0,
 				"initializingTimeout": 0,
@@ -556,27 +479,12 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"strategy": "recreate",
 				"unhealthyThreshold": 0
 			},
-			"healthCmd": [
-				"string1",
-				"...stringN"
-			],
-			"healthInterval": 0,
-			"healthRetries": 0,
 			"healthState": "enum",
-			"healthTimeout": 0,
 			"hostId": "reference[host]",
 			"hostname": "string",
 			"id": 0,
 			"imageUuid": "string",
 			"instanceLinks": "map[reference[instance]]",
-			"instanceTriggeredStop": "stop",
-			"ioMaximumBandwidth": 0,
-			"ioMaximumIOps": 0,
-			"ip": "string",
-			"ip6": "string",
-			"ipcMode": "string",
-			"isolation": "string",
-			"kernelMemory": 0,
 			"kind": "container",
 			"labels": {
 				"key": "value-pairs"
@@ -592,30 +500,18 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			},
 			"memory": 0,
 			"memoryMb": 0,
-			"memoryReservation": 0,
 			"memorySwap": 0,
-			"memorySwappiness": 0,
-			"milliCpuReservation": 0,
-			"mounts": "array[mountEntry]",
 			"nativeContainer": false,
-			"netAlias": [
-				"string1",
-				"...stringN"
-			],
 			"networkContainerId": "reference[container]",
 			"networkIds": "array[reference[network]]",
 			"networkLaunchConfig": "string",
 			"networkMode": "managed",
-			"oomKillDisable": false,
-			"oomScoreAdj": 0,
 			"pidMode": "enum",
-			"pidsLimit": 0,
 			"ports": [
 				"string1",
 				"...stringN"
 			],
 			"primaryIpAddress": "string",
-			"primaryNetworkId": "reference[network]",
 			"privileged": false,
 			"publishAllPorts": false,
 			"readOnly": false,
@@ -627,32 +523,17 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"string1",
 				"...stringN"
 			],
-			"serviceIds": "array[reference[service]]",
-			"shmSize": 0,
 			"startCount": 0,
 			"startOnCreate": true,
 			"state": "enum",
 			"stdinOpen": false,
-			"stopSignal": "string",
-			"storageOpt": {
-				"key": "value-pairs"
-			},
-			"sysctls": {
-				"key": "value-pairs"
-			},
-			"system": false,
-			"tmpfs": {
-				"key": "value-pairs"
-			},
+			"systemContainer": "enum",
 			"transitioning": "enum",
 			"transitioningMessage": "string",
 			"transitioningProgress": 0,
 			"tty": false,
-			"ulimits": "array[ulimit]",
 			"user": "string",
 			"userdata": "string",
-			"usernsMode": "string",
-			"uts": "string",
 			"uuid": "string",
 			"vcpu": 1,
 			"version": "0",
@@ -662,7 +543,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"previousLaunchConfig": {
 			"accountId": "reference[account]",
 			"blkioDeviceOptions": "map[blkioDeviceOption]",
-			"blkioWeight": 0,
 			"build": {
 				"context": "string",
 				"dockerfile": "string",
@@ -673,18 +553,12 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			},
 			"capAdd": "array[enum]",
 			"capDrop": "array[enum]",
-			"cgroupParent": "string",
 			"command": [
 				"string1",
 				"...stringN"
 			],
 			"count": 0,
-			"cpuCount": 0,
-			"cpuPercent": 0,
-			"cpuPeriod": 0,
-			"cpuQuota": 0,
 			"cpuSet": "string",
-			"cpuSetMems": "string",
 			"cpuShares": 0,
 			"createIndex": 0,
 			"created": "date",
@@ -704,13 +578,8 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"string1",
 				"...stringN"
 			],
-			"diskQuota": 0,
 			"disks": "array[virtualMachineDisk]",
 			"dns": [
-				"string1",
-				"...stringN"
-			],
-			"dnsOpt": [
 				"string1",
 				"...stringN"
 			],
@@ -736,10 +605,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"...stringN"
 			],
 			"firstRunning": "date",
-			"groupAdd": [
-				"string1",
-				"...stringN"
-			],
 			"healthCheck": {
 				"healthyThreshold": 0,
 				"initializingTimeout": 0,
@@ -755,27 +620,12 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"strategy": "recreate",
 				"unhealthyThreshold": 0
 			},
-			"healthCmd": [
-				"string1",
-				"...stringN"
-			],
-			"healthInterval": 0,
-			"healthRetries": 0,
 			"healthState": "enum",
-			"healthTimeout": 0,
 			"hostId": "reference[host]",
 			"hostname": "string",
 			"id": 0,
 			"imageUuid": "string",
 			"instanceLinks": "map[reference[instance]]",
-			"instanceTriggeredStop": "stop",
-			"ioMaximumBandwidth": 0,
-			"ioMaximumIOps": 0,
-			"ip": "string",
-			"ip6": "string",
-			"ipcMode": "string",
-			"isolation": "string",
-			"kernelMemory": 0,
 			"kind": "container",
 			"labels": {
 				"key": "value-pairs"
@@ -791,30 +641,18 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			},
 			"memory": 0,
 			"memoryMb": 0,
-			"memoryReservation": 0,
 			"memorySwap": 0,
-			"memorySwappiness": 0,
-			"milliCpuReservation": 0,
-			"mounts": "array[mountEntry]",
 			"nativeContainer": false,
-			"netAlias": [
-				"string1",
-				"...stringN"
-			],
 			"networkContainerId": "reference[container]",
 			"networkIds": "array[reference[network]]",
 			"networkLaunchConfig": "string",
 			"networkMode": "managed",
-			"oomKillDisable": false,
-			"oomScoreAdj": 0,
 			"pidMode": "enum",
-			"pidsLimit": 0,
 			"ports": [
 				"string1",
 				"...stringN"
 			],
 			"primaryIpAddress": "string",
-			"primaryNetworkId": "reference[network]",
 			"privileged": false,
 			"publishAllPorts": false,
 			"readOnly": false,
@@ -826,32 +664,17 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"string1",
 				"...stringN"
 			],
-			"serviceIds": "array[reference[service]]",
-			"shmSize": 0,
 			"startCount": 0,
 			"startOnCreate": true,
 			"state": "enum",
 			"stdinOpen": false,
-			"stopSignal": "string",
-			"storageOpt": {
-				"key": "value-pairs"
-			},
-			"sysctls": {
-				"key": "value-pairs"
-			},
-			"system": false,
-			"tmpfs": {
-				"key": "value-pairs"
-			},
+			"systemContainer": "enum",
 			"transitioning": "enum",
 			"transitioningMessage": "string",
 			"transitioningProgress": 0,
 			"tty": false,
-			"ulimits": "array[ulimit]",
 			"user": "string",
 			"userdata": "string",
-			"usernsMode": "string",
-			"uts": "string",
 			"uuid": "string",
 			"vcpu": 1,
 			"version": "0",

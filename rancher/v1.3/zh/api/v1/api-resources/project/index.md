@@ -17,10 +17,13 @@ A "project" in the API is referred to as an environment in the UI and Rancher do
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 description | string | Optional | Yes | - | 
+kubernetes | boolean | Optional | Yes | - | 
 members | array[[projectMember]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/projectMember/)] | Optional | - | - | 
+mesos | boolean | Optional | Yes | - | 
 name | string | Optional | Yes | - | 
-projectTemplateId | [projectTemplate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/projectTemplate/) | Optional | - | - | 
+publicDns | boolean | Optional | Yes | - | 
 servicesPortRange | [servicesPortRange]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/servicesPortRange/) | Optional | Yes | - | 
+swarm | boolean | Optional | Yes | - | 
 virtualMachine | boolean | Optional | Yes | - | 
 
 
@@ -28,11 +31,7 @@ virtualMachine | boolean | Optional | Yes | - |
 
 Field | Type   | Notes
 ---|---|---
-defaultNetworkId | [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/)  | 
-healthState | string  | 
 id | int  | The unique identifier for the project
-orchestration | string  | 
-version | string  | 
 
 
 <br>

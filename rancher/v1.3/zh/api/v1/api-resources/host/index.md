@@ -30,11 +30,7 @@ engineLabel | map[string] | Optional | Yes | - |
 engineOpt | map[string] | Optional | Yes | - | 
 engineRegistryMirror | array[string] | Optional | Yes | - | 
 engineStorageDriver | string | Optional | Yes | - | 
-hostname | string | Yes | - | - | 
 labels | map[string] | Optional | Yes | - | A map of key value pairs to be used as labels for the host
-localStorageMb | int | Optional | Yes | - | 
-memory | int | Optional | Yes | - | 
-milliCpu | int | Optional | Yes | - | 
 name | string | Optional | Yes | - | 
 packetConfig | [packetConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/packetConfig/) | Optional | Yes | - | 
 
@@ -43,13 +39,12 @@ packetConfig | [packetConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.l
 
 Field | Type   | Notes
 ---|---|---
-agentIpAddress | string  | 
 agentState | string  | 
 computeTotal | int  | 
 driver | string  | 
+hostname | string  | 
 id | int  | The unique identifier for the host
 info | json  | 
-instanceIds | array[[instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)]  | 
 physicalHostId | [physicalHost]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/physicalHost/)  | 
 publicEndpoints | array[[publicEndpoint]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/publicEndpoint/)]  | 
 
@@ -168,13 +163,9 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"...stringN"
 	],
 	"engineStorageDriver": "string",
-	"hostname": "string",
 	"labels": {
 		"key": "value-pairs"
 	},
-	"localStorageMb": 0,
-	"memory": 0,
-	"milliCpu": 0,
 	"name": "string",
 	"packetConfig": {
 		"apiKey": "",
@@ -306,9 +297,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"labels": {
 		"key": "value-pairs"
 	},
-	"localStorageMb": 0,
-	"memory": 0,
-	"milliCpu": 0,
 	"name": "string",
 	"packetConfig": {
 		"apiKey": "",
@@ -384,26 +372,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostAccess/">hostAccess</a> resource</span>
-</div></div>
-
-<div class="action" id="error">
-<span class="header">
-error
-<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/hosts/${ID}?action=error</code></span></span>
-<div class="action-contents">
-
-<br>
-<span class="input">
-<strong>Input:</strong>This action has no inputs</span>
-
-<br>
-{% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X POST \
-'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/hosts/${ID}?action=error'
-{% endhighlight %}
-<br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/">host</a> resource</span>
 </div></div>
 
 

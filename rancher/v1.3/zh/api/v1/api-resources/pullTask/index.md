@@ -20,7 +20,7 @@ description | string | Optional | Yes | - |
 image | string | Yes | - | - | 
 labels | map[string] | Optional | - | - | A map of key value pairs to be used as labels for the pullTask
 mode | enum | Yes | - | all | The options are `all`, `cached`.
-name | string | Optional | - | - | 
+name | string | Optional | Yes | - | 
 
 
 #### Read Only Fields

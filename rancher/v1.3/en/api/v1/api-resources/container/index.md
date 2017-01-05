@@ -17,68 +17,39 @@ A container is a representation of a Docker container on a host.
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 blkioDeviceOptions | map[[blkioDeviceOption]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/blkioDeviceOption/)] | Optional | - | - | 
-blkioWeight | int | Optional | - | - | 
 build | [dockerBuild]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/dockerBuild/) | Optional | - | - | 
 capAdd | array[enum] | Optional | - | - | 
 capDrop | array[enum] | Optional | - | - | 
-cgroupParent | string | Optional | - | - | 
 command | array[string] | Optional | - | - | 
 count | int | Optional | - | - | 
-cpuCount | int | Optional | - | - | 
-cpuPercent | int | Optional | - | - | 
-cpuPeriod | int | Optional | - | - | 
-cpuQuota | int | Optional | - | - | 
 cpuSet | string | Optional | - | - | 
-cpuSetMems | string | Optional | - | - | 
 cpuShares | int | Optional | - | - | 
 dataVolumeMounts | map[[volume]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volume/)] | Optional | - | - | 
 dataVolumes | array[string] | Optional | - | - | 
 dataVolumesFrom | array[[container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/container/)] | Optional | - | - | 
 description | string | Optional | Yes | - | 
 devices | array[string] | Optional | - | - | 
-diskQuota | int | Optional | - | - | 
 dns | array[string] | Optional | - | - | 
-dnsOpt | array[string] | Optional | - | - | 
 dnsSearch | array[string] | Optional | - | - | 
 domainName | string | Optional | - | - | 
 entryPoint | array[string] | Optional | - | - | 
 environment | map[string] | Optional | - | - | 
 expose | array[string] | Optional | - | - | 
 extraHosts | array[string] | Optional | - | - | 
-groupAdd | array[string] | Optional | - | - | 
 healthCheck | [instanceHealthCheck]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instanceHealthCheck/) | Optional | - | - | 
-healthCmd | array[string] | Optional | - | - | 
-healthInterval | int | Optional | - | - | 
-healthRetries | int | Optional | - | - | 
-healthTimeout | int | Optional | - | - | 
 hostname | string | Optional | - | - | 
 imageUuid | string | Optional | - | - | 
 instanceLinks | map[[instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)] | Optional | - | - | 
-instanceTriggeredStop | enum | Optional | - | stop | The options are `stop`, `remove`.
-ioMaximumBandwidth | int | Optional | - | - | 
-ioMaximumIOps | int | Optional | - | - | 
-ip | string | Optional | - | - | 
-ip6 | string | Optional | - | - | 
-ipcMode | string | Optional | - | - | 
-isolation | string | Optional | - | - | 
-kernelMemory | int | Optional | - | - | 
 labels | map[string] | Optional | - | - | A map of key value pairs to be used as labels for the container
 logConfig | [logConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/logConfig/) | Optional | - | - | 
 lxcConf | map[string] | Optional | - | - | 
 memory | int | Optional | - | - | 
-memoryReservation | int | Optional | - | - | 
 memorySwap | int | Optional | - | - | 
-memorySwappiness | int | Optional | - | - | 
-milliCpuReservation | int | Optional | - | - | 
 name | string | Optional | Yes | - | 
-netAlias | array[string] | Optional | - | - | 
 networkContainerId | [container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/container/) | Optional | - | - | 
 networkIds | array[[network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/)] | Optional | - | - | 
-networkMode | string | Optional | - | managed | 
-oomKillDisable | boolean | Optional | - | - | 
-oomScoreAdj | int | Optional | - | - | 
+networkMode | enum | Optional | - | managed | The options are `none`, `bridge`, `host`, `managed`, `container`.
 pidMode | enum | Optional | - | - | The options are `host`.
-pidsLimit | int | Optional | - | - | 
 ports | array[string] | Optional | - | - | 
 privileged | boolean | Optional | - | - | 
 publishAllPorts | boolean | Optional | - | - | 
@@ -87,18 +58,10 @@ registryCredentialId | [registryCredential]({{site.baseurl}}/rancher/{{page.vers
 requestedHostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/) | Optional | - | - | 
 restartPolicy | [restartPolicy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/restartPolicy/) | Optional | - | - | 
 securityOpt | array[string] | Optional | - | - | 
-shmSize | int | Optional | - | - | 
 startOnCreate | boolean | Optional | - | true | 
 stdinOpen | boolean | Optional | - | - | 
-stopSignal | string | Optional | - | - | 
-storageOpt | map[string] | Optional | - | - | 
-sysctls | map[string] | Optional | - | - | 
-tmpfs | map[string] | Optional | - | - | 
 tty | boolean | Optional | - | - | 
-ulimits | array[[ulimit]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/ulimit/)] | Optional | - | - | 
 user | string | Optional | - | - | 
-usernsMode | string | Optional | - | - | 
-uts | string | Optional | - | - | 
 volumeDriver | string | Optional | - | - | 
 workingDir | string | Optional | - | - | 
 
@@ -114,13 +77,10 @@ firstRunning | date  |
 healthState | enum  | The options are `healthy`, `unhealthy`, `updating-healthy`, `updating-unhealthy`, `initializing`.
 hostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/)  | The unique identifier for the associated host
 id | int  | The unique identifier for the container
-mounts | array[[mountEntry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/mountEntry/)]  | 
 nativeContainer | boolean  | 
 primaryIpAddress | string  | 
-primaryNetworkId | [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/)  | 
-serviceIds | array[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
 startCount | int  | 
-system | boolean  | 
+systemContainer | enum  | The options are `NetworkAgent`, `LoadBalancerAgent`.
 version | string  | 
 
 
@@ -138,7 +98,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"blkioDeviceOptions": "map[blkioDeviceOption]",
-	"blkioWeight": 0,
 	"build": {
 		"context": "string",
 		"dockerfile": "string",
@@ -149,18 +108,12 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	},
 	"capAdd": "array[enum]",
 	"capDrop": "array[enum]",
-	"cgroupParent": "string",
 	"command": [
 		"string1",
 		"...stringN"
 	],
 	"count": 0,
-	"cpuCount": 0,
-	"cpuPercent": 0,
-	"cpuPeriod": 0,
-	"cpuQuota": 0,
 	"cpuSet": "string",
-	"cpuSetMems": "string",
 	"cpuShares": 0,
 	"dataVolumeMounts": "map[reference[volume]]",
 	"dataVolumes": [
@@ -173,12 +126,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"string1",
 		"...stringN"
 	],
-	"diskQuota": 0,
 	"dns": [
-		"string1",
-		"...stringN"
-	],
-	"dnsOpt": [
 		"string1",
 		"...stringN"
 	],
@@ -202,10 +150,6 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"string1",
 		"...stringN"
 	],
-	"groupAdd": [
-		"string1",
-		"...stringN"
-	],
 	"healthCheck": {
 		"healthyThreshold": 0,
 		"initializingTimeout": 0,
@@ -221,24 +165,9 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"strategy": "recreate",
 		"unhealthyThreshold": 0
 	},
-	"healthCmd": [
-		"string1",
-		"...stringN"
-	],
-	"healthInterval": 0,
-	"healthRetries": 0,
-	"healthTimeout": 0,
 	"hostname": "string",
 	"imageUuid": "string",
 	"instanceLinks": "map[reference[instance]]",
-	"instanceTriggeredStop": "stop",
-	"ioMaximumBandwidth": 0,
-	"ioMaximumIOps": 0,
-	"ip": "string",
-	"ip6": "string",
-	"ipcMode": "string",
-	"isolation": "string",
-	"kernelMemory": 0,
 	"labels": {
 		"key": "value-pairs"
 	},
@@ -252,22 +181,12 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"key": "value-pairs"
 	},
 	"memory": 0,
-	"memoryReservation": 0,
 	"memorySwap": 0,
-	"memorySwappiness": 0,
-	"milliCpuReservation": 0,
 	"name": "string",
-	"netAlias": [
-		"string1",
-		"...stringN"
-	],
 	"networkContainerId": "reference[container]",
 	"networkIds": "array[reference[network]]",
 	"networkMode": "managed",
-	"oomKillDisable": false,
-	"oomScoreAdj": 0,
 	"pidMode": "enum",
-	"pidsLimit": 0,
 	"ports": [
 		"string1",
 		"...stringN"
@@ -285,24 +204,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"string1",
 		"...stringN"
 	],
-	"shmSize": 0,
 	"startOnCreate": true,
 	"stdinOpen": false,
-	"stopSignal": "string",
-	"storageOpt": {
-		"key": "value-pairs"
-	},
-	"sysctls": {
-		"key": "value-pairs"
-	},
-	"tmpfs": {
-		"key": "value-pairs"
-	},
 	"tty": false,
-	"ulimits": "array[ulimit]",
 	"user": "string",
-	"usernsMode": "string",
-	"uts": "string",
 	"volumeDriver": "string",
 	"workingDir": "string"
 }' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/containers'
