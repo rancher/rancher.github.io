@@ -17,39 +17,68 @@ A container is a representation of a Docker container on a host.
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 blkioDeviceOptions | map[[blkioDeviceOption]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/blkioDeviceOption/)] | Optional | - | - | 
+blkioWeight | int | Optional | - | - | 
 build | [dockerBuild]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/dockerBuild/) | Optional | - | - | 
 capAdd | array[enum] | Optional | - | - | 
 capDrop | array[enum] | Optional | - | - | 
+cgroupParent | string | Optional | - | - | 
 command | array[string] | Optional | - | - | 
 count | int | Optional | - | - | 
+cpuCount | int | Optional | - | - | 
+cpuPercent | int | Optional | - | - | 
+cpuPeriod | int | Optional | - | - | 
+cpuQuota | int | Optional | - | - | 
 cpuSet | string | Optional | - | - | 
+cpuSetMems | string | Optional | - | - | 
 cpuShares | int | Optional | - | - | 
 dataVolumeMounts | map[[volume]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volume/)] | Optional | - | - | 
 dataVolumes | array[string] | Optional | - | - | 
 dataVolumesFrom | array[[container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/container/)] | Optional | - | - | 
 description | string | Optional | Yes | - | 
 devices | array[string] | Optional | - | - | 
+diskQuota | int | Optional | - | - | 
 dns | array[string] | Optional | - | - | 
+dnsOpt | array[string] | Optional | - | - | 
 dnsSearch | array[string] | Optional | - | - | 
 domainName | string | Optional | - | - | 
 entryPoint | array[string] | Optional | - | - | 
 environment | map[string] | Optional | - | - | 
 expose | array[string] | Optional | - | - | 
 extraHosts | array[string] | Optional | - | - | 
+groupAdd | array[string] | Optional | - | - | 
 healthCheck | [instanceHealthCheck]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instanceHealthCheck/) | Optional | - | - | 
+healthCmd | array[string] | Optional | - | - | 
+healthInterval | int | Optional | - | - | 
+healthRetries | int | Optional | - | - | 
+healthTimeout | int | Optional | - | - | 
 hostname | string | Optional | - | - | 
 imageUuid | string | Optional | - | - | 
 instanceLinks | map[[instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)] | Optional | - | - | 
+instanceTriggeredStop | enum | Optional | - | stop | The options are `stop`, `remove`.
+ioMaximumBandwidth | int | Optional | - | - | 
+ioMaximumIOps | int | Optional | - | - | 
+ip | string | Optional | - | - | 
+ip6 | string | Optional | - | - | 
+ipcMode | string | Optional | - | - | 
+isolation | string | Optional | - | - | 
+kernelMemory | int | Optional | - | - | 
 labels | map[string] | Optional | - | - | A map of key value pairs to be used as labels for the container
 logConfig | [logConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/logConfig/) | Optional | - | - | 
 lxcConf | map[string] | Optional | - | - | 
 memory | int | Optional | - | - | 
+memoryReservation | int | Optional | - | - | 
 memorySwap | int | Optional | - | - | 
+memorySwappiness | int | Optional | - | - | 
+milliCpuReservation | int | Optional | - | - | 
 name | string | Optional | Yes | - | 
+netAlias | array[string] | Optional | - | - | 
 networkContainerId | [container]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/container/) | Optional | - | - | 
 networkIds | array[[network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/)] | Optional | - | - | 
-networkMode | enum | Optional | - | managed | The options are `none`, `bridge`, `host`, `managed`, `container`.
+networkMode | string | Optional | - | managed | 
+oomKillDisable | boolean | Optional | - | - | 
+oomScoreAdj | int | Optional | - | - | 
 pidMode | enum | Optional | - | - | The options are `host`.
+pidsLimit | int | Optional | - | - | 
 ports | array[string] | Optional | - | - | 
 privileged | boolean | Optional | - | - | 
 publishAllPorts | boolean | Optional | - | - | 
@@ -58,10 +87,18 @@ registryCredentialId | [registryCredential]({{site.baseurl}}/rancher/{{page.vers
 requestedHostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/) | Optional | - | - | 
 restartPolicy | [restartPolicy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/restartPolicy/) | Optional | - | - | 
 securityOpt | array[string] | Optional | - | - | 
+shmSize | int | Optional | - | - | 
 startOnCreate | boolean | Optional | - | true | 
 stdinOpen | boolean | Optional | - | - | 
+stopSignal | string | Optional | - | - | 
+storageOpt | map[string] | Optional | - | - | 
+sysctls | map[string] | Optional | - | - | 
+tmpfs | map[string] | Optional | - | - | 
 tty | boolean | Optional | - | - | 
+ulimits | array[[ulimit]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/ulimit/)] | Optional | - | - | 
 user | string | Optional | - | - | 
+usernsMode | string | Optional | - | - | 
+uts | string | Optional | - | - | 
 volumeDriver | string | Optional | - | - | 
 workingDir | string | Optional | - | - | 
 
@@ -77,10 +114,13 @@ firstRunning | date  |
 healthState | enum  | The options are `healthy`, `unhealthy`, `updating-healthy`, `updating-unhealthy`, `initializing`.
 hostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/)  | The unique identifier for the associated host
 id | int  | The unique identifier for the container
+mounts | array[[mountEntry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/mountEntry/)]  | 
 nativeContainer | boolean  | 
 primaryIpAddress | string  | 
+primaryNetworkId | [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/)  | 
+serviceIds | array[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
 startCount | int  | 
-systemContainer | enum  | The options are `NetworkAgent`, `LoadBalancerAgent`.
+system | boolean  | 
 version | string  | 
 
 
@@ -91,13 +131,14 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 ### Operations
 {::options parse_block_html="true" /}
 <a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/containers</code></span></span>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/containers</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
 -H 'Content-Type: application/json' \
 -d '{
 	"blkioDeviceOptions": "map[blkioDeviceOption]",
+	"blkioWeight": 0,
 	"build": {
 		"context": "string",
 		"dockerfile": "string",
@@ -108,12 +149,18 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	},
 	"capAdd": "array[enum]",
 	"capDrop": "array[enum]",
+	"cgroupParent": "string",
 	"command": [
 		"string1",
 		"...stringN"
 	],
 	"count": 0,
+	"cpuCount": 0,
+	"cpuPercent": 0,
+	"cpuPeriod": 0,
+	"cpuQuota": 0,
 	"cpuSet": "string",
+	"cpuSetMems": "string",
 	"cpuShares": 0,
 	"dataVolumeMounts": "map[reference[volume]]",
 	"dataVolumes": [
@@ -126,7 +173,12 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"string1",
 		"...stringN"
 	],
+	"diskQuota": 0,
 	"dns": [
+		"string1",
+		"...stringN"
+	],
+	"dnsOpt": [
 		"string1",
 		"...stringN"
 	],
@@ -150,6 +202,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"string1",
 		"...stringN"
 	],
+	"groupAdd": [
+		"string1",
+		"...stringN"
+	],
 	"healthCheck": {
 		"healthyThreshold": 0,
 		"initializingTimeout": 0,
@@ -165,9 +221,24 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"strategy": "recreate",
 		"unhealthyThreshold": 0
 	},
+	"healthCmd": [
+		"string1",
+		"...stringN"
+	],
+	"healthInterval": 0,
+	"healthRetries": 0,
+	"healthTimeout": 0,
 	"hostname": "string",
 	"imageUuid": "string",
 	"instanceLinks": "map[reference[instance]]",
+	"instanceTriggeredStop": "stop",
+	"ioMaximumBandwidth": 0,
+	"ioMaximumIOps": 0,
+	"ip": "string",
+	"ip6": "string",
+	"ipcMode": "string",
+	"isolation": "string",
+	"kernelMemory": 0,
 	"labels": {
 		"key": "value-pairs"
 	},
@@ -181,12 +252,22 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"key": "value-pairs"
 	},
 	"memory": 0,
+	"memoryReservation": 0,
 	"memorySwap": 0,
+	"memorySwappiness": 0,
+	"milliCpuReservation": 0,
 	"name": "string",
+	"netAlias": [
+		"string1",
+		"...stringN"
+	],
 	"networkContainerId": "reference[container]",
 	"networkIds": "array[reference[network]]",
 	"networkMode": "managed",
+	"oomKillDisable": false,
+	"oomScoreAdj": 0,
 	"pidMode": "enum",
+	"pidsLimit": 0,
 	"ports": [
 		"string1",
 		"...stringN"
@@ -204,25 +285,39 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"string1",
 		"...stringN"
 	],
+	"shmSize": 0,
 	"startOnCreate": true,
 	"stdinOpen": false,
+	"stopSignal": "string",
+	"storageOpt": {
+		"key": "value-pairs"
+	},
+	"sysctls": {
+		"key": "value-pairs"
+	},
+	"tmpfs": {
+		"key": "value-pairs"
+	},
 	"tty": false,
+	"ulimits": "array[ulimit]",
 	"user": "string",
+	"usernsMode": "string",
+	"uts": "string",
 	"volumeDriver": "string",
 	"workingDir": "string"
-}' 'http://${RANCHER_URL}:8080/v1/containers'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/containers'
 {% endhighlight %}
 </div></div>
 <a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/containers/${ID}</code></span></span>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/projects/${PROJECT_ID}/containers/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
-'http://${RANCHER_URL}:8080/v1/containers/${ID}'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/containers/${ID}'
 {% endhighlight %}
 </div></div>
 <a id="update"></a>
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/containers/${ID}</code></span></span>
+<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/projects/${PROJECT_ID}/containers/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X PUT \
@@ -230,7 +325,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -d '{
 	"description": "string",
 	"name": "string"
-}' 'http://${RANCHER_URL}:8080/v1/containers/${ID}'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/containers/${ID}'
 {% endhighlight %}
 </div></div>
 
@@ -241,7 +336,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="console">
 <span class="header">
 console
-<span class="headerright">POST:  <code>/v1/containers/${ID}?action=console</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/containers/${ID}?action=console</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -253,7 +348,7 @@ console
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=console'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/containers/${ID}?action=console'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instanceConsole/">instanceConsole</a> resource</span>
@@ -262,7 +357,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="execute">
 <span class="header">
 execute
-<span class="headerright">POST:  <code>/v1/containers/${ID}?action=execute</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/containers/${ID}?action=execute</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -286,7 +381,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"...stringN"
 	],
 	"tty": true
-}' 'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=execute'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/containers/${ID}?action=execute'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostAccess/">hostAccess</a> resource</span>
@@ -295,7 +390,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="logs">
 <span class="header">
 logs
-<span class="headerright">POST:  <code>/v1/containers/${ID}?action=logs</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/containers/${ID}?action=logs</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -314,7 +409,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -d '{
 	"follow": true,
 	"lines": 100
-}' 'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=logs'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/containers/${ID}?action=logs'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostAccess/">hostAccess</a> resource</span>
@@ -323,7 +418,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="proxy">
 <span class="header">
 proxy
-<span class="headerright">POST:  <code>/v1/containers/${ID}?action=proxy</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/containers/${ID}?action=proxy</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -342,7 +437,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -d '{
 	"port": 80,
 	"scheme": "http"
-}' 'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=proxy'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/containers/${ID}?action=proxy'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostAccess/">hostAccess</a> resource</span>
@@ -351,7 +446,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="restart">
 <span class="header">
 restart
-<span class="headerright">POST:  <code>/v1/containers/${ID}?action=restart</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/containers/${ID}?action=restart</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -362,7 +457,7 @@ restart
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=restart'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/containers/${ID}?action=restart'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/">instance</a> resource</span>
@@ -371,7 +466,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="start">
 <span class="header">
 start
-<span class="headerright">POST:  <code>/v1/containers/${ID}?action=start</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/containers/${ID}?action=start</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -382,7 +477,7 @@ start
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=start'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/containers/${ID}?action=start'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/">instance</a> resource</span>
@@ -391,7 +486,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="stop">
 <span class="header">
 stop
-<span class="headerright">POST:  <code>/v1/containers/${ID}?action=stop</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/containers/${ID}?action=stop</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -410,7 +505,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -d '{
 	"remove": false,
 	"timeout": 0
-}' 'http://${RANCHER_URL}:8080/v1/containers/${ID}?action=stop'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/containers/${ID}?action=stop'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/">instance</a> resource</span>

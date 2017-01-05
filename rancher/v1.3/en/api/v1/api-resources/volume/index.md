@@ -17,9 +17,14 @@ A volume can be associated to containers or storage pools. <br><br> * A containe
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 description | string | Optional | Yes | - | 
-driver | string | Yes | - | - | 
-driverOpts | map[string] | Optional | - | - | 
+driver | string | Optional | - | - | 
+driverOpts | map[string] | Optional | Yes | - | 
+hostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/) | Optional | Yes | - | The unique identifier for the associated host
 name | string | Yes | - | - | 
+sizeMb | int | Optional | - | - | 
+stackId | [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/) | Optional | - | - | 
+storageDriverId | [storageDriver]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriver/) | Optional | - | - | 
+volumeTemplateId | [volumeTemplate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volumeTemplate/) | Optional | - | - | 
 
 
 #### Read Only Fields
@@ -32,6 +37,7 @@ id | int  | The unique identifier for the volume
 imageId | [image]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/image/)  | 
 instanceId | [instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)  | The unique identifier for the associated instance
 isHostPath | boolean  | 
+mounts | array[[mountEntry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/mountEntry/)]  | 
 uri | string  | 
 
 
@@ -42,7 +48,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 ### Operations
 {::options parse_block_html="true" /}
 <a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/volumes</code></span></span>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/volumes</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
@@ -53,16 +59,36 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	"driverOpts": {
 		"key": "value-pairs"
 	},
-	"name": "string"
-}' 'http://${RANCHER_URL}:8080/v1/volumes'
+	"hostId": "reference[host]",
+	"name": "string",
+	"sizeMb": 0,
+	"stackId": "reference[stack]",
+	"storageDriverId": "reference[storageDriver]",
+	"volumeTemplateId": "reference[volumeTemplate]"
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/volumes'
 {% endhighlight %}
 </div></div>
 <a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/volumes/${ID}</code></span></span>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/projects/${PROJECT_ID}/volumes/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
-'http://${RANCHER_URL}:8080/v1/volumes/${ID}'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/volumes/${ID}'
+{% endhighlight %}
+</div></div>
+<a id="update"></a>
+<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/projects/${PROJECT_ID}/volumes/${ID}</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X PUT \
+-H 'Content-Type: application/json' \
+-d '{
+	"description": "string",
+	"driverOpts": {
+		"key": "value-pairs"
+	},
+	"hostId": "reference[host]"
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/volumes/${ID}'
 {% endhighlight %}
 </div></div>
 
@@ -73,7 +99,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="restorefrombackup">
 <span class="header">
 restorefrombackup
-<span class="headerright">POST:  <code>/v1/volumes/${ID}?action=restorefrombackup</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/volumes/${ID}?action=restorefrombackup</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -91,7 +117,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"backupId": "reference[backup]"
-}' 'http://${RANCHER_URL}:8080/v1/volumes/${ID}?action=restorefrombackup'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/volumes/${ID}?action=restorefrombackup'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volume/">volume</a> resource</span>
@@ -100,7 +126,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="reverttosnapshot">
 <span class="header">
 reverttosnapshot
-<span class="headerright">POST:  <code>/v1/volumes/${ID}?action=reverttosnapshot</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/volumes/${ID}?action=reverttosnapshot</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -118,7 +144,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"snapshotId": "reference[snapshot]"
-}' 'http://${RANCHER_URL}:8080/v1/volumes/${ID}?action=reverttosnapshot'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/volumes/${ID}?action=reverttosnapshot'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volume/">volume</a> resource</span>
@@ -127,7 +153,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="snapshot">
 <span class="header">
 snapshot
-<span class="headerright">POST:  <code>/v1/volumes/${ID}?action=snapshot</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/volumes/${ID}?action=snapshot</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -145,7 +171,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"name": "string"
-}' 'http://${RANCHER_URL}:8080/v1/volumes/${ID}?action=snapshot'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/volumes/${ID}?action=snapshot'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/snapshot/">snapshot</a> resource</span>
