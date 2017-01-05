@@ -46,7 +46,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 <div class="action" id="activate">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>/v1/projects/${ID}?action=activate</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/projects/${ID}?action=activate</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -57,7 +57,7 @@ activate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v1/projects/${ID}?action=activate'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/projects/${ID}?action=activate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/">account</a> resource</span>
@@ -66,7 +66,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="deactivate">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>/v1/projects/${ID}?action=deactivate</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/projects/${ID}?action=deactivate</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -77,7 +77,7 @@ deactivate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v1/projects/${ID}?action=deactivate'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/projects/${ID}?action=deactivate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/">account</a> resource</span>
@@ -86,7 +86,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="setmembers">
 <span class="header">
 setmembers
-<span class="headerright">POST:  <code>/v1/projects/${ID}?action=setmembers</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/projects/${ID}?action=setmembers</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -104,7 +104,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -H 'Content-Type: application/json' \
 -d '{
 	"members": "array[projectMember]"
-}' 'http://${RANCHER_URL}:8080/v1/projects/${ID}?action=setmembers'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/projects/${ID}?action=setmembers'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/setProjectMembersInput/">setProjectMembersInput</a> resource</span>

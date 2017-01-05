@@ -38,7 +38,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 ### Operations
 {::options parse_block_html="true" /}
 <a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/pullTasks</code></span></span>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/pullTasks</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
@@ -51,7 +51,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	},
 	"mode": "all",
 	"name": "string"
-}' 'http://${RANCHER_URL}:8080/v1/pullTasks'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/pullTasks'
 {% endhighlight %}
 </div></div>
 

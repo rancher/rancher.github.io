@@ -40,7 +40,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 <div class="action" id="activate">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>/v2-beta/accounts/${ID}?action=activate</code></span></span>
+<span class="headerright">POST:  <code>/v2-beta/projects/${PROJECT_ID}/accounts/${ID}?action=activate</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -51,7 +51,7 @@ activate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v2-beta/accounts/${ID}?action=activate'
+'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/accounts/${ID}?action=activate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/">account</a> resource</span>
@@ -60,7 +60,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="deactivate">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>/v2-beta/accounts/${ID}?action=deactivate</code></span></span>
+<span class="headerright">POST:  <code>/v2-beta/projects/${PROJECT_ID}/accounts/${ID}?action=deactivate</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -71,7 +71,7 @@ deactivate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v2-beta/accounts/${ID}?action=deactivate'
+'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/accounts/${ID}?action=deactivate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/">account</a> resource</span>
