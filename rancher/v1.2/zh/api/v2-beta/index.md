@@ -26,6 +26,8 @@ In the documentation, we have used the UI term in descriptions and have provided
 
 API requests must include authentication information if [Access Control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is enabled.  Authentication is done with HTTP basic authentication using [API Keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/apikey).  API keys can either belong to a single (UI) Environment / (API) [Project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/project/) with access to just that Environment, or to a [Account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account) with access to all Environments the account belongs to, and the ability to create new ones.  There is also a separate JSON Web Token interface primarily for the UI.
 
+> **Note:** In our examples, we've assumed that the `${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}` are Account API Keys, but if you were to use an Environment API Key, you could omit the `projects/${PROJECT_ID}` from the URL.
+
 #### API keys for an Environment
 
 Environment API keys can be created in the UI, see [API & Keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-keys/).  The key is owned by the Environment and has full access to manage that Environment, but no access to any others.  [Membership roles]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#membership-roles) do not apply to these keys.
