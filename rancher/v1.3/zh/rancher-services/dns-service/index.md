@@ -18,4 +18,4 @@ Rancher provides an infrastructure service for a distributed DNS service by usin
 
 Because Rancher’s overlay networking provides each container with a distinct IP address, you do not need to deal with port mappings and do not need to handle situations like duplicated services listening on different ports. As a result, a simple DNS service is adequate for handling service discovery.
 
-Learn more about the internal DNS service for [Cattle environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/internal-dns-service/) and [Kubernetes environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/k8s-internal-dns-service/).
+Learn more about the internal DNS service for [Cattle environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/internal-dns-service/).
