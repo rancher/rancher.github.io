@@ -145,7 +145,7 @@ global
   ssl-server-verify none
 
 defaults
-  mode tcp
+  mode http
   balance roundrobin
   option redispatch
   option forwardfor
@@ -165,9 +165,9 @@ frontend http-in
   use_backend rancher_servers if is_websocket
 
 backend rancher_servers
-  server websrv1 <rancher_server_1_IP>:443 weight 1 maxconn 1024 ssl
-  server websrv2 <rancher_server_2_IP>:443 weight 1 maxconn 1024 ssl
-  server websrv3 <rancher_server_3_IP>:443 weight 1 maxconn 1024 ssl
+  server websrv1 <rancher_server_1_IP>:8080 weight 1 maxconn 1024
+  server websrv2 <rancher_server_2_IP>:8080 weight 1 maxconn 1024
+  server websrv3 <rancher_server_3_IP>:8080 weight 1 maxconn 1024
 ```
 
 ### Updating Host Registration
