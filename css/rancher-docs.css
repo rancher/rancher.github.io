@@ -45,10 +45,12 @@ h3 {
   margin-top: 2rem;
 }
 
-p {
-  font-size: 1.25em;
-  margin-top: 0;
-  line-height: 1.5em;
+@media (min-width: 450px) {
+  p {
+    font-size: 1.25em;
+    margin-top: 0;
+    line-height: 1.5em;
+  }
 }
 
 hr + p {
