@@ -485,3 +485,7 @@ footer {
 .copyright {
   padding: 10px 0;
 }
+
+.header-anchor {
+  padding-left: 10px;
+}
