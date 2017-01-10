@@ -31,6 +31,14 @@ $(document).ready(function(){
       event.stopPropagation();
     }
   });
+
+  $('.content-container').on('mouseenter', 'h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]', function(e) {
+    $(e.target).append($('<a />').addClass('header-anchor').attr('href', '#' + e.target.id).html('<i class="fa fa-link " aria-hidden="true"></i>'));
+  });
+
+  $('.content-container').on('mouseleave', 'h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]', function(e) {
+    $(e.target).parent().find('.header-anchor').remove();
+  });
 });
 
 function isExpanded(link) {
