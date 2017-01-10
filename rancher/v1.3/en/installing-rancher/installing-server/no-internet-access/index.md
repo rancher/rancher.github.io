@@ -96,6 +96,8 @@ In Rancher, all [infrastructure services]({{site.baseurl}}/rancher/{{page.versio
 
 * **Create a New Environment:** After updating the default registry, you will need to re-create your environments so that the infrastructure services will be using the updated default registry. Any existing environments prior to the change in default registry would have their infrastructure services still pointing to DockerHub.
 
+* **Any pre-existing infrastructure stacks, prior to this change, need to be deleted and re-deployed for changes to take effect.
+
 ### Using HTTP Proxy
 
 Reminder, in this setup, the web browser accessing the UI will need access only the private network.
