@@ -10,7 +10,7 @@ lang: en
 
 Within Rancher, we use our own internal DNS service in a [Kubernetes environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) and not the SkyDNS cluster add on that Kubernetes uses.
 
-Service discovery works by listening for events in Kubernetes. Each service will get its own record created in the format `<serviceName>.scc.cluster.local`.
+Service discovery works by listening for events in Kubernetes. Each service will get its own record created in the format `<serviceName>.svc.cluster.local`.
 
 All services in the Kubernetes environment are resolvable by `<serviceName>`. DNS resolutions are done on a per service basis in the format of `<serviceName>.<namespaceName>.svc.cluster.local`, per the format of [DNS in Kubernetes](https://github.com/kubernetes/kubernetes/blob/release-1.2/cluster/addons/dns/README.md).
 
