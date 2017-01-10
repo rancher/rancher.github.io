@@ -1,10 +1,12 @@
 ---
-title: Custom Console on RancherOS
+title: Switching Consoles in RancherOS
 layout: os-default
+redirect_from:
+  - os/configuration/custom-console/
 
 ---
 
-## Custom Console
+## Switching Consoles
 ---
 
 When [booting from the ISO]({{site.baseurl}}/os/running-rancheros/workstation/boot-from-iso/), RancherOS starts with the default console, which is based on busybox.
