@@ -489,3 +489,7 @@ footer {
 .header-anchor {
   padding-left: 10px;
 }
+
+#google-search * {
+  transition: none !important;
+}
