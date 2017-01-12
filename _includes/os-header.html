@@ -24,20 +24,23 @@
               </div>
 
               <div class="col span-5 offset-3">
-              <!--Start Google Search-->
-              <script>
-                (function() {
-                  var cx = '007896692384436596364:60akf3bfmxm';
-                  var gcse = document.createElement('script');
-                  gcse.type = 'text/javascript';
-                  gcse.async = true;
-                  gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                  var s = document.getElementsByTagName('script')[0];
-                  s.parentNode.insertBefore(gcse, s);
-                })();
-              </script>
-              <gcse:search></gcse:search>
-              <!--End Google Search-->
+                <!--Start Google Search-->
+                <div class="gcse-search" id="google-search"></div>
+                <script>
+                  document.getElementById('google-search').setAttribute('data-defaultToRefinement', 'rancheros')
+
+                  (function() {
+                    var cx = '007896692384436596364:60akf3bfmxm';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                  })();
+                </script>
+                <gcse:search></gcse:search>
+                <!--End Google Search-->
               </div>
 
             </nav>
