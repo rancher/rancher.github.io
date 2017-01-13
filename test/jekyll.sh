@@ -21,5 +21,6 @@ cd ${SITE_ROOT}
 
 bundle install
 bundle exec jekyll build
-bundle exec htmlproofer --checks-to-ignore vendor/* ./_site
+bundle exec htmlproofer ./_site/rancher
+bundle exec htmlproofer ./_site/os
 
