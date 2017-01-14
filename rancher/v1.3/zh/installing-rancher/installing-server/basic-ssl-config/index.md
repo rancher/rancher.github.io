@@ -88,7 +88,7 @@ server {
 ```
 
 
-### Apache Configuration
+### Example Apache Configuration
 
 
 Here is an Apache configuration.

@@ -98,7 +98,7 @@ In Rancher, all [infrastructure services]({{site.baseurl}}/rancher/{{page.versio
 
 > **Note:** Any infrastructure stacks in an existing environment will still be using the original default registry (e.g. DockerHub). These stacks will need to be deleted and re-launched to start using the updated default registry. The stacks can be deployed from **Catalog** -> **Library**.
 
-### Using HTTP Proxy
+### Using an HTTP Proxy
 
 Reminder, in this setup, the web browser accessing the UI will need access only the private network.
 
