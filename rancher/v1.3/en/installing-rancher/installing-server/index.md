@@ -16,6 +16,8 @@ Rancher is deployed as a set of Docker containers. Running Rancher is as simple 
 * [Rancher Server - Single Container (non-HA) - External database](#single-container-external-database)
 * [Rancher Server - Single Container (non-HA)- Bind mounted MySQL volume](#single-container-bind-mount)
 * [Rancher Server - Full Active/Active HA](#multi-nodes)
+* [Rancher Server - AD/OpenLDAP using TLS](#ldap)
+* [Rancher Server - HTTP Proxy](#http-proxy)
 
 > **Note:** You can get all help options for the Rancher server container by running `docker run rancher/server --help`.
 
@@ -29,7 +31,7 @@ Rancher is deployed as a set of Docker containers. Running Rancher is as simple 
     * Option 1: Run with Antelope with default of `COMPACT`
     * Option 2: Run MySQL 5.7 with Barracuda where the default `ROW_FORMAT` is `Dynamic`
 
-> **Note:** Currently, Docker for Windows and Docker for Mac are not supported in Rancher.
+> **Note:** Currently, Docker for Mac is not supported in Rancher.
 
 ### Rancher Server Tags
 
@@ -112,17 +114,23 @@ With this command, the database will persist on the host. If you have an existin
 
 Running Rancher server in High Availability (HA) is as easy as running [Rancher server using an external database](#using-an-external-database), exposing an additional port, and adding in an additional argument to the command for the external load balancer.
 
-#### Additional Requirements for HA
+#### Requirements for HA
 
 * HA Nodes:
+    * Any modern Linux distribution that supports Docker 1.10.3+. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
+    * For RHEL/CentOS, the default storage driver, i.e. devicemapper using loopback, is not recommended by [Docker](https://docs.docker.com/engine/reference/commandline/dockerd/#/storage-driver-options). Please refer to the Docker documentation on how to change it.
     * Port that needs to be opened between nodes: `9345`
+    * 1GB RAM
 * MySQL database
     * At least 1 GB RAM
     * 50 connections per Rancher server node (e.g. A 3 node setup will need to support at least 150 connections)
+    * MYSQL Configuration Requirements   
+      * Option 1: Run with Antelope with default of `COMPACT`
+      * Option 2: Run MySQL 5.7 with Barracuda where the default `ROW_FORMAT` is `Dynamic`
 * External Load Balancer
     * Port that needs to be opened between nodes and external load balancer: `8080`
 
-> **Note:** Currently, Docker for Windows and Docker for Mac are not supported in Rancher.
+> **Note:** Currently, Docker for Mac is not supported in Rancher.
 
 #### Recommendations for Larger Deployments
 
