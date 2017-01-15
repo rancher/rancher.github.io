@@ -32,41 +32,83 @@
           </li>
         </ul>
     </li>
-    <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/">Upgrading Rancher</a></li>
+    <li>
+         <a href="#">Upgrading Rancher<i class="pull-right fa fa-angle-down"></i></a>
+         <ul>
+           <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/">Upgrading Rancher</a></li>
+           <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#rancher-server-tags">Rancher Server Tags</a></li>
+           <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#infrastructure-services">Upgrading Infrastructure Services</a></li>
+           <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#multi-nodes">Upgrading Rancher HA Setup</a></li>
+           <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#single-container-external-database">Using an external DB</a></li>
+           <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#single-container-bind-mount">Bind Mounted MySQL Volume</a></li>
+           <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#rancher-server-with-no-internet-access">No Internet Access</a></li>
+        </ul>
+     </li>
     <li>
          <a href="#">Rancher Configuration<i class="pull-right fa fa-angle-down"></i></a>
          <ul>
-              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/">Access Control</a></li>
-              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/">Accounts</a></li>
-              <li>
-                  <a href="#">Settings <i class="pull-right fa fa-angle-down"></i></a>
-                  <ul>
-                      <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#host-registration">Host-Registration</a></li>
-                      <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#catalog">Catalog</a></li>
-                  </ul>
-              </li>
-              <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/machine-drivers/">Machine Drivers</a></li>
-          </ul>
+           <li>
+                <a href="#">Access Control Providers<i class="pull-right fa fa-angle-down"></i></a>
+                <ul>
+                  <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#active-directory">Active Directory</a></li>
+                  <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#azure-ad">Azure AD</a></li>
+                  <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#github">Github</a></li>
+                  <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#local-authentication">Local Authentication</a></li>
+                  <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#openldap">OpenLDAP</a></li>
+                  <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#shibboleth">Shibboleth/SAML</a></li>
+                </ul>
+          </li>
+          <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#site-access">Rancher Site Access</a></li>
+          <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/">Accounts</a></li>
+          <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#host-registration">Host Registration</a></li>
+          <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#catalog">Enabling Catalogs</a></li>
+          <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/machine-drivers/">Machine Drivers</a></li>
+        </ul>
     </li>
-    <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/">Environments</a></li>
     <li>
-          <a href="#">Hosts<i class="pull-right fa fa-angle-down"></i></a>
+          <a href="#">Environments<i class="pull-right fa fa-angle-down"></i></a>
           <ul>
-             <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/">Getting Started with Hosts</a></li>
-             <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/">Adding Custom Hosts</a></li>
-             <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/amazon/">Adding Amazon EC2 Hosts</a></li>
-             <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/azure/">Adding Azure Hosts</a></li>
-             <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/digitalocean/">Adding DigitalOcean Hosts</a></li>
-             <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/exoscale/">Adding Exoscale Hosts</a></li>
-             <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/packet/">Adding Packet Hosts</a></li>
-             <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/rackspace/">Adding Rackspace Hosts</a></li>
-             <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/other/">Adding Hosts from Other Cloud Providers</a></li>
+            <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/">Managing Environments</a></li>
+            <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template">Environment Templates</a></li>
+            <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#membership-roles">Roles in an Environments</a></li>
           </ul>
     </li>
-    <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/">Registries</a></li>
+    <li>
+        <a href="#">Hosts<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/">Getting Started with Hosts</a></li>
+          <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels">Adding Host Labels</a></li>
+          <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#hosts-behind-an-http-proxy">Behind an HTTP Proxy</a></li>
+          <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/">Adding Custom Hosts</a></li>
+          <li>
+              <a href="#">Adding Cloud Provided Hosts<i class="pull-right fa fa-angle-down"></i></a>
+              <ul>
+                <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/amazon/">Adding Amazon EC2 Hosts</a></li>
+                <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/azure/">Adding Azure Hosts</a></li>
+                <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/digitalocean/">Adding DigitalOcean Hosts</a></li>
+                <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/exoscale/">Adding Exoscale Hosts</a></li>
+                <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/packet/">Adding Packet Hosts</a></li>
+                <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/rackspace/">Adding Rackspace Hosts</a></li>
+                <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/other/">Adding Hosts from Other Cloud Providers</a></li>
+              </ul>
+          </li>
+          <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#accessing-hosts-from-the-cloud-providers">Accessing Cloud Provided Hosts</a></li>
+          <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#removing-hosts">Removing Hosts</a></li>
+        </ul>
+    </li>
+    <li>
+      <a href="#">Registries<i class="pull-right fa fa-angle-down"></i></a>
+      <ul>
+        <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/">Adding Private Registries</a></li>
+        <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/#insecure-registries">Insecure Registries</a></li>
+        <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/#self-signed-certificates">Self Signed Certificates</a></li>
+        <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/#changing-the-default-registry">Changing the Default Registry</a></li>
+        <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/#limiting-which-registries-can-be-used">Limiting Registries</a></li>
+      </ul>
+    </li>
     <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/">Certificates</a></li>
     <li>
-          <a href="#">Infrastructure Services<i class="pull-right fa fa-angle-down"></i></a>
+      <a href="#">Infrastructure Services<i class="pull-right fa fa-angle-down"></i></a>
           <ul>
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/">Infrastructure Services</a></li>
               <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking">Networking</a></li>
@@ -114,7 +156,7 @@
     <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/swarm/">Swarm - Experimental </a></li>
     <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/windows/">Windows - Experimental</a></li>
     <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/native-docker/">Using Native Docker CLI</a></li>
-        <li>
+    <li>
             <a href="#">Rancher Catalog<i class="pull-right fa fa-angle-down"></i></a>
             <ul>
                 <li><a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/">Catalog</a></li>
