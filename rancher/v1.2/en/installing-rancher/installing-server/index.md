@@ -13,6 +13,8 @@ Rancher is deployed as a set of Docker containers. Running Rancher is as simple 
 * [Rancher Server - Single Container (non-HA) - External database](#single-container-external-database)
 * [Rancher Server - Single Container (non-HA)- Bind mounted MySQL volume](#single-container-bind-mount)
 * [Rancher Server - Full Active/Active HA](#multi-nodes)
+* [Rancher Server - AD/OpenLDAP using TLS](#ldap)
+* [Rancher Server - HTTP Proxy](#http-proxy)
 
 > **Note:** You can get all help options for the Rancher server container by running `docker run rancher/server --help`.
 
@@ -158,7 +160,7 @@ Start Rancher by bind mounting the volume that has the certificate. The certific
 
 ```bash
 $ sudo docker run -d --restart=unless-stopped -p 8080:8080 \
-  -v /dir_that_contains_the_cert/cert.crt:/ca.crt rancher/server
+  -v /some/dir/cert.crt:/var/lib/rancher/etc/ssl/ca.crt rancher/server
 ```
 
 You can check that the `ca.crt` was passed to Rancher server container successfully by checking the logs of the rancher server container.
