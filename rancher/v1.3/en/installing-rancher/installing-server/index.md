@@ -169,7 +169,7 @@ Start Rancher by bind mounting the volume that has the certificate. The certific
 
 ```bash
 $ sudo docker run -d --restart=unless-stopped -p 8080:8080 \
-  -v /dir_that_contains_the_cert/cert.crt:/ca.crt rancher/server
+  -v /some/dir/cert.crt:/var/lib/rancher/etc/ssl/ca.crt rancher/server
 ```
 
 You can check that the `ca.crt` was passed to Rancher server container successfully by checking the logs of the rancher server container.
