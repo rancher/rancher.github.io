@@ -166,21 +166,37 @@ $ sudo docker run -d --restart=unless-stopped -p 8080:8080 \
 You can check that the `ca.crt` was passed to Rancher server container successfully by checking the logs of the rancher server container.
 
 ```bash
-$ docker logs <server_container_id>
+$ docker logs <SERVER_CONTAINER_ID>
 ```
 
-In the beginning of the logs, there will be confirmation that the `ldap.crt` was added correctly.
+In the beginning of the logs, there will be confirmation that the certificate was added correctly. These logs may not be sequential.
 
 ```bash
-DEFAULT_CATTLE_RANCHER_COMPOSE_WINDOWS_URL=https://releases.rancher.com/compose/beta/latest/rancher-compose-windows-386.zip
+# Logs may not be sequential, but will be in the logs.
 Adding ca.crt to Certs.
 Updating certificates in /etc/ssl/certs... 1 added, 0 removed; done.
-Running hooks in /etc/ca-certificates/update.d....
-done.
-done.
-[BOOTSTRAP] Starting Cattle
+Running hooks in /etc/ca-certificates/update.d....done.
+Certificate was added to keystore
 ```
 
+After the Rancher server container is started, the certificate also needs to be added to the Java keystore in the Rancher container. This applies only to Rancher 1.2.x releases, and has been fixed so that in future releases, you do not need to do these additional steps.
+
+```bash
+# Exec into the container
+$ docker exec -it <SERVER_CONTAINER_ID> bash
+# Navigate to the correct directory
+$ cd /usr/lib/jvm/zulu-8-amd64/jre/lib/security
+# Add the file to the keystore
+$ keytool -import -trustcacerts -file /var/lib/rancher/etc/ssl/ca.crt -alias myca -keystore ./cacerts
+# It will prompt for a password, which is "changeit"
+```
+
+After the file is copied, the container will need to be restarted.
+
+```bash
+# Restart the container
+$ docker restart <SERVER_CONTAINER_ID>
+```
 <a id="http-proxy"></a>
 
 ### Launching Rancher Server behind an HTTP proxy
