@@ -172,19 +172,16 @@ $ sudo docker run -d --restart=unless-stopped -p 8080:8080 \
 You can check that the `ca.crt` was passed to Rancher server container successfully by checking the logs of the rancher server container.
 
 ```bash
-$ docker logs <server_container_id>
+$ docker logs <SERVER_CONTAINER_ID>
 ```
 
-In the beginning of the logs, there will be confirmation that the `ldap.crt` was added correctly.
+In the beginning of the logs, there will be confirmation that the certificate was added correctly.
 
 ```bash
-DEFAULT_CATTLE_RANCHER_COMPOSE_WINDOWS_URL=https://releases.rancher.com/compose/beta/latest/rancher-compose-windows-386.zip
 Adding ca.crt to Certs.
 Updating certificates in /etc/ssl/certs... 1 added, 0 removed; done.
-Running hooks in /etc/ca-certificates/update.d....
-done.
-done.
-[BOOTSTRAP] Starting Cattle
+Running hooks in /etc/ca-certificates/update.d....done.
+Certificate was added to keystore
 ```
 
 <a id="http-proxy"></a>
