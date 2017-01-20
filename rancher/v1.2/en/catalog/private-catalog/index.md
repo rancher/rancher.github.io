@@ -78,7 +78,7 @@ The `docker-compose.yml` and `rancher-compose.yml` are the **required** files to
 
 The `docker-compose.yml` should be a file that could also be launched using `docker-compose up`. The services follow the docker-compose format.
 
-The `rancher-compose.yml` will contain additional information to help customize your catalog entries. In the `catalog` section, there are some fields that will be required in order to have your catalog entry interpreted correctly.
+The `rancher-compose.yml` will contain additional information to help customize your catalog entries. In the `.catalog` section, there are some fields that will be required in order to have your catalog entry interpreted correctly.
 
 An optional `README.md` is possible to be created, which provides a lengthy description or notes on how to use the catalog service.
 
@@ -106,13 +106,13 @@ For `upgrade_from`, there are three types of values that can be used.
 
 ### Questions in the `rancher-compose.yml`
 
-The `questions` section of `catalog` is used to allow the user to change the configuration options of the services. The `answers` would be populated within the `docker-compose.yml` before the services are launched.
+The `questions` section of `.catalog` is used to allow the user to change the configuration options of the services. The `answers` would be populated within the `docker-compose.yml` before the services are launched.
 
 Each configuration option is a list item in the `questions` section of the `rancher-compose.yml`.
 
 ```yaml
 version: '2'
-catalog:
+.catalog:
   questions:
     - variable: # A single word that is used to pair the question and answer.
       label: # The "question" to be answered.
