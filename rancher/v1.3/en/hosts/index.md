@@ -10,7 +10,7 @@ lang: en
 
 Hosts are the most basic unit of resource within Rancher and is represented as any Linux server, virtual or physical, with the following minimum requirements:
 
-* Any modern Linux distribution that supports Docker 1.10.3+. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
+* Any modern Linux distribution with a [supported version of Docker](#supported-docker-versions). [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
   * For RHEL/CentOS, the default storage driver, i.e. devicemapper using loopback, is not recommended by [Docker](https://docs.docker.com/engine/reference/commandline/dockerd/#/storage-driver-options). Please refer to the Docker documentation on how to change it.
 * 1GB RAM
 * Recommended CPU w/ AES-NI
@@ -20,6 +20,18 @@ Hosts are the most basic unit of resource within Rancher and is represented as a
 Rancher also supports Docker Machine and allows you to add your host via any of its supported drivers.
 
 From the  **Infrastructure** -> **Hosts** tab, click on **Add Host**.
+
+### Supported Docker Versions
+
+Version               | Supported? |
+----------------------|------------|
+`1.9.x` and earlier   | No         |
+`1.10.0` - `1.10.2`   | No         |
+`1.10.3` (and higher) | Yes        |
+`1.11.x`              | No         |
+`1.12.0` - `1.12.2`   | No         |
+`1.12.3` (and higher) | Yes        |
+`1.13.x`              | Not yet (planned for Rancher 1.5) |
 
 ### How do Hosts work?
 
