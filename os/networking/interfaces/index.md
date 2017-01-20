@@ -95,3 +95,19 @@ rancher:
       eth0:
         vlans: 100,200:foobar
 ```
+
+### Bridging
+
+In this example, you can create a bridge interface.
+
+```
+#cloud-config
+rancher:
+  network:
+    interfaces:
+      br0:
+        bridge: true
+        dhcp: true
+      eth0:
+        bridge: br0
+```
