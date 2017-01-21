@@ -3,6 +3,8 @@ title: Kubernetes Ingress Support in Rancher
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
+redirect_from:
+  - /rancher/v1.2/zh/kubernetes/ingress/
 ---
 
 ## Ingress Support
@@ -434,7 +436,7 @@ metadata:
   name: tlslb
   annotations:
     https.port: "444"
-    # Added to block HTTP 
+    # Added to block HTTP
     allow.http: "false"
 spec:
   tls:

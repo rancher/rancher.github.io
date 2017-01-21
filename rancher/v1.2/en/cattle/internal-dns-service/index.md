@@ -3,6 +3,8 @@ title: Internal DNS Service in Cattle Environments
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
+redirect_from:
+  - /rancher/v1.2/zh/cattle/internal-dns-service/
 ---
 
 ## Internal DNS Service in Cattle Environments

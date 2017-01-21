@@ -5,6 +5,8 @@ version: v1.2
 lang: en
 redirect_from:
   - /rancher/v1.2/en/faqs/
+  - /rancher/v1.2/zh/faqs/
+  - /rancher/v1.2/zh/faqs/troubleshooting/
 ---
 
 ## Troubleshooting FAQs
