@@ -4,6 +4,8 @@ layout: rancher-api-v2-beta-default-v1.2
 version: v1.2
 lang: en
 apiVersion: v2-beta
+redirect_from:
+  - /rancher/v1.2/zh/api/v2-beta/api-resources/volume/
 ---
 
 ## Volume
@@ -108,7 +110,8 @@ restorefrombackup
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-backupId | [backup]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/backup/) | Yes |  | <br>
+backupId | [backup]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/backup/) | Yes |  | 
+
 
 <br>
 {% highlight json %}
@@ -135,7 +138,8 @@ reverttosnapshot
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-snapshotId | [snapshot]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/snapshot/) | Yes |  | <br>
+snapshotId | [snapshot]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/snapshot/) | Yes |  | 
+
 
 <br>
 {% highlight json %}
@@ -162,7 +166,8 @@ snapshot
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-name |  | No |  | <br>
+name |  | No |  | 
+
 
 <br>
 {% highlight json %}

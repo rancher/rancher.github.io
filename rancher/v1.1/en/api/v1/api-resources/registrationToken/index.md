@@ -4,6 +4,8 @@ layout: rancher-api-v1-default-v1.1
 version: v1.1
 lang: en
 apiVersion: v1
+redirect_from:
+  - /rancher/v1.1/zh/api/v1/api-resources/registrationToken/
 ---
 
 ## RegistrationToken
@@ -38,7 +40,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 ### Operations
 {::options parse_block_html="true" /}
 <a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/registrationTokens</code></span></span>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/registrationTokens</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
@@ -46,7 +48,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -d '{
 	"description": "string",
 	"name": "string"
-}' 'http://${RANCHER_URL}:8080/v1/registrationTokens'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/registrationTokens'
 {% endhighlight %}
 </div></div>
 

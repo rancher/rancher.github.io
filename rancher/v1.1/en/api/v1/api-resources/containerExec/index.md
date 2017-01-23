@@ -4,6 +4,8 @@ layout: rancher-api-v1-default-v1.1
 version: v1.1
 lang: en
 apiVersion: v1
+redirect_from:
+  - /rancher/v1.1/zh/api/v1/api-resources/containerExec/
 ---
 
 ## ContainerExec
@@ -30,7 +32,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 ### Operations
 {::options parse_block_html="true" /}
 <a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/containerExecs</code></span></span>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/containerExecs</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
@@ -43,7 +45,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"...stringN"
 	],
 	"tty": true
-}' 'http://${RANCHER_URL}:8080/v1/containerExecs'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/containerExecs'
 {% endhighlight %}
 </div></div>
 

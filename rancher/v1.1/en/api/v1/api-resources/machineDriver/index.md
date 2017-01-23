@@ -4,6 +4,8 @@ layout: rancher-api-v1-default-v1.1
 version: v1.1
 lang: en
 apiVersion: v1
+redirect_from:
+  - /rancher/v1.1/zh/api/v1/api-resources/machineDriver/
 ---
 
 ## MachineDriver
@@ -46,7 +48,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 <div class="action" id="activate">
 <span class="header">
 activate
-<span class="headerright">POST:  <code>/v1/machineDrivers/${ID}?action=activate</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/machineDrivers/${ID}?action=activate</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -57,7 +59,7 @@ activate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v1/machineDrivers/${ID}?action=activate'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/machineDrivers/${ID}?action=activate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/machineDriver/">machineDriver</a> resource</span>
@@ -66,7 +68,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="deactivate">
 <span class="header">
 deactivate
-<span class="headerright">POST:  <code>/v1/machineDrivers/${ID}?action=deactivate</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/machineDrivers/${ID}?action=deactivate</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -77,7 +79,7 @@ deactivate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v1/machineDrivers/${ID}?action=deactivate'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/machineDrivers/${ID}?action=deactivate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/machineDriver/">machineDriver</a> resource</span>
@@ -86,7 +88,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <div class="action" id="reactivate">
 <span class="header">
 reactivate
-<span class="headerright">POST:  <code>/v1/machineDrivers/${ID}?action=reactivate</code></span></span>
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/machineDrivers/${ID}?action=reactivate</code></span></span>
 <div class="action-contents">
 
 <br>
@@ -97,7 +99,7 @@ reactivate
 {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
-'http://${RANCHER_URL}:8080/v1/machineDrivers/${ID}?action=reactivate'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/machineDrivers/${ID}?action=reactivate'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/machineDriver/">machineDriver</a> resource</span>

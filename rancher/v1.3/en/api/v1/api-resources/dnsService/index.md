@@ -4,6 +4,8 @@ layout: rancher-api-v1-default-v1.3
 version: v1.3
 lang: en
 apiVersion: v1
+redirect_from:
+  - /rancher/v1.3/zh/api/v1/api-resources/dnsService/
 ---
 
 ## DnsService
@@ -288,7 +290,8 @@ removeservicelink
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLink | [serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceLink/) | Yes |  | <br>
+serviceLink | [serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceLink/) | Yes |  | 
+
 
 <br>
 {% highlight json %}
@@ -339,7 +342,8 @@ setservicelinks
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLinks | array[[serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceLink/)] | No |  | <br>
+serviceLinks | array[[serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceLink/)] | No |  | 
+
 
 <br>
 {% highlight json %}
@@ -366,7 +370,9 @@ upgrade
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-inServiceStrategy | [inServiceUpgradeStrategy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/inServiceUpgradeStrategy/) | No |  | toServiceStrategy | [toServiceUpgradeStrategy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/toServiceUpgradeStrategy/) | No |  | <br>
+inServiceStrategy | [inServiceUpgradeStrategy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/inServiceUpgradeStrategy/) | No |  | 
+toServiceStrategy | [toServiceUpgradeStrategy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/toServiceUpgradeStrategy/) | No |  | 
+
 
 <br>
 {% highlight json %}

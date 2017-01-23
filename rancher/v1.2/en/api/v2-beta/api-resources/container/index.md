@@ -4,6 +4,8 @@ layout: rancher-api-v2-beta-default-v1.2
 version: v1.2
 lang: en
 apiVersion: v2-beta
+redirect_from:
+  - /rancher/v1.2/zh/api/v2-beta/api-resources/container/
 ---
 
 ## Container
@@ -366,7 +368,11 @@ execute
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-attachStdin |  | No | true | attachStdout |  | No | true | command | array[string] | Yes |  | tty |  | No | true | <br>
+attachStdin |  | No | true | 
+attachStdout |  | No | true | 
+command | array[string] | Yes |  | 
+tty |  | No | true | 
+
 
 <br>
 {% highlight json %}
@@ -399,7 +405,9 @@ logs
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-follow |  | No | true | lines |  | No | 100 | <br>
+follow |  | No | true | 
+lines |  | No | 100 | 
+
 
 <br>
 {% highlight json %}
@@ -427,7 +435,9 @@ proxy
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-port |  | No | 80 | scheme |  | No | http | The options are `http`, `https`.<br>
+port |  | No | 80 | 
+scheme |  | No | http | The options are `http`, `https`.
+
 
 <br>
 {% highlight json %}
@@ -495,7 +505,9 @@ stop
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-remove |  | No |  | timeout |  | No |  | <br>
+remove |  | No |  | 
+timeout |  | No |  | 
+
 
 <br>
 {% highlight json %}
