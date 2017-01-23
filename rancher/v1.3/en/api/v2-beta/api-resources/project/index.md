@@ -4,6 +4,8 @@ layout: rancher-api-v2-beta-default-v1.3
 version: v1.3
 lang: en
 apiVersion: v2-beta
+redirect_from:
+  - /rancher/v1.3/zh/api/v2-beta/api-resources/project/
 ---
 
 ## Project
@@ -96,7 +98,8 @@ setmembers
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-members | array[[projectMember]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/projectMember/)] | Yes |  | <br>
+members | array[[projectMember]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/projectMember/)] | Yes |  | 
+
 
 <br>
 {% highlight json %}
@@ -109,6 +112,26 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/setProjectMembersInput/">setProjectMembersInput</a> resource</span>
+</div></div>
+
+<div class="action" id="upgrade">
+<span class="header">
+upgrade
+<span class="headerright">POST:  <code>/v2-beta/projects/${PROJECT_ID}/projects/${ID}?action=upgrade</code></span></span>
+<div class="action-contents">
+
+<br>
+<span class="input">
+<strong>Input:</strong>This action has no inputs</span>
+
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/projects/${ID}?action=upgrade'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/">account</a> resource</span>
 </div></div>
 
 

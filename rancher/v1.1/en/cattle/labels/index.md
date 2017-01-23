@@ -3,6 +3,8 @@ title: Labels in Rancher
 layout: rancher-default-v1.1
 version: v1.1
 lang: en
+redirect_from:
+  - /rancher/v1.1/zh/cattle/labels/
 ---
 
 ## Labels in Rancher

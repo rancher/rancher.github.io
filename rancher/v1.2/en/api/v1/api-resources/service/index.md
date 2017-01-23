@@ -4,6 +4,8 @@ layout: rancher-api-v1-default-v1.2
 version: v1.2
 lang: en
 apiVersion: v1
+redirect_from:
+  - /rancher/v1.2/zh/api/v1/api-resources/service/
 ---
 
 ## Service
@@ -292,7 +294,8 @@ addservicelink
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLink | [serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceLink/) | Yes |  | <br>
+serviceLink | [serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceLink/) | Yes |  | 
+
 
 <br>
 {% highlight json %}
@@ -403,7 +406,8 @@ removeservicelink
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLink | [serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceLink/) | Yes |  | <br>
+serviceLink | [serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceLink/) | Yes |  | 
+
 
 <br>
 {% highlight json %}
@@ -434,7 +438,8 @@ restart
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-rollingRestartStrategy | [rollingRestartStrategy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/rollingRestartStrategy/) | Yes |  | <br>
+rollingRestartStrategy | [rollingRestartStrategy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/rollingRestartStrategy/) | Yes |  | 
+
 
 <br>
 {% highlight json %}
@@ -484,7 +489,8 @@ setservicelinks
 
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-serviceLinks | array[[serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceLink/)] | No |  | <br>
+serviceLinks | array[[serviceLink]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceLink/)] | No |  | 
+
 
 <br>
 {% highlight json %}
@@ -494,6 +500,330 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -d '{
 	"serviceLinks": "array[serviceLink]"
 }' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/services/${ID}?action=setservicelinks'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>
+</div></div>
+
+<div class="action" id="upgrade">
+<span class="header">
+upgrade
+<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/services/${ID}?action=upgrade</code></span></span>
+<div class="action-contents">
+
+<br>
+<span class="input">
+<strong>Input:</strong> <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceUpgrade/">ServiceUpgrade</a></span>
+
+Field | Type | Required | Default | Notes
+---|---|---|---|---
+inServiceStrategy | [inServiceUpgradeStrategy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/inServiceUpgradeStrategy/) | No |  | 
+toServiceStrategy | [toServiceUpgradeStrategy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/toServiceUpgradeStrategy/) | No |  | 
+
+
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
+	"inServiceStrategy": {
+		"batchSize": 1,
+		"intervalMillis": 2000,
+		"launchConfig": {
+			"accountId": "reference[account]",
+			"blkioDeviceOptions": "map[blkioDeviceOption]",
+			"build": {
+				"context": "string",
+				"dockerfile": "string",
+				"forcerm": false,
+				"nocache": false,
+				"remote": "string",
+				"rm": false
+			},
+			"capAdd": "array[enum]",
+			"capDrop": "array[enum]",
+			"command": [
+				"string1",
+				"...stringN"
+			],
+			"count": 0,
+			"cpuSet": "string",
+			"cpuShares": 0,
+			"createIndex": 0,
+			"created": "date",
+			"dataVolumeMounts": "map[reference[volume]]",
+			"dataVolumes": [
+				"string1",
+				"...stringN"
+			],
+			"dataVolumesFrom": "array[reference[container]]",
+			"dataVolumesFromLaunchConfigs": [
+				"string1",
+				"...stringN"
+			],
+			"deploymentUnitUuid": "string",
+			"description": "string",
+			"devices": [
+				"string1",
+				"...stringN"
+			],
+			"disks": "array[virtualMachineDisk]",
+			"dns": [
+				"string1",
+				"...stringN"
+			],
+			"dnsSearch": [
+				"string1",
+				"...stringN"
+			],
+			"domainName": "string",
+			"entryPoint": [
+				"string1",
+				"...stringN"
+			],
+			"environment": {
+				"key": "value-pairs"
+			},
+			"expose": [
+				"string1",
+				"...stringN"
+			],
+			"externalId": "string",
+			"extraHosts": [
+				"string1",
+				"...stringN"
+			],
+			"firstRunning": "date",
+			"healthCheck": {
+				"healthyThreshold": 0,
+				"initializingTimeout": 0,
+				"interval": 0,
+				"name": "string",
+				"port": 0,
+				"recreateOnQuorumStrategyConfig": {
+					"quorum": 0
+				},
+				"reinitializingTimeout": 0,
+				"requestLine": "string",
+				"responseTimeout": 0,
+				"strategy": "recreate",
+				"unhealthyThreshold": 0
+			},
+			"healthState": "enum",
+			"hostId": "reference[host]",
+			"hostname": "string",
+			"id": 0,
+			"imageUuid": "string",
+			"instanceLinks": "map[reference[instance]]",
+			"kind": "container",
+			"labels": {
+				"key": "value-pairs"
+			},
+			"logConfig": {
+				"config": {
+					"key": "value-pairs"
+				},
+				"driver": "string"
+			},
+			"lxcConf": {
+				"key": "value-pairs"
+			},
+			"memory": 0,
+			"memoryMb": 0,
+			"memorySwap": 0,
+			"nativeContainer": false,
+			"networkContainerId": "reference[container]",
+			"networkIds": "array[reference[network]]",
+			"networkLaunchConfig": "string",
+			"networkMode": "managed",
+			"pidMode": "enum",
+			"ports": [
+				"string1",
+				"...stringN"
+			],
+			"primaryIpAddress": "string",
+			"privileged": false,
+			"publishAllPorts": false,
+			"readOnly": false,
+			"registryCredentialId": "reference[registryCredential]",
+			"removed": "date",
+			"requestedHostId": "reference[host]",
+			"requestedIpAddress": "string",
+			"securityOpt": [
+				"string1",
+				"...stringN"
+			],
+			"startCount": 0,
+			"startOnCreate": true,
+			"state": "enum",
+			"stdinOpen": false,
+			"systemContainer": "enum",
+			"transitioning": "enum",
+			"transitioningMessage": "string",
+			"transitioningProgress": 0,
+			"tty": false,
+			"user": "string",
+			"userdata": "string",
+			"uuid": "string",
+			"vcpu": 1,
+			"version": "0",
+			"volumeDriver": "string",
+			"workingDir": "string"
+		},
+		"previousLaunchConfig": {
+			"accountId": "reference[account]",
+			"blkioDeviceOptions": "map[blkioDeviceOption]",
+			"build": {
+				"context": "string",
+				"dockerfile": "string",
+				"forcerm": false,
+				"nocache": false,
+				"remote": "string",
+				"rm": false
+			},
+			"capAdd": "array[enum]",
+			"capDrop": "array[enum]",
+			"command": [
+				"string1",
+				"...stringN"
+			],
+			"count": 0,
+			"cpuSet": "string",
+			"cpuShares": 0,
+			"createIndex": 0,
+			"created": "date",
+			"dataVolumeMounts": "map[reference[volume]]",
+			"dataVolumes": [
+				"string1",
+				"...stringN"
+			],
+			"dataVolumesFrom": "array[reference[container]]",
+			"dataVolumesFromLaunchConfigs": [
+				"string1",
+				"...stringN"
+			],
+			"deploymentUnitUuid": "string",
+			"description": "string",
+			"devices": [
+				"string1",
+				"...stringN"
+			],
+			"disks": "array[virtualMachineDisk]",
+			"dns": [
+				"string1",
+				"...stringN"
+			],
+			"dnsSearch": [
+				"string1",
+				"...stringN"
+			],
+			"domainName": "string",
+			"entryPoint": [
+				"string1",
+				"...stringN"
+			],
+			"environment": {
+				"key": "value-pairs"
+			},
+			"expose": [
+				"string1",
+				"...stringN"
+			],
+			"externalId": "string",
+			"extraHosts": [
+				"string1",
+				"...stringN"
+			],
+			"firstRunning": "date",
+			"healthCheck": {
+				"healthyThreshold": 0,
+				"initializingTimeout": 0,
+				"interval": 0,
+				"name": "string",
+				"port": 0,
+				"recreateOnQuorumStrategyConfig": {
+					"quorum": 0
+				},
+				"reinitializingTimeout": 0,
+				"requestLine": "string",
+				"responseTimeout": 0,
+				"strategy": "recreate",
+				"unhealthyThreshold": 0
+			},
+			"healthState": "enum",
+			"hostId": "reference[host]",
+			"hostname": "string",
+			"id": 0,
+			"imageUuid": "string",
+			"instanceLinks": "map[reference[instance]]",
+			"kind": "container",
+			"labels": {
+				"key": "value-pairs"
+			},
+			"logConfig": {
+				"config": {
+					"key": "value-pairs"
+				},
+				"driver": "string"
+			},
+			"lxcConf": {
+				"key": "value-pairs"
+			},
+			"memory": 0,
+			"memoryMb": 0,
+			"memorySwap": 0,
+			"nativeContainer": false,
+			"networkContainerId": "reference[container]",
+			"networkIds": "array[reference[network]]",
+			"networkLaunchConfig": "string",
+			"networkMode": "managed",
+			"pidMode": "enum",
+			"ports": [
+				"string1",
+				"...stringN"
+			],
+			"primaryIpAddress": "string",
+			"privileged": false,
+			"publishAllPorts": false,
+			"readOnly": false,
+			"registryCredentialId": "reference[registryCredential]",
+			"removed": "date",
+			"requestedHostId": "reference[host]",
+			"requestedIpAddress": "string",
+			"securityOpt": [
+				"string1",
+				"...stringN"
+			],
+			"startCount": 0,
+			"startOnCreate": true,
+			"state": "enum",
+			"stdinOpen": false,
+			"systemContainer": "enum",
+			"transitioning": "enum",
+			"transitioningMessage": "string",
+			"transitioningProgress": 0,
+			"tty": false,
+			"user": "string",
+			"userdata": "string",
+			"uuid": "string",
+			"vcpu": 1,
+			"version": "0",
+			"volumeDriver": "string",
+			"workingDir": "string"
+		},
+		"previousSecondaryLaunchConfigs": "array[secondaryLaunchConfig]",
+		"secondaryLaunchConfigs": "array[secondaryLaunchConfig]",
+		"startFirst": false
+	},
+	"toServiceStrategy": {
+		"batchSize": 1,
+		"finalScale": 1,
+		"intervalMillis": 2000,
+		"toServiceId": "reference[service]",
+		"updateLinks": false
+	}
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/services/${ID}?action=upgrade'
 {% endhighlight %}
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/">service</a> resource</span>

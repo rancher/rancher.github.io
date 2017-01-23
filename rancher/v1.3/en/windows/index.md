@@ -3,6 +3,8 @@ title: Windows in Rancher
 layout: rancher-default-v1.3
 version: v1.3
 lang: en
+redirect_from:
+  - /rancher/v1.3/zh/windows/
 ---
 
 ## Windows (Experimental)

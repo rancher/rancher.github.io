@@ -3,6 +3,8 @@ title: Load Balancers in Rancher
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
+redirect_from:
+  - /rancher/v1.2/zh/rancher-services/load-balancer/
 ---
 
 ## Load Balancer  

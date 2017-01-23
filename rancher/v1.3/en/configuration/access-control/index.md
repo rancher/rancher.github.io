@@ -4,6 +4,7 @@ layout: rancher-default-v1.3
 version: v1.3
 lang: en
 redirect_from:
+  - /rancher/v1.3/zh/configuration/access-control/
   - /rancher/latest/en/configuration/access-control/
 ---
 

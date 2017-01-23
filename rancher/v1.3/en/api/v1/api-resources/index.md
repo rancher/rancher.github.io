@@ -4,6 +4,8 @@ layout: rancher-api-v1-default-v1.3
 version: v1.3
 lang: en
 apiVersion: v1
+redirect_from:
+  - /rancher/v1.3/zh/api/v1/api-resources/
 ---
 
 ## API Resources
@@ -152,3 +154,4 @@ Rancher adopts the standard Docker Compose terminology for services and defines 
 [Volume]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/volume/)|
 ---|
 A volume can be associated to containers or storage pools. <br><br> * A container can have many volumes and containers are mapped to volumes the [mount]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/mount/) link on a container. <br> * A storage pool owns many volues. The volume is only available to containers deployed on hostst that are part of the storage pool. When a volume is being created, you do not directly associate it to a storage pool. You will only need to specify a driver and during allocation, Rancher will resolve it to a storage pool. |
+

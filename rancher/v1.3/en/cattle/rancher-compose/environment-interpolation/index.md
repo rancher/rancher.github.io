@@ -3,6 +3,8 @@ title: Environment Interpolation in Rancher Compose
 layout: rancher-default-v1.3
 version: v1.3
 lang: en
+redirect_from:
+  - /rancher/v1.3/zh/cattle/rancher-compose/environment-interpolation/
 ---
 
 ## Environment Interpolation

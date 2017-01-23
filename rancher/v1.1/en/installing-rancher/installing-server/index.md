@@ -3,6 +3,8 @@ title: Installing Rancher Server (Single Node)
 layout: rancher-default-v1.1
 version: v1.1
 lang: en
+redirect_from:
+  - /rancher/v1.1/zh/installing-rancher/installing-server/
 ---
 
 ## Installing Rancher Server (Single Node)

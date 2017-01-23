@@ -3,6 +3,8 @@ title: Stacks in Cattle Environments
 layout: rancher-default-v1.3
 version: v1.3
 lang: en
+redirect_from:
+  - /rancher/v1.3/zh/cattle/stacks/
 ---
 
 ## Stacks

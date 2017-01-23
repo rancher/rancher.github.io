@@ -6,6 +6,8 @@ lang: en
 redirect_from:
   - /rancher/rancher-ui/applications/stacks/adding-service-alias/
   - /rancher/v1.2/en/rancher-ui/applications/stacks/adding-service-alias/
+  - /rancher/v1.2/zh/rancher-ui/applications/stacks/adding-service-alias/
+  - /rancher/v1.2/zh/cattle/adding-service-alias/
 ---
 
 ## Service Alias

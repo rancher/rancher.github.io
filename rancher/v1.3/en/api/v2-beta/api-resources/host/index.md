@@ -4,6 +4,8 @@ layout: rancher-api-v2-beta-default-v1.3
 version: v1.3
 lang: en
 apiVersion: v2-beta
+redirect_from:
+  - /rancher/v1.3/zh/api/v2-beta/api-resources/host/
 ---
 
 ## Host
@@ -16,42 +18,42 @@ Hosts are the most basic unit of resource within Rancher and is represented as a
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
-amazonec2Config | [amazonec2Config]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/amazonec2Config/) | Optional | Yes | - |
-authCertificateAuthority | string | Optional | Yes | - |
-authKey | string | Optional | Yes | - |
-azureConfig | [azureConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/azureConfig/) | Optional | Yes | - |
-description | string | Optional | Yes | - |
-digitaloceanConfig | [digitaloceanConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/digitaloceanConfig/) | Optional | Yes | - |
-dockerVersion | string | Optional | Yes | - |
-engineEnv | map[string] | Optional | Yes | - |
-engineInsecureRegistry | array[string] | Optional | Yes | - |
-engineInstallUrl | string | Optional | Yes | - |
-engineLabel | map[string] | Optional | Yes | - |
-engineOpt | map[string] | Optional | Yes | - |
-engineRegistryMirror | array[string] | Optional | Yes | - |
-engineStorageDriver | string | Optional | Yes | - |
-hostname | string | Yes | - | - |
+amazonec2Config | [amazonec2Config]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/amazonec2Config/) | Optional | Yes | - | 
+authCertificateAuthority | string | Optional | Yes | - | 
+authKey | string | Optional | Yes | - | 
+azureConfig | [azureConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/azureConfig/) | Optional | Yes | - | 
+description | string | Optional | Yes | - | 
+digitaloceanConfig | [digitaloceanConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/digitaloceanConfig/) | Optional | Yes | - | 
+dockerVersion | string | Optional | Yes | - | 
+engineEnv | map[string] | Optional | Yes | - | 
+engineInsecureRegistry | array[string] | Optional | Yes | - | 
+engineInstallUrl | string | Optional | Yes | - | 
+engineLabel | map[string] | Optional | Yes | - | 
+engineOpt | map[string] | Optional | Yes | - | 
+engineRegistryMirror | array[string] | Optional | Yes | - | 
+engineStorageDriver | string | Optional | Yes | - | 
+hostname | string | Yes | - | - | 
 labels | map[string] | Optional | Yes | - | A map of key value pairs to be used as labels for the host
-localStorageMb | int | Optional | Yes | - |
-memory | int | Optional | Yes | - |
-milliCpu | int | Optional | Yes | - |
-name | string | Optional | Yes | - |
-packetConfig | [packetConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/packetConfig/) | Optional | Yes | - |
+localStorageMb | int | Optional | Yes | - | 
+memory | int | Optional | Yes | - | 
+milliCpu | int | Optional | Yes | - | 
+name | string | Optional | Yes | - | 
+packetConfig | [packetConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/packetConfig/) | Optional | Yes | - | 
 
 
 #### Read Only Fields
 
 Field | Type   | Notes
 ---|---|---
-agentIpAddress | string  |
-agentState | string  |
-computeTotal | int  |
-driver | string  |
+agentIpAddress | string  | 
+agentState | string  | 
+computeTotal | int  | 
+driver | string  | 
 id | int  | The unique identifier for the host
-info | json  |
-instanceIds | array[[instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)]  |
-physicalHostId | [physicalHost]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/physicalHost/)  |
-publicEndpoints | array[[publicEndpoint]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/publicEndpoint/)]  |
+info | json  | 
+instanceIds | array[[instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)]  | 
+physicalHostId | [physicalHost]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/physicalHost/)  | 
+publicEndpoints | array[[publicEndpoint]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/publicEndpoint/)]  | 
 
 
 <br>
@@ -405,3 +407,5 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 <br>
 <span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/">host</a> resource</span>
 </div></div>
+
+

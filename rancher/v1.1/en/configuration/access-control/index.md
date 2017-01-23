@@ -3,6 +3,8 @@ title: Access Control in Rancher
 layout: rancher-default-v1.1
 version: v1.1
 lang: en
+redirect_from:
+  - /rancher/v1.1/zh/configuration/access-control/
 ---
 
 ## Access Control
@@ -10,15 +12,15 @@ lang: en
 
 ### What is Access Control?
 
-Access Control is how Rancher limits the users who have the access permissions to your Rancher instance. By default, Access Control is not configured. This means anyone who has the IP address of your Rancher instance will be able to use it and access the API. Your Rancher instance is open to the public! We highly recommend configuring Access Control soon after launching Rancher. Upon enabling Access Control, you can share your Rancher instance with whom you wish. They will be required to authenticate to the instance before being able to access it. The API becomes accessible only to those who have the valid API keys to the instance. 
+Access Control is how Rancher limits the users who have the access permissions to your Rancher instance. By default, Access Control is not configured. This means anyone who has the IP address of your Rancher instance will be able to use it and access the API. Your Rancher instance is open to the public! We highly recommend configuring Access Control soon after launching Rancher. Upon enabling Access Control, you can share your Rancher instance with whom you wish. They will be required to authenticate to the instance before being able to access it. The API becomes accessible only to those who have the valid API keys to the instance.
 
-The first account that authenticates with Rancher will become the **admin** of the account. For more information, see [permissions of an admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#admin). 
+The first account that authenticates with Rancher will become the **admin** of the account. For more information, see [permissions of an admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#admin).
 
 ### Enabling Access Control
 
 In the **Admin** tab, click **Access Control**.
 
-After authenticating your Rancher instance, Access Control will be considered enabled. With Access Control enabled, you will be able to manage different [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) and share them with different groups of people. 
+After authenticating your Rancher instance, Access Control will be considered enabled. With Access Control enabled, you will be able to manage different [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) and share them with different groups of people.
 
 When Access Control is enabled, the API is locked and requires either being authenticated as a user or by using an [API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/) to access it.
 
@@ -32,11 +34,11 @@ Select the **Azure AD** icon. Fill in the sections and authenticate Rancher by c
 
 #### GitHub
 
-Select the **GitHub** icon and follow the directions in the UI to register Rancher as a GitHub application. After clicking **Authenticate with GitHub**, Access Control is enabled and you are automatically logged into Rancher with your GitHub login credentials and as an admin of Rancher. 
+Select the **GitHub** icon and follow the directions in the UI to register Rancher as a GitHub application. After clicking **Authenticate with GitHub**, Access Control is enabled and you are automatically logged into Rancher with your GitHub login credentials and as an admin of Rancher.
 
 #### Local Authentication
 
-Local authentication allows you to create your own set of accounts that is saved in the Rancher database. 
+Local authentication allows you to create your own set of accounts that is saved in the Rancher database.
 
 Select the **Local** icon. Create an admin user by providing the **Login Username**, **Full Name**, and **Password**. Click **Enable Local Auth** to turn on local authentication. By clicking this button, the admin is created and saved in the database. You are automatically logged into the Rancher instance as the admin account that was just created.
 
@@ -46,15 +48,15 @@ Select the **OpenLDAP** icon. If you want to use a OpenLDAP using TLS, ensure th
 
 ### Site Access
 
-Depending on your authentication type, Rancher provides different levels of site access. 
+Depending on your authentication type, Rancher provides different levels of site access.
 
 #### Active Directory/GitHub
 
-If you have authenticated with AD or GitHub, there will be 3 options available. 
+If you have authenticated with AD or GitHub, there will be 3 options available.
 
 * **Allow any valid Users** - Any user within GitHub or Active Directory would be able to access your Rancher instance. This is **not** recommended for GitHub as it would be any user in GitHub!
-* **Allow members of Environments, plus Authorized Users and Organizations** - Any user who is a member or owner of an environment will also have access to the Rancher instance as well as any user added to the _Authorized Users and Organizations_ list. 
-* **Restrict access only to Authorized Users and Organizations** - Only users who are added to the _Authorized Users and Organizations_ would have access to the Rancher instance. Even if a user has been added to an environment, they would not have access unless they are **also** added to the _Authorized Users and Organizations_ section. 
+* **Allow members of Environments, plus Authorized Users and Organizations** - Any user who is a member or owner of an environment will also have access to the Rancher instance as well as any user added to the _Authorized Users and Organizations_ list.
+* **Restrict access only to Authorized Users and Organizations** - Only users who are added to the _Authorized Users and Organizations_ would have access to the Rancher instance. Even if a user has been added to an environment, they would not have access unless they are **also** added to the _Authorized Users and Organizations_ section.
 
 Anyone with the permissions for the Rancher instance will be given [user]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/#users) permissions. They will not be able to view the **Admin** tab. You would explicitly need to change their account to be an [admin account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/#admin).
 
@@ -62,7 +64,7 @@ In order for users to view different [environments]({{site.baseurl}}/rancher/{{p
 
 #### Azure AD/OpenLDAP
 
-For Azure AD and OpenLDAP, any user that is a member of your setup will be able to access the Rancher site. 
+For Azure AD and OpenLDAP, any user that is a member of your setup will be able to access the Rancher site.
 
 #### Local Authentication
 
@@ -72,21 +74,21 @@ Once an account has been created, the admin/user can be added to any [environmen
 
 ### Account Types
 
-The account type determines whether or not an account will have access to the admin tab. For each environment in Rancher, there are [membership roles]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#membership-roles) that provide different level of access for a specific environment. 
+The account type determines whether or not an account will have access to the admin tab. For each environment in Rancher, there are [membership roles]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#membership-roles) that provide different level of access for a specific environment.
 
 #### Admin
 
-The first user that authenticates Rancher becomes an admin of Rancher. Only admins will have permissions to view the **Admin** tab. 
+The first user that authenticates Rancher becomes an admin of Rancher. Only admins will have permissions to view the **Admin** tab.
 
 When managing environment, admins have the ability to view all the [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) in Rancher even if the admin is not added as a member to the environment. In an admin's environment drop-down menu, the members will only see the environments that they are on the membership list.
 
-Admins can add other users to be an admin of Rancher. They can change a user's role on the **Admin** > **Accounts** page after the user has logged into Rancher. In the **Admin** > **Accounts** tab, click  **Edit** next to the account name and change the account type to _Admin_. Click **Save**. 
+Admins can add other users to be an admin of Rancher. They can change a user's role on the **Admin** > **Accounts** page after the user has logged into Rancher. In the **Admin** > **Accounts** tab, click  **Edit** next to the account name and change the account type to _Admin_. Click **Save**.
 
 #### Users
 
-Besides the user that authenticates Rancher, any other user will automatically be added with user permissions. They will not be able to see the **Admin** tab. 
+Besides the user that authenticates Rancher, any other user will automatically be added with user permissions. They will not be able to see the **Admin** tab.
 
-They will only be able to view the environments that they are members of. 
+They will only be able to view the environments that they are members of.
 
 ### Disabling Access Control
 

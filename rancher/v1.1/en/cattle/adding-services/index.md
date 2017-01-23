@@ -4,7 +4,9 @@ layout: rancher-default-v1.1
 version: v1.1
 lang: en
 redirect_from:
-  - rancher/v1.1/en/rancher-ui/applications/stacks/adding-services/
+  - /rancher/v1.1/en/rancher-ui/applications/stacks/adding-services/
+  - /rancher/v1.1/zh/rancher-ui/applications/stacks/adding-services/
+  - /rancher/v1.1/zh/cattle/adding-services/
 ---
 
 ## Adding Services

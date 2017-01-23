@@ -3,6 +3,8 @@ title: Adding Rackspace Hosts
 layout: rancher-default-v1.3
 version: v1.3
 lang: en
+redirect_from:
+  - /rancher/v1.3/zh/hosts/rackspace/
 ---
 
 ## Adding Rackspace Hosts

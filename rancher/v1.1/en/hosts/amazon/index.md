@@ -5,6 +5,8 @@ version: v1.1
 lang: en
 redirect_from:
   - rancher/v1.1/en/rancher-ui/infrastructure/hosts/amazon/
+  - rancher/v1.1/zh/rancher-ui/infrastructure/hosts/amazon/
+  - /rancher/v1.1/zh/hosts/amazon/
 ---
 
 ## Adding Amazon EC2 Hosts

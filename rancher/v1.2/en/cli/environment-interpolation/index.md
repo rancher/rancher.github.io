@@ -3,6 +3,8 @@ title: Environment Interpolation in Rancher CLI
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
+redirect_from:
+  - /rancher/v1.2/zh/cli/environment-interpolation/
 ---
 
 ## Environment Interpolation

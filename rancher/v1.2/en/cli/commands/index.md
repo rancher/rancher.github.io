@@ -3,6 +3,8 @@ title: Rancher CLI Commands and Options
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
+redirect_from:
+  - /rancher/v1.2/zh/cli/
 ---
 
 ## Commands and Options

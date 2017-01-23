@@ -4,7 +4,9 @@ layout: rancher-default-v1.1
 version: v1.1
 lang: en
 redirect_from:
-  - /v1.1/en/configuration/environments/
+  - /rancher/v1.1/en/configuration/environments/
+  - /rancher/v1.1/zh/configuration/environments/
+  - /rancher/v1.1/zh/environments/
 ---
 
 ## Environments

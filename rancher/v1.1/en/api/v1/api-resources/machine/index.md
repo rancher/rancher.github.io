@@ -4,6 +4,8 @@ layout: rancher-api-v1-default-v1.1
 version: v1.1
 lang: en
 apiVersion: v1
+redirect_from:
+  - /rancher/v1.1/zh/api/v1/api-resources/machine/
 ---
 
 ## Machine
@@ -51,7 +53,7 @@ Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{p
 ### Operations
 {::options parse_block_html="true" /}
 <a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/machines</code></span></span>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/machines</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
@@ -142,15 +144,15 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"plan": "baremetal_1",
 		"projectId": ""
 	}
-}' 'http://${RANCHER_URL}:8080/v1/machines'
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/machines'
 {% endhighlight %}
 </div></div>
 <a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/machines/${ID}</code></span></span>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/projects/${PROJECT_ID}/machines/${ID}</code></span></span>
 <div class="action-contents"> {% highlight json %}
 curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X DELETE \
-'http://${RANCHER_URL}:8080/v1/machines/${ID}'
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/machines/${ID}'
 {% endhighlight %}
 </div></div>
 

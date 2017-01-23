@@ -3,7 +3,8 @@ title: Quick Start Guide
 layout: rancher-default-v1.2
 version: v1.2
 lang: en
-
+redirect_from:
+  - /rancher/v1.2/zh/quick-start-guide/
 ---
 
 ## Quick Start Guide
