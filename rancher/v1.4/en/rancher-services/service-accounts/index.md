@@ -3,8 +3,6 @@ title: Service Accounts in Rancher
 layout: rancher-default-v1.4
 version: v1.4
 lang: en
-redirect_from:
-  - /rancher/v1.4/zh/rancher-services/service-accounts/
 ---
 
 ## Service Accounts
