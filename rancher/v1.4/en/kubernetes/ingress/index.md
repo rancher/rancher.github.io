@@ -464,3 +464,52 @@ spec:
 ```
 
 In our configuration, the `defaults` and `global` keywords identify the customizable sections and should be followed by a new line. Every parameter in these sections should be followed by a new line.
+
+
+#### Example of a Global Load Balancer
+
+You can set up a ingress that is launched using as many load balancers as there are hosts, i.e. each host has one load balancer. 
+
+Example `global-ingress.yml`
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test
+  annotations:
+    config: "defaults\n balance source\nglobal\nmaxconnrate 60"
+    io.rancher.scheduler.global: "true" # This annotation allows the ability to create load balancers on every host
+spec:
+  backend:
+    serviceName: nginx-service
+    servicePort: 80
+```
+
+**Note:** the annotation in the ingress config yaml (`io.rancher.scheduler.global=true`). This will create the lb service on every host.
+
+#### Example of a Load Balancer configured to be run on a particular host
+
+
+Ensure that you have more than one host added to rancher, label the hosts in rancher with names like
+
+```yaml
+host=host1
+host=host2
+```
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test
+  annotations:
+    config: "defaults\n balance source\nglobal\nmaxconnrate 60"
+    io.rancher.scheduler.affinity.host_label: "host=host1" # This annotation allows the ability to create load balancers on host with label host=host1
+spec:
+  backend:
+    serviceName: nginx-service
+    servicePort: 80
+```
+
+**Note:** the annotation in the ingress config yaml. This will create the lb service on the host with label `host=host1`.
