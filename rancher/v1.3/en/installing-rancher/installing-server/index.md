@@ -185,7 +185,7 @@ $ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB
 $ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB_NAME> --instance-port 8080 --policy-names <POLICY_NAME>
 ```
 
-* Health check can be configured to use `HTTP:80` or `HTTPS:443` using `/ping` as your path.
+* Health check can be configured to use HTTP:8080 using `/ping` as your path.
 
 > **Note:** If you are using a self signed certificate, please read more about how to [configure your ELB in AWS under our SSL section]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/basic-ssl-config/#elb).
 

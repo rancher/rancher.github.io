@@ -196,6 +196,14 @@ By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets
 
 #### Configuration Requirements for Elastic Load Balancer (ELB)
 
+* Create a new ELB (classic) and add a listener.
+  * Load Balancer Protocol: SSL
+  * Load Balancer Port: `443`
+  * Instance Protocol: TCP
+  * Instance Port: `8080` (or the port used with `--advertise-http-port` when launching Rancher server)
+
+* Add the appropriate security group and the SSL certificate
+
 * Enabling [proxy protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) mode
 
 ```
@@ -205,6 +213,4 @@ $ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB
 $ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB_NAME> --instance-port 8080 --policy-names <POLICY_NAME>
 ```
 
-* For SSL terminated at the Rancher servers: Configure ELB listener for TLS/SSL:443 for the frontend and TCP:444 for the backend instance protocol:port.
-* For SSL terminated at the ELB: Configure ELB listener for TCP:80 for the frontend and TCP:81 for the backend instance protocol:port.
-* Health check can be configured to use HTTP:80 or HTTPS:443 using `/ping` as your path.
+* Health check can be configured to use HTTP:8080 using `/ping` as your path.
