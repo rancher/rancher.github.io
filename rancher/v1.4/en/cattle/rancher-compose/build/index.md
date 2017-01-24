@@ -3,8 +3,6 @@ title: Building with AWS S3 in Rancher Compose
 layout: rancher-default-v1.4
 version: v1.4
 lang: en
-redirect_from:
-  - /rancher/v1.4/zh/cattle/rancher-compose/build/
 ---
 
 ## Building with AWS S3

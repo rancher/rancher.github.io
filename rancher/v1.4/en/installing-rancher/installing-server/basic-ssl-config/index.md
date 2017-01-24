@@ -3,8 +3,6 @@ title: Installing Rancher Server with SSL
 layout: rancher-default-v1.4
 version: v1.4
 lang: en
-redirect_from:
-  - /rancher/v1.4/zh/installing-rancher/installing-server/basic-ssl-config/
 ---
 
 ## Installing Rancher Server With SSL

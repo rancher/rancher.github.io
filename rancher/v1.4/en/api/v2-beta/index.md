@@ -21,7 +21,7 @@ Some of the resource type names used in the API do not match the current termino
 
 | UI | API | Description |
 |----|-----|-------------|
-| [Environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) | [project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/project) | A group of physical resources, such as [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/host) |
+| [Environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) | [project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/project) | A group of physical resources, such as [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host) |
 
 <br>
 In the documentation, we have used the UI term in descriptions and have provided additional disclaimers on the differences.  This confusion will be cleared up in a future version of the API.

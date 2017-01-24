@@ -3,8 +3,6 @@ title: Rancher Command Line Interface (CLI)
 layout: rancher-default-v1.4
 version: v1.4
 lang: en
-redirect_from:
-  - /rancher/v1.4/zh/cli/
 ---
 
 ## Rancher Command Line Interface

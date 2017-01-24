@@ -4,8 +4,6 @@ layout: rancher-api-v1-default-v1.4
 version: v1.4
 lang: en
 apiVersion: v1
-redirect_from:
-  - /rancher/v1.4/zh/api/v1/
 ---
 
 ## How to use the API
@@ -19,8 +17,8 @@ Some of the resource type names used in the API do not match the current termino
 
 | UI | API | Description |
 |----|-----|-------------|
-| [Environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) | [project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/project) | A group of physical resources, such as [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/host) |
-| [Stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/stacks/) | [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/environment) | An (API) environment is a group of services and the level at which Rancher Compose operates. |
+| [Environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) | [project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/project) | A group of physical resources, such as [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host) |
+| [Stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/stacks/) | [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/environment) | An (API) environment is a group of services and the level at which Rancher Compose operates. |
 
 In the documentation, we have used the UI term in descriptions and have provided additional disclaimers on the differences.  This confusion will be cleared up in a future `/v2` of the API.
 
