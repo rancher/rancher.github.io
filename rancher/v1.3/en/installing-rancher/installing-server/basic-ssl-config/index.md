@@ -178,9 +178,42 @@ After Rancher is launched with these settings, the UI will be up and running at 
 
 Before [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/), you'll need to properly configure [Host Registration]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#host-registration) for SSL.
 
-### Running Rancher Server Behind an ALB in AWS with SSL
+<a id="alb"></a>
 
-We recommend using an Application Load Balancer (ALB) in AWS over using an ELB. With an ALB, you will only need to direct the traffic to port `8080`. If you choose to use an ELB, you will need to enable [proxy protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) mode.
+### Running Rancher Server Behind an Application Load Balancer (ALB) in AWS with SSL
+
+We recommend using an Application Load Balancer (ALB) in AWS over using an Elastic Load Balancer (ELB). With an ALB, you will only need to direct the traffic to the advertised port (`--advertise-http-port`), which is by default `8080`.
+
+> **Note**: If you use an ALB with Kuberenetes, `kubectl exec` will not work and for that functionality, you will need to use an ELB.
+
+<a id="elb"></a>
+
+### Running Rancher Server Behind an Elastic Load Balancer (ELB) in AWS with SSL
+
+_Supported as of v1.3.3+_
+
+By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher’s websockets to work.
+
+#### Configuration Requirements for Elastic Load Balancer (ELB)
+
+* Create a new ELB (classic) and add a listener.
+  * Load Balancer Protocol: SSL
+  * Load Balancer Port: `443`
+  * Instance Protocol: TCP
+  * Instance Port: `8080` (or the port used with `--advertise-http-port` when launching Rancher server)
+
+* Add the appropriate security group and the SSL certificate
+
+* Enable [proxy protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) mode
+
+```
+$ aws elb create-load-balancer-policy --load-balancer-name <LB_NAME> --policy-name <POLICY_NAME> --policy-type-name ProxyProtocolPolicyType --policy-attributes AttributeName=ProxyProtocol,AttributeValue=true
+$ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB_NAME> --instance-port 81 --policy-names <POLICY_NAME>
+$ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB_NAME> --instance-port 444 --policy-names <POLICY_NAME>
+$ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB_NAME> --instance-port 8080 --policy-names <POLICY_NAME>
+```
+
+* Health check can be configured to use HTTP:8080 using `/ping` as your path.
 
 ### Using Self Signed Certs (Beta)
 
