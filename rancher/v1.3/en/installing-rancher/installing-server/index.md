@@ -17,6 +17,8 @@ Rancher is deployed as a set of Docker containers. Running Rancher is as simple 
 * [Rancher Server - Single Container (non-HA) - External database](#single-container-external-database)
 * [Rancher Server - Single Container (non-HA)- Bind mounted MySQL volume](#single-container-bind-mount)
 * [Rancher Server - Full Active/Active HA](#multi-nodes)
+* [Rancher Server - Using ALB in AWS](#alb)
+* [Rancher Server - Using ELB in AWS](#elb)
 * [Rancher Server - AD/OpenLDAP using TLS](#ldap)
 * [Rancher Server - HTTP Proxy](#http-proxy)
 
@@ -159,6 +161,33 @@ Running Rancher server in High Availability (HA) is as easy as running [Rancher 
 #### Notes on the Rancher Server Nodes in HA
 
 If the IP of your Rancher server node changes, your node will no longer be part of the Rancher HA cluster. You must stop the old Rancher server container using the incorrect IP for `--advertise-address` and start a new Rancher server with the correct IP for `--advertise-address`.
+
+<a id="alb"></a>
+
+### Running Rancher Server Behind an Application Load Balancer (ALB) in AWS
+
+We recommend using an Application Load Balancer (ALB) in AWS over using an Elastic Load Balancer (ELB). With an ALB, you will only need to direct the traffic to the advertised port (`--advertise-http-port`), which is by default `8080`.
+
+<a id="elb"></a>
+
+### Running Rancher Server Behind an Elastic Load Balancer (ELB) in AWS
+
+If you choose to use an ELB, you will need to enable proxy protocol mode. By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher’s websockets to work.
+
+#### Configuration Requirements for Elastic Load Balancer (ELB)
+
+* Enabling [proxy protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) mode
+
+```
+$ aws elb create-load-balancer-policy --load-balancer-name <LB_NAME> --policy-name <POLICY_NAME> --policy-type-name ProxyProtocolPolicyType --policy-attributes AttributeName=ProxyProtocol,AttributeValue=true
+$ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB_NAME> --instance-port 81 --policy-names <POLICY_NAME>
+$ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB_NAME> --instance-port 444 --policy-names <POLICY_NAME>
+$ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB_NAME> --instance-port 8080 --policy-names <POLICY_NAME>
+```
+
+* Health check can be configured to use `HTTP:80` or `HTTPS:443` using `/ping` as your path.
+
+> **Note:** If you are using a self signed certificate, please read more about how to [configure your ELB in AWS under our SSL section]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/basic-ssl-config/#elb).
 
 <a id="ldap"></a>
 
