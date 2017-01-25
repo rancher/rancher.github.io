@@ -84,6 +84,8 @@ service "nginx-service" created
 replicationcontroller "nginx-service" created
 ```
 
+<a id="simple-ingress"></a>
+
 #### Setting up a Simple Ingress Resource
 
 You can set up a simple ingress resource for the single service.
@@ -205,6 +207,8 @@ service "nginx-service-2" created
 replicationcontroller "nginx-service-2" created
 ```
 
+<a id="host-based-routing"></a>
+
 #### Setting up a Ingress Resource with Host Based Routing
 
 Example `host-based-ingress.yml`
@@ -253,6 +257,7 @@ The `address` in the ingress will be the public endpoint of where the load balan
 
 To access your application, you can hit the address at our default port `80` (i.e. `http://1.2.3.4:80`) or the address directly (i.e. `http://1.2.3.4`).
 
+<a id="path-based-routing"></a>
 
 #### Setting up a Ingress Resource with Path Based Routing
 
@@ -305,6 +310,15 @@ To access your application, you can hit the address at our default port `80` (i.
 ### Load Balancer Options with Kubernetes Ingress
 
 By default, a Kubernetes ingress will deploy 1 load balancer on only 1 host using http/https on default ports `80`/`443`. Rancher has added the ability to support multiple load balancers using the port of your choice. By scaling the ingress, the address programmed in Kubernetes will also reflect all the hosts that have the load balancer available.
+
+#### Examples:
+
+* [Multiple Load Balancers using a Different Port](#scale-and-other-port)
+* [Using TLS](#tls)
+* [Blocking HTTP](#blocking-http)
+* [Custom HAProxy](#custom-haproxy)
+* [Load Balancers scheduled on all Hosts](#scheduled-globally)
+* [Load Balancers scheduled on a specific Host](#host-scheduling)
 
 > **Note:** If you choose to increase the scale of your ingress, you will need to ensure that there are at least the equivalent number of hosts available in your Kubernetes environment that have the port available.
 
@@ -360,6 +374,7 @@ $ kubectl create -f nginx-service.yml
 service "nginx-service" created
 replicationcontroller "nginx-service" created
 ```
+<a id="scale-and-other-port"></a>
 
 #### Example of 2 Load Balancers using an Alternative Port
 
@@ -373,7 +388,9 @@ kind: Ingress
 metadata:
   name: scaledlb
   annotations:
+    # Scaling to 2 load balancer instances
     scale: "2"
+    # Using a different port (not 80)
     http.port: "99"
 spec:
   backend:
@@ -393,6 +410,8 @@ $ kubectl get ingress
 NAME       RULE      BACKEND            ADDRESS             AGE
 simplelb   -         nginx-service:90   1.2.3.4,5.6.7.8     41s
 ```
+
+<a id="tls"></a>
 
 #### Example using TLS
 
@@ -421,6 +440,8 @@ Let's create the ingress using `kubectl`. After you create the ingress, the ingr
 
 From `kubectl`, you can see the ingress created, but the UI will only show the load balancer. The ingress controller has already done all the translations of the requests in the ingress to a Rancher load balancer.
 
+<a id="blocking-http"></a>
+
 ##### Blocking HTTP
 
 By default, port `80` is accessible even if a TLS is being used. In order to block port `80`, you can add in additional annotation `allow.http: "false"` as part of the ingress template.
@@ -443,6 +464,7 @@ spec:
     serviceName: nginx-service
     servicePort: 90
 ```
+<a id="custom-haproxy"></a>
 
 #### Example customization
 
@@ -456,6 +478,7 @@ kind: Ingress
 metadata:
   name: customlb
   annotations:
+    # Customizing HAProxy in the load balancer
     config: "defaults\nbalance source\ntimeout server 70000\nglobal\nmaxconnrate 60"
 spec:
   backend:
@@ -465,6 +488,7 @@ spec:
 
 In our configuration, the `defaults` and `global` keywords identify the customizable sections and should be followed by a new line. Every parameter in these sections should be followed by a new line.
 
+<a id="scheduled-globally"></a>
 
 #### Example of a Load Balancer Scheduled on All Hosts
 
@@ -478,7 +502,6 @@ kind: Ingress
 metadata:
   name: globallb
   annotations:
-    config: "defaults\n balance source\nglobal\nmaxconnrate 60"
     # Create load balancers on every host in the environment
     io.rancher.scheduler.global: "true"
 spec:
@@ -486,6 +509,8 @@ spec:
     serviceName: nginx-service
     servicePort: 80
 ```
+
+<a id="host-scheduling"></a>
 
 #### Example of Scheduling a Load Balancer on a Host
 
@@ -497,7 +522,6 @@ kind: Ingress
 metadata:
   name: scheduledlb
   annotations:
-    config: "defaults\n balance source\nglobal\nmaxconnrate 60"
     # Search for a host that has label foo=bar and schedule the load balancer on that host.
     io.rancher.scheduler.affinity.host_label: "foo=bar"
 spec:
