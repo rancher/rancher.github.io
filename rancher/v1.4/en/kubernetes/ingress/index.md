@@ -466,9 +466,9 @@ spec:
 In our configuration, the `defaults` and `global` keywords identify the customizable sections and should be followed by a new line. Every parameter in these sections should be followed by a new line.
 
 
-#### Example of a Global Load Balancer
+#### Example of a Load Balancer Scheduled on All Hosts
 
-You can set up a ingress that is launched using as many load balancers as there are hosts, i.e. each host has one load balancer. 
+You can schedule load balancers to be launched on all hosts in an environment. These global load balancers can be scheduled using an annotation (i.e. `io.rancher.scheduler.global: "true"`).
 
 Example `global-ingress.yml`
 
@@ -476,40 +476,32 @@ Example `global-ingress.yml`
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: test
+  name: globallb
   annotations:
     config: "defaults\n balance source\nglobal\nmaxconnrate 60"
-    io.rancher.scheduler.global: "true" # This annotation allows the ability to create load balancers on every host
+    # Create load balancers on every host in the environment
+    io.rancher.scheduler.global: "true"
 spec:
   backend:
     serviceName: nginx-service
     servicePort: 80
 ```
 
-**Note:** the annotation in the ingress config yaml (`io.rancher.scheduler.global=true`). This will create the lb service on every host.
+#### Example of Scheduling a Load Balancer on a Host
 
-#### Example of a Load Balancer configured to be run on a particular host
-
-
-Ensure that you have more than one host added to rancher, label the hosts in rancher with names like
-
-```yaml
-host=host1
-host=host2
-```
+You can schedule load balancers to specific hosts in an environment. To schedule your load balancers to specific hosts, you would need to add labels to the host. A label on a host is a key value pair. For example, you could have a host with a label `foo=bar`.
 
 ```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: test
+  name: scheduledlb
   annotations:
     config: "defaults\n balance source\nglobal\nmaxconnrate 60"
-    io.rancher.scheduler.affinity.host_label: "host=host1" # This annotation allows the ability to create load balancers on host with label host=host1
+    # Search for a host that has label foo=bar and schedule the load balancer on that host.
+    io.rancher.scheduler.affinity.host_label: "foo=bar"
 spec:
   backend:
     serviceName: nginx-service
     servicePort: 80
 ```
-
-**Note:** the annotation in the ingress config yaml. This will create the lb service on the host with label `host=host1`.
