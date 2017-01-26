@@ -529,3 +529,44 @@ spec:
     serviceName: nginx-service
     servicePort: 80
 ```
+
+<a id="only-local-scheduling"></a>
+
+#### Example of creating a load balancer that only routes to local backends
+
+You can schedule load balancers to only route traffic to backends present on the host on which the loadbalancer is deployed. This is done using an annotation `io.rancher.lb_service.target: "only-local"`. If there are no backends on the host, then the loadbalancer does not route the traffic to any other available backends (on other hosts) in this mode.
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: onlylocallb
+  annotations:
+    # route to backends only on hosts where the lb is deployed 
+    io.rancher.lb_service.target: "only-local"
+spec:
+  backend:
+    serviceName: nginx-service
+    servicePort: 80
+```
+
+<a id="prefer-local-scheduling"></a>
+
+#### Example of creating a load balancer that preferrably routes to local backends
+
+You can schedule load balancers to only route traffic to backends present if there are backends on the host, otherwise choose backends on other hosts than which the loadbalancer is deployed. This is done using an annotation `io.rancher.lb_service.target: "prefer-local"`. 
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: onlylocallb
+  annotations:
+    # route to backends only on hosts where the lb is deployed if available, else route to 
+    # backends on other hosts 
+    io.rancher.lb_service.target: "prefer-local"
+spec:
+  backend:
+    serviceName: nginx-service
+    servicePort: 80
+```
