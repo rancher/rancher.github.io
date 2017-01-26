@@ -61,7 +61,7 @@ upstream rancher {
 }
 
 server {
-    listen 443 ssl;
+    listen 443 ssl spdy;
     server_name <server>;
     ssl_certificate <cert_file>;
     ssl_certificate_key <key_file>;
