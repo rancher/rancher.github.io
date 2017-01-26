@@ -47,7 +47,7 @@ If you are converting an existing Rancher instance, the upgrade to the new Ranch
 
 ### Example Nginx Configuration
 
-Here is the minimum NGINX configuration that will need to be configured. You should customize your configuration to meet your needs.
+Here is the minimum NGINX configuration that will need to be configured. You should customize your configuration to meet your needs. Ensure that you use nginx version >= 1.9.5.
 
 #### Notes on the Settings
 
@@ -61,7 +61,7 @@ upstream rancher {
 }
 
 server {
-    listen 443 ssl;
+    listen 443 ssl spdy;
     server_name <server>;
     ssl_certificate <cert_file>;
     ssl_certificate_key <key_file>;
