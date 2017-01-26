@@ -1,8 +1,8 @@
-#  Webhook Service </h1>
+##  Webhook Service
 
 Rancher now provides webhook service. Webhooks provide the application with real-time data. So your application doesn't have to keep polling for a particular event to happen, the webhook will notify your application once the event occurs. In 1.4, we have implemented scaling up and down of services using webhooks. Changing the scale of a service would otherwise involve API calls, but now a webhook can be added to do the required action (scale up/scale down). This can be used for autoscaling of a service by integrating with an external monitoring system.
 
-<h2> Webhook creation </h2>
+### Webhook creation 
 
 - Webhooks can be added by selecting `Webhooks` from the dropdown on the `API` tab on Rancher UI. ([rancher_server]:8080/env/[envId]/api/hooks)
 - All existing webhooks for the current environment will be listed here. 
@@ -10,13 +10,13 @@ Rancher now provides webhook service. Webhooks provide the application with real
 - The webhook gets created and listed on Webhooks page. A POST request to the Trigger URL is what will actually execute the scaling up/down of the service. The options button is right next to it, and includes options for cloning and deleting the webhook.
 - Once the webhook is active, copy the Trigger URL to use with a monitoring service.
 
-<h2> Webhook drivers </h2>
+### Webhook drivers 
 
 - Webhook service has drivers for different actions. These drivers execute cattle API calls for the corresponding actions.
 - The trigger URL obtained after creating a webhook consists of an API endpoint and a token. This token is a JWT containing JSON payload for the driver.
 - Currently there's one driver for changing the scale of a service, we plan on adding more drivers, for example adding/removing a host, redeploying a service.
 
-<h2> Implementing autoscaling using Webhooks </h2>
+### Implementing autoscaling using Webhooks 
 
 We have implemented autoscaling using webhooks, by integrating with external services such as Prometheus and Alertmanager. </br>
 
