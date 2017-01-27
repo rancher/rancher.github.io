@@ -46,7 +46,7 @@ By using a receiver hook to scale services, you can implement autoscaling by int
 
 Prometheus is offered through the [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) and can be found under the **Catalog**. Select **Prometheus** and launch the catalog entry. Within the Prometheus stack, find the service called `prometheus`, which is exposed on port `9000`. Exec into the container and update the `/etc/prom-conf/prometheus.yml` file to add a file for alerts. After the alerts have been added, restart the service.
 
-Example Alert in `/etc/prom-conf/prometheus.yml`
+####### Example Alert in `/etc/prom-conf/prometheus.yml`
 
 ```yaml
 ALERT CpuUsageSpike
@@ -65,7 +65,7 @@ ANNOTATIONS {
 
 In order to call the receiver hook, Alertmanager will need to be launched. You can add it to the Prometheus stack. Click on **Add Service** in the Prometheus stack. Use the `prom/alertmanager` to add a service. Make sure to map port `9093:9093` when adding the service. After the service has started, exec into the container to update the `etc/alertmanager/config.yml`. In the file, add the URL of the webhook so that it will send a `POST` request to the URL when the alert is fired. After the file is updated with the URL information, restart the service.
 
-Example `etc/alertmanager/config.yml`
+###### Example `etc/alertmanager/config.yml`
 
 ```yaml
 route:
