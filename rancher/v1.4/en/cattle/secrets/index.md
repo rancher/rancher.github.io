@@ -5,75 +5,95 @@ version: v1.4
 lang: en
 ---
 
-## Secrets
+## Secrets - Experimental
 ---
 
-In Rancher 1.4 Rancher Secrets are being introduced as an experimental feature. A user can now create named secrets for use in their containers. Rancher interfaces with an encryption backend, either a local key AES or Vault Transit, to securely store the values within in Rancher. 
+Rancher has introduced the ability to create named secrets to be used in containers. Rancher interfaces with an encryption backend, by using either a local AES (Advanced Encryption Standard) key or [Vault Transit](https://www.vaultproject.io/docs/secrets/transit/), to securely store the values within Rancher. 
 
+### Encryption Backend Configuration
 
-### Configuration
+By default, Rancher server is configured to use a locally stored AES256 encryption key to perform the encryption of secrets. These encrypted values are stored in the MySQL database that Rancher server uses. 
 
-By default Rancher server has the local key backend enabled. This will use a locally stored AES256 encryption key to perform the encryption of secrets. The encrypted values are then stored in the Rancher MySQL database.
+#### Using Vault Transit
 
-Alternatively, you could configure the encryption service to use Vault Transit to perform the encryption. To use Vault, you will first need to mount the Vault transit backend, create a key named `rancher`, and a token that can encrypt/decrypt using that key.
+Instead of using the locally stored key, Racnher can be configured to use [Vault Transit](https://www.vaultproject.io/docs/secrets/transit/) to perform the encryption. 
 
-To configure Vault as the Rancher backend, you need to alter the Docker run command of `rancher/server` command line to:
+##### Installing Rancher Server using Vault Transit
 
+Prior to installing Rancher Server, there are a couple of pre-requisites that need to be completed with Vault Transit: 
+
+* Install the Vault transit backend on the host that will be running Rancher server
+* Using Vault Transit, create a key named `rancher`
+* Using Vault Transit, create a token that can encrypt/decrypt using the `rancher` key
+  * This token must be scoped with a policy for Rancher server to use the following Vault Transit endpoints. The `<KEY>` in this list is the `rancher` key that was created.
+      ```
+      >  transit/random/<KEY>
+      > 
+      >  transit/hmac/<KEY>
+      > 
+      >  transit/encrypt/<KEY>
+      > 
+      >  transit/decrypt/<KEY>
+      >  
+      >  transit/verify/<KEY>
+      ```
+     
+
+After these have been completed, you can launch Rancher server and add environment variables to the command to connect to Vault. 
+
+```bash
+$ docker run -d --restart=unless-stopped -p 8080:8080 \
+    -e VAULT_ADDR=https://<VAULT_SERVER> -e VAULT_TOKEN=<TOKEN_FOR_VAULT_ACCCESS> rancher/server
 ```
-docker run -d --restart unless-stopped -p 8080:8080 -e VAULT_ADDR=https://<vault_server> -e VAULT_TOKEN=<token_for_vault_access> rancher/server
-```
 
-Once the server is up and running, on the Admin-Settings tab under `Advanced` change the value of `secrets.backend` from `localkey` to `vault`
-> Note: as of this time you can not switch between backend. 
+> **Note:** Verify that you are running the desired [Rancher server tag]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#rancher-server-tags).
 
-> Note: The token used for the Vault backend should be scoped with a policy to just the Rancher servers use of Vault Transit endpoints for:
-> 
->  transit/random/_key_
-> 
->  transit/hmac/_key_
-> 
->  transit/encrypt/_key_
-> 
->  transit/decrypt/_key_
-> 
->  transit/verify/_key_
-> 
-> Where _key_ will need to be `rancher` at this time.
+Once Rancher server is up, you will need to configure a setting within Rancher. Under **Admin** -> **Settings** -> **Advanced**, update the `secrets.backend` value. By default, it will have `localkey` and it needs to be changed to `vault`. 
 
-In order to consume secrets in containers, you need to launch the `Rancher Secrets` experimental catalog entry in the 'Library' catalog. Otherwise, you can create secrets, but you can't consume them.
+> **Note:** Currently, Rancher does not support switching between encryption backend types. 
 
 ### Creating Secrets
 
-Secrets are created and scoped at an environment level. Applications can share these secrets, for instance a database password `db_password` can be used in both the database container and the Wordpress container. 
+Secrets are created and scoped at an environment level. Any containers can share the same secrets. For example, a database password, i.e. `db_password`, can be used in a database container and a Wordpress container. 
 
-To create a secret from the UI go to the Infrastructure->Secrets tab. There you can create a key value pair for the secret. 
+Currently, secrets can only be created in the UI, but Rancher is looking to add in CLI support. 
 
-Secrets can not be edited or updated. In order to update a secret the user has to create a new, or delete/recreate the password and redeploy the services with the updated secret.
+Go to **Infrastructure** -> **Secrets**. Create a key value pair for a secret. 
 
-Deleting the secret in Rancher does not remove the secret or file from the host.
+Once a secret is created, it **cannot** be edited or updated. If you need to change an existing secret, the only way to do so is to delete the secret. You can create either a brand new key value pair or use the same key with a new value. After the secret has been updated, any services using the secret will need to be re-launched with the updated secret. 
+
+### Deleting Secrets
+
+Secrets can be deleted from Rancher, but it does remove the secret (i.e. file) from the _??host (or container or both)??_.
+
+### Enabling Secrets in Containers
+
+In order to consume secrets in containers, the `Rancher Secrets` service will need to be launched. This service can be deployed by either adding it to [environment templates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template) so that it's deployed on all [environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) or by launching it directly from the [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/). If you are adding this service to an existing environment, navigate to **Catalog** -> **Library** and search for the `Rancher Secrets` entry. Without launching this catalog entry, you will only be able create secrets, but not be able to use them in your containers.
 
 ### Adding Secrets to Services/Containers
 
-Rancher secrets largely lines up with the UX of Docker secrets API. 
+When secrets are added to a container, the secrets are written to a tmpfs volume mounted at `/run/secrets` inside the container. The filename will be either the secret name or the aliased name. The file is written in designated file mode (default: `0444`), UID (default: `0`) and GID (default: `0`). 
 
-> Note: Support in the CLI is coming in a future release.
+Secrets can be added into a service/container under the **Secrets** tab during service/container creation. 
 
-Within the UI, on the create container or create service modal there is now a `Secrets` tab. 
+* Select **Add Secret**
+* The list of available secrets that have been created in Rancher are in a drop down menu. Select the secret that you'd like to use. 
+* (Optional) Input a filename for the secrets file.
+* (Optional) If the default file mode needs to be modified, click the **Customize file ownership & permissions** link. The Mode, UID and GID can be updated.
 
-* Select Add Secret
-* Select the secret from the drop down
-* You can optionaly set the name of the file it will be written to.
-* If you need finer grained controls click the `customize file ownership & permissions` link. There you can set UID, GID and Mode for the file.
+Click **Create**. 
 
-Click `Create`
+### Docker Hub Images
 
-The Secret will be written to a tmpfs volume mounted at `/run/secrets` inside the container. The filename will be either the secret name or the aliased name. And it will be writen with the designated file mode (default: 0444), UID (default: 0) and GID (default: 0)
+There are many popular images in the Docker Hub library that support environment variables with an additional `_FILE`. 
 
-If you are using images from the Docker Hub Library, there is support in popular images to give the environment variable with an additional `_FILE`. For example when launching the MySQL container you can set enviornment variables like so:
+For example, when launching a MySQL container you can set enviornment variables to:
 
 `-e MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db_password`
 
-The `MYSQL_ROOT_PASSWORD` env var will use the value from the file. 
+By providing the location of the file, the `MYSQL_ROOT_PASSWORD` environment variable will use the value from the file. WHAT DOES THE KEY NEED TO BE IN THIS CASE?
+
+> **Note:** CLI currently does not support using secrets in containers. 
 
 ### Security Threat Model
 
