@@ -3,14 +3,22 @@ title: Network Policy in Rancher
 layout: rancher-default-v1.4
 version: v1.4
 lang: en
-#redirect_from:
-#  - /rancher/latest/en/rancher-services/network-policy/
 ---
 
 ## Network Policy
 ---
 
-Rancher allows users to configure a network policy within an [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments). Currently the ability to edit the network policy is available only through the REST API and support to edit it from the UI will be added in the next release. For the configured network policy to take effect, "Network Policy Manager" catalog item needs to be deployed from the [Rancher Infrastructure Services]({{site.baseurl}}/rancher/v1.4/en/rancher-services/). This service is not enabled by default in the templates. Either the stack is installed manually in the existing environment or a new environment template has to be created with the stack enabled.
+Rancher allows users to configure a network policy within an [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/). A network policy allows you to define specific networking rules within the environment. By default, all containers are able to communicate with each other, but there may be restrictions that you want to place on your containers. 
+
+### Launching the Network Policy Manager
+
+When setting up an [environment template]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template), you can enable the **Network Policy Manage** item. 
+
+Alternatively, if you already have an environment set up, you can select and launch the **Network Policy Manager** from the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/).
+
+> **Note:** Network Policy Manager is currently only compatible with an environment using the _Cattle_ container orchestration. Environment templates will restrict which ones are compatible based on orchestration, but all options are available from the catalog.
+
+### 
 
 In this release, there are two different kinds of rules available for configuration of the network policy along with the default action if there is no specific match. [ Note: More rule types are coming soon in the next releases]
 
