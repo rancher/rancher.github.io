@@ -14,7 +14,7 @@ Rancher allows users to configure a network policy within an [environment]({{sit
 
 In this release, there are two different kinds of rules available for configuration of the network policy along with the default action if there is no specific match. [ Note: More rule types are coming soon in the next releases]
 
-Rule Type 1:
+**Rule Type 1:**
 
 ```json
 {
@@ -25,7 +25,7 @@ Rule Type 1:
 This type of rule is used to define the policy for all the containers within a stack.
 
 
-Rule Type 2:
+**Rule Type 2:**
 
 ```json
 {
@@ -37,23 +37,27 @@ Rule Type 2:
 ```
 This type of rule is used to select groups of containers within which the action is either allow/deny.
 
+The above two rules are available to be configured under 'policy' array under the 'network' object in the REST API.
 
-Default Rule Type:
+*Example:* `http://{your_rancher_server_ip}/v2-beta/projects/{project_id}/networks/{network_id}`
+
+**Default Rule Type:**
 
 ```
 "defaultPolicyAction": "allow"
 ```
 
-This type of rules specifies the default action if there are no other matching rules.
+This type of rules specifies the default action if there are no other matching rules. This rule is available directly on the 'network' object in the REST API.
 
+**Examples:**
 
-Example 1: No two containers in the environment cannot communicate with each other.
+*Example 1:* No two containers in the environment cannot communicate with each other.
 
 ```json
 "defaultPolicyAction": "deny"
 ```
 
-Example 2: Containers within the same stack are allowed to communicate but not across different stacks.
+*Example 2:* Containers within the same stack are allowed to communicate but not across different stacks.
 
 ```json
 "defaultPolicyAction": "deny"
@@ -63,7 +67,7 @@ Example 2: Containers within the same stack are allowed to communicate but not a
 }
 ```
 
-Example 3: Containers with specific label and values can communicate with eachother.
+*Example 3:* Containers with specific label and values can communicate with eachother.
 
 Let's assume we have the following set of stacks in the environment.
 
@@ -100,3 +104,5 @@ If we want to allow communication between services of the same department and re
   "action": "allow"
 }
 ```
+
+Containers of `stack_one.service_one` and `stack_two.service_two` would be able to communicate with each other but not with others because they have the same value for the specified label(`com.rancher.department`). Similarly containers of `stack_one.service_two` and `stack_three.service_one` would be able to communicate with each other. Note: Apart from these, no other containers would be able to communicate with any others.
