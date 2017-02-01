@@ -92,7 +92,7 @@ When secrets are added to a container, the secrets are written to a tmpfs volume
 
 ### Docker Hub Images
 
-There are many popular images in the official Docker Hub library that support environment variables with an additional `_FILE`. 
+There are many images in the public Docker Hub library that support environment variables with an additional `_FILE`. 
 
 For example, when launching a MySQL container you can set environment variables to:
 
