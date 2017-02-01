@@ -20,7 +20,26 @@ Alternatively, if you already have an environment set up, you can select and lau
 
 ### 
 
-In this release, there are two different kinds of rules available for configuration of the network policy along with the default action if there is no specific match. [ Note: More rule types are coming soon in the next releases]
+### Define/Edit the Network policy rules
+
+Conceptually, a Network Policy is an ordered array of rules along with a "default" policy action at the end. These rules can be added, deleted or modified using the REST API of Rancher. The **Network Policy** resource belongs to the **Network** resource, so to be able to access the policy, you need to navigate to the correct network object first and then find the policy under that.
+
+> Note: Support to define/edit the network policy rules from the UI will be added in the upcoming releases
+
+For example, if you have an environment with "IPsec" network enabled, the breadcrumb trail would be like `Projects > Project ID > Networks > Network ID of IPsec > policy`.
+
+> Note: `Environment` in the UI is `Project` in the REST API.
+
+The above two rules are available to be configured under 'policy' array under the 'network' object in the REST API.
+
+*Sample URL:* `http://{your_rancher_server_ip}/v2-beta/projects/{project_id}/networks/{network_id}`
+
+
+###Type of Rules:
+
+In this release, there are two different kinds of rules available for configuration of the network policy along with the default action if there is no specific match. 
+
+> Note: More rule types are coming soon in the next releases
 
 **Rule Type 1:**
 
@@ -45,9 +64,6 @@ This type of rule is used to define the policy for all the containers within a s
 ```
 This type of rule is used to select groups of containers within which the action is either allow/deny.
 
-The above two rules are available to be configured under 'policy' array under the 'network' object in the REST API.
-
-*Example:* `http://{your_rancher_server_ip}/v2-beta/projects/{project_id}/networks/{network_id}`
 
 **Default Rule Type:**
 
