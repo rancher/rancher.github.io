@@ -92,13 +92,13 @@ When secrets are added to a container, the secrets are written to a tmpfs volume
 
 ### Docker Hub Images
 
-There are many images in the public Docker Hub library that support environment variables with an additional `_FILE`. 
+Docker has provided support in many of their official repositories to enable passing secrets through files. To take advantage of this, append `_FILE` to the environment variable name and the value would be `/run/secrets/NAME>`. When the container starts up, the value in the file will be assigned to the environment variable. 
 
 For example, when launching a MySQL container you can set environment variables to:
 
 `-e MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db_password`
 
-By providing the location of the file, the `MYSQL_ROOT_PASSWORD` environment variable will use the value from the file. 
+The `MYSQL_ROOT_PASSWORD` environment variable will use the value from the file. 
 
 ### Known Vulnerabilities
 
