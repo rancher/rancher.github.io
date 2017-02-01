@@ -16,16 +16,18 @@ By default, Rancher server is configured to use a locally stored AES256 encrypti
 
 #### Using Vault Transit
 
-Instead of using the locally stored key, Racnher can be configured to use [Vault Transit](https://www.vaultproject.io/docs/secrets/transit/) to perform the encryption. 
+Instead of using the locally stored key, Rancher can be configured to use [Vault Transit](https://www.vaultproject.io/docs/secrets/transit/) to perform the encryption. 
 
 ##### Installing Rancher Server using Vault Transit
 
 Prior to installing Rancher Server, there are a couple of pre-requisites that need to be completed with Vault Transit: 
 
-* Install the Vault transit backend on the host that will be running Rancher server
-* Using Vault Transit, create a key named `rancher`
-* Using Vault Transit, create a token that can encrypt/decrypt using the `rancher` key
-  * This token must be scoped with a policy for Rancher server to use the following Vault Transit endpoints. The `<KEY>` in this list is the `rancher` key that was created.
+* Mount the Vault transit backend on the host that will be running Rancher server
+* Using the Vault CLI or API:
+  * Create a new encryption key named `rancher`
+  * Create a Vault access token that can encrypt/decrypt using the `rancher` key
+    * This token must be scoped with a policy for Rancher server to use the following Vault Transit endpoints. The `<KEY>` in this list is the `rancher` key that was created.
+      
       ```
       >  transit/random/<KEY>
       > 
@@ -48,7 +50,7 @@ $ docker run -d --restart=unless-stopped -p 8080:8080 \
 
 > **Note:** Verify that you are running the desired [Rancher server tag]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#rancher-server-tags).
 
-Once Rancher server is up, you will need to update the `service-backend`setting within Rancher. Under **Admin** -> **Settings** -> **Advanced Settings**, find the `secrets.backend` value. By default, it will have `localkey` and you can edit it to the value to `vault`. 
+Once Rancher server is up, you will need to update the `service-backend` setting within Rancher. Under **Admin** -> **Settings** -> **Advanced Settings**, find the `secrets.backend` value. By default, it will have `localkey` as the value. You can edit it to the value of `vault`. 
 
 > **Note:** Currently, Rancher does not support switching between encryption backend types. 
 
@@ -75,22 +77,22 @@ In order to consume secrets in containers, the `Rancher Secrets` service will ne
 Secrets can be added into a service/container under the **Secrets** tab during service/container creation. 
 
 * Select **Add Secret**
-* The list of available secrets that have been created in Rancher are in a drop down menu. Select the secret that you'd like to use. 
+* The list of available secrets that have been created in Rancher is available in a drop down. Select the secret that you'd like to use. 
 * (Optional) Input a different filename for the secrets file. By default, it will use the name of the secret for the filename. 
 * (Optional) If the default file mode needs to be modified, click the **Customize file ownership & permissions** link. The User ID, Group ID and File Mode (octal) can be updated. By default, the User ID is `0`, the Group ID is `0` and the file mode is `0444`.
 
 Click **Create**. 
 
-When secrets are added to a container, the secrets are written to two places.
+When secrets are added to a container, the secrets are written to a tmpfs volume, which can be accessible from the container and the host. 
 
-* Inside the container: A tmpfs volume is mounted at `/run/secrets/`. 
-* On the host that is running the container using the secrets: A `rancher-secret` volume is mounted on the host at `/var/lib/rancher/volumes/rancher-secrets/`.
+* Inside the container: The volume is mounted at `/run/secrets/`. 
+* On the host that is running the container using the secrets: The volume is mounted at `/var/lib/rancher/volumes/rancher-secrets/`.
 
 > **Note:** Rancher CLI currently does not support using secrets in containers. 
 
 ### Docker Hub Images
 
-There are many popular images in the Docker Hub library that support environment variables with an additional `_FILE`. 
+There are many popular images in the official Docker Hub library that support environment variables with an additional `_FILE`. 
 
 For example, when launching a MySQL container you can set environment variables to:
 
@@ -98,15 +100,15 @@ For example, when launching a MySQL container you can set environment variables 
 
 By providing the location of the file, the `MYSQL_ROOT_PASSWORD` environment variable will use the value from the file. 
 
-### Known Vulnerabilites
+### Known Vulnerabilities
 
-* Rancher server container exposes the encrption key 
+* Compromised Rancher server container
    * Secrets stored in Rancher contain the same level of trust as CI systems such as Travis CI and Drone. Since the encryption keys are stored directly in the Rancher server container, any compromise of the Rancher server should be treated as a compromise of your secret data. Rancher will be working to mitigate this condition in a future release. 
    > **Note:** If you are using Vault for your encryption, create a policy that limits the access of the token used by Rancher server. 
-* Hosts have access to the keys of the running containers
-  * Since secrets of a running container are stored in a volume on the host, a compromised host can access the secrets of all containers on the host. The attacke can not list or request additional secrets to be placed on a host. 
-* Container Acccess
-  * If a user has access to be able to execute into a container, the secrets of the container can be accessed through the volumed stored in the container. Containers can be accessed through the following methods:  
+* Compromised Host
+  * If a host is compromised, secrets of all containers on the host can be accessed. The attacker can not list or request additional secrets to be placed on a host. 
+* Container Access
+  * If a user has access to be able to execute into a container, the secrets of the container can be accessed through the volume stored in the container. Containers can be accessed through the following methods:  
     * UI Access through "Exec Shell"
     * Rancher CLI
     * Docker 
