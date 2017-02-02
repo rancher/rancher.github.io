@@ -239,6 +239,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"removed": "date",
 		"requestedHostId": "reference[host]",
 		"requestedIpAddress": "string",
+		"secrets": "array[secretReference]",
 		"securityOpt": [
 			"string1",
 			"...stringN"
@@ -625,6 +626,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"removed": "date",
 			"requestedHostId": "reference[host]",
 			"requestedIpAddress": "string",
+			"secrets": "array[secretReference]",
 			"securityOpt": [
 				"string1",
 				"...stringN"
@@ -824,6 +826,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"removed": "date",
 			"requestedHostId": "reference[host]",
 			"requestedIpAddress": "string",
+			"secrets": "array[secretReference]",
 			"securityOpt": [
 				"string1",
 				"...stringN"

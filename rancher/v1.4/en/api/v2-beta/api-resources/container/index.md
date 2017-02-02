@@ -86,6 +86,7 @@ readOnly | boolean | Optional | - | - |
 registryCredentialId | [registryCredential]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/registryCredential/) | Optional | - | - | 
 requestedHostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/) | Optional | - | - | 
 restartPolicy | [restartPolicy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/restartPolicy/) | Optional | - | - | 
+secrets | array[[secretReference]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/secretReference/)] | Optional | - | - | 
 securityOpt | array[string] | Optional | - | - | 
 shmSize | int | Optional | - | - | 
 startOnCreate | boolean | Optional | - | true | 
@@ -281,6 +282,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"maximumRetryCount": 0,
 		"name": "string"
 	},
+	"secrets": "array[secretReference]",
 	"securityOpt": [
 		"string1",
 		"...stringN"
