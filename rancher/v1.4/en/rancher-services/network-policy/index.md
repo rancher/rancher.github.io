@@ -77,7 +77,7 @@ To enable communication between containers based on their label values:
 ```json
 {
   "between": {
-    "groupBy": "<KEY_OF_LABEL"
+    "groupBy": "<KEY_OF_LABEL>"
   },
   "action": "allow"
 }
@@ -88,7 +88,7 @@ To disable communication between containers based on their label values:
 ```json
 {
   "between": {
-    "groupBy": "<KEY_OF_LABEL"
+    "groupBy": "<KEY_OF_LABEL>"
   },
   "action": "deny"
 }
@@ -115,6 +115,7 @@ Containers within the same stack are only allowed to communicate with each other
    "action": "allow"
  }
  ```
+
 #### Label Isolation
 
 Containers with matching labels can communicate with other matching labels. The rule uses the key of the label to group which containers can communicate with each other.
@@ -147,6 +148,7 @@ Communication between only containers of with the same `com.rancher.department` 
 
 * Set the `defaultActionPolicy` to `deny`.
 * Add the rule to the `policy`:
+
  ```json
  {
    "between": {
@@ -156,7 +158,8 @@ Communication between only containers of with the same `com.rancher.department` 
  }
  ```
  
-There are two distinct label pairs with the same key (i.e. `com.rancher.department`). 
+There are two distinct label pairs with the same key (i.e. `com.rancher.department`).
+
 * Containers with the `com.rancher.department = engineering` would be able to communicate with each other, but no other container. In our example, any containers from `stack_one.service_two` and `stack_three.service_one` would be able to communicate to each other, but no other containers. 
 * Containers with the `com.rancher.department = qa` would be able to communicate with each other but no other container. In this example, any containers from `stack_one.service_two` and `stack_two.service_two` would be able to communicate with each other, but no other containers. 
 * Containers without a label with a key `com.rancher.department` would not be able to communicate with any other containers. 
