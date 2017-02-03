@@ -1,4 +1,4 @@
----
+Ins---
 title: Networking in Rancher
 layout: rancher-default-v1.4
 version: v1.4
@@ -10,78 +10,58 @@ lang: en
 ## Networking
 ---
 
-Rancher offers users multiple choices of networking when launching containers. Let's first understand what these different options mean.
+Rancher implements a [CNI](https://github.com/containernetworking/cni) framework, which provides the ability to select different network drivers within Rancher. To leverage the CNI framework, an [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments) is required to use the **Network Services** infrastructure service deployed. By default, all [environment templates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template) have the **Network Services** enabled.
 
-### Networking options
-#### None
-Let's start with the simplest option, `none`. This means the container is launched with no networking enabled. This is similar to launching a container from command line with the option `--net=none`.
+Besides the **Network Services** infrastructure service,  select which type of networking plugin/driver that you'd like your services to use. In our default environment templates, we have enabled **IPsec** network driver to create a simple and secure overlay network using IPsec tunneling.
 
-> Output of `ip addr` or `ifconfig` commands inside the container do not show any network interfaces except the loopback(`lo`).
+When a network driver is launched into the environment, it automatically creates a default network. Any services using the `managed` network will be using this default network. 
 
-#### Host
-When a container is launched with `host` networking, it has access to all the networking interfaces available to host. The container and the host both share the same networking resources.
+### Differences from previous releases
+When using Rancher's IPsec networking prior to the **1.2** release, a container in the `managed` network would be assigned with both a Docker bridge IP (`172.17.0.0/16`) and a Rancher managed IP (`10.42.0.0/16`) on the default `docker0` bridge. With the adoption of the CNI framework, any container launched in `managed` network will only have the Rancher managed IP (default subnet: `10.42.0.0/16`). 
 
-> Output of `ip addr` or `ifconfig` commands inside the container and the host show the same networking interfaces.
+### Implications of using CNI
 
-#### Bridge
-Using `bridge` option means, the container is launched on the docker's default bridge. By default it is `docker0` unless the system administrator has decided to call it something else.
+The Rancher managed IP address will not be present in Docker metadata, which means it will not appear in `docker inspect`. Certain images may not work if it requires a Docker bridge IP. Any ports published on a host will not be shown in `docker ps` as Rancher manages separate IPtables for the networking.
 
-> Output of `ip addr` or `ifconfig` commands inside the container shows one network interface (`eth0`) along with the loopback interface(`lo`). The IP address of the network interface would be one from the docker's subnet. The default subnet used by docker is `172.17.0.0/16`.
+### Communication Between Containers
 
-#### Container
-When one container wants to access the network resources of another container, this option is used. The newly launched container would be able access all the network resources of the other container.
-
-> Output of `ip addr` or `ifconfig` commands inside both the containers show the same networking interfaces. The actual IP address depends on the network mode of the original container. If the original container had `bridge` mode, then the IP address would be in the docker's subnet.
-
-#### Managed
-This is the Rancher managed overlay network where containers launched on different hosts in the same environment can "magically" talk to each other. Currently Rancher offers two types of "managed" overlay networking options, IPsec and VXLAN.
-
-> Output of `ip addr` or `ifconfig` commands inside the container shows one network interface (`eth0`) along with the loopback interface. The IP address of the network interface would be one from Rancher's managed subnet (default: `10.42.0.0/16`)
-
-### Adoption of CNI (Container Network Interface) in Rancher
-
-Rancher implements a [CNI](https://github.com/containernetworking/cni) framework, which allows you to use different network drivers within Rancher. To leverage our CNI framework, your [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments) will need to have the **Network Services** infrastructure service deployed. By default, all [environment templates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template) have the **Network Services** enabled.
-
-Besides the **Network Services** infrastructure service, you select which type of networking plugin/driver that you'd like your services to use. In our default environment templates, we have enabled **IPsec** network driver to create a simple and secure overlay network using IPsec tunneling.
-
-
-#### Launching containers using `managed` network
-
-##### UI & Rancher CLI
-When a network driver is deployed into your environment, it automatically creates a default network. Any services using the `managed` network will be using this default network. By default, all services launched through the UI or Rancher CLI will be using the `managed` network. Besides selecting the `managed` network when starting a service, you could directly select a network based on the name of the network driver.
-
-##### Launching a container with `managed` network
-```
-rancher run ubuntu:14.04.3
-```
-
-##### Using native docker CLI
-
-For any containers launched directly from the Docker CLI, an extra label `--label io.rancher.container.network=true` can be used to select the `managed` network. Without this label, containers launched from the Docker CLI will be using the `bridge` network.
-
-##### Start a container with both `bridge` and `managed` networks:
-```
-docker run --label io.rancher.container.network=true ubuntu:14.04.3
-```
-
-##### Start a container with only `managed` network:
-```
-docker run --net=none --label io.rancher.container.network=true ubuntu:14.04.3
-```
-
-> **Note:** For any containers relying on any networking launched from a network driver (i.e. `managed` or based on the name of the network driver), if the network infrastructure service (e.g. `ipsec`) is deleted, then the networking will fail for that container.
-
-Most of Rancher's features, such as load balancers or DNS service, require the service to be in the `managed` network, but are not network driver dependent.
-
-
-#### Differences from previous releases
-When using Rancher's IPsec networking before **1.2** release, a container would be assigned both a Docker bridge IP (172.17.0.0/16) and a Rancher managed IP (10.42.0.0/16) on the default docker0 bridge. But with adoption of the CNI framework, any container launched in `managed` network will have **only one** IP address, from the Rancher's subnet (`10.42.0.0/16`). By default, all containers within the same environment are reachable via the managed network.
+By default, all containers within the same environment are reachable via the `managed` network. If you want to alter the communication between containers, you can set up a [network policy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/network-policy/).
 
 If you are facing issues with cross host communication, please refer to our troubleshooting [documentation]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/faqs/troubleshooting/#cross-host-communication).
 
-#### Implications of using CNI
+### Networking options
 
-The Rancher managed IP address will not be present in Docker metadata and as such will not appear in the result of a Docker "inspect." This sometimes causes incompatibilities with certain tools that require a Docker bridge IP. Also the published port information is not available in the output of `docker ps` command. We are already working with the Docker community to make sure a future version of Docker can handle overlay networks more cleanly.
+Services launched in the UI can change their networking options by navigating to the **Networking** tab when adding a service. In the UI, all options are available for services except for `container` networking. In order to use `container` networking for a service, you can use either Rancher CLI, Rancher Compose or Docker CLI to launch the container. 
+
+#### Managed
+By default, containers launched in Rancher using the UI or [Rancher CLI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cli/) use the `managed` network, which uses Rancher's managed overlay network. All containers in the `managed` network are able to communicate with each other regardless of which host the container was deployed on. Most of Rancher's features, such as load balancers or DNS service, require the service to be in the `managed` network.
+
+Inside the container, the `ip addr` or `ifconfig` commands will show one network interface (i.e. `eth0`) along with the loopback interface (i.e. `lo`). The IP address of the network interface would be one from Rancher's managed subnet. The default subnet is `10.42.0.0/16`, but can be configured to your own subnet.
+
+##### Containers created with the Docker CLI 
+For any containers launched through the Docker CLI, an extra label `--label io.rancher.container.network=true` can be used to launch the container into the `managed` network. Without this label, containers launched from the Docker CLI will be using the `bridge` network.
+
+> **Note:** For any containers relying on any networking launched from a network driver (i.e. `managed` or based on the name of the network driver), if the network infrastructure service (e.g. `ipsec`) is deleted, then the networking will fail for that container.
+
+#### None
+When a container is launched with `none` for networking, the container is launched with no networking enabled. This is equivalent to launching a container from the Docker command line with the option `--net=none`.
+
+Inside the container, the `ip addr` or `ifconfig` commands will not show any network interfaces except for the loopback (i.e. `lo`).
+
+#### Host
+When a container is launched with `host` networking, the container is launched with the same networking interfaces available to the host. This is equivalent to launching a container from the Docker command line with the option `--net=host`. 
+
+Inside the container, the `ip addr` or `ifconfig` commands will show the same networking interfaces as the host.
+
+#### Bridge
+When a container is launched with `bridge` networking, the container is launched on Docker's default bridge. By default, it is `docker0` unless the system administrator has changed it on the host. This is equivalent to launching a container from the Docker command line with the option `--net=bridge`. 
+
+Inside the container, the `ip addr` or `ifconfig` commands will show one network interface (i.e. `eth0`) along with the loopback interface (i.e. `lo`). The IP address of the network interface will be one from the Docker's subnet. The default subnet used by Docker is `172.17.0.0/16`.
+
+#### Container
+When a container is launched with networking from another container, the container is launched using the networking resources of the other container. This is equivalent to launching a container from the Docker command line with the option `--net=container:<CONTAINER_NAME>`. 
+
+Inside the container, the `ip addr` or `ifconfig` commands will show the same networking interfaces as the container that was selected. The actual IP address depends on the network mode of the original container. If the original container had `bridge` mode, then the IP address would be in the docker's subnet.
 
 ### Example of Rancher's IPSec Network Service
 
