@@ -66,6 +66,35 @@ font-family: 'Lato', sans-serif;
 .sidebar {
 }
 
+ol {
+  counter-reset: li;
+  margin: 20px 0;
+  padding-left: 0;
+}
+
+ol > li {
+    position: relative;
+    margin: 0 0 25px 2em;
+    padding: 4px 8px 4px 20px;
+    list-style: none;
+    background: #ECF0F1;
+}
+ol > li::before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    top: 0;
+    left: -2em;
+    bottom: 0;
+    width: 2em;
+    margin-right: 8px;
+    padding: 4px;
+    font-weight: bold;
+    text-align: center;
+    background: #BDC3C7;
+    color: white;
+}
+
 #menu {
   margin: 0;
   padding: 0;
@@ -251,7 +280,6 @@ pre code {
 }
 .language-bash pre code{
     padding: 9.5px;
-    margin: 0 0 10px;
     font-size: 13px;
     line-height: 1.42857143;
     word-break: break-all;
