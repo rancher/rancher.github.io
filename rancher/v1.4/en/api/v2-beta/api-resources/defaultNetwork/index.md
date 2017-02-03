@@ -16,6 +16,7 @@ apiVersion: v2-beta
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+defaultPolicyAction | enum | Optional | Yes | allow | The options are `allow`, `deny`.
 description | string | Optional | Yes | - | 
 dns | array[string] | Optional | - | - | 
 dnsSearch | array[string] | Optional | - | - | 
@@ -23,6 +24,7 @@ hostPorts | boolean | Optional | - | - |
 kind | string | Optional | - | - | 
 metadata | map[json] | Optional | Yes | - | 
 name | string | Optional | Yes | - | 
+policy | array[[networkPolicyRule]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkPolicyRule/)] | Optional | Yes | - | 
 subnets | array[[subnet]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/subnet/)] | Optional | - | - | 
 
 

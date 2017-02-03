@@ -230,6 +230,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"removed": "date",
 		"requestedHostId": "reference[host]",
 		"requestedIpAddress": "string",
+		"secrets": "array[secretReference]",
 		"securityOpt": [
 			"string1",
 			"...stringN"
@@ -282,6 +283,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"defaultNetwork": {
 			"accountId": "reference[account]",
 			"created": "date",
+			"defaultPolicyAction": "allow",
 			"description": "string",
 			"dns": [
 				"string1",
@@ -298,6 +300,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"key": "value-pairs"
 			},
 			"name": "string",
+			"policy": "array[networkPolicyRule]",
 			"removed": "date",
 			"state": "enum",
 			"subnets": "array[subnet]",
@@ -370,6 +373,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"defaultNetwork": {
 			"accountId": "reference[account]",
 			"created": "date",
+			"defaultPolicyAction": "allow",
 			"description": "string",
 			"dns": [
 				"string1",
@@ -386,6 +390,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 				"key": "value-pairs"
 			},
 			"name": "string",
+			"policy": "array[networkPolicyRule]",
 			"removed": "date",
 			"state": "enum",
 			"subnets": "array[subnet]",
@@ -858,6 +863,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"removed": "date",
 			"requestedHostId": "reference[host]",
 			"requestedIpAddress": "string",
+			"secrets": "array[secretReference]",
 			"securityOpt": [
 				"string1",
 				"...stringN"
@@ -1057,6 +1063,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"removed": "date",
 			"requestedHostId": "reference[host]",
 			"requestedIpAddress": "string",
+			"secrets": "array[secretReference]",
 			"securityOpt": [
 				"string1",
 				"...stringN"
