@@ -38,10 +38,12 @@ By default, containers launched in Rancher using the UI or [Rancher CLI]({{site.
 
 Inside the container, the `ip addr` or `ifconfig` commands will show one network interface (i.e. `eth0`) along with the loopback interface (i.e. `lo`). The IP address of the network interface would be one from Rancher's managed subnet. The default subnet is `10.42.0.0/16`, but can be configured to your own subnet.
 
+> **Note:** For any containers relying on any networking launched from a network driver (i.e. `managed` or based on the name of the network driver), if the network infrastructure service (e.g. `ipsec`) is deleted, then the networking will fail for that container.
+
 ##### Containers created with the Docker CLI 
 For any containers launched through the Docker CLI, an extra label `--label io.rancher.container.network=true` can be used to launch the container into the `managed` network. Without this label, containers launched from the Docker CLI will be using the `bridge` network.
 
-> **Note:** For any containers relying on any networking launched from a network driver (i.e. `managed` or based on the name of the network driver), if the network infrastructure service (e.g. `ipsec`) is deleted, then the networking will fail for that container.
+If you want to launch a container in **only** the `managed` network, you'd need to add `--net=none` and `--label io.rancher.container.network=true` for the container to be started without the `bridge` network.
 
 #### None
 When a container is launched with `none` for networking, the container is launched with no networking enabled. This is equivalent to launching a container from the Docker command line with the option `--net=none`.
