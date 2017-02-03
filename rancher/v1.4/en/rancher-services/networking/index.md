@@ -151,4 +151,4 @@ Different cloud providers have different MTU values in their networks. This opti
 > Rancher's IPsec overlay network has an overhead of 98 bytes.
 > `MTU of the container's network interface = MTU of the network - 98`
 
-> For example, if your cloud providers MTU is 1200 bytes then you would see an MTU of 1102 (1200 - 98 =) inside the container when you type `ip addr` or `ifconfig`
+> For example, if your cloud provider's MTU is 1200 bytes then you would see an MTU of 1102 (= 1200 - 98) inside the container when you type `ip addr` or `ifconfig`
