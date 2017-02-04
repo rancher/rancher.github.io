@@ -13,15 +13,20 @@ Rancher supports container scheduling policies that are modeled closely after Do
 * port conflicts
 * shared volumes
 * host tagging
-* shared network stack: --net=container:dependency
+* shared network stack: `--net=container:dependency`
 * strict and soft affinity/anti-affinity rules by using both env var (Swarm) and labels (Rancher)
 
 In addition, Rancher supports scheduling service triggers that allow users to specify rules, such as on "host add" or "host label", to automatically scale services onto hosts with specific labels.
 
-
-When launching containers either through a [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/) or through a [load balancer]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/), we provide the option to create labels for the container(s) and the ability to schedule which host you want the container to be placed on. For the remaining part of this section, we'll use the term service, but these labels apply load balancers (i.e. a specific type of service).
+When launching containers either through a [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/) or through a [load balancer]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/), we provide the option to create labels for the container(s) and the ability to schedule which host you want the container to be placed on. For the remaining part of this section, we'll use the term service, but these labels also apply to load balancers (i.e. a specific type of service).
 
 The scheduling rules provide flexibility on how you want Rancher to pick which host to use. In Rancher, we use labels to help define scheduling rules. You can create as many labels on a container as you’d like. With multiple scheduling rules, you have complete control on which host you want the container to be created on. You could request that the container to be launched on a host with a specific host label, container label or name, or a specific service. These scheduling rules can help create blacklists and whitelists for your container to host relationships.
+
+### Scheduling against multiple IPs of a Host
+
+By default, Rancher assumes that only the public IP of the host is available when scheduling services that exposes ports or launching load balancers. If your host has multiple IPs that could be used, the [host needs to be configured to allow the Rancher scheduler to know which IPs are available]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/).
+
+When there are multiple IPs available on the host for scheduling, Rancher will schedule against all the available scheduler IPs when a port is exposed through a service or a load balancer. The scheduler will report port conflicts after all available scheduler IPs have been allocated for that port.  
 
 ### Adding Labels in the UI
 

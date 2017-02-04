@@ -103,6 +103,22 @@ Key | Value | Description
 `io.rancher.host.linux_kernel_version` | Linux Kernel Version on Host (e.g, `3.19`) |  Version of the Linux kernel running on the host
 `io.rancher.host.docker_version` | Docker Version on the host (e.g. `1.10`) | Docker Engine Version on the host
 
+### Scheduler IPs
+
+In order to [enable the ability to expose ports on multiple IPs]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#scheduling-against-multiple-ips-of-a-host), the host needs to be configured so that Rancher is aware of which IPs are available to be scheduled against. The method to add scheduler IPs for a host depends on whether the host is already in Rancher (i.e. Rancher agent has already been launched) versus a new host (i.e. Rancher agent has yet to be launched).
+
+#### Adding Scheduler IPs to Existing Hosts
+For any existing hosts in an environment, additional IPs can be added for scheduling by adding a specific host label (`io.rancher.scheduler.ips` to the host. In the UI, click on **Edit Host** for the host, and add a **Scheduler IP**. If you want to update the host details through the API, you would add the host label `io.rancher.scheduler.ips` and list the IPs as the value in a comma separated list (i.e. `1.2.3.4, 2.3.4.5`).
+
+#### Adding Scheduler IPs for a new Host
+
+For any [custom hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) that have not been added to Rancher, an environment variable (i.e. `CATTLE_SCHEDULER_IPS`) can be added to the Rancher agent command to list the available IPs on the host.
+
+```bash
+$  sudo docker run -e CATTLE_SCHEDULER_IPS='1.2.3.4,<IP2>,..<IPN>' -d --privileged \
+    -v /var/run/docker.sock:/var/run/docker.sock rancher/agent:v0.8.2 \
+    http://<rancher-server-ip>:8080/v1/projects/1a5/scripts/<registrationToken>
+```
 
 ### Hosts behind an HTTP Proxy
 
