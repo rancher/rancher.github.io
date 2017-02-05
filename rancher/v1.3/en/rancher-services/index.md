@@ -5,7 +5,6 @@ version: v1.3
 lang: en
 redirect_from:
   - /rancher/v1.3/zh/rancher-services/
-  - /rancher/latest/en/rancher-services/
 ---
 
 ## Infrastructure Services

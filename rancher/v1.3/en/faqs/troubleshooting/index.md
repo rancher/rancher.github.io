@@ -7,8 +7,6 @@ redirect_from:
   - /rancher/v1.3/zh/faqs/
   - /rancher/v1.3/zh/faqs/troubleshooting/
   - /rancher/v1.3/en/faqs/
-  - /rancher/faqs/
-  - /rancher/faqs/troubleshooting/
 ---
 
 ## Troubleshooting FAQs

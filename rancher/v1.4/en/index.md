@@ -3,12 +3,12 @@ title: Overview of Rancher
 layout: rancher-default-v1.4
 version: v1.4
 lang: en
-#redirect_from:
-#  - /rancher/latest/zh/
-#  - /
-#  - /rancher/
-#  - /rancher/latest/
-#  - /rancher/latest/en/
+redirect_from:
+  - /rancher/latest/zh/
+  - /
+  - /rancher/
+  - /rancher/latest/
+  - /rancher/latest/en/
 ---
 
 ## Overview of Rancher

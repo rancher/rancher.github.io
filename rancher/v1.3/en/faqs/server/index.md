@@ -5,7 +5,6 @@ version: v1.3
 lang: en
 redirect_from:
   - /rancher/v1.3/zh/faqs/server/
-  - /rancher/latest/en/faqs/server/
 ---
 
 ## FAQs about Rancher Server

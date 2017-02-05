@@ -6,8 +6,8 @@ lang: en
 apiVersion: v2-beta
 redirect_from:
   - /rancher/v1.4/zh/api/v2-beta/
-#  - /rancher/latest/en/api/
-#  - /rancher/api/
+  - /rancher/latest/en/api/
+  - /rancher/api/
 ---
 
 ## How to use the API

@@ -3,8 +3,8 @@ title: Networking in Rancher
 layout: rancher-default-v1.4
 version: v1.4
 lang: en
-#redirect_from:
-#  - /rancher/latest/en/rancher-services/networking/
+redirect_from:
+  - /rancher/latest/en/rancher-services/networking/
 ---
 
 ## Networking
@@ -14,10 +14,10 @@ Rancher implements a [CNI](https://github.com/containernetworking/cni) framework
 
 Besides the **Network Services** infrastructure service,  select which type of networking plugin/driver that you'd like your services to use. In our default environment templates, we have enabled **IPsec** network driver to create a simple and secure overlay network using IPsec tunneling.
 
-When a network driver is launched into the environment, it automatically creates a default network. Any services using the `managed` network will be using this default network. 
+When a network driver is launched into the environment, it automatically creates a default network. Any services using the `managed` network will be using this default network.
 
 ### Differences from previous releases
-When using Rancher's IPsec networking prior to the **1.2** release, a container in the `managed` network would be assigned with both a Docker bridge IP (`172.17.0.0/16`) and a Rancher managed IP (`10.42.0.0/16`) on the default `docker0` bridge. With the adoption of the CNI framework, any container launched in `managed` network will only have the Rancher managed IP (default subnet: `10.42.0.0/16`). 
+When using Rancher's IPsec networking prior to the **1.2** release, a container in the `managed` network would be assigned with both a Docker bridge IP (`172.17.0.0/16`) and a Rancher managed IP (`10.42.0.0/16`) on the default `docker0` bridge. With the adoption of the CNI framework, any container launched in `managed` network will only have the Rancher managed IP (default subnet: `10.42.0.0/16`).
 
 ### Implications of using CNI
 
@@ -31,7 +31,7 @@ If you are facing issues with cross host communication, please refer to our trou
 
 ### Networking options
 
-Services launched in the UI can change their networking options by navigating to the **Networking** tab when adding a service. In the UI, all options are available for services except for `container` networking. In order to use `container` networking for a service, you can use either Rancher CLI, Rancher Compose or Docker CLI to launch the container. 
+Services launched in the UI can change their networking options by navigating to the **Networking** tab when adding a service. In the UI, all options are available for services except for `container` networking. In order to use `container` networking for a service, you can use either Rancher CLI, Rancher Compose or Docker CLI to launch the container.
 
 #### Managed
 By default, containers launched in Rancher using the UI or [Rancher CLI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cli/) use the `managed` network, which uses Rancher's managed overlay network. All containers in the `managed` network are able to communicate with each other regardless of which host the container was deployed on. Most of Rancher's features, such as load balancers or DNS service, require the service to be in the `managed` network.
@@ -40,7 +40,7 @@ Inside the container, the `ip addr` or `ifconfig` commands will show one network
 
 > **Note:** For any containers relying on any networking launched from a network driver (i.e. `managed` or based on the name of the network driver), if the network infrastructure service (e.g. `ipsec`) is deleted, then the networking will fail for that container.
 
-##### Containers created with the Docker CLI 
+##### Containers created with the Docker CLI
 For any containers launched through the Docker CLI, an extra label `--label io.rancher.container.network=true` can be used to launch the container into the `managed` network. Without this label, containers launched from the Docker CLI will be using the `bridge` network.
 
 If you want to launch a container in **only** the `managed` network, you'd need to add `--net=none` and `--label io.rancher.container.network=true` for the container to be started without the `bridge` network.
@@ -51,17 +51,17 @@ When a container is launched with `none` for networking, the container is launch
 Inside the container, the `ip addr` or `ifconfig` commands will not show any network interfaces except for the loopback (i.e. `lo`).
 
 #### Host
-When a container is launched with `host` networking, the container is launched with the same networking interfaces available to the host. This is equivalent to launching a container from the Docker command line with the option `--net=host`. 
+When a container is launched with `host` networking, the container is launched with the same networking interfaces available to the host. This is equivalent to launching a container from the Docker command line with the option `--net=host`.
 
 Inside the container, the `ip addr` or `ifconfig` commands will show the same networking interfaces as the host.
 
 #### Bridge
-When a container is launched with `bridge` networking, the container is launched on Docker's default bridge. By default, it is `docker0` unless the system administrator has changed it on the host. This is equivalent to launching a container from the Docker command line with the option `--net=bridge`. 
+When a container is launched with `bridge` networking, the container is launched on Docker's default bridge. By default, it is `docker0` unless the system administrator has changed it on the host. This is equivalent to launching a container from the Docker command line with the option `--net=bridge`.
 
 Inside the container, the `ip addr` or `ifconfig` commands will show one network interface (i.e. `eth0`) along with the loopback interface (i.e. `lo`). The IP address of the network interface will be one from the Docker's subnet. The default subnet used by Docker is `172.17.0.0/16`.
 
 #### Container
-When a container is launched with networking from another container, the container is launched using the networking resources of the other container. This is equivalent to launching a container from the Docker command line with the option `--net=container:<CONTAINER_NAME>`. 
+When a container is launched with networking from another container, the container is launched using the networking resources of the other container. This is equivalent to launching a container from the Docker command line with the option `--net=container:<CONTAINER_NAME>`.
 
 Inside the container, the `ip addr` or `ifconfig` commands will show the same networking interfaces as the container that was selected. The actual IP address depends on the network mode of the original container. If the original container had `bridge` mode, then the IP address would be in the docker's subnet.
 
