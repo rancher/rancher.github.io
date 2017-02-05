@@ -3,8 +3,8 @@ title: Metadata Service in Rancher
 layout: rancher-default-v1.4
 version: v1.4
 lang: en
-#redirect_from:
-#  - /rancher/rancher-services/metadata-service/
+redirect_from:
+  - /rancher/rancher-services/metadata-service/
 ---
 
 ## Metadata Service

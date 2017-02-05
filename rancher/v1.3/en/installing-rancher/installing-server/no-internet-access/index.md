@@ -5,7 +5,6 @@ version: v1.3
 lang: en
 redirect_from:
   - /rancher/v1.3/zh/installing-rancher/installing-server/no-internet-access/
-  - /rancher/installing-rancher/installing-server/no-internet-access/
 ---
 
 ## Launching Rancher Server with No Internet Access

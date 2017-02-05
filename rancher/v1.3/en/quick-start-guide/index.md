@@ -5,8 +5,6 @@ version: v1.3
 lang: en
 redirect_from:
   - /rancher/v1.3/zh/quick-start-guide/
-  - /rancher/quick-start-guide/
-  - /rancher/latest/en/quick-start-guide/
 ---
 
 ## Quick Start Guide
