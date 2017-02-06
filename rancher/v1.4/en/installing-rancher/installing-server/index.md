@@ -165,13 +165,13 @@ If the IP of your Rancher server node changes, your node will no longer be part 
 
 ### Running Rancher Server Behind an Application Load Balancer (ALB) in AWS
 
-We recommend using an Application Load Balancer (ALB) in AWS over using an Elastic Load Balancer (ELB). With an ALB, you will only need to direct the traffic to the advertised port (`--advertise-http-port`), which is by default `8080`.
+We no longer recommend Application Load Balancer (ALB) in AWS over using an Elastic Load Balancer (ELB). If you choose to use an ALB, you will only need to direct the traffic to the advertised port (`--advertise-http-port`), which is by default `8080`.
 
 <a id="elb"></a>
 
 ### Running Rancher Server Behind an Elastic Load Balancer (ELB) in AWS
 
-If you choose to use an ELB, you will need to enable proxy protocol mode. By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher’s websockets to work.
+We recommend using an ELB in AWS in front of your rancher servers. In order for ELB to work correctly, you will need to enable proxy protocol mode. By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher’s websockets to work.
 
 #### Configuration Requirements for Elastic Load Balancer (ELB)
 
@@ -179,8 +179,7 @@ If you choose to use an ELB, you will need to enable proxy protocol mode. By def
 
 ```
 $ aws elb create-load-balancer-policy --load-balancer-name <LB_NAME> --policy-name <POLICY_NAME> --policy-type-name ProxyProtocolPolicyType --policy-attributes AttributeName=ProxyProtocol,AttributeValue=true
-$ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB_NAME> --instance-port 81 --policy-names <POLICY_NAME>
-$ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB_NAME> --instance-port 444 --policy-names <POLICY_NAME>
+$ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB_NAME> --instance-port 443 --policy-names <POLICY_NAME>
 $ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB_NAME> --instance-port 8080 --policy-names <POLICY_NAME>
 ```
 
