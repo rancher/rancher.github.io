@@ -24,9 +24,9 @@ The scheduling rules provide flexibility on how you want Rancher to pick which h
 
 ### Scheduling against multiple IPs of a Host
 
-By default, Rancher assumes that only the public IP of the host is available when scheduling services that exposes ports or launching load balancers. If your host has multiple IPs that could be used, the [host needs to be configured to allow the Rancher scheduler to know which IPs are available]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/).
+By default, Rancher assumes that only the public IP of the host is available when scheduling services that publishes ports or launching load balancers. If your host has multiple IPs that could be used, the [host needs to be configured to allow the Rancher scheduler to know which IPs are available]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/).
 
-When there are multiple IPs available on the host for scheduling, Rancher will schedule against all the available scheduler IPs when a port is exposed through a service or a load balancer. The scheduler will report port conflicts after all available scheduler IPs have been allocated for that port.  
+When there are multiple IPs available on the host for scheduling, Rancher will schedule against all the available scheduler IPs when a port is published through a service or a load balancer. The scheduler will report port conflicts after all available scheduler IPs have been allocated for that port.  
 
 ### Adding Labels in the UI
 
