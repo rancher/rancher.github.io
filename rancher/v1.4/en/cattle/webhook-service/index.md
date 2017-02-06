@@ -44,12 +44,14 @@ By using a receiver hook to scale services, you can implement autoscaling by int
 
 ##### Installing Prometheus
 
-Prometheus is offered through the [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) and can be found under the **Catalog**. Select **Prometheus** and launch the catalog entry. Within the Prometheus stack, find the service called `prometheus`, which is exposed on port `9000`. Exec into the container and go to `/etc/prom-conf`. The prometheus configuration file, `prometheus.yml` would be present there. In order to add alerts, create a separate file for alerts, and provide the path to this file in `prometheus.yml`. For example if the alerts file you created is called `rules.conf`, add it to `prometheus.yml` at the end by adding these two lines: </br>
+Prometheus is offered through the [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) and can be found under the **Catalog**. Select **Prometheus** and launch the catalog entry. Within the Prometheus stack, find the service called `prometheus`, which is exposed on port `9000`. Exec into the container and go to `/etc/prom-conf`. The prometheus configuration file, `prometheus.yml` would be present there. In order to add alerts, create a separate file for alerts, and provide the path to this file in `prometheus.yml`. For example if the alerts file you created is called `rules.conf`, add it to `prometheus.yml` at the end by adding these two lines:
+
 ```
 rule_files:
   - rules.conf
 ```
-The file `rules.conf` can have multiple alerts, following is an example of an alert</br>
+
+The file `rules.conf` can have multiple alerts, following is an example of an alert
 
 ###### Example Alert in `/etc/prom-conf/rules.conf`
 
@@ -62,7 +64,7 @@ LABELS {
 }
 ANNOTATIONS {
   summary = "ADDITIONAL CONTAINERS NEEDED",
-  description = "CPU usage is above 10%"
+  description = "CPU usage is above 70%"
 }
 ```
 After the alerts have been added, restart the service.
