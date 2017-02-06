@@ -105,10 +105,12 @@ Key | Value | Description
 
 ### Scheduler IPs
 
-In order to [enable the ability to expose ports on multiple IPs]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#scheduling-against-multiple-ips-of-a-host), the host needs to be configured so that Rancher is aware of which IPs are available to be scheduled against. The method to add scheduler IPs for a host depends on whether the host is already in Rancher (i.e. Rancher agent has already been launched) versus a new host (i.e. Rancher agent has yet to be launched).
+In order to [enable the ability to publish ports on multiple IPs]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#scheduling-against-multiple-ips-of-a-host), the host needs to be configured so that Rancher is aware of which IPs are available to be scheduled against. The method to add scheduler IPs for a host depends on whether the host is already in Rancher (i.e. Rancher agent has already been launched) versus a new host (i.e. Rancher agent has yet to be launched).
 
 #### Adding Scheduler IPs to Existing Hosts
 For any existing hosts in an environment, additional IPs can be added for scheduling by adding a specific host label (`io.rancher.scheduler.ips` to the host. In the UI, click on **Edit Host** for the host, and add a **Scheduler IP**. If you want to update the host details through the API, you would add the host label `io.rancher.scheduler.ips` and list the IPs as the value in a comma separated list (i.e. `1.2.3.4, 2.3.4.5`).
+
+> **Note:** If any ports are published for services on a host before adding the scheduler IPs, those ports are published on `0.0.0.0`, which means they are consumed on all IPs, including the schedulers IPs added after the service has been launched.
 
 #### Adding Scheduler IPs for a new Host
 
