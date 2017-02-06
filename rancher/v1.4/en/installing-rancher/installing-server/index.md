@@ -161,17 +161,11 @@ Running Rancher server in High Availability (HA) is as easy as running [Rancher 
 
 If the IP of your Rancher server node changes, your node will no longer be part of the Rancher HA cluster. You must stop the old Rancher server container using the incorrect IP for `--advertise-address` and start a new Rancher server with the correct IP for `--advertise-address`.
 
-<a id="alb"></a>
-
-### Running Rancher Server Behind an Application Load Balancer (ALB) in AWS
-
-We recommend using an Application Load Balancer (ALB) in AWS over using an Elastic Load Balancer (ELB). With an ALB, you will only need to direct the traffic to the advertised port (`--advertise-http-port`), which is by default `8080`.
-
 <a id="elb"></a>
 
 ### Running Rancher Server Behind an Elastic Load Balancer (ELB) in AWS
 
-If you choose to use an ELB, you will need to enable proxy protocol mode. By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher’s websockets to work.
+We recommend using an ELB, as it works for all orchestration types. You will need to enable proxy protocol mode. By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher’s websockets to work.
 
 #### Configuration Requirements for Elastic Load Balancer (ELB)
 
@@ -187,6 +181,12 @@ $ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB
 * Health check can be configured to use HTTP:8080 using `/ping` as your path.
 
 > **Note:** If you are using a self signed certificate, please read more about how to [configure your ELB in AWS under our SSL section]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/basic-ssl-config/#elb).
+
+<a id="alb"></a>
+
+### Running Rancher Server Behind an Application Load Balancer (ALB) in AWS
+
+You may use an Application Load Balancer (ALB) in AWS. Kubernetes still uses SPDY for some communications, so this will cause problems if you use Kubernetes environments. With an ALB, you will only need to direct the traffic to the advertised port (`--advertise-http-port`), which is by default `8080`.
 
 <a id="ldap"></a>
 
