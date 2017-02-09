@@ -20,6 +20,7 @@ When launching RancherOS with a [cloud-config]({{site.baseurl}}/os/configuration
 Currently, the list of available consoles are:
 
 * default
+* alpine
 * centos
 * debian
 * fedora
@@ -39,6 +40,7 @@ You can easily list the available consoles in RancherOS and what their status is
 
 ```
 $ sudo ros console list
+disabled alpine
 disabled centos
 disabled debian
 current  default

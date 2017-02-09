@@ -31,6 +31,12 @@ If you're building a version of RancherOS used for development and not for a rel
 
 Run `make integration-tests` to run the all integration tests in a container, or `./scripts/integration-tests` to run them outside a container (they use QEMU to test the OS.)
 
+To run just one integration test, or a group of them (using regex's like `.*Console.*`, you can set the `RUNTEST` environment variable:
+
+```
+$ RUNTEST=TestPreload make integration-test
+```
+
 ### Running
 
 Prerequisites: QEMU, coreutils, cdrtools/genisoimage/mkisofs.
@@ -44,10 +50,12 @@ If you're on OS X, you can run RancherOS using [_xhyve_](https://github.com/mist
 
 ### Debugging and logging.
 
-You can enable extra log information by setting them using `sudo ros config set`,
+You can enable extra log information in the console by setting them using `sudo ros config set`,
 or as kernel boot parameters.
 Enable all logging by setting `rancher.debug` true
-or you can set `rancher.docker.debug`, `racher.system_docker.debug`, `rancher.bootstrap_docker.debug`, or `rancher.log` individually.
+or you can set `rancher.docker.debug`, `rancher.system_docker.debug`, `rancher.bootstrap_docker.debug`, or `rancher.log` individually.
+
+You will also be able to view the debug logging information by running `dmesg` as root.
 
 ## Repositories
 
