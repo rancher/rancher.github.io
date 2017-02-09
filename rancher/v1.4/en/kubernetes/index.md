@@ -56,7 +56,7 @@ Private registries can be used with Kubernetes services by adding your [private 
 
 ### Kubernetes Namespaces
 
-Rancher supports the ability to manage different Kubernetes namespaces. In the upper right hand corner, you will be able to see which **Namespace** that you are working in. After the first host is added, Rancher creates the `default` namespace.
+Rancher supports the ability to manage different Kubernetes namespaces. In the upper left hand corner next to the environment, you will be able to see which **Namespace** that you are working in. After the first host is added, Rancher creates the `default` namespace.
 
 #### Adding Namespaces
 
