@@ -25,15 +25,19 @@ From the  **Infrastructure** -> **Hosts** tab, click on **Add Host**.
 
 ### Supported Docker Versions
 
-Version               | Supported? |
-----------------------|------------|
+Version               | Supported? | Install Script |
+----------------------|------------|----------------
 `1.9.x` and earlier   | No         |
 `1.10.0` - `1.10.2`   | No         |
-`1.10.3` (and higher) | Yes        |
-`1.11.x`              | No         |
+`1.10.3` (and higher) | **Yes**        | `curl https://releases.rancher.com/install-docker/1.10.sh | sh`
+`1.11.x`              | No         | `curl https://releases.rancher.com/install-docker/1.11.sh | sh`
 `1.12.0` - `1.12.2`   | No         |
-`1.12.3` (and higher) | Yes        |
-`1.13.x`              | Not yet (planned for Rancher 1.5) |
+`1.12.3` (and higher) | **Yes**        | `curl https://releases.rancher.com/install-docker/1.12.sh | sh`
+`1.13.x`              | Not yet (planned for Rancher 1.5) | `curl https://releases.rancher.com/install-docker/1.13.sh | sh`
+
+### Installing a Specific Docker Version
+
+The standard `curl https://get.docker.com | sh` always installs the latest Docker release available at that time and may not be supported by your installed Rancher version.  Instead, we recommend you use the scripts above to install a specific version.  These are a slightly modified version of the standard script and pin the installation to a specific Docker engine version.  Exact patch releases are also available as `1.<x>.<y>.sh`, e.g. `1.12.6.sh`.
 
 ### How do Hosts work?
 
