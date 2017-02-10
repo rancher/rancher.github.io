@@ -27,7 +27,10 @@
                 <!--Start Google Search-->
                 <div class="gcse-search" id="google-search"></div>
                 <script>
-                  document.getElementById('google-search').setAttribute('data-defaultToRefinement', 'rancheros')
+                  let el = document.getElementById('google-search');
+                  if ( el ) {
+                    el.setAttribute('data-defaultToRefinement', 'rancheros');
+                  }
 
                   (function() {
                     var cx = '007896692384436596364:60akf3bfmxm';
@@ -39,7 +42,6 @@
                     s.parentNode.insertBefore(gcse, s);
                   })();
                 </script>
-                <gcse:search></gcse:search>
                 <!--End Google Search-->
               </div>
 
