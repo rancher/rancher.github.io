@@ -37,6 +37,8 @@ Version               | Supported? | Install Script |
 
 The standard `curl https://get.docker.com | sh` always installs the latest Docker release available at that time and may not be supported by your installed Rancher version.  Instead, we recommend you use the scripts above to install a specific version.  These are a slightly modified version of the standard script and pin the installation to a specific Docker engine version.  Exact patch releases are also available as `1.<x>.<y>.sh`, e.g. `1.12.6.sh`.
 
+> **Note:** If you are launching a host from the UI, you can select which version of Docker you'd like to install on the host. In the **Advanced Options** section, there is a **Docker Install URL**. 
+
 ### How do Hosts work?
 
 A host gets connected to Rancher server when the Rancher agent container is started on the host. The registration token, which is the long URL in  the **Add Host** -> **Custom** screen, is used by the Rancher agent to connect to the server for the first time. Upon connection, it generates an agent account and API key pair in Rancher server. The key pair is then used for all subsequent communication using the same authentication and authorization logic as there is for other kinds of accounts, like environment API keys.
