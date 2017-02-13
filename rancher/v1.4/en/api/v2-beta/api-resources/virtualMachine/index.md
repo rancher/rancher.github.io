@@ -114,6 +114,7 @@ system | boolean  |
 transitioning | enum  | Whether or not the virtualMachine is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state
 transitioningProgress | int  | The percentage remaining in the transitioning process of the virtualMachine
+userPorts | array[string]  | 
 uuid | string  | The universally unique identifier for the virtualMachine. This will always be unique across Rancher installations.
 version | string  | 
 

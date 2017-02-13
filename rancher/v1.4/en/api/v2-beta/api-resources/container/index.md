@@ -122,6 +122,7 @@ primaryNetworkId | [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.la
 serviceIds | array[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
 startCount | int  | 
 system | boolean  | 
+userPorts | array[string]  | 
 version | string  | 
 
 
