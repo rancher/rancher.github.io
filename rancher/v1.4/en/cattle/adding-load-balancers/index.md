@@ -282,9 +282,13 @@ There are multiple protocol types that are supported in the Rancher load balance
 
 Any additional load balancer providers might support only a subset of the protocols.
 
-###### Hostname Routing
+##### Hostname Routing
 
 Hostname routing is only supported for `http`, `https` and `sni`. Only `http` and `https` support path based routing as well.
+
+##### Local Routing
+
+This is applicable for load balancer services. This configuration instructs load balancer services to route traffic to only those service targets that are on the same host as the load balancer (local services). More information about this can be found [here]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#local-labels).
 
 ##### Service
 
