@@ -1,12 +1,12 @@
 ---
-title: Rancher API - genericObject
+title: API
 layout: rancher-api-v2-beta-default-v1.4
 version: v1.4
 lang: en
 apiVersion: v2-beta
 ---
 
-## GenericObject
+## genericObject
 
 
 
@@ -18,6 +18,7 @@ Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 description | string | Optional | Yes | - | 
 key | string | Optional | - | - | 
+kind | string | Optional | - | - | 
 name | string | Optional | - | - | 
 resourceData | map[json] | Optional | - | - | 
 
@@ -26,40 +27,15 @@ resourceData | map[json] | Optional | - | - |
 
 Field | Type   | Notes
 ---|---|---
+accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
+created | date  | The date of when the genericObject was created.
 id | int  | The unique identifier for the genericObject
+removed | date  | The date of when the genericObject was removed
+state | enum  | The current state of the genericObject. The options are `activating`, `active`, `removed`, `removing`, `requested`.
+transitioning | enum  | Whether or not the genericObject is in a transitioning state
+transitioningMessage | string  | The message to show while in a transitioning state
+transitioningProgress | int  | The percentage remaining in the transitioning process of the genericObject
+uuid | string  | The universally unique identifier for the genericObject. This will always be unique across Rancher installations.
 
 
 <br>
-
-Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
-
-### Operations
-{::options parse_block_html="true" /}
-<a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v2-beta/projects/${PROJECT_ID}/genericObjects</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X POST \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"key": "string",
-	"kind": "string",
-	"name": "string",
-	"resourceData": {
-		"key": "value-pairs"
-	}
-}' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/genericObjects'
-{% endhighlight %}
-</div></div>
-<a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v2-beta/projects/${PROJECT_ID}/genericObjects/${ID}</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X DELETE \
-'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/genericObjects/${ID}'
-{% endhighlight %}
-</div></div>
-
-
-

@@ -254,6 +254,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"tty": false,
 		"ulimits": "array[ulimit]",
 		"user": "string",
+		"userPorts": [
+			"string1",
+			"...stringN"
+		],
 		"userdata": "string",
 		"usernsMode": "string",
 		"uts": "string",
@@ -504,6 +508,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"tty": false,
 		"ulimits": "array[ulimit]",
 		"user": "string",
+		"userPorts": [
+			"string1",
+			"...stringN"
+		],
 		"userdata": "string",
 		"usernsMode": "string",
 		"uts": "string",
@@ -977,6 +985,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"tty": false,
 			"ulimits": "array[ulimit]",
 			"user": "string",
+			"userPorts": [
+				"string1",
+				"...stringN"
+			],
 			"userdata": "string",
 			"usernsMode": "string",
 			"uts": "string",
@@ -1177,6 +1189,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"tty": false,
 			"ulimits": "array[ulimit]",
 			"user": "string",
+			"userPorts": [
+				"string1",
+				"...stringN"
+			],
 			"userdata": "string",
 			"usernsMode": "string",
 			"uts": "string",
