@@ -1,11 +1,9 @@
 ---
 title: Rancher API - service
-layout: rancher-api-v2-beta-default-v1.3
-version: v1.3
+layout: rancher-api-v2-beta-default-v1.4
+version: v1.4
 lang: en
 apiVersion: v2-beta
-redirect_from:
-  - /rancher/v1.3/zh/api/v2-beta/api-resources/service/
 ---
 
 ## Service
@@ -25,6 +23,7 @@ launchConfig | [launchConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.l
 lbConfig | [lbTargetConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/lbTargetConfig/) | Optional | Yes | - | 
 metadata | map[json] | Optional | Yes | - | 
 name | string | Yes | Yes | - | 
+publicEndpoints | array[[publicEndpoint]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/publicEndpoint/)] | Optional | Yes | - | 
 retainIp | boolean | Optional | Yes | - | 
 scale | int | Optional | Yes | 1 | 
 scalePolicy | [scalePolicy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/scalePolicy/) | Optional | Yes | - | 
@@ -47,7 +46,6 @@ healthState | string  |
 id | int  | The unique identifier for the service
 instanceIds | array[[instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)]  | 
 linkedServices | map[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
-publicEndpoints | array[[publicEndpoint]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/publicEndpoint/)]  | 
 system | boolean  | 
 upgrade | [serviceUpgrade]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/serviceUpgrade/)  | 
 
@@ -231,6 +229,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"removed": "date",
 		"requestedHostId": "reference[host]",
 		"requestedIpAddress": "string",
+		"secrets": "array[secretReference]",
 		"securityOpt": [
 			"string1",
 			"...stringN"
@@ -258,6 +257,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"tty": false,
 		"ulimits": "array[ulimit]",
 		"user": "string",
+		"userPorts": [
+			"string1",
+			"...stringN"
+		],
 		"userdata": "string",
 		"usernsMode": "string",
 		"uts": "string",
@@ -274,6 +277,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"key": "value-pairs"
 	},
 	"name": "string",
+	"publicEndpoints": "array[publicEndpoint]",
 	"retainIp": false,
 	"scale": 1,
 	"scalePolicy": {
@@ -313,6 +317,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"key": "value-pairs"
 	},
 	"name": "string",
+	"publicEndpoints": "array[publicEndpoint]",
 	"retainIp": false,
 	"scale": 1,
 	"scalePolicy": {
@@ -761,6 +766,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"removed": "date",
 			"requestedHostId": "reference[host]",
 			"requestedIpAddress": "string",
+			"secrets": "array[secretReference]",
 			"securityOpt": [
 				"string1",
 				"...stringN"
@@ -788,6 +794,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"tty": false,
 			"ulimits": "array[ulimit]",
 			"user": "string",
+			"userPorts": [
+				"string1",
+				"...stringN"
+			],
 			"userdata": "string",
 			"usernsMode": "string",
 			"uts": "string",
@@ -960,6 +970,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"removed": "date",
 			"requestedHostId": "reference[host]",
 			"requestedIpAddress": "string",
+			"secrets": "array[secretReference]",
 			"securityOpt": [
 				"string1",
 				"...stringN"
@@ -987,6 +998,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"tty": false,
 			"ulimits": "array[ulimit]",
 			"user": "string",
+			"userPorts": [
+				"string1",
+				"...stringN"
+			],
 			"userdata": "string",
 			"usernsMode": "string",
 			"uts": "string",

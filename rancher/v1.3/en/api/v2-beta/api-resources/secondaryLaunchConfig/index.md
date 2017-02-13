@@ -1,11 +1,9 @@
 ---
 title: API
-layout: rancher-api-v2-beta-default-v1.3
-version: v1.3
+layout: rancher-api-v2-beta-default-v1.4
+version: v1.4
 lang: en
 apiVersion: v2-beta
-redirect_from:
-  - /rancher/v1.3/zh/api/v2-beta/api-resources/secondaryLaunchConfig/
 ---
 
 ## secondaryLaunchConfig
@@ -93,6 +91,7 @@ readOnly | boolean | Optional | - | - |
 registryCredentialId | [registryCredential]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/registryCredential/) | Optional | - | - | 
 requestedHostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/) | Optional | - | - | 
 requestedIpAddress | string | Optional | - | - | 
+secrets | array[[secretReference]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/secretReference/)] | Optional | - | - | 
 securityOpt | array[string] | Optional | - | - | 
 shmSize | int | Optional | - | - | 
 startOnCreate | boolean | Optional | - | true | 
@@ -137,6 +136,7 @@ system | boolean  |
 transitioning | enum  | Whether or not the secondaryLaunchConfig is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state
 transitioningProgress | int  | The percentage remaining in the transitioning process of the secondaryLaunchConfig
+userPorts | array[string]  | 
 uuid | string  | The universally unique identifier for the secondaryLaunchConfig. This will always be unique across Rancher installations.
 version | string  | 
 

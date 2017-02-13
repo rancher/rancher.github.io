@@ -1,11 +1,9 @@
 ---
 title: API
-layout: rancher-api-v2-beta-default-v1.3
-version: v1.3
+layout: rancher-api-v2-beta-default-v1.4
+version: v1.4
 lang: en
 apiVersion: v2-beta
-redirect_from:
-  - /rancher/v1.3/zh/api/v2-beta/api-resources/publicEndpoint/
 ---
 
 ## publicEndpoint
@@ -14,16 +12,16 @@ redirect_from:
 
 ### Resource Fields
 
+#### Writeable Fields
 
-#### Read Only Fields
+Field | Type | Create | Update | Default | Notes
+---|---|---|---|---|---
+hostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/) | Optional | - | - | The unique identifier for the associated host
+instanceId | [instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/) | Optional | - | - | The unique identifier for the associated instance
+ipAddress | string | Optional | - | - | 
+port | int | Optional | - | - | 
+serviceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/) | Optional | - | - | The unique identifier of the associated service
 
-Field | Type   | Notes
----|---|---
-hostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/)  | The unique identifier for the associated host
-instanceId | [instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)  | The unique identifier for the associated instance
-ipAddress | string  | 
-port | int  | 
-serviceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)  | The unique identifier of the associated service
 
 
 <br>
