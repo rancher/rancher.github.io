@@ -8,7 +8,7 @@ lang: en
 ## Service Alias
 ---
 
-By adding a service alias, it provides the ability to point to service aliases instead of directly at services. O
+By adding a service alias, it provides the ability to point to service aliases instead of directly at services.
 
 ### Adding Service Aliases in the UI
 
