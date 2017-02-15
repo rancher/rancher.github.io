@@ -4,6 +4,8 @@ layout: rancher-api-v2-beta-default-v1.4
 version: v1.4
 lang: en
 apiVersion: v2-beta
+#redirect_from:
+#  - /rancher/v1.4/zh/api/v2-beta/api-resources/host/
 ---
 
 ## Host
@@ -343,7 +345,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/hosts/${ID}?action=activate'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/">host</a> resource</span>
+<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/">host</a> resource</span>
 </div></div>
 
 <div class="action" id="deactivate">
@@ -363,7 +365,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/hosts/${ID}?action=deactivate'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/">host</a> resource</span>
+<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/">host</a> resource</span>
 </div></div>
 
 <div class="action" id="dockersocket">
@@ -383,7 +385,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/hosts/${ID}?action=dockersocket'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostAccess/">hostAccess</a> resource</span>
+<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostAccess/">hostAccess</a> resource</span>
 </div></div>
 
 <div class="action" id="error">
@@ -403,7 +405,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/hosts/${ID}?action=error'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/">host</a> resource</span>
+<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/">host</a> resource</span>
 </div></div>
 
 

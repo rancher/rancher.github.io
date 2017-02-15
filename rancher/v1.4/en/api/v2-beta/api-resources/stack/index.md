@@ -4,6 +4,8 @@ layout: rancher-api-v2-beta-default-v1.4
 version: v1.4
 lang: en
 apiVersion: v2-beta
+#redirect_from:
+#  - /rancher/v1.4/zh/api/v2-beta/api-resources/stack/
 ---
 
 ## Stack
@@ -130,7 +132,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/stacks/${ID}?action=activateservices'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
+<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
 </div></div>
 
 <div class="action" id="addoutputs">
@@ -160,7 +162,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 }' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/stacks/${ID}?action=addoutputs'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
+<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
 </div></div>
 
 <div class="action" id="cancelupgrade">
@@ -180,7 +182,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/stacks/${ID}?action=cancelupgrade'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
+<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
 </div></div>
 
 <div class="action" id="deactivateservices">
@@ -200,7 +202,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/stacks/${ID}?action=deactivateservices'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
+<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
 </div></div>
 
 <div class="action" id="error">
@@ -220,7 +222,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/stacks/${ID}?action=error'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
+<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
 </div></div>
 
 <div class="action" id="exportconfig">
@@ -248,7 +250,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 }' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/stacks/${ID}?action=exportconfig'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/composeConfig/">composeConfig</a> resource</span>
+<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/composeConfig/">composeConfig</a> resource</span>
 </div></div>
 
 <div class="action" id="finishupgrade">
@@ -268,7 +270,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/stacks/${ID}?action=finishupgrade'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
+<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
 </div></div>
 
 <div class="action" id="rollback">
@@ -288,7 +290,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/stacks/${ID}?action=rollback'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
+<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
 </div></div>
 
 <div class="action" id="upgrade">
@@ -324,7 +326,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 }' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/stacks/${ID}?action=upgrade'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
+<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/">stack</a> resource</span>
 </div></div>
 
 
