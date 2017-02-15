@@ -10,7 +10,11 @@ lang: en
 
 Rancher provides the ability to use different load balancer drivers within Rancher. A load balancer can be used to distribute network and application traffic to individual containers by adding rules to target services. Any target service will have all its underlying containers automatically registered as load balancer targets by Rancher. With Rancher, it's easy to add a load balancer to your stack.
 
-By default, Rancher has provided a managed load balancer using HAProxy that can be manually scaled to multiple hosts. The rest of our examples in this document will cover the different options for load balancers, but specifically referencing our HAProxy load balancer service. We are planning to add in additional load balancer providers, and the options for all load balancers will be the same regardless of load balancer provider. We'll review the options for our load balancer for the [UI](#load-balancer-options-in-the-UI) and [Rancher Compose](#load-balancer-options-in-rancher-compose) and show examples using the [UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/#adding-a-load-balancer-in-the-ui) and [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/#adding-a-load-balancer-with-rancher-compose).
+By default, Rancher has provided a managed load balancer using HAProxy that can be manually scaled to multiple hosts. The rest of our examples in this document will cover the different options for load balancers, but specifically referencing our HAProxy load balancer service. We are planning to add in additional load balancer providers, and the options for all load balancers will be the same regardless of load balancer provider. 
+
+We use a round robin algorithm to distribute traffic to the target services. The algorithm can be customized in the [custom HAProxy configuration](#custom-haproxy-configuration). Alternatively, you can configure the load balancer to route traffic to target containers that are on the same host as the load balancer container. By adding a [specific label]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#local-labels) to the load balancer, it will configure the load balancer to target either only the container on the same host as the load balancer (i.e. `io.rancher.lb_service.target=only-local`) or prioritize these containers over containers on a different host (i.e. `io.rancher.lb_service.target=prefer-local`).
+
+We'll review the options for our load balancer for the [UI](#load-balancer-options-in-the-UI) and [Rancher Compose](#load-balancer-options-in-rancher-compose) and show examples using the [UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/#adding-a-load-balancer-in-the-ui) and [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/#adding-a-load-balancer-with-rancher-compose).
 
 ### Adding a Load Balancer in the UI
 
@@ -20,7 +24,7 @@ First, you start by creating a load balancer, by clicking on the dropdown icon n
 
 For the port rules, use the default `Public` access, the default `http` protocol, a source port of `80`, select the "letschat" service, and use a target port of `8080`. Click on **Create**.
 
-Now, let's see the load balancer in action. In the stack view, there is a link to  port `80` that you've used as the source port for your load balancer. If you click on it, it will automatically bring up a new tab in your browser and point to one of the hosts that has the load balancer launched. The request is re-directed to one of the "LetsChat" containers. If you were to refresh, the load balancer would redirect the new request to the other container in the "letschat" service. By default, we use the round robin algorithm to distribute traffic to the target services. The algorithm can be customized in the [custom HAProxy configuration](#custom-haproxy-configuration).
+Now, let's see the load balancer in action. In the stack view, there is a link to  port `80` that you've used as the source port for your load balancer. If you click on it, it will automatically bring up a new tab in your browser and point to one of the hosts that has the load balancer launched. The request is re-directed to one of the "LetsChat" containers. If you were to refresh, the load balancer would redirect the new request to the other container in the "letschat" service. 
 
 ### Load Balancer Options in the UI
 
@@ -285,10 +289,6 @@ Any additional load balancer providers might support only a subset of the protoc
 ##### Hostname Routing
 
 Hostname routing is only supported for `http`, `https` and `sni`. Only `http` and `https` support path based routing as well.
-
-##### Local Routing
-
-This is applicable for load balancer services. This configuration instructs load balancer services to route traffic to only those service targets that are on the same host as the load balancer (local services). More information about this can be found [here]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#local-labels).
 
 ##### Service
 
