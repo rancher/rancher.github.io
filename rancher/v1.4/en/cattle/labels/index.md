@@ -30,7 +30,7 @@ Key | Value |Description
 `io.rancher.scheduler.affinity:host_label` | Key Value Pair of Host Label| Used to schedule containers on hosts based on [host label]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#finding-hosts-with-host-labels)
 `io.rancher.scheduler.affinity:container_label` | Key Value Pair of Any Container Label | Used to schedule containers on hosts based on [container label or service name]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#finding-hosts-with-container-labels)
 `io.rancher.scheduler.affinity:container` | Name of Container | Used to schedule containers on hosts based on [container name]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#finding-hosts-with-container-names)
-
+`io.rancher.lb_service.target` | [_Target Service Label_ Values](#target-service-labels) | Used to configure load balancers so that traffit will be routed to containers that are on the same host as the load balancer.
 <br>
 
 > **Note:** For the labels prefixed with `io.rancher.scheduler.affinity`, there are slight variations based on your how want to match (i.e. equal or not equal, hard or soft rules). More details can be found [here]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#table-of-scheduling-labels).
@@ -113,3 +113,12 @@ Key | Value | Description
 ### Native Docker Labels
 
 `io.rancher.container.network` | `true`|  Add this label to a `docker run` command to add Rancher networking to the container
+
+#### Target Service Labels
+
+A load balancer can be configured to prioritize traffic to containers of the target service that are located on the same host of the load balancer. Depending on the value of the label, the load balancer will be configured to either direct traffic to only those containers or to prioritize traffic to those containers. By default, a load balancer routes traffic to all containers of the target service in a round robin algorithm.
+
+Key | Value | Description
+----|----|----
+`io.rancher.lb_service.target` | `only-local` | Only direct traffic to containers on the same host as the load balancer container. If there are no containers of the target service on the same host, then no traffic will be routed to the service. 
+`io.rancher.lb_service.target` | `prefer-local` |  Prioritize traffic to containers on the same host as the load balancer container. If there are no containers of the target service on the same host, then traffic will be routed to other containers of the service, that reside on other hosts. 

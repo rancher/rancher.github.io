@@ -492,7 +492,7 @@ In our configuration, the `defaults` and `global` keywords identify the customiz
 
 #### Example of a Load Balancer Scheduled on All Hosts
 
-You can schedule load balancers to be launched on all hosts in an environment. These global load balancers can be scheduled using an annotation (i.e. `io.rancher.scheduler.global: "true"`).
+You can schedule load balancers to be launched on all hosts in an environment. These global load balancers can be scheduled using an annotation, i.e. `io.rancher.scheduler.global: "true"`.
 
 Example `global-ingress.yml`
 
@@ -514,7 +514,7 @@ spec:
 
 #### Example of Scheduling a Load Balancer on a Host
 
-You can schedule load balancers to specific hosts in an environment. To schedule your load balancers to specific hosts, you would need to add labels to the host. A label on a host is a key value pair. For example, you could have a host with a label `foo=bar`.
+You can schedule load balancers to specific hosts in an environment. To schedule your load balancers to specific hosts, you would need to add labels to the host. A label on a host is a key value pair. For example, you could have a host with a label `foo=bar`. After the label is added to the host, you would use an annotation, i.e. `io.rancher.scheduler.affinity.host_label: "foo=bar"`, to schedule load balancer containers onto the labeled host.
 
 ```yaml
 apiVersion: extensions/v1beta1
@@ -524,6 +524,46 @@ metadata:
   annotations:
     # Search for a host that has label foo=bar and schedule the load balancer on that host.
     io.rancher.scheduler.affinity.host_label: "foo=bar"
+spec:
+  backend:
+    serviceName: nginx-service
+    servicePort: 80
+```
+
+<a id="only-local-scheduling"></a>
+
+#### Example of Directing traffic to only Containers on the same host 
+
+You can configure load balancers to route traffic to **only** containers of a service that are on the same host of the load balancer container. If there are no containers of the target service on the host, then the load balancer does not route any traffic to the other containers of the target service as they are on other hosts. In order to configure the load balancer, you would use an annotation, i.e. `io.rancher.lb_service.target: "only-local"`.
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: onlylocallb
+  annotations:
+    # Direct traffic to only containers that are on the same host as the load balancer container
+    io.rancher.lb_service.target: "only-local"
+spec:
+  backend:
+    serviceName: nginx-service
+    servicePort: 80
+```
+
+<a id="prefer-local-scheduling"></a>
+
+#### Example of prioritizing traffic to Containers on the same host 
+
+You can configure load balancers to prioritize traffic to containers of a service that are on the same host of the load balancer container. If there are no containers of the target service on the host, then the load balancer directs traffic to the other containers of the target service, that are on other hosts. In order to configure the load balancer, you would use an annotation, i.e. `io.rancher.lb_service.target: "prefer-local"`.
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: preferlocallb
+  annotations:
+    # Prioritize traffic to containers that are on the same host as the load balancer container
+    io.rancher.lb_service.target: "prefer-local"
 spec:
   backend:
     serviceName: nginx-service
