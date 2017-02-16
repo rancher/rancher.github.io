@@ -530,9 +530,9 @@ spec:
     servicePort: 80
 ```
 
-<a id="only-local-scheduling"></a>
+<a id="only-local"></a>
 
-#### Example of Directing traffic to only Containers on the same host 
+#### Example of Directing traffic to only Containers on the same host
 
 You can configure load balancers to route traffic to **only** containers of a service that are on the same host of the load balancer container. If there are no containers of the target service on the host, then the load balancer does not route any traffic to the other containers of the target service as they are on other hosts. In order to configure the load balancer, you would use an annotation, i.e. `io.rancher.lb_service.target: "only-local"`.
 
@@ -550,9 +550,9 @@ spec:
     servicePort: 80
 ```
 
-<a id="prefer-local-scheduling"></a>
+<a id="prefer-local"></a>
 
-#### Example of prioritizing traffic to Containers on the same host 
+#### Example of prioritizing traffic to Containers on the same host
 
 You can configure load balancers to prioritize traffic to containers of a service that are on the same host of the load balancer container. If there are no containers of the target service on the host, then the load balancer directs traffic to the other containers of the target service, that are on other hosts. In order to configure the load balancer, you would use an annotation, i.e. `io.rancher.lb_service.target: "prefer-local"`.
 
