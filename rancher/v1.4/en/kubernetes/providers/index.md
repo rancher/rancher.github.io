@@ -5,30 +5,47 @@ version: v1.4
 lang: en
 ---
 
-## Kubernetes Providers
+## Kubernetes - Cloud Providers
 ---
 
-Currently you can choose between two cloud providers backend to be used to install Kubernetes on Rancher:
+In Kubernetes, there is a concept of [cloud providers](https://kubernetes.io/docs/getting-started-guides/scratch/#cloud-provider), which is Kubernetes concept of the interface for managing load balancers, nodes (i.e. hosts) and networking routes. 
 
-* [AWS](#aws)
-* [Rancher](#rancher)
-
+Currently, Rancher supports two cloud providers when installing Kubernetes. 
 
 ### Rancher
 
-Using Rancher as the cloud provider will enable the user to use kubernetes with Rancher's resources, for example when using external LoadBalancer service, Kubernetes will create a load balancer container using the `rancher/lb-service-haproxy` image, this load balancer container will bounce the requests between the pods.
+  * **Nodes:** Supports any [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) that can be added in Rancher.
+  * **Load Balancers:** Launches Rancher's load balancer, which uses HAproxy and the `rancher/lb-service-haproxy` image, as a Load Balancer service. By default, the load balancer will round robin traffic to the pods. 
+
+By default, the orchestration for Kubernetes is set to `rancher`. 
 
 ### AWS
 
-Using AWS as cloud provider for Kubernetes will enable the user to use AWS resources like AWS Elastic Block Stores (EBS) as kuberntes volumes, and Elastic Load Balancers (ELB) as LoadBalancer service on kubernetes.
+  * **Nodes:** Supports only AWS hosts added either as a [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) or [through the Rancher UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/amazon/).
+  * **Load Balancers:** Launches an AWS Elastic Load Balancer (ELB) as a Load Balancer service. You can still create Rancher load balancers by using an [ingress]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/ingress/).
+  * **[Persistent Volumes]**: Ability to use AWS Elastic Block Stores (EBS) for persistent volumes.
+  
+#### Setting up AWS as the Cloud Provider
 
-#### Installation
+Before creating a Kubernetes [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments), the Kubernetes infrastructure stack will need to be configured and the configuration option for the **Cloud Provider** will need to be set as `aws`. 
 
-To use AWS as the cloud provider for Kubernetes on Rancher, you can choose `aws` from the drop down menu of Kubernetes stack configuration options:
+##### New Environments
 
-![kubernetes-stack]({{site.baseurl}}/img/rancher/kubernetes_stack_1.png)
+When creating new environments, you will need to select an environment template that is already configured correctly. When adding or editing an environment template, the orchestration will need to have **Kubernetes** selected. Click on **Edit Config**. Pick `aws` in the **Configuration Options** -> **Cloud Provider** and click **Configure**. 
 
-Make sure that all the agents registered with Rancher server are AWS EC2 instances, and have the right IAM role for the hosts to use EBS and ELB on AWS, as an example for the policy that can be used with IAM Role:
+For existing Kubernetes environment templates, you can edit the environment template under the **Manage Environments** link from the drop down of environments. Click on the **Edit** icon next to the environment template running Kubernetes.
+
+##### Converting Existing Cattle Environments to Kubernetes
+
+If you have an existing Cattle environment, the environment can be converted to a Kubernetes orchestration by going to **Catalog** -> **library** and selecting **Kubernetes**. Click on **View Details** and switch to `aws` for the **Cloud Provider**. Click on **Launch** 
+
+#### Adding Hosts
+
+After Kubernetes has been configured to run with an `aws` cloud provider, any hosts added into the environment will need to be a AWS EC2 instance. 
+
+In order to use Elastic Load Balancers (ELB) and EBS with Kubernetes, the host will need to have the an IAM role with appropriate access.
+
+##### Example Policy for IAM Role:
 
 ```json
 {
@@ -63,140 +80,11 @@ Make sure that all the agents registered with Rancher server are AWS EC2 instanc
 }
 ```
 
-#### EBS Volumes
+#### Elastic Load Balancer (ELB) as a Kubernetes service 
 
-Using EBS volumes with Kubernetes as persistent volumes can be divided into two sections: static provisioning, and dynamic provisioning using storage classes.
+After configuring Kubernetes to use `aws` as a cloud provider and ensuring the host has the appropriate IAM policy for ELB, you can start creating load balancers.  
 
-##### Static provisioning
-
-In this type the EBS volume should be created in the same region and availability zone as the Rancher agents before using it inside kubernetes as persistent volume, to start using the created volume as PV, you should create the persistent volume resource, as an example for persistent volume resource:
-
-persistentVolume.yaml
-```yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv1
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Recycle
-  awsElasticBlockStore:
-    fsType: ext4
-    volumeID: <volume-id>
-```
-
-persistentVolumeClaim.yaml
-```yaml
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: myclaim
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-  selector:
-    matchLabels:
-      release: "stable"
-```
-
-And finally you can use this claim in a pod:
-```yaml
-apiVersion: v1
-metadata:
-  name: mypod
-spec:
-  containers:
-    - name: myfrontend
-      image: nginx
-      volumeMounts:
-      - mountPath: "/var/www/html"
-        name: pv1
-  volumes:
-    - name: pv1
-      persistentVolumeClaim:
-        claimName: myclaim
-```
-
-You should replace the `<volume-id>` with the EBS volume id. After creating the previous resources you should be to see the status of the volume in AWS turned from `available` state to `in-use`, and you should be able to see the pod starting up correctly:
-
-```bash
-$ kubectl get pods,pv,pvc
-NAME       READY     STATUS    RESTARTS   AGE
-po/mypod   1/1       Running   0          3m
-
-NAME      CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS    CLAIM             REASON    AGE
-pv/pv1    1Gi        RWO           Recycle         Bound     default/myclaim             3m
-
-NAME          STATUS    VOLUME    CAPACITY   ACCESSMODES   AGE
-pvc/myclaim   Bound     pv1       1Gi        RWO           3m
-```
-
-##### Dynamic provisioning
-
-Unlike the previous approach, [dynamic provisioning](http://blog.kubernetes.io/2016/10/dynamic-provisioning-and-storage-in-kubernetes.html) only uses [StorageClass](https://kubernetes.io/docs/user-guide/persistent-volumes/#class-1) to automatically create and attach volumes to pods, first you should create the storage class resources that specify AWS as its provider:
-
-```yaml
-kind: StorageClass
-apiVersion: storage.k8s.io/v1beta1
-metadata:
-  name: standard
-provisioner: kubernetes.io/aws-ebs
-parameters:
-  type: gp2
-  zone: us-west-2a
-```
-
-The previous storage class will specify AWS as its storage provider and use type `gp2` and availability zone `us-west-2a`.
-
-You can start using this storage class in any pod or claim to make Kubernetes automatically create new volume and attach it to the pod.
-
-```json
-{
-  "kind": "PersistentVolumeClaim",
-  "apiVersion": "v1",
-  "metadata": {
-    "name": "claim2",
-    "annotations": {
-      "volume.beta.kubernetes.io/storage-class": "standard"
-    }
-  },
-  "spec": {
-    "accessModes": [
-      "ReadWriteOnce"
-    ],
-    "resources": {
-      "requests": {
-        "storage": "1Gi"
-      }
-    }
-  }
-}
-```
-
-After using this claim with a pod resource, you should be able to see a new pv is created and bounded to the claim automatically:
-
-```bash
-$ kubectl get pv,pvc,pods
-NAME                                          CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS    CLAIM             REASON    AGE
-pv/pvc-36fcf5dd-f476-11e6-b547-0275ac92095a   1Gi        RWO           Delete          Bound     default/claim2              1m
-
-NAME          STATUS    VOLUME                                     CAPACITY   ACCESSMODES   AGE
-pvc/claim2    Bound     pvc-36fcf5dd-f476-11e6-b547-0275ac92095a   1Gi        RWO           1m
-
-NAME       READY     STATUS    RESTARTS   AGE
-po/nginx   1/1       Running   0          29s
-```
-
-
-#### ELB As Kubernetes Service
-
-To use ELB as external LoadBalancer service in kubernetes, you should have the right IAM policy on ELB as described above, then create the service directly with type `LoadBalancer`:
+##### Example `lb.yml`
 
 ```yaml
 apiVersion: v1
@@ -215,8 +103,11 @@ spec:
     protocol: TCP
 ```
 
-After creating the previous resource, you should be able to see the AWS ELB created:
+Using `kubectl`, let's launch our load balancer service into Kubernetes. Remember, you can either [configure `kubectl` for your local machine]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#kubectl) or you can use the shell in the UI under **Kubernetes** -> **kubectl**.
+
 ```bash
+$ kubectl create -f lb.yml
+service "nginx-lb" created
 $ kubectl describe services nginx-lb
 Name:			nginx-lb
 Namespace:		default
@@ -234,5 +125,9 @@ Events:
   ---------	--------	-----	----			-------------	--------	------			-------
   17s		17s		1	{service-controller }			Normal		CreatingLoadBalancer	Creating load balancer
   14s		14s		1	{service-controller }			Normal		CreatedLoadBalancer	Created load balancer
-
 ```
+
+#### Using EBS Volumes
+
+After configuring Kubernetes to use `aws` as a cloud provider and ensuring the host has the appropriate IAM policy for EBS, you can start [using EBS volumes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/storage/). 
+
