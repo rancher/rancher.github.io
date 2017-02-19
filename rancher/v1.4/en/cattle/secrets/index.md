@@ -32,7 +32,7 @@ Prior to installing Rancher Server, there are a couple of pre-requisites that ne
         capabilities = ["create", "update"]
       }
 
-      path "transit/hmac/rancher/*" {
+      path "transit/hmac/*" {
         capabilities = ["create", "update"]
       }
 
