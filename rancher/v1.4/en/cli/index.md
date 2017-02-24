@@ -22,7 +22,7 @@ There is a specific load order for what will be used.
 
 1. During `rancher config`, you'll set the Rancher URL and API keys. If there are multiple environments, then you will select a specific environment.
 2. You can set environment variables for the same values, which would override the values set in `rancher config`.
-3. If you decide to pass in values directly into the Rancher command, those values would be used for the Rancher command over any over values.
+3. If you decide to pass in values directly into the Rancher command, those values would be used for the Rancher command over any other values.
 
 #### Using Rancher Config
 
