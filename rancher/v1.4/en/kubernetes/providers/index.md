@@ -8,40 +8,40 @@ lang: en
 ## Kubernetes - Cloud Providers
 ---
 
-In Kubernetes, there is a concept of [cloud providers](https://kubernetes.io/docs/getting-started-guides/scratch/#cloud-provider), which is Kubernetes concept of the interface for managing load balancers, nodes (i.e. hosts) and networking routes. 
+In Kubernetes, there is a concept of [cloud providers](https://kubernetes.io/docs/getting-started-guides/scratch/#cloud-provider), which is a module which provides an interface for managing load balancers, nodes (i.e. hosts) and networking routes.
 
-Currently, Rancher supports two cloud providers when installing Kubernetes. 
+Currently, Rancher supports two cloud providers when installing Kubernetes.
 
 ### Rancher
 
   * **Nodes:** Supports any [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) that can be added in Rancher.
-  * **Load Balancers:** Launches Rancher's load balancer, which uses HAproxy and the `rancher/lb-service-haproxy` image, as a Load Balancer service. By default, the load balancer will round robin traffic to the pods. 
+  * **Load Balancers:** Launches Rancher's load balancer, which uses HAproxy and the `rancher/lb-service-haproxy` image, as a Load Balancer service. By default, the load balancer will round robin traffic to the pods.
 
-By default, the orchestration for Kubernetes is set to `rancher`. 
+By default, the orchestration for Kubernetes is set to `rancher`.
 
 ### AWS
 
-  * **Nodes:** Supports only AWS hosts added either as a [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) or [through the Rancher UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/amazon/).
+  * **Nodes:** Supports only AWS hosts added either as a [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) or [through the Rancher UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/amazon/).
   * **Load Balancers:** Launches an AWS Elastic Load Balancer (ELB) as a Load Balancer service. You can still create Rancher load balancers by using an [ingress]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/ingress/).
   * **[Persistent Volumes]**: Ability to use AWS Elastic Block Stores (EBS) for persistent volumes.
-  
+
 #### Setting up AWS as the Cloud Provider
 
-Before creating a Kubernetes [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments), the Kubernetes infrastructure stack will need to be configured and the configuration option for the **Cloud Provider** will need to be set as `aws`. 
+Before creating a Kubernetes [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments), the Kubernetes infrastructure stack will need to be configured and the configuration option for the **Cloud Provider** will need to be set as `aws`.
 
 ##### New Environments
 
-When creating new environments, you will need to select an environment template that is already configured correctly. When adding or editing an environment template, the orchestration will need to have **Kubernetes** selected. Click on **Edit Config**. Pick `aws` in the **Configuration Options** -> **Cloud Provider** and click **Configure**. 
+When creating new environments, you will need to select an environment template that is already configured correctly. When adding or editing an environment template, the orchestration will need to have **Kubernetes** selected. Click on **Edit Config**. Pick `aws` in the **Configuration Options** -> **Cloud Provider** and click **Configure**.
 
 For existing Kubernetes environment templates, you can edit the environment template under the **Manage Environments** link from the drop down of environments. Click on the **Edit** icon next to the environment template running Kubernetes.
 
 ##### Converting Existing Cattle Environments to Kubernetes
 
-If you have an existing Cattle environment, the environment can be converted to a Kubernetes orchestration by going to **Catalog** -> **library** and selecting **Kubernetes**. Click on **View Details** and switch to `aws` for the **Cloud Provider**. Click on **Launch** 
+If you have an existing Cattle environment, the environment can be converted to a Kubernetes orchestration by going to **Catalog** -> **library** and selecting **Kubernetes**. Click on **View Details** and switch to `aws` for the **Cloud Provider**. Click on **Launch**
 
 #### Adding Hosts
 
-After Kubernetes has been configured to run with an `aws` cloud provider, any hosts added into the environment will need to be a AWS EC2 instance. 
+After Kubernetes has been configured to run with an `aws` cloud provider, any hosts added into the environment will need to be a AWS EC2 instance.
 
 In order to use Elastic Load Balancers (ELB) and EBS with Kubernetes, the host will need to have the an IAM role with appropriate access.
 
@@ -80,7 +80,7 @@ In order to use Elastic Load Balancers (ELB) and EBS with Kubernetes, the host w
 }
 ```
 
-#### Elastic Load Balancer (ELB) as a Kubernetes service 
+#### Elastic Load Balancer (ELB) as a Kubernetes service
 
 After configuring Kubernetes to use `aws` as a cloud provider and ensuring the host has the appropriate IAM policy for ELB, you can start creating load balancers.  
 
@@ -129,5 +129,4 @@ Events:
 
 #### Using EBS Volumes
 
-After configuring Kubernetes to use `aws` as a cloud provider and ensuring the host has the appropriate IAM policy for EBS, you can start [using EBS volumes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/storage/). 
-
+After configuring Kubernetes to use `aws` as a cloud provider and ensuring the host has the appropriate IAM policy for EBS, you can start [using EBS volumes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/storage/#persistent-volumes---ebs).
