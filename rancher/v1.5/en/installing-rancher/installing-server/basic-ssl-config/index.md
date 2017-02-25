@@ -1,7 +1,7 @@
 ---
 title: Installing Rancher Server with SSL
-layout: rancher-default-v1.4
-version: v1.4
+layout: rancher-default-v1.5
+version: v1.5
 lang: en
 ---
 
@@ -188,7 +188,7 @@ We recommend using an Application Load Balancer (ALB) in AWS over using an Elast
 
 ### Running Rancher Server Behind an Elastic Load Balancer (ELB) in AWS with SSL
 
-_Supported as of v1.4.3+_
+_Supported as of v1.5.3+_
 
 By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher’s websockets to work.
 

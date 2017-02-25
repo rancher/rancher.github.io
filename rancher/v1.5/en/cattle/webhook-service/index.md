@@ -1,7 +1,7 @@
 ---
 title: Webhooks in Rancher
-layout: rancher-default-v1.4
-version: v1.4
+layout: rancher-default-v1.5
+version: v1.5
 lang: en
 ---
 
@@ -9,17 +9,17 @@ lang: en
 
 ### Receiver Hooks
 
-In Rancher, you can create receiver hooks, which provides a URL that can be used to trigger an action inside of Rancher. For example, the receiver hooks can be integrated with an external monitoring systems to increase or decrease containers of a service. In **API** -> **Webhooks**, you can view and create new receiver hooks. 
+In Rancher, you can create receiver hooks, which provides a URL that can be used to trigger an action inside of Rancher. For example, the receiver hooks can be integrated with an external monitoring systems to increase or decrease containers of a service. In **API** -> **Webhooks**, you can view and create new receiver hooks.
 
 #### Adding Receiver Hooks
 
 To create a receiver hook, navigate to **API** -> **Webhooks**. Click on **Add Receiver**.
 
-* Provide a **Name** for the receiver, which will allow you to easily identify it. 
-* Select the **Kind** of receiver that you'd like to create. 
-* Determine the action of the receiver based on the type of receiver. 
+* Provide a **Name** for the receiver, which will allow you to easily identify it.
+* Select the **Kind** of receiver that you'd like to create.
+* Determine the action of the receiver based on the type of receiver.
 
-Click on **Create**. After it's created, the URL is provided next to the newly added receiver hook. 
+Click on **Create**. After it's created, the URL is provided next to the newly added receiver hook.
 
 #### Using a Receiver Hook
 
@@ -34,13 +34,13 @@ For scaling a service, the actions include:
 * Scale up/down a service (i.e. add or remove containers in a service)
 * Select from the list of services in the environment
 * Scale up/down by how many containers at a time
-* The minimum/maximum amount of containers for the service 
+* The minimum/maximum amount of containers for the service
 
 <a id="autoscaling-example"></a>
 
 #### Example of Using a Receiver Hook for Autoscaling of a service
 
-By using a receiver hook to scale services, you can implement autoscaling by integrating with external services. In our example, we'll use Prometheus to monitor the services and Alertmanager to `POST` to the URL. 
+By using a receiver hook to scale services, you can implement autoscaling by integrating with external services. In our example, we'll use Prometheus to monitor the services and Alertmanager to `POST` to the URL.
 
 ##### Installing Prometheus
 
@@ -98,6 +98,6 @@ receivers:
     send_resolved: true
 ```
 
-##### Autoscaling 
+##### Autoscaling
 
-After Prometheus and Alertmanager have been updated with alerts and hooks, make sure the services were restarted in order to have the configurations updated and active. For the services that alerts have been added, the services will automatically be scaled up or down based on the receiver hook that was created. 
+After Prometheus and Alertmanager have been updated with alerts and hooks, make sure the services were restarted in order to have the configurations updated and active. For the services that alerts have been added, the services will automatically be scaled up or down based on the receiver hook that was created.

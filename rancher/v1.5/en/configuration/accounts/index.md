@@ -1,7 +1,7 @@
 ---
 title: Accounts in Rancher
-layout: rancher-default-v1.4
-version: v1.4
+layout: rancher-default-v1.5
+version: v1.5
 lang: en
 ---
 

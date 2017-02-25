@@ -1,7 +1,7 @@
 ---
 title: Hosts in Rancher
-layout: rancher-default-v1.4
-version: v1.4
+layout: rancher-default-v1.5
+version: v1.5
 lang: en
 ---
 
@@ -37,7 +37,7 @@ Version               | Supported? | Install Script |
 
 The standard `curl https://get.docker.com | sh` always installs the latest Docker release available at that time and may not be supported by your installed Rancher version.  Instead, we recommend you use the scripts above to install a specific version.  These are a slightly modified version of the standard script and pin the installation to a specific Docker engine version.  Exact patch releases are also available as `1.<x>.<y>.sh`, e.g. `1.12.6.sh`.
 
-> **Note:** If you are launching a host from the UI, you can select which version of Docker you'd like to install on the host. In the **Advanced Options** section, there is a **Docker Install URL**. 
+> **Note:** If you are launching a host from the UI, you can select which version of Docker you'd like to install on the host. In the **Advanced Options** section, there is a **Docker Install URL**.
 
 ### How do Hosts work?
 

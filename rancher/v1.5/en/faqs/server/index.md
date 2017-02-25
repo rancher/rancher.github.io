@@ -1,7 +1,7 @@
 ---
 title: FAQS about Rancher Server
-layout: rancher-default-v1.4
-version: v1.4
+layout: rancher-default-v1.5
+version: v1.5
 lang: en
 redirect_from:
   - /rancher/latest/en/faqs/server/

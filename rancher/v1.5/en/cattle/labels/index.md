@@ -1,7 +1,7 @@
 ---
 title: Labels
-layout: rancher-default-v1.4
-version: v1.4
+layout: rancher-default-v1.5
+version: v1.5
 lang: en
 ---
 
@@ -120,5 +120,5 @@ A load balancer can be configured to prioritize traffic to containers of the tar
 
 Key | Value | Description
 ----|----|----
-`io.rancher.lb_service.target` | `only-local` | Only direct traffic to containers on the same host as the load balancer container. If there are no containers of the target service on the same host, then no traffic will be routed to the service. 
-`io.rancher.lb_service.target` | `prefer-local` |  Prioritize traffic to containers on the same host as the load balancer container. If there are no containers of the target service on the same host, then traffic will be routed to other containers of the service, that reside on other hosts. 
+`io.rancher.lb_service.target` | `only-local` | Only direct traffic to containers on the same host as the load balancer container. If there are no containers of the target service on the same host, then no traffic will be routed to the service.
+`io.rancher.lb_service.target` | `prefer-local` |  Prioritize traffic to containers on the same host as the load balancer container. If there are no containers of the target service on the same host, then traffic will be routed to other containers of the service, that reside on other hosts.

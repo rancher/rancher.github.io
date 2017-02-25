@@ -1,10 +1,10 @@
 ---
 title: Installing Rancher Server with No Internet Access
-layout: rancher-default-v1.4
-version: v1.4
+layout: rancher-default-v1.5
+version: v1.5
 lang: en
-redirect_from:
-  - /rancher/installing-rancher/installing-server/no-internet-access/
+#redirect_from:
+#  - /rancher/installing-rancher/installing-server/no-internet-access/
 ---
 
 ## Launching Rancher Server with No Internet Access
@@ -42,9 +42,9 @@ These examples are for the `rancher/server` and `rancher/agent` images using a m
 
 ```bash
 # rancher/server
-$ docker pull rancher/server:v1.4.0
-$ docker tag rancher/server:v1.4.0 localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.4.0
-$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.4.0
+$ docker pull rancher/server:v1.5.0
+$ docker tag rancher/server:v1.5.0 localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.5.0
+$ docker push localhost:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.5.0
 
 # rancher/agent
 $ docker pull rancher/agent:v1.1.3
@@ -65,7 +65,7 @@ Example:
 ```bash
 $ sudo docker run -d --restart=unless-stopped -p 8080:8080 \
     -e CATTLE_BOOTSTRAP_REQUIRED_IMAGE=<Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_AGENT_IMAGE>:v1.1.3 \
-    <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.4.0
+    <Private_Registry_Domain>:5000/<NAME_OF_LOCAL_RANCHER_SERVER_IMAGE>:v1.5.0
 ```
 
 #### Rancher UI

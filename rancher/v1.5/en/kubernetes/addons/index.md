@@ -1,14 +1,14 @@
 ---
 title: Kubernetes Addons in Rancher
-layout: rancher-default-v1.4
-version: v1.4
+layout: rancher-default-v1.5
+version: v1.5
 lang: en
 ---
 
 ## Kubernetes Add-ons
 ---
 
-Rancher automatically installs Kubernetes add-ons to help enhance the Kubernetes experience. 
+Rancher automatically installs Kubernetes add-ons to help enhance the Kubernetes experience.
 
 * [Helm](#helm) - A Package Manager for Kubernetes
 * [Dashboard](#dashboard) - A dashboard web interface for Kubernetes
@@ -16,11 +16,11 @@ Rancher automatically installs Kubernetes add-ons to help enhance the Kubernetes
 
 ### Helm
 
-Helm consists of two parts, a server called tiller and a client called helm. Tiller is automatically started by Rancher and is launched in the **kube-system** namespace. The helm client is installed in the embedded kubectl CLI. 
+Helm consists of two parts, a server called tiller and a client called helm. Tiller is automatically started by Rancher and is launched in the **kube-system** namespace. The helm client is installed in the embedded kubectl CLI.
 
-#### Verifying Helm 
+#### Verifying Helm
 
-Before we start using helm to launch applications, let's verify that the helm client can talk to helm server( i.e. tiller). Use `helm vrsion` in the embedded kubectl CLI, which is available in **Kubernetes** -> **CLI**. 
+Before we start using helm to launch applications, let's verify that the helm client can talk to helm server( i.e. tiller). Use `helm vrsion` in the embedded kubectl CLI, which is available in **Kubernetes** -> **CLI**.
 
 ```bash
 > helm version
@@ -28,11 +28,11 @@ Client: &version.Version{SemVer:"v2.1.3", GitCommit:"5cbc48fb305ca4bf68c26eb8d2a
 Server: &version.Version{SemVer:"v2.1.3", GitCommit:"5cbc48fb305ca4bf68c26eb8d2a7eb363227e973", GitTreeState:"clean"}
 ```
 
-If there is a result for both the client and server, then helm is working properly. 
+If there is a result for both the client and server, then helm is working properly.
 
 #### Using Helm
 
-Similar to most package managers, we should confirm we have the latest list of charts. 
+Similar to most package managers, we should confirm we have the latest list of charts.
 
 ```bash
 > helm repo update
@@ -42,7 +42,7 @@ Hang tight while we grab the latest from your chart repositories...
 Update Complete. â Happy Helming!â
 ```
 
-Using `helm search`, you can search for different charts that are available to be installed. 
+Using `helm search`, you can search for different charts that are available to be installed.
 
 ```
 > helm search
@@ -85,7 +85,7 @@ NAME                STATUS    VOLUME    CAPACITY   ACCESSMODES   AGE
 loping-toad-mysql   Pending                                      3s
 ```
 
-After you've installed the charts that you want, you can check which applications are running by using `helm ls`. All services are deployed in the namespace that you are currently using CLI in. 
+After you've installed the charts that you want, you can check which applications are running by using `helm ls`. All services are deployed in the namespace that you are currently using CLI in.
 
 ```bash
 > helm ls
@@ -97,9 +97,9 @@ loping-toad     1               Thu Oct 20 14:54:24 2016        DEPLOYED        
 
 ### SkyDNS
 
-In Rancher, each service is given a name. Other services can communicate with a service using the DNS service name. The DNS service name is `<service_name>.<namespace_name>.svc.cluster.local`. 
+In Rancher, each service is given a name. Other services can communicate with a service using the DNS service name. The DNS service name is `<service_name>.<namespace_name>.svc.cluster.local`.
 
-Using the mysql application launched in the helm example, you can get the name and namespace of the mysql service. 
+Using the mysql application launched in the helm example, you can get the name and namespace of the mysql service.
 
 ```bash
 > kubectl get pods --all-namespaces=true
