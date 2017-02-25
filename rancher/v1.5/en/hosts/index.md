@@ -31,7 +31,7 @@ Version               | Supported? | Install Script |
 `1.11.x`              | No         | `curl https://releases.rancher.com/install-docker/1.11.sh | sh`
 `1.12.0` - `1.12.2`   | No         |
 `1.12.3` (and higher) | **Yes**        | `curl https://releases.rancher.com/install-docker/1.12.sh | sh`
-`1.13.x`              | Not yet (planned for Rancher 1.5) | `curl https://releases.rancher.com/install-docker/1.13.sh | sh`
+`1.13.x`              | **Yes** | `curl https://releases.rancher.com/install-docker/1.13.sh | sh`
 
 ### Installing a Specific Docker Version
 
