@@ -14,9 +14,9 @@ Rancher is able to leverage persistent storage through the native Kubernetes res
 
 When using the NFS volume for Kubernetes, a file system (i.e. NFS) is mounted inside the pods. The filesystem allows multiple writes from different pods, which use the same persistent volume claim. Volumes can be shared between pods with the same data in each pod.
 
-#### Configuration in Rancher
+#### NFS Configuration 
 
-To use NFS, Rancher must be configured to use the [Rancher cloud provider]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/providers/#rancher). Also, you will need to have a running NFS server running with shared exports. In our examples, we're assuming that the `/nfs` directory is exported.
+You will need to have a running NFS server running with shared exports. In our examples, we're assuming that the `/nfs` directory is exported.
 
 #### Create Persistent Volumes (PV) and Persistent Volume Claims (PVC)
 
