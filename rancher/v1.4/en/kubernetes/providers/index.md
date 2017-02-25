@@ -8,7 +8,7 @@ lang: en
 ## Kubernetes - Cloud Providers
 ---
 
-In Kubernetes, there is a concept of [cloud providers](https://kubernetes.io/docs/getting-started-guides/scratch/#cloud-provider), which is a module which provides an interface for managing load balancers, nodes (i.e. hosts) and networking routes. 
+In Kubernetes, there is a concept of [cloud providers](https://kubernetes.io/docs/getting-started-guides/scratch/#cloud-provider), which is a module which provides an interface for managing load balancers, nodes (i.e. hosts) and networking routes.
 
 Currently, Rancher supports two cloud providers when installing Kubernetes.
 
@@ -21,7 +21,7 @@ By default, the orchestration for Kubernetes is set to `rancher`.
 
 ### AWS
 
-  * **Nodes:** Supports only AWS hosts added either as a [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) or [through the Rancher UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/amazon/).
+  * **Nodes:** Supports only AWS hosts added either as a [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) or [through the Rancher UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/amazon/).
   * **Load Balancers:** Launches an AWS Elastic Load Balancer (ELB) as a Load Balancer service. You can still create Rancher load balancers by using an [ingress]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/ingress/).
   * **[Persistent Volumes]**: Ability to use AWS Elastic Block Stores (EBS) for persistent volumes.
 
@@ -129,4 +129,4 @@ Events:
 
 #### Using EBS Volumes
 
-After configuring Kubernetes to use `aws` as a cloud provider and ensuring the host has the appropriate IAM policy for EBS, you can start [using EBS volumes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/storage/).
+After configuring Kubernetes to use `aws` as a cloud provider and ensuring the host has the appropriate IAM policy for EBS, you can start [using EBS volumes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/storage/#persistent-volumes---ebs).

@@ -8,13 +8,15 @@ lang: en
 ## Persistent Storage in Kubernetes
 ---
 
-Rancher is able to leverage persistent storage through the native Kubernetes resources. In Kubernetes, [persistent storage](https://kubernetes.io/docs/user-guide/persistent-volumes/) is managed through the Kubernetes API resources, `PersistentVolume` and `PersistentVolumeClaim`. The storage components in Kubernetes support a variety of backends (e.g. NFS, EBS, etc), which have separate life-cycles from pods. Depending on the type of persistent volumes that you are interested in using, you may need to [configure your Kubernetes environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/providers/).
+Rancher can launch services with persistent storage through the native Kubernetes resources. In Kubernetes, [persistent storage](https://kubernetes.io/docs/user-guide/persistent-volumes/) is managed through the Kubernetes API resources, `PersistentVolume` and `PersistentVolumeClaim`. The storage components in Kubernetes support a variety of backends (e.g. NFS, EBS, etc.), which have separate life-cycles from pods. Depending on the type of persistent volumes that you are interested in using, you may need to [configure your Kubernetes environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/providers/).
+
+We've outlined some examples of how to use [NFS](#persistent-volumes---nfs) and [EBS](#persistent-volumes---ebs) with Kubernetes in Rancher.
 
 ### Persistent Volumes - NFS
 
 When using the NFS volume for Kubernetes, a file system (i.e. NFS) is mounted inside the pods. The filesystem allows multiple writes from different pods, which use the same persistent volume claim. Volumes can be shared between pods with the same data in each pod.
 
-#### NFS Configuration 
+#### NFS Configuration
 
 You will need to have a running NFS server running with shared exports. In our examples, we're assuming that the `/nfs` directory is exported.
 
