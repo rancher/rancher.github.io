@@ -31,6 +31,7 @@ Key | Value |Description
 `io.rancher.scheduler.affinity:container_label` | Key Value Pair of Any Container Label | Used to schedule containers on hosts based on [container label or service name]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#finding-hosts-with-container-labels)
 `io.rancher.scheduler.affinity:container` | Name of Container | Used to schedule containers on hosts based on [container name]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#finding-hosts-with-container-names)
 `io.rancher.lb_service.target` | [_Target Service Label_ Values](#target-service-labels) | Used to configure load balancers so that traffit will be routed to containers that are on the same host as the load balancer.
+
 <br>
 
 > **Note:** For the labels prefixed with `io.rancher.scheduler.affinity`, there are slight variations based on your how want to match (i.e. equal or not equal, hard or soft rules). More details can be found [here]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#table-of-scheduling-labels).
