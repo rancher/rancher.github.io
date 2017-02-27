@@ -74,21 +74,48 @@ services:
 
 ### Templating
 
-More advanced use cases such as conditional logic are supported by using the [Go template system](https://golang.org/pkg/text/template/).
+Inside the `docker-compose.yml` and `rancher-compose.yml`, Rancher supports the ability to use conditional logic by using the [Go template system](https://golang.org/pkg/text/template/). Templating combined with [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) allow you to be able to configure your catalog templates to answer questions and change your files based on the answers. 
 
-As an example, the following template will produce a service with `ports` set if the `public` variable is true and `expose` will be set otherwise.
+> **Note:** Currently we only support evaluating `string` comparisons. 
 
+#### Example
+
+If you wanted to have the ability to produce a service that publishes ports externally versus internally, you would be able to set conditional logic to support this. In the example, port `8000` will be published under `ports` if the `public` variable is `true`. Otherwise, the ports will be published under `expose`. Using the catalog ability to answer [questions]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/#questions-in-the-rancher-composeyml) is how the user will answer. In our example, the default value is true.
+
+`docker-compose.yml`
 
 ```yaml
 version: '2'
 services:
   web:
     image: nginx
-    {{- if eq .Values.public "true" }}
+    {{- if eq .Values.PUBLIC "true" }}
     ports:
     - 8000
     {{- else }}
     expose:
     - 8000
     {{- end }}
+```
+
+`rancher-compose.yml`
+
+```
+version: '2'
+catalog:
+  name: Nginx Application
+  version: v0.0.1
+  questions:
+  - variable: PUBLIC
+    label: Publish Ports?
+    required: true
+    default: true
+    type: boolean
+```
+
+`config.yml`
+
+```
+name: "Nginx Application"
+version: v0.0.1
 ```
