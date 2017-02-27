@@ -1,11 +1,13 @@
 ---
-title: Environment Interpolation in Rancher CLI
+title: Variable Interpolation in Rancher CLI
 layout: rancher-default-v1.5
 version: v1.5
 lang: en
+redirect_from:
+  - rancher/cli/environment-interpolation
 ---
 
-## Environment Interpolation
+## Variable Interpolation
 ---
 
 Using `rancher up`, environment variables from the machine running `rancher` can be used within the `docker-compose.yml` and `rancher-compose.yml` files. This is only supported in `rancher` commands and not in the Rancher UI.  
@@ -41,7 +43,7 @@ services:
 
 In Rancher, an `ubuntu` service will be deployed with an `ubuntu:14.04` image.
 
-### Environment Interpolation Formats
+### Variable Interpolation Formats
 
 `Rancher` supports the same formats as `docker-compose`.
 
@@ -68,4 +70,25 @@ services:
 
     # escaped interpolation - this will expand to "${ESCAPED}"
     command: "$${ESCAPED}"
+```
+
+### Templating
+
+More advanced use cases such as conditional logic are supported by using the [Go template system](https://golang.org/pkg/text/template/).
+
+As an example, the following template will produce a service with `ports` set if the `public` variable is true and `expose` will be set otherwise.
+
+
+```yaml
+version: '2'
+services:
+  web:
+    image: nginx
+    {{- if eq .Values.public "true" }}
+    ports:
+    - 8000
+    {{- else }}
+    expose:
+    - 8000
+    {{- end }}
 ```
