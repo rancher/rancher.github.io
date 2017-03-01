@@ -35,15 +35,15 @@ The following fields need to be entered for adding a hook for this driver
 
 Once the receiver hook is added, you need to use the Trigger URL as your Docker Hub webhook. After it is added as the Docker Hub webhook, services corresponding to the Rancher hook will be upgraded automatically once the specified tag is pushed to your Docker Hub image.
 
-This driver relies on the POST request from Docker Hub. In order to use this webhook with services other than Docker Hub, the webhook can be triggered by a POST request with JSON body containing all necessary fields that Docker Hub would send
+This driver relies on the POST request from Docker Hub. In order to use this webhook with services other than Docker Hub, the webhook can be triggered by a POST request with JSON body containing all necessary fields that Docker Hub would send.
 These are the fields from Docker Hub request body that are a must for this webhook to work, other fields aren't required hence aren't included in the snippet below
 ```
 {
     "push_data": {
-        "tag": "latest"
+        "tag": <pushedTag>
     },
     "repository": {
-        "repo_name": "accountName/image"
+        "repo_name": <image>
     }
 }
 ```
