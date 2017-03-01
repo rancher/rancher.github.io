@@ -28,7 +28,7 @@ If backups are disabled, the values for **Backup Creation Period** and **Backup 
 
 ### Configuring Remote Backups
 
-Currently, backups are persisted to a static location on the host at `/var/etcd/backups`. It is required that you mount a network storage at this location on all the hosts running the **etcd** service. Setting up the network service must be done before Kubernetes is launched.
+Currently, backups are persisted to a static location on the host at `/var/etcd/backups`. It is required that you mount a network storage at this location on all the hosts running the **etcd** service. Setting up the network storage must be done before Kubernetes is launched.
 
 ### Restoring Backups
 
@@ -36,7 +36,7 @@ If all hosts running the **etcd** service fail, follow these steps:
 
 1. Change your orchestration type for the environment to **Cattle** by deleting the **Kubernetes** stack from the **Kubernetes** -> **Infrastructures Stacks**. Pods will remain intact and available.
 2. Delete the `disconnected` hosts and add new hosts. If you have opted to have [resiliency planes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/resiliency-planes), you will need to add hosts with the label `etcd=true`.
-3. For each host that will be running the **etcd** service, mount the network storage containing backups. You will need to have an- see [Configuring Remote Backups](#configuring-remote-backups) section for details. Then run these commands:
+3. For each host that will be running the **etcd** service, mount the network storage containing backups, this should have been created as part of [configuring remote backups](#configuring-remote-backups). Then run these commands:
     ```bash
     # configure this to point to the desired backup in /var/etcd/backups
     target=<NAME_OF_BACKUP>
@@ -49,4 +49,4 @@ If all hosts running the **etcd** service fail, follow these steps:
     ```
     > **Note:** You must be logged in as a user with read access to the remote backups. Otherwise, the `docker cp` command will silently fail.
 
-5. Launch Kubernetes through the catalog. Make sure you [configure Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes). type back to **Kubernetes**. The system stack will launch and your pods will be reconciled. Your backup may reflect a different deployment topology than what currently exists; pods may be deleted/recreated.
+5. Launch Kubernetes through the catalog. Make sure you [configure Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes). The **Kubernetes** infrastructure stack will launch and your pods will be reconciled. Your backup may reflect a different deployment topology than what currently exists. **Pods may be deleted/recreated.**
