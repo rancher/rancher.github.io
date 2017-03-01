@@ -1,5 +1,6 @@
 ---
 title: Kubernetes - Backups
+layout: rancher-default-v1.5
 version: v1.5
 lang: en
 ---
@@ -23,7 +24,7 @@ The **Backup Retention Period** duration indicates at what rate historical backu
 
 The maximum number of backups stored on disk at any given moment follows the equation `ceiling(retention period / creation period)`. For example, `5m` creation period with `4h` retention period would store at most `ceiling(4h / 5m)` backups or `48` backups. A conservative estimate for backup size is `50MB`, so the attached network storage should have at least `2.4GB` free space. Backup sizes will vary depending on usage.
 
-If backups are disabled, the values for `Backup Creation Period` and `Backup Retention Period` are ignored.
+If backups are disabled, the values for **Backup Creation Period** and **Backup Retention Period** are ignored.
 
 ### Configuring Remote Backups
 
@@ -36,7 +37,6 @@ If all hosts running the **etcd** service fail, follow these steps:
 1. Change your orchestration type for the environment to **Cattle** by deleting the **Kubernetes** stack from the **Kubernetes** -> **Infrastructures Stacks**. Pods will remain intact and available.
 2. Delete the `disconnected` hosts and add new hosts. If you have opted to have [resiliency planes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/resiliency-planes), you will need to add hosts with the label `etcd=true`.
 3. For each host that will be running the **etcd** service, mount the network storage containing backups. You will need to have an- see [Configuring Remote Backups](#configuring-remote-backups) section for details. Then run these commands:
-
     ```bash
     # configure this to point to the desired backup in /var/etcd/backups
     target=<NAME_OF_BACKUP>
@@ -47,6 +47,6 @@ If all hosts running the **etcd** service fail, follow these steps:
     docker cp /var/etcd/backups/$target etcd-restore:/data/data.current
     docker rm etcd-restore
     ```
-    * Note - you must be logged in as a user with read access to the remote backups. Otherwise, the `docker cp` command will silently fail.
+    > **Note:** You must be logged in as a user with read access to the remote backups. Otherwise, the `docker cp` command will silently fail.
 
 5. Launch Kubernetes through the catalog. Make sure you [configure Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes). type back to **Kubernetes**. The system stack will launch and your pods will be reconciled. Your backup may reflect a different deployment topology than what currently exists; pods may be deleted/recreated.

@@ -10,11 +10,7 @@ lang: en
 
 In Kubernetes, there is a concept of [cloud providers](https://kubernetes.io/docs/getting-started-guides/scratch/#cloud-provider), which is a module which provides an interface for managing load balancers, nodes (i.e. hosts) and networking routes.
 
-Currently, Rancher supports two cloud providers when installing Kubernetes.
-
-#### Changing Cloud Providers
-
-When [configuring Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes), select which cloud provider to use. 
+Currently, Rancher supports two cloud providers when [configuring Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes). You can select which cloud provider to use.
 
 ### Rancher
 
@@ -27,13 +23,13 @@ By default, the orchestration for Kubernetes is set to `rancher`.
 
   * **Nodes:** Supports only AWS hosts added either as a [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) or [through the Rancher UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/amazon/).
   * **Load Balancers:** Launches an AWS Elastic Load Balancer (ELB) as a Load Balancer service. You can still create Rancher load balancers by using an [ingress]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/ingress/).
-  * **[Persistent Volumes]**: Ability to use AWS Elastic Block Stores (EBS) for persistent volumes.
+  * **Persistent Volumes**: Ability to use AWS Elastic Block Stores (EBS) for [persistent volumes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/ingress/storage/).
 
 #### Adding Hosts
 
-After Kubernetes has been configured to run with an `aws` cloud provider, any hosts added into the environment will need to be a AWS EC2 instance.
+After Kubernetes has been configured to run with an `aws` cloud provider, any hosts added into the environment will need to be an AWS EC2 instance.
 
-In order to use Elastic Load Balancers (ELB) and EBS with Kubernetes, the host will need to have the an IAM role with appropriate access.
+In order to use Elastic Load Balancers (ELBs) and EBS with Kubernetes, the host will need to have the an IAM role with appropriate access.
 
 ##### Example Policy for IAM Role:
 
@@ -72,7 +68,7 @@ In order to use Elastic Load Balancers (ELB) and EBS with Kubernetes, the host w
 
 #### Elastic Load Balancer (ELB) as a Kubernetes service
 
-After configuring Kubernetes to use `aws` as a cloud provider and ensuring the host has the appropriate IAM policy for ELB, you can start creating load balancers.  
+After [configuring Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes) to use `aws` as a cloud provider and ensuring the host has the appropriate IAM policy for ELB, you can start creating load balancers.  
 
 ##### Example `lb.yml`
 
