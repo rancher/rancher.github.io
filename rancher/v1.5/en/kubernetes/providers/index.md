@@ -12,6 +12,10 @@ In Kubernetes, there is a concept of [cloud providers](https://kubernetes.io/doc
 
 Currently, Rancher supports two cloud providers when installing Kubernetes.
 
+#### Changing Cloud Providers
+
+When [configuring Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes), select which cloud provider to use. 
+
 ### Rancher
 
   * **Nodes:** Supports any [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) that can be added in Rancher.
@@ -24,20 +28,6 @@ By default, the orchestration for Kubernetes is set to `rancher`.
   * **Nodes:** Supports only AWS hosts added either as a [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) or [through the Rancher UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/amazon/).
   * **Load Balancers:** Launches an AWS Elastic Load Balancer (ELB) as a Load Balancer service. You can still create Rancher load balancers by using an [ingress]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/ingress/).
   * **[Persistent Volumes]**: Ability to use AWS Elastic Block Stores (EBS) for persistent volumes.
-
-#### Setting up AWS as the Cloud Provider
-
-Before creating a Kubernetes [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments), the Kubernetes infrastructure stack will need to be configured and the configuration option for the **Cloud Provider** will need to be set as `aws`.
-
-##### New Environments
-
-When creating new environments, you will need to select an environment template that is already configured correctly. When adding or editing an environment template, the orchestration will need to have **Kubernetes** selected. Click on **Edit Config**. Pick `aws` in the **Configuration Options** -> **Cloud Provider** and click **Configure**.
-
-For existing Kubernetes environment templates, you can edit the environment template under the **Manage Environments** link from the drop down of environments. Click on the **Edit** icon next to the environment template running Kubernetes.
-
-##### Converting Existing Cattle Environments to Kubernetes
-
-If you have an existing Cattle environment, the environment can be converted to a Kubernetes orchestration by going to **Catalog** -> **library** and selecting **Kubernetes**. Click on **View Details** and switch to `aws` for the **Cloud Provider**. Click on **Launch**
 
 #### Adding Hosts
 
