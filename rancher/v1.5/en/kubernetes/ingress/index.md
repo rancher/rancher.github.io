@@ -574,7 +574,7 @@ spec:
 
 In Rancher, our load balancers run HAProxy software. The stickiness policy of HAProxy can be directly configured using the annotation `io.rancher.stickiness.policy`, and the value can be set to a `\n` delimited set of key value parameters that are understood by HAProxy
 
-```
+```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
