@@ -92,7 +92,7 @@ In Rancher, all [infrastructure services]({{site.baseurl}}/rancher/{{page.versio
 
 * **Add the private registry:** In **Infrastructure** -> **Registries** section, add the private registry that contain the images for the infrastructure services.
 
-* **Update the default registry:** Under **API**, click on the link for **Endpoint (v2-beta)**. Click on the link for **settings**, which will navigate to `v2-beta/settings`. Find the `registry.default` setting and click on the link under `self`. Edit the setting and add the private registry value. Once the `registry.default` setting has been updated, the infrastructure services will begin to pull from the private registry instead of DockerHub.
+* **Update the default registry:** Under **Admin** -> **Setting** -> **Advanced Settings**, click on the **I understand that I can break things by changing advanced settings**. Find the **registry.default** setting and click on the edit icon. Add the registry value and click on **Save**. Once the `registry.default` setting has been updated, the infrastructure services will begin to pull from the private registry instead of DockerHub.
 
 * **Create a New Environment:** After updating the default registry, you will need to re-create your environments so that the infrastructure services will be using the updated default registry. Any existing environments prior to the change in default registry would have their infrastructure services still pointing to DockerHub.
 
