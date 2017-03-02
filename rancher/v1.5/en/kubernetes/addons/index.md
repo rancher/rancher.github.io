@@ -21,27 +21,27 @@ If you are running Rancher with [no internet access]({{site.baseurl}}/rancher/{{
 
 #### Private Registry Requirements
 
-For the Kubernetes add-ons, Rancher expects the private registry to mirror DockerHub (i.e) `docker.io` and Google Container Registry (i.e. `gcr.io`). The `namespace/name:tag` is expected to be consistent the images in the [Rancher add-on templates](https://github.com/rancher/kubernetes-package/tree/master/addon-templates).
+For the Kubernetes add-ons, Rancher expects the private registry to mirror DockerHub (i.e `docker.io`) and Google Container Registry (i.e. `gcr.io`). The `namespace/name:tag` is expected to be consistent the images in the [Rancher add-on templates](https://github.com/rancher/kubernetes-package/tree/master/addon-templates).
 
-The images below are the list of add-ons that are currently supported, you will need to [check the Github repo for exact version](https://github.com/rancher/kubernetes-package/tree/master/addon-templates).
+The images below are the list of add-ons that are currently supported, you will need to [check the Github repo for exact version](https://github.com/rancher/kubernetes-package/tree/master/addon-templates) and copy the exact version for each image.
 
 ##### Images for Helm
 
-```
+```yml
 # Located in the helm/tiller-deploy.yaml
 image: <$PRIVATE_REGISTRY>/kubernetes-helm/tiller:<VERSION>
 ```
 
 ##### Images for Dashboard
 
-```
+```yml
 # Located in the dashboard/dashboard-controller.yaml
 image: <$PRIVATE_REGISTRY>/google_containers/kubernetes-dashboard-amd64:<VERSION>
 ```
 
 ##### Images for Heapster
 
-```
+```yml
 # Located in the heapster/heapster-controller.yaml
 image: <$PRIVATE_REGISTRY>/google_containers/heapster:<VERSION>
 
