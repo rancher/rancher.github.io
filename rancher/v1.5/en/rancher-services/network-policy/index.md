@@ -18,6 +18,21 @@ Alternatively, if you already have an environment set up, you can select and lau
 
 > **Note:** Network Policy Manager is currently only compatible with an environment using the _Cattle_ container orchestration. Environment templates will restrict which ones are compatible based on orchestration, but all options are available from the catalog.
 
+### Managing Network Policy Rules via UI
+Network policy settings can be configured for each environment by navigating to the Environment's settings page. You can navigate to the Environment's settings page by using "Manage Environments" option from the dropdown menu.
+
+There are currently three knobs to control the communication between different containers. And one default "catch all" knob to control the rest of the traffic which is not covered by the other three knobs.
+
+- **Between Linked Services:** This knob is used to control communication between containers of two services that are linked.
+- **Within Service**: This knob controls where communication between containers of the same service is allowed or denied.
+- **Within Stack**: This knob controls where communication between containers of different services of the same stack is allowed or denied.
+- **Everything Else**: This knob controls the destiny of the traffic that doesn't match the above three knobs.
+
+A normal usage of the network policy would be deny "Everything Else" traffic and allow only the traffic that is needed using the other three knobs.
+
+> Note: The above rules are applied in the left to right order as they are read in the UI.
+
+
 ### Managing Network Policy Rules via API
 
 In the [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/resources/network/) resource, there is a `defaultPolicyAction` and a `policy` field that define how the communication between containers work. The `policy` field is an ordered array of [network policy rules]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/resources/networkPolicyRule/). Using Rancher's [API]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/), you can manage the network policy for the environment.
@@ -38,7 +53,6 @@ How to find the endpoint for your network:
 3. Search for the name of the networking driver that you've launched for your environment. For example, it could be `ipsec`. Click on the **self** link for the network.
 4. On the right hand side under **Operations**, click on **Edit** for the network. In the `defaultPolicyAction`, you can change the default policy and in the `policy` field, you can manage your network policy rules.
 
-> **Note:** Support for managing network policy rules will be added to the UI.
 
 ### Default Policy
 
@@ -49,6 +63,50 @@ To change the default policy to deny communication between all containers, you w
 ### Network Policy Rules
 
 Network policy rules set container communication for specific sets of containers.
+
+#### Containers of services that are linked
+Let's assume service A is linked to service B.
+
+To enable containers of service A to be able to communicate with service B:
+
+```json
+{
+  "within": "linked",
+  "action": "allow"
+}
+```
+> Note: Containers of service B will not be able to initiate a connection to service A.
+
+To disable containers of service A to be able to communicate with service B:
+
+```json
+{
+  "within": "linked",
+  "action": "deny"
+}
+```
+
+This rule applies to all linked services.
+
+#### Containers within a Service
+
+To enable communication between containers only within the same service:
+
+```json
+{
+  "within": "service",
+  "action": "allow"
+}
+```
+
+To disable communication between containers within the same service:
+
+```json
+{
+  "within": "service",
+  "action": "deny"
+}
+```
 
 #### Containers within a Stack
 
