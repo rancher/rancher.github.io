@@ -43,12 +43,14 @@ By default, Kubernetes is configured to deploy on overlapping planes. All planes
 
 This deployment allows the user to separate the planes by dedicating specific hosts for each plane type. It provides data plane resiliency and compute plane performance guarantees. You will need to [configure Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes) before adding the hosts. When configuring Kubernetes, select `required` for the **Plane Isolation** option.
 
+> **Note:** If you are upgrading Kubernetes from overlapping planes to separated planes, please [read more about upgrading]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/upgrading/) to correctly handle the change.
+
 ##### Adding Hosts with Host Labels
 
 All hosts added into a Kubernetes environment must be labeled so Rancher can schedule services based on the type of plane. A minimum of five hosts is required for this deployment type.
 
 1. **Data Plane:** Add 3 or more hosts with 1 CPU, >=1.5GB RAM, >=20GB DISK. When adding the host, [label these hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) with `etcd=true`.
-2. **Orchestration Plane:** Add 1 or more hosts with >=1 CPU and >=2GB RAM. When adding the host, [label these hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) with `orchestration=true`.
+2. **Orchestration Plane:** Add 2 or more hosts with >=1 CPU and >=2GB RAM. When adding the host, [label these hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) with `orchestration=true`. You can get away with 1 host, but in the event of host failure, the k8s API will be unavailable until a new orchestration host is added.
 3. **Compute Plane:** Add 1 or more hosts. When adding the host, [label these hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) with `compute=true`.
 
-> **Note:** Host labels can be added to existing hosts to add them to a plane, but we do not support attempting to change a host from one plane type to another plane type by changing labels. In order to change plane types, you can either delete the old plane label and delete all existing services on the host before adding a new plane label or update the labels and [upgrade Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubneretes/upgrading/) to rebalance the containers based on the new plane labels.
+> **Note:** Host labels can be added to existing hosts to add them to a plane, but we do not support attempting to change a host from one plane type to another plane type by changing labels. In order to change plane types, you can either delete the old plane label and delete all existing services on the host before adding a new plane label or update the labels and [upgrade Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/upgrading/) to rebalance the containers based on the new plane labels.
