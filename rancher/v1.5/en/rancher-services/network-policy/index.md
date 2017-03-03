@@ -19,18 +19,18 @@ Alternatively, if you already have an environment set up, you can select and lau
 > **Note:** Network Policy Manager is currently only compatible with an environment using the _Cattle_ container orchestration. Environment templates will restrict which ones are compatible based on orchestration, but all options are available from the catalog.
 
 ### Managing Network Policy Rules via UI
-Network policy settings can be configured for each environment by navigating to the Environment's settings page. You can navigate to the Environment's settings page by using "Manage Environments" option from the dropdown menu.
+Network policy settings can be configured for each environment by navigating to the environment's settings page. You can navigate to the environments's settings page by clicking on **Manage Environments** option from the dropdown menu. Click on the edit icon next to the environment you want to set a network policy on.
 
-There are currently three knobs to control the communication between different containers. And one default "catch all" knob to control the rest of the traffic which is not covered by the other three knobs.
+There are four options in the UI to control the network traffic between containers. `Allow` permits network traffic to occur where as `Deny` restricts network traffic.  
 
-- **Between Linked Services:** This knob is used to control communication between containers of two services that are linked.
-- **Within Service**: This knob controls where communication between containers of the same service is allowed or denied.
-- **Within Stack**: This knob controls where communication between containers of different services of the same stack is allowed or denied.
-- **Everything Else**: This knob controls the destiny of the traffic that doesn't match the above three knobs.
+* **Between Linked Services:** This option is used to control communication between containers of two services that are linked.
+* **Within Service**: This option is used to control communication between containers of the same service. 
+* **Within Stack**: This option is used to control communication between containers of different services in the same stack.
+* **Everything Else**: This option is used to control the rest of the traffic that doesn't match any of the definitions in the other options.
 
-A normal usage of the network policy would be deny "Everything Else" traffic and allow only the traffic that is needed using the other three knobs.
+A normal use case would be to select `Deny` for **Everything Else** and select `Allow` for the other options. 
 
-> Note: The above rules are applied in the left to right order as they are read in the UI.
+> **Note:** The rules are applied in the left to right order.
 
 
 ### Managing Network Policy Rules via API
