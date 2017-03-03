@@ -74,7 +74,9 @@ services:
 
 ### Templating
 
-Inside the `docker-compose.yml` and `rancher-compose.yml`, Rancher supports the ability to use conditional logic by using the [Go template system](https://golang.org/pkg/text/template/). Templating combined with [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) allow you to be able to configure your catalog templates to answer questions and change your files based on the answers. 
+Inside the `docker-compose.yml`, Rancher supports the ability to use conditional logic by using the [Go template system](https://golang.org/pkg/text/template/). 
+
+Templating can be used with the Rancher CLI or combined with [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) allow you to be able to configure your catalog templates to answer questions and change your files based on the answers. 
 
 > **Note:** Currently we only support evaluating `string` comparisons. 
 
