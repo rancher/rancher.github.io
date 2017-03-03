@@ -65,7 +65,8 @@ To change the default policy to deny communication between all containers, you w
 Network policy rules set container communication for specific sets of containers.
 
 #### Containers of services that are linked
-Let's assume service A is linked to service B.
+
+Assumption: Service A is linked to service B.
 
 To enable containers of service A to be able to communicate with service B:
 
@@ -75,7 +76,7 @@ To enable containers of service A to be able to communicate with service B:
   "action": "allow"
 }
 ```
-> Note: Containers of service B will not be able to initiate a connection to service A.
+> **Note:** Containers of service B will not be able to initiate a connection to service A.
 
 To disable containers of service A to be able to communicate with service B:
 
@@ -86,7 +87,7 @@ To disable containers of service A to be able to communicate with service B:
 }
 ```
 
-This rule applies to all linked services.
+Any network policy rule for linked services apply to all linked services in an environment.
 
 #### Containers within a Service
 
