@@ -1,11 +1,13 @@
 ---
-title: Environment Interpolation in Rancher CLI
+title: Variable Interpolation in Rancher CLI
 layout: rancher-default-v1.5
 version: v1.5
 lang: en
+redirect_from:
+  - rancher/cli/environment-interpolation
 ---
 
-## Environment Interpolation
+## Variable Interpolation
 ---
 
 Using `rancher up`, environment variables from the machine running `rancher` can be used within the `docker-compose.yml` and `rancher-compose.yml` files. This is only supported in `rancher` commands and not in the Rancher UI.  
@@ -41,7 +43,7 @@ services:
 
 In Rancher, an `ubuntu` service will be deployed with an `ubuntu:14.04` image.
 
-### Environment Interpolation Formats
+### Variable Interpolation Formats
 
 `Rancher` supports the same formats as `docker-compose`.
 
@@ -68,4 +70,54 @@ services:
 
     # escaped interpolation - this will expand to "${ESCAPED}"
     command: "$${ESCAPED}"
+```
+
+### Templating
+
+Inside the `docker-compose.yml`, Rancher supports the ability to use conditional logic by using the [Go template system](https://golang.org/pkg/text/template/). 
+
+Templating can be used with the Rancher CLI or combined with [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) allow you to be able to configure your catalog templates to answer questions and change your files based on the answers. 
+
+> **Note:** Currently we only support evaluating `string` comparisons. 
+
+#### Example
+
+If you wanted to have the ability to produce a service that publishes ports externally versus internally, you would be able to set conditional logic to support this. In the example, port `8000` will be published under `ports` if the `public` variable is `true`. Otherwise, the ports will be published under `expose`. Using the catalog ability to answer [questions]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/#questions-in-the-rancher-composeyml) is how the user will answer. In our example, the default value is true.
+
+`docker-compose.yml`
+
+```yaml
+version: '2'
+services:
+  web:
+    image: nginx
+    {{- if eq .Values.PUBLIC "true" }}
+    ports:
+    - 8000
+    {{- else }}
+    expose:
+    - 8000
+    {{- end }}
+```
+
+`rancher-compose.yml`
+
+```
+version: '2'
+catalog:
+  name: Nginx Application
+  version: v0.0.1
+  questions:
+  - variable: PUBLIC
+    label: Publish Ports?
+    required: true
+    default: true
+    type: boolean
+```
+
+`config.yml`
+
+```
+name: "Nginx Application"
+version: v0.0.1
 ```
