@@ -570,9 +570,9 @@ spec:
     servicePort: 80
 ```
 
-#### Example of configuring sticky sessions to route traffic from same source to the same container
+#### Example of sticky sessions
 
-In Rancher, our load balancers run HAProxy software. The stickiness policy of HAProxy can be directly configured using the annotation `io.rancher.stickiness.policy`, and the value can be set to a `\n` delimited set of key value parameters that are understood by HAProxy
+The stickiness policy of the HAProxy software running inside Rancher's load balancers can be configured. For example, you can configure the load balancers to route traffic from the same source to the same container. In order to configure the load balancer, you would use an annotation (i.e. `io.rancher.stickiness.policy`) and include the stickiness policy. The value can be set to a `\n` delimited set of key value parameters that are understood by HAProxy software.
 
 ```yaml
 apiVersion: extensions/v1beta1
@@ -580,7 +580,7 @@ kind: Ingress
 metadata:
   name: test
   annotations:
-    config: "defaults\n balance source\nglobal\nmaxconnrate 60"
+    # Configure stickiness policy 
     io.rancher.stickiness.policy: "name: testname\n cookie: cookie123\ndomain: test.domain"
 spec:
   backend:
