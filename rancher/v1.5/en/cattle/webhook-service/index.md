@@ -28,7 +28,7 @@ To use the trigger URL, you'll need to do a `POST` to the specific URL. There is
 
 * [Scale a Service](#scaling-a-service)
 * [Scale the number of Hosts](#scaling-hosts)
-* [Upgrade a Service based on DockerHub Tag Updates]()
+* [Upgrade a Service based on DockerHub Tag Updates](#upgrading-a-service-based-on-docker-hub-webhooks)
 
 <a id="scaling-service-example"></a>
 
@@ -127,20 +127,21 @@ For scaling a host, you must configure your webhook:
 * **Hosts in Error State:** Any hosts in `Error` state will not be considered in the count for a scaling group.
 * **Order of Deleting Hosts:** When deleting hosts from Rancher, any hosts in a scaling group will first delete hosts in these states (`Inactive`, `Deactivating`, `Reconnecting` or `Disconnected`) before starting to delete `Active` hosts.
 
-#### Upgrading a service based on DockerHub Webhooks
+#### Upgrading a service based on Docker Hub Webhooks
 
-Docker Hub sends a POST request to the user-added webhook endpoint, containing information about the latest pushed image and tag. Using this driver you can add a receiver hook in Rancher for all the services that should be upgraded with a particular image:tag once it's pushed to Docker Hub. This driver consumes the Docker Hub webhook information and redeploys/upgrades the services selected while adding the receiver hook. The services waiting for same image should be grouped together using labels. This label should be added by the user to all services. It is a necesssary field to be provided while adding a receiver hook. It is not a must to have any service with this label while adding the hook or while executing it. If there's no service with this label when the hook is executed, simply no action will be taken.
-The following fields need to be entered for adding a hook for this driver
+Utilizing Docker Hub's webhooks, you can add in Rancher's receiver hook so that when a specific image has been pushed, a `POST` will be sent to Rancher to trigger the receiver hook. Using this combination of webhooks, you can automate so that when a specific `image:tag` is pushed in Docker Hub, any services using a matching versions will automatically get upgraded. To select the group of services to be upgraded, you would use a selector label that will pick up any services that contain the matching label. Labels should be added to a service when creating the service. If the label doesn't exist, you will need to upgrade the service in Rancher to add the label for the webhook.
 
-- ServiceSelector: This lets you select the label you added for grouping some services
-- Tag: Enter the tag that the services are waiting on
-- BatchSize, interval and start before stopping flag
+In order to upgrade a service, you must configure your webhook:
 
-Once the receiver hook is added, you need to use the Trigger URL as your Docker Hub webhook. After it is added as the Docker Hub webhook, services corresponding to the Rancher hook will be upgraded automatically once the specified tag is pushed to your Docker Hub image.
+* Select the tag that will be upgraded
+* Select the label to find the services to be upgraded
+* Determine the number of containers to be upgraded at a time (i.e. Batch Size)
+* Determine the number of seconds between starting the next container during upgrade (i. e. Batch Interval)
+* Select whether or not the new container should start before the old container was stopped
 
-This driver relies on the POST request from Docker Hub. In order to use this webhook with services other than Docker Hub, the webhook can be triggered by a POST request with JSON body containing all necessary fields that Docker Hub would send.
-These are the fields from Docker Hub request body that are a must for this webhook to work, other fields aren't required hence aren't included in the snippet below
-```
+After the receiver hook is created, you need to use the **Trigger URL** in your your Docker Hub webhook. When the Docker Hub triggers its webhook, services picked up by the Rancher receiver hook will be upgraded. By default, the  Rancher receiver hook expects specific information that the Docker Hub webhook provides. To use Rancher's receiver hook with another webhook, the `POST` would need to contain these fields:
+
+```json
 {
     "push_data": {
         "tag": <pushedTag>
