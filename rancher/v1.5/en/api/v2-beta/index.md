@@ -4,9 +4,9 @@ layout: rancher-api-v2-beta-default-v1.5
 version: v1.5
 lang: en
 apiVersion: v2-beta
-#redirect_from:
-#  - /rancher/latest/en/api/
-#  - /rancher/api/
+redirect_from:
+  - /rancher/latest/en/api/
+  - /rancher/api/
 ---
 
 ## How to use the API

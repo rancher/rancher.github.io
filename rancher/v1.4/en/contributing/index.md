@@ -3,8 +3,6 @@ title: Contributing to Rancher
 layout: rancher-default-v1.4
 version: v1.4
 lang: en
-redirect_from:
-  - /rancher/latest/en/contributing/
 ---
 
 ## Contributing to Rancher
