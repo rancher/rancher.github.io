@@ -1,11 +1,11 @@
 ---
 title: API Resources
-layout: rancher-api-v2-beta-default-v1.4
-version: v1.4
+layout: rancher-api-v2-beta-default-v1.5
+version: v1.5
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.4/zh/api/v2-beta/api-resources/
+#  - /rancher/v1.5/zh/api/v2-beta/api-resources/
 ---
 
 ## API Resources
@@ -148,6 +148,12 @@ A registry is where image repositories are hosted. The repository can be either 
 [RegistryCredential]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/registryCredential/)|
 ---|
 A registry credential is used to authenticate against a [registry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/registry). |
+
+<br>
+
+[ScheduledUpgrade]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/scheduledUpgrade/)|
+---|
+ |
 
 <br>
 

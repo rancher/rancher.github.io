@@ -1,11 +1,11 @@
 ---
 title: Rancher API - host
-layout: rancher-api-v2-beta-default-v1.4
-version: v1.4
+layout: rancher-api-v2-beta-default-v1.5
+version: v1.5
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.4/zh/api/v2-beta/api-resources/host/
+#  - /rancher/v1.5/zh/api/v2-beta/api-resources/host/
 ---
 
 ## Host
@@ -39,6 +39,7 @@ memory | int | Optional | Yes | - |
 milliCpu | int | Optional | Yes | - | 
 name | string | Optional | Yes | - | 
 packetConfig | [packetConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/packetConfig/) | Optional | Yes | - | 
+stackId | [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/) | Optional | - | - | 
 
 
 #### Read Only Fields
@@ -185,7 +186,8 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"os": "ubuntu_14_04",
 		"plan": "baremetal_1",
 		"projectId": ""
-	}
+	},
+	"stackId": "reference[stack]"
 }' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/hosts'
 {% endhighlight %}
 </div></div>
@@ -345,7 +347,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/hosts/${ID}?action=activate'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/">host</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/">host</a> resource</span>
 </div></div>
 
 <div class="action" id="deactivate">
@@ -365,7 +367,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/hosts/${ID}?action=deactivate'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/">host</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/">host</a> resource</span>
 </div></div>
 
 <div class="action" id="dockersocket">
@@ -385,7 +387,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/hosts/${ID}?action=dockersocket'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostAccess/">hostAccess</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostAccess/">hostAccess</a> resource</span>
 </div></div>
 
 <div class="action" id="error">
@@ -405,7 +407,27 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/hosts/${ID}?action=error'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/">host</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/">host</a> resource</span>
+</div></div>
+
+<div class="action" id="evacuate">
+<span class="header">
+evacuate
+<span class="headerright">POST:  <code>/v2-beta/projects/${PROJECT_ID}/hosts/${ID}?action=evacuate</code></span></span>
+<div class="action-contents">
+
+<br>
+<span class="input">
+<strong>Input:</strong>This action has no inputs</span>
+
+<br>
+{% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/hosts/${ID}?action=evacuate'
+{% endhighlight %}
+<br>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/">host</a> resource</span>
 </div></div>
 
 

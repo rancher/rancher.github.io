@@ -1,11 +1,11 @@
 ---
 title: Rancher API - project
-layout: rancher-api-v2-beta-default-v1.4
-version: v1.4
+layout: rancher-api-v2-beta-default-v1.5
+version: v1.5
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.4/zh/api/v2-beta/api-resources/project/
+#  - /rancher/v1.5/zh/api/v2-beta/api-resources/project/
 ---
 
 ## Project
@@ -19,6 +19,7 @@ A "project" in the API is referred to as an environment in the UI and Rancher do
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 description | string | Optional | Yes | - | 
+hostRemoveDelaySeconds | int | Optional | Yes | - | 
 members | array[[projectMember]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/projectMember/)] | Optional | - | - | 
 name | string | Optional | Yes | - | 
 projectTemplateId | [projectTemplate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/projectTemplate/) | Optional | - | - | 
@@ -63,7 +64,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/projects/${ID}?action=activate'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/">account</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/">account</a> resource</span>
 </div></div>
 
 <div class="action" id="deactivate">
@@ -83,7 +84,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/projects/${ID}?action=deactivate'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/">account</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/">account</a> resource</span>
 </div></div>
 
 <div class="action" id="defaultNetworkId">
@@ -131,7 +132,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 }' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/projects/${ID}?action=setmembers'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/setProjectMembersInput/">setProjectMembersInput</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/setProjectMembersInput/">setProjectMembersInput</a> resource</span>
 </div></div>
 
 <div class="action" id="upgrade">
@@ -151,7 +152,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/projects/${ID}?action=upgrade'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/">account</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/">account</a> resource</span>
 </div></div>
 
 

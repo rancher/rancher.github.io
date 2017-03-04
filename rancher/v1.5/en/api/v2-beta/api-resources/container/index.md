@@ -1,11 +1,11 @@
 ---
 title: Rancher API - container
-layout: rancher-api-v2-beta-default-v1.4
-version: v1.4
+layout: rancher-api-v2-beta-default-v1.5
+version: v1.5
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.4/zh/api/v2-beta/api-resources/container/
+#  - /rancher/v1.5/zh/api/v2-beta/api-resources/container/
 ---
 
 ## Container
@@ -91,6 +91,7 @@ restartPolicy | [restartPolicy]({{site.baseurl}}/rancher/{{page.version}}/{{page
 secrets | array[[secretReference]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/secretReference/)] | Optional | - | - | 
 securityOpt | array[string] | Optional | - | - | 
 shmSize | int | Optional | - | - | 
+stackId | [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/) | Optional | - | - | 
 startOnCreate | boolean | Optional | - | true | 
 stdinOpen | boolean | Optional | - | - | 
 stopSignal | string | Optional | - | - | 
@@ -121,6 +122,7 @@ mounts | array[[mountEntry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lan
 nativeContainer | boolean  | 
 primaryIpAddress | string  | 
 primaryNetworkId | [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/)  | 
+serviceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)  | The unique identifier of the associated service
 serviceIds | array[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
 startCount | int  | 
 system | boolean  | 
@@ -291,6 +293,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"...stringN"
 	],
 	"shmSize": 0,
+	"stackId": "reference[stack]",
 	"startOnCreate": true,
 	"stdinOpen": false,
 	"stopSignal": "string",
@@ -356,7 +359,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/containers/${ID}?action=console'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instanceConsole/">instanceConsole</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instanceConsole/">instanceConsole</a> resource</span>
 </div></div>
 
 <div class="action" id="execute">
@@ -393,7 +396,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 }' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/containers/${ID}?action=execute'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostAccess/">hostAccess</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostAccess/">hostAccess</a> resource</span>
 </div></div>
 
 <div class="action" id="logs">
@@ -423,7 +426,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 }' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/containers/${ID}?action=logs'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostAccess/">hostAccess</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostAccess/">hostAccess</a> resource</span>
 </div></div>
 
 <div class="action" id="proxy">
@@ -453,7 +456,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 }' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/containers/${ID}?action=proxy'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostAccess/">hostAccess</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostAccess/">hostAccess</a> resource</span>
 </div></div>
 
 <div class="action" id="restart">
@@ -473,7 +476,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/containers/${ID}?action=restart'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/">instance</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/">instance</a> resource</span>
 </div></div>
 
 <div class="action" id="start">
@@ -493,7 +496,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/containers/${ID}?action=start'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/">instance</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/">instance</a> resource</span>
 </div></div>
 
 <div class="action" id="stop">
@@ -523,7 +526,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 }' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/containers/${ID}?action=stop'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/">instance</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/">instance</a> resource</span>
 </div></div>
 
 
