@@ -1,11 +1,11 @@
 ---
 title: Rancher API - account
-layout: rancher-api-v2-beta-default-v1.4
-version: v1.4
+layout: rancher-api-v2-beta-default-v1.5
+version: v1.5
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.4/zh/api/v2-beta/api-resources/account/
+#  - /rancher/v1.5/zh/api/v2-beta/api-resources/account/
 ---
 
 ## Account
@@ -56,7 +56,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/accounts/${ID}?action=activate'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/">account</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/">account</a> resource</span>
 </div></div>
 
 <div class="action" id="deactivate">
@@ -76,7 +76,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/accounts/${ID}?action=deactivate'
 {% endhighlight %}
 <br>
-<span class="output"><strong>Output:</strong> A <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/">account</a> resource</span>
+<span class="output"><strong>Output:</strong> An updated copy of the <a href="{{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/">account</a> resource</span>
 </div></div>
 
 

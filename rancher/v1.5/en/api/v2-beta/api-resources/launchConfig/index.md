@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v2-beta-default-v1.4
-version: v1.4
+layout: rancher-api-v2-beta-default-v1.5
+version: v1.5
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.4/zh/api/v2-beta/api-resources/launchConfig/
+#  - /rancher/v1.5/zh/api/v2-beta/api-resources/launchConfig/
 ---
 
 ## launchConfig
@@ -95,6 +95,7 @@ requestedIpAddress | string | Optional | - | - |
 secrets | array[[secretReference]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/secretReference/)] | Optional | - | - | 
 securityOpt | array[string] | Optional | - | - | 
 shmSize | int | Optional | - | - | 
+stackId | [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/) | Optional | - | - | 
 startOnCreate | boolean | Optional | - | true | 
 stdinOpen | boolean | Optional | - | - | 
 stopSignal | string | Optional | - | - | 
@@ -130,6 +131,7 @@ nativeContainer | boolean  |
 primaryIpAddress | string  | 
 primaryNetworkId | [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/)  | 
 removed | date  | The date of when the launchConfig was removed
+serviceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)  | The unique identifier of the associated service
 serviceIds | array[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
 startCount | int  | 
 state | enum  | The current state of the launchConfig. The options are `creating`, `error`, `erroring`, `migrating`, `purged`, `purging`, `removed`, `removing`, `requested`, `restarting`, `restoring`, `running`, `starting`, `stopped`, `stopping`, `updating-running`, `updating-stopped`.
