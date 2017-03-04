@@ -6,41 +6,46 @@ lang: en
 ---
 
 ##  Webhooks
+---
 
-### Receiver Hooks
+In Rancher, you can create receiver hooks, which provides a URL that can be used to trigger an action inside of Rancher. For example, the receiver hooks can be integrated with an external monitoring systems to increase or decrease containers of a service. In **API** -> **Webhooks**, you can view and create new receiver hooks.
 
-In Rancher, you can create receiver hooks, which provides a URL that can be used to trigger an action inside of Rancher. For example, the receiver hooks can be integrated with an external monitoring systems to increase or decrease containers of a service. In **API** -> **Webhooks**, you can view and create new receiver hooks. 
-
-#### Adding Receiver Hooks
+### Adding Receiver Hooks
 
 To create a receiver hook, navigate to **API** -> **Webhooks**. Click on **Add Receiver**.
 
-* Provide a **Name** for the receiver, which will allow you to easily identify it. 
-* Select the **Kind** of receiver that you'd like to create. 
-* Determine the action of the receiver based on the type of receiver. 
+* Provide a **Name** for the receiver, which will allow you to easily identify it.
+* Select the **Kind** of receiver that you'd like to create.
+* Determine the action of the receiver based on the type of receiver.
 
-Click on **Create**. After it's created, the URL is provided next to the newly added receiver hook. 
+Click on **Create**. After it's created, the URL is provided next to the newly added receiver hook.
 
-#### Using a Receiver Hook
+### Using a Receiver Hook
 
 To use the trigger URL, you'll need to do a `POST` to the specific URL. There is no authentication or body needed to `POST` to the URL.
 
+### Kinds of Receiver Hook
+
+* [Scale a Service](#scaling-a-service)
+* [Scale the number of Hosts](#scaling-hosts)
+* [Upgrade a Service based on DockerHub Tag Updates]()
+
 <a id="scaling-service-example"></a>
 
-##### Example of Scaling a Service
+#### Scaling a Service
 
-For scaling a service, the actions include:
+For scaling a service, you must configure your webhook:
 
 * Scale up/down a service (i.e. add or remove containers in a service)
 * Select from the list of services in the environment
 * Scale up/down by how many containers at a time
-* The minimum/maximum amount of containers for the service 
+* The minimum/maximum amount of containers for the service
 
 <a id="autoscaling-example"></a>
 
-#### Example of Using a Receiver Hook for Autoscaling of a service
+##### Example of Using a Receiver Hook for Autoscaling of a service
 
-By using a receiver hook to scale services, you can implement autoscaling by integrating with external services. In our example, we'll use Prometheus to monitor the services and Alertmanager to `POST` to the URL. 
+By using a receiver hook to scale services, you can implement autoscaling by integrating with external services. In our example, we'll use Prometheus to monitor the services and Alertmanager to `POST` to the URL.
 
 ##### Installing Prometheus
 
@@ -69,8 +74,6 @@ ANNOTATIONS {
 ```
 After the alerts have been added, restart the service.
 
-
-
 ##### Adding Alertmanager
 
 In order to call the receiver hook, Alertmanager will need to be launched. You can add it to the Prometheus stack. Click on **Add Service** in the Prometheus stack. Use the `prom/alertmanager` to add a service. Make sure to map port `9093:9093` when adding the service. After the service has started, exec into the container to update the `etc/alertmanager/config.yml`. In the file, add the URL of the webhook so that it will send a `POST` request to the URL when the alert is fired. After the file is updated with the URL information, restart the service.
@@ -98,36 +101,34 @@ receivers:
     send_resolved: true
 ```
 
-##### Autoscaling 
+##### Autoscaling
 
-After Prometheus and Alertmanager have been updated with alerts and hooks, make sure the services were restarted in order to have the configurations updated and active. For the services that alerts have been added, the services will automatically be scaled up or down based on the receiver hook that was created. 
+After Prometheus and Alertmanager have been updated with alerts and hooks, make sure the services were restarted in order to have the configurations updated and active. For the services that alerts have been added, the services will automatically be scaled up or down based on the receiver hook that was created.
 
-## New drivers
-In 1.5, we have added two additional drivers for webhook-service, one for scaling hosts and the second for redeploying a service based on Dockerhub webhooks. Rest of the framwework remains the same.
+#### Scaling Hosts
 
-## Scaling host
-Driver for scaling hosts is implemented by cloning a base host. Hosts will be differentiated into different scaling groups by labels. This label will be provided by the users. The labels should be unique so as to distinguish properly between different host scaling groups. All hosts with the same label, whether created manually or added through webhook-service will be considered in a single host scaling group. This label is a necessary field while adding the receiver hook. It's not mandatory to have any hosts with this label while adding the hook, but while executing there must exist at least one such host. This first host needs to be added by the user manually. The rest of the hosts added through webhook-service for any scaling group will be clones of the first added (least recently created) host.
-These fields need to be entered for creating a receiver for scaling of hosts
+Rancher is able to scale hosts by cloning an existing host, which were created through Rancher (i.e. Docker Machine). This means that hosts added using the [custom command]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) cannot be scaled.
 
-- HostSelector: This field lets you select the label for your host scaling group.
-- Amount: Specify number of hosts you want to add/remove
-- Action: Select the action (up/down) for scaling
-- Min/Max: Minimum & maximum number of hosts allowed using the webhook
-- DeleteOption: While creating a hook for scaling down, you can choose whether to remove the most recently added or the least recently added hosts.
+Using [labels on the host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels), hosts can be grouped together in a scaling group. We recommend using unique labels on hosts to help differentiate scaling groups. Any hosts with the same label, regardless of how the host was added into Rancher, will be counted as part of a scaling group. When creating the webhook, the label is not required to be on any host, but when using the webhook, there must be at least 1 host with the label so that the webhook would have a host to clone in order to scale up. When scaling up hosts, Rancher will use a clone-able host that has been in the scaling group the longest.
 
-The url obtained after adding a receiver hook for this driver can be used in the same way as for the [scale service](https://github.com/rancher/rancher.github.io/blob/master/rancher/v1.4/en/cattle/webhook-service/index.md#using-a-receiver-hook) driver from 1.4
+For scaling a host, you must configure your webhook:
 
-A few things about this driver I'd like to emphasize on:
+* Scale up/down a host (i.e. add or remove hosts)
+* Add a host selector label. This label is the label on the hosts that will group hosts into a scaling group.
+* Select the amount of hosts to add or remove at a time.
+* Select the minimum and maximum number of hosts allowed in a host scaling group. If adding hosts, the number of hosts in the scaling group cannot exceed the maximum number. If removing hosts, the number of hosts in the scaling group cannot be lower than the minimum number.
+* If you are creating a webhook to scale down hosts, you can choose the priority of the order of how to remove hosts (i.e. start removing by oldest or newest).
 
-- Labels will differentiate host scaling groups, and since these are user labels, they need to be added and edited carefully to maintain these scaling groups. 
-If the selector label on some host is accidentally removed then it will not be considered a part of the scaling group by webhook-service anymore. In the same way any label of one scaling group accidentally added to some other host will make this host also a part of the scaling group.
-- A custom added host can be made a part of host scaling group, but in order to actually scale up, there has to be at least one host added using machine drivers.
-- Since scaling up actually is cloning hosts, the least recently created host from the host scaling group will be used. So the entire config such as resource allocation, docker engine and so on would be same as the least recently created host.
-- A host in `Error` state won't be considered as a part of the scaling group.
-- Webhook for deleting hosts has an option for removing least/most recently created hosts. Irrespective of this, any hosts that are in `Inactive`, `Deactivating`, `Reconnecting` or `Disconnected` will be removed first while scaling down.
+##### Notes on Scaling Hosts
 
+* **Host Labels:** Labels are used to differentiate hosts into different scaling groups. Since these are added by the user, labels need to be selected, added and edited carefully. Any labels added on a host will automatically add the host into a scaling group and if the host is clone-able, it could be used for to clone to add more hosts.  Any labels removed on a host will automatically remove the host from the scaling group and will not be eligible to be cloned or deleted from the webhook service.
+* **[Custom Hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/):** Any type of host can be added into a scaling group as you only need to add a label to the host. Rancher will not be able to use these hosts to clone and create more hosts.
+* **Cloning Hosts:** Since scaling up is cloning a host, all configurations including resource allocation, Docker engine, etc. will be duplicated on any new host. Rancher will always use the oldest host for cloning.
+* **Hosts in Error State:** Any hosts in `Error` state will not be considered in the count for a scaling group.
+* **Order of Deleting Hosts:** When deleting hosts from Rancher, any hosts in a scaling group will first delete hosts in these states (`Inactive`, `Deactivating`, `Reconnecting` or `Disconnected`) before starting to delete `Active` hosts.
 
-## Redeploying service based on Docker Hub webhooks
+#### Upgrading a service based on DockerHub Webhooks
+
 Docker Hub sends a POST request to the user-added webhook endpoint, containing information about the latest pushed image and tag. Using this driver you can add a receiver hook in Rancher for all the services that should be upgraded with a particular image:tag once it's pushed to Docker Hub. This driver consumes the Docker Hub webhook information and redeploys/upgrades the services selected while adding the receiver hook. The services waiting for same image should be grouped together using labels. This label should be added by the user to all services. It is a necesssary field to be provided while adding a receiver hook. It is not a must to have any service with this label while adding the hook or while executing it. If there's no service with this label when the hook is executed, simply no action will be taken.
 The following fields need to be entered for adding a hook for this driver
 

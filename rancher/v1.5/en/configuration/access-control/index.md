@@ -3,8 +3,8 @@ title: Access Control in Rancher
 layout: rancher-default-v1.5
 version: v1.5
 lang: en
-#redirect_from:
-#  - /rancher/latest/en/configuration/access-control/
+redirect_from:
+  - /rancher/latest/en/configuration/access-control/
 ---
 
 ## Access Control
