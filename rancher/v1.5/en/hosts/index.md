@@ -23,15 +23,16 @@ From the  **Infrastructure** -> **Hosts** tab, click on **Add Host**.
 
 ### Supported Docker Versions
 
-Version               | Supported? | Install Script |
+Version               | Supported? | K8S Supported? | Install Script |
 ----------------------|------------|----------------
-`1.9.x` and earlier   | No         |
-`1.10.0` - `1.10.2`   | No         |
-`1.10.3` (and higher) | **Yes**        | `curl https://releases.rancher.com/install-docker/1.10.sh | sh`
-`1.11.x`              | No         | `curl https://releases.rancher.com/install-docker/1.11.sh | sh`
-`1.12.0` - `1.12.2`   | No         |
-`1.12.3` (and higher) | **Yes**        | `curl https://releases.rancher.com/install-docker/1.12.sh | sh`
-`1.13.x`              | **Yes** | `curl https://releases.rancher.com/install-docker/1.13.sh | sh`
+`1.9.x` and earlier   | No         | |
+`1.10.0` - `1.10.2`   | No         | |
+`1.10.3` (and higher) | **Yes**    | **Yes**   | `curl https://releases.rancher.com/install-docker/1.10.sh | sh`
+`1.11.x`              | No         | |`curl https://releases.rancher.com/install-docker/1.11.sh | sh`
+`1.12.0` - `1.12.2`   | No         | |
+`1.12.3` (and higher) | **Yes**    | **Yes**   | `curl https://releases.rancher.com/install-docker/1.12.sh | sh`
+`1.13.x`              | **Yes** | No |`curl https://releases.rancher.com/install-docker/1.13.sh | sh`
+`17.03.0-ce`          | **Yes** | No |
 
 ### Installing a Specific Docker Version
 

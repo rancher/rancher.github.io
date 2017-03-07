@@ -74,11 +74,11 @@ services:
 
 ### Templating
 
-Inside the `docker-compose.yml`, Rancher supports the ability to use conditional logic by using the [Go template system](https://golang.org/pkg/text/template/). 
+Inside the `docker-compose.yml`, Rancher supports the ability to use conditional logic by using the [Go template system](https://golang.org/pkg/text/template/).
 
-Templating can be used with the Rancher CLI or combined with [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) allow you to be able to configure your catalog templates to answer questions and change your files based on the answers. 
+Templating can be used with the Rancher CLI or combined with [Rancher Catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) allow you to be able to configure your catalog templates to answer questions and change your files based on the answers.
 
-> **Note:** Currently we only support evaluating `string` comparisons. 
+> **Note:** Currently we only support evaluating `string` comparisons.
 
 #### Example
 
@@ -86,6 +86,7 @@ If you wanted to have the ability to produce a service that publishes ports exte
 
 `docker-compose.yml`
 
+{% raw %}
 ```yaml
 version: '2'
 services:
@@ -99,10 +100,11 @@ services:
     - 8000
     {{- end }}
 ```
+{% endraw %}
 
 `rancher-compose.yml`
 
-```
+```yaml
 version: '2'
 catalog:
   name: Nginx Application
@@ -117,7 +119,7 @@ catalog:
 
 `config.yml`
 
-```
+```yaml
 name: "Nginx Application"
 version: v0.0.1
 ```
