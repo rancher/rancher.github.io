@@ -118,7 +118,7 @@ Running Rancher server in High Availability (HA) is as easy as running [Rancher 
 * HA Nodes:
     * Any modern Linux distribution with a [supported version of Docker]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#supported-docker-versions). [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
     * For RHEL/CentOS, the default storage driver, i.e. devicemapper using loopback, is not recommended by [Docker](https://docs.docker.com/engine/reference/commandline/dockerd/#/storage-driver-options). Please refer to the Docker documentation on how to change it.
-    * Port that needs to be opened between nodes: `9345`
+    * Ports that needs to be opened between nodes: `9345`, `8080`
     * 1GB RAM
 * MySQL database
     * At least 1 GB RAM
@@ -148,7 +148,7 @@ Running Rancher server in High Availability (HA) is as easy as running [Rancher 
 
    For each node, the `<IP_of_the_Node>` will be unique to each node, as it will be the IP of each specific node that is being added into the HA setup.
 
-   If you change `-p 8080:8080` to expose a different port, then you would also add `--advertise-http-port` to match the same port as part of the command.
+   If you change `-p 8080:8080` to expose the HTTP port to a different port on the host, you will need to add `--advertise-http-port <host_port>` to the command.
 
    > **Note:** You can get the help for the commands by running `docker run rancher/server --help`
 
@@ -162,7 +162,7 @@ If the IP of your Rancher server node changes, your node will no longer be part 
 
 ### Running Rancher Server Behind an Application Load Balancer (ALB) in AWS
 
-We no longer recommend Application Load Balancer (ALB) in AWS over using an Elastic Load Balancer (ELB). If you choose to use an ALB, you will only need to direct the traffic to the advertised port (`--advertise-http-port`), which is by default `8080`.
+We no longer recommend Application Load Balancer (ALB) in AWS over using an Elastic Load Balancer (ELB). If you choose to use an ALB, you will only need to direct the traffic to the HTTP port on the nodes, which is `8080` by default.
 
 <a id="elb"></a>
 
