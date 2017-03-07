@@ -81,7 +81,9 @@ By default, Rancher automatically assumes any image without a registry prefix sh
 
 Once the **registry.default** setting has been updated, any images without a registry prefix (e.g. `ubuntu:14.0.4`) will be pulled from the default registry instead of DockerHub.
 
-> **Note:** If you are using a private registry requiring credentials, you will need to add the registry to Rancher in order for the default registry to be valid.
+If you are using a private registry requiring credentials, you will need to add the registry to Rancher in order for the default registry to be valid.
+
+> **Note:** Any services in an existing environment will still be using the original default registry (e.g. DockerHub). For infrastructure stacks to start using the new default registry, it will need to be deleted and re-launched to start using the updated default registry. The stacks can be deployed from **Catalog** -> **Library**.
 
 ### Limiting which Registries can be used
 
