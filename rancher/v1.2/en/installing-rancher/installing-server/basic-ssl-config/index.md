@@ -158,7 +158,7 @@ defaults
   timeout server 36000s
 
 frontend http-in
-  mode tcp
+  mode http
   bind *:443 ssl crt /etc/haproxy/certificate.pem
   default_backend rancher_servers
 
