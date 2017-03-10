@@ -156,10 +156,14 @@ defaults
   timeout server 36000s
 
 frontend http-in
-  mode tcp
+  mode http
   bind *:443 ssl crt /etc/haproxy/certificate.pem
   default_backend rancher_servers
 
+  # Set headers for SSL offloading
+  http-request set-header X-Forwarded-Proto https if { ssl_fc }
+  http-request set-header X-Forwarded-Ssl on if { ssl_fc }
+  
   acl is_websocket hdr(Upgrade) -i WebSocket
   acl is_websocket hdr_beg(Host) -i ws
   use_backend rancher_servers if is_websocket
