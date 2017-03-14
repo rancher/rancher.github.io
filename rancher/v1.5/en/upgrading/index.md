@@ -3,8 +3,8 @@ title: Upgrading Rancher
 layout: rancher-default-v1.5
 version: v1.5
 lang: en
-#redirect_from:
-#  - /rancher/latest/en/upgrading/
+redirect_from:
+  - /rancher/latest/en/upgrading/
 ---
 
 ## Upgrading Rancher Server
