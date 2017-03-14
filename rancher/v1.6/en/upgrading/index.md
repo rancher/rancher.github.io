@@ -1,16 +1,16 @@
 ---
 title: Upgrading Rancher
-layout: rancher-default-v1.5
-version: v1.5
+layout: rancher-default-v1.6
+version: v1.6
 lang: en
-redirect_from:
-  - /rancher/latest/en/upgrading/
+#redirect_from:
+#  - /rancher/latest/en/upgrading/
 ---
 
 ## Upgrading Rancher Server
 ---
 
-> **Note:** If you are upgrading to v1.5.x, please read our release notes on [v1.5.0](https://github.com/rancher/rancher/releases/tag/v1.5.0) regarding what to expect for this upgrade.
+> **Note:** If you are upgrading to v1.6.x, please read our release notes on [v1.6.0](https://github.com/rancher/rancher/releases/tag/v1.6.0) regarding what to expect for this upgrade.
 
 Depending on how you installed Rancher server, your upgrade steps may vary.
 

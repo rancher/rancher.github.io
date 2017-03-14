@@ -1,11 +1,11 @@
 ---
 title: Quick Start Guide
-layout: rancher-default-v1.5
-version: v1.5
+layout: rancher-default-v1.6
+version: v1.6
 lang: en
-redirect_from:
-  - /rancher/quick-start-guide/
-  - /rancher/latest/en/quick-start-guide/
+#redirect_from:
+#  - /rancher/quick-start-guide/
+#  - /rancher/latest/en/quick-start-guide/
 ---
 
 ## Quick Start Guide

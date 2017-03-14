@@ -1,7 +1,7 @@
 ---
 title: Installing Rancher Server with SSL
-layout: rancher-default-v1.5
-version: v1.5
+layout: rancher-default-v1.6
+version: v1.6
 lang: en
 ---
 
@@ -163,7 +163,7 @@ frontend http-in
   # Add headers for SSL offloading
   http-request set-header X-Forwarded-Proto https if { ssl_fc }
   http-request set-header X-Forwarded-Ssl on if { ssl_fc }
-  
+
   acl is_websocket hdr(Upgrade) -i WebSocket
   acl is_websocket hdr_beg(Host) -i ws
   use_backend rancher_servers if is_websocket
@@ -192,7 +192,7 @@ We recommend using an Application Load Balancer (ALB) in AWS over using an Elast
 
 ### Running Rancher Server Behind an Elastic Load Balancer (ELB) in AWS with SSL
 
-_Supported as of v1.5.3+_
+_Supported as of v1.6.3+_
 
 By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher’s websockets to work.
 

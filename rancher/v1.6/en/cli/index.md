@@ -1,7 +1,7 @@
 ---
 title: Rancher Command Line Interface (CLI)
-layout: rancher-default-v1.5
-version: v1.5
+layout: rancher-default-v1.6
+version: v1.6
 lang: en
 ---
 

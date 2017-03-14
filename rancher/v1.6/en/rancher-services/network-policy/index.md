@@ -1,7 +1,7 @@
 ---
 title: Network Policy in Rancher
-layout: rancher-default-v1.5
-version: v1.5
+layout: rancher-default-v1.6
+version: v1.6
 lang: en
 ---
 
@@ -24,11 +24,11 @@ Network policy settings can be configured for each environment by navigating to 
 There are four options in the UI to control the network traffic between containers. `Allow` permits network traffic to occur where as `Deny` restricts network traffic.  
 
 * **Between Linked Services:** This option is used to control communication between containers of two services that are linked.
-* **Within Service**: This option is used to control communication between containers of the same service. 
+* **Within Service**: This option is used to control communication between containers of the same service.
 * **Within Stack**: This option is used to control communication between containers of different services in the same stack.
 * **Everything Else**: This option is used to control the rest of the traffic that doesn't match any of the definitions in the other options.
 
-A normal use case would be to select `Deny` for **Everything Else** and select `Allow` for the other options. 
+A normal use case would be to select `Deny` for **Everything Else** and select `Allow` for the other options.
 
 > **Note:** The rules are applied in the left to right order.
 

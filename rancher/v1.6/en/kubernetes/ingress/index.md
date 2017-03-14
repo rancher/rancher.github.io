@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Ingress Support in Rancher
-layout: rancher-default-v1.5
-version: v1.5
+layout: rancher-default-v1.6
+version: v1.6
 lang: en
 ---
 
@@ -580,7 +580,7 @@ kind: Ingress
 metadata:
   name: test
   annotations:
-    # Configure stickiness policy 
+    # Configure stickiness policy
     io.rancher.stickiness.policy: "name: testname\n cookie: cookie123\ndomain: test.domain"
 spec:
   backend:
