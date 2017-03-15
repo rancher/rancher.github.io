@@ -46,7 +46,11 @@ With an environment scoped volume, services referencing the same volume in an en
 
 ### Using Storage Drivers in the UI  
 
-After your storage service has been launched and is `active`,  [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/) can start using the shared storage. when creating a service, in the **Volumes** tab, provide a **volume** and a **volume driver**. The **volume** will be in the same syntax as Docker, `<volume_name>:</path/in/container>`. Docker volumes default to mount in read-write mode, but you can set it to be mounted read-only by adding the `:ro` at the end of the volume. The **volume driver** will be the name of the storage driver.
+After your storage service has been launched and is `active`,  [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/) can start using the shared storage. when creating a service, in the **Volumes** tab, provide a **volume** and a **volume driver**.
+
+The **volume** will be in the same syntax as Docker, `<volume_name>:</path/in/container>`. Docker volumes default to mount in read-write mode, but you can set it to be mounted read-only by adding the `:ro` at the end of the volume.
+
+The **volume driver** will be the name of the storage driver, which is the name of the stack.
 
 If the `<volume_name>` already exists in the storage driver, the same volume will be used if the volume meets the volume scope requirements.
 
