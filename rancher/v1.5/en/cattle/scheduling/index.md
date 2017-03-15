@@ -8,12 +8,9 @@ lang: en
 ## Scheduling Services
 ---
 
-When Rancher schedules containers on hosts, there are default scheduling policies that it adheres to. These policies include:
+In Rancher, you can have the services to be scheduled on specific hosts based on strict and soft affinity/anti-affinity rules. These rules can compare the labels on a host or the labels on the container on a host to determine which host the container should be scheduled on.
 
-* Spreading containers across hosts in `active` state
-* Avoiding port conflicts
-
-In addition to these default scheduling policies, Rancher is able to schedule containers based on strict and soft affinity/anti-affinity rules. These rules can compare the labels on a host or container on a host to determine which host the container should be scheduled on.
+By default, Rancher will detect port conflicts on a host and not schedule containers that require a port onto a host if the port is not available.
 
 This core scheduling logic is built into Rancher, but Rancher also supports additional scheduling abilities that are located in our [external scheduler]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/scheduler/), which is part of our [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/). Additional scheduling abilities include:
 
