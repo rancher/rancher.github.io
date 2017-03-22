@@ -12,7 +12,7 @@ To deploy Swarm in Rancher, you'll first need to create a new [environment]({{si
 
 ### Requirements
 * Docker 1.13 or later
-* Ports 2377 and 2378 must be open between hosts
+* Ports `2377` and `2378` must be open between hosts
 
 ### Creating a Swarm Environment
 
