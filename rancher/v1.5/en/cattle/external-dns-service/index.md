@@ -8,7 +8,7 @@ lang: en
 ## External DNS Service
 ---
 
-As part of the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/), Rancher provides a multiple DNS services that listen to rancher-metadata events, and generate DNS records based on the metadata changes. The examples will use Route53 as an example for how the external DNS service works, but Rancher also has community contributed services with other DNS providers.
+As part of the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/), Rancher provides multiple DNS services that listen to rancher-metadata events, and generate DNS records based on the metadata changes. The examples will use Route53 as an example for how the external DNS service works, but Rancher also has community contributed services with other DNS providers.
 
 ### Best Practices
 

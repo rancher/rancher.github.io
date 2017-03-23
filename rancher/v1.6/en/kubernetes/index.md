@@ -49,10 +49,6 @@ When adding hosts to Kubernetes, the hostnames are used as unique identifiers fo
 
 Once the setup has completed, you can begin to create or manage your own Kubernetes applications via the following ways:
 
-#### Rancher UI
-
-Rancher provides full CRUD capability of creating services, replication controllers (RCs), and pods. In the **Kubernetes** tab, click on the one of these items and click **Add**. A kubernetes template will be shown in the UI and is editable. After you have made changes to the configuration file, click on **Create**.
-
 #### Rancher Catalog
 
 Rancher supports the capability of hosting a catalog of Kubernetes templates. To use a template, click on the **Catalog** tab. Select the template that you want to launch and click **View Details**. Review and edit the stack name, stack description, and configuration options and click on **Launch**.
