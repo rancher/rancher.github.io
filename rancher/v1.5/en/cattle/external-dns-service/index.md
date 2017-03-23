@@ -29,6 +29,9 @@ Unless you give Rancher permission, it will not be able to manage your Route53 z
 * Click Select next to Create Your Own Policy
 * Name it the same name as the user from above (this will make it easier to find later)
 * Paste this in as the Policy Document and click Create Policy at the bottom
+
+**NOTE:** Be sure to substitute your HOSTED_ZONE_ID for the placeholder below. You can find it to the right of your zone name in the Route 53 panel at AWS.
+
 ```
 {
     "Version": "2012-10-17",
