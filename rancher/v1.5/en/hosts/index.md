@@ -65,7 +65,7 @@ Select which host type you want to add:
 * [Adding Exoscale Hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/exoscale/)
 * [Adding Packet Hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/packet/)
 * [Adding Rackspace Hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/rackspace/)
-* [Adding Hosts from Other Drivers]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/other/)
+* [Adding Hosts from Other Cloud Providers]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/other/)
 
 When a host is added to Rancher, a rancher agent container is launched on the host. Rancher will automatically pull the correct image version tag for the `rancher/agent` and run the required version. The agent version is tagged specifically to each Rancher server version.
 
