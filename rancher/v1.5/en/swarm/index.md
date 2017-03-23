@@ -25,7 +25,9 @@ After a Swarm environment has been created, you can navigate to the environment 
 ### Starting Swarm
 
 After a Swarm environment has been created, the [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) will not be started until you add at least one host to your environment. The **Swarm** service will require at least 3 hosts to be added.  The process of [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) is the same steps for all  container orchestration types. Once the first host has been added, Rancher will automatically start the deployment of the infrastructure services including the Swarm components (i.e. swarm and swarm-agent).  You can see the progress of the deployment by accessing the **Swarm** tab.
+
 > **Note:** Please do not attempt to run `docker swarm` commands against the docker daemon manually. This can conflict with Rancher's management of the Swarm cluster.
+
 > **Note:** Only admins of Rancher or owners of the environment will be able to view the [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/).
 
 #### CLI via Shell
