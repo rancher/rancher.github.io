@@ -16,7 +16,9 @@ new Docker registry credential. The updater authenticates to AWS with an IAM cre
 
 #### Existing Environments
 
-If you already have an environment running, go to **Catalog** -> **Library** to find the catalog item **Rancher ECR Credential Updater**. When launching the catalog item, you will need to configure the service with your AWS access keys. These keys should be for the user which you have provided the appropriate access policies to. 
+If you already have a Cattle environment running, go to **Catalog** -> **Library** to find the catalog item **Rancher ECR Credential Updater**. When launching the catalog item, you will need to configure the service with your AWS access keys. These keys should be for the user which you have provided the appropriate access policies to. 
+
+> **Note:** If you will be using Kubernetes, it is recommended to edit your environment templates to include this catalog template before creating an envirronment. If you already have Kubernetes, you can delete the Kubernetes stack to convert it to Cattle to launch the catalog item and re-launch the Kubernetes stack from the catalog. 
 
 #### New Environments
 
