@@ -616,7 +616,7 @@ The `rancher start` or `rancher activate` command activates specific resource ty
 
 Name | Description
 ---|----
-`--type` value	| Restrict start/acrivate to specific types (service, container, host, stack)
+`--type` value	| Restrict start/activate to specific types (service, container, host, stack)
 
 <br>
 
@@ -639,7 +639,7 @@ The `rancher stop` or `rancher deactivate` command deactivates specific resource
 
 Name | Description
 ---|----
-`--type` value	| Restrict stop/deacrivate to specific types (service, container, host, stack)
+`--type` value	| Restrict stop/deactivate to specific types (service, container, host, stack)
 
 <br>
 
