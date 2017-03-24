@@ -614,7 +614,7 @@ The `rancher start` or `rancher activate` command activates specific resource ty
 
 Name | Description
 ---|----
-`--type` value	| Restrict restart to specific types (service, container, host, stack)
+`--type` value	| Restrict start/activate to specific types (service, container, host, stack)
 
 <br>
 
@@ -637,7 +637,7 @@ The `rancher stop` or `rancher deactivate` command deactivates specific resource
 
 Name | Description
 ---|----
-`--type` value	| Restrict restart to specific types (service, container, host, stack)
+`--type` value	| Restrict stop/deactivate to specific types (service, container, host, stack)
 
 <br>
 
@@ -759,7 +759,7 @@ The `rancher inspect` provides detail on the resource.
 
 Name | Description
 ---|----
-`--type` value  |  Restrict restart to specific types (service, container, host)
+`--type` value  |  Restrict inspect to specific types (service, container, host)
 `--links`       |  Include URLs to actions and links in resource output
 `--format` value  | `json` or Custom format: {{.Id}} {{.Name}} (default: "json")
 
