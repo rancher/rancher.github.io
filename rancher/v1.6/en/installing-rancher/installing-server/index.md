@@ -165,15 +165,35 @@ If the IP of your Rancher server node changes, your node will no longer be part 
 
 ### Running Rancher Server Behind an Application Load Balancer (ALB) in AWS
 
-We no longer recommend Application Load Balancer (ALB) in AWS over using an Elastic Load Balancer (ELB). If you choose to use an ALB, you will only need to direct the traffic to the HTTP port on the nodes, which is `8080` by default.
+We no longer recommend Application Load Balancer (ALB) in AWS over using the Elastic/Classic Load Balancer (ELB). If you still choose to use an ALB, you will need to direct the traffic to the HTTP port on the nodes, which is `8080` by default.
 
 <a id="elb"></a>
 
-### Running Rancher Server Behind an Elastic Load Balancer (ELB) in AWS
+### Running Rancher Server Behind an Elastic/Classic Load Balancer (ELB) in AWS
 
-We recommend using an ELB in AWS in front of your rancher servers. In order for ELB to work correctly, you will need to enable proxy protocol mode. By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher’s websockets to work.
+We recommend using an ELB in AWS in front of your rancher servers. In order for ELB to work correctly with Rancher websockets, special attention must be paid to listener configuration and proxy protocol must be enabled.
 
-#### Configuration Requirements for Elastic Load Balancer (ELB)
+#### Listener Configuration - Plaintext
+
+For simple, unencrypted load balancing purposes, the following listener configuration is required:
+
+| Configuration Type | Load Balancer Protocol | Load Balancer Port | Instance Protocol | Instance Port |
+| Plaintext | TCP | 80 | TCP | 8080 |
+| SSL-Terminated | SSL (Secure TCP) | 443 | TCP | 8080 |
+
+#### Listener Configuration - SSL terminated at the ELB
+
+For SSL termination at the ELB, the listener configuration should look like this:
+
+| Configuration Type | Load Balancer Protocol | Load Balancer Port | Instance Protocol | Instance Port |
+| Plaintext | TCP | 80 | TCP | 8080 |
+| SSL-Terminated | SSL (Secure TCP) | 443 | TCP | 8080 |
+
+
+#### Enabling Proxy Protocol
+
+In order for websockets to function properly, the ELB proxy protocol policy must be applied.
+
 
 * Enable [proxy protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) mode
 
