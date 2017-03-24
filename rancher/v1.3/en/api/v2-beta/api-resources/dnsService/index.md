@@ -1,11 +1,9 @@
 ---
 title: Rancher API - dnsService
-layout: rancher-api-v2-beta-default-v1.3
-version: v1.3
+layout: rancher-api-v2-beta-default-v1.4
+version: v1.4
 lang: en
 apiVersion: v2-beta
-redirect_from:
-  - /rancher/v1.3/zh/api/v2-beta/api-resources/dnsService/
 ---
 
 ## DnsService
@@ -222,6 +220,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"removed": "date",
 		"requestedHostId": "reference[host]",
 		"requestedIpAddress": "string",
+		"secrets": "array[secretReference]",
 		"securityOpt": [
 			"string1",
 			"...stringN"
@@ -249,6 +248,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"tty": false,
 		"ulimits": "array[ulimit]",
 		"user": "string",
+		"userPorts": [
+			"string1",
+			"...stringN"
+		],
 		"userdata": "string",
 		"usernsMode": "string",
 		"uts": "string",
@@ -627,6 +630,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"removed": "date",
 			"requestedHostId": "reference[host]",
 			"requestedIpAddress": "string",
+			"secrets": "array[secretReference]",
 			"securityOpt": [
 				"string1",
 				"...stringN"
@@ -654,6 +658,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"tty": false,
 			"ulimits": "array[ulimit]",
 			"user": "string",
+			"userPorts": [
+				"string1",
+				"...stringN"
+			],
 			"userdata": "string",
 			"usernsMode": "string",
 			"uts": "string",
@@ -826,6 +834,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"removed": "date",
 			"requestedHostId": "reference[host]",
 			"requestedIpAddress": "string",
+			"secrets": "array[secretReference]",
 			"securityOpt": [
 				"string1",
 				"...stringN"
@@ -853,6 +862,10 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 			"tty": false,
 			"ulimits": "array[ulimit]",
 			"user": "string",
+			"userPorts": [
+				"string1",
+				"...stringN"
+			],
 			"userdata": "string",
 			"usernsMode": "string",
 			"uts": "string",

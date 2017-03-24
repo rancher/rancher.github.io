@@ -1,11 +1,9 @@
 ---
 title: Rancher API - container
-layout: rancher-api-v2-beta-default-v1.3
-version: v1.3
+layout: rancher-api-v2-beta-default-v1.4
+version: v1.4
 lang: en
 apiVersion: v2-beta
-redirect_from:
-  - /rancher/v1.3/zh/api/v2-beta/api-resources/container/
 ---
 
 ## Container
@@ -88,6 +86,7 @@ readOnly | boolean | Optional | - | - |
 registryCredentialId | [registryCredential]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/registryCredential/) | Optional | - | - | 
 requestedHostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/) | Optional | - | - | 
 restartPolicy | [restartPolicy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/restartPolicy/) | Optional | - | - | 
+secrets | array[[secretReference]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/secretReference/)] | Optional | - | - | 
 securityOpt | array[string] | Optional | - | - | 
 shmSize | int | Optional | - | - | 
 startOnCreate | boolean | Optional | - | true | 
@@ -123,6 +122,7 @@ primaryNetworkId | [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.la
 serviceIds | array[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
 startCount | int  | 
 system | boolean  | 
+userPorts | array[string]  | 
 version | string  | 
 
 
@@ -283,6 +283,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 		"maximumRetryCount": 0,
 		"name": "string"
 	},
+	"secrets": "array[secretReference]",
 	"securityOpt": [
 		"string1",
 		"...stringN"

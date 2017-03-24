@@ -1,11 +1,9 @@
 ---
 title: API
-layout: rancher-api-v2-beta-default-v1.3
-version: v1.3
+layout: rancher-api-v2-beta-default-v1.4
+version: v1.4
 lang: en
 apiVersion: v2-beta
-redirect_from:
-  - /rancher/v1.3/zh/api/v2-beta/api-resources/defaultNetwork/
 ---
 
 ## defaultNetwork
@@ -18,6 +16,7 @@ redirect_from:
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+defaultPolicyAction | enum | Optional | Yes | allow | The options are `allow`, `deny`.
 description | string | Optional | Yes | - | 
 dns | array[string] | Optional | - | - | 
 dnsSearch | array[string] | Optional | - | - | 
@@ -25,6 +24,7 @@ hostPorts | boolean | Optional | - | - |
 kind | string | Optional | - | - | 
 metadata | map[json] | Optional | Yes | - | 
 name | string | Optional | Yes | - | 
+policy | array[[networkPolicyRule]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkPolicyRule/)] | Optional | Yes | - | 
 subnets | array[[subnet]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/subnet/)] | Optional | - | - | 
 
 

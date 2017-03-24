@@ -1,11 +1,9 @@
 ---
 title: API Resources
-layout: rancher-api-v2-beta-default-v1.3
-version: v1.3
+layout: rancher-api-v2-beta-default-v1.4
+version: v1.4
 lang: en
 apiVersion: v2-beta
-redirect_from:
-  - /rancher/v1.3/zh/api/v2-beta/api-resources/
 ---
 
 ## API Resources
@@ -52,12 +50,6 @@ A "dnsService" in the API is referred to as a Service Alias in the UI and the Ra
 [ExternalService]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/externalService/)|
 ---|
 An external service allows the ability to add any IP or hostname as a service to be discovered as a service. |
-
-<br>
-
-[GenericObject]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/genericObject/)|
----|
- |
 
 <br>
 
@@ -109,6 +101,12 @@ A network driver is the |
 
 <br>
 
+[NetworkPolicyRuleWithin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkPolicyRuleWithin/)|
+---|
+ |
+
+<br>
+
 [Project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/project/)|
 ---|
 A "project" in the API is referred to as an environment in the UI and Rancher documentation. In the API documentation, we'll use the UI terminology. All hosts and any Rancher resources (i.e. containers, load balancers, etc.) are created and belong to an [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/). Access control to who can view and manage these resources are then defined by the owner of the environment. Rancher currently supports the capability for each user to manage and invite other users to their environment and allows for the ability to create multiple environments for different workloads. For example, you may want to create a "dev" environment and a separate "production" environment with its own set of resources and limited user access for your application deployment. |
@@ -151,6 +149,12 @@ A registry credential is used to authenticate against a [registry]({{site.baseur
 
 <br>
 
+[Secret]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/secret/)|
+---|
+ |
+
+<br>
+
 [Service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)|
 ---|
 Rancher adopts the standard Docker Compose terminology for services and defines a basic service as one or more containers created from the same Docker image. Once a service (consumer) is linked to another service (producer) within the same stack, a DNS record mapped to each container instance is automatically created and discoverable by containers from the "consuming" service. Other benefits of creating a service under Rancher include" |
@@ -182,12 +186,6 @@ Rancher adopts the standard Docker Compose terminology for services and defines 
 <br>
 
 [StorageDriverService]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/storageDriverService/)|
----|
- |
-
-<br>
-
-[Subnet]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/subnet/)|
 ---|
  |
 

@@ -1,11 +1,9 @@
 ---
 title: Rancher API - network
-layout: rancher-api-v2-beta-default-v1.3
-version: v1.3
+layout: rancher-api-v2-beta-default-v1.4
+version: v1.4
 lang: en
 apiVersion: v2-beta
-redirect_from:
-  - /rancher/v1.3/zh/api/v2-beta/api-resources/network/
 ---
 
 ## Network
@@ -18,6 +16,7 @@ The networks available within Rancher that containers could be launched on.
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+defaultPolicyAction | enum | Optional | Yes | allow | The options are `allow`, `deny`.
 description | string | Optional | Yes | - | 
 dns | array[string] | Optional | - | - | 
 dnsSearch | array[string] | Optional | - | - | 
@@ -25,6 +24,7 @@ hostPorts | boolean | Optional | - | - |
 metadata | map[json] | Optional | Yes | - | 
 name | string | Optional | Yes | - | 
 networkDriverId | [networkDriver]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkDriver/) | Yes | - | - | 
+policy | array[[networkPolicyRule]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkPolicyRule/)] | Optional | Yes | - | 
 subnets | array[[subnet]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/subnet/)] | Optional | - | - | 
 
 
@@ -48,6 +48,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
 -H 'Content-Type: application/json' \
 -d '{
+	"defaultPolicyAction": "allow",
 	"description": "string",
 	"dns": [
 		"string1",
@@ -63,6 +64,7 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 	},
 	"name": "string",
 	"networkDriverId": "reference[networkDriver]",
+	"policy": "array[networkPolicyRule]",
 	"subnets": "array[subnet]"
 }' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/networks'
 {% endhighlight %}
@@ -82,11 +84,13 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X PUT \
 -H 'Content-Type: application/json' \
 -d '{
+	"defaultPolicyAction": "allow",
 	"description": "string",
 	"metadata": {
 		"key": "value-pairs"
 	},
-	"name": "string"
+	"name": "string",
+	"policy": "array[networkPolicyRule]"
 }' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/networks/${ID}'
 {% endhighlight %}
 </div></div>
