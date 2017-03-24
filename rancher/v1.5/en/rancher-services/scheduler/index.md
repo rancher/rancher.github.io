@@ -68,7 +68,7 @@ services:
 
 ### Scheduling only specific services on a host
 
-Typically, most of the container scheduling is defined on the service. The service will have specific rules or restrictions on which host that the container(s) can be scheduled on. For example, a container must be scheduled onto a host that has a specific host label. Rancher has the ability to specify requirements on the host to only allow specific containers to be scheduled onto the host. One example of when you might want to use this feature is if you wanted to dedicate a host only have database containers scheduled onto the host.
+Typically, most of the container scheduling is defined on the service. The service will have specific rules or restrictions on which host that the container(s) can be scheduled on. For example, a container must be scheduled onto a host that has a specific host label. Rancher has the ability to specify requirements on the host to only allow specific containers to be scheduled onto the host. As an example, you may want to install a database container onto a specific host.
 
 > **Note:** When you add label restrictions for containers on a host, you will be required to include a label in order for our [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) to be scheduled onto the host. Without these services, containers required to allow networking and other key components of Rancher to work will not be scheduled onto the host.
 
