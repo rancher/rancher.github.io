@@ -180,31 +180,25 @@ After Rancher is launched with these settings, the UI will be up and running at 
 
 Before [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/), you'll need to properly configure [Host Registration]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#host-registration) for SSL.
 
-<a id="alb"></a>
-
-### Running Rancher Server Behind an Application Load Balancer (ALB) in AWS with SSL
-
-We recommend using an Application Load Balancer (ALB) in AWS over using an Elastic Load Balancer (ELB). With an ALB, you will only need to direct the traffic to the advertised port (`--advertise-http-port`), which is by default `8080`.
-
-> **Note**: If you use an ALB with Kuberenetes, `kubectl exec` will not work and for that functionality, you will need to use an ELB.
-
 <a id="elb"></a>
 
 ### Running Rancher Server Behind an Elastic Load Balancer (ELB) in AWS with SSL
 
-_Supported as of v1.6.3+_
+We recommend using an ELB in AWS in front of your rancher servers. In order for ELB to work correctly with Rancher's websockets, you will need to enable proxy protocol mode and ensure HTTP support is disabled. By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Special attention must be paid to listener configuration.
 
-By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher’s websockets to work.
+#### Listener Configuration - SSL
 
-#### Configuration Requirements for Elastic Load Balancer (ELB)
+For SSL termination at the ELB, the listener configuration should look like this:
 
-* Create a new ELB (classic) and add a listener.
-  * Load Balancer Protocol: SSL
-  * Load Balancer Port: `443`
-  * Instance Protocol: TCP
-  * Instance Port: `8080` (or the port used with `--advertise-http-port` when launching Rancher server)
+| Configuration Type | Load Balancer Protocol | Load Balancer Port | Instance Protocol | Instance Port |
+|---|---|---|---|---|
+| SSL-Terminated | SSL (Secure TCP) | 443 | TCP | 8080 (or the port used with `--advertise-http-port` when launching Rancher server) |
 
 * Add the appropriate security group and the SSL certificate
+
+#### Enabling Proxy Protocol
+
+In order for websockets to function properly, the ELB proxy protocol policy must be applied.
 
 * Enable [proxy protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) mode
 
@@ -215,6 +209,14 @@ $ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB
 ```
 
 * Health check can be configured to use HTTP:8080 using `/ping` as your path.
+
+<a id="alb"></a>
+
+### Running Rancher Server Behind an Application Load Balancer (ALB) in AWS with SSL
+
+We no longer recommend Application Load Balancer (ALB) in AWS over using the Elastic/Classic Load Balancer (ELB). If you still choose to use an ALB, you will need to direct the traffic to the HTTP port on the nodes, which is `8080` by default.
+
+> **Note:** If you use an ALB with Kuberenetes, `kubectl exec` will not work and for that functionality, you will need to use an ELB.
 
 ### Using Self Signed Certs (Beta)
 
