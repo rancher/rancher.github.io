@@ -171,7 +171,9 @@ We no longer recommend Application Load Balancer (ALB) in AWS over using an Elas
 
 ### Running Rancher Server Behind an Elastic Load Balancer (ELB) in AWS
 
-We recommend using an ELB in AWS in front of your rancher servers. In order for ELB to work correctly, you will need to enable proxy protocol mode. By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher’s websockets to work.
+We recommend using an ELB in AWS in front of your rancher servers. In order for ELB to work correctly, you will need to enable proxy protocol mode and ensure HTTP support is disabled. By default, ELB is enabled in HTTP/HTTPS mode, which does not support websockets. Since Rancher uses websockets, ELB must be configured specifically in order for Rancher’s websockets to work.
+
+If you have issues with ELB setup we recommend trying the terraform version (below) as this reduces the opportunity to miss a setting.
 
 #### Configuration Requirements for Elastic Load Balancer (ELB)
 
@@ -184,6 +186,32 @@ $ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB
 ```
 
 * Health check can be configured to use HTTP:8080 using `/ping` as your path.
+
+#### Configuring using Terraform
+The following can be used as an example for configuring with Terraform:
+
+```
+resource "aws_elb" "lb" {
+  name               = "<LB_NAME>"
+  availability_zones = ["us-west-2a","us-west-2b","us-west-2c"]
+  security_groups = ["<SG_ID>"]
+
+  listener {
+    instance_port     = 8080
+    instance_protocol = "tcp"
+    lb_port           = 443
+    lb_protocol       = "ssl"
+    ssl_certificate_id = "<IAM_PATH_TO_CERT>"
+  }
+
+}
+
+resource "aws_proxy_protocol_policy" "websockets" {
+  load_balancer  = "${aws_elb.lb.name}"
+  instance_ports = ["8080"]
+}
+```
+
 
 > **Note:** If you are using a self signed certificate, please read more about how to [configure your ELB in AWS under our SSL section]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/basic-ssl-config/#elb).
 
