@@ -224,9 +224,6 @@ resource "aws_proxy_protocol_policy" "websockets" {
 
 We no longer recommend Application Load Balancer (ALB) in AWS over using the Elastic/Classic Load Balancer (ELB). If you still choose to use an ALB, you will need to direct the traffic to the HTTP port on the nodes, which is `8080` by default.
 
-<a id="alb"></a>
-
-
 <a id="ldap"></a>
 
 ### Enabling Active Directory or OpenLDAP for TLS
