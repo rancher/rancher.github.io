@@ -1,11 +1,11 @@
 ---
-title: Enabling SELinux For Rancher
+title: Using Rancher with SELinux Enabled
 layout: rancher-default-v1.6
 version: v1.6
 lang: en
 ---
 
-## Enabling SELinux for Rancher - RHEL/CentOS
+## Using Rancher with SELinux enabled - RHEL/CentOS
 ---
 
 _Available for Rancher 1.6+_
@@ -24,9 +24,9 @@ $ yum install selinux-policy-devel
 
 ### Building the Module
 
-Create a file (e.g. `virtpatch.te`):
+Create a file named `virtpatch.te` with the following contents.
 
-```bash
+```
 policy_module(virtpatch, 1.0)
 
 gen_require(`
@@ -38,7 +38,7 @@ allow svirt_lxc_net_t self:netlink_xfrm_socket create_netlink_socket_perms;
 
 Build the module.
 
-```bash
+```
 $ make -f /usr/share/selinux/devel/Makefile
 ```
 
@@ -46,7 +46,7 @@ After running the `make` command, a file named `virtpatch.pp` should be created 
 
 ### Loading the Module
 
-After the SELinux module is built, load the cmodule.
+After the SELinux module is built, load the module.
 
 ```
 # Load the module
