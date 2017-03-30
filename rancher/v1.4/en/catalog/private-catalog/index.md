@@ -17,7 +17,6 @@ Catalog templates are displayed in Rancher based on what container orchestration
 #### Templates based on Orchestration type
 
 * _Cattle_ orchestration: Entries in the UI are from the `templates` folder
-* _[Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/)_ orchestration: Entries in the UI are from the `kubernetes-templates` folder
 * _[Swarm]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/swarm/)_ orchestration: Entries in the UI are from the `swarm-templates` folder
 * _[Mesos]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/mesos/)_ orchestration: Entries in the UI are from the `mesos-templates` folder
 
