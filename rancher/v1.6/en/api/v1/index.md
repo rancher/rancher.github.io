@@ -30,7 +30,7 @@ API requests must include authentication information if [Access Control]({{site.
 
 #### API keys for an Environment
 
-Environment API keys can be created in the UI, see [API & Keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/).  The key is owned by the Environment and has full access to manage that Environment, but no access to any others.  [Membership roles]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#membership-roles) do not apply to these keys.
+Environment API keys can be created in the UI, see [API & Keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v1/api-keys/).  The key is owned by the Environment and has full access to manage that Environment, but no access to any others.  [Membership roles]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#membership-roles) do not apply to these keys.
 
 #### API keys for an Account
 

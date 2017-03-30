@@ -82,7 +82,7 @@ In Rancher, there are a set of default templates provided to leverage the variou
 
 We recommend setting up [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) before you share environments with users. By adding users to your environment, they will also have the ability to create services and manage resources.
 
-> **Note:** Infrastructure resources cannot be shared across multiple environments. [Registries]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/), [certificates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/) and [environment API keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/) are also environment specific.  
+> **Note:** Infrastructure resources cannot be shared across multiple environments. [Registries]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/), [certificates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/) and environment [API keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/) are also environment specific.  
 
 ### Adding Environment Templates
 
