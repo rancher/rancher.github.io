@@ -134,13 +134,13 @@ PING bar.foo.stacka (10.42.x.x) 56(84) bytes of data.
 
 From any container, you can ping another container in the environment by their name regardless if they are in a different stack or service.
 
-In our example, we have a stack called `stackA`, which contains a service called `foo`. We also have another stack called `stackB`, which contains a service called `bar`. The names of containers are `<stack_name>_<service_name>_<number>`.
+In our example, we have a stack called `stackA`, which contains a service called `foo`. We also have another stack called `stackB`, which contains a service called `bar`. The names of containers are `<stack_name>-<service_name>-<number>`.
 
 If we exec into one of the containers in the `foo` service, you can ping the container in the `bar` service.
 
 ```bash
-$ ping stackB_bar_1
-PING stackB_bar_1.rancher.internal (10.42.x.x): 56 data bytes
+$ ping stackB-bar-1
+PING stackB-bar-1.rancher.internal (10.42.x.x): 56 data bytes
 64 bytes from 10.42.x.x: icmp_seq=1 ttl=62 time=1.994 ms
 64 bytes from 10.42.x.x: icmp_seq=2 ttl=62 time=1.090 ms
 64 bytes from 10.42.x.x: icmp_seq=3 ttl=62 time=1.100 ms
