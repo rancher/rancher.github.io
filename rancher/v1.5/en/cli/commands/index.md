@@ -185,7 +185,7 @@ Name | Description
 
 ### Rancher Environment Reference
 
-The `rancher environment` command allows you to interact with environments. If you use an [account API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/#account-api-keys), you will be able to create and update environments. If you use an [environment API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/#environment-api-keys), you will not be able to create or update other environments and you will only be able to see your existing environment.
+The `rancher environment` command allows you to interact with environments. If you use an account API key, you will be able to create and update environments. If you use an environment API key, you will not be able to create or update other environments and you will only be able to see your existing environment.
 
 
 #### Options

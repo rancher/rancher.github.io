@@ -187,7 +187,7 @@ services:
 <br>
 Download the Rancher CLI binary from the Rancher UI by clicking on **Download CLI**, which is located on the right side of the footer. We provide the ability to download binaries for Windows, Mac, and Linux.
 
-In order for services to be launched in Rancher using Rancher CLI, you will need to set some environment variables. You will need to create an [account API Key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/) in the Rancher UI. Click on **API** -> **Keys**. Click on **Add Account API Key**. Provide a name and click **Create**. Save the **Access Key** and **Secret Key**. Using the Rancher URL, Access Key and Secret Key, configure the Rancher CLI by running `rancher config`.
+In order for services to be launched in Rancher using Rancher CLI, you will need to set some environment variables. You will need to create an account [API Key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/) in the Rancher UI. Click on **API** -> **Keys**. Click on **Add Account API Key**. Provide a name and click **Create**. Save the **Access Key** and **Secret Key**. Using the Rancher URL, Access Key and Secret Key, configure the Rancher CLI by running `rancher config`.
 
 ```bash
 # Configure Rancher CLI
