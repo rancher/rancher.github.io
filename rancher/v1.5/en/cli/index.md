@@ -16,7 +16,7 @@ The binary can be downloaded directly from the UI. The link can be found in the 
 
 ### Configuring the Rancher Command Line Interface
 
-There are several methods you can configure the settings that the Rancher CLI uses when interacting with Rancher, i.e. Rancher URL and [account API keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/#account-api-keys). Account API keys can be created in **API**.
+There are several methods you can configure the settings that the Rancher CLI uses when interacting with Rancher, i.e. Rancher URL and [account API keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/api-keys/#account-api-keys). Account API keys can be created in **API**.
 
 There is a specific load order for what will be used.
 
@@ -89,7 +89,7 @@ $ rancher --debug env create newEnv
 
 ### Working with  Environments
 
-If you use an [account API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/#account-api-keys), you will be able to create and update environments. If you use an [environment API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/#environment-api-keys), you will not be able to create or update other environments and you will only be able to see your existing environment.
+If you use an [account API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/api-keys/#account-api-keys), you will be able to create and update environments. If you use an [environment API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/api-keys/#environment-api-keys), you will not be able to create or update other environments and you will only be able to see your existing environment.
 
 ```bash
 $ rancher env ls
