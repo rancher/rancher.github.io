@@ -12,7 +12,7 @@ _Available for Rancher 1.6+_
 
 If you are running Rancher on RHEL/CentOS and want to enable SELinux, you will be required to install an additional SELinux module.
 
-The steps in this document are a necessary workaround until the changes present in the module are shipped in RHEL and CentOS. Once these changes are made in RHEL and CentOS then these steps will no longer be required.
+The steps in this document are a necessary workaround until the [changes present in the module](https://github.com/projectatomic/container-selinux/pull/33) are shipped in RHEL and CentOS. Once these changes are made in RHEL and CentOS then these steps will no longer be required.
 
 These steps must occur on the instances that are running the Rancher server container as well as any [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/).
 
