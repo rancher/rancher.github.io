@@ -17,6 +17,10 @@ When launching Rancher server with no internet access, there will be a couple of
 * Launching Hosts using the UI for Cloud Providers - Since Rancher is calling Docker Machine to create hosts in the cloud providers, this functionality will not work. You will only be able to add [custom hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) to your Rancher setup.
 * Github Authentication
 
+### Requirements
+
+Review the Rancher server [requirements]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#requirements).
+
 ### Rancher Server Tags
 
 Rancher server has 2 different tags. For each major release tag, we will provide documentation for the specific version.
