@@ -10,7 +10,7 @@ lang: en
 The ECR Credential Updater is a container service that periodically polls the AWS ECR API to fetch a
 new Docker registry credential. The updater authenticates to AWS with an IAM credential, which provides it the rights to request the Docker credential. The Docker credential assumes the same repository rights as the requesting IAM user. The IAM user is required to minimally have read access to all the ECR repositories that a user will be using to pull images in Rancher. Please see the [Amazon ECR IAM Policies and Roles](http://docs.aws.amazon.com/AmazonECR/latest/userguide/ECR_IAM_policies.html) for more details on permissions.
 
-> **Note**: Without launching this ECR updater catalog item, any ECR registries added to Rancher will have their token expired and no longer have the ability to pull images. 
+> **Note:** Without launching this ECR updater catalog item, any ECR registries added to Rancher will have their token expired and no longer have the ability to pull images. 
 
 ### Installing ECR Updater 
 
