@@ -23,7 +23,7 @@ By default, the orchestration for Kubernetes is set to `rancher`.
 
   * **Nodes:** Supports only AWS hosts added either as a [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) or [through the Rancher UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/amazon/).
   * **Load Balancers:** Launches an AWS Elastic Load Balancer (ELB) as a Load Balancer service. You can still create Rancher load balancers by using an [ingress]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/ingress/).
-  * **Persistent Volumes**: Ability to use AWS Elastic Block Stores (EBS) for [persistent volumes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/ingress/storage/).
+  * **Persistent Volumes**: Ability to use AWS Elastic Block Stores (EBS) for [persistent volumes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/storage/).
 
 #### Adding Hosts
 

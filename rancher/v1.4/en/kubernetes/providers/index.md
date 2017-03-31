@@ -23,8 +23,7 @@ By default, the orchestration for Kubernetes is set to `rancher`.
 
   * **Nodes:** Supports only AWS hosts added either as a [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/) or [through the Rancher UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/amazon/).
   * **Load Balancers:** Launches an AWS Elastic Load Balancer (ELB) as a Load Balancer service. You can still create Rancher load balancers by using an [ingress]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/ingress/).
-  * **[Persistent Volumes]**: Ability to use AWS Elastic Block Stores (EBS) for persistent volumes.
-
+  * **Persistent Volumes**: Ability to use AWS Elastic Block Stores (EBS) for [persistent volumes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/storage/).
 #### Setting up AWS as the Cloud Provider
 
 Before creating a Kubernetes [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments), the Kubernetes infrastructure stack will need to be configured and the configuration option for the **Cloud Provider** will need to be set as `aws`.
