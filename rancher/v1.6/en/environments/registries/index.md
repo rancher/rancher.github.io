@@ -51,6 +51,13 @@ $ sudo service docker restart
 
 ```
 
+#### Using Amazon's ECR Registry
+Using Amazon's [EC2 Container Registry](https://aws.amazon.com/ecr/) with Rancher requires an extra configuration step. ECR uses AWS's native authentication service, IAM, to manage access. AWS provides an API which allows a user to generate a temporary credential for Docker based on the rights of the IAM user making the request. Since the credential expires after 12 hours, a new credential needs to be created every 12 hours. You can use the [AWS ECR Credential Updater]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/ecr_updater/) to launch a service that will update the credential automatically.
+
+When specifying the image name in Rancher, use the fully qualified address AWS provides:
+
+`aws-account-number.dkr.ecr.us-west-2.amazonaws.com/my-repo:latest`.
+
 ### Using Registries
 
 As soon as the registry is created, you will be able to use these private registries when launching services and containers. The syntax for the image name is the same as what you would use for the `docker run` command.

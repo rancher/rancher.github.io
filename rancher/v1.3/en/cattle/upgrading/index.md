@@ -151,7 +151,7 @@ services:
     - db:mysql
 ```
 
-By default, any load balancers or services linked to `service1` (i.e. inbound links) will automatically be updated with a new link to `service2`. If you do not wish for these links to be created, you can [set an option to not have them created]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/upgrading/#updating-inbound-links).
+By default, any load balancers or services linked to `service1` (i.e. inbound links) will automatically be updated with a new link to `service2`. If you do not wish for these links to be created, you can [set an option to not have them created]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/upgrading/#updating-inbound-links).
 
 > **Note:** There is no need for a `rancher-compose.yml` file used while upgrading services. By default, the scale of the new service is based on the scale of the old service. You can override this scale by passing in the `--scale` option.
 
@@ -170,7 +170,7 @@ $ rancher-compose upgrade service1 service2 --scale 5
 `service1` | `service2` | Notes
 ---|---|---
 2 | 0 |  `service1` is running with 2 containers.
-2 | 2 | `service2` starts 2 containers at a time (Default [Batch Size]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/upgrading/#batch-size)).
+2 | 2 | `service2` starts 2 containers at a time (Default [Batch Size]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/upgrading/#batch-size)).
 2 | 4 | `service2` starts another 2 containers.
 1 | 4 | After the previous step, the sum (6) of the new and old containers is greater than the final scale (5), `service1` stops and removes one of the containers to maintain the final scale of 5.
 1 | 5 | `service2` starts only 1 container to reach the final scale of 5.
