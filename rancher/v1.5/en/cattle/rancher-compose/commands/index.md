@@ -153,7 +153,7 @@ $ rancher-compose up
 $ rancher-compose up -d
 ```
 
-Read more about [upgrading using Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/upgrading/).
+Read more about [upgrading using Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/upgrading/).
 
 #### Start Command
 
