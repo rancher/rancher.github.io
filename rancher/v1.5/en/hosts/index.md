@@ -32,7 +32,8 @@ Version               | Supported? | K8S Supported? | Install Script |
 `1.12.0` - `1.12.2`   | No         | |
 `1.12.3` (and higher) | **Yes**    | **Yes**   | `curl https://releases.rancher.com/install-docker/1.12.sh | sh`
 `1.13.x`              | **Yes** | No |`curl https://releases.rancher.com/install-docker/1.13.sh | sh`
-`17.03.0-ce`          | **Yes** | No |
+`17.03.x-ce`          | **Yes** | No |`curl https://releases.rancher.com/install-docker/17.03.sh | sh`
+`17.04.x-ce`          | No | |`curl https://releases.rancher.com/install-docker/17.04.sh | sh`
 
 ### Installing a Specific Docker Version
 
