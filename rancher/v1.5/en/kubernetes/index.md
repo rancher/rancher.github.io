@@ -68,22 +68,3 @@ Rancher provides a convenient shell access to a managed kubectl instance that ca
 ### Adding a Private Registry To Kubernetes
 
 Private registries can be used with Kubernetes services by adding your [private registry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/) in your Kubernetes environment.
-
-### Kubernetes Namespaces
-
-Rancher supports the ability to manage different Kubernetes namespaces. In the upper left hand corner next to the environment, you will be able to see which **Namespace** that you are working in. After the first host is added, Rancher creates the `default` namespace.
-
-#### Adding Namespaces
-
-To add an additional namespace into Kubernetes, click on the current namespace and a dropdown of available namespaces and **Manage Namespaces** will appear. Click on **Manage Namespaces**.
-
-In the **Namespaces** page, click on **Add Namespace**. Update the configuration file and click **Create**.
-
-
-#### Editing Namespaces
-
-For existing namespaces, in the **Namespaces** page, click on **Edit** in the namespace's dropdown to update it. Click on **Save**.
-
-#### Switching Namespaces
-
-In the dropdown of namespaces, you can select the namespace that you want to launch services in to switch between the namespaces.
