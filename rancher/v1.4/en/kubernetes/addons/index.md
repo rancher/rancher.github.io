@@ -20,7 +20,7 @@ Helm consists of two parts, a server called tiller and a client called helm. Til
 
 #### Verifying Helm 
 
-Before we start using helm to launch applications, let's verify that the helm client can talk to helm server( i.e. tiller). Use `helm vrsion` in the embedded kubectl CLI, which is available in **Kubernetes** -> **CLI**. 
+Before we start using helm to launch applications, let's verify that the helm client can talk to helm server( i.e. tiller). Use `helm version` in the embedded kubectl CLI, which is available in **Kubernetes** -> **CLI**.
 
 ```bash
 > helm version
