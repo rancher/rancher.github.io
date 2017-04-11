@@ -14,42 +14,6 @@ Rancher automatically installs Kubernetes add-ons to help enhance the Kubernetes
 * [Dashboard](#dashboard) - A dashboard web interface for Kubernetes
 * [SkyDNS](#skydns) - A DNS server for Kubernetes
 
-
-### Private Registry for Add-Ons
-
-If you are running Rancher with [no internet access]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/no-internet-access/) or Rancher does not have access to DockerHub (i.e. `docker.io`) and Google Container Registry (i.e. `gcr.io`), then the add-ons will not be installed. You will need to [configure Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes) to point a private registry for installing the add-ons.
-
-#### Private Registry Requirements
-
-For the Kubernetes add-ons, Rancher expects the private registry to mirror DockerHub (i.e `docker.io`) and Google Container Registry (i.e. `gcr.io`). The `namespace/name:tag` is expected to be consistent the images in the [Rancher add-on templates](https://github.com/rancher/kubernetes-package/tree/master/addon-templates).
-
-The images below are the list of add-ons that are currently supported, you will need to [check the Github repo for exact version](https://github.com/rancher/kubernetes-package/tree/master/addon-templates) and copy the exact version for each image.
-
-##### Images for Helm
-
-```yml
-# Located in the helm/tiller-deploy.yaml
-image: <$PRIVATE_REGISTRY>/kubernetes-helm/tiller:<VERSION>
-```
-
-##### Images for Dashboard
-
-```yml
-# Located in the dashboard/dashboard-controller.yaml
-image: <$PRIVATE_REGISTRY>/google_containers/kubernetes-dashboard-amd64:<VERSION>
-```
-
-##### Images for Heapster
-
-```yml
-# Located in the heapster/heapster-controller.yaml
-image: <$PRIVATE_REGISTRY>/google_containers/heapster:<VERSION>
-
-# Located in the heapster/influx-grafana-controller.yaml
-image: <$PRIVATE_REGISTRY>/kubernetes/heapster_influxdb:<VERSION>
-image: <$PRIVATE_REGISTRY>/google_containers/heapster_grafana:<VERSION>
-```
-
 ### Helm
 
 Helm consists of two parts, a server called tiller and a client called helm. Tiller is automatically started by Rancher and is launched in the **kube-system** namespace. The helm client is installed in the embedded kubectl CLI.
