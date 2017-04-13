@@ -88,7 +88,7 @@ Now that we've launched our _database_ service, we'll add the _web_ service to o
 
 Read more about how to [set up Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/).
 
-The  Rancher Compose tool works just like the popular Docker Compose and supports the V1 version of `docker-compose.yml` files. To enable features that are supported in Rancher, you can also have a `rancher-compose.yml` which extends and overwrites the `docker-compose.yml`. For example, scale of services and health checks would be in the `rancher-compose.yml` file.
+The  Rancher Compose tool works just like the popular Docker Compose and supports the V1 and V2 versions of `docker-compose.yml` files. To enable features that are supported in Rancher, you can also have a `rancher-compose.yml` which extends and overwrites the `docker-compose.yml`. For example, scale of services and health checks would be in the `rancher-compose.yml` file.
 
 If you're new to Docker Compose or Rancher Compose, we recommend using the UI to start your services. IF you click on a stack name, you can view the configuration of the entire stack (i.e. the equivalent `docker-compose.yml` and `rancher-compose.yml` files of your stack) by clicking on **View Config** in the stack drop down.
 
