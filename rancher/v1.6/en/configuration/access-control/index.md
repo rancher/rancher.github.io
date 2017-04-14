@@ -27,6 +27,7 @@ When Access Control is enabled, the API is locked and requires either being auth
 #### Active Directory
 
 Select the **Active Directory** icon. If you want to use Active Directory using TLS, ensure that you have [started Rancher server with the appropriate certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#ldap). Fill in the sections and authenticate Rancher by clicking **Authenticate**. When Active Directory is enabled, you'll automatically be logged in as the username that was authenticated. You will also be logged in as an admin of Rancher.
+In 1.6 a new optional field called `Group Search Domain` is added to the ldap config. This field is similar to `Search Base`, but is exclusively dedicated to searching groups. If no value is provided then the `Search Base` will be used for searching group along with the user.
 
 #### Azure AD
 
@@ -102,3 +103,6 @@ They will only be able to view the environments that they are members of.
 ### Disabling Access Control
 
 If you decide that you no longer want Access Control, click the **Disable access control** button. This will make your Rancher instance open to the public and anyone can access your API. This is **not** recommended.
+
+### Restricting concurrent sessions
+In 1.6 a setting has been added that can be configured to restrict concurrent sessions. If enabled and user starts a new session, the user will be logged out from all previous sessions that haven't expired yet. It can be configured by the admin only.
