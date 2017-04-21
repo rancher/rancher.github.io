@@ -16,25 +16,38 @@ Rancher automatically installs Kubernetes add-ons to help enhance the Kubernetes
 
 ### Helm
 
+Helm is a tool that streamlines installing and managing Kubernetes applications, it helps you run applications on Kubernetes by packaging complex applications in Charts. A chart is a collection of files that describe Kubernetes resources, a chart may be used to deploy simple pod or complex applications like a full web stack with all of its components.
+
 Helm consists of two parts, a server called tiller and a client called helm. Tiller is automatically started by Rancher and is launched in the **kube-system** namespace. The helm client is installed in the embedded kubectl CLI.
 
-#### Verifying Helm
+#### Getting Started With Helm on Rancher
 
-Before we start using helm to launch applications, let's verify that the helm client can talk to helm server( i.e. tiller). Use `helm version` in the embedded kubectl CLI, which is available in **Kubernetes** -> **CLI**.
+To get started with Helm on kubernetes, you should have Kubernetes installed on Rancher, if you need help getting Kubernetes installed on Rancher please read the following [documentation guide]({{site.baseurl}/rancher/{{page.version}}/{{page.lang}}/kubernetes/}), after installing Kubernetes on Rancher, you should configure Kubectl locally to communicate with Kubernetes.
 
-```bash
-> helm version
+You need to install Helm client on your local machine, there are different installation options according to your needs, for more information about the installation methods, please refer to the official [installation documentation](https://github.com/kubernetes/helm/blob/master/docs/install.md).
+
+On your local machine, make sure that you can communicate with tiller using the installed Helm client:
+
+```
+$ helm init
+$HELM_HOME has been configured at $HOME/.helm.
+Warning: Tiller is already installed in the cluster. (Use --client-only to suppress this message.)
+Happy Helming!
+
+$ helm version
 Client: &version.Version{SemVer:"v2.1.3", GitCommit:"5cbc48fb305ca4bf68c26eb8d2a7eb363227e973", GitTreeState:"clean"}
 Server: &version.Version{SemVer:"v2.1.3", GitCommit:"5cbc48fb305ca4bf68c26eb8d2a7eb363227e973", GitTreeState:"clean"}
 ```
 
-If there is a result for both the client and server, then helm is working properly.
+Another way to get started with Helm is to use Rancher's UI to start issuing helm and kubectl commands directly, Rancher provides a convenient shell access to a managed kubectl instance that can be used to manage Kubernetes clusters and applications. To start using this shell navigate to **Kubernetes** -> **CLI**.
+
+![Kubectl]({{site.baseurl}}/img/kubernetes/kubectl.png)
 
 #### Using Helm
 
 Similar to most package managers, we should confirm we have the latest list of charts.
 
-```bash
+```
 > helm repo update
 
 Hang tight while we grab the latest from your chart repositories...
@@ -42,7 +55,7 @@ Hang tight while we grab the latest from your chart repositories...
 Update Complete. â Happy Helming!â
 ```
 
-Using `helm search`, you can search for different charts that are available to be installed.
+Kubernetes has its own official Helm charts that can be used directly, this section will provide an example of installation of Wordpress chart on Kubernetes, using `helm search`, you can search for different charts that are available to be installed.
 
 ```
 > helm search
@@ -53,45 +66,173 @@ stable/mariadb          0.5.2   Chart for MariaDB
 stable/mysql            0.1.1   Chart for MySQL
 stable/redmine          0.3.3   A flexible project management web application.
 stable/wordpress        0.3.1   Web publishing platform for building blogs and ...
-amit@kube1:~$
 ```
 
-Once you've found the chart that you want to install, run `helm install <chart_name>` to install the application that you want.
+You can install the chart directly from the Helm repository, but instead we are going to only fetch the Wordpress chart to examine the options available to deploy the chart:
 
 ```
-> helm install stable/mysql
+$ helm fetch stable/wordpress
+$ tar xzvf wordpress-*.tgz
+$ cd wordpress
+```
 
-Fetched stable/mysql to mysql-0.1.1.tgz
-NAME: loping-toad
-LAST DEPLOYED: Thu Oct 20 14:54:24 2016
+You will be able to see the available options for the wordpress chart by examining the `values.yaml` file which include all the variables that will be used in the charts, by checking the file we can see multiple settings including:
+```
+image: bitnami/wordpress:4.7-r0
+imagePullPolicy: IfNotPresent
+wordpressUsername: user
+# wordpressPassword:
+wordpressEmail: user@example.com
+wordpressFirstName: FirstName
+wordpressLastName: LastName
+wordpressBlogName: User's Blog!
+....
+```
+
+Also by checking the file we will see that persistent storage is enabled by default, and by default its using a storage class to dynamically provision persistent volumes and by default its called `default`, to get started with dynamically provisioned persistent storage in Kubernetes on Rancher, please read the followoing [docuementation guide]({{site.baseurl}/rancher/{{page.version}}/{{page.lang}}/kubernetes/storage).
+
+assuming that persistent storage is not required in our case, then we can disable the persistent storage when installing the chart using the following command:
+
+```
+$ helm install --name wordpress --set mariadb.persistence.enabled=false,persistence.enabled=false stable/wordpress
+NAME:   wordpress
+LAST DEPLOYED: Fri Apr 21 16:46:18 2017
 NAMESPACE: default
 STATUS: DEPLOYED
 
 RESOURCES:
 ==> v1/Secret
 NAME                TYPE      DATA      AGE
-loping-toad-mysql   Opaque    2         3s
+wordpress-mariadb   Opaque    2         2s
+wordpress-wordpress   Opaque    2         2s
+
+==> v1/ConfigMap
+NAME                DATA      AGE
+wordpress-mariadb   1         2s
 
 ==> v1/Service
-NAME                CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
-loping-toad-mysql   192.16.1.5   <none>        3306/TCP   3s
+NAME                  CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+wordpress-wordpress   10.43.218.155   <pending>     80:32247/TCP,443:31795/TCP   2s
+wordpress-mariadb   10.43.57.189   <none>    3306/TCP   2s
 
 ==> extensions/Deployment
-NAME                DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-loping-toad-mysql   1         0         0            0           3s
+NAME                  DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+wordpress-wordpress   1         1         1            0           2s
+wordpress-mariadb   1         1         1         0         2s
 
-==> v1/PersistentVolumeClaim
-NAME                STATUS    VOLUME    CAPACITY   ACCESSMODES   AGE
-loping-toad-mysql   Pending                                      3s
+
+NOTES:
+1. Get the WordPress URL:
+
+  NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+        Watch the status with: 'kubectl get svc --namespace default -w wordpress-wordpress'
+
+  export SERVICE_IP=$(kubectl get svc --namespace default wordpress-wordpress -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+  echo http://$SERVICE_IP/admin
+
+2. Login with the following credentials to see your blog
+
+  echo Username: user
+  echo Password: $(kubectl get secret --namespace default wordpress-wordpress -o jsonpath="{.data.wordpress-password}" | base64 --decode)
 ```
 
-After you've installed the charts that you want, you can check which applications are running by using `helm ls`. All services are deployed in the namespace that you are currently using CLI in.
+You will notice a `NOTES` section that will help you get started with the installed wordpress chart like getting the WordPress URL and to login to the blog with the default credentials:
+```
+$ export SERVICE_IP=$(kubectl get svc --namespace default wordpress-wordpress -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+$ echo http://$SERVICE_IP/admin
+http://x.x.x.x/admin
 
-```bash
-> helm ls
+$ echo Username: user
+$ echo Password: $(kubectl get secret --namespace default wordpress-wordpress -o jsonpath="{.data.wordpress-password}" | base64 --decode)
+Username: user
+Password: 58wYgIT06m
+```
 
-NAME            REVISION        UPDATED                         STATUS          CHART
-loping-toad     1               Thu Oct 20 14:54:24 2016        DEPLOYED        mysql-0.1.1
+By accessing the URL displayed, you will be able to start using wordpress on Kubernetes and login with the provided credentials:
+
+![wordpress]({{site.baseurl}}/img/kubernetes/helm-wordpress.png)
+
+#### Using Persisent Storage With Helm Chart
+
+If you followed the guide mentioned above about persistent storage in Rancher, you will be able to create storage clasess on Kubernetes, for example to deploy the same wordpress chart using persistent storage on AWS, we will assume thay you have all the prequisites needed for persistent storage:
+
+1. Configure the Kubernetes environment with the [cloud provider option as AWS]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/providers/#aws).
+2. Any [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) should be started in AWS EC2 with the correct IAM policies.
+3. [Storage class]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/storage/#dynamic_provisioning) `default` is installed and configured to use AWS volumes.
+
+Then you can deploy wordpress with the default settings without disabling the persistent storage:
+
+```
+helm install --name wordpress stable/wordpress
+NAME:   wordpress
+LAST DEPLOYED: Fri Apr 21 17:12:35 2017
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/Secret
+NAME                TYPE      DATA      AGE
+wordpress-mariadb   Opaque    2         2s
+wordpress-wordpress   Opaque    2         2s
+
+==> v1/ConfigMap
+NAME                DATA      AGE
+wordpress-mariadb   1         2s
+
+==> v1/Service
+NAME                CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+wordpress-mariadb   10.43.101.232   <none>        3306/TCP   2s
+wordpress-wordpress   10.43.250.75   <pending>   80:30296/TCP,443:30094/TCP   2s
+
+==> extensions/Deployment
+NAME                  DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+wordpress-wordpress   1         1         1            0           2s
+wordpress-mariadb   1         1         1         0         2s
+
+==> v1/PersistentVolumeClaim
+NAME                            STATUS    VOLUME                                     CAPACITY   ACCESSMODES   AGE
+wordpress-wordpress-wordpress   Bound     pvc-f396de3d-26a4-11e7-9213-02ee7a4cff8e   8Gi        RWO           2s
+wordpress-wordpress-apache   Bound     pvc-f3986989-26a4-11e7-9213-02ee7a4cff8e   1Gi       RWO       2s
+wordpress-mariadb   Bound     pvc-f399feb7-26a4-11e7-9213-02ee7a4cff8e   8Gi       RWO       2s
+
+
+NOTES:
+1. Get the WordPress URL:
+
+  NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+        Watch the status with: 'kubectl get svc --namespace default -w wordpress-wordpress'
+
+  export SERVICE_IP=$(kubectl get svc --namespace default wordpress-wordpress -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+  echo http://$SERVICE_IP/admin
+
+2. Login with the following credentials to see your blog
+
+  echo Username: user
+  echo Password: $(kubectl get secret --namespace default wordpress-wordpress -o jsonpath="{.data.wordpress-password}" | base64 --decode)
+```
+
+You can see new resources has been installed like the PersistentVolumeClaims:
+```
+==> v1/PersistentVolumeClaim
+NAME                            STATUS    VOLUME                                     CAPACITY   ACCESSMODES   AGE
+wordpress-wordpress-wordpress   Bound     pvc-f396de3d-26a4-11e7-9213-02ee7a4cff8e   8Gi        RWO           2s
+wordpress-wordpress-apache   Bound     pvc-f3986989-26a4-11e7-9213-02ee7a4cff8e   1Gi       RWO       2s
+wordpress-mariadb   Bound     pvc-f399feb7-26a4-11e7-9213-02ee7a4cff8e   8Gi       RWO       2s
+```
+
+Make sure that persistent volumes has been created:
+```
+NAME                                       CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS    CLAIM                                        REASON    AGE
+pvc-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx   8Gi        RWO           Delete          Bound     default/wordpress-wordpress-wordpress                  4m
+pvc-yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy   1Gi        RWO           Delete          Bound     default/wordpress-wordpress-apache                     4m
+pvc-zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz   8Gi        RWO           Delete          Bound     default/wordpress-mariadb                              4m
+```
+
+Since you are using AWS as a provider in this example, the load balancer will be created as ELB on AWS:
+```
+$ export SERVICE_IP=$(kubectl get svc --namespace default wordpress-wordpress -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+$ echo http://$SERVICE_IP/admin                                                                                         
+http://xxxxxxxxxxxxxx.us-west-2.elb.amazonaws.com/admin
 ```
 
 
@@ -99,14 +240,35 @@ loping-toad     1               Thu Oct 20 14:54:24 2016        DEPLOYED        
 
 In Rancher, each service is given a name. Other services can communicate with a service using the DNS service name. The DNS service name is `<service_name>.<namespace_name>.svc.cluster.local`.
 
-Using the mysql application launched in the helm example, you can get the name and namespace of the mysql service.
+Using the wordpress application launched in the helm example, you can get the name and namespace of Wordpress endpoint services.
 
-```bash
-> kubectl get pods --all-namespaces=true
+```
+> kubectl get services
 
-NAMESPACE     NAME                                 READY     STATUS    RESTARTS   AGE
-default       loping-toad-mysql-1951360640-gxmht   0/1       Pending   0          18m
-kube-system   tiller-deploy-2434200834-gvk9m       1/1       Running   0          2h
+NAME                  CLUSTER-IP      EXTERNAL-IP        PORT(S)                      AGE
+kubernetes            10.43.0.1       <none>             443/TCP                      22d
+wordpress-mariadb     10.43.101.232   <none>             3306/TCP                     1h
+wordpress-wordpress   10.43.250.75    xxxxxxxx...   80:30296/TCP,443:30094/TCP   1h
+
+> kubectl describe services/wordpress-wordpress
+Name:			wordpress-wordpress
+Namespace:		default
+Labels:			app=wordpress-wordpress
+			      chart=wordpress-0.4.2
+			      heritage=Tiller
+			      release=wordpress
+Selector:		app=wordpress-wordpress
+Type:			LoadBalancer
+IP:			10.43.250.75
+LoadBalancer Ingress:	xxxxxxxxxxxxxxxxxxxx.elb.amazonaws.com
+Port:			http	80/TCP
+NodePort:		http	30296/TCP
+Endpoints:		10.42.122.207:80
+Port:			https	443/TCP
+NodePort:		https	30094/TCP
+Endpoints:		10.42.122.207:443
+Session Affinity:	None
+No events.
 ```
 
-The mysql application is named `loping-toad-mysql`. For this instance, the DNS service name is `loping-toad-mysql.default.svc.cluster.local`.
+The wordpress application is named `wordpress`. For this instance, the DNS service name is `wordpress-wordpress.default.svc.cluster.local`.
