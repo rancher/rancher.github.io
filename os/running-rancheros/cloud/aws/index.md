@@ -67,6 +67,6 @@ If you have issues logging into RancherOS, try using this command to help debug 
 $ ssh -v -i /Directory/of/MySSHKeyName.pem rancher@<ip-of-ec2-instance>
 ```
 
-## Latest AMI Releases 
+## Latest AMI Releases
 
 Please check the [README](https://github.com/rancher/os/blob/master/README.md) in our RancherOS repository for our latest AMIs.
