@@ -110,3 +110,7 @@ They will only be able to view the environments that they are members of.
 ### Disabling Access Control
 
 If you decide that you no longer want Access Control, click the **Disable access control** button. This will make your Rancher instance open to the public and anyone can access your API. This is **not** recommended.
+
+### Session timeout configuration
+
+Session timeouts depend on the expiration time of the session token. It expires 16 hours after creation by default. This time can be changed using `api.auth.jwt.token.expiry` setting under Admin -> Settings -> Advanced settings.
