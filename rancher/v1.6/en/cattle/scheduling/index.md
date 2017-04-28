@@ -152,6 +152,9 @@ Key | Value | Description
 ----|----|----
 `io.rancher.host.linux_kernel_version` | Linux Kernel Version on Host (e.g, `3.19`) |  Version of the Linux kernel running on the host
 `io.rancher.host.docker_version` | Docker Engine Version on the host (e.g. `1.10.3`) | Docker Engine Version on the host
+`io.rancher.host.provider` | Cloud provider info | Cloud provider name (currently only applied for AWS)
+`io.rancher.host.region` | Cloud provider region | Cloud provider region (currently only applied for AWS)
+`io.rancher.host.zone` | Cloud provider zone | Cloud provider zone (currently only applied for AWS)
 
 <br>
 
