@@ -26,7 +26,7 @@ When installing Kubernetes on Rancher, you'll need to [configure your Kubernetes
 
 ##### Using `helm` in the Rancher UI
 
-ancher provides shell access directly to a managed `kubectl` instance that can be used to manage Kubernetes clusters and applications. To start using this shell, navigate to **Kubernetes** -> **CLI**. This shell is automatically installed with a Helm client and commands for Helm can be used immediately. 
+ancher provides shell access directly to a managed `kubectl` instance that can be used to manage Kubernetes clusters and applications. To start using this shell, navigate to **Kubernetes** -> **CLI**. This shell is automatically installed with a Helm client and commands for Helm can be used immediately.
 
 ![Kubectl]({{site.baseurl}}/img/kubernetes/kubectl.png)
 
@@ -51,7 +51,7 @@ Server: &version.Version{SemVer:"v2.1.3", GitCommit:"5cbc48fb305ca4bf68c26eb8d2a
 
 #### Using Helm
 
-As with all package managers, before using helm, we should verify that the Charts are up-to-date. 
+As with all package managers, before using helm, we should verify that the Charts are up-to-date.
 
 ```bash
 > helm repo update
@@ -61,11 +61,11 @@ Hang tight while we grab the latest from your chart repositories...
 Update Complete. â Happy Helming!â
 ```
 
-Kubernetes has its own official Helm charts that can be used directly. We'll walk through an example of installing a Wordpress Chart on Kuberenetes. 
+Kubernetes has its own official Helm charts that can be used directly. We'll walk through an example of installing a Wordpress Chart on Kuberenetes.
 
-> **Note:** As Charts are updated in Helm, our versions may not match with the latest ones. You should always install the latest versions. 
+> **Note:** As Charts are updated in Helm, our versions may not match with the latest ones. You should always install the latest versions.
 
-First, we'll start by using `helm search` to find the available Charts. 
+First, we'll start by using `helm search` to find the available Charts.
 
 ```bash
 > helm search
@@ -85,7 +85,7 @@ $ helm fetch stable/wordpress
 $ tar xzvf wordpress-*.tgz
 $ cd wordpress
 ```
-You can see the available options for the Wordpress Chart by examining the `values.yaml` file. This file includes all the variables that are used in the Chart. By opening the file in your favorite text editor, you can see there are multiple settings. 
+You can see the available options for the Wordpress Chart by examining the `values.yaml` file. This file includes all the variables that are used in the Chart. By opening the file in your favorite text editor, you can see there are multiple settings.
 
 ```bash
 image: bitnami/wordpress:4.7-r0
@@ -99,7 +99,7 @@ wordpressBlogName: User's Blog!
 ....
 ```
 
-In the file in Wordpress, you will see that persistent storage is enabled by default. The default value is using a storage class to dynamically provision persistent volumes, which is called `default`. In order to get started with dynamically provisioned persistent storage in Kubernetes on Rancher, please read the docs on [how storage works in Rancher]({{site.baseurl}/rancher/{{page.version}}/{{page.lang}}/kubernetes/storage).
+In the file in Wordpress, you will see that persistent storage is enabled by default. The default value is using a storage class to dynamically provision persistent volumes, which is called `default`. In order to get started with dynamically provisioned persistent storage in Kubernetes on Rancher, please read the docs on [how storage works in Rancher]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/storage).
 
 If persistent storage is not required in your use case, then we can disable the persistent storage when installing the Chart.
 
@@ -163,15 +163,15 @@ By accessing the URL displayed, you will be able to start using Wordpress on Kub
 
 #### Using Persisent Storage With a Helm Chart
 
-If you have set up [persistent storage in Rancher]({{site.baseurl}/rancher/{{page.version}}/{{page.lang}}/kubernetes/storage), you will be able to create storage classes on Kubernetes. In the next example, we will use the same Wordpress Chart and choose to use persistent storage on AWS.
+If you have set up [persistent storage in Rancher]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/storage), you will be able to create storage classes on Kubernetes. In the next example, we will use the same Wordpress Chart and choose to use persistent storage on AWS.
 
-The following pre-requisites would need to be configured: 
+The following pre-requisites would need to be configured:
 
 * Kubernetes is configured to use `aws` as the [cloud provider]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/providers/#aws).
 * All [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) have been added into Rancher in AWS EC2 with the correct IAM policies.
 * A [storage class]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/storage/#dynamic_provisioning) named `default` is installed and configured to use AWS volumes.
 
-After Kubernetes is launched correctly and your storage class is created, you can deploy the Wordpress Chart to use your persistent storage. 
+After Kubernetes is launched correctly and your storage class is created, you can deploy the Wordpress Chart to use your persistent storage.
 
 ```bash
 $ helm install --name wordpress stable/wordpress
@@ -222,7 +222,7 @@ NOTES:
   echo Password: $(kubectl get secret --namespace default wordpress-wordpress -o jsonpath="{.data.wordpress-password}" | base64 --decode)
 ```
 
-You can see that new resources from using persistent storage in the Chart have been created. 
+You can see that new resources from using persistent storage in the Chart have been created.
 
 ```bash
 ==> v1/PersistentVolumeClaim
@@ -241,7 +241,7 @@ pvc-yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy   1Gi        RWO           Delete      
 pvc-zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz   8Gi        RWO           Delete          Bound     default/wordpress-mariadb                              4m
 ```
 
-In this example, we have selected AWS as the [cloud provider]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/providers/#aws), which will have created an ELB on AWS as a load balancer for your Wordpress Chart. 
+In this example, we have selected AWS as the [cloud provider]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/providers/#aws), which will have created an ELB on AWS as a load balancer for your Wordpress Chart.
 
 ```bash
 $ export SERVICE_IP=$(kubectl get svc --namespace default wordpress-wordpress -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
