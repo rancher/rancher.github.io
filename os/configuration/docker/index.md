@@ -20,7 +20,7 @@ rancher:
     tls: true
     tls_args: [--tlsverify, --tlscacert=ca.pem, --tlscert=server-cert.pem, --tlskey=server-key.pem, '-H=0.0.0.0:2376']
     storage_driver: overlay
-```    
+```
 
 You can also customize Docker after it's been started using `ros config`.
 
