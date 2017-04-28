@@ -20,7 +20,7 @@ The migration process is performed in two stages.
 Confirm that your environment has enough hosts with labels for the planes. You can either add new hosts or use existing hosts.
 
 1. **Compute Plane Hosts:** _For all existing hosts running kubelet and proxy containers_, add the label `compute=true`. These are the nodes already registered to Kubernetes when you run `kubectl get node`. This step is **critically important** because, without the label, Kubernetes pods will be orphaned on the host during this upgrade. If you have hosts running the kubelet and proxy containers, you can follow the steps of [removing them from the compute plane](#removing-hosts-with-pods-from-the-compute-plane).  You can also add more hosts and [label these hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) with `compute=true`.
-2. **Data Plane Hosts:** Add 3 or more hosts with 1 CPU, >=1.5GB RAM, >=20GB DISK. When adding the host, [label these hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) with `etcd=true`.
+2. **Data Plane Hosts:** Have 3 or more hosts with 1 CPU, >=1.5GB RAM, >=20GB DISK. **If you have an existing Kubernetes setup with etcd services running, ensure that the `etcd=true` labels are on those hosts.** 
 3. **Orchestration Plane Hosts:** Add 2 or more hosts with >=1 CPU and >=2GB RAM. When adding the host, [label these hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) with `orchestration=true`. You can get away with 1 host, but you sacrifice high availability. In the event of this host failing, some K8s features such as the API, rescheduling pods in the event of failure, etc. will not occur until a new host is provisioned.
 
 ### Upgrade Kubernetes
