@@ -111,6 +111,10 @@ They will only be able to view the environments that they are members of.
 
 If you decide that you no longer want Access Control, click the **Disable access control** button. This will make your Rancher instance open to the public and anyone can access your API. This is **not** recommended.
 
-### Session timeout configuration
+### Configuring Session Timeouts
 
-Session timeouts depend on the expiration time of the session token. It expires 16 hours after creation by default. This time can be changed using `api.auth.jwt.token.expiry` setting under Admin -> Settings -> Advanced settings.
+By default, session tokens expire 16 hours after creation. If this is too long for your needs, you can update the expiration time of the session token. 
+
+1. Under **Admin** -> **Setting** -> **Advanced Settings**, click on the **I understand that I can break things by changing advanced settings**.
+2. Find the **api.auth.jwt.token.expiry** setting and click on the edit icon.
+3. Update the timeout session value and click on **Save**. The value is in milliseconds.
