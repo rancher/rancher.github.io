@@ -28,6 +28,10 @@ When Access Control is enabled, the API is locked and requires either being auth
 
 Select the **Active Directory** icon. If you want to use Active Directory using TLS, ensure that you have [started Rancher server with the appropriate certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#ldap). Fill in the sections and authenticate Rancher by clicking **Authenticate**. When Active Directory is enabled, you'll automatically be logged in as the username that was authenticated. You will also be logged in as an admin of Rancher.
 
+##### User Search Base vs. Group Search Base
+
+When configuring the the Active Directory configuration, you will be required to input the search base for your users. This search base allows Rancher to search for users that are in your Active Directory set up. If your users and groups are in the search base, you **only** need to fill in the search base for users, but if your groups are in a different search base, you can put the alternative search base in the `Group Search Base` field. This field is dedicated to searching groups and is not required. 
+
 #### Azure AD
 
 Select the **Azure AD** icon. Fill in the sections and authenticate Rancher by clicking **Authenticate with Azure**. When Active Directory is enabled, you'll automatically be logged in as the username that was authenticated. You will also be logged in as an admin of Rancher.
@@ -45,6 +49,10 @@ Select the **Local** icon. Create an admin user by providing the **Login Usernam
 #### OpenLDAP
 
 Select the **OpenLDAP** icon. If you want to use a OpenLDAP using TLS, ensure that you have [started Rancher server with the appropriate certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#ldap). Fill in the sections and authenticate Rancher by clicking **Authenticate**. When OpenLDAP is enabled, you'll automatically be logged in as the username that was authenticated. You will also be logged in as an admin of Rancher.
+
+##### User Search Base vs. Group Search Base
+
+When configuring the the Active Directory configuration, you will be required to input the search base for your users. This search base allows Rancher to search for users that are in your Active Directory set up. If your users and groups are in the search base, you **only** need to fill in the search base for users, but if your groups are in a different search base, you can put the alternative search base in the `Group Search Base` field. This field is dedicated to searching groups and is not required. 
 
 #### Shibboleth
 
@@ -102,3 +110,11 @@ They will only be able to view the environments that they are members of.
 ### Disabling Access Control
 
 If you decide that you no longer want Access Control, click the **Disable access control** button. This will make your Rancher instance open to the public and anyone can access your API. This is **not** recommended.
+
+### Configuring Session Timeouts
+
+By default, session tokens expire 16 hours after creation. If this is too long for your needs, you can update the expiration time of the session token. 
+
+1. Under **Admin** -> **Setting** -> **Advanced Settings**, click on the **I understand that I can break things by changing advanced settings**.
+2. Find the **api.auth.jwt.token.expiry** setting and click on the edit icon.
+3. Update the timeout session value and click on **Save**. The value is in milliseconds.
