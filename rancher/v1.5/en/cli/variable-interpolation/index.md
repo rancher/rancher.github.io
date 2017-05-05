@@ -123,3 +123,19 @@ catalog:
 name: "Nginx Application"
 version: v0.0.1
 ```
+
+#### Escaping Double Brackets
+
+Double brackets (`{{` or `}}`) have special meaning to due templating. These can be escaped by wrapping the the section in another pair of brackets with backticks. For example, the following label value is escaped.
+
+```
+# This value is unescaped
+labels:
+  key: "{{ value }}"
+```
+
+```
+# This value is escaped
+labels:
+  key: "{{`{{ value }}`}}"
+```
