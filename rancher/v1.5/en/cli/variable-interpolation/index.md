@@ -126,7 +126,7 @@ version: v0.0.1
 
 #### Escaping Double Brackets
 
-Double brackets (`{{` or `}}`) have special meaning to due templating. These can be escaped by wrapping the the section in another pair of brackets with backticks. For example, the following label value is escaped.
+With the introduction to templating to Rancher, double brackets (`{{` or `}}`) will now be treated as part of a template. If you need to require these characters without having it be converted to a template, they can be escaped by wrapping the the section in another pair of brackets with backticks. For example, the following label value is escaped.
 
 ```
 # This value is unescaped
@@ -139,3 +139,4 @@ labels:
 labels:
   key: "{{`{{ value }}`}}"
 ```
+
