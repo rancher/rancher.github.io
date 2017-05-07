@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v2-beta-default-v1.5
-version: v1.5
+layout: rancher-api-v2-beta-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v2-beta/api-resources/secondaryLaunchConfig/
+#  - /rancher/v1.6/zh/api/v2-beta/api-resources/secondaryLaunchConfig/
 ---
 
 ## secondaryLaunchConfig
@@ -119,8 +119,11 @@ workingDir | string | Optional | - | - |
 Field | Type   | Notes
 ---|---|---
 accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
+agentId | [agent]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/agent/)  | The unique identifier of the associated agent
+allocationState | string  | 
 createIndex | int  | 
 created | date  | The date of when the secondaryLaunchConfig was created.
+data | map[json]  | 
 deploymentUnitUuid | string  | 
 externalId | string  | 
 firstRunning | date  | 
@@ -131,12 +134,14 @@ mounts | array[[mountEntry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lan
 nativeContainer | boolean  | 
 primaryIpAddress | string  | 
 primaryNetworkId | [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/)  | 
+removeTime | date  | The date and time of when the secondaryLaunchConfig was removed
 removed | date  | The date of when the secondaryLaunchConfig was removed
 serviceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)  | The unique identifier of the associated service
 serviceIds | array[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
 startCount | int  | 
-state | enum  | The current state of the secondaryLaunchConfig. The options are `creating`, `error`, `erroring`, `migrating`, `purged`, `purging`, `removed`, `removing`, `requested`, `restarting`, `restoring`, `running`, `starting`, `stopped`, `stopping`, `updating-running`, `updating-stopped`.
+state | enum  | The current state of the secondaryLaunchConfig. The options are `creating`, `error`, `erroring`, `migrating`, `purged`, `purging`, `removed`, `removing`, `requested`, `restarting`, `running`, `starting`, `stopped`, `stopping`, `updating-running`, `updating-stopped`.
 system | boolean  | 
+token | string  | 
 transitioning | enum  | Whether or not the secondaryLaunchConfig is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state
 transitioningProgress | int  | The percentage remaining in the transitioning process of the secondaryLaunchConfig

@@ -1,11 +1,11 @@
 ---
 title: Rancher API - storageDriver
-layout: rancher-api-v2-beta-default-v1.5
-version: v1.5
+layout: rancher-api-v2-beta-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v2-beta/api-resources/storageDriver/
+#  - /rancher/v1.6/zh/api/v2-beta/api-resources/storageDriver/
 ---
 
 ## StorageDriver
@@ -28,6 +28,7 @@ volumeAccessMode | enum | Optional | - | multiHostRW | The options are `singleHo
 
 Field | Type   | Notes
 ---|---|---
+data | map[json]  | 
 id | int  | The unique identifier for the storageDriver
 serviceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)  | The unique identifier of the associated service
 

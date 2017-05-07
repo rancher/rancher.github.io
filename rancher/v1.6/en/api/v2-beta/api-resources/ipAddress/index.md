@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v2-beta-default-v1.5
-version: v1.5
+layout: rancher-api-v2-beta-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v2-beta/api-resources/ipAddress/
+#  - /rancher/v1.6/zh/api/v2-beta/api-resources/ipAddress/
 ---
 
 ## ipAddress
@@ -29,11 +29,13 @@ Field | Type   | Notes
 accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
 address | string  | 
 created | date  | The date of when the ipAddress was created.
+data | map[json]  | 
 id | int  | The unique identifier for the ipAddress
 kind | string  | 
 networkId | [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/)  | 
+removeTime | date  | The date and time of when the ipAddress was removed
 removed | date  | The date of when the ipAddress was removed
-state | enum  | The current state of the ipAddress. The options are `activating`, `active`, `associated`, `associating`, `deactivating`, `disassociating`, `inactive`, `purged`, `purging`, `registering`, `removed`, `removing`, `requested`, `restoring`, `updating-active`, `updating-inactive`.
+state | enum  | The current state of the ipAddress. The options are `activating`, `active`, `associated`, `associating`, `deactivating`, `disassociating`, `inactive`, `purged`, `purging`, `registering`, `removed`, `removing`, `requested`, `updating-active`, `updating-inactive`.
 transitioning | enum  | Whether or not the ipAddress is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state
 transitioningProgress | int  | The percentage remaining in the transitioning process of the ipAddress

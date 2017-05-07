@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v2-beta-default-v1.5
-version: v1.5
+layout: rancher-api-v2-beta-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v2-beta/api-resources/kubernetesService/
+#  - /rancher/v1.6/zh/api/v2-beta/api-resources/kubernetesService/
 ---
 
 ## kubernetesService
@@ -30,11 +30,13 @@ Field | Type   | Notes
 ---|---|---
 accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
 created | date  | The date of when the kubernetesService was created.
+data | map[json]  | 
 healthState | string  | 
 id | int  | The unique identifier for the kubernetesService
 instanceIds | array[[instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)]  | 
 kind | string  | 
 linkedServices | map[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
+removeTime | date  | The date and time of when the kubernetesService was removed
 removed | date  | The date of when the kubernetesService was removed
 selectorContainer | string  | 
 state | enum  | The current state of the kubernetesService. The options are `activating`, `active`, `canceled-upgrade`, `canceling-upgrade`, `deactivating`, `finishing-upgrade`, `inactive`, `registering`, `removed`, `removing`, `requested`, `restarting`, `rolling-back`, `updating-active`, `updating-inactive`, `upgraded`, `upgrading`.

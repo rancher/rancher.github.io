@@ -3,8 +3,6 @@ title: Variable Interpolation in Rancher CLI
 layout: rancher-default-v1.5
 version: v1.5
 lang: en
-redirect_from:
-  - rancher/cli/environment-interpolation
 ---
 
 ## Variable Interpolation
@@ -139,4 +137,3 @@ labels:
 labels:
   key: "{{`{{ value }}`}}"
 ```
-

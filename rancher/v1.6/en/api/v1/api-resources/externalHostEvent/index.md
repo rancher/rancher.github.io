@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/externalHostEvent/
+#  - /rancher/v1.6/zh/api/v1/api-resources/externalHostEvent/
 ---
 
 ## externalHostEvent
@@ -30,6 +30,7 @@ Field | Type   | Notes
 ---|---|---
 accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
 created | date  | The date of when the externalHostEvent was created.
+data | map[json]  | 
 externalId | string  | 
 id | int  | The unique identifier for the externalHostEvent
 kind | string  | 

@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/snapshot/
+#  - /rancher/v1.6/zh/api/v1/api-resources/snapshot/
 ---
 
 ## snapshot
@@ -28,8 +28,10 @@ Field | Type   | Notes
 ---|---|---
 accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
 created | date  | The date of when the snapshot was created.
+data | map[json]  | 
 id | int  | The unique identifier for the snapshot
 kind | string  | 
+removeTime | date  | The date and time of when the snapshot was removed
 removed | date  | The date of when the snapshot was removed
 state | enum  | The current state of the snapshot. The options are `created`, `creating`, `removed`, `removing`, `requested`.
 transitioning | enum  | Whether or not the snapshot is in a transitioning state

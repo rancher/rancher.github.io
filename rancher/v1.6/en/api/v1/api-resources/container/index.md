@@ -1,11 +1,11 @@
 ---
 title: Rancher API - container
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/container/
+#  - /rancher/v1.6/zh/api/v1/api-resources/container/
 ---
 
 ## Container
@@ -72,7 +72,10 @@ workingDir | string | Optional | - | - |
 
 Field | Type   | Notes
 ---|---|---
+agentId | [agent]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/agent/)  | The unique identifier of the associated agent
+allocationState | string  | 
 createIndex | int  | 
+data | map[json]  | 
 deploymentUnitUuid | string  | 
 externalId | string  | 
 firstRunning | date  | 
@@ -83,6 +86,7 @@ nativeContainer | boolean  |
 primaryIpAddress | string  | 
 startCount | int  | 
 systemContainer | enum  | The options are `NetworkAgent`, `LoadBalancerAgent`.
+token | string  | 
 version | string  | 
 
 
@@ -90,151 +94,6 @@ version | string  |
 
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
-### Operations
-{::options parse_block_html="true" /}
-<a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/containers</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X POST \
--H 'Content-Type: application/json' \
--d '{
-	"blkioDeviceOptions": "map[blkioDeviceOption]",
-	"build": {
-		"context": "string",
-		"dockerfile": "string",
-		"forcerm": false,
-		"nocache": false,
-		"remote": "string",
-		"rm": false
-	},
-	"capAdd": "array[enum]",
-	"capDrop": "array[enum]",
-	"command": [
-		"string1",
-		"...stringN"
-	],
-	"count": 0,
-	"cpuSet": "string",
-	"cpuShares": 0,
-	"dataVolumeMounts": "map[reference[volume]]",
-	"dataVolumes": [
-		"string1",
-		"...stringN"
-	],
-	"dataVolumesFrom": "array[reference[container]]",
-	"description": "string",
-	"devices": [
-		"string1",
-		"...stringN"
-	],
-	"dns": [
-		"string1",
-		"...stringN"
-	],
-	"dnsSearch": [
-		"string1",
-		"...stringN"
-	],
-	"domainName": "string",
-	"entryPoint": [
-		"string1",
-		"...stringN"
-	],
-	"environment": {
-		"key": "value-pairs"
-	},
-	"expose": [
-		"string1",
-		"...stringN"
-	],
-	"extraHosts": [
-		"string1",
-		"...stringN"
-	],
-	"healthCheck": {
-		"healthyThreshold": 0,
-		"initializingTimeout": 0,
-		"interval": 0,
-		"name": "string",
-		"port": 0,
-		"recreateOnQuorumStrategyConfig": {
-			"quorum": 0
-		},
-		"reinitializingTimeout": 0,
-		"requestLine": "string",
-		"responseTimeout": 0,
-		"strategy": "recreate",
-		"unhealthyThreshold": 0
-	},
-	"hostname": "string",
-	"imageUuid": "string",
-	"instanceLinks": "map[reference[instance]]",
-	"labels": {
-		"key": "value-pairs"
-	},
-	"logConfig": {
-		"config": {
-			"key": "value-pairs"
-		},
-		"driver": "string"
-	},
-	"lxcConf": {
-		"key": "value-pairs"
-	},
-	"memory": 0,
-	"memorySwap": 0,
-	"name": "string",
-	"networkContainerId": "reference[container]",
-	"networkIds": "array[reference[network]]",
-	"networkMode": "managed",
-	"pidMode": "enum",
-	"ports": [
-		"string1",
-		"...stringN"
-	],
-	"privileged": false,
-	"publishAllPorts": false,
-	"readOnly": false,
-	"registryCredentialId": "reference[registryCredential]",
-	"requestedHostId": "reference[host]",
-	"restartPolicy": {
-		"maximumRetryCount": 0,
-		"name": "string"
-	},
-	"securityOpt": [
-		"string1",
-		"...stringN"
-	],
-	"startOnCreate": true,
-	"stdinOpen": false,
-	"tty": false,
-	"user": "string",
-	"volumeDriver": "string",
-	"workingDir": "string"
-}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/containers'
-{% endhighlight %}
-</div></div>
-<a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/projects/${PROJECT_ID}/containers/${ID}</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X DELETE \
-'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/containers/${ID}'
-{% endhighlight %}
-</div></div>
-<a id="update"></a>
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/projects/${PROJECT_ID}/containers/${ID}</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X PUT \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"name": "string"
-}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/containers/${ID}'
-{% endhighlight %}
-</div></div>
 
 
 

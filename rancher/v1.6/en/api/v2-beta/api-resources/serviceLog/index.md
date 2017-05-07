@@ -1,11 +1,11 @@
 ---
 title: Rancher API - serviceLog
-layout: rancher-api-v2-beta-default-v1.5
-version: v1.5
+layout: rancher-api-v2-beta-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v2-beta/api-resources/serviceLog/
+#  - /rancher/v1.6/zh/api/v2-beta/api-resources/serviceLog/
 ---
 
 ## ServiceLog
@@ -25,6 +25,7 @@ description | string | Optional | Yes | - |
 
 Field | Type   | Notes
 ---|---|---
+data | map[json]  | 
 endTime | date  | 
 eventType | string  | 
 id | int  | The unique identifier for the serviceLog

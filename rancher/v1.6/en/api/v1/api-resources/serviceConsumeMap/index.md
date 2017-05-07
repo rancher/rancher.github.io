@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/serviceConsumeMap/
+#  - /rancher/v1.6/zh/api/v1/api-resources/serviceConsumeMap/
 ---
 
 ## serviceConsumeMap
@@ -28,10 +28,12 @@ Field | Type   | Notes
 accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
 consumedServiceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)  | 
 created | date  | The date of when the serviceConsumeMap was created.
+data | map[json]  | 
 id | int  | The unique identifier for the serviceConsumeMap
 kind | string  | 
 name | string  | 
 ports | array[string]  | 
+removeTime | date  | The date and time of when the serviceConsumeMap was removed
 removed | date  | The date of when the serviceConsumeMap was removed
 serviceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)  | The unique identifier of the associated service
 state | enum  | The current state of the serviceConsumeMap. The options are `activating`, `active`, `removed`, `removing`, `requested`, `updating-active`.
