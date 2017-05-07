@@ -361,7 +361,7 @@ domain.com.* -> hdr_beg(host) -i domain.com.
 
 ##### Priority
 
-By default, Rancher [prioritizes port rules](#default-priority-order) targeting the same service, but if you wanted to, you could customize your own prioritization of the port rules.
+By default, Rancher [prioritizes port rules](#default-priority-order) targeting the same service, but if you wanted to, you could customize your own prioritization of the port rules (lower number is higher priority).
 
 ###### Example `rancher-compose.yml`
 
