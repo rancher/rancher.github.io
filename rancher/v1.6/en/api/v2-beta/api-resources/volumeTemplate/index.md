@@ -1,11 +1,11 @@
 ---
 title: Rancher API - volumeTemplate
-layout: rancher-api-v2-beta-default-v1.5
-version: v1.5
+layout: rancher-api-v2-beta-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v2-beta/api-resources/volumeTemplate/
+#  - /rancher/v1.6/zh/api/v2-beta/api-resources/volumeTemplate/
 ---
 
 ## VolumeTemplate
@@ -24,13 +24,14 @@ driverOpts | map[string] | Optional | - | - |
 external | boolean | Optional | - | - | 
 name | string | Yes | Yes | - | 
 perContainer | boolean | Optional | - | - | 
-stackId | [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/) | Optional | - | - | 
+stackId | [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/stack/) | Yes | - | - | 
 
 
 #### Read Only Fields
 
 Field | Type   | Notes
 ---|---|---
+data | map[json]  | 
 id | int  | The unique identifier for the volumeTemplate
 
 
@@ -38,27 +39,6 @@ id | int  | The unique identifier for the volumeTemplate
 
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
-### Operations
-{::options parse_block_html="true" /}
-<a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v2-beta/projects/${PROJECT_ID}/volumeTemplates</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X POST \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"driver": "string",
-	"driverOpts": {
-		"key": "value-pairs"
-	},
-	"external": false,
-	"name": "string",
-	"perContainer": false,
-	"stackId": "reference[stack]"
-}' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/volumeTemplates'
-{% endhighlight %}
-</div></div>
 
 
 

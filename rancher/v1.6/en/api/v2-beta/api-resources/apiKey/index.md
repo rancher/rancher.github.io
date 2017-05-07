@@ -1,11 +1,11 @@
 ---
 title: Rancher API - apiKey
-layout: rancher-api-v2-beta-default-v1.5
-version: v1.5
+layout: rancher-api-v2-beta-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v2-beta/api-resources/apiKey/
+#  - /rancher/v1.6/zh/api/v2-beta/api-resources/apiKey/
 ---
 
 ## ApiKey
@@ -20,15 +20,16 @@ Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
 description | string | Optional | Yes | - | 
 name | string | Optional | Yes | - | 
+publicValue | string | Optional | - | - | The public value of the apiKey
+secretValue | [password]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/password/) | Optional | - | - | The secret value of the apiKey
 
 
 #### Read Only Fields
 
 Field | Type   | Notes
 ---|---|---
+data | map[json]  | 
 id | int  | The unique identifier for the apiKey
-publicValue | string  | The public value of the apiKey
-secretValue | [password]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/password/)  | The secret value of the apiKey
 
 
 <br>
@@ -44,8 +45,11 @@ curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
 -X POST \
 -H 'Content-Type: application/json' \
 -d '{
+	"accountId": "reference[account]",
 	"description": "string",
-	"name": "string"
+	"name": "string",
+	"publicValue": "string",
+	"secretValue": "password"
 }' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/apiKeys'
 {% endhighlight %}
 </div></div>

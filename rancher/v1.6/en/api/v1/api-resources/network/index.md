@@ -1,11 +1,11 @@
 ---
 title: Rancher API - network
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/network/
+#  - /rancher/v1.6/zh/api/v1/api-resources/network/
 ---
 
 ## Network
@@ -26,6 +26,7 @@ name | string | Optional | Yes | - |
 
 Field | Type   | Notes
 ---|---|---
+data | map[json]  | 
 id | int  | The unique identifier for the network
 
 

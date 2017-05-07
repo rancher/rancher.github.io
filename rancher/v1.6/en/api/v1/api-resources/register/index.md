@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/register/
+#  - /rancher/v1.6/zh/api/v1/api-resources/register/
 ---
 
 ## register
@@ -30,8 +30,10 @@ Field | Type   | Notes
 accessKey | string  | 
 accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
 created | date  | The date of when the register was created.
+data | map[json]  | 
 id | int  | The unique identifier for the register
 kind | string  | 
+removeTime | date  | The date and time of when the register was removed
 removed | date  | The date of when the register was removed
 secretKey | string  | 
 state | enum  | The current state of the register. The options are `activating`, `active`, `deactivating`, `inactive`, `purged`, `purging`, `registering`, `removed`, `removing`, `requested`, `restoring`, `updating-active`, `updating-inactive`.

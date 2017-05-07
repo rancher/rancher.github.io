@@ -1,11 +1,11 @@
 ---
 title: Rancher API - container
-layout: rancher-api-v2-beta-default-v1.5
-version: v1.5
+layout: rancher-api-v2-beta-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v2-beta/api-resources/container/
+#  - /rancher/v1.6/zh/api/v2-beta/api-resources/container/
 ---
 
 ## Container
@@ -111,7 +111,10 @@ workingDir | string | Optional | - | - |
 
 Field | Type   | Notes
 ---|---|---
+agentId | [agent]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/agent/)  | The unique identifier of the associated agent
+allocationState | string  | 
 createIndex | int  | 
+data | map[json]  | 
 deploymentUnitUuid | string  | 
 externalId | string  | 
 firstRunning | date  | 
@@ -126,6 +129,7 @@ serviceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/ap
 serviceIds | array[[service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)]  | 
 startCount | int  | 
 system | boolean  | 
+token | string  | 
 userPorts | array[string]  | 
 version | string  | 
 
@@ -134,208 +138,6 @@ version | string  |
 
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
-### Operations
-{::options parse_block_html="true" /}
-<a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v2-beta/projects/${PROJECT_ID}/containers</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X POST \
--H 'Content-Type: application/json' \
--d '{
-	"blkioDeviceOptions": "map[blkioDeviceOption]",
-	"blkioWeight": 0,
-	"build": {
-		"context": "string",
-		"dockerfile": "string",
-		"forcerm": false,
-		"nocache": false,
-		"remote": "string",
-		"rm": false
-	},
-	"capAdd": "array[enum]",
-	"capDrop": "array[enum]",
-	"cgroupParent": "string",
-	"command": [
-		"string1",
-		"...stringN"
-	],
-	"count": 0,
-	"cpuCount": 0,
-	"cpuPercent": 0,
-	"cpuPeriod": 0,
-	"cpuQuota": 0,
-	"cpuSet": "string",
-	"cpuSetMems": "string",
-	"cpuShares": 0,
-	"dataVolumeMounts": "map[reference[volume]]",
-	"dataVolumes": [
-		"string1",
-		"...stringN"
-	],
-	"dataVolumesFrom": "array[reference[container]]",
-	"description": "string",
-	"devices": [
-		"string1",
-		"...stringN"
-	],
-	"diskQuota": 0,
-	"dns": [
-		"string1",
-		"...stringN"
-	],
-	"dnsOpt": [
-		"string1",
-		"...stringN"
-	],
-	"dnsSearch": [
-		"string1",
-		"...stringN"
-	],
-	"domainName": "string",
-	"entryPoint": [
-		"string1",
-		"...stringN"
-	],
-	"environment": {
-		"key": "value-pairs"
-	},
-	"expose": [
-		"string1",
-		"...stringN"
-	],
-	"extraHosts": [
-		"string1",
-		"...stringN"
-	],
-	"groupAdd": [
-		"string1",
-		"...stringN"
-	],
-	"healthCheck": {
-		"healthyThreshold": 0,
-		"initializingTimeout": 0,
-		"interval": 0,
-		"name": "string",
-		"port": 0,
-		"recreateOnQuorumStrategyConfig": {
-			"quorum": 0
-		},
-		"reinitializingTimeout": 0,
-		"requestLine": "string",
-		"responseTimeout": 0,
-		"strategy": "recreate",
-		"unhealthyThreshold": 0
-	},
-	"healthCmd": [
-		"string1",
-		"...stringN"
-	],
-	"healthInterval": 0,
-	"healthRetries": 0,
-	"healthTimeout": 0,
-	"hostname": "string",
-	"imageUuid": "string",
-	"instanceLinks": "map[reference[instance]]",
-	"instanceTriggeredStop": "stop",
-	"ioMaximumBandwidth": 0,
-	"ioMaximumIOps": 0,
-	"ip": "string",
-	"ip6": "string",
-	"ipcMode": "string",
-	"isolation": "string",
-	"kernelMemory": 0,
-	"labels": {
-		"key": "value-pairs"
-	},
-	"logConfig": {
-		"config": {
-			"key": "value-pairs"
-		},
-		"driver": "string"
-	},
-	"lxcConf": {
-		"key": "value-pairs"
-	},
-	"memory": 0,
-	"memoryReservation": 0,
-	"memorySwap": 0,
-	"memorySwappiness": 0,
-	"milliCpuReservation": 0,
-	"name": "string",
-	"netAlias": [
-		"string1",
-		"...stringN"
-	],
-	"networkContainerId": "reference[container]",
-	"networkIds": "array[reference[network]]",
-	"networkMode": "managed",
-	"oomKillDisable": false,
-	"oomScoreAdj": 0,
-	"pidMode": "enum",
-	"pidsLimit": 0,
-	"ports": [
-		"string1",
-		"...stringN"
-	],
-	"privileged": false,
-	"publishAllPorts": false,
-	"readOnly": false,
-	"registryCredentialId": "reference[registryCredential]",
-	"requestedHostId": "reference[host]",
-	"restartPolicy": {
-		"maximumRetryCount": 0,
-		"name": "string"
-	},
-	"secrets": "array[secretReference]",
-	"securityOpt": [
-		"string1",
-		"...stringN"
-	],
-	"shmSize": 0,
-	"stackId": "reference[stack]",
-	"startOnCreate": true,
-	"stdinOpen": false,
-	"stopSignal": "string",
-	"storageOpt": {
-		"key": "value-pairs"
-	},
-	"sysctls": {
-		"key": "value-pairs"
-	},
-	"tmpfs": {
-		"key": "value-pairs"
-	},
-	"tty": false,
-	"ulimits": "array[ulimit]",
-	"user": "string",
-	"usernsMode": "string",
-	"uts": "string",
-	"volumeDriver": "string",
-	"workingDir": "string"
-}' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/containers'
-{% endhighlight %}
-</div></div>
-<a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v2-beta/projects/${PROJECT_ID}/containers/${ID}</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X DELETE \
-'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/containers/${ID}'
-{% endhighlight %}
-</div></div>
-<a id="update"></a>
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v2-beta/projects/${PROJECT_ID}/containers/${ID}</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X PUT \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"name": "string"
-}' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/containers/${ID}'
-{% endhighlight %}
-</div></div>
 
 
 

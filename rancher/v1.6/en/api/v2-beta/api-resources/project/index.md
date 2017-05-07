@@ -1,11 +1,11 @@
 ---
 title: Rancher API - project
-layout: rancher-api-v2-beta-default-v1.5
-version: v1.5
+layout: rancher-api-v2-beta-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v2-beta/api-resources/project/
+#  - /rancher/v1.6/zh/api/v2-beta/api-resources/project/
 ---
 
 ## Project
@@ -18,10 +18,12 @@ A "project" in the API is referred to as an environment in the UI and Rancher do
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+allowSystemRole | boolean | Optional | Yes | - | 
 description | string | Optional | Yes | - | 
 hostRemoveDelaySeconds | int | Optional | Yes | - | 
 members | array[[projectMember]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/projectMember/)] | Optional | - | - | 
 name | string | Optional | Yes | - | 
+projectLinks | array[[project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/project/)] | Optional | Yes | - | 
 projectTemplateId | [projectTemplate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/projectTemplate/) | Optional | - | - | 
 servicesPortRange | [servicesPortRange]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/servicesPortRange/) | Optional | Yes | - | 
 virtualMachine | boolean | Optional | Yes | - | 
@@ -31,6 +33,7 @@ virtualMachine | boolean | Optional | Yes | - |
 
 Field | Type   | Notes
 ---|---|---
+data | map[json]  | 
 defaultNetworkId | [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/network/)  | 
 healthState | string  | 
 id | int  | The unique identifier for the project
@@ -42,6 +45,59 @@ version | string  |
 
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
+### Operations
+{::options parse_block_html="true" /}
+<a id="create"></a>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v2-beta/projects/${PROJECT_ID}/projects</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
+	"allowSystemRole": false,
+	"description": "string",
+	"hostRemoveDelaySeconds": 0,
+	"members": "array[projectMember]",
+	"name": "string",
+	"projectLinks": "array[reference[project]]",
+	"projectTemplateId": "reference[projectTemplate]",
+	"servicesPortRange": {
+		"endPort": 0,
+		"startPort": 0
+	},
+	"uuid": "string",
+	"virtualMachine": false
+}' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/projects'
+{% endhighlight %}
+</div></div>
+<a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v2-beta/projects/${PROJECT_ID}/projects/${ID}</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/projects/${ID}'
+{% endhighlight %}
+</div></div>
+<a id="update"></a>
+<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v2-beta/projects/${PROJECT_ID}/projects/${ID}</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X PUT \
+-H 'Content-Type: application/json' \
+-d '{
+	"allowSystemRole": false,
+	"description": "string",
+	"hostRemoveDelaySeconds": 0,
+	"name": "string",
+	"projectLinks": "array[reference[project]]",
+	"servicesPortRange": {
+		"endPort": 0,
+		"startPort": 0
+	},
+	"virtualMachine": false
+}' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/projects/${ID}'
+{% endhighlight %}
+</div></div>
 
 
 

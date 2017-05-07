@@ -1,11 +1,11 @@
 ---
 title: Rancher API - registry
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/registry/
+#  - /rancher/v1.6/zh/api/v1/api-resources/registry/
 ---
 
 ## Registry
@@ -28,6 +28,7 @@ serverAddress | string | Yes | - | - |
 Field | Type   | Notes
 ---|---|---
 blockDevicePath | string  | 
+data | map[json]  | 
 driverName | string  | 
 externalId | string  | 
 id | int  | The unique identifier for the registry
@@ -39,41 +40,6 @@ volumeCapabilities | array[string]  |
 
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
-### Operations
-{::options parse_block_html="true" /}
-<a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/registries</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X POST \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"name": "string",
-	"serverAddress": "string"
-}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/registries'
-{% endhighlight %}
-</div></div>
-<a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/projects/${PROJECT_ID}/registries/${ID}</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X DELETE \
-'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/registries/${ID}'
-{% endhighlight %}
-</div></div>
-<a id="update"></a>
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/projects/${PROJECT_ID}/registries/${ID}</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X PUT \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"name": "string"
-}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/registries/${ID}'
-{% endhighlight %}
-</div></div>
 
 
 

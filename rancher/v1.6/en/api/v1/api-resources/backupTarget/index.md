@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/backupTarget/
+#  - /rancher/v1.6/zh/api/v1/api-resources/backupTarget/
 ---
 
 ## backupTarget
@@ -29,8 +29,10 @@ Field | Type   | Notes
 ---|---|---
 accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
 created | date  | The date of when the backupTarget was created.
+data | map[json]  | 
 id | int  | The unique identifier for the backupTarget
 kind | string  | 
+removeTime | date  | The date and time of when the backupTarget was removed
 removed | date  | The date of when the backupTarget was removed
 state | enum  | The current state of the backupTarget. The options are `created`, `creating`, `removed`, `removing`, `requested`.
 transitioning | enum  | Whether or not the backupTarget is in a transitioning state

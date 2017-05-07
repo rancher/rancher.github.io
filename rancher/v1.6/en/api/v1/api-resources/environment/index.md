@@ -1,11 +1,11 @@
 ---
 title: Rancher API - environment
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/environment/
+#  - /rancher/v1.6/zh/api/v1/api-resources/environment/
 ---
 
 ## Environment
@@ -34,6 +34,7 @@ startOnCreate | boolean | Optional | - | - |
 
 Field | Type   | Notes
 ---|---|---
+data | map[json]  | 
 healthState | string  | 
 id | int  | The unique identifier for the environment
 
@@ -42,62 +43,6 @@ id | int  | The unique identifier for the environment
 
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
-### Operations
-{::options parse_block_html="true" /}
-<a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/environments</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X POST \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"dockerCompose": "string",
-	"environment": {
-		"key": "value-pairs"
-	},
-	"externalId": "string",
-	"name": "string",
-	"outputs": {
-		"key": "value-pairs"
-	},
-	"previousEnvironment": {
-		"key": "value-pairs"
-	},
-	"previousExternalId": "string",
-	"rancherCompose": "string",
-	"startOnCreate": false
-}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/environments'
-{% endhighlight %}
-</div></div>
-<a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/projects/${PROJECT_ID}/environments/${ID}</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X DELETE \
-'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/environments/${ID}'
-{% endhighlight %}
-</div></div>
-<a id="update"></a>
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/projects/${PROJECT_ID}/environments/${ID}</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X PUT \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"externalId": "string",
-	"name": "string",
-	"outputs": {
-		"key": "value-pairs"
-	},
-	"previousEnvironment": {
-		"key": "value-pairs"
-	},
-	"previousExternalId": "string"
-}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/environments/${ID}'
-{% endhighlight %}
-</div></div>
 
 
 

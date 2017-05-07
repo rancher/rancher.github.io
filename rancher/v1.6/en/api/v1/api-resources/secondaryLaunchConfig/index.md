@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/secondaryLaunchConfig/
+#  - /rancher/v1.6/zh/api/v1/api-resources/secondaryLaunchConfig/
 ---
 
 ## secondaryLaunchConfig
@@ -80,8 +80,11 @@ workingDir | string | Optional | - | - |
 Field | Type   | Notes
 ---|---|---
 accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
+agentId | [agent]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/agent/)  | The unique identifier of the associated agent
+allocationState | string  | 
 createIndex | int  | 
 created | date  | The date of when the secondaryLaunchConfig was created.
+data | map[json]  | 
 deploymentUnitUuid | string  | 
 externalId | string  | 
 firstRunning | date  | 
@@ -90,10 +93,12 @@ hostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{pa
 id | int  | The unique identifier for the secondaryLaunchConfig
 nativeContainer | boolean  | 
 primaryIpAddress | string  | 
+removeTime | date  | The date and time of when the secondaryLaunchConfig was removed
 removed | date  | The date of when the secondaryLaunchConfig was removed
 startCount | int  | 
 state | enum  | The current state of the secondaryLaunchConfig. The options are `creating`, `error`, `erroring`, `migrating`, `purged`, `purging`, `removed`, `removing`, `requested`, `restarting`, `restoring`, `running`, `starting`, `stopped`, `stopping`, `updating-running`, `updating-stopped`.
 systemContainer | enum  | The options are `NetworkAgent`, `LoadBalancerAgent`.
+token | string  | 
 transitioning | enum  | Whether or not the secondaryLaunchConfig is in a transitioning state
 transitioningMessage | string  | The message to show while in a transitioning state
 transitioningProgress | int  | The percentage remaining in the transitioning process of the secondaryLaunchConfig

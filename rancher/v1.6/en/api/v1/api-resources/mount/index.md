@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/mount/
+#  - /rancher/v1.6/zh/api/v1/api-resources/mount/
 ---
 
 ## mount
@@ -28,11 +28,13 @@ Field | Type   | Notes
 ---|---|---
 accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
 created | date  | The date of when the mount was created.
+data | map[json]  | 
 id | int  | The unique identifier for the mount
 instanceId | [instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)  | The unique identifier for the associated instance
 kind | string  | 
 path | string  | 
 permissions | string  | 
+removeTime | date  | The date and time of when the mount was removed
 removed | date  | The date of when the mount was removed
 state | enum  | The current state of the mount. The options are `activating`, `active`, `deactivating`, `inactive`, `removed`, `removing`, `requested`.
 transitioning | enum  | Whether or not the mount is in a transitioning state

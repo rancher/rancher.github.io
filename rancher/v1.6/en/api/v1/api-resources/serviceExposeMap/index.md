@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/serviceExposeMap/
+#  - /rancher/v1.6/zh/api/v1/api-resources/serviceExposeMap/
 ---
 
 ## serviceExposeMap
@@ -28,11 +28,13 @@ Field | Type   | Notes
 ---|---|---
 accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
 created | date  | The date of when the serviceExposeMap was created.
+data | map[json]  | 
 id | int  | The unique identifier for the serviceExposeMap
 instanceId | [instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)  | The unique identifier for the associated instance
 ipAddress | string  | 
 kind | string  | 
 managed | boolean  | 
+removeTime | date  | The date and time of when the serviceExposeMap was removed
 removed | date  | The date of when the serviceExposeMap was removed
 serviceId | [service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/service/)  | The unique identifier of the associated service
 state | enum  | The current state of the serviceExposeMap. The options are `activating`, `active`, `removed`, `removing`, `requested`.

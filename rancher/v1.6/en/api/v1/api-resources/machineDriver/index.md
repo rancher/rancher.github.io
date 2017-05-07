@@ -1,11 +1,11 @@
 ---
 title: Rancher API - machineDriver
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/machineDriver/
+#  - /rancher/v1.6/zh/api/v1/api-resources/machineDriver/
 ---
 
 ## MachineDriver
@@ -31,6 +31,7 @@ url | string | Yes | Yes | - |
 
 Field | Type   | Notes
 ---|---|---
+data | map[json]  | 
 defaultActive | boolean  | 
 id | int  | The unique identifier for the machineDriver
 name | string  | 
@@ -40,6 +41,48 @@ name | string  |
 
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
+### Operations
+{::options parse_block_html="true" /}
+<a id="create"></a>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/machineDrivers</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
+	"activateOnCreate": false,
+	"builtin": false,
+	"checksum": "string",
+	"description": "string",
+	"externalId": "string",
+	"uiUrl": "string",
+	"url": "string"
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/machineDrivers'
+{% endhighlight %}
+</div></div>
+<a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/projects/${PROJECT_ID}/machineDrivers/${ID}</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/machineDrivers/${ID}'
+{% endhighlight %}
+</div></div>
+<a id="update"></a>
+<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/projects/${PROJECT_ID}/machineDrivers/${ID}</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X PUT \
+-H 'Content-Type: application/json' \
+-d '{
+	"checksum": "string",
+	"description": "string",
+	"externalId": "string",
+	"uiUrl": "string",
+	"url": "string"
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/machineDrivers/${ID}'
+{% endhighlight %}
+</div></div>
 
 
 

@@ -1,11 +1,11 @@
 ---
 title: Rancher API - volume
-layout: rancher-api-v2-beta-default-v1.5
-version: v1.5
+layout: rancher-api-v2-beta-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v2-beta/api-resources/volume/
+#  - /rancher/v1.6/zh/api/v2-beta/api-resources/volume/
 ---
 
 ## Volume
@@ -34,6 +34,7 @@ volumeTemplateId | [volumeTemplate]({{site.baseurl}}/rancher/{{page.version}}/{{
 Field | Type   | Notes
 ---|---|---
 accessMode | string  | 
+data | map[json]  | 
 externalId | string  | 
 id | int  | The unique identifier for the volume
 imageId | [image]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/image/)  | 
@@ -47,52 +48,6 @@ uri | string  |
 
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
-### Operations
-{::options parse_block_html="true" /}
-<a id="create"></a>
-<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v2-beta/projects/${PROJECT_ID}/volumes</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X POST \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"driver": "string",
-	"driverOpts": {
-		"key": "value-pairs"
-	},
-	"hostId": "reference[host]",
-	"name": "string",
-	"sizeMb": 0,
-	"stackId": "reference[stack]",
-	"storageDriverId": "reference[storageDriver]",
-	"volumeTemplateId": "reference[volumeTemplate]"
-}' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/volumes'
-{% endhighlight %}
-</div></div>
-<a id="delete"></a>
-<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v2-beta/projects/${PROJECT_ID}/volumes/${ID}</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X DELETE \
-'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/volumes/${ID}'
-{% endhighlight %}
-</div></div>
-<a id="update"></a>
-<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v2-beta/projects/${PROJECT_ID}/volumes/${ID}</code></span></span>
-<div class="action-contents"> {% highlight json %}
-curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
--X PUT \
--H 'Content-Type: application/json' \
--d '{
-	"description": "string",
-	"driverOpts": {
-		"key": "value-pairs"
-	},
-	"hostId": "reference[host]"
-}' 'http://${RANCHER_URL}:8080/v2-beta/projects/${PROJECT_ID}/volumes/${ID}'
-{% endhighlight %}
-</div></div>
 
 
 

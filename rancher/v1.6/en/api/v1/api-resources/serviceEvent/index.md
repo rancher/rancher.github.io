@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/serviceEvent/
+#  - /rancher/v1.6/zh/api/v1/api-resources/serviceEvent/
 ---
 
 ## serviceEvent
@@ -28,12 +28,14 @@ Field | Type   | Notes
 ---|---|---
 accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
 created | date  | The date of when the serviceEvent was created.
+data | map[json]  | 
 externalTimestamp | int  | 
 healthcheckUuid | string  | 
 hostId | [host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/)  | The unique identifier for the associated host
 id | int  | The unique identifier for the serviceEvent
 instanceId | [instance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/instance/)  | The unique identifier for the associated instance
 kind | string  | 
+removeTime | date  | The date and time of when the serviceEvent was removed
 removed | date  | The date of when the serviceEvent was removed
 reportedHealth | string  | 
 state | enum  | The current state of the serviceEvent. The options are `created`, `creating`, `removed`, `removing`, `requested`.

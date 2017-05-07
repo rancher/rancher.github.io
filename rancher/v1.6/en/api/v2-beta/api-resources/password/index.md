@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v2-beta-default-v1.5
-version: v1.5
+layout: rancher-api-v2-beta-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v2-beta/api-resources/password/
+#  - /rancher/v1.6/zh/api/v2-beta/api-resources/password/
 ---
 
 ## password
@@ -18,6 +18,7 @@ apiVersion: v2-beta
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/) | Optional | - | - | The unique identifier for the associated account
 description | string | Optional | Yes | - | 
 name | string | Optional | Yes | - | 
 publicValue | string | Optional | - | - | The public value of the password
@@ -28,10 +29,11 @@ secretValue | [password]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}
 
 Field | Type   | Notes
 ---|---|---
-accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
 created | date  | The date of when the password was created.
+data | map[json]  | 
 id | int  | The unique identifier for the password
 kind | string  | 
+removeTime | date  | The date and time of when the password was removed
 removed | date  | The date of when the password was removed
 state | enum  | The current state of the password. The options are `activating`, `active`, `deactivating`, `inactive`, `purged`, `purging`, `registering`, `removed`, `removing`, `requested`, `updating-active`, `updating-inactive`.
 transitioning | enum  | Whether or not the password is in a transitioning state

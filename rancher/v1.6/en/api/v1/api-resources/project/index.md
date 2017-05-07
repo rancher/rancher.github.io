@@ -1,11 +1,11 @@
 ---
 title: Rancher API - project
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/project/
+#  - /rancher/v1.6/zh/api/v1/api-resources/project/
 ---
 
 ## Project
@@ -18,6 +18,7 @@ A "project" in the API is referred to as an environment in the UI and Rancher do
 
 Field | Type | Create | Update | Default | Notes
 ---|---|---|---|---|---
+allowSystemRole | boolean | Optional | Yes | - | 
 description | string | Optional | Yes | - | 
 kubernetes | boolean | Optional | Yes | - | 
 members | array[[projectMember]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/projectMember/)] | Optional | - | - | 
@@ -33,6 +34,7 @@ virtualMachine | boolean | Optional | Yes | - |
 
 Field | Type   | Notes
 ---|---|---
+data | map[json]  | 
 id | int  | The unique identifier for the project
 
 
@@ -40,6 +42,62 @@ id | int  | The unique identifier for the project
 
 Please read more about the [common resource fields]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/common/). These fields are read only and applicable to almost every resource. We have segregated them from the list above.
 
+### Operations
+{::options parse_block_html="true" /}
+<a id="create"></a>
+<div class="action"><span class="header">Create<span class="headerright">POST:  <code>/v1/projects/${PROJECT_ID}/projects</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
+	"allowSystemRole": false,
+	"description": "string",
+	"kubernetes": false,
+	"members": "array[projectMember]",
+	"mesos": false,
+	"name": "string",
+	"publicDns": false,
+	"servicesPortRange": {
+		"endPort": 0,
+		"startPort": 0
+	},
+	"swarm": false,
+	"uuid": "string",
+	"virtualMachine": false
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/projects'
+{% endhighlight %}
+</div></div>
+<a id="delete"></a>
+<div class="action"><span class="header">Delete<span class="headerright">DELETE:  <code>/v1/projects/${PROJECT_ID}/projects/${ID}</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X DELETE \
+'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/projects/${ID}'
+{% endhighlight %}
+</div></div>
+<a id="update"></a>
+<div class="action"><span class="header">Update<span class="headerright">PUT:  <code>/v1/projects/${PROJECT_ID}/projects/${ID}</code></span></span>
+<div class="action-contents"> {% highlight json %}
+curl -u "${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}" \
+-X PUT \
+-H 'Content-Type: application/json' \
+-d '{
+	"allowSystemRole": false,
+	"description": "string",
+	"kubernetes": false,
+	"mesos": false,
+	"name": "string",
+	"publicDns": false,
+	"servicesPortRange": {
+		"endPort": 0,
+		"startPort": 0
+	},
+	"swarm": false,
+	"virtualMachine": false
+}' 'http://${RANCHER_URL}:8080/v1/projects/${PROJECT_ID}/projects/${ID}'
+{% endhighlight %}
+</div></div>
 
 
 

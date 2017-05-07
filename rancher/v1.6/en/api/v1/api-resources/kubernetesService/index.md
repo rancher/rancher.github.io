@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/kubernetesService/
+#  - /rancher/v1.6/zh/api/v1/api-resources/kubernetesService/
 ---
 
 ## kubernetesService
@@ -30,9 +30,11 @@ Field | Type   | Notes
 ---|---|---
 accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
 created | date  | The date of when the kubernetesService was created.
+data | map[json]  | 
 healthState | string  | 
 id | int  | The unique identifier for the kubernetesService
 kind | string  | 
+removeTime | date  | The date and time of when the kubernetesService was removed
 removed | date  | The date of when the kubernetesService was removed
 selectorContainer | string  | 
 state | enum  | The current state of the kubernetesService. The options are `activating`, `active`, `canceled-rollback`, `canceled-upgrade`, `canceling-rollback`, `canceling-upgrade`, `deactivating`, `finishing-upgrade`, `inactive`, `registering`, `removed`, `removing`, `requested`, `restarting`, `rolling-back`, `updating-active`, `updating-inactive`, `upgraded`, `upgrading`.

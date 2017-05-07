@@ -1,11 +1,11 @@
 ---
 title: API Resources
-layout: rancher-api-v2-beta-default-v1.5
-version: v1.5
+layout: rancher-api-v2-beta-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v2-beta
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v2-beta/api-resources/
+#  - /rancher/v1.6/zh/api/v2-beta/api-resources/
 ---
 
 ## API Resources
@@ -16,6 +16,12 @@ apiVersion: v2-beta
 [Account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)|
 ---|
 All resources in Rancher are owned or created by an account. |
+
+<br>
+
+[Agent]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/agent/)|
+---|
+ |
 
 <br>
 
@@ -31,9 +37,33 @@ The audit log provides a list of API requests. It logs the environment as well a
 
 <br>
 
+[Azureadconfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/azureadconfig/)|
+---|
+ |
+
+<br>
+
 [Certificate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/certificate/)|
 ---|
 A certificate is used to add in SSL termination to load balancers. |
+
+<br>
+
+[ClusterMembership]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/clusterMembership/)|
+---|
+ |
+
+<br>
+
+[ConfigItem]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/configItem/)|
+---|
+ |
+
+<br>
+
+[ConfigItemStatus]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/configItemStatus/)|
+---|
+ |
 
 <br>
 
@@ -43,9 +73,45 @@ A container is a representation of a Docker container on a host. |
 
 <br>
 
+[Databasechangelog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/databasechangelog/)|
+---|
+ |
+
+<br>
+
+[Databasechangeloglock]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/databasechangeloglock/)|
+---|
+ |
+
+<br>
+
 [DnsService]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/dnsService/)|
 ---|
 A "dnsService" in the API is referred to as a Service Alias in the UI and the Rancher documentation. In the API documentation, we'll use the UI terminology. A service alias allows the ability to add a DNS record for your services to be discovered. |
+
+<br>
+
+[ExtensionPoint]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/extensionPoint/)|
+---|
+ |
+
+<br>
+
+[ExternalHandler]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/externalHandler/)|
+---|
+ |
+
+<br>
+
+[ExternalHandlerExternalHandlerProcessMap]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/externalHandlerExternalHandlerProcessMap/)|
+---|
+ |
+
+<br>
+
+[ExternalHandlerProcess]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/externalHandlerProcess/)|
+---|
+ |
 
 <br>
 
@@ -55,9 +121,33 @@ An external service allows the ability to add any IP or hostname as a service to
 
 <br>
 
+[HaConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/haConfig/)|
+---|
+ |
+
+<br>
+
+[HaConfigInput]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/haConfigInput/)|
+---|
+ |
+
+<br>
+
 [Host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host/)|
 ---|
 Hosts are the most basic unit of resource within Rancher and is represented as any Linux server, virtual or physical, with the following minimum requirements. <br> <br> * Any modern Linux distribution with a [supported version of Docker]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#supported-docker-versions). <br> * Must be able to communicate with the Rancher server via http or https through the pre-configured port (Default is 8080). <br> * Must be routable to any other hosts belonging to the same environment to leverage Rancher's cross-host networking for Docker containers.<br> <br> Rancher also supports Docker Machine and allows you to add your host via any of its supported drivers. |
+
+<br>
+
+[HostApiProxyToken]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostApiProxyToken/)|
+---|
+ |
+
+<br>
+
+[HostTemplate]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/hostTemplate/)|
+---|
+ |
 
 <br>
 
@@ -67,9 +157,21 @@ An identity is Rancher's representation of an object(i.e. `ldap_group`, `github_
 
 <br>
 
+[Ldapconfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/ldapconfig/)|
+---|
+ |
+
+<br>
+
 [LoadBalancerService]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/loadBalancerService/)|
 ---|
 Rancher implements a managed load balancer using HAProxy that can be manually scaled to multiple hosts. A load balancer can be used to distribute network and application traffic to individual containers by directly adding them or "linked" to a basic service. A basic service that is "linked" will have all its underlying containers automatically registered as load balancer targets by Rancher. |
+
+<br>
+
+[LocalAuthConfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/localAuthConfig/)|
+---|
+ |
 
 <br>
 
@@ -104,6 +206,42 @@ A network driver is the |
 <br>
 
 [NetworkPolicyRuleWithin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/networkPolicyRuleWithin/)|
+---|
+ |
+
+<br>
+
+[Openldapconfig]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/openldapconfig/)|
+---|
+ |
+
+<br>
+
+[ProcessDefinition]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/processDefinition/)|
+---|
+ |
+
+<br>
+
+[ProcessExecution]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/processExecution/)|
+---|
+ |
+
+<br>
+
+[ProcessInstance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/processInstance/)|
+---|
+ |
+
+<br>
+
+[ProcessPool]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/processPool/)|
+---|
+ |
+
+<br>
+
+[ProcessSummary]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/processSummary/)|
 ---|
  |
 
@@ -148,6 +286,12 @@ A registry is where image repositories are hosted. The repository can be either 
 [RegistryCredential]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/registryCredential/)|
 ---|
 A registry credential is used to authenticate against a [registry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/registry). |
+
+<br>
+
+[ResourceDefinition]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/resourceDefinition/)|
+---|
+ |
 
 <br>
 
@@ -199,7 +343,19 @@ Rancher adopts the standard Docker Compose terminology for services and defines 
 
 <br>
 
-[Subscribe]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/subscribe/)|
+[Task]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/task/)|
+---|
+ |
+
+<br>
+
+[TaskInstance]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/taskInstance/)|
+---|
+ |
+
+<br>
+
+[UserPreference]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/userPreference/)|
 ---|
  |
 

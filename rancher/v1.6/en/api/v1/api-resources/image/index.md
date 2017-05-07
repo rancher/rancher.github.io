@@ -1,11 +1,11 @@
 ---
 title: API
-layout: rancher-api-v1-default-v1.5
-version: v1.5
+layout: rancher-api-v1-default-v1.6
+version: v1.6
 lang: en
 apiVersion: v1
 #redirect_from:
-#  - /rancher/v1.5/zh/api/v1/api-resources/image/
+#  - /rancher/v1.6/zh/api/v1/api-resources/image/
 ---
 
 ## image
@@ -28,8 +28,10 @@ Field | Type   | Notes
 ---|---|---
 accountId | [account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account/)  | The unique identifier for the associated account
 created | date  | The date of when the image was created.
+data | map[json]  | 
 id | int  | The unique identifier for the image
 kind | string  | 
+removeTime | date  | The date and time of when the image was removed
 removed | date  | The date of when the image was removed
 state | enum  | The current state of the image. The options are `activating`, `active`, `deactivating`, `inactive`, `purged`, `purging`, `registering`, `removed`, `removing`, `requested`, `restoring`, `updating-active`, `updating-inactive`.
 transitioning | enum  | Whether or not the image is in a transitioning state
