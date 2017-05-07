@@ -81,6 +81,7 @@ When working with Rancher CLI, you can set the environment variable, `RANCHER_CL
 $ export RANCHER_CLIENT_DEBUG=true
 ```
 <br>
+
 If you don't want the verbose response on every CLI command, set the environment variable `RANCHER_CLIENT_DEBUG` to `false` and pass in `--debug` to the specific command to get the verbose messages.
 
 ```bash

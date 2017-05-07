@@ -168,7 +168,7 @@ $ rancher-compose upgrade service1 service2 --scale 5
 `service1` | `service2` | Notes
 ---|---|---
 2 | 0 |  `service1` is running with 2 containers.
-2 | 2 | `service2` starts 2 containers at a time (Default [Batch Size]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/rancher-compose/upgrading/#batch-size)).
+2 | 2 | `service2` starts 2 containers at a time (Default [Batch Size](#batch-size)).
 2 | 4 | `service2` starts another 2 containers.
 1 | 4 | After the previous step, the sum (6) of the new and old containers is greater than the final scale (5), `service1` stops and removes one of the containers to maintain the final scale of 5.
 1 | 5 | `service2` starts only 1 container to reach the final scale of 5.
