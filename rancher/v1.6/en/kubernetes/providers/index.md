@@ -61,7 +61,7 @@ In order to use Elastic Load Balancers (ELBs) and EBS with Kubernetes, the host 
       "Effect": "Allow",
       "Action": ["elasticloadbalancing:*"],
       "Resource": ["*"]
-    },
+    }
   ]
 }
 ```
