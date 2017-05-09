@@ -27,7 +27,15 @@ By default, the orchestration for Kubernetes is set to `rancher`.
 
 #### Adding Hosts
 
-After Kubernetes has been configured to run with an `aws` cloud provider, any hosts added into the environment will need to be an AWS EC2 instance.
+After Kubernetes has been configured to run with an `aws` cloud provider, any hosts added into the environment will need to be an AWS EC2 instance and have at least the following IAM policy:
+
+```json
+{
+  "Effect": "Allow",
+  "Action": "ec2:Describe*",
+  "Resource": "*"
+}
+```
 
 In order to use Elastic Load Balancers (ELBs) and EBS with Kubernetes, the host will need to have the an IAM role with appropriate access.
 
