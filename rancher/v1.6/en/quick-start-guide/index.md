@@ -36,7 +36,7 @@ Please do not use any release with a `rc{n}` suffix. These `rc` builds are meant
 All you need is one command to launch Rancher server. After launching the container, we'll tail the logs of the container to see when the server is up and running.
 
 ```bash
-$ sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server
+$ sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server:stable
 # Tail the logs to show Rancher
 $ sudo docker logs -f <CONTAINER_ID>
 ```
