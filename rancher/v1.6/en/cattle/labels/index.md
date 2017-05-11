@@ -30,7 +30,7 @@ Key | Value |Description
 `io.rancher.scheduler.affinity:host_label` | Key Value Pair of Host Label| Used to schedule containers on hosts based on [host label]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#finding-hosts-with-host-labels)
 `io.rancher.scheduler.affinity:container_label` | Key Value Pair of Any Container Label | Used to schedule containers on hosts based on [container label or service name]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#finding-hosts-with-container-labels)
 `io.rancher.scheduler.affinity:container` | Name of Container | Used to schedule containers on hosts based on [container name]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#finding-hosts-with-container-names)
-`io.rancher.lb_service.target` | [_Target Service Label_ Values](#target-service-labels) | Used to configure load balancers so that traffit will be routed to containers that are on the same host as the load balancer.
+`io.rancher.lb_service.target` | [_Target Service Label_ Values](#target-service-labels) | Used to configure load balancers so that traffic will be routed to containers that are on the same host as the load balancer.
 
 <br>
 
