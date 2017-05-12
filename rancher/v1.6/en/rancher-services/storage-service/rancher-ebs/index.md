@@ -8,14 +8,21 @@ lang: en
 ## Rancher EBS
 ---
 
-Rancher provides the ability to select AWS EBS volume as the backend container storage option.
+Rancher provides the ability to select AWS EBS volumes as the storage option for containers. 
 
 ### Setting up Rancher EBS
 
-Before using Rancher-EBS, we need to launch Rancher-EBS catalog. After that, you should be able to see Rancher-EBS driver listed under Infrastructure/Storage.
-To launch Rancher-EBS, you will need you own AWS accessKey and secretKey to be able to launch AWS EBS volume.
+When setting up an [environment template]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template), you can select the **Rancher EBS** catalog item so that it will be available in any environment created from that environment template. 
 
-### Rancher-EBS Driver Options
+Alternatively, if you already have an environment set up, you can select and launch Rancher EBS from the [catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/).
+
+> **Note:** Some storage services may not be compatible with some container orchestration types (i.e. Kubernetes). Environment templates will restrict which ones are compatible based on orchestration, but all options are available from the catalog.
+
+In order to launch Rancher EBS, you will need an AWS Access Key and Secret Key that has the permissions to launch AWS EBS volumes. 
+
+### Using Rancher EBS in the UI
+
+### Using Rancher EBS in a Compose File
 
 Rancher-EBS provides the following options when creating the EBS volume:
 
