@@ -34,12 +34,6 @@ With a stack scoped volume, services referencing the same volume in a stack woul
 
 In Rancher, stack scoped volumes are named with the stack name as a prefix to indicate which stack the volume is scoped to and suffixed with a random number to guarantee no duplication. When referencing the volume, you still use the original volume name. For example, if you create a volume called `foo` in `stackA`, the volume name in the UI and on your hosts will be `stackA_foo_<randomNumber>`, but to use the same volume in your service, you would use the name `foo`.  
 
-#### Container Scoped
-
-With a container scoped volume, a new volume is created for each instance of a container. No containers would share the same volume.
-
-In Rancher, container scoped volumes are prefixed with `containerscoped` and have a suffix of the `<dockerContainerID>` and a random number to guarantee no duplication. For example, if you create a volume called `foo1` with a container scope, the volume name in the UI and on your hosts will be `containerscoped_foo1_1_<dockerContainerID>_<randomNumber>`.
-
 #### Environment Scoped
 
 With an environment scoped volume, services referencing the same volume in an environment would share the same volume. Services in different stacks could share the same volume. Currently, an environment scoped volume can only be created through the UI.
@@ -87,25 +81,6 @@ By default, all volumes are created at the stack scope. Services referencing the
 When launching a new stack from the same Compose file, a new volume will be created. When a stack is deleted, its corresponding volumes are removed.
 
 In the above example, volume `bar` has stack scope.
-
-#### Container Scoped
-
-In some cases it makes sense to have a volume created for each instance of a container. This is indicated via the `per_container` option for a volume.
-
-```yaml
-version: '2'
-services:
-  foo:
-    image: busybox
-    volumes:
-    - bar:/var/lib/storage
-volumes:
-  bar:
-    driver: rancher-nfs
-    per_container: true
-```
-
-When scaling up the `foo` service, a volume will be created for each new container. When scaling down the `foo` service, the volumes corresponding to the removed containers will be removed.
 
 #### Environment Scoped
 
