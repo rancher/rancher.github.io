@@ -18,33 +18,75 @@ Alternatively, if you already have an environment set up, you can select and lau
 
 > **Note:** Some storage services may not be compatible with some container orchestration types (i.e. Kubernetes). Environment templates will restrict which ones are compatible based on orchestration, but all options are available from the catalog.
 
-In order to launch Rancher EBS, you will need an AWS Access Key and Secret Key that has the permissions to launch AWS EBS volumes. 
+In order to launch Rancher EBS, you will need an AWS Access Key and Secret Key that has valid permissions to launch AWS EBS volumes. Depending on your driver options, additional permissions may be required.  
+
+### Rancher EBS Driver Options
+
+When creating AWS EBS volumes, there are several options that can be used to customize the volume. These options are key value pairs that can be added in the UI as a driver options or in compose files under the `driver_opts` key.   
+
+#### Required Driver Options
+
+* **Size** - (`size`): Size of the EBS volume 
+
+#### Optional Driver Options
+
+* **Volume Type** - (`volumeType`): Type of volume
+* **IOPS** - (`iops`): IOPS option
+* **Specific Availability Zone** (`ec2_az`): The specific availability zone to create the EBS volumes. Any containers using this volume will automatically be scheduled onto a host in the same availability zone as the volume. (e.g. `us-west-1a`)
+
+For the following options, you **must** specify the specific availability zone (`ec2_az`) that the IDs are associated with in the driver options.  
+
+* **Encrypted** (`encrypted`): Whether or not the volume should be encrypted. Note: AWS KMS ID is required when using this option.
+* **AWS KMS ID** (`kmsKeyId`): The full ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume.
+* **Snapshot ID** (`snapshotID`): The snapshot from which to create the volume. 
+* **Volume ID** (`volumeID`): The ID of an existing volume to use. 
 
 ### Using Rancher EBS in the UI
 
+#### Creating Volumes 
+
+After **Rancher EBS** is launched in Rancher, you will need to create the volumes in EBS in **Infrastructure** -> **Storage** before using the volume in a service. 
+
+1. Click on **Add Volume**. 
+2. Create the name of the volume that will be used in the service.
+3. Required: Add a driver option for `size`. 
+4. Optional: Add any additional driver options. Note: If you use encryption, snapshot ID or volume ID, you will also have to specify the availability zone. 
+
+> **Note:** At this time, only environment scoped volumes can be created in the UI. If you want volumes with other scopes, you will need to add them through a compose file.
+
+#### Using Volumes in Services
+
+Once a volume is created in the UI, [services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/) can start using the shared storage. when creating a service, in the **Volumes** tab, provide a **volume** and a **volume driver**.
+
+The **volume** will be in the same syntax as Docker, `<volume_name>:</path/in/container>`. Docker volumes default to mount in read-write mode, but you can set it to be mounted read-only by adding the `:ro` at the end of the volume.
+
+The **volume driver** will be the name of the storage driver, which is the name of the stack. By default, the **Rancher EBS** storage driver will be `rancher-ebs`. 
+
 ### Using Rancher EBS in a Compose File
 
-Rancher-EBS provides the following options when creating the EBS volume:
+After the **Rancher EBS** infrastructure stack has been launched, you can start creating volumes in a compose file. 
 
-```
-      size: the size for EBS volume. This is required.
-      volumeType:  the volume type
-      iops:  the iops
-      encrypted: whether the volume should be encrypted
-      kmsKeyId:  the full ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume
-      snapshotID: the snapshot from which to create the volume.
-```
-Examples:
+Volumes can be specified as part of a compose file under the `volumes` key. Each volume can be associated with one or more services in the same file. 
 
-1. Using a 10G EBS volume(gp2, iops=1000)
+> **Note:** This functionality is only available when using a compose file in v2 format.
+
+#### Example of a Stack Scoped Volume specifying Size, Volume Type and IOPS
+
+In this example, we are creating a [stack scoped volume]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/storage-service/#stack-scoped) while creating services that use this volume. All services in this stack will share the same volume.  
 
 ```yaml
 version: '2'
 services:
-  foo:
+  foo1:
+    image: busybox
+    stdin_open: true
+    volumes:
+    - bar:/var/lib/storage
+  foo2: 
     image: busybox
     volumes:
     - bar:/var/lib/storage
+  
 volumes:
   bar:
     driver: rancher-ebs
@@ -54,69 +96,21 @@ volumes:
       iops: 1000
 ```
 
-2. Using a 10G EBS volume(encrypted)
+#### Example of a Stack Scoped Volume scheduled to a specific Availability Zone
+
+In this example, we are creating a [stack scoped volume]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/storage-service/#stack-scoped) while creating services that use this volume. All services in this stack will share the same volume.
+
+We are specifying the availability zone that we want the volume to be created in. The containers for the service will automatically be scheduled onto hosts in the same availability zone that is specified in the volume. 
 
 ```yaml
 version: '2'
 services:
   foo:
     image: busybox
+    stdin_open: true
     volumes:
     - bar:/var/lib/storage
-volumes:
-  bar:
-    driver: rancher-ebs
-    driver_opts:
-      size: 10
-      encrypted: true
-      kmsKeyId: $yourkmsKeyId
-      ec2_az: $the_availability_zone_where_your_kmskey_belongs_to
-```
-
-3. Using a 10G EBS volume from snapshot
-
-```yaml
-version: '2'
-services:
-  foo:
-    image: busybox
-    volumes:
-    - bar:/var/lib/storage
-volumes:
-  bar:
-    driver: rancher-ebs
-    driver_opts:
-      size: 10
-      snapshotID: $yourSnapshotID
-```
-
-4. Using an existing EBS volume.
-
-```yaml
-version: '2'
-services:
-  foo:
-    image: busybox
-    volumes:
-    - bar:/var/lib/storage
-volumes:
-  bar:
-    driver: rancher-ebs
-    driver_opts:
-      volumeID: $your_existing_volumeID
-      ec2_az: $the_availability_zone_where_your_volume_belongs_to(for example us-west-2a)
-```
-The driver options `ec2_az` is required so that rancher will schedule the volume to the same zone.
-
-`ec2_az` can also be used to create volume on specific zone. Example:
-
-```yaml
-version: '2'
-services:
-  foo:
-    image: busybox
-    volumes:
-    - bar:/var/lib/storage
+    
 volumes:
   bar:
     driver: rancher-ebs
@@ -124,14 +118,85 @@ volumes:
       size: 10
       ec2_az: us-west-2a
 ```
-Then containers will be scheduled to the specific zone and volumes will also be created on that zone.
 
-Also, Starting at 1.6, Rancher automatically populates those host labels for AWS instances:
+#### Example of a Stack Scoped Volume that is Encrypted 
 
-Key | Value | Description
-----|----|----
-`io.rancher.host.provider` | Cloud provider info | Cloud provider name (currently only applied for AWS)
-`io.rancher.host.region` | Cloud provider region | Cloud provider region (currently only applied for AWS)
-`io.rancher.host.zone` | Cloud provider zone | Cloud provider zone (currently only applied for AWS)
+In this example, we are creating a [stack scoped volume]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/storage-service/#stack-scoped) while creating services that use this volume. All services in this stack will share the same volume.
 
-Users can use scheduling rules based on those labels to better control where the containers and volumes should land.
+In order to encrypt a volume, you will need to specify in the driver options that you want it encrypted as well as provide the ID of the key for the encryption and the availability zone where the key is located in.
+
+The containers for the service will automatically be scheduled onto hosts in the same availability zone that is specified in the volume. 
+
+```yaml
+version: '2'
+services:
+  foo:
+    image: busybox
+    stdin_open: true
+    volumes:
+    - bar:/var/lib/storage
+  
+volumes:
+  bar:
+    driver: rancher-ebs
+    driver_opts:
+      size: 10
+      encrypted: true
+      kmsKeyId: <KMS_KEY_ID> 
+      # Specifying the availability zone is required when using encryption and kmsKeyId
+      ec2_az: <AVAILABILITY_ZONE_WHERE_THE_KMS_KEY_IS> 
+```
+
+#### Example of a Stack Scoped Volume that is based off an existing Snapshot 
+
+In this example, we are creating a [stack scoped volume]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/storage-service/#stack-scoped) while creating services that use this volume. All services in this stack will share the same volume.
+
+The volume will be created from an existing snapshot in AWS. You will need to specify the snapshot ID as well as the availability zone where the snapshot is located in.
+
+The containers for the service will automatically be scheduled onto hosts in the same availability zone that is specified in the volume.
+
+```yaml
+version: '2'
+services:
+  foo:
+    image: busybox
+    stdin_open: true
+    volumes:
+    - bar:/var/lib/storage
+
+volumes:
+  bar:
+    driver: rancher-ebs
+    driver_opts:
+      size: 10
+      snapshotID: <SNAPSHOT_ID> 
+      # Specifying the availability zone is required when using snapshotID
+      ec2_az: <AVAILABILITY_ZONE_WHERE_THE_KMS_KEY_IS> 
+```
+
+#### Example of a Volume using an existing EBS volume
+
+In this example, the service is using an existing EBS volume. Any services using an existing EBS volume will be sharing the same volume. The different scopes of volumes will be ignored when using an existing volume. 
+
+You will need to specify the volume ID as well as the availability zone where the volume is located in.
+
+The containers for the service will automatically be scheduled onto hosts in the same availability zone that is specified in the volume.
+
+```yaml
+version: '2'
+services:
+  foo:
+    image: busybox
+    stdin_open: true
+    volumes:
+    - bar:/var/lib/storage
+
+volumes:
+  bar:
+    driver: rancher-ebs
+    driver_opts:
+      size: 10
+      volumeID: <VOLUME_ID> 
+      # Specifying the availability zone is required when using volumeID
+      ec2_az: <AVAILABILITY_ZONE_WHERE_THE_KMS_KEY_IS> 
+```
