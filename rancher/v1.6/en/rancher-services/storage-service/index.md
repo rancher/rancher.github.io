@@ -60,6 +60,8 @@ A volume can be created in 2 sections:
 
 1. Upon creating a service, if the volume in the **Volumes** tab does not exist in the storage driver, then an environment scoped volume is created. If the volume already exists in the volume driver, a new volume will not be created.
 
+> **Note:** This option is not available for Rancher EBS as a specific driver option must be defined on the volume before using it.
+
 2. In **Infrastructure** -> **Storage**, click on **Add Volume**. Provide the name of the volume and driver options if desired. This volume will be `inactive` until a service starts to use it.
 
 ### Using Storage Drivers with Rancher Compose
@@ -73,6 +75,7 @@ version: '2'
 services:
   foo:
     image: busybox
+    stdin_open: true
     volumes:
     - bar:/var/lib/storage
 volumes:
@@ -98,6 +101,7 @@ version: '2'
 services:
   foo:
     image: busybox
+    stdin_open: true
     volumes:
     - bar:/var/lib/storage
 volumes:
@@ -118,6 +122,7 @@ version: '2'
 services:
   foo:
     image: busybox
+    stdin_open: true
     volumes:
     - bar:/var/lib/storage
 volumes:
