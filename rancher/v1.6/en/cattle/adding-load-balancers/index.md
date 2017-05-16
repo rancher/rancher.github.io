@@ -461,11 +461,13 @@ services:
 
 If you want to explicitly label your backend in your load balancer configuration, you would use the `backend_name`. This option can be useful if you want to configure custom config parameters for a particular backend.
 
-#### certificates
+#### Certificates
 
-If you are using `https` or `tls` [protocol](#protocol), then you reference the certificates in the `rancher-compose.yml`.
+If you are using `https` or `tls` [protocol](#protocol), you can use certificates that are either [added directly into Rancher]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates) or from a directory mounted in the load balancer container.
 
-##### Example `rancher-compose.yml`
+##### Referencing Certificates that are added into Rancher
+
+The certificates are referenced in the `lb_config` section of the load balancer container.
 
 ```yaml
 version: '2'
@@ -476,6 +478,94 @@ services:
       certs:
       - <certName>
       default_cert: <defaultCertName>
+```
+
+##### Loading Certificates into the Load Balancer container
+
+_Only supported in Compose Files_
+
+Certificates can be mounted directly into a load balancer container as a volume. The load balancer container expects the certificates to be in a specific directory structure. If you are using LetsEncrypt client to generate your certificates, then your directory structure is already configured in the format that Rancher expects. If you are not using LetsEncrypt, then the director and names of the certificates will need to be structured in a specific way.
+
+Rancher's load balancer will poll the certificate directories for updates. Any addition/removal of the certificates will be synced via polling every 30 seconds.
+
+All certificates will be located under a single base certificate directory. This directory name will be used in a label on the load balancer service to inform the load balancer where the certificates are.
+
+In this base directory, each certificate that is generated for a specific domain is required to be placed in a sub-directory folder. The folder name should be the domain name for the certificate and each folder should contain the private key (i.e. `privkey.pem`) and certificate chain (`fullchain.pem`). For the default certificate, it can be placed in any subdirectory name, but the files in the folder must contain the same naming conventions as the certificates (i.e. `privkey.pem` and `fullchain.pem`).
+
+```bash
+-- certs
+  |-- foo.com
+  |   |-- privkey.pem
+  |   |-- fullchain.pem
+  |-- bar.com
+  |   |-- privkey.pem
+  |   |-- fullchain.pem
+  |-- default_cert_dir_optional
+  |   |-- privkey.pem
+  |   |-- fullchain.pem
+...
+```
+
+When launching a load balancer, you must specify the location of the certificates and the location of the default certificate by using labels. If these labels are on the load balancer, the load balancer will ignore any certificates that are in the `lb_config` key of the load balancer.
+
+> **Note:** You cannot use the certificates added into Rancher in conjunction with mounting certificates into the container through a volume.
+
+```yaml
+labels:
+  io.rancher.lb_service.cert_dir: <CERTIFICATE_LOCATION>
+  io.rancher.lb_service.default_cert_dir: <DEFAULT_CERTIFICATE_LOCATION>
+```
+
+Certificates can be mounted into the load balancer container by using host bind mounts or using a named volume with our [storage drivers]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/storage-service/) as a volume drivers.
+
+###### Example `docker-compose.yml`
+
+```yaml
+version: '2'
+services:
+  lb:
+    image: rancher/lb-service-haproxy:<TAG_BASED_ON_RELEASE>
+    volumes:
+    - /location/on/hosts:/certs
+    ports:
+    - 8087:8087/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.container.create_agent: 'true'
+      io.rancher.lb_service.cert_dir: /certs
+      io.rancher.lb_service.default_cert_dir: /certs/default.com
+  myapp:
+    image: nginx:latest
+    stdin_open: true
+    tty: true
+```    
+
+###### Example `rancher-compose.yml`
+
+```yaml
+version: '2'
+services:
+  lb:
+    scale: 1
+    start_on_create: true
+    lb_config:
+      certs: []
+      port_rules:
+      - priority: 1
+        protocol: https
+        service: myapp
+        source_port: 8087
+        target_port: 80
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 2000
+      port: 42
+      unhealthy_threshold: 3
+      interval: 2000
+      strategy: recreate
+  myapp:
+    scale: 1
+    start_on_create: true
 ```
 
 #### Custom configuration
