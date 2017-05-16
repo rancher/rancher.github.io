@@ -13,7 +13,7 @@ redirect_from:
 ## What are API Keys
 ---
 
-There are two types of API keys that Rancher supports, Environment API keys and Account API keys. An environment API key is tied to a specific [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) and can only manipulate resources within the environment. An account API key can add additional [accounts]({{[site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/), CRUD any environment that the account has access to. Usage of account API keys are recommended when [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is turned.
+There are two types of API keys that Rancher supports, Environment API keys and Account API keys. An environment API key is tied to a specific [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) and can only manipulate resources within the environment. An account API key can add additional [accounts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/), CRUD any environment that the account has access to. Usage of account API keys are recommended when [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is turned.
 
 ### Environment API Keys
 
