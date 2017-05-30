@@ -72,15 +72,30 @@ Prior to installing Rancher Server, there are a couple of pre-requisites that ne
 
 ### Creating Secrets
 
-Secrets are created and scoped at an environment level, which means there can only be one secret with the same name in an environment. Any container in the same environment can share the same secrets. For example, a database password, i.e. `db_password`, can be used in a database container and a Wordpress container.
+Secrets are created and scoped at an environment level, which means there can only be one secret with the same name in an environment. Any container in the same environment can share the same secrets. For example, a database password, i.e. `db_password`, can be used in a database container and a Wordpress container. Once a secret is created, the secret value **cannot** be edited or updated. If you need to change an existing value of a secret, the only way to do so is to delete the secret. After a secret has been updated, any services using the secret will need to be re-launched with the updated secret.
 
-> **Note:** Rancher CLI currently does not support adding secrets to Rancher.
+#### Creating secrets using Rancher CLI
+
+There are two ways to create secrets from the cli. One is by providing the secret value through standard input (stdin), and one by passing the filename containing the secret to be added.
+
+##### Example of adding a secret through standard input (stdin)
+```bash
+$ rancher secrets create name-of-secret - <<< secret-value
+```
+
+##### Example of adding a secret by passing the filename containing the secret
+```bash
+$ echo secret-value > file-with-secret
+$ rancher secrets create name-of-secret file-with-secret
+```
+
+#### Creating secrets in the UI
 
 Go to **Infrastructure** -> **Secrets**. Provide a **Name** and a **Secret Value** and **Save** the secret.
 
-Once a secret is created, the secret value **cannot** be edited or updated. If you need to change an existing value of a secret, the only way to do so is to delete the secret. After a secret has been updated, any services using the secret will need to be re-launched with the updated secret.
-
 ### Deleting Secrets
+
+> **Note:** Rancher CLI currently does not support deleting secrets.
 
 In the UI, secrets can be deleted from Rancher, but it does not remove the secret (i.e. file) from any container using the secret or on the host that are running containers using a secret.
 
@@ -90,6 +105,76 @@ In order to consume secrets in containers, the **Rancher Secrets** service will 
 
 ### Adding Secrets to Services/Containers
 
+When secrets are added to a container, the secrets are written to a tmpfs volume, which can be accessible from the container and the host.
+
+* Inside the container: The volume is mounted at `/run/secrets/`.
+* On the host that is running the container using the secrets: The volume is mounted at `/var/lib/rancher/volumes/rancher-secrets/`.
+
+#### Adding secrets using Rancher CLI
+
+For default usage of secrets, you can reference the secret by name in the secrets array in the `docker-compose.yml`. The target filename will be the same name as the name of the secret. By default, the target filename will be created as User ID and Group ID `0`, and File Mode of `0444`. Setting `external` to `true` in the `secrets` part will make sure it knows the secret has already been created.
+
+##### Example basic `docker-compose.yml`
+```yaml
+version: '2'
+services:
+  web:
+    image: sdelements/lets-chat
+    stdin_open: true
+    secrets:
+    - name-of-secret
+    labels:
+      io.rancher.container.pull_image: always
+secrets:
+  name-of-secret:
+    external: true
+```
+
+If you want to change the default values of secrets, you can use `target` for the target filename, `uid` and `gid` for setting User ID and Group ID, and `mode` for setting File Mode.
+
+##### Example changing parameters `docker-compose.yml`
+```yaml
+version: '2'
+services:
+  web:
+    image: sdelements/lets-chat
+    stdin_open: true
+    secrets:
+    - source: name-of-secret
+      target: different-target-filename
+      uid: "1"
+      gid: "1"
+      mode: 0400
+    labels:
+      io.rancher.container.pull_image: always
+secrets:
+  name-of-secret:
+    external: true
+```
+
+You can also specify multiple secrets, and create the secret while starting the stack. To do this you specify the `file` parameter, the contents of the the specified file will be used to create the secret before creating the stack and starting the service(s).
+
+##### Example multiple secrets `docker-compose.yml`
+```yaml
+version: '2'
+services:
+  web:
+    image: sdelements/lets-chat
+    stdin_open: true
+    secrets:
+    - name-of-secret
+    - another-name-of-secret
+    labels:
+      io.rancher.container.pull_image: always
+secrets:
+  name-of-secret:
+    external: true
+  another-name-of-secret:
+    file: ./another-secret
+```
+
+#### Adding secrets in the UI
+
 Secrets can be added into a service/container under the **Secrets** tab during service/container creation.
 
 1. Select **Add Secret**
@@ -97,13 +182,6 @@ Secrets can be added into a service/container under the **Secrets** tab during s
 3.  (Optional) Input a different filename for the secrets file. By default, it will use the name of the secret for the filename.
 4. (Optional) If the default file mode needs to be modified, click the **Customize file ownership & permissions** link. The User ID, Group ID and File Mode (octal) can be updated. By default, the User ID is `0`, the Group ID is `0` and the file mode is `0444`.
 5. Click **Create**.
-
-When secrets are added to a container, the secrets are written to a tmpfs volume, which can be accessible from the container and the host.
-
-* Inside the container: The volume is mounted at `/run/secrets/`.
-* On the host that is running the container using the secrets: The volume is mounted at `/var/lib/rancher/volumes/rancher-secrets/`.
-
-> **Note:** Rancher CLI currently does not support using secrets in containers.
 
 ### Docker Hub Images
 
