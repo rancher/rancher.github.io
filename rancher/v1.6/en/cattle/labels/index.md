@@ -31,7 +31,7 @@ Key | Value |Description
 `io.rancher.scheduler.affinity:container_label` | Key Value Pair of Any Container Label | Used to schedule containers on hosts based on [container label or service name]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#finding-hosts-with-container-labels)
 `io.rancher.scheduler.affinity:container` | Name of Container | Used to schedule containers on hosts based on [container name]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#finding-hosts-with-container-names)
 `io.rancher.lb_service.target` | [_Target Service Label_ Values](#target-service-labels) | Used to configure load balancers so that traffic will be routed to containers that are on the same host as the load balancer.
-`io.rancher.service.wait_for_healthcheck` | `true` | Require health check to transition to "healthy" before considering this service deployed. This means any services depending on this service (by using the compose key `depends_on`) will not deploy until it transitions into a healthy state as defined by the requirements for its health check.
+`io.rancher.service.wait_for_healthcheck` | `true` | Available as of v1.6.1: Used to require health check to transition to `healthy` before considering the service deployed. Any services dependent on this service (when using `depends_on` in compose) will not deploy until the service is in a healthy stated defined by the health check. 
 <br>
 
 > **Note:** For the labels prefixed with `io.rancher.scheduler.affinity`, there are slight variations based on your how want to match (i.e. equal or not equal, hard or soft rules). More details can be found [here]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/#table-of-scheduling-labels).
