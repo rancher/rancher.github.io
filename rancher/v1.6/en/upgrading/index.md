@@ -35,6 +35,16 @@ Please do not use any release with a `rc{n}` suffix. These `rc` builds are meant
 
 After a Rancher server upgrade, your [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) may have an upgrade available. We recommend checking your infrastructure stacks after upgrading Rancher server to see if any stack has an upgrade available. If there is an upgrade available, upgrade these stacks one at a time. Please finish the upgrade before moving on to upgrading the next infrastructure stack.
 
+There may be times when Rancher will require you to upgrade one of your infrastructure stacks in order for Rancher to continue working. There is an API setting that can be updated to prevent these required upgrades, but it is not recommended.
+
+_As of v1.6.1+_
+
+We have introduced an API setting, which can allow how you want to upgrade infrastructure stacks. The `upgrade.manager` setting accepts 3 values.
+
+* `mandatory` - This is the default value. This value will only automatically upgrade any infrastructure stacks that are deemed to be required in order to have Rancher server functioning correctly.
+* `all` - Any updated templates that are available for a infrastructure stack will be automatically upgraded. vIf an infrastructure stack has a new template version, but the default version of the infrastructure stack is still an older one, it will not automatically upgrade to the latest.
+* `none` - No infrastructure stack will be automatically upgraded. **Warning: This could cause your Rancher setups to stop working as this will stop the required Rancher upgrades.**
+
 ### Rancher Agents
 
 Each Rancher agent version is pinned to a Rancher server version. If you upgrade Rancher server and Rancher agents require an upgrade, we will automatically upgrade the agents to the latest version of Rancher agent.
