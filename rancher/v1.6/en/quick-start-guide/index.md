@@ -19,7 +19,6 @@ Provision a Linux host with 64-bit Ubuntu 16.04, which must have a kernel of 3.1
 
 To install Docker on the server, follow the instructions from [Docker](https://docs.docker.com/engine/installation/linux/ubuntulinux/).
 
-> **Note:** Currently, Docker for Windows and Docker for Mac are not supported.
 
 
 ### Rancher Server Tags
