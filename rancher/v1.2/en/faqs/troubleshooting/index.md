@@ -70,11 +70,49 @@ DEFAULT_FORWARD_POLICY="ACCEPT"
 
 <a id="subnet"></a>
 
-#### The subnet used by Rancher is already used in my network and prohibiting the managed network. How do I change the subnet?
+#### The default subnet (`10.42.0.0/16`) used by Rancher is already used in my network and prohibiting the managed network. How do I change the subnet?
 
-To change the subnet used for networking of containers, you will need to ensure the networking infrastructure service that you want to use has the correct [subnet]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking/#subnets) in the `default_network` in the `rancher-compose.yml` file.
+The default subnet used for Rancher's overlay networking is `10.42.0.0/16`. If your network is already using this subnet, you will need to change the default subnet used in Rancher's networking. You will need to ensure the networking infrastructure service that you want to use has the correct [subnet]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking/#subnets) in the `default_network` in the `rancher-compose.yml` file.
 
-To change Rancher's IPsec or VXLAN network driver, you will need to have an [environment template]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template) with an updated infrastructure service. When creating a new environment template or editing an existing one, you edit the configuration of the networking infrastructure service by clicking on **Edit Config**. In the edit screen, you can enter a different subnet and click **Configure**. Any **new** environment using the updated environment template would be using the new subnet. Editing an existing environment template will not update the infrastructure services in existing environments.
+To change Rancher's IPsec or VXLAN network driver, you will need to have an [environment template]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template) with an updated infrastructure service. When creating a new environment template or editing an existing one, you edit the configuration of the networking infrastructure service by clicking on **Edit Config**. In the edit screen, you can enter a different subnet in the **Configuration Options** -> **Subnet** and click **Configure**. Any **new** environment using the updated environment template would be using the new subnet. Editing an existing environment template will not update the infrastructure services in existing environments.
+
+Here's an example of the updated network driver's `rancher-compose.yml` to change the subnet to `10.32.0.0/16`.
+
+```yaml
+ipsec:
+  network_driver:
+    name: Rancher IPsec
+    default_network:
+      name: ipsec
+      host_ports: true
+      subnets:
+      # After the configuration option is updated, the default subnet address is updated
+      - network_address: 10.32.0.0/16
+      dns:
+      - 169.254.169.250
+      dns_search:
+      - rancher.internal
+    cni_config:
+      '10-rancher.conf':
+        name: rancher-cni-network
+        type: rancher-bridge
+        bridge: docker0
+        # After the configuration option is updated, the default subnet address is updated
+        bridgeSubnet: 10.32.0.0/16
+        logToFile: /var/log/rancher-cni.log
+        isDebugLevel: false
+        isDefaultGateway: true
+        hostNat: true
+        hairpinMode: true
+        mtu: 1500
+        linkMTUOverhead: 98
+        ipam:
+          type: rancher-cni-ipam
+          logToFile: /var/log/rancher-cni.log
+          isDebugLevel: false
+          routes:
+          - dst: 169.254.169.250/32
+```
 
 > **Note:** The previous method of updating the subnet through the API will no longer be applicable as Rancher has moved to infrastructure services.
 
