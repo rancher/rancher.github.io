@@ -8,17 +8,25 @@ lang: en
 ## Rancher Kubernetes RBAC integration
 ---
 
-Enabling Kubernetes RBAC allows Rancher  users and groups to be given granular permissions to the various resources within Kubernetes. Authentication is integrated with [Rancher access control](https://docs.rancher.com/rancher/v1.6/en/configuration/access-control/#azure-ad) which means any external authentication system supported by Rancher can be used for Kubernetes RBAC roles.
+_Available as of Rancher v1.6.3_
 
-An understanding of namespaces is a requirement to making use of RBAC permissions. To learn more about namespaces you can reference the [Kubernetes docs on this feature](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/).
+By default, any users in a Rancher environment running Kubernetes have access to all the resources within Kubernetes. Enabling [Kubernetes RBAC](https://kubernetes.io/docs/admin/authorization/rbac/) allows [owners of environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#owners) to restrict access to the various resources within Kubernetes to specific users in the environment. 
+
+Authentication is integrated with [Rancher access control](https://docs.rancher.com/rancher/v1.6/en/configuration/access-control/#enabling-access-control) which means any external authentication system supported by Rancher can be used for Kubernetes RBAC roles.
+
+An understanding of namespaces is a requirement to making use of Kubernetes RBAC permissions. To learn more about namespaces please reference the [Kubernetes docs on this feature](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/).
+
+### Enabling Kubernetes RBAC
+
+In order to enable Kubernetes RBAC, you will need to make sure to [configure Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes) to enable Kubernetes RBAC. If you've already launched the Kubernetes infrastructure service, you can click on the **Up to Date** to update the configuration options for Kubernetes. 
 
 ### Default Roles
 
-Environment owners are given admin access to the cluster. This means they will be able to read and write to any resource, as well as apply new roles for other users. Users with any other role will have no access by default and will only receive permissions explicitly granted to them.
+[Owners of environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#owners) are given admin access to the Kubernetes cluster in the environment. Having admin access means they will be able to read and write to any Kubernetes resource, as well as create the permissions to other users in the Kubernetes environment by creating roles for them. By default, any non-owners of an environment will not have any access to any resources in the Kubernetes cluster until they are  explicitly granted to them.
 
-Removing a user from an environment will take away all of their access to the cluster. Demoting an environment owner will remove their admin access to the cluster. Likewise, promoting any environment member will give them admin access.
+Removing a user from an environment will take away all of their access to the Kubernetes cluster. Demoting an environment owner will remove their admin access to the cluster. Likewise, promoting any users to an environment to an owner will give them admin access.
 
-### Applying New Roles
+### Applying New Roles to Users
 
 New roles are created by applying two Kubernetes resource types: `RoleBindings` and `ClusterRoleBindings`. `ClusterRoleBindings` add permissions at the global level and `RoleBindings` apply within a particular namespace.
 
