@@ -13,11 +13,15 @@ redirect_from:
 
 Rancher provides a catalog of application templates that make it easy to deploy these complex stacks. By accessing the **Catalog** tab, you can view all the templates that are available in the [enabled catalogs]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#catalog). The **Library** catalog contains templates from the [Rancher certified catalog](https://github.com/rancher/rancher-catalog) and the **Community** catalog contains templates from the  [community-catalog](https://github.com/rancher/community-catalog). Rancher will only be maintaining support for the _certified_ templates in the library.
 
-An [admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#admin) of Rancher has the ability to add or remove catalogs globally in Rancher. The global catalogs within Rancher can be found at **Admin** -> **Settings**. A global catalog is a catalog that exists across all environments.
+### Adding Catalogs
 
-An [user]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/#account-types) of a Rancher environment has the ability to add or remove catalogs in their respective Rancher environment. An [admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#admin) has this ability across all environments. The environment catalog can be found at **Catalog** -> **Manage**.
+Adding a catalog is as simple as adding a catalog name, a URL and a branch name. The URL needs to be one that `git clone` [can handle](https://git-scm.com/docs/git-clone#_git_urls_a_id_urls_a). The branch name must be a branch that is in your catalog URL. If no branch name is provided, it will use the `master` branch by default. Whenever you add a catalog entry, it will be immediately available in your catalog.
 
-Adding a catalog is as simple as adding a catalog name, a URL and a branch name. The URL needs to be one that `git clone` [can handle](https://git-scm.com/docs/git-clone#_git_urls_a_id_urls_a). The branch name must be a branch that is in your catalog URL. It will use `master` by default. Whenever you add a catalog entry, it will be immediately available in your catalog.
+There are two types of catalogs that can be added into Rancher. There are global catalogs and environment catalogs. In a global catalog, the catalog templates are available in *all* environments. In an environment catalog, the catalog templates are only available in the environment that the catalog is added to.
+
+An [admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#admin) of Rancher has the ability to add or remove catalogs globally in Rancher under **Admin** -> **Settings**.
+
+Any [users]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/accounts/#account-types) of a Rancher environment has the ability to add or remove environment catalogs in their respective Rancher environment in **Catalog** -> **Manage**.
 
 If you are running Rancher server behind a proxy, you will need to [start Rancher with certain environment variables]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#http-proxy) in order for the Rancher catalog to work in Rancher.  
 
