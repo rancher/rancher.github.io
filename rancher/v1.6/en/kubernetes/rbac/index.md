@@ -28,9 +28,9 @@ Removing a user from an environment will take away all of their access to the Ku
 
 ### Applying New Roles to Users
 
-New roles are created by applying two Kubernetes resource types: `RoleBindings` and `ClusterRoleBindings`. `ClusterRoleBindings` add permissions at the global level and `RoleBindings` apply within a particular namespace.
+In order to provide permissions to users for the Kubernetes resources, owners will need to create new roles by applying two Kubernetes resource types: `RoleBindings` and `ClusterRoleBindings`. `ClusterRoleBindings` add permissions at the global level and `RoleBindings` apply permissions within a particular namespace.
 
-##### Global Access
+#### Access to all resources in all namespaces
 
 Global access allows access to resources across all namespaces. For example, suppose anyone from the Github organization `mycompany-research` should have read-only access to the cluster. The following resource can be created with `kubectl apply` and will allow this type of access.
 
@@ -51,15 +51,15 @@ roleRef:
 
 Any member of the team `mycompany-research` should now have the ability to view, but not modify, most resources in the cluster.
 
-##### Access Within Namespaces
+#### Access so specific privileges Within Namespaces
 
 Users can be given specific privileges within particular namespaces. There are three convenient roles that come out of the box with Kubernetes.
 
-view - Read-only access to most objects in a namespace.
-edit - Read and write access to most objects in a namespace.
-admin - Includes all permissions from the edit role and allows the creation of new roles and role bindings.
+* view - Read-only access to most objects in a namespace.
+* edit - Read and write access to most objects in a namespace.
+* admin - Includes all permissions from the edit role and allows the creation of new roles and role bindings.
 
-For example, suppose users `developer1` and `developer2` should have the ability to write and read nearly all resources within the `dev` namespace. We could tie the `edit` role to them with the following role binding. This can be applied with the `kubectl apply` command.
+For example, if there are two users, `developer1` and `developer2`, and they should have the ability to write and read nearly all resources within the `dev` namespace. We could tie the `edit` role to them with the following role binding. This role binding  can be applied with the `kubectl apply` command.
 
 ```yaml
 kind: RoleBinding
@@ -78,7 +78,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-Notice how a namespace is specified unlike with the previous global example. This role binding still applies to a single namespace even though a cluster role is used.
+Notice how in this example a namespace is specified unlike with the previous example for global access. This role binding still applies to a single namespace even though a cluster role is used.
 
 Similarly we could grant user `developer2` read-only access to the `qa` namespace with the following role binding.
 
@@ -99,7 +99,7 @@ roleRef:
 
 To updates subjects in a role binding, simply add or remove them from the resource file and reapply with `kubectl apply`.
 
-##### Custom Roles
+#### Custom Roles
 
 Custom roles allow more control than built-in roles such as `admin`, `edit`, and `view`. For information on building more specific roles refer to the [Kubernetes RBAC documentation](https://kubernetes.io/docs/admin/authorization/rbac/).
 
