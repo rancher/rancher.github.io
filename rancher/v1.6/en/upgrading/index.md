@@ -33,7 +33,14 @@ Please do not use any release with a `rc{n}` suffix. These `rc` builds are meant
 
 ### Infrastructure Services
 
-After a Rancher server upgrade, your [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) may have an upgrade available. We recommend checking your infrastructure stacks after upgrading Rancher server to see if any stack has an upgrade available. If there is an upgrade available, upgrade these stacks one at a time. Please finish the upgrade before moving on to upgrading the next infrastructure stack.
+After a Rancher server upgrade, your [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) may have an upgrade available. We recommend checking your infrastructure stacks after upgrading Rancher server to see if any stack has an upgrade available. If there is an upgrade available, upgrade these stacks one at a time in the following order:
+
+1. `network-policy-manager`
+2. `network-services`
+3. `ipsec`
+4. remainder of the infrastructure stacks
+
+> **Note:** It is important to complete the upgrade of each infrastructure stack before moving on to the next one. After the upgrade has completed, select "Finish Upgrade" in the menu for the stack before proceeding.
 
 There may be times when Rancher will require you to upgrade one of your infrastructure stacks in order for Rancher to continue working. There is an API setting that can be updated to prevent these required upgrades, but it is not recommended.
 
