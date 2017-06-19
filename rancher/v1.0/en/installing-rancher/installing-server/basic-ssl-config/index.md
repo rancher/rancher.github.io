@@ -91,7 +91,7 @@ Here is an Apache configuration.
 
 * `<server_name>` is the name of your rancher server container. When starting your Apache container, the command must include `--link=<server_name>` for this exact configuration to work.
 * In the proxy settings, you'll need to substitute `rancher` for your configuration.
-
+* Make sure the module `proxy_wstunnel` is enabled (websocket support).
 
 ```
 <VirtualHost *:80>
