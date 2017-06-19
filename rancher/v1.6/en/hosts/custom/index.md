@@ -46,6 +46,7 @@ For any hosts that are added, ensure that any security groups or firewalls allow
 
 * If you are using the IPsec [networking driver]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking/), from and to all other hosts on UDP ports `500` and `4500`
 * If you are using the VXLAN [networking driver]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking/), from and to all other hosts on UDP ports `4789`
+* _Hosts in Kubernetes:_ Hosts that will be used as Kubernetes nodes will require the following TCP ports to be open for `kubectl`: `10250` and `10255`. To access any exposed services, the ports used for the NodePort will also need to be opened. The default ports used by NodePort are TCP ports `30000` - `32767`.
 
 <a id="samehost"></a>
 
