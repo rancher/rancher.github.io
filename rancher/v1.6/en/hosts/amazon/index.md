@@ -42,7 +42,9 @@ Finally, you'll just need to finish filling out the final details of the host(s)
 2. Provide a **Name** and if desired, **Description** for the host.
 3. Select the **Instance Type** that you want launched.
 4. Select the **Root Size** of the image. The default in `docker machine` is 16GB, which is what we have defaulted in Rancher.
-5. (Optional) For the **AMI**, `docker machine` defaults with an Ubuntu 16.04 LTS image in the specific region. You also have the option to select your own AMI. If you input your own AMI, make sure it's available in that region!
+5. (Optional) For the **AMI**, `docker machine` defaults with an Ubuntu 16.04 LTS image in the specific region. You also have the option to select your own AMI. If you select your own AMI, please make sure of the following:
+   1. It's available in your previously selected region
+   2. You define the correct **SSH User**. When using a [RancherOS AMI](https://github.com/rancher/os#amazon), this should be `rancher`.
 6. (Optional) Provide the **IAM Profile** to be used as an instance profile.
 7. (Optional) Add **[labels]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#labels)** to hosts to help organize your hosts and to [schedule services/load balancers]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/) or to [program external DNS records using an IP other than the host IP]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/external-dns-service/#using-a-specific-ip-for-external-dns).
 8. (Optional) In **Advanced Options**, customize your `docker-machine create` command with [Docker engine options](https://docs.docker.com/machine/reference/create/#specifying-configuration-options-for-the-created-docker-engine).
