@@ -2,6 +2,7 @@ name: Rancher Documentation
 description: Documentation for Rancher
 
 
+# Changing these will require updates to Dockerfile
 URL: http://rancher.github.io
 baseurl: ""
 

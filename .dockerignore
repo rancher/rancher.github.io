@@ -1,0 +1,4 @@
+scripts
+.drone*
+.git
+.cache
