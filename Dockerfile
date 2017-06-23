@@ -8,4 +8,5 @@ RUN cd /site && \
 
 FROM nginx
 COPY --from=builder /site/_site /usr/share/nginx/html/docs
+COPY --from=builder /site/favicon.png /usr/share/nginx/html/favicon.png
 RUN rm /usr/share/nginx/html/docs/Gemfile /usr/share/nginx/html/docs/Gemfile.lock
