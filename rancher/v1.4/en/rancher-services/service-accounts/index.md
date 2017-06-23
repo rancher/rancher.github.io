@@ -22,5 +22,5 @@ When the containers of the service are started, the following environment variab
 Key| Value
 ---|---
 `CATTLE_URL` | The URL that is in the [host registration]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#host-registration).
-`CATTLE_ACCESS_KEY` | An access key for the [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) that the service is being launched in
+`CATTLE_ACCESS_KEY` | An access key for the [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) that the service is being launched in
 `CATTLE_SECRET_KEY` | A secret key for the access key.
