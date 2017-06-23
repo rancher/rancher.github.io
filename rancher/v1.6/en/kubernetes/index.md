@@ -35,6 +35,10 @@ After a Kubernetes environment has been created, the [infrastructure services]({
 
 #### Host Requirements for Kubernetes
 
+##### Required Ports
+
+ * Hosts that will be used as Kubernetes nodes will require the following TCP ports to be open for `kubectl`: `10250` and `10255`. To access any exposed services, the ports used for the NodePort will also need to be opened. The default ports used by NodePort are TCP ports `30000` - `32767`.
+
 * For [overlapping planes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/resiliency-planes/#overlapping-planes) setup: At least 1 CPU, 2GB RAM. Resource requirements vary depending on workload.
 * For [separated planes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/resiliency-planes/#separated-planes) setup: A minimum of five hosts is required for this deployment type.
  * Data Plane: Add 3 or more hosts with 1 CPU, >=1.5GB RAM, >=20GB DISK. When adding the host, [label these hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) with `etcd=true`.
