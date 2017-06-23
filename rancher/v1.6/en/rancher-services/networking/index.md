@@ -148,9 +148,27 @@ The subnet to use with this network plugin. This is Rancher specific option.
 
 ##### mtu
 
-Different cloud providers have different MTU values in their networks. This option allows you to customize it to your needs. This is also a Rancher specific option.
+Different cloud providers have different MTU values in their networks. This option allows you to customize it to your needs. This is also a Rancher specific option. Be aware that MTU settings should be set on every component involved in providing networking; on the host itself, on the Docker daemon and inside the IPsec or VXLAN infrastructure service. Also, every host in the same environment has to have the same setting. If not all the hosts inside an environment are configured with the same MTU value, you will experience random network failures.
 
 > Rancher's IPsec overlay network has an overhead of 98 bytes.
 > `MTU of the container's network interface = MTU of the network - 98`
 
 > For example, if your cloud provider's MTU is 1200 bytes then you would see an MTU of 1102 (= 1200 - 98) inside the container when you type `ip addr` or `ifconfig`
+
+##### Changing the MTU
+
+Changing the MTU should be done on every component involved in providing networking; on the host itself, on the Docker daemon and in the IPsec or VXLAN infrastructure service (by defining a new environment template). Also, every host in the same environment should be configured equally. You can follow these steps if you want to change the MTU.
+
+* Change MTU on the host
+  * This should be done on the network interfaces on the host, please refer to your Linux distribution documentation to see how to configure the MTU.
+* Change MTU of the Docker bridge
+  * In most cases, this would be docker0. You can configure MTU by specifying the mtu setting inside `/etc/docker/daemon.json` like the example below, for more information, please refer to the Docker documentation on [Customize the docker0 bridge](https://docs.docker.com/engine/userguide/networking/default_network/custom-docker0/)
+```json
+{
+  "mtu": 1450
+}
+```
+* Create a new [environment template]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template) to configure the IPsec or VXLAN infrastructure service with the desired MTU.
+* Create a new environment from the newly created environment template.
+
+> MTU should only be configured in environment templates, configuring a different MTU in an existing environment is not recommended as the change will only have effect on new containers.
