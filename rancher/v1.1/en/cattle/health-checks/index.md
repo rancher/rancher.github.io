@@ -30,6 +30,8 @@ Use the following options to configure Health Checks:
 
 **Initializing Timeout:** The number of milliseconds before we exit initializing.
 
+**Re-Initializing Timeout:** The number of milliseconds before we exit reinitializing.
+
 **Check interval**: The number of milliseconds between checks.
 
 **Check Timeout**: The number of milliseconds before a check without response times out.
@@ -63,6 +65,7 @@ service1:
     # Interval is measured in milliseconds
     interval: 2000
     initializing_timeout: 60000
+    reinitializing_timeout: 60000
     unhealthy_threshold: 3
     # Strategy for what to do when unhealthy
     # In this service, no action will occur when a container is found unhealthy
