@@ -118,3 +118,15 @@ By default, session tokens expire 16 hours after creation. If this is too long f
 1. Under **Admin** -> **Setting** -> **Advanced Settings**, click on the **I understand that I can break things by changing advanced settings**.
 2. Find the **api.auth.jwt.token.expiry** setting and click on the edit icon.
 3. Update the timeout session value and click on **Save**. The value is in milliseconds.
+
+### Restricting concurrent sessions
+
+_Available as of v1.6.3_
+
+By default, users can start concurrent sessions. The ability to have concurrent sessions can be disabled, you can update an API setting, `api.auth.restrict.concurrent.sessions`.
+
+1. Under **Admin** -> **Setting** -> **Advanced Settings**, click on the **I understand that I can break things by changing advanced settings**.
+2. Find the **api.auth.restrict.concurrent.sessions** setting and click on the edit icon.
+3. Set the value to `true` and click on **Save**. 
+
+Once this setting is enabled, on the next login from the user, the previous session tokens created for the user will be deleted and user will get logged out of those sessions.
