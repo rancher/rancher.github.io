@@ -12,46 +12,33 @@ _Available as of Rancher v1.6.3_
 
 By default, any users in a Rancher environment running Kubernetes have access to all the resources within Kubernetes. Enabling [Kubernetes RBAC](https://kubernetes.io/docs/admin/authorization/rbac/) allows [owners of environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#owners) to restrict access to the various resources within Kubernetes to specific users in the environment. 
 
-Authentication is integrated with [Rancher access control](https://docs.rancher.com/rancher/v1.6/en/configuration/access-control/#enabling-access-control) which means any external authentication system supported by Rancher can be used for Kubernetes RBAC roles.
+Authentication is integrated with [Rancher's access control options](https://docs.rancher.com/rancher/v1.6/en/configuration/access-control/#enabling-access-control), which means any external authentication system supported by Rancher can be used for Kubernetes RBAC roles.
 
-An understanding of namespaces is a requirement to making use of Kubernetes RBAC permissions. To learn more about namespaces please reference the [Kubernetes docs on this feature](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/).
+An understanding of namespaces is a requirement to making use of Kubernetes RBAC permissions. To learn more about namespaces please reference the [Kubernetes docs](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/).
 
 ### Enabling Kubernetes RBAC
 
-In order to enable Kubernetes RBAC, you will need to make sure to [configure Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes) to enable Kubernetes RBAC. If you've already launched the Kubernetes infrastructure service, you can click on the **Up to Date** to update the configuration options for Kubernetes. 
+In order to enable Kubernetes RBAC, you will need to make sure to [configure Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes) and select to enable Kubernetes RBAC. If you've already launched the Kubernetes infrastructure service, you can click on the **Up to Date** to update the configuration options for Kubernetes. 
 
 ### Default Roles
 
-[Owners of environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#owners) are given admin access to the Kubernetes cluster in the environment. Having admin access means they will be able to read and write to any Kubernetes resource, as well as create the permissions to other users in the Kubernetes environment by creating roles for them. By default, any non-owners of an environment will not have any access to any resources in the Kubernetes cluster until they are  explicitly granted to them.
+[Owners of environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#owners) are given admin access to the Kubernetes cluster in the environment. Having admin access means these users will be able to read and write to any Kubernetes resource, as well as create the permissions to other users in the Kubernetes environment by creating roles for them.
+
+> **Important:** By default, any non-owners of an environment will not have any access to any resources in the Kubernetes cluster until they are  explicitly granted to them.
 
 Removing a user from an environment will take away all of their access to the Kubernetes cluster. Demoting an environment owner will remove their admin access to the cluster. Likewise, promoting any users to an environment to an owner will give them admin access.
 
-### Applying New Roles to Users
+### Known Issues
 
-In order to provide permissions to users for the Kubernetes resources, owners will need to create new roles by applying two Kubernetes resource types: `RoleBindings` and `ClusterRoleBindings`. `ClusterRoleBindings` add permissions at the global level and `RoleBindings` apply permissions within a particular namespace.
+Helm and Tiller do not currently respect RBAC roles. Anyone with access to either of these will have admin access to the Kubernetes cluster.
 
-#### Access to all resources in all namespaces
+### Applying New Roles to Users/Groups
 
-Global access allows access to resources across all namespaces. For example, suppose anyone from the Github organization `mycompany-research` should have read-only access to the cluster. The following resource can be created with `kubectl apply` and will allow this type of access.
+In order to provide permissions to non-owners to the Kubernetes resources, owners will need to create new roles and apply them to the users. There are two Kubernetes resource types: `RoleBindings` and `ClusterRoleBindings`. `RoleBindings` apply permissions to a specific namespace in an environment while `ClusterRoleBindings` add permissions at the global level (i.e. all namespaces in an environment). 
 
-```yaml
-kind: RoleBinding
-apiVersion: rbac.authorization.k8s.io/v1beta1
-metadata:
-  name: edit-dev
-  namespace: dev
-subjects:
-  - kind: Group
-    name: github_team:mycompany-research
-roleRef:
-  kind: ClusterRole
-  name: edit
-  apiGroup: rbac.authorization.k8s.io
-```
-
-Any member of the team `mycompany-research` should now have the ability to view, but not modify, most resources in the cluster.
-
-#### Access so specific privileges Within Namespaces
+Role bindings can be applied with the `kubectl apply` command. You can update any permissions by simply adding or removing them from the resource file and re-applying with `kubectl apply`.
+ 
+#### Roles
 
 Users can be given specific privileges within particular namespaces. There are three convenient roles that come out of the box with Kubernetes.
 
@@ -59,14 +46,20 @@ Users can be given specific privileges within particular namespaces. There are t
 * edit - Read and write access to most objects in a namespace.
 * admin - Includes all permissions from the edit role and allows the creation of new roles and role bindings.
 
-For example, if there are two users, `developer1` and `developer2`, and they should have the ability to write and read nearly all resources within the `dev` namespace. We could tie the `edit` role to them with the following role binding. This role binding  can be applied with the `kubectl apply` command.
+Custom roles allow more control than built-in roles such as `admin`, `edit`, and `view`. For information on building specific roles, refer to the [Kubernetes RBAC documentation](https://kubernetes.io/docs/admin/authorization/rbac/).
+
+### Examples
+
+#### Giving edit access to 2 users to a specific namespace 
+
+In this example, we are granting permissions to two users, `developer1` and `developer2`, so that they have the ability to write and read nearly all resources in the `dev` namespace. We tie the `edit` role to them with the following role binding.
 
 ```yaml
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
   name: edit-dev
-  namespace: dev
+  namespace: dev # Specify which namespace you want these permissions granted in
 subjects:
   - kind: User
     name: developer1
@@ -74,35 +67,51 @@ subjects:
     name: developer2
 roleRef:
   kind: ClusterRole
-  name: edit
+  name: edit # Specify which type of role you want the users to have
   apiGroup: rbac.authorization.k8s.io
 ```
 
-Notice how in this example a namespace is specified unlike with the previous example for global access. This role binding still applies to a single namespace even though a cluster role is used.
+#### Giving read only access to a user to a specific namespace
 
-Similarly we could grant user `developer2` read-only access to the `qa` namespace with the following role binding.
+In this eample, we are granting permissions to one user, `developer2`, so that they have the ability to read nearly all resources in the `qa` namespace. We tie the `view` role to them with the following role binding. 
+
 
 ```yaml
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
   name: view-qa
-  namespace: qa
+  namespace: qa # Specify which namespace you want these permissions granted in
 subjects:
   - kind: User
     name: developer2
 roleRef:
   kind: ClusterRole
-  name: view
+  name: view # Specify which type of role you want the users to have
   apiGroup: rbac.authorization.k8s.io
 ```
 
-To updates subjects in a role binding, simply add or remove them from the resource file and reapply with `kubectl apply`.
+#### Giving read only access to a group to a specific namepsace 
 
-#### Custom Roles
+In this example, we are granting permissions to all users in a specific Github team, `mycompany-research`, so that the team has the ability to read nearly all resources in the `dev` namespace.  We tie the `edit` role to them with the following role binding.
 
-Custom roles allow more control than built-in roles such as `admin`, `edit`, and `view`. For information on building more specific roles refer to the [Kubernetes RBAC documentation](https://kubernetes.io/docs/admin/authorization/rbac/).
 
-### Known Issues
+```yaml
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: view-dev-group
+  namespace: dev # Specify which namespace you want these permissions granted in
+subjects:
+  - kind: Group # Specify that this is a group instead of individual users
+    name: github_team:mycompany-research
+roleRef:
+  kind: ClusterRole
+  name: view # Specify which type of role you want the users to have
+  apiGroup: rbac.authorization.k8s.io
+```
 
-Helm and Tiller do not currently respect RBAC roles. Anyone with access to either of these will have admin access to the cluster.
+Any member of the team `mycompany-research` should now have the ability to view, but not modify, most resources in the cluster.
+
+> **Note:** Currently, you can apply permissions to specific groups in kubernetes RBAC, but you must invite the individuals of the group to the environment. Inviting groups to an environment currently does not support kubernetes RBAC. 
+
