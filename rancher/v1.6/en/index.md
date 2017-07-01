@@ -1,6 +1,6 @@
 ---
 title: Rancher Documentation
-layout: rancher-default-v1.6
+description: Rancher is a complete container management platform that makes it easy to deploy and run Docker and Kubernetes. These documents describe how to install and use Rancher.
 version: v1.6
 lang: en
 redirect_from:
