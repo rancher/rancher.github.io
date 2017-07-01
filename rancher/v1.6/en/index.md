@@ -1,5 +1,5 @@
 ---
-title: Overview of Rancher
+title: Rancher Documentation
 layout: rancher-default-v1.6
 version: v1.6
 lang: en
@@ -14,7 +14,7 @@ redirect_from:
 ## Overview of Rancher
 ---
 
-Rancher is an open source software platform that enables organizations to run containers in production. With Rancher, organizations no longer have to build a container services platform from scratch using a distinct set of open source technologies. Rancher supplies the entire software stack needed to manage containers in production.
+Rancher is an open source software platform that enables organizations to run and manage Docker and Kubernetes in production. With Rancher, organizations no longer have to build a container services platform from scratch using a distinct set of open source technologies. Rancher supplies the entire software stack needed to manage containers in production.
 
 Rancher software consists of four major components:
 
@@ -28,7 +28,7 @@ Rancher implements a portable layer of [infrastructure services]({{site.baseurl}
 
 Many users choose to run containerized applications using a container orchestration and scheduling framework. Rancher includes a distribution of all popular container orchestration and scheduling frameworks today, including [Docker Swarm]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/swarm), [Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes), and [Mesos]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/mesos/). The same user can create multiple Swarm or Kubernetes clusters. They can then use the native Swarm or Kubernetes tools to manage their applications.
 
-In addition to Swarm, Kubernetes, and Mesos, Rancher supports its own container orchestration and scheduling framework called Cattle. Cattle was originally designed as an extension to Docker Swarm. As Docker Swarm continues to develop, Cattle and Swarm started to diverge. Rancher will therefore support Cattle and Swarm as separate frameworks going forward. Cattle is used extensively by Rancher itself to orchestrate infrastructure services as well as setting up, managing, and upgrading Swarm, Kubernetes, and Mesos clusters.
+In addition to Swarm, Kubernetes, and Mesos, Rancher supports its own container orchestration and scheduling framework called Cattle. Cattle is used extensively by Rancher to orchestrate infrastructure services as well as setting up, managing, and upgrading Swarm, Kubernetes, and Mesos clusters.
 
 ### Application Catalog
 
