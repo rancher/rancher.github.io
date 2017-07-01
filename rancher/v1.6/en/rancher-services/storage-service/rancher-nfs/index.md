@@ -10,33 +10,37 @@ lang: en
 
 Rancher provides the ability to select NFS volumes as a storage option for containers.
 
-### prerequisites when using NFS
+### Prerequisites when using NFS
 
-NFS server has to be installed prior to setting up Rancher NFS driver, the NFS driver will connect to this NFS server, for example to install NFS server on Ubuntu 16.04, use the following commands:
+A NFS server has to be installed prior to launching the Rancher NFS driver. For example, to install a NFS server on Ubuntu 16.04, you can use the following commands.
 
 ```bash
 sudo apt-get update
 sudo apt-get install nfs-kernel-server
 ```
 
-Then you will need to export a base directory on this server, first create the shared directory:
+On the server, you will need to export a base directory. First, you'll need to create the shared directory. 
 
 ```bash
 sudo mkdir /nfs
 sudo chown nobody:nogroup /nfs
 ```
 
-Then modify the exports file (/etc/exports):
+Modify the exports file (`/etc/exports`).
+
 ```bash
 /nfs    *(rw,sync,no_subtree_check)
 ```
-Then finally restart the nfs kernel server:
+
+After all the modifications, restart the NFS kernel server. 
 
 ```bash
 sudo systemctl restart nfs-kernel-server
 ```
 
-Alternatively, Rancher NFS driver can connect to Amazon EFS, however all hosts registered with Rancher server have to be EC2 instances and in the same AZ as the EFS deployed.
+### Using the Rancher NFS driver on Amazon EFS
+
+The Rancher NFS driver can connect to Amazon EFS. When using Rancher NFS driver with Amazon EFS, all hosts in the environment will need to be EC2 instances, deployed in the same availability zone as where EFS is deployed. 
 
 ### Setting up Rancher NFS
 
@@ -55,25 +59,24 @@ In order to launch Rancher NFS, you will need to specify the following:
 
 ### Rancher NFS Driver Options
 
-When creating NFS volumes, there are several options that can be used to customize the volume. These options are key value pairs that can be added in the UI as a driver options or in compose files under the `driver_opts` key.   
+When creating volumes using the Rancher NFS driver, there are several options that can be used to customize the volume. These options are key value pairs that can be added in the UI as a driver options or in compose files under the `driver_opts` key.   
 
 #### Driver Options
 
-* **Host** - (`host`): NFS host.
-* **Export** - (`export`): When volume is configured with host/export, no subfolder is created; the root export directory is mounted.
-* **Export Base** - (`exportBase`): The volume can be configured with host/exportBase which is the default option, a uniquely-named subfolder is created on the NFS server.
+* **Host** - (`host`): NFS host
+* **Export** - (`export`): When the volume is configured with the host and export, no subfolder is created; the root export directory is mounted.
+* **Export Base** - (`exportBase`): By default, the volume can be configured with the host and export base, which creates a uniquely named subfolder on the NFS server.
 * **Mount Options** - (`mntOptions`): Comma delimited list of default mount options.
 
 ### Using Rancher NFS in the UI
 
 #### Creating Volumes
 
-After **Rancher NFS** is launched in Rancher, you will need to create the volumes in NFS in **Infrastructure** -> **Storage** before using the volume in a service.
+After **Rancher NFS** is launched in Rancher, you will need to create the volumes in the NFS in **Infrastructure** -> **Storage** before using the volume in a service.
 
 1. Click on **Add Volume**.
 2. Create the name of the volume that will be used in the service.
-3. Required: Add a driver option for `size`.
-4. Optional: Add any additional driver options. Note: If you use encryption, snapshot ID or volume ID, you will also have to specify the availability zone.
+4. Optional: Add any additional driver options. 
 
 #### Using Volumes in Services
 
@@ -95,7 +98,7 @@ Volumes can be specified as part of a compose file under the `volumes` key. Each
 
 In this example, we are creating a NFS volume while creating services that use this volume. All services in this stack will share the same volume.  
 
-```
+```yaml
 version: '2'
 services:
   foo:
@@ -109,7 +112,7 @@ volumes:
 
 ### Using Rancher NFS with AWS EFS
 
-After Creating an EFS file system on AWS, you can launch Rancher NFS to use this EFS file system, however since EFS is only reachable internally, only EC2 instances in the same AZ can reach this EFS, so EC2 instances should be added to rancher prior to creating the machine driver.
+After creating an EFS file system on AWS, you can launch the Rancher NFS driver to use this EFS file system. Since Amazon EFS is only reachable internally, only EC2 instances in the same availability zone can reach this EFS, therefore EC2 instances should be added to Rancher prior to creating the storage driver.
 
 You can launch Rancher NFS with the following options for example:
 
