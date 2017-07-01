@@ -37,7 +37,25 @@ Helm and Tiller do not currently respect RBAC roles. Anyone with access to eithe
 In order to provide permissions to non-owners to the Kubernetes resources, owners will need to create new roles and apply them to the users. There are two Kubernetes resource types: `RoleBindings` and `ClusterRoleBindings`. `RoleBindings` apply permissions to a specific namespace in an environment while `ClusterRoleBindings` add permissions at the global level (i.e. all namespaces in an environment). 
 
 Role bindings can be applied with the `kubectl apply` command. You can update any permissions by simply adding or removing them from the resource file and re-applying with `kubectl apply`.
- 
+
+### Group Name Syntax
+
+When applying groups to role bindings, your Rancher [authentication]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) will determine the syntax of the name of your group. 
+
+Authentication Provider | Group Name Syntax
+---|---
+Active Directory | `ldap_group:<NAME>`
+Azure AD | `azuread_group:<NAME>`
+Github Organizations | `github_org:<NAME>` 
+Github Teams | `github_team:<NAME>`
+OpenLDAP | `openldap_group:<NAME>`
+Shibboleth | `shibboleth_group
+
+<br>
+
+> **Note:** Currently, you can apply permissions to specific groups in kubernetes RBAC, but you must invite the individuals of the group to the environment. Inviting groups to an environment currently does not support kubernetes RBAC. 
+
+
 #### Roles
 
 Users can be given specific privileges within particular namespaces. There are three convenient roles that come out of the box with Kubernetes.
@@ -114,4 +132,5 @@ roleRef:
 Any member of the team `mycompany-research` should now have the ability to view, but not modify, most resources in the cluster.
 
 > **Note:** Currently, you can apply permissions to specific groups in kubernetes RBAC, but you must invite the individuals of the group to the environment. Inviting groups to an environment currently does not support kubernetes RBAC. 
+
 
