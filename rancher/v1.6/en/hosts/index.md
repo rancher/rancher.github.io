@@ -34,10 +34,14 @@ Version               | Supported? | Kubernetes Support? | Install Script |
 `1.12.0` - `1.12.2`   | No         |                     |
 `1.12.3` (and higher) | **Yes**    | **Yes**             | `curl https://releases.rancher.com/install-docker/1.12.sh | sh`
 `1.13.x`              | **Yes**    | No                  | `curl https://releases.rancher.com/install-docker/1.13.sh | sh`
-`17.03.x-ee`          | **Yes**    | No                  | n/a
 `17.03.x-ce`          | **Yes**    | No                  | `curl https://releases.rancher.com/install-docker/17.03.sh | sh`
+`17.03.x-ee`          | **Yes**    | No                  | n/a
 `17.04.x-ce`          | No         |                     | `curl https://releases.rancher.com/install-docker/17.04.sh | sh`
-`17.05.x-ce`          | No         | No                  |
+`17.05.x-ce`          | No         | No                  | `curl https://releases.rancher.com/install-docker/17.05.sh | sh`
+`17.06.x-ce`          | v1.6.3+    | No                  | `curl https://releases.rancher.com/install-docker/17.06.sh | sh`
+`17.06.x-ee`          | v1.6.3+    | No                  | n/a
+
+> **Note:** We will not support the edge release from Docker, but will support the stable releases of Docker.
 
 ### Installing a Specific Docker Version
 
