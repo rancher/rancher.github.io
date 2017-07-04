@@ -3,6 +3,9 @@ title: FAQS about Rancher Agents/Hosts
 layout: rancher-default-v1.6
 version: v1.6
 lang: en
+redirect_from:
+  - /rancher/faqs/agents/
+  - /rancher/latest/en/faqs/agents/
 ---
 
 ## FAQs about Rancher Agent/Hosts
