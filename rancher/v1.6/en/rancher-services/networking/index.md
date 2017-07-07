@@ -163,11 +163,13 @@ Changing the MTU should be done on every component involved in providing network
   * This should be done on the network interfaces on the host, please refer to your Linux distribution documentation to see how to configure the MTU.
 * Change MTU of the Docker bridge
   * In most cases, this would be docker0. You can configure MTU by specifying the mtu setting inside `/etc/docker/daemon.json` like the example below, for more information, please refer to the Docker documentation on [Customize the docker0 bridge](https://docs.docker.com/engine/userguide/networking/default_network/custom-docker0/)
+
 ```json
 {
   "mtu": 1450
 }
 ```
+
 * Create a new [environment template]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template) to configure the IPsec or VXLAN infrastructure service with the desired MTU.
 * Create a new environment from the newly created environment template.
 

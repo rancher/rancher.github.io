@@ -49,7 +49,7 @@ Azure AD | `azuread_group:<NAME>`
 Github Organizations | `github_org:<NAME>` 
 Github Teams | `github_team:<NAME>`
 OpenLDAP | `openldap_group:<NAME>`
-Shibboleth | `shibboleth_group
+Shibboleth | `shibboleth_group:<NAME>`
 
 <br>
 
