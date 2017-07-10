@@ -78,7 +78,7 @@ The `rancher catalog` command provides operations around catalog templates.
 Name | Description
 ----|-----
 `--quiet`, `-q`   |  Only display IDs
-`--format` value  | `json` or Custom format: {% raw %}{{.Id}} {{.Name}}{% endraw %}
+`--format` value  | `json` or Custom format: {% raw %}'{{.ID}} {{.Template.Id}}'{% endraw %}
 `--system`, `-s`  |  Show system templates, not user
 
 #### Subcommands
@@ -98,7 +98,7 @@ The `rancher catalog ls` command lists all the templates in the environment.
 Name | Description
 -----|-----
 `--quiet`, `-q` |     Only display IDs
-`--format` value  | `json` or Custom format: {% raw %}{{.Id}} {{.Name}}{% endraw %}
+`--format` value  | `json` or Custom format: {% raw %}'{{.ID}} {{.Template.Id}}'{% endraw %}
 `--system`, `-s` |   Show system templates, not user
 
 <br>
@@ -194,7 +194,7 @@ Name | Description
 ----|-----
 `--all`, `-a`    |   Show stop/inactive and recently removed resources
 `--quiet`, `-q`  |  Only display IDs
-`--format` value | `json` or Custom format: {% raw %}{{.Id}} {{.Name}}{% endraw %}
+`--format` value | `json` or Custom format: {% raw %}'{{.ID}} {{.Environment.Name}}'{% endraw %}
 
 #### Subcommands
 
@@ -219,7 +219,7 @@ Name | Description
 ----|-----
 `--all`, `-a`    |   Show stop/inactive and recently removed resources
    `--quiet`, `-q` |     Only display IDs
-   `--format` value  | `json` or Custom format: {% raw %}{{.Id}} {{.Name}}{% endraw %}
+   `--format` value  | `json` or Custom format: {% raw %}'{{.ID}} {{.Environment.Name}}'{% endraw %}
 
 <br>
 
@@ -263,7 +263,7 @@ Name | Description
 ---|----
 `--all`, `-a`    |   Show stop/inactive and recently removed resources
 `--quiet`, `-q`  |  Only display IDs
-`--format` value | `json` or Custom format: {% raw %}{{.Id}} {{.Name}}{% endraw %}
+`--format` value | `json` or Custom format: {% raw %}'{{.ID}} {{.ProjectTemplate.Name}}'{% endraw %}
 
 ##### Subcommands
 
@@ -300,7 +300,7 @@ The `rancher events` command lists out all active events occurring inside the Ra
 
 Name | Description
 ---|----
-`--format` value  |  `json` or Custom format: {% raw %}{{.Id}} {{.Name}}{% endraw %}
+`--format` value  |  `json` or Custom format: {% raw %}'{{.Name}} {{.Data.resource.kind}}'{% endraw %}
 `--reconnect`, `-r` | Reconnect on error
 
 
@@ -356,7 +356,7 @@ Name | Description
 ----|-----
   `--all`, `-a`    |    Show stop/inactive and recently removed resources
   `--quiet`, `-q`  |   Only display IDs
-  `--format` value | `json` or Custom format: {% raw %}{{.Id}} {{.Name}}{% endraw %}
+  `--format` value | `json` or Custom format: {% raw %}'{{.ID}} {{.Host.Hostname}}'{% endraw %}
 
 #### Subcommands
 
@@ -375,7 +375,7 @@ Name | Description
 ----|-----
 `--all`, `-a` |       Show stop/inactive and recently removed resources
     `--quiet`, `-q` |     Only display IDs
-   `--format` value  | `json` or Custom format: {% raw %}{{.Id}} {{.Name}}{% endraw %}
+   `--format` value  | `json` or Custom format: {% raw %}'{{.ID}} {{.Host.Hostname}}'{% endraw %}
 
 <br>
 
@@ -438,7 +438,7 @@ Name | Description
 `--system`, `-s`     |  Show system resources
 `--containers`, `-c` |  Display containers
 `--quiet`, `-q` |		Only display IDs
-`--format` value |	`json` or Custom format: {% raw %}{{.Id}} {{.Name}}{% endraw %}
+`--format` value |	`json` or Custom format: {% raw %}'{{.Service.Id}} {{.Service.Name}} {{.Service.LaunchConfig.ImageUuid}}'{% endraw %}
 
 <br>
 
@@ -544,7 +544,7 @@ Name | Description
 ----|-----
 `--system`, `-s`  |  Show system resources
  `--quiet`, `-q` |     Only display IDs
-   `--format` value  | `json` or Custom format: {% raw %}{{.Id}} {{.Name}}{% endraw %}
+   `--format` value  | `json` or Custom format: {% raw %}'{{.ID}} {{.Stack.Name}}'{% endraw %}
 
 #### Commands
 
@@ -563,7 +563,7 @@ Name | Description
 ----|-----
 `--system`, `-s` |    Show system resources
 `--quiet`, `-q`     | Only display IDs
-`--format` value | `json` or Custom format: {% raw %}{{.Id}} {{.Name}}{% endraw %}
+`--format` value | `json` or Custom format: {% raw %}'{{.ID}} {{.Stack.Name}}'{% endraw %}
 
 <br>
 
@@ -689,7 +689,7 @@ Name | Description
 ---|----
 `--all`, `-a`    |   Show stop/inactive and recently removed resources
 `--quiet`, `-q`  |  Only display IDs
-`--format` value | `json` or Custom format: {% raw %}{{.Id}} {{.Name}}{% endraw %}
+`--format` value | `json` or Custom format: {% raw %}'{{.ID}} {{.Volume.Name}}'{% endraw %}
 
 #### Commands
 
@@ -709,7 +709,7 @@ Name | Description
 ---|----
 `--all`, `-a`    |   Show stop/inactive and recently removed resources
 `--quiet`, `-q`  |  Only display IDs
-`--format` value | `json` or Custom format: {% raw %}{{.Id}} {{.Name}}{% endraw %}
+`--format` value | `json` or Custom format: {% raw %}'{{.ID}} {{.Volume.Name}}'{% endraw %}
 
 <br>
 
@@ -761,7 +761,7 @@ Name | Description
 ---|----
 `--type` value  |  Restrict inspect to specific types (service, container, host)
 `--links`       |  Include URLs to actions and links in resource output
-`--format` value  | `json` or Custom format: {% raw %}{{.Id}} {{.Name}}{% endraw %} (default: "json")
+`--format` value  | `json` or Custom format: {% raw %}'{{.kind}}'{% endraw %} (default: "json")
 
 <br>
 
