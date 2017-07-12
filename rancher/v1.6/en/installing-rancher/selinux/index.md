@@ -10,11 +10,17 @@ lang: en
 
 _Available for Rancher 1.6+_
 
-If you are running Rancher on RHEL/CentOS and want to enable SELinux, you will be required to install an additional SELinux module.
+For Rancher on RHEL/CentOS and SELinux to work, you will need to have the RPM package `container-selinux-2.14` or higher installed on instances running the Rancher server container as well as any [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/). If there is a lower version installed, you will need to build an additional SELinux module to make Rancher work.
 
-The steps in this document are a necessary workaround until the [changes present in the module](https://github.com/projectatomic/container-selinux/pull/33) are shipped in RHEL and CentOS. Once these changes are made in RHEL and CentOS then these steps will no longer be required.
+You can validate the version by running this command: `rpm -q container-selinux`.
 
-These steps must occur on the instances that are running the Rancher server container as well as any [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/).
+```
+# Check container-selinux version
+$ rpm -q container-selinux
+container-selinux-2.19-2.1.el7.noarch
+```
+
+## Building the additional SELinux module
 
 ### Installing Package to Build the Module
 
@@ -48,7 +54,7 @@ After running the `make` command, a file named `virtpatch.pp` should be created 
 
 ### Loading the Module
 
-After the SELinux module is built, load the module.
+After the SELinux module is built, load the module on instances running the Rancher server container as well as any [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/).
 
 ```
 # Load the module
