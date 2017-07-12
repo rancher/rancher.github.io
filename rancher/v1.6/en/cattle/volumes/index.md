@@ -14,13 +14,15 @@ Persistent volumes are a very important part of a stateful application. Rancher 
 
 #### Terminology
 
-A `volume plugin` and `volume driver` are used interchangeably in Docker and Rancher documentation. They refer to the same thing: a plugin that provides local or shared persistent volumes to a Docker container.
+`Volume Plugin` and `Volume Driver` are used interchangeably in Docker and Rancher documentation. They are referring to the same thing: a [Docker Volume Plugin](https://docs.docker.com/engine/extend/plugins_volume/) that provides local or shared persistent volumes to a Docker container. Rancher Volume Plugins (Drivers) are currently implemented as Docker Volume Plugins and may be interacted with the `docker volume` command on any host, but depending on the storage technology, volumes may be accessed by one, some, or all hosts in an environment. Rancher handles the complexity of coordinating shared volumes across hosts. Examples are: rancher-nfs, rancher-efs, rancher-ebs, pxd (portworx).
 
-A `storage driver` pertains to how containers and images are stored and managed on your Docker hosts. Examples are: aufs, btrfs, zfs, devicemapper. These drivers are beyond the scope of Rancher. More information is available [here](https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/).
+A `Storage Driver` pertains to how containers and images are stored and managed on your Docker hosts. Examples are: aufs, btrfs, zfs, devicemapper. These drivers are beyond the scope of Rancher. Rancher UI conflates the term but is actually referring to `Volume Driver` or `Volume Plugin`. More information about storage drivers is available [here](https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/).
 
 ### Managing Volumes
 
-In this section you’re going to learn how to create persistent volumes that may be shared between containers.
+In this section you’re going to learn how to create persistent volumes that may be shared between containers. [Rancher CLI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cli/) will be used exclusively in these subsections.
+
+> **Note:** The UI may be used to manage volumes for all volume drivers except `local`.
 
 #### Create a Volume
 
@@ -64,7 +66,7 @@ A newly-created volume is in `inactive` state until a container attempts to atta
 
 When a container is created, associated volumes enter `activating` state. Once the container enters the `running` phase, its volumes enter `active` state. Containers attaching to an already `active` volume will not impact that volume's state.
 
-When all containers attached to a volume are marked for deletion, the volume enters a `dactivating` state. Once the conatiners are deleted, the volume enters `detached` state.
+When all containers attached to a volume are marked for deletion, the volume enters a `deactivating` state. Once the conatiners are deleted, the volume enters `detached` state.
 
 When a volume is marked for deletion, it enters a `removing` state. Once the data is deleted from the host(s), it enters `removed` state. Removed volumes will not appear when listing volumes, but they continue to exist in Rancher API for a period of time for debugging and auditing purposes.
 
@@ -72,57 +74,7 @@ When a volume is marked for deletion, it enters a `removing` state. Once the dat
 
 There are two different volume scopes. The scope refers to the level at which the volume is managed by Rancher.
 
-#### Environment Scope
-
-An `environment` scope volume may be shared by all containers in an environment. Rancher schedules a container appropriately based on the hosts that have access to its assigned volumes.
-
-Environment scope volumes are not automatically shared across all hosts in an environment. You need to be using a shared volume driver such as `rancher-nfs` to accomplish that. This means that an `environment` scope volume using the `local` driver will only be available on a single host and any container using that volume will be scheduled to that host.
-
-Rancher requires that an environment volume exists prior to creating a service that consumes it. Any installed volume driver can be used.
-
-The practical benefit of this scope is the ability to easily share data between different software services/stacks whose lifecycles are independently managed. The user is given full control and must [manage the volumes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/volumes/#managing-volumes) themselves.
-
-##### Shared Environment Scope Volume Example
-
-First, [create the environment scope volume]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/volumes/#create-a-volume) to be shared between stacks.
-
-```
-$ rancher volume create --driver local redis-data-external
-```
-
-Define the volume with `external: true` modifier to indicate the volume's lifecycle is managed externally (environment scope). Save the `docker-compose.yml` file below to a directory.
-
-```yaml
-version: '2'
-services:
-  redis:
-    image: redis:3.0.7
-    volumes:
-    - redis-data-external:/data
-volumes:
-  redis-data-external:
-    driver: local
-    external: true
-```
-
-Now create the stack.
-
-```
-$ rancher stack create
-```
-
-[List the volumes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/volumes/#list-volumes) to verify that `redis-data-external` volume is `active`.
-
-> **Note:** Scaling a service up or down mounts or unmounts the same shared volume.
-
-Any new stack within the environment may attach to the same `redis-data-external` volume. The easiest way is to copy the volume definition verbatim.
-
-```yaml
-volumes:
-  redis-data-external:
-    driver: local
-    external: true
-```
+Scoped volumes must be defined in the top-level `volumes` section of a `docker-compose.yml` file. If the definition is omitted, volumes behave differently. See [V1 Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/volumes/#v1-compose) for details.
 
 #### Stack Scope
 
@@ -160,6 +112,60 @@ $ rancher stack create
 To avoid name collisions with other volumes, unique names are used for the stack scope volumes you define. They include the stack name, original volume name, and a random component. [List the volumes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/volumes/#list-volumes) and identify the `data` volume exists in this form.
 
 > **Note:** Stack-scope volumes could be mounted by other stacks. Stack scope is not a security mechanism. It is solely for managing the lifecycle of the volume.
+
+#### Environment Scope
+
+An `environment` scope volume may be shared by all containers in an environment. Rancher schedules a container appropriately based on the hosts that have access to its assigned volumes.
+
+Environment scope volumes are not automatically shared across all hosts in an environment. You need to be using a shared volume driver such as `rancher-nfs` to accomplish that. This means that an `environment` scope volume using the `local` driver will only be available on a single host and any container using that volume will be scheduled to that host.
+
+Rancher requires that an environment volume exists prior to creating a service that consumes it. Any installed volume driver can be used.
+
+The practical benefit of this scope is the ability to easily share data between different software services/stacks whose lifecycles are independently managed. The user is given full control and must [manage the volumes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/volumes/#managing-volumes) themselves.
+
+##### Shared Environment Scope Volume Example
+
+First, [create the environment scope volume]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/volumes/#create-a-volume) to be shared between stacks.
+
+```
+$ rancher volume create --driver local redis-data-external
+```
+
+Define the volume with `external: true` modifier to indicate the volume's lifecycle is managed externally (environment scope). Save the `docker-compose.yml` file below to a directory.
+
+```yaml
+version: '2'
+services:
+  redis:
+    image: redis:3.0.7
+    volumes:
+    - redis-data-external:/data
+volumes:
+  redis-data-external:
+    driver: local
+    external: true
+```
+
+> **Note:** If `external: true` is omitted, the volume will be [stack scoped]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/volumes/#stack-scope).
+
+Now create the stack.
+
+```
+$ rancher stack create
+```
+
+[List the volumes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/volumes/#list-volumes) to verify that `redis-data-external` volume is `active`.
+
+> **Note:** Scaling a service up or down mounts or unmounts the same shared volume.
+
+Any new stack within the environment may attach to the same `redis-data-external` volume. The easiest way is to copy the volume definition verbatim.
+
+```yaml
+volumes:
+  redis-data-external:
+    driver: local
+    external: true
+```
 
 ### V1 Compose
 
