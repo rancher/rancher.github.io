@@ -54,6 +54,7 @@ Example `pvc-nfs.yml`
 
 ```yaml
 apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
   name: nfs
 spec:
