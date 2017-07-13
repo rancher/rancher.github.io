@@ -58,6 +58,11 @@ When specifying the image name in Rancher, use the fully qualified address AWS p
 
 `aws-account-number.dkr.ecr.us-west-2.amazonaws.com/my-repo:latest`.
 
+#### Using Google Container Registry
+If you want to use [Google Container Registry](https://cloud.google.com/container-registry/), you will have to use a [service account JSON key file](https://cloud.google.com/container-registry/docs/advanced-authentication#using_a_json_key_file). Don't forget to grant the correct permissions to the Google Cloud Storage bucket containing your Container Registry images.
+
+Specify the **registry address** according to [the region](https://cloud.google.com/container-registry/docs/pushing-and-pulling#choosing_a_registry_name) your images are stored. Use `_json_key` as **username** and use the full contents of the service account JSON key file as **password**.
+
 ### Using Registries
 
 As soon as the registry is created, you will be able to use these private registries when launching services and containers. The syntax for the image name is the same as what you would use for the `docker run` command.
