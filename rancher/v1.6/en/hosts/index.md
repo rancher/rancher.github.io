@@ -186,4 +186,4 @@ If the host was created on a cloud provider using Rancher, the host will be dele
 
 ### Deleting Hosts outside of Rancher
 
-If your host is deleted outside of Rancher, then Rancher server will continue to show the host until it’s removed. Eventually, these hosts will show up in a _Reconnecting_ state and never be able to reconnect. You will be able to **Delete** these hosts to remove them from the UI.
+If your host is deleted outside of Rancher, then Rancher server will continue to show the host until it's removed. After retrying the connection (_Reconnecting_), the host will show up in a _Disconnected_ state. You will be able to **Delete** the host to remove them from the UI. You can also configure a timeout, after which the host will automatically be removed. This setting is called `host.remove.delay.seconds` and can be found under `Admin` -> `Settings` -> `Advanced Settings`.
