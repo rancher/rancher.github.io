@@ -177,11 +177,17 @@ backend rancher_servers
   server websrv3 <rancher_server_3_IP>:8080 weight 1 maxconn 1024
 ```
 
-### Updating Host Registration
+### Example F5 BIG-IP configuration
 
-After Rancher is launched with these settings, the UI will be up and running at `https://<your domain>/`.
+The following iRule configuration can be applied to make Rancher Server accessible behind a F5 BIG-IP appliance.
 
-Before [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/), you'll need to properly configure [Host Registration]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#host-registration) for SSL.
+```
+when HTTP_REQUEST {
+  HTTP::header insert "X-Forwarded-Proto" "https";
+  HTTP::header insert "X-Forwarded-Port" "443";
+  HTTP::header insert "X-Forwarded-For" [IP::client_addr];
+}
+```
 
 <a id="elb"></a>
 
@@ -219,7 +225,13 @@ $ aws elb set-load-balancer-policies-for-backend-server --load-balancer-name <LB
 
 We no longer recommend Application Load Balancer (ALB) in AWS over using the Elastic/Classic Load Balancer (ELB). If you still choose to use an ALB, you will need to direct the traffic to the HTTP port on the nodes, which is `8080` by default.
 
-> **Note:** If you use an ALB with Kuberenetes, `kubectl exec` will not work and for that functionality, you will need to use an ELB.
+> **Note:** If you use an ALB with Kubernetes, `kubectl exec` will not work and for that functionality, you will need to use an ELB.
+
+### Updating Host Registration
+
+After Rancher is launched with these settings, the UI will be up and running at `https://<your domain>/`.
+
+Before [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/), you'll need to properly configure [Host Registration]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/settings/#host-registration) for SSL.
 
 ### Using Self Signed Certs (Beta)
 

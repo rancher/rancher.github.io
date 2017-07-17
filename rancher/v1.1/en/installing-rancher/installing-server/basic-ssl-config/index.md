@@ -131,6 +131,18 @@ Here is an Apache configuration.
 </VirtualHost>
 ```
 
+### Example F5 BIG-IP configuration
+
+The following iRule configuration can be applied to make Rancher Server accessible behind a F5 BIG-IP appliance.
+
+```
+when HTTP_REQUEST {
+  HTTP::header insert "X-Forwarded-Proto" "https";
+  HTTP::header insert "X-Forwarded-Port" "443";
+  HTTP::header insert "X-Forwarded-For" [IP::client_addr];
+}
+```
+
 ### Updating Host Registration
 
 After Rancher is launched with these settings, the UI will be up and running at `https://<your domain>/`.
