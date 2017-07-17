@@ -25,11 +25,11 @@ From the  **Infrastructure** -> **Hosts** tab, click on **Add Host**.
 
 ### Supported Docker Versions
 
-Version               | Supported? | Kubernetes Support? | Install Script |
+Version               | Supported? | Kubernetes Supported? | Install Script |
 ----------------------|------------|---------------------|-----------------
 `1.9.x` and earlier   | No         |                     |
 `1.10.0` - `1.10.2`   | No         |                     |
-`1.10.3` (and higher) | **Yes**    | **Yes**             | `curl https://releases.rancher.com/install-docker/1.10.sh | sh`
+`1.10.3` (and higher) | No         | No                  | `curl https://releases.rancher.com/install-docker/1.10.sh | sh`
 `1.11.x`              | No         |                     | `curl https://releases.rancher.com/install-docker/1.11.sh | sh`
 `1.12.0` - `1.12.2`   | No         |                     |
 `1.12.3` (and higher) | **Yes**    | **Yes**             | `curl https://releases.rancher.com/install-docker/1.12.sh | sh`
@@ -41,7 +41,7 @@ Version               | Supported? | Kubernetes Support? | Install Script |
 `17.06.x-ce`          | v1.6.3+    | No                  | `curl https://releases.rancher.com/install-docker/17.06.sh | sh`
 `17.06.x-ee`          | v1.6.3+    | No                  | n/a
 
-> **Note:** We will not support the edge release from Docker, but will support the stable releases of Docker.
+> **Note:** We will not support the edge releases from Docker, but will support the stable releases of Docker.
 
 ### Installing a Specific Docker Version
 
