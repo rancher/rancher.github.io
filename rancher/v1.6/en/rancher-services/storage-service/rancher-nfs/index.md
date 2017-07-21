@@ -55,7 +55,8 @@ In order to launch Rancher NFS, you will need to specify the following:
 * **NFS Server**: NFS server ip address or hostname.
 * **Export Base Directory**: Exported shared directory on the NFS server.
 * **NFS Version**: The NFS version to use, current used version is 4.
-* **Mount Option**: Comma delimited list of default mount options, for example: 'proto=udp'. Do not specify `nfsvers` option, it will be ignored.
+* **Mount Options**: Comma delimited list of default mount options, for example: 'proto=udp'. Do not specify `nfsvers` option, it will be ignored.
+* **On Remove**: On removal of Rancher NFS volume, should the underlying data be retained or purged. Options are `purge` and `retain`, default is `purge`. Available as of Rancher v1.6.6.
 
 ### Rancher NFS Driver Options
 
@@ -67,6 +68,7 @@ When creating volumes using the Rancher NFS driver, there are several options th
 * **Export** - (`export`): When the volume is configured with the host and export, no subfolder is created; the root export directory is mounted.
 * **Export Base** - (`exportBase`): By default, the volume can be configured with the host and export base, which creates a uniquely named subfolder on the NFS server.
 * **Mount Options** - (`mntOptions`): Comma delimited list of default mount options.
+* **On Remove** - (`onRemove`): On removal of Rancher NFS volume, should the underlying data be retained or purged. Options are `purge` and `retain`, default is `purge`. Available as of Rancher v1.6.6.
 
 ### Using Rancher NFS in the UI
 
@@ -103,11 +105,56 @@ version: '2'
 services:
   foo:
     image: alpine
+    stdin_open: true
     volumes:
     - bar:/data
 volumes:
   bar:
     driver: rancher-nfs
+```
+
+#### Examples of using host, exportBase and export
+
+The following example shows how to override `host` and `exportBase` for this particular service.
+
+```yaml
+version: '2'
+services:
+  foo:
+    image: alpine
+    stdin_open: true
+    volumes:
+    - bar:/data
+volumes:
+  bar:
+    driver: rancher-nfs
+    driver_opts:
+      host: 192.168.0.1
+      exportBase: /thisisanothershare
+```
+
+You can also use a different `exportBase` per volume, see the example below.
+
+```yaml
+version: '2'
+services:
+  foo:
+    image: alpine
+    stdin_open: true
+    volumes:
+    - bar:/bardata
+    - baz:/bazdata
+volumes:
+  bar:
+    driver: rancher-nfs
+    driver_opts:
+      host: 192.168.0.1
+      exportBase: /thisisanothershare
+  baz:
+    driver: rancher-nfs
+    driver_opts:
+      host: 192.168.0.1
+      exportBase: /evenanothershare
 ```
 
 ### Using Rancher NFS with AWS EFS
@@ -119,3 +166,38 @@ You can launch Rancher NFS with the following options for example:
 * **NFS Server**: `xxxxxxx.efs.us-west-2.amazonaws.com`
 * **Export Base Directory**: `/`
 * **NFS Version**: `nfsvers=4`
+
+### Preserving data on volume removal
+The default value for the `onRemove` driver option is `purge`. This means that the underlying data will be removed if the volume is removed from Rancher. If you want to retain the underlying data, you can specify the `retain` value. You can also override this behavior on a per-volume basis. If the nfs-driver option `onRemove` is set to `retain`, but you want to purge the data of a particular volume when it's removed from Rancher, you can configure `onRemove: purge` in the `driver_opts` of the volume specification inside `docker-compose.yml` like in the example below.
+
+```yaml
+services:
+  foo:
+    image: alpine
+    stdin_open: true
+    volumes:
+    - bar:/data
+volumes:
+  bar:
+    driver: rancher-nfs
+    driver_opts:
+      onRemove: purge
+```
+
+If the nfs-driver option `onRemove` is set to `purge`, you can configure `onRemove: retain` in the `driver_opts` of the volume specification to preserve the data after the volume is removed in Rancher.
+
+```yaml
+services:
+  foo:
+    image: alpine
+    stdin_open: true
+    volumes:
+    - bar:/data
+volumes:
+  bar:
+    driver: rancher-nfs
+    driver_opts:
+      onRemove: retain
+```
+
+> **Note:** Creating an external volume with the same name as a previously removed volume with retained data will make the retained data accessible to the container using this volume.
