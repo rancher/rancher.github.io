@@ -66,7 +66,7 @@ map $http_upgrade $connection_upgrade {
 }
 
 server {
-    listen 443 ssl spdy;
+    listen 443 ssl http2;
     server_name <server>;
     ssl_certificate <cert_file>;
     ssl_certificate_key <key_file>;
