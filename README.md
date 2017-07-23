@@ -94,6 +94,14 @@ git checkout dev
 git pull master
 ```
 
+### Checklist for contributions
+
+Please check the following list before you submit a Pull Request to make sure we can approve it right away!
+
+* Check if your change applies to more than one version, and if so, please make the same change in other versions as well. (Rancher only)
+* If your change only applies to a minor version, make sure it is specified in the text, i.e. `Available as of Rancher v1.6.6` or `Available as of RancherOS v1.1.0`.
+* If your change is regarding an item in the `rancher-catalog`, make sure the change is also applied in the README there.
+
 ### Making a Pull Request on GitHub
 
 **Important:** Ensure that you have merged `upstream/master` into your dev branch before you do the following.
