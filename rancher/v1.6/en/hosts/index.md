@@ -29,7 +29,7 @@ Version               | Supported? | Kubernetes Supported? | Install Script |
 ----------------------|------------|---------------------|-----------------
 `1.9.x` and lower     | No         |                     |
 `1.10.0` - `1.10.2`   | No         |                     |
-`1.10.3` (and higher) | No{::nomarkdown}<p>(Yes in v1.6.3 and lower)</p>{:/}         | No                  | `curl https://releases.rancher.com/install-docker/1.10.sh | sh`
+`1.10.3` (and higher) | No{::nomarkdown}<p>(Yes in v1.6.5 and lower)</p>{:/}         | No                  | `curl https://releases.rancher.com/install-docker/1.10.sh | sh`
 `1.11.x`              | No         |                     | `curl https://releases.rancher.com/install-docker/1.11.sh | sh`
 `1.12.0` - `1.12.2`   | No         |                     |
 `1.12.3` (and higher) | **Yes**    | **Yes**             | `curl https://releases.rancher.com/install-docker/1.12.sh | sh`
