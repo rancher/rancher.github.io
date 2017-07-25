@@ -1,13 +1,6 @@
 name: Rancher Documentation
 description: Documentation for Rancher
 
-
-# Changing these will require updates to Dockerfile
-URL: http://rancher.github.io
-baseurl: ""
-
-exclude: []
-
 markdown: kramdown
 highlighter: rouge
 kramdown:
@@ -17,3 +10,5 @@ permalink: pretty
 
 gems:
   - jekyll-redirect-from
+
+# URL and baseurl set by Dockerfile

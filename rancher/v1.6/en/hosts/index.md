@@ -27,9 +27,9 @@ From the  **Infrastructure** -> **Hosts** tab, click on **Add Host**.
 
 Version               | Supported? | Kubernetes Supported? | Install Script |
 ----------------------|------------|---------------------|-----------------
-`1.9.x` and earlier   | No         |                     |
+`1.9.x` and lower     | No         |                     |
 `1.10.0` - `1.10.2`   | No         |                     |
-`1.10.3` (and higher) | No         | No                  | `curl https://releases.rancher.com/install-docker/1.10.sh | sh`
+`1.10.3` (and higher) | No{::nomarkdown}<p>(Yes in v1.6.5 and lower)</p>{:/}         | No                  | `curl https://releases.rancher.com/install-docker/1.10.sh | sh`
 `1.11.x`              | No         |                     | `curl https://releases.rancher.com/install-docker/1.11.sh | sh`
 `1.12.0` - `1.12.2`   | No         |                     |
 `1.12.3` (and higher) | **Yes**    | **Yes**             | `curl https://releases.rancher.com/install-docker/1.12.sh | sh`
@@ -38,8 +38,8 @@ Version               | Supported? | Kubernetes Supported? | Install Script |
 `17.03.x-ee`          | **Yes**    | No                  | n/a
 `17.04.x-ce`          | No         |                     | `curl https://releases.rancher.com/install-docker/17.04.sh | sh`
 `17.05.x-ce`          | No         | No                  | `curl https://releases.rancher.com/install-docker/17.05.sh | sh`
-`17.06.x-ce`          | v1.6.3+    | No                  | `curl https://releases.rancher.com/install-docker/17.06.sh | sh`
-`17.06.x-ee`          | v1.6.3+    | No                  | n/a
+`17.06.x-ce`          | **Yes**{::nomarkdown}<p>(v1.6.3 and higher)</p>{:/}    | No                  | `curl https://releases.rancher.com/install-docker/17.06.sh | sh`
+`17.06.x-ee`          | **Yes**{::nomarkdown}<p>(v1.6.3 and higher)</p>{:/}    | No                  | n/a
 
 > **Note:** We will not support the edge releases from Docker, but will support the stable releases of Docker.
 
