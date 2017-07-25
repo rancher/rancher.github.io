@@ -48,6 +48,37 @@ If there are any members that you want to delete, click on the **X** next to the
 
 Owners can also change the roles of anyone on the member list. Just select the role that you want for the particular user.
 
+### Editing Environment Permissions
+
+With existing environment permissions, both users and admins are able to activate, deactivate, create, update, and delete environments. To disallow non-admins from performing those actions on environments, locally create the following files:
+```
+// user-auth.json
+{
+    "authorize" : {
+        "project" : "r",
+        "project.resourceActions.activate": "",
+        "project.resourceActions.deactivate": ""
+    }
+}
+```
+```
+// admin-auth.json
+{
+    "authorize" : {
+        "project" : "crud",
+        "project.resourceActions.activate": "c",
+        "project.resourceActions.deactivate": "c"
+    }
+}
+```
+Adjust the following command to point to the full path of the files created above:
+```
+docker run -d -p 8080:8080 \
+  -v /local/path/to/admin-auth.json:/usr/share/cattle/war/schema/admin/admin-auth.json.d/overrides/admin-auth.json \
+  -v /local/path/to/user-auth.json:/usr/share/cattle/war/schema/user/user-auth.json.d/overrides/user-auth.json \
+  rancher/server:latest
+```
+
 ### Membership Roles
 
 #### Owners
