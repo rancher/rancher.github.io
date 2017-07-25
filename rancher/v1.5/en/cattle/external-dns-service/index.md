@@ -15,6 +15,52 @@ As part of the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{pag
 * For every environment in your Rancher setup, there should be a `route53` service of scale 1.
 * Multiple Rancher instances should not share the same `hosted zone`.
 
+### Configuring IAM Permissions on AWS
+
+Unless you give Rancher permission, it will not be able to manage your Route53 zone file. 
+
+* Navigate the the IAM section in AWS.
+* Create a user (name is something obvious like rancher-route53)
+* Under Access Type, choose Programmatic Access
+* Click Next: Permissions
+* On the following screen, click Add permissions
+* Choose the Icon labelled Attach existing policies directly
+* Click Create Policy
+* Click Select next to Create Your Own Policy
+* Name it the same name as the user from above (this will make it easier to find later)
+* Paste this in as the Policy Document and click Create Policy at the bottom
+
+**NOTE:** Be sure to substitute your HOSTED_ZONE_ID for the placeholder below. You can find it to the right of your zone name in the Route 53 panel at AWS.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "route53:GetHostedZone",
+                "route53:GetHostedZoneCount",
+                "route53:ListHostedZonesByName",
+                "route53:ListResourceRecordSets"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "route53:ChangeResourceRecordSets"
+            ],
+            "Resource": [
+                "arn:aws:route53:::hostedzone/<HOSTED_ZONE_ID>"
+            ]
+        }
+    ]
+}
+```
+
 ### Launching Route53 Service
 
 From the **Catalog** tab, you can select the **Route53 DNS Stack**.
