@@ -133,4 +133,45 @@ Any member of the team `mycompany-research` should now have the ability to view,
 
 > **Note:** Currently, you can apply permissions to specific groups in kubernetes RBAC, but you must invite the individuals of the group to the environment. Inviting groups to an environment currently does not support kubernetes RBAC. 
 
+#### Giving all users access to list namespaces
 
+Switching between namespaces in the Kubernetes Dashboard is difficult if a user does not have access to list all namespaces. The following cluster role and associated binding will give all users the ability to list namespaces.
+
+```
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: default-reader
+rules:
+  - apiGroups: [""]
+    resources:
+      - namespaces
+    verbs: ["get", "watch", "list"]
+  - nonResourceURLs: ["*"]
+    verbs: ["get", "watch", "list"]
+
+---
+
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: default-reader-binding
+subjects:
+  - kind: Group
+    name: system:authenticated
+roleRef:
+  kind: ClusterRole
+  name: default-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+
+The following resources might also be useful to include in `default-reader` depending on your needs.
+
+ * componentstatuses
+ * events
+ * endpoints
+ * namespaces
+ * nodes
+ * persistentvolumes
+ * resourcequotas
+ * services
