@@ -126,10 +126,11 @@ version: v0.0.1
 
 #### Stack Name Interpolation
 
-From rancher v1.6.6+ we start to support interpolating `{{ .Stack.Name }}` in `docker-compose.yml` file. You can use it in rancher CLI through `rancher-compose -p your-stack-name up` command. Or in rancher UI, go to `STACKS`-> `Add Stack`, uploading or typing your `docker-compose.yml` file with the fields you want to have `{{ .Stack.Name }}` being parsed. 
-For example, in the following `docker-compose.yml` file, after you launch your stack, the `foo` field within `labels` will have the value of your stack's name.
+As of Rancher v1.6.6, we support interpolating `{{ .Stack.Name }}` in the `docker-compose.yml` file, so that whatever the stack name is used in the Docker Compose file. 
 
-`docker-compose.yml`
+Docker Compose files can used with the Rancher CLI or in the UI, when creating a new stack. In our example, you can create a label that will be based on the name of the stack. 
+
+##### Example `docker-compose.yml`
 
 {% raw %}
 ```yaml
@@ -138,9 +139,14 @@ services:
   web:
     image:  nginx
     labels:  
-      foo: {{ .Stack.Name }}
+      stack-name: {{ .Stack.Name }}
 ```
 {% endraw %}
+
+If you used Rancher CLI to create the stack, i.e. `rancher up -p myawesomestack`, then the stack would create a service with the label, `stack-name=myawesomestack`. 
+
+> **Note:** Interpolation only occurs during stack creation. Any changes to the name of the stack will not be respected.
+
 
 #### Escaping Double Brackets
 
