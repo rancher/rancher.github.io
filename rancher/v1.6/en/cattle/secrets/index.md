@@ -112,6 +112,8 @@ When secrets are added to a container, the secrets are written to a tmpfs volume
 
 #### Adding secrets using Rancher CLI
 
+> **Note:** Secrets were introduced in compose file version 3. As Rancher does not support compose version 3, we enabled the use of secrets in version 2.
+
 For default usage of secrets, you can reference the secret by name in the secrets array in the `docker-compose.yml`. The target filename will be the same name as the name of the secret. By default, the target filename will be created as User ID and Group ID `0`, and File Mode of `0444`. Setting `external` to `true` in the `secrets` part will make sure it knows the secret has already been created.
 
 ##### Example basic `docker-compose.yml`
