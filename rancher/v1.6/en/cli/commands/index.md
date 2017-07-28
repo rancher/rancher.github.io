@@ -358,7 +358,7 @@ Name | Description
   `--quiet`, `-q`  |   Only display IDs
   `--format` value | `json` or Custom format: {% raw %}'{{.ID}} {{.Host.Hostname}}'{% endraw %}
 
-#### Subcmmmands
+#### Subcommands
 
 Name | Description
 ----|-----
