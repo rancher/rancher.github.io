@@ -124,6 +124,30 @@ name: "Nginx Application"
 version: v0.0.1
 ```
 
+#### Stack Name Interpolation
+
+As of Rancher v1.6.6, we support interpolating `{{ .Stack.Name }}` in the `docker-compose.yml` file, so that whatever the stack name is used in the Docker Compose file. 
+
+Docker Compose files can used with the Rancher CLI or in the UI, when creating a new stack. In our example, you can create a label that will be based on the name of the stack. 
+
+##### Example `docker-compose.yml`
+
+{% raw %}
+```yaml
+version: '2'
+services:
+  web:
+    image:  nginx
+    labels:  
+      stack-name: {{ .Stack.Name }}
+```
+{% endraw %}
+
+If you used Rancher CLI to create the stack, i.e. `rancher up -p myawesomestack`, then the stack would create a service with the label, `stack-name=myawesomestack`. 
+
+> **Note:** Interpolation only occurs during stack creation. Any changes to the name of the stack will not be respected.
+
+
 #### Escaping Double Brackets
 
 With the introduction to templating to Rancher, double brackets {% raw %}(`{{` or `}}`){% endraw %} will now be treated as part of a template. If you need to require these characters without having it be converted to a template, you can add `# notemplating` to the top of your compose files that contain the characters.
