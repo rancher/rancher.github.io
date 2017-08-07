@@ -120,7 +120,7 @@ The `rancher catalog install` command installs catalog templates into your envir
 
 Name | Description
 ----|-----
-`-answers` value, `-a` value |  Answer file
+`-answers` value, `-a` value |  Answer file. Format should be `key=value` per line.
 `--name` value              |  Name of stack to create
 `--system`, `-s`              |  Install a system template
 
