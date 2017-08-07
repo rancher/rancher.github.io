@@ -8,7 +8,7 @@ lang: en
 ## Private Registry with Kubernetes in Rancher
 ---
 
-If you are running Rancher with [no internet access]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/no-internet-access/) or Rancher does not have access to DockerHub (i.e. `docker.io`) and Google Container Registry (i.e. `gcr.io`), then the pod infra container image and Kubernetes add-ons will not be installed. You will need to [configure Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes) to point a private registry for being able to installing the Kubernetes add-ons and the pod infra container image.
+If you are running Rancher with [no internet access]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/no-internet-access/) or Rancher does not have access to DockerHub (i.e. `docker.io`) and Google Container Registry (i.e. `gcr.io`), then the pod infra container image and Kubernetes add-ons will not be installed. You will need to [configure Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes) to point to a private registry for installing the Kubernetes add-ons and the pod infra container image.
 
 #### Private Registry Requirements
 
