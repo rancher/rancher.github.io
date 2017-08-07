@@ -16,7 +16,7 @@ Rancher expects the private registry to mirror DockerHub (i.e `docker.io`) and G
 
 ##### Pod Infra Container Image
 
-When [configuring Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes), Rancher uses an image whose network/ipc namespaces in each pod will use.
+When [configuring Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes), Rancher uses an image whose network/ipc namespaces will be used in each pod. 
 
 ```yml
 # Located as a default value in the k8s templates
