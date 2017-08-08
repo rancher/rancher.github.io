@@ -69,6 +69,12 @@ You can optionally run Jekyll locally on your computer to be able to see the fin
 jekyll serve
 ```
 
+Additionally, you can use the provided `Makefile` to build in a Docker container:
+
+```shell
+make build
+```
+
 ### Merging upstream/master into Your Local Branch (`dev`)
 
 Maintain an up-to-date master branch in your local repository. Merge the changes on a daily basis from the `upstream/master` (the official documentation repository) into your local repository.
