@@ -126,9 +126,9 @@ version: v0.0.1
 
 #### Stack Name Interpolation
 
-As of Rancher v1.6.6, we support interpolating `{{ .Stack.Name }}` in the `docker-compose.yml` file, so that whatever the stack name is used in the Docker Compose file. 
+As of Rancher v1.6.6, we support interpolating {% raw %} `{{ .Stack.Name }}` {% endraw %} in the `docker-compose.yml` file, so that whatever the stack name is used in the Docker Compose file. 
 
-Docker Compose files can used with the Rancher CLI or in the UI, when creating a new stack. In our example, you can create a label that will be based on the name of the stack. 
+Docker Compose files can used with the Rancher CLI or in the UI, when creating a new stack. In our example, you can create a label that will be based on the name of the stack.
 
 ##### Example `docker-compose.yml`
 
