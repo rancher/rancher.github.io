@@ -100,10 +100,8 @@ catalog:
 For `upgrade_from`, there are three types of values that can be used.
 
 1. Allowing upgrading only from 1 version: `1.0.0`
-2. Being able to select higher or lower than a specific version: `=>1.0.0`, `<=2.0.0`
+2. Being able to select higher or lower than a specific version: `>=1.0.0.`, `<=2.0.0`
 3. Being able to define a [range of versions](https://github.com/blang/semver#ranges): `>1.0.0 <2.0.0 || >3.0.0`
-
-> **Note:**  If using `greater than or equal to` logic. `=>` must be used rather than `>=` due to YAML parsing issues.
 
 ### Questions in the `rancher-compose.yml`
 
