@@ -49,6 +49,19 @@ Client: &version.Version{SemVer:"v2.1.3", GitCommit:"5cbc48fb305ca4bf68c26eb8d2a
 Server: &version.Version{SemVer:"v2.1.3", GitCommit:"5cbc48fb305ca4bf68c26eb8d2a7eb363227e973", GitTreeState:"clean"}
 ```
 
+#### Upgrading Helm
+Each Rancher release comes with a specific release of Helm based on the current state of the upstream Kubernetes add-ons repo, however you can upgrade the helm components at any time based on your requirements.
+
+Helm has two versioned components, the client (helm) and the server (tiller). For best results it is recommended to run the same version of the client and server. Upgrading the client can be done by downloading a newer binary on your local system. The client can then be used to upgrade the server component to the matching version by running the following:
+
+```
+$ helm init --upgrade
+
+Tiller (the helm server side component) has been upgraded to the current version.
+Happy Helming!
+```
+**NOTE** The CLI built into the Rancher UI has its own copy of the `helm` client, so upgrading the server without upgrading this client may break functionality with the UI based CLI until Rancher releases an updated version. 
+
 #### Using Helm
 
 As with all package managers, before using helm, we should verify that the Charts are up-to-date.
