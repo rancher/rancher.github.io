@@ -54,6 +54,7 @@ E.g. to show the configuration for the pool `zpool_1` you may run the following 
 
 > $ sudo zdb -e -C zpool_1
 
+
 ## ZFS storage for Docker on RancherOS
 
 First, you need to stop  the`docker` system service and wipe out `/var/lib/docker` folder:
