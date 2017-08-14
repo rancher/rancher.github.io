@@ -32,6 +32,11 @@ Rancher is deployed as a set of Docker containers. Running Rancher is as simple 
   * MYSQL Configuration Requirements   
     * Option 1: Run with Antelope with default of `COMPACT`
     * Option 2: Run MySQL 5.7 with Barracuda where the default `ROW_FORMAT` is `Dynamic`
+  * Recommended settings:
+    * `max_packet_size` >= 32M
+    * `innodb_log_file_size` >= 256M (Changing this requires planning on existing DBs)
+    * `innodb_file_per_table=1`
+    * `innodb_buffer_pool_size` >= 1GB (For larger installs 4-8G pools on dedicated MySQL servers) 
 
 > **Note:** Currently, Docker for Mac is not supported in Rancher.
 
