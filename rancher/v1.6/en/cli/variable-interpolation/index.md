@@ -143,7 +143,7 @@ services:
 ```
 {% endraw %}
 
-If you used Rancher CLI to create the stack, i.e. `rancher up -p myawesomestack`, then the stack would create a service with the label, `stack-name=myawesomestack`. 
+If you used Rancher CLI to create the stack, i.e. `rancher up -s myawesomestack -f docker-compose.yml`, then the stack would create a service with the label, `stack-name=myawesomestack`. 
 
 > **Note:** Interpolation only occurs during stack creation. Any changes to the name of the stack will not be respected.
 
