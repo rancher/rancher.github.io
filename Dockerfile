@@ -1,4 +1,4 @@
-FROM rancher-docs:build AS builder
+FROM rancher/rancher.github.io:build AS builder
 
 FROM nginx
 COPY --from=builder /build/_site /usr/share/nginx/html/docs
