@@ -12,13 +12,13 @@ Operating system composed entirely of Docker containers. Everything in RancherOS
 
 ## Rancher Labs Documentation website
 
-Rancher documentation is available at <http://rancher.com/docs/rancher/>.
+Rancher documentation is available at <http://docs.rancher.com/rancher/>.
 
 As Rancher has gone GA, we've added in version control. The default Rancher docs site will always be referring to the latest release. We will branch off specific versions of Rancher that are deemed GA, which would also be tagged as `rancher/server:stable`.
 
 Currently, we've added support for Chinese version of the docs site per community request. Currently, Rancher will not be actively translating the docs site, but we welcome PRs.
 
-Rancher OS documentation is available at <http://rancher.com/docs/os/>.
+Rancher OS documentation is available at <http://docs.rancher.com/os/>.
 
 ## Contributing to Rancher Labs Documentation Project
 
@@ -27,8 +27,6 @@ Rancher OS documentation is available at <http://rancher.com/docs/os/>.
 Rancher Labs documentation is hosted on GitHub Pages and published online by using Jekyll, an easy blog-aware static website generator. For more details on how to set up Jekyll, we recommend you to read <https://help.github.com/articles/using-jekyll-with-pages/>. If you are using Windows, we strongly advise you to follow the instruction given at <http://jekyllrb.com/docs/windows/>.
 
 For information on editing `.md` files (Markdown), refer to <https://daringfireball.net/projects/markdown/syntax>.
-
-Or you can use the `make live` Makefile target (or run `docker run --rm -it -p 80:4000 -v $(PWD):/build rancher/rancher.github.io:build jekyll serve -w -P 4000 --incremental` by hand to use the Jekyll build image used for our production pipeline.
 
 ### Setting up the Git Environment
 
@@ -71,10 +69,10 @@ You can optionally run Jekyll locally on your computer to be able to see the fin
 jekyll serve
 ```
 
-Additionally, you can use the provided `Makefile` to build and test in a Docker container:
+Additionally, you can use the provided `Makefile` to build in a Docker container:
 
 ```shell
-make live
+make build
 ```
 
 ### Merging upstream/master into Your Local Branch (`dev`)
