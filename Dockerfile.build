@@ -13,5 +13,4 @@ RUN mkdir -p os/latest/en \
     && cp -r os/v1.0/en/* os/latest/ \
     && cp -r os/v1.0/en/* os/
 
-RUN echo 'URL: "http://rancher.com"' >> _config.yml && echo 'baseurl: "/docs"' >> _config.yml
 RUN jekyll build

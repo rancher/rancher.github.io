@@ -11,8 +11,8 @@ permalink: pretty
 gems:
   - jekyll-redirect-from
 
-# URL and baseurl set by Dockerfile
-
+URL: "http://rancher.com"
+baseurl: "/docs"
 
 # RancherOS defaults
 defaults:
