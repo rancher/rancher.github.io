@@ -4,3 +4,5 @@ scripts
 .cache
 .git
 _site
+Gemfile
+Gemfile.lock
