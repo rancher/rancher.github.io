@@ -24,5 +24,5 @@ $ sudo system-docker run --rm -it -v /:/host alpine vi /host/boot/global.cfg
 If you want to set the extra kernel parameters when you are [Installing RancherOS to Disk]({{site.baseurl}}/os/running-rancheros/server/install-to-disk/) please use the `--append` parameter.
 
 ```bash
-$ sudo ros install -d /dev/sda --append "rancheros.autologin=tty1"
+$ sudo ros install -d /dev/sda --append "rancher.autologin=tty1"
 ```
