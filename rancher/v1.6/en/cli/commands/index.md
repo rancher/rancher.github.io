@@ -166,7 +166,7 @@ $ rancher config --print
 
 ### Rancher Docker Reference
 
-The `rancher docker` command allows you to run any Docker command on a specific host. Uses the ``$RANCHER_DOCKER_HOST` to run Docker commands. Use `--host <hostID>` or `--host <hostName>` to select a different host.
+The `rancher docker` command allows you to run any Docker command on a specific host. Uses the `$RANCHER_DOCKER_HOST` to run Docker commands. Use `--host <hostID>` or `--host <hostName>` to select a different host.
 
 
 ```bash
