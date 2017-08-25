@@ -19,6 +19,8 @@ Rancher is deployed as a set of Docker containers. Running Rancher is as simple 
 * [Rancher Server - Using ELB in AWS](#elb)
 * [Rancher Server - AD/OpenLDAP using TLS](#ldap)
 * [Rancher Server - HTTP Proxy](#http-proxy)
+* [Rancher Server - MySQL over SSL](#mysql-ssl)
+
 
 > **Note:** You can get all help options for the Rancher server container by running `docker run rancher/server --help`.
 
@@ -287,3 +289,53 @@ $ sudo docker run -d \
 If the [Rancher catalog]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/) will not be used, run the Rancher server command as you normally would.
 
 When [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/) to Rancher, there is no additional requirements behind an HTTP proxy.
+
+<a id="mysql-ssl"></a>
+
+### Launching Rancher Server with MySQL over SSL
+
+### Important Note
+
+If you are using a LDAP/AD authentication backend with Rancher whose certificate is signed by a different CA then that of the MySQL server, then this guide will not work for you!
+
+### Prerequisites
+
+- The certificate or CA cert of the MySQL server (PEM encoded)
+
+### Instructions
+
+1. Copy the server's certificate or CA certificate to the Rancher server host. When starting the `rancher/server` container you will have to mount that certificate to `/var/lib/rancher/etc/ssl/ca.crt`.
+2. Construct a custom JDBC URL by replacing the placeholders in this string with your database parameters:
+```
+jdbc:mysql://<DB_HOST>:<DB_PORT>/<DB_NAME>?useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&prepStmtCacheSize=517&cachePrepStmts=true&prepStmtCacheSqlLimit=4096&socketTimeout=60000&connectTimeout=60000&sslServerCert=/var/lib/rancher/etc/ssl/ca.crt&useSSL=true
+```
+3. Export this JDBC URL to the container in both the `CATTLE_DB_CATTLE_MYSQL_URL` and `CATTLE_DB_LIQUIBASE_MYSQL_URL` environment variables 
+4. Export `CATTLE_DB_CATTLE_GO_PARAMS="tls=true"` to the container. If the subject field of the server's certificate does not match the server's hostname, you will need to use `CATTLE_DB_CATTLE_GO_PARAMS="tls=skip-verify"` instead.
+
+#### Example
+
+```shell
+
+$ export JDBC_URL="jdbc:mysql://<DB_HOST>:<DB_PORT>/<DB_NAME>?useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&prepStmtCacheSize=517&cachePrepStmts=true&prepStmtCacheSqlLimit=4096&socketTimeout=60000&connectTimeout=60000&sslServerCert=/var/lib/rancher/etc/ssl/ca.crt&useSSL=true"
+
+$ cat <<EOF > docker-compose.yml
+version: '2'
+  services:
+    rancher-server:
+      image: rancher/server:stable
+      restart: unless-stopped
+      command: --db-host <DB_HOST> --db-port <DB_PORT> --db-name <DB_NAME> --db-user <DB_USER> --db-pass <DB_PASS>
+      environment:
+        CATTLE_DB_LIQUIBASE_MYSQL_URL: $JDBC_URL
+        CATTLE_DB_CATTLE_MYSQL_URL: $JDBC_URL
+        CATTLE_DB_CATTLE_GO_PARAMS: "tls=true"
+      volumes:
+        - /path/to/mysql/ca.crt:/var/lib/rancher/etc/ssl/ca.crt
+      ports:
+        - "8080:8080"
+EOF
+
+$ docker-compose up -d
+```
+
+*Important*: You have to specify your database parameters both in the JDBC URL as well as in the `--db-xxx` command arguments!
