@@ -293,6 +293,7 @@ When [adding hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/host
 <a id="mysql-ssl"></a>
 
 ### Launching Rancher Server with MySQL over SSL
+> **Note:** Currently, supported in Rancher 1.6.3+
 
 ### Important Note
 
