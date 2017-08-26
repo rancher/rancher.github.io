@@ -3,8 +3,6 @@ title: Networking in Rancher
 layout: rancher-default-v1.6
 version: v1.6
 lang: en
-redirect_from:
-  - /rancher/latest/en/rancher-services/networking/
 ---
 
 ## Networking
