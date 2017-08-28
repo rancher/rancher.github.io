@@ -3,7 +3,7 @@
 <div class="col span-8">
     <div class="content-container">
       <div class="banner bg-error p-10">
-           These docs are for Rancher {{page.version}}, for the current version,  see <a href={{site.baseurl}}/rancher/latest/>here</a>.
+           These docs are for Rancher {{page.version}}, for the current version,  see <a href={{site.baseurl}}{{page.url | replace: page.version, 'latest'}}>here</a>.
       </div>
         {{ content }}
 
