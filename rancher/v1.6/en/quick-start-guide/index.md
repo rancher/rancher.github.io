@@ -168,7 +168,7 @@ services:
         path: ''
         priority: 1
         protocol: http
-        service: quickstartguide/web
+        service: web
         source_port: 80
         target_port: 8080
     health_check:
