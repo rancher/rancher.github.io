@@ -11,7 +11,7 @@ lang: en
 Rancher runs up to 3 instances of **etcd** on 3 different hosts. If a majority of hosts running **etcd** fail, follow these steps:
 
 1. In **Kubernetes** -> **Infrastructure Stacks**, expand the **Kubernetes** stack. Click on the **etcd** service. Find a `kubernetes-etcd` container that is in `running` state. Exec into the container, by using **Execute Shell**. In the shell, run `etcdctl cluster-health`.
-     * If the last output line reads `cluster is healthy`, then there is no disaster, stop immediately.
+     * If the last output line reads `cluster is healthy`, then there is no disaster and the etcd cluster is fine. 
      * If the last output line reads `cluster is unhealthy`, make a note of this `kubernetes-etcd` container. This is your sole survivor. All other containers can be replaced as you will use this container to scale up.
 2. Delete the hosts in `Disconnected` state. Confirm that none of these hosts are running your sole survivor.
 3. Exec into the container that is your sole survivor. In the shell, run `disaster`. The container will restart automatically and etcd will heal itself to become a single-node cluster. System functionality will be restored.
