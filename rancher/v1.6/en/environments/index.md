@@ -74,6 +74,9 @@ A read only role of an environment is only able to view all resources in the env
 
 > **Note:** With this role, they will still be able to view logs of a container.
 
+
+To allow roles other than `owner` to change environment membership, add the role to the API setting [`project.set.member.roles`]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/api-resources/setting/).
+
 ### What is an Environment Template
 
 An environment template allows users to define a different combination of infrastructure services to be deployed. The infrastructure services includes but not limited to container orchestration (i.e. cattle, [kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/), [mesos]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/mesos/), [swarm]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/swarm/)), [networking]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking/), rancher services (i.e [healthcheck]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks), [dns]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/dns-service/), [metadata]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/metadata/), [scheduling]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/), service discovery and [storage]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/storage-service/).
