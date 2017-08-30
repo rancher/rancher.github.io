@@ -120,7 +120,7 @@ The `rancher catalog install` command installs catalog templates into your envir
 
 Name | Description
 ----|-----
-`-answers` value, `-a` value |  Answer file. Format should be `key=value` per line.
+`-answers` value, `-a` value |  Answer file. Format should be `yaml` or `json` with the appropriate file extension suffixed.
 `--name` value              |  Name of stack to create
 `--system`, `-s`              |  Install a system template
 
@@ -669,7 +669,7 @@ Name | Description
 `--batch-size` value          |       Number of containers to upgrade at once (default: 2)
 `--interval` value            |       Update interval in milliseconds (default: 1000)
 `--rancher-file` value        |       Specify an alternate Rancher compose file (default: rancher-compose.yml)
-`--env-file` value, `-e` value     |    Specify a file from which to read environment variables
+`--env-file` value, `-e` value     |    Specify a file from which to read environment variables. File should be in `yaml` or `json` format and suffixed with respective file extension.
 `--file` value, `-f` value       |      Specify one or more alternate compose files (default: docker-compose.yml) [$COMPOSE_FILE]
 `--stack` value, `-s` value       |     Specify an alternate project name (default: directory name)
 
