@@ -28,7 +28,7 @@ If backups are disabled, the values for **Backup Creation Period** and **Backup 
 
 ### Configuring Remote Backups
 
-Currently, backups are persisted to a static location on the host at `/var/etcd/backups`. It is required that you mount a network storage at this location on all the hosts running the **etcd** service. Setting up the network storage must be done before Kubernetes is launched.
+Currently, backups are persisted to a static location on the host at `/var/etcd/backups`. It is required that you mount network storage at this location on all the hosts running the **etcd** service. Setting up the network storage must be done before Kubernetes is launched.
 
 ### Restoring Backups
 
