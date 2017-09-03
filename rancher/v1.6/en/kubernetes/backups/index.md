@@ -37,15 +37,14 @@ If all hosts running the **etcd** service fail, follow these steps:
 1. Change your orchestration type for the environment to **Cattle** by deleting the **Kubernetes** stack from the **Kubernetes** -> **Infrastructures Stacks**. Pods will remain intact and available.
 2. Delete the `disconnected` hosts and add new hosts. If you have opted to have [resiliency planes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/resiliency-planes), you will need to add hosts with the label `etcd=true`.
 3. For each host that will be running the **etcd** service, mount the network storage containing backups, this should have been created as part of [configuring remote backups](#configuring-remote-backups). Then run these commands:
-    ```bash
-    # configure this to point to the desired backup in /var/etcd/backups
-    target=<NAME_OF_BACKUP>
-    # don’t touch anything below this line
-    docker volume rm etcd
-    docker volume create --name etcd
-    docker run -d -v etcd:/data --name etcd-restore busybox
-    docker cp /var/etcd/backups/$target etcd-restore:/data/data.current
-    docker rm etcd-restore
+    
+    In a terminal session Run:
+    * ```target=<NAME_OF_BACKUP>```
+    * ```docker volume rm etcd```
+    * ```docker volume create --name etcd```
+    * ```docker run -d -v etcd:/data --name etcd-restore busybox```
+    * ```docker cp /var/etcd/backups/$target etcd-restore:/data/data.current```
+    * ```docker rm etcd-restore```
     ```
     > **Note:** You must be logged in as a user with read access to the remote backups. Otherwise, the `docker cp` command will silently fail.
 
