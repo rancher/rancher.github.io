@@ -6,13 +6,13 @@ description: RancherOS is a simplified Linux distribution built from containers,
 
 ## Overview of RancherOS
 ---
-RancherOS is the smallest, easiest way to run Docker in production.  Everything in RancherOS is a container managed by Docker. This includes system services such as `udev` and `syslog`.  Decause it only includes the services necessary to run Docker, RancherOS is dramatically smaller than most traditional operating systems. By removing unnecessary libraries and services, requirements for security patches and other maintenance are dramatically reduced. This is possible because, with Docker, users typically package all necessary libraries into their containers.
+RancherOS is the smallest, easiest way to run Docker in production.  Everything in RancherOS is a container managed by Docker. This includes system services such as `udev` and `syslog`.  Because it only includes the services necessary to run Docker, RancherOS is dramatically smaller than most traditional operating systems. By removing unnecessary libraries and services, requirements for security patches and other maintenance are dramatically reduced. This is possible because, with Docker, users typically package all necessary libraries into their containers.
 
 Another way in which RancherOS is designed specifically for running Docker is that it always runs the latest version of Docker. This allows users to take advantage of the latest Docker capabilities and bug fixes.
 
 Like other minimalist Linux distributions, RancherOS boots incredibly quickly, generally in 5-10 seconds.  Starting Docker containers is nearly instant, similar to starting any other process. This quickness is ideal for organizations adopting microservices and autoscaling.
 
-Docker is an open-source platform designed for developers, system admins, and DevOps, it is used to build, ship, and run containers, using simple yet powerful CLI (Command Line Interface), you can get started with Docker from [Docker user guide](https://docs.docker.com/userguide/).
+Docker is an open-source platform designed for developers, system admins, and DevOps, it is used to build, ship, and run containers, using simple yet powerful CLI (Command Line Interface), you can get started with Docker from [Docker user guide](https://docs.docker.com/engine/userguide/).
 
 ### Hardware Requirements
 
