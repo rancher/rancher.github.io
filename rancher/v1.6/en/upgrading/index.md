@@ -140,7 +140,7 @@ If you have launched Rancher server in [High Availability (HA)]({{site.baseurl}}
 
 1. Before upgrading your Rancher server, we recommend backing up your external database.
 
-2. On each node in the HA setup, stop and remove the running Rancher containers and then start a new Rancher server container using the same command that you had used when [installing Rancher server]({{site.baseurl}}/installing-rancher/installing-server/#multi-nodes), but with a new Rancher server image tag.
+2. On each node in the HA setup, stop and remove the running Rancher containers and then start a new Rancher server container using the same command that you had used when [installing Rancher server]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#multi-nodes), but with a new Rancher server image tag.
 
    ```bash
    # On all nodes, stop all Rancher server containers
