@@ -760,8 +760,7 @@ html {
  * Basic styles for links
  */
 a {
-  color: #0075A8;
-  text-decoration: none; }
+  color: #0075A8; }
   a:hover, a:active, a:focus {
     color: #454545;
     text-decoration: underline; }
@@ -1862,7 +1861,6 @@ medium-modal.modal-container {
     border-top: solid thin #ecf0f1; }
 
 nav ul {
-  background-color: #ecf0f1;
   border-radius: 2px;
   display: inline-block;
   padding: 0; }
@@ -1928,7 +1926,7 @@ nav ul {
   .dropdown-menu li a {
     text-decoration: none;
     color: white; }
-
+//banners
 .banner {
   display: table;
   position: relative;
@@ -1949,6 +1947,31 @@ nav ul {
     vertical-align: middle;
     padding-left: 15px; }
 
+.banner.bg-info {
+    background: #e9f6f7;
+    border: solid 1px #8bd1d6;
+    color: #34495E;
+}
+.banner.bg-warning {
+    background: #fef9e8;
+    border: solid 1px #f2ca27;
+    color: #34495E;
+}
+.banner.bg-error {
+    background: #fef8f8;
+    border: solid 1px #f36b6b;
+    color: #F15354;
+}
+.banner.bg-success {
+    background: #eefbf4;
+    border: solid 1px #34d075;
+    color: #34495E;
+}
+.banner.bg-secondary {
+    background: #eaeff3;
+    border: solid 1px #3d566e;
+    color: #34495E;
+}
 .badge {
   padding: 5px 10px;
   border-radius: 90px;
@@ -2107,7 +2130,7 @@ table {
   .tooltip.bg-info:after {
     border-top-color: #78C9CF; }
   .tooltip.bg-warning:after {
-    border-top-color: #E67E22; }
+    border-top-color: #F1C40F; }
   .tooltip.bg-error:after {
     border-top-color: #F15354; }
 
