@@ -2,10 +2,18 @@
 ---
 
 header {
-  background-image: url('{{ site.baseurl }}/img/header-bg.png');
+  background-image: url('{{ site.baseurl }}/img/homepage-jumbotron-bg.png');
   background-color: #0075A8;
-  background-size: contain;
-  min-height: 100px;
+  background-size: cover;
+  min-height: 250px;
+  padding-top: 1em;
+
+}
+
+.page-header h1 {
+  color: white;
+  text-align: center;
+  font-size: 3em;
 }
 
 .logo {
@@ -54,7 +62,7 @@ img {
 
 .content-container {
   background-color: white;
-  padding: 10px 40px;
+  padding: 20px 40px;
   margin-top: -50px;
   position: relative;
 }
@@ -101,6 +109,13 @@ ol > li::before {
     color: white;
 }
 
+.wrap {
+  max-width: 1280px;
+  min-width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #menu {
   margin: 0;
   padding: 0;
@@ -138,7 +153,34 @@ ol > li::before {
 #menu li i.pull-right.fa.fa-angle-down {
   line-height: 22px;
 }
-
+/*MARKETING MENU*/
+.page-header NAV {
+    font-size: .9em;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    display: table;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.nav-main {
+  background-color: #34495E;
+  border-radius: 3px 0 0 3px;
+  display: table-cell;
+  padding: 0;
+  width: 100%;
+  vertical-align: middle;
+}
+.nav-main a {
+  text-decoration: none;
+  color: white;
+}
+.nav-main a:hover {
+  background: none;
+  color: rgba(255,255,255,.75);
+}
+.nav-logo {
+  width: 230px;
+}
 /*NESTED SUBMENU*/
 ul.nav.navbar-nav li ul.list-group-submenu {
     border-left: solid #0075a8 thick;
@@ -249,6 +291,7 @@ ul.collapse.in a.active {
 .cse .gsc-control-cse, .gsc-control-cse {
   background-color: transparent!important;
   border: 0!important;
+  padding-right: 0;
 }
 
 form.gsc-search-box {
@@ -507,13 +550,12 @@ blockquote strong:first-child{
 }
 
 footer {
-  background: #99a3a8;
-  color: #efefef;
+  background: #dee1e3;
+  color: #99a3a8;
   padding: 10px;
   position: absolute;
   right: 0;
   left: 0;
-  bottom: -75px;
 }
 
 .copyright {
@@ -526,4 +568,20 @@ footer {
 
 #google-search * {
   transition: none !important;
+}
+
+/*marketing footer*/
+.list-inline {
+  padding-left: 0;
+  list-style: none;
+}
+
+.list-inline > li {
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.list-inline > li > a > img {
+  height: 22px;
 }
