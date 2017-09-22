@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>{{ page.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,36 +13,46 @@
     <link href="{{site.baseurl}}/css/lacsso.css?t={{site.time}}" rel="stylesheet">
     <link href="{{site.baseurl}}/css/slicknav.css?t={{site.time}}" rel="stylesheet">
     <link href="{{site.baseurl}}/css/rancher-docs.css?t={{site.time}}" rel="stylesheet">
-  </head>
-  <body class="bg-default">
-    <div class="row body">
-      <header id="header" class="section">
-        <nav class="row" role="navigation">
-          <div class="col span-3">
-          <a class="navbar-brand" href="/"><img src="{{site.baseurl}}/img/rancher-logo-nopadding.svg" width="200px" style="padding-left: 20px" /></a>
-          </div>
+</head>
 
-          <div class="col span-5 offset-3">
-            <!--Start Google Search-->
-            <div class="gcse-search" id="google-search"></div>
-            <script>
+<body class="bg-default">
+    <div class="row body">
+    <header class="page-header">
+      <div class="wrap clearfix">
+        <nav role="navigation" id="js-responsive-nav" class="clearfix responsive-nav"><a class="nav-toggle"></a>
+          <a class="nav-logo logo-caas btn bg-transparent"><img src="{{site.baseurl}}/img/rancher-labs-horiz-white.svg" class="img-responsive" alt="Rancher" data-pin-nopin="true"></a>
+          <ul class="nav-main nav-list">
+            <li><a href="http://rancher.com/">Back to Rancher.com</a></li>
+
+            <ul class="nav navbar-nav pull-right">
+              <li><a href="https://github.com/rancher/rancher#installation" id="rnchrdm-nav-download" title="Download Rancher" target="_blank"><img src="{{site.baseurl}}/img/header-download.svg" alt="Download Rancher" height="12" width="14"> Download Rancher</a></li>
+              <li><a href="http://rancher.com/support" id="rnchrdm-nav-reqsupport" title="Request Support"><i class="fa fa-question-circle" aria-hidden="true"></i>
+ Request Support</a></li>
+            </ul>
+          </ul>
+      </nav>
+    </div>
+    <h1>Rancher Docs</h1>
+  </header>
+  <div class="clearfix"></div>
+  <div class="wrap clearfix">
+        <div class="col span-3 mt-0 mr-0 sidebar">
+        <!--Start Google Search-->
+              <div class="gcse-search" id="google-search"></div>
+              <script>
               var match = window.location.pathname.match(/\/rancher\/([^\/]+)/);
-              if ( match ) {
-                document.getElementById('google-search').setAttribute('data-defaultToRefinement', match[1]);
+              if (match) {
+                  document.getElementById('google-search').setAttribute('data-defaultToRefinement', match[1]);
               }
 
               (function() {
-                var cx = '007896692384436596364:60akf3bfmxm';
-                var gcse = document.createElement('script');
-                gcse.type = 'text/javascript';
-                gcse.async = true;
-                gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(gcse, s);
+                  var cx = '007896692384436596364:60akf3bfmxm';
+                  var gcse = document.createElement('script');
+                  gcse.type = 'text/javascript';
+                  gcse.async = true;
+                  gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                  var s = document.getElementsByTagName('script')[0];
+                  s.parentNode.insertBefore(gcse, s);
               })();
-            </script>
-            <!--End Google Search-->
-          </div>
-        </nav>
-      </header>
-      <div class="col span-3 mt-0 mr-0 sidebar">
+              </script>
+              <!--End Google Search-->
