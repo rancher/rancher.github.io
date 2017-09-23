@@ -8,7 +8,7 @@ lang: en
 ## Networking
 ---
 
-Rancher implements a [CNI](https://github.com/containernetworking/cni) framework, which provides the ability to select different network drivers within Rancher. To leverage the CNI framework, an [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments) is required to use the **Network Services** infrastructure service deployed. By default, all [environment templates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template) have the **Network Services** enabled.
+Rancher implements a [CNI](https://github.com/containernetworking/cni) framework, which provides the ability to select different network drivers within Rancher. To leverage the CNI framework, an [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments) is required to use the **Network Services** infrastructure service deployed. By default, all [environment templates]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template) have the **Network Services** enabled. These services host internal DNS server and manage routing to published ports on the host (via iptables).
 
 Besides the **Network Services** infrastructure service,  select which type of networking plugin/driver that you'd like your services to use. In our default environment templates, we have enabled **IPsec** network driver to create a simple and secure overlay network using IPsec tunneling.
 
