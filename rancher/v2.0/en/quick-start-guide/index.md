@@ -5,6 +5,7 @@ version: v2.0
 lang: en
 redirect_from:
   - /rancher/quick-start-guide/
+  - /rancher/v2.0/en/
 ---
 
 ## Quick Start Guide
@@ -161,7 +162,7 @@ Once its services are up and running, the state of your new stack displays in gr
 
 From the Rancher UI, you can access the native Kubernetes dashboard with one click.
 
-You can also run `kubectl` from your web browser. The Kubernetes CLI, or `kubectl`, helps you deploy and manage your Kubernetes applications. For more information, or to download `kubectl`, visit the [Kubernetes documenation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+You can also run `kubectl` from your web browser. The Kubernetes CLI, or `kubectl`, helps you deploy and manage your Kubernetes applications. For more information, or to download `kubectl`, visit the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
 In addition, you can generate a Kubernetes configuration file to use `kubectl` on your desktop. A Kubernetes configuration file, i.e. *kubeconfig*, lets you configure access to one or more clusters.  
 
