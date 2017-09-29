@@ -162,6 +162,12 @@ The logs of HAProxy can be found inside the load balancer container. `docker log
 ```
 $ cat /var/log/haproxy
 ```
+In order to enable the actual HAProxy logging, you'll have to mention this in the custom configuration of the load balancer container -
+
+```
+defaults
+log 127.0.0.1:8514 local0 debug
+```
 
 ### HA
 
