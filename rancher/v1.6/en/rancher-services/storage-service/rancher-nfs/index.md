@@ -29,7 +29,7 @@ sudo chown nobody:nogroup /nfs
 Modify the exports file (`/etc/exports`).
 
 ```bash
-/nfs    *(rw,sync,no_subtree_check)
+/nfs    *(rw,sync,no_subtree_check,no_root_squash)
 ```
 
 After all the modifications, restart the NFS kernel server. 
