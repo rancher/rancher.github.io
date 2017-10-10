@@ -62,7 +62,7 @@ If you have added a host onto the same host as Rancher server, note that you wil
 
 ### Hosts behind a Proxy
 
-In order to set up an HTTP proxy, configure the docker daemon to point to the proxy. Before you add the custom host, edit the `/etc/default/docker` file to point to your proxy and restart docker.
+In order to add hosts behind an HTTP proxy, the docker daemon will need to be configured to point to the proxy. Before you run the custom command to add the Rancher agent, edit the `/etc/default/docker` file to point to your proxy and restart docker.
 
 ```bash
 $ sudo vi /etc/default/docker
@@ -72,7 +72,9 @@ Within the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have 
 
 > **Note:** If running docker with systemd, follow docker [instructions](https://docs.docker.com/articles/systemd/#http-proxy) on how to configure the HTTP proxy.
 
-No additional environment variables need to be added to the command to launch Rancher agents. You only need to ensure that your docker daemon is configured correctly.
+In order for the Rancher agent to run behind the proxy, no specific environment variables related to the proxy need to be added to the command. You only need to ensure that your docker daemon is configured correctly.
+
+If you want the proxy to be inside the Rancher agent container, you will need to edit the custom command to add the environment variables.
 
 ### VMs with Private and Public IP Addresses
 
