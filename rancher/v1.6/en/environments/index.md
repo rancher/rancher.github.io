@@ -102,3 +102,30 @@ Pick a **Name** and **Description** for the template. Select how you want to sha
 After creating an environment template, you can edit which infrastructure services are enabled in the template. Even though environment templates can be changed, the existing environments based on the templates will not be updated to the new template. They will continue to have the original infrastructure services enabled in the environment.
 
 At any time, you can delete the environment templates as they are only used when launching environments to indicate which infrastructure services should be launched. The templates are not directly tied to the environment so deleting them will not affect any environments.
+
+### Permissions Key:
+
+- C = Create
+- R = Read (View)
+- U = Update
+- D = Delete
+
+###### Membership Related Permissions
+
+|   | Owner | Member | Restricted | ReadOnly |
+|---|---|---|---|---|
+| Environment Membership | RUD | R | R | R |
+| Hosts  | CRUD | CRUD | R | R |
+| Containers | CRUD | CRUD | CRUD | R |
+| Storage | CRUD | CRUD | CRUD | R |
+| Secrets | CRUD | CRUD | CRUD | R |
+| Certificates | CRUD | CRUD | CRUD | R |
+| Registries  | CRUD | CRUD | CRUD | R |
+
+###### Account Type Related Permissions
+
+|  | Admin | User |
+|---|---|---|
+| Private Templates | CRUD | CRUD |
+| Public Templates | CRUD | R |
+| Environments | CRUD | CRUD |
