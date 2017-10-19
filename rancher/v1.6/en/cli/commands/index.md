@@ -661,6 +661,7 @@ The `rancher up` command is similar to the Docker Compose `up` command.
 Name | Description
 ---|----
 `--pull`, `-p` |                         Before doing the upgrade do an image pull on all hosts that have the image already
+`--prune`|            Remove services that do not exist in current compose file
 `-d`                             |   Do not block and log
 `--upgrade`, `-u`, `--recreate` |          Upgrade if service has changed
 `--force-upgrade`, `--force-recreate` |  Upgrade regardless if service has changed
