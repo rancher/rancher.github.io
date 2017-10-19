@@ -270,7 +270,7 @@ In order to set up an HTTP proxy, the Docker daemon will need to be modified to 
 $ sudo vi /etc/default/docker
 ```
 
-In the file, edit the `#export http_proxy="http://127.0.0.1:3128/"` to have it point to your proxy. Save your changes and then restart docker. Restarting Docker is different on every OS.
+In the file, edit the `#export http_proxy="http://127.0.0.1:3128"` to have it point to your proxy. Save your changes and then restart docker. Restarting Docker is different on every OS.
 
 > **Note:** If you are running Docker with systemd, please follow Docker's [instructions](https://docs.docker.com/articles/systemd/#http-proxy) on how to configure the HTTP proxy.
 
