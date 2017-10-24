@@ -637,6 +637,73 @@ services:
     response_timeout: 2000
 ```
 
+#### Draining LB target connections
+
+_Only supported in Compose Files_
+
+When a backend target server picked by a LoadBalancer to forward the request to, goes down in the middle of the request, the existing connections get terminated. The client making the requests get an abrupt errors like HTTP Bad Gateway (502). Draining the target connections is letting the existing connections complete before stopping the target backend.
+
+The above problem of dropping connections is seen when backend service is stopped/upgraded via Rancher, and the service acts as a target service to LB(s). Ideally we should drain the connections to the target from all the LBs, and only then execute the target container stop.
+
+The ability to support connection draining has been added to Rancher v1.6.11
+
+##### How to enable connection drain on the service containers
+
+* To enable connection drain on the service containers, specify a non-zero ‘drain_timeout_ms’ value via compose files on the service.
+* This value is the maximum time in milliseconds for which Rancher will attempt to drain existing connections to a stopping service container, after this time the container stop will be issued. Note that during this time, no new connections will be made to the stopping container and LB takes out this container from balancing.
+* By default, the 'drain_timeout_ms’ is 0 for a service and connection draining will not happen.
+* A non-zero ‘drain_timeout_ms’ enables draining whenever a container goes to stopping state - via service upgrade or a service reconcile or also a direct container stop.
+
+##### Known limitations:
+* There is no drain support for sidekick containers, containers in host network and standalone containers.
+* Rollback to older LB images from the latest LB image, will not succeed unless following label on the LB service is updated to have only ‘environmentAdmin’ role: (`io.rancher.container.agent.role: environmentAdmin`)
+
+##### Example `docker-compose.yml`
+
+```yaml
+version: '2'
+services:
+  web:
+    image: nginx
+    stdin_open: true
+    tty: true
+  lb:
+    image: rancher/lb-service-haproxy:v0.7.15
+  ports:
+  - 9797:9797/tcp
+  labels:
+    io.rancher.container.agent.role: environmentAdmin,agent
+    io.rancher.container.agent_service.drain_provider: 'true'
+    io.rancher.container.create_agent: 'true'
+
+```
+
+##### Example `rancher-compose.yml`
+
+```yaml
+version: '2'
+services:
+  web:
+    scale: 1
+    start_on_create: true
+    drain_timeout_ms: 10000
+  lb:
+    scale: 1
+    lb_config:
+      port_rules:
+      - priority: 1
+        protocol: https
+        source_port: 9797
+        target_port: 80
+        service: web
+  health_check:
+    port: 42
+    interval: 2000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+```
+
 ### Rancher Compose Examples
 
 #### Load Balancer Example (L7)
