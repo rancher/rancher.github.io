@@ -18,7 +18,7 @@ Before deleting the Kubernetes stack in **Kubernetes** -> **Infrastructure Stack
 $ kubectl delete node --all
 ```
 
-### Cleaing up Persistent Data
+### Cleaning up Persistent Data
 
 After deleting the Kubernetes infrastructure stack, persistent data still remains on the hosts.
 
