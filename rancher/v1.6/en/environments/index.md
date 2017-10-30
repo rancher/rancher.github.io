@@ -121,6 +121,16 @@ At any time, you can delete the environment templates as they are only used when
 | Secrets | CRUD | CRUD | CRUD | R |
 | Certificates | CRUD | CRUD | CRUD | R |
 | Registries  | CRUD | CRUD | CRUD | R |
+| Webhooks | CRD | CRD | CRD | R |
+| User Stacks | CRUD | CRUD | CRUD | R |
+| Infra Stacks | CRUD | RUD | R | R |
+
+|   | Owner | Member | Restricted | ReadOnly |
+|---|---|---|---|---|
+| User Container | start, stop, delete, restart, exec | start, stop, delete, restart, exec | start, stop, delete, restart, exec | |
+| Infra Container | start, stop, delete, restart, exec | start, stop, delete, restart, exec | | |
+
+> **Note:** Learn more about [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/). User stacks, containers, and services are those not defined within an infrastructure service.
 
 ###### Account Type Related Permissions
 
