@@ -1,4 +1,4 @@
-f---
+---
 title: Upgrading Rancher
 layout: rancher-default-v1.0
 version: v1.0

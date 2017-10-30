@@ -1,4 +1,4 @@
-f---
+---
 title: Rancher Server with No Internet Access
 layout: rancher-default-v1.0
 version: v1.0
