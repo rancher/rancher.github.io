@@ -16,7 +16,7 @@ To support hosts behind a proxy, you’ll need to edit the Docker daemon to poin
 
 #### Adding in `--name rancher-agent`
 
-If you edited the `docker run .... rancher/agent...` command from the UI to add in `--name rancher-agent`, then Rancher agent will fail to start. Rancher agent launches 3 different containers after the initial run. There will be 1 running container and 2 stopped containers. The containers named `rancher-agent` and `rancher-agent-state` are required for the Rancher agent to successfully connect with Rancher server. The third container with the defaulted Docker name can be removed.
+If you edited the `docker run .... rancher/agent...` command from the UI to add in `--name rancher-agent`, then Rancher agent will fail to start. Rancher agent launches 3 different containers after the initial run. The container launched last, named `rancher-agent`, is required for the Rancher agent to successfully connect with Rancher server. The other containers launched before the `rancher-agent` container, which are used to inspect the host and setup state, are automatically removed.
 
 #### Using a cloned VM
 
