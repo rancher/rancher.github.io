@@ -162,7 +162,10 @@ The logs of HAProxy can be found inside the load balancer container. `docker log
 ```
 $ cat /var/log/haproxy
 ```
-In order to enable the actual HAProxy logging, you'll have to mention this in the custom configuration of the load balancer container -
+
+_As of Rancher v1.6.11_
+
+In order to enable the logging from HAProxy, you'd have to update the custom configuration of the load balancer with the following defaults: 
 
 ```
 defaults
