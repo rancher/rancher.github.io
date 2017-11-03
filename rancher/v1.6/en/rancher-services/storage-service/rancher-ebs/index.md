@@ -40,8 +40,8 @@ When creating AWS EBS volumes, there are several options that can be used to cus
 
 For the following options, you **must** specify the specific availability zone (`ec2_az`) that the IDs are associated with in the driver options.  
 
-* **Encrypted** (`encrypted`): Whether or not the volume should be encrypted. Note: Since v0.8.8, when no AMS KMS ID is specified, the default customer master key (CMK) will be created and/or used. For any version prior to v0.8.8, specifying AWS KMS ID is required when using this option.
-* **AWS KMS ID** (`kmsKeyId`): The full ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume. Note: optional when specifying encrypted since v0.8.8
+* **Encrypted** (`encrypted`): Whether or not the volume should be encrypted. Note: As of Rancher v1.6.11+ with `rancher/storage-ebs:v0.8.11`, if no AWS KMS ID is specified, the default customer master key (CMK) will be created and/or used. For any previous version, specifying the AWS KMS ID is required when using this option.
+* **AWS KMS ID** (`kmsKeyId`): The full ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume. Note: As of Rancher v1.6.11+, this is optional when selecting encrypted.
 * **Snapshot ID** (`snapshotID`): The snapshot from which to create the volume.
 * **Volume ID** (`volumeID`): The ID of an existing volume to use.
 
@@ -125,7 +125,7 @@ volumes:
 
 In this example, we are creating a [stack scoped volume]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/storage-service/#stack-scoped) while creating services that use this volume. All services in this stack will share the same volume.
 
-In order to encrypt a volume, you will need to specify in the driver options that you want it encrypted as well as the availability zone where the customer master key (CMK) is located in. Since v0.8.8, specifying the customer master key is no longer required. If you don't specifiy the `kmsKeyId`, the default customer master key (CMK) in the specified availability zone will be used. If a customer master key (CMK) does not exist in the specified availability zone, one will be created and used.
+In order to encrypt a volume, you will need to specify in the driver options that you want it encrypted as well as the availability zone where the customer master key (CMK) is located in. As of Rancher v1.6.11+ using `rancher/storage-ebs:v0.8.11`, specifying the customer master key is no longer required. If you don't specifiy the `kmsKeyId`, the default customer master key (CMK) in the specified availability zone will be used. If a customer master key (CMK) does not exist in the specified availability zone, one will be created and used.
 
 The containers for any service using the EBS volume will automatically be scheduled onto the same host as where the EBS volume is attached to.
 
