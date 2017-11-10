@@ -61,9 +61,7 @@ If you want to add your own templates to Kubernetes, you add them to the [Ranche
 
 #### kubectl
 
-To configure your own kubectl to talk to your newly created Kubernetes cluster, go to **Kubernetes** -> **kubectl**. Click on **Generate Config** to generate the necessary `kube/config_file` that you can download and add to your local directory.
-
-In the config file, it provides the necessary information for your local machine so that anything you launch using `kubectl` will be displayed in Rancher.
+To configure your own kubectl to talk to your newly created Kubernetes cluster, go to **Kubernetes** -> **CLI**. Click on **Generate Config** to generate the necessary `.kube/config` that you can download and add to your local directory. In the config file, it provides the necessary information for your local machine so that anything you launch using `kubectl` will be displayed in Rancher. The `kubectl` binary will only send requests using authentication over a TLS connection (HTTPS), because of this we rewrite the `server` variable to start with `https://`. The `rancher/server` container will accept and forward both HTTP and HTTPS requests on the same port.
 
 #### kubectl via Shell
 
