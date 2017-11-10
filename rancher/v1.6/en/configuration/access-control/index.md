@@ -14,6 +14,8 @@ Access Control is how Rancher limits the users who have the access permissions t
 
 The first account that authenticates with Rancher will become the **admin** of the account. For more information, see [permissions of an admin]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#admin).
 
+> **Note:** Switching between Access Control Providers is not supported.
+
 ### Enabling Access Control
 
 In the **Admin** tab, click **Access Control**.
