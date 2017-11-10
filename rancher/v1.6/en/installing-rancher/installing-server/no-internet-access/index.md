@@ -139,17 +139,21 @@ The cloud providers will not work as Rancher uses `docker-machine` to provision 
 The command from the UI can be used on any machine that has Docker configured to use HTTP proxy.
 
 ### Catalogs
+
 On every release, the `rancher/server` container will be built containing a cached copy of the [Rancher catalog](https://github.com/rancher/rancher-catalog) and [community catalog](https://github.com/rancher/community-catalog) belonging to that release at that point of time. As updates are released to the catalogs, you will need to make sure the `rancher/server` container can fetch updates to the catalogs.
 
 #### Rancher catalog
+
 The [Rancher catalog](https://github.com/rancher/rancher-catalog) contains all the supported catalog items like [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/). To keep the Rancher catalog updated, you will need to make that the `rancher/server` container can either access `https://git.rancher.io/rancher-catalog.git` or that you configure the Rancher catalog to be updated from your own mirrored Git repository.
 
 #### Community catalog
+
 The [community catalog](https://github.com/rancher/community-catalog) is updated regularly by the community. If you need updates to this catalog, you will need to make sure that you can either access `https://git.rancher.io/community-catalog.git` or that you configure the community catalog to be updated from your own mirrored Git repository.
 
 #### Configuring catalogs
 
 ##### On startup
+
 To point your `rancher/server` container to the correct repositories upon start, you can configure the environment variable `DEFAULT_CATTLE_CATALOG_URL`.
 
 ```
@@ -159,4 +163,5 @@ rancher/server:stable
 ```
 
 ##### Manual
-You can use the steps provided in [Adding catalogs]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/#adding-catalogs) to add global catalogs. To override the default catalog URL for Rancher catalog, you can use `library` as name of the catalog. To override the default catalog for community catalog, you can use `community` as name of the catalog.
+
+You can use the steps provided in [adding catalogs]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/#adding-catalogs) to add global catalogs. To override the default catalog URL for Rancher catalog, you can use `library` as name of the catalog. To override the default catalog for community catalog, you can use `community` as name of the catalog.
