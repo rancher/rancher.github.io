@@ -92,6 +92,8 @@ $ sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server \
     --db-host myhost.example.com --db-port 3306 --db-user username --db-pass password --db-name cattle
 ```
 
+> **Note:** When you connect to an external database cluster which requires a primary key on the tables, you can add `--db-strict-enforcing` as a parameter to the command. Available as of v1.6.11
+
 Most of the options to pass in also have default values and are not required. Only the location of the MySQL server is required.
 
 ```bash
@@ -100,6 +102,7 @@ Most of the options to pass in also have default values and are not required. On
 --db-user               username for MySQL login (default: cattle)
 --db-pass               password for MySQL login (default: cattle)
 --db-name               MySQL database name to use (default: cattle)
+--db-strict-enforcing   Ensures table has primary key (default: false), available as of v1.6.11
 ```
 
 <br>
