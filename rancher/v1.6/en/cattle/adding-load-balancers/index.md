@@ -641,23 +641,22 @@ services:
 
 _Available as of v1.6.11+_
 
+By default, if a targeted service of a load balancer is stopped when a request is made to the load balancer, the existing connections to the service will be immediately terminated. Users may get errors like `HTTP Bad Gateway (502)` when trying to access the load balancer as the connection to the target service has been dropped. Dropped connections are typically seen when the target service is being upgraded. 
 
-By default, if a targeted service of a load balancer is stopped when a request is made to the load balancer, the existing connections to the service will immediately be terminated. Users may get errors like `HTTP Bad Gateway (502)` when trying to access the load balancer. A service can be programmed with a drain timeout so that connections to the target services can be drained completely before connections are terminated. 
-
-Dropped connections are typically seen when the target service is being upgraded. 
+To avoid these dropped connections, services can be programmed with a drain timeout so that when load balancers target services, these connections will be drained completely before being terminated. 
 
 ##### How to enable connection drain on the target  services
 
-* When defining a target service, you will need to specify a non-zero drain timeout. In the UI, this is in the **Command** tab of the service. In compose, this is defined using `drain_timeout_ms`.
-* The drain timeout value is the maximum time in milliseconds for which Rancher will attempt to drain existing connections to a stopping service container. After this amount of time, the container stop will be issued. During this time, no new connections will be made to the stopping container and the load balancer will already have removed this container from its list of backends. 
+* When defining a target service, you specify a non-zero drain timeout. In the **Command** tab of the service, you can define this timeout. In compose, you add the `drain_timeout_ms`.
+* The drain timeout value is the maximum time in milliseconds for which Rancher will attempt to drain existing connections to a stopping service container. After this defined amount of time, the container will be stopped by Rancher. During this time, no new connections will be made to the container when it’s in `stopping` state, and the load balancer will have removed this container from its list of backends. 
  * A non-zero drain timeout enables draining whenever a container goes to `stopping` state, which usually happens during service upgrade, service reconcile or direct container stop.
-
 
 > **NOTE:** By default, the drain timeout is `0` for a service and connection draining will not happen.
 
 ##### Known limitations:
 * There is no drain support for sidekick containers, containers using the `host` network and standalone containers.
-* Support exists only in load balancers `rancher/lb-service-haproxy:v0.7.15` or later,  rollback to older images will not succeed unless you add the label (`io.rancher.container.agent.role: environmentAdmin`)
+* Support exists only in load balancers `rancher/lb-service-haproxy:v0.7.15` or later. 
+* Rollback to older images of the load balancer will not succeed unless you add the label (`io.rancher.container.agent.role: environmentAdmin`)
  on the load balancer.
 
 ##### Example `docker-compose.yml`
