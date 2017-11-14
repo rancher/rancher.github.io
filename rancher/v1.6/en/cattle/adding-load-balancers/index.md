@@ -16,6 +16,75 @@ We use a round robin algorithm to distribute traffic to the target services. The
 
 We'll review the options for our load balancer for the [UI](#load-balancer-options-in-the-UI) and [Rancher Compose](#load-balancer-options-in-rancher-compose) and show examples using the [UI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/#adding-a-load-balancer-in-the-ui) and [Rancher Compose]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-load-balancers/#adding-a-load-balancer-with-rancher-compose).
 
+#### Draining target connections for a load balancer
+
+_Available as of v1.6.11+_
+
+By default, if a targeted service of a load balancer is stopped when a request is made to the load balancer, the existing connections to the service will be immediately terminated. Users may get errors like `HTTP Bad Gateway (502)` when trying to access the load balancer as the connection to the target service has been dropped. Dropped connections are typically seen when the target service is being upgraded.
+
+To avoid these dropped connections, services can be programmed with a drain timeout so that when load balancers target services, these connections will be drained completely before being terminated.
+
+##### How to enable connection drain on the target services
+
+* When defining a target service, you specify a non-zero drain timeout. In the **Command** tab of the service, you can define this timeout. In compose, you add the `drain_timeout_ms`.
+* The drain timeout value is the maximum time in milliseconds for which Rancher will attempt to drain existing connections to a stopping service container. After this defined amount of time, the container will be stopped by Rancher. During this time, no new connections will be made to the container when it’s in `stopping` state, and the load balancer will have removed this container from its list of backends.
+ * A non-zero drain timeout enables draining whenever a container goes to `stopping` state, which usually happens during service upgrade, service reconcile or direct container stop.
+
+> **NOTE:** By default, the drain timeout is `0` for a service and connection draining will not happen.
+
+##### Known limitations
+
+* There is no drain support for sidekick containers, containers using the `host` network and standalone containers.
+* Support exists only in load balancers `rancher/lb-service-haproxy:v0.7.15` or later.
+* Rollback to older images of the load balancer will not succeed unless you add the label (`io.rancher.container.agent.role: environmentAdmin`)
+ on the load balancer.
+
+##### Example `docker-compose.yml`
+
+```yaml
+version: '2'
+services:
+  web:
+    image: nginx
+    stdin_open: true
+    tty: true
+  lb:
+    image: rancher/lb-service-haproxy:v0.7.15
+    ports:
+    - 9797:9797/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin,agent
+      io.rancher.container.agent_service.drain_provider: 'true'
+      io.rancher.container.create_agent: 'true'
+
+```
+
+##### Example `rancher-compose.yml`
+
+```yaml
+version: '2'
+services:
+  web:
+    scale: 1
+    start_on_create: true
+    drain_timeout_ms: 10000
+  lb:
+    scale: 1
+    lb_config:
+      port_rules:
+      - priority: 1
+        protocol: https
+        source_port: 9797
+        target_port: 80
+        service: web
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+```
+
 ### Adding a Load Balancer in the UI
 
 We'll walk through how to set up a load balancer for our "letschat" application created earlier in the [adding services section]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#adding-services-in-the-ui).
@@ -635,74 +704,6 @@ services:
     unhealthy_threshold: 3
     healthy_threshold: 2
     response_timeout: 2000
-```
-
-#### Draining target connections for a load balancer
-
-_Available as of v1.6.11+_
-
-By default, if a targeted service of a load balancer is stopped when a request is made to the load balancer, the existing connections to the service will be immediately terminated. Users may get errors like `HTTP Bad Gateway (502)` when trying to access the load balancer as the connection to the target service has been dropped. Dropped connections are typically seen when the target service is being upgraded. 
-
-To avoid these dropped connections, services can be programmed with a drain timeout so that when load balancers target services, these connections will be drained completely before being terminated. 
-
-##### How to enable connection drain on the target  services
-
-* When defining a target service, you specify a non-zero drain timeout. In the **Command** tab of the service, you can define this timeout. In compose, you add the `drain_timeout_ms`.
-* The drain timeout value is the maximum time in milliseconds for which Rancher will attempt to drain existing connections to a stopping service container. After this defined amount of time, the container will be stopped by Rancher. During this time, no new connections will be made to the container when it’s in `stopping` state, and the load balancer will have removed this container from its list of backends. 
- * A non-zero drain timeout enables draining whenever a container goes to `stopping` state, which usually happens during service upgrade, service reconcile or direct container stop.
-
-> **NOTE:** By default, the drain timeout is `0` for a service and connection draining will not happen.
-
-##### Known limitations:
-* There is no drain support for sidekick containers, containers using the `host` network and standalone containers.
-* Support exists only in load balancers `rancher/lb-service-haproxy:v0.7.15` or later. 
-* Rollback to older images of the load balancer will not succeed unless you add the label (`io.rancher.container.agent.role: environmentAdmin`)
- on the load balancer.
-
-##### Example `docker-compose.yml`
-
-```yaml
-version: '2'
-services:
-  web:
-    image: nginx
-    stdin_open: true
-    tty: true
-  lb:
-    image: rancher/lb-service-haproxy:v0.7.15
-    ports:
-    - 9797:9797/tcp
-    labels:
-      io.rancher.container.agent.role: environmentAdmin,agent
-      io.rancher.container.agent_service.drain_provider: 'true'
-      io.rancher.container.create_agent: 'true'
-
-```
-
-##### Example `rancher-compose.yml`
-
-```yaml
-version: '2'
-services:
-  web:
-    scale: 1
-    start_on_create: true
-    drain_timeout_ms: 10000
-  lb:
-    scale: 1
-    lb_config:
-      port_rules:
-      - priority: 1
-        protocol: https
-        source_port: 9797
-        target_port: 80
-        service: web
-    health_check:
-      port: 42
-      interval: 2000
-      unhealthy_threshold: 3
-      healthy_threshold: 2
-      response_timeout: 2000
 ```
 
 ### Rancher Compose Examples
