@@ -163,6 +163,15 @@ The logs of HAProxy can be found inside the load balancer container. `docker log
 $ cat /var/log/haproxy
 ```
 
+_As of Rancher v1.6.11_
+
+In order to enable the logging from HAProxy, you'd have to update the custom configuration of the load balancer with the following defaults: 
+
+```
+defaults
+log 127.0.0.1:8514 local0 debug
+```
+
 ### HA
 
 #### Rancher Compose Executor and Go-Machine-Service are continuously restarting.
