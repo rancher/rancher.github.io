@@ -132,6 +132,11 @@ After configuring Kubernetes to use `aws` as a cloud provider and ensuring the h
 * **Persistent Volumes:** Supports using Azure Blob disks and Azure Managed Disks with standard and premium storage accounts.
 * **Network Storage:** Support Azure Files via CIFS mounts.
 
+#### Known Limitations Regarding Azure Subscriptions
+
+* Kubernetes Azure Cloud Provider does not support single tenant accounts (e.g. accounts with no subscriptions)
+* Currently, Rancher doesn't support multi-subscription accounts
+
 #### Configuration
 
 To start Kubernetes using the Azure Cloud Provider, you need to follow these steps:
