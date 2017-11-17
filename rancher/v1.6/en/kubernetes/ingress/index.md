@@ -586,3 +586,63 @@ spec:
     serviceName: nginx-service
     servicePort: 80
 ```
+
+#### Example of adding haproxy backend healthchecks via ingress livenessprobes data
+
+You can add TCP and HTTP healthchecks for the backends configured in HAProxy software running inside Rancher's load balancers. In order to configure the healthchecks, you would use an annotation (i.e. `io.rancher.kubernetes.livenessprobes`) in the ingress spec. The format of the 'io.rancher.kubernetes.livenessprobes' value should provide details of healthcheck to be added, using kubernetes HTTP/TCP livenessprobes fields for the ingress target pods.
+
+Example of adding HTTP healthcheck:
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test-http-simplelb
+  annotations:
+    io.rancher.kubernetes.livenessprobes: "{\"test-http\": {\"httpGet\": {\"path\": \"/index.html\", \"port\": 80},\"periodSeconds\": 3, \"timeoutSeconds\": 1, \"successThreshold\": 2, \"failureThreshold\": 3}}"
+spec:
+  backend:
+    serviceName: test-http
+    servicePort: 91
+```
+
+Example of adding TCP healthcheck:
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test-tcp-simplelb
+  annotations:
+    io.rancher.kubernetes.livenessprobes: "{\"test-http\": {\"tcpSocket\": {\"port\": 80},\"periodSeconds\": 3, \"timeoutSeconds\": 1, \"successThreshold\": 3, \"failureThreshold\": 4}}"
+spec:
+  backend:
+    serviceName: test-http
+    servicePort: 91
+```
+
+Example of ingress spec with healthchecks for multiple target services
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: host-based-ingress-2
+  annotations:
+    http.port: "99"
+    io.rancher.kubernetes.livenessprobes: "{\"nginx-service-1\": {\"httpGet\": {\"path\": \"/index.html\", \"port\": 80},\"periodSeconds\": 3, \"timeoutSeconds\": 4, \"successThreshold\": 2, \"failureThreshold\": 3}, \"nginx-service-2\": {\"httpGet\": {\"path\": \"/index.html\", \"port\": 80},\"periodSeconds\": 3, \"timeoutSeconds\": 3, \"successThreshold\": 1, \"failureThreshold\": 6}}"
+spec:
+  rules:
+  - host: foo2.bar.com
+    http:
+      paths:
+      - backend:
+          serviceName: nginx-service-1
+          servicePort: 90
+  - host: bar2.foo.com
+    http:
+      paths:
+      - backend:
+          serviceName: nginx-service-2
+          servicePort: 90
+```
