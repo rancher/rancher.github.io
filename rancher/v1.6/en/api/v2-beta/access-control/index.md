@@ -14,7 +14,6 @@ There is also an [authentication service that runs as a separate go micro-servic
 
 ### Authentication Providers using top-level API
 
-* Active Directory: `/v2-beta/ldapconfig`
 * Azure AD: `/v2-beta/azureadconfig` (this is a web service available Azure and has nothing to do with actual Active Directory)
 * OpenLDAP: `/v2-beta/openldapconfig`
 * Local Rancher DB: `/v2-beta/localauthconfig`
@@ -23,6 +22,7 @@ There is also an [authentication service that runs as a separate go micro-servic
 
 * Public & Enterprise Github: `/v1-auth/config`
 * Shibboleth (SAML): `v1-auth/config`
+* Active Directory: `v1-auth/config`
 
 ### Access Modes
 
@@ -32,7 +32,7 @@ The authentication provider may have many users in it (i.e. the whole world, for
 
 Provider         | Config URL          | Config Schema   | Unrestricted | Restricted    | Required
 -----------------|---------------------|-----------------|--------------|---------------|---------
-Active Directory | `/v2-beta/ldapconfig`      | ldapconfig      | 1.0          | 1.1-dev5      | 1.1-dev5
+Active Directory | `v1-auth/config`     | config      | 1.0          | 1.1-dev5      | 1.1-dev5
 Azure AD         | `/v2-beta/azureadconfig`   | azureadconfig   | 1.1-dev5     | Future        | Future
 OpenLDAP         | `/v2-beta/openldapconfig`  | openldapconfig  | 1.0          | Future        | Future
 GitHub*          | `/v1-auth/config`    | config    | 1.0       | 1.0           | 1.1-dev5         
