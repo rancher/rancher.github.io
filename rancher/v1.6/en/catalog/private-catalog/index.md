@@ -124,6 +124,17 @@ catalog:
 ```
 <br>
 
+Variables from questions can then be used in `docker-compose.yml` by surrounding them with `${}` like so:
+
+```
+version: '2'
+services:
+  myservice:
+    image: myimage:tag
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL}
+```
+
 #### Type
 
 The `type` section controls how the questions are formatted in the UI as well as the types of responses that are expected.
