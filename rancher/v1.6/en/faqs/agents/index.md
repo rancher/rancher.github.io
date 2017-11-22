@@ -26,6 +26,16 @@ If you cloned a VM and attempting to register the cloned VM, it will not work an
 
 The workaround for this is to run the following command on the cloned VM `rm -rf /var/lib/rancher/state; docker rm -fv rancher-agent; docker rm -fv rancher-agent-state`, once completed you can register the server again.
 
+#### Reference to localhost present in `/etc/resolv.conf`
+
+Some Linux distributions will run a local DNS cache server like `dnsmasq`. If this is the case, the `nameserver` entry in `/etc/resolv.conf` will point to `127.0.0.1` (localhost). This configuration is re-used when running Docker containers, but inside a container you cannot reach `dnsmasq` on `127.0.0.1`. Since `rancher/agent:v1.2.7`, the agent will fail to register and log:
+
+```
+ERROR: DNS Checking loopback IP address 127.0.0.0/8, localhost or ::1 configured as the DNS server on the host file /etc/resolv.conf, can't accept it
+```
+
+To fix this, you can either specify DNS servers for Docker or disable `dnsmasq`. Instructions on both options are provided in the [Docker documentation](https://docs.docker.com/engine/installation/linux/linux-postinstall/#dns-resolver-found-in-resolvconf-and-containers-cant-use-it)
+
 <a id="agent-logs"></a>
 
 ### Where can I find detailed logs of the Rancher Agent container?
