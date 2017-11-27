@@ -126,7 +126,7 @@ Rancher 可以通过克隆用 Rancherc 创建的， 并且已经存在的主机�
 * **[自定义主机]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/):** 任何类型的主机都可以被添加到弹性伸缩组中，你只需要在主机上添加一个标签。Rancher 不能用这些主机来克隆或创建出更多主机。
 * **主机克隆:** 因为主机扩增既是主机克隆，所有配置，包括资源分配，Docker 引擎等都会在新主机被复制。Rancher 总是会用克隆最旧的主机。
 * **处于错误状态的主机:** 任何处于 `Error` 状态的主机都不会被添加到弹性伸缩组中.
-* **移除主机的顺序:** 从 Rancher 中删除主机时，Rancher会根据主机的状态，按一下的顺序删除弹性伸缩组中的主机(`Inactive`， `Deactivating`，`Reconnecting` 或 `Disconnected`)，最后才会删除处于 `active` 状态的主机
+* **移除主机的顺序:** 从 Rancher 中删除主机时，Rancher会根据主机的状态，按以下的顺序删除弹性伸缩组中的主机(`Inactive`， `Deactivating`，`Reconnecting` 或 `Disconnected`)，最后才会删除处于 `active` 状态的主机
 
 #### 基于 Docker Hub Webhooks 升级服务
 
