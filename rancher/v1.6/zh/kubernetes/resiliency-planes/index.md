@@ -47,7 +47,7 @@ lang: zh
 
 ##### 增加带标签（label）的主机
 
-所有加入到Kubernetes环境的主机必须打好标签，这样 Rancher 旧可以根据平面类型去调度不同的服务。在这种部署类型的情况下，最少需要5台主机。
+所有加入到Kubernetes环境的主机必须打好标签，这样 Rancher 就可以根据平面类型去调度不同的服务。在这种部署类型的情况下，最少需要5台主机。
 
 1. **数据平面：** 增加三个或以上的主机，主机需要有 >=1的CPU，>=1.5GB的内存，>=20GB的磁盘存储空间。在加入主机的时候，[给主机打上标签]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#主机标签) `etcd=true`。
 2. **编排平面** 增加2个或以上的主机，主机需要有 >=1 的CPU和 >=2GB 的内存。在加入主机的时候， [给主机打上标签]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#主机标签) `orchestration=true`。你可以只用一台主机，但是在这台主机故障的时候，直到新的用于编排的主机加入之前，K8s API将会不可用。
