@@ -69,7 +69,7 @@ projectURL: # 和模板相关的URL
 
 * 另外一个文件为该模板的logo。该文件的前缀必须为 `catalogIcon-`。
 
-对于每一个应用模板，将至少有一下三个部分组成： `config.yml`, `catalogIcon-entry.svg`, 以及 `0` 文件夹 - 包含该模板的第一个版本配置。
+对于每一个应用模板，将至少有以下三个部分组成： `config.yml`, `catalogIcon-entry.svg`, 以及 `0` 文件夹 - 包含该模板的第一个版本配置。
 
 ### Rancher 应用商店模板
 
