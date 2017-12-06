@@ -781,7 +781,7 @@ $ rancher inspect <stackName>/<serviceName>
 
 The `rancher wait` command waits for a resource to complete it's action. This is very useful for when automating Rancher commands so that you can add in the script to wait for the resource to be ready for more actions.
 
-This command pairs well with the global options `--wait-timeout` and `--wait-state`, see the [Waiting for Resources](#rancher-waiting-for-resources) section.
+This command pairs well with the global options `--wait-timeout` and `--wait-state`, see the [Waiting for Resources](#waiting-for-resources) section.
 
 
 <br>
