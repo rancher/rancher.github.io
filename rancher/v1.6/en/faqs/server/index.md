@@ -155,3 +155,86 @@ mysql> select * from DATABASECHANGELOGLOCK;
 +----+--------+-------------+----------+
 1 row in set (0.00 sec)
 ```
+
+### Why is Rancher Server logging `java.sql.SQLDataException: Incorrect string value` ?
+
+When using an external database, it is required to create the database using `COLLATE = 'utf8_general_ci'` and `CHARACTER SET = 'utf8'` as [described]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#single-container-external-database) in the documentation. If the database is not created with the correct character set and/or collation, you may receive errors like:
+
+```bash
+Caused by: java.sql.SQLDataException: (conn:133) Incorrect string value: '\xEF\xBC\x9Agcr...' for column 'data' at row 1
+Query is: ...
+```
+
+You can check the character set and collation by running the following commands:
+
+```bash
+# Connect to your database by using the MySQL client (you will be prompted for the password)
+$ mysql -h <db_host> -u <db_user> -p <db_name>
+
+# Show character set (should say utf8)
+mysql> SHOW VARIABLES LIKE "character\_set\_database";
++------------------------+-------+
+| Variable_name          | Value |
++------------------------+-------+
+| character_set_database | utf8  |
++------------------------+-------+
+1 row in set (0.00 sec)
+
+# Show collation (should say utf8_general ci)
+mysql> SHOW VARIABLES LIKE "collation\_database";
++--------------------+-----------------+
+| Variable_name      | Value           |
++--------------------+-----------------+
+| collation_database | utf8_general_ci |
++--------------------+-----------------+
+1 row in set (0.00 sec)
+```
+
+#### Convert the database
+
+To convert the database, follow the steps below. This will cause downtime for the Rancher Server UI/API, as all `rancher/server` containers will need to be shutdown.
+
+> **Note:** The commands are based on a database having `latin1` as character set, if your database shows a different character set, replace `latin1` with that value.
+
+> **Note:** The following steps need to be executed on a machine with MySQL client tools installed (`mysql` and `mysqldump`)
+
+* Stop `rancher/server` container(s), there should be no connection to the database.
+* Dump the database
+
+```bash
+mysqldump -u <db_user> -p -c -e --default-character-set=utf8 --single-transaction \
+--skip-set-charset --add-drop-database -B <db_name> > cattle.sql
+```
+* Change character set and collation settings in `cattle.sql`
+
+> **Note:** This will create a backup of the original file (`cattle.sql.bak`) which you can use if you need to restore the original database.
+
+```bash
+sed -i.bak -e 's/DEFAULT CHARACTER SET latin1/DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci/' \
+-e 's/DEFAULT CHARSET=latin1/DEFAULT CHARSET=utf8/' cattle.sql
+```
+* Restore the database
+
+```bash
+mysql -u <db_user> -p < cattle.sql
+```
+* Check the database
+
+```bash
+use <db_name>;
+SHOW VARIABLES LIKE "character\_set\_database";
+SHOW VARIABLES LIKE "collation\_database";
+```
+* Start the `rancher/server` container(s)
+
+#### Rollback to original database
+
+* Stop `rancher/server` container(s), there should be no connection to the database.
+
+* Restore the database from the original copy of the dump (`cattle.sql.bak`)
+
+```bash
+mysql -u <db_user> -p < cattle.sql.bak
+```
+
+* Start the `rancher/server` container(s)
