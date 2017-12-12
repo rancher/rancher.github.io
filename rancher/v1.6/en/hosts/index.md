@@ -33,13 +33,17 @@ Version               | Supported? | Kubernetes Supported? | Install Script |
 `1.11.x`              | No         |                     | `curl https://releases.rancher.com/install-docker/1.11.sh | sh`
 `1.12.0` - `1.12.2`   | No         |                     |
 `1.12.3` (and higher) | **Yes**    | **Yes**             | `curl https://releases.rancher.com/install-docker/1.12.sh | sh`
-`1.13.x`              | **Yes**    | No                  | `curl https://releases.rancher.com/install-docker/1.13.sh | sh`
-`17.03.x-ce`          | **Yes**    | No                  | `curl https://releases.rancher.com/install-docker/17.03.sh | sh`
-`17.03.x-ee`          | **Yes**    | No                  | n/a
-`17.04.x-ce`          | No         |                     | `curl https://releases.rancher.com/install-docker/17.04.sh | sh`
+`1.13.x`              | **Yes**    | **Yes**{::nomarkdown}<p>(Kubernetes version 1.8)</p>{:/}                   | `curl https://releases.rancher.com/install-docker/1.13.sh | sh`
+`17.03.x-ce`          | **Yes**    | **Yes**{::nomarkdown}<p>(Kubernetes version 1.8)</p>{:/}                  | `curl https://releases.rancher.com/install-docker/17.03.sh | sh`
+`17.03.x-ee`          | **Yes**    | **Yes**{::nomarkdown}<p>(Kubernetes version 1.8)</p>{:/}                  | n/a
+`17.04.x-ce`          | No         | No                    | `curl https://releases.rancher.com/install-docker/17.04.sh | sh`
 `17.05.x-ce`          | No         | No                  | `curl https://releases.rancher.com/install-docker/17.05.sh | sh`
 `17.06.x-ce`          | **Yes**{::nomarkdown}<p>(v1.6.3 and higher)</p>{:/}    | No                  | `curl https://releases.rancher.com/install-docker/17.06.sh | sh`
 `17.06.x-ee`          | **Yes**{::nomarkdown}<p>(v1.6.3 and higher)</p>{:/}    | No                  | n/a
+`17.09.x-ce`          | **Yes**{::nomarkdown}<p>(v1.6.11 and higher)</p>{:/}   | No                  | `curl https://releases.rancher.com/install-docker/17.09.sh | sh`
+`17.09.x-ee`          | **Yes**{::nomarkdown}<p>(v1.6.11 and higher)</p>{:/}   | No                  | n/a
+`17.10.x-ce`          | No         | No                    | `curl https://releases.rancher.com/install-docker/17.10.sh | sh`
+
 
 > **Note:** We will not support the edge releases from Docker, but will support the stable releases of Docker.
 
