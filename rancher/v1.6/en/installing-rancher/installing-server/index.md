@@ -109,6 +109,8 @@ Most of the options to pass in also have default values and are not required. On
 
 > **Note:** In previous versions of Rancher server, we had connected to an external database using environment variables, those environment variables will continue to work, but Rancher recommends using the arguments instead.
 
+> **Note:** When using a proxy between the database server and the `rancher/server` container, make sure you configure the timeout parameters correctly. Please see [the FAQ]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/faqs/server/#why-is-rancher-server-logging-uncaught-exception-orgjooqexceptiondataaccessexception-sql-query-conn10-could-not-read-packet-unexpected-end-of-stream-read-0-bytes-from-4-or-mysql-yyyymmdd-hhmmss-packetsgo33-unexpected-eof) for more information.
+
 <a id="single-container-bind-mount"></a>
 
 ### Launching Rancher Server - Single Container - Bind Mount MySQL Volume

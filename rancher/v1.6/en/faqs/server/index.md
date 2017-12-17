@@ -238,3 +238,9 @@ mysql -u <db_user> -p < cattle.sql.bak
 ```
 
 * Start the `rancher/server` container(s)
+
+### Why is Rancher Server logging `Uncaught exception org.jooq.exception.DataAccessException: SQL [query]; (conn:10) Could not read packet: unexpected end of stream, read 0 bytes from 4` or `[mysql] YYYY/MM/DD HH:MM:SS packets.go:33: unexpected EOF`?
+
+If you are configuring a proxy between your database server and the `rancher/server` container, make sure you configure the timeout parameters correctly. If the timeout parameters are not aligned between the proxy server and the database server, these errors will be logged. You can check the timeout on the database server with the following query: `show variables like '%wait_timeout%';`
+
+Make sure that the timeouts on your proxy are slightly higher than the `wait_timeout` parameter on your database server.
