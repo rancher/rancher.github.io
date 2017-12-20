@@ -24,6 +24,18 @@ If you already have a Cattle environment running, go to **Catalog** -> **Library
 
 When creating a new environment, you can use an [environment template]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template), which already has the **Rancher ECR Credential Updater** enabled for the template. This would allow the updater to be deployed on any environment that uses that template.
 
+#### Windows Environments
+
+_Available as of Rancher v1.6.13+_
+
+The **Rancher ECR Credential Updater** cannot directly be used in a Windows environment. If you need to use **Rancher ECR Credential Updater** to keep the credentials up-to-date, you have to launch the catalog item in an environment using **Cattle** orchestration. By configuring the catalog item as described below, the **Rancher ECR Credential Updater** will be able to update the credentials in other environment (in this case, your Windows environment)
+
+When configuring the catalog item, you can select `other` as **Registry Environment** parameter. This will enable the option to update Registries in other environments. To be able to update Registries in an other environment, you will have to provide the **Environment API Endpoint**, **Environment API Access Key** and **Environment API Secret Key**.
+
+You can find the **Environment API Endpoint** by switching to the environment you want to update the registry credentials for, and selecting `Keys` under the `API` on top in the UI. The **Environment API Keys** section is located under **Advanced Options**. Here you can find the **Environment API Endpoint** under `Endpoint (v2-beta):`.
+
+To generate an **Environment API Key**, click `Add Environment API Key`. You can provide an optional `Name` and `Description` for your API Key. Click **Create**, and the **Environment API Access Key** and the **Environment API Secret Key** will be shown. Remember that the **Environment API Secret Key** will only be shown once, if you click `Close` before saving the key, it cannot be retrieved anymore and you will have to create a new API Key.
+
 ### Launching Images from ECR
 
 In the environment, you should add ECR as a [registry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/). Once you have launched the service, your credentials to the ECR registry will never expire and you will always be able to launch images from ECR.

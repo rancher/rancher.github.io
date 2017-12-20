@@ -45,3 +45,9 @@ By default, we support NAT and transparent [networking](https://docs.microsoft.c
 Currently, the default **Windows** environment template supports a transparent network named `transparent`, which is created by running `docker network create -d transparent transparent`.
 
 If you want to create a transparent network with a different name, you will need to create a new environment template with **Windows** as the container orchestration. After selecting **Windows**, you can click on **Edit Config** to change the name of the transparent network. The default name is `transparent`. After creating the updated environment template, you can create a new environment that will support the newly named transparent network. The UI will continue to have `transparent` as the default name, so you will need to update the command to be `docker network create -d transparent <NEW_NAME_IN_TEMPLATE`.
+
+### Using Amazon's ECR Registry in a Windows environment
+
+_Available as of Rancher v1.6.13+_
+
+If you want to use images located in Amazon's ECR Registry in a **Windows** environment, see [Using Amazon's ECR Registry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/#using-amazons-ecr-registry) to understand why you need **AWS ECR Credential Updater** and read the instructions on the [AWS ECR Credential Updater page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/ecr_updater/#windows-environments) to configure it.
