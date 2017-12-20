@@ -49,4 +49,5 @@ If you want to create a transparent network with a different name, you will need
 ### Using Amazon's ECR Registry in a Windows environment
 
 _Available as of Rancher v1.6.13+_
+
 If you want to use images located in Amazon's ECR Registry in a **Windows** environment, see [Using Amazon's ECR Registry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/#using-amazons-ecr-registry) to understand why you need **AWS ECR Credential Updater** and read the instructions on the [AWS ECR Credential Updater page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/ecr_updater/#windows-environments) to configure it.
