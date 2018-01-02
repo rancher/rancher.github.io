@@ -50,9 +50,9 @@ To experiment with ZFS, you can create zpool backed by just ordinary files, not 
 
 The `zdb` command may be used to display information about ZFS pools useful to diagnose failures and gather statistics. By default the utility tries to load pool configurations from `/etc/zfs/zpool.cache`. Since the RancherOS ZFS service does not make use of the ZFS cache file and instead detects pools by inspecting devices, the `zdb` utility has to be invoked with the `-e` flag.
 
-E.g. to show the configuration for the pool `zpool_1` you may run the following command:
+E.g. to show the configuration for the pool `zpool1` you may run the following command:
 
-> $ sudo zdb -e -C zpool_1
+> $ sudo zdb -e -C zpool1
 
 ## ZFS storage for Docker on RancherOS
 
