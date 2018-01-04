@@ -22,13 +22,13 @@ Rancher认证的第一个账户将成为 **管理员** 账户。 想要获取有
 
 当访问控制启用后，Rancher API将被锁定。这时需要用户进行身份认证， 或者使用[API 密钥]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/api-keys/)来访问它。
 
-#### 活动目录
+#### ACTIVE DIRECTORY
 
-选择**活动目录**图标。 如果你想要通过TLS来使用活动目录，请确保你已经[使用了相应的证书来启动Rancher Server]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#ldap)。填写相关信息后，通过点击**身份认证**进行认证校验。 当活动目录认证成功后，你将自动以已认证的用户名身份登录。并且把你的账号设置为了管理员权限。
+选择**ACTIVE DIRECTORY**图标。 如果你想要通过TLS来使用ACTIVE DIRECTORY，请确保你已经[使用了相应的证书来启动Rancher Server]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#ldap)。填写相关信息后，通过点击**身份认证**进行认证校验。 当ACTIVE DIRECTORY认证成功后，你将自动以已认证的用户名身份登录，同时把你的账号会被设置为管理员。
 
-##### 用户搜索基址与用户组搜索基址
+##### 用户SEARCH BASE与组SEARCH BASE
 
-在配置活动目录时，你将需要输入用户的搜索基址。 此搜索基址允许Rancher搜索在活动目录中已设置的用户。如果你的用户和用户组位于相同的搜索基址中，那么你**仅仅**需要填写用户的搜索基址，但是如果你的用户组在不同的搜索基址，你可以把该搜索基址填写在`用户组搜索基址`字段下。 此字段专用于用户组搜索，该项是可选的。
+在配置ACTIVE DIRECTORY时，你将需要输入用户的SEARCH BASE。 此SEARCH BASE允许Rancher搜索你设置的ACTIVE DIRECTORY中的用户。如果你的用户和用户组位于相同的SEARCH BASE中，那么你**仅仅**需要填写用户的SEARCH BASE，但是如果你的用户组在不同的SEARCH BASE，你可以把该SEARCH BASE填写在`用户组SEARCH BASE`字段下。 此字段专用于用户组搜索，该项是可选的。
 
 #### Azure AD
 
@@ -48,9 +48,9 @@ Rancher认证的第一个账户将成为 **管理员** 账户。 想要获取有
 
 填写对应信息后，通过点击**身份认证**进行认证校验。当OpenLDAP认证成功后，你将自动以已认证的用户名身份登录。并且把你的账号设置为了管理员权限。
 
-##### 用户搜索基址与用户组搜索基址
+##### 用户SEARCH BASE与组SEARCH BASE
 
-在配置活动目录时，你将需要输入用户的搜索基址。 此搜索基址允许Rancher搜索在活动目录中已设置的用户。如果你的用户和用户组位于相同的搜索基址中，那么你**仅仅**需要填写用户的搜索基址，但是如果你的用户组在不同的搜索基址，你可以把该搜索基址填写在`用户组搜索基址`字段下。 此字段专用于用户组搜索，该项是可选的。
+在配置ACTIVE DIRECTORY时，你将需要输入用户的SEARCH BASE。 此SEARCH BASE允许Rancher搜索你设置的ACTIVE DIRECTORY中的用户。如果你的用户和用户组位于相同的SEARCH BASE中，那么你**仅仅**需要填写用户的SEARCH BASE，但是如果你的用户组在不同的SEARCH BASE，你可以把该SEARCH BASE填写在`用户组SEARCH BASE`字段下。 此字段专用于用户组搜索，该项是可选的。
 
 #### Shibboleth
 
