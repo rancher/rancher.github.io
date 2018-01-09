@@ -217,6 +217,7 @@ Example `pod-ebs.yml`
 
 ```yaml
 apiVersion: v1
+kind: Pod
 metadata:
   name: mypod
 spec:
