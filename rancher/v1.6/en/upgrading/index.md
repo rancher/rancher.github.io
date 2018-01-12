@@ -47,7 +47,7 @@ _As of v1.6.1+_
 We have introduced an API setting, which can allow how you want to upgrade infrastructure stacks. The `upgrade.manager` setting accepts 3 values.
 
 * `mandatory` - This is the default value. This value will only automatically upgrade any infrastructure stacks that are deemed to be required in order to have Rancher server functioning correctly.
-* `all` - Any updated templates that are available for a infrastructure stack will be automatically upgraded. vIf an infrastructure stack has a new template version, but the default version of the infrastructure stack is still an older one, it will not automatically upgrade to the latest.
+* `all` - Any updated templates that are available for a infrastructure stack will be automatically upgraded. If an infrastructure stack has a new template version, but the default version of the infrastructure stack is still an older one, it will not automatically upgrade to the latest.
 * `none` - No infrastructure stack will be automatically upgraded. **Warning: This could cause your Rancher setups to stop working as this will stop the required Rancher upgrades.**
 
 ### Rancher Agents
