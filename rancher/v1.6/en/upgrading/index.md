@@ -136,19 +136,20 @@ If you launched Rancher server using an external database, you can stop the orig
 
 If you have launched Rancher server in [High Availability (HA)]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#multi-nodes), the new Rancher HA set up will continue using the external database that was used to install the original HA setup.
 
-> **Note:** When upgrading an HA setup, the Rancher server setup will be down during the upgrade.
+> **Note:** When upgrading an HA setup, all `rancher/server` containers have to be stopped. The Rancher server setup will be down during the upgrade.
 
 1. Before upgrading your Rancher server, we recommend backing up your external database.
 
-2. On each node in the HA setup, stop and remove the running Rancher containers and then start a new Rancher server container using the same command that you had used when [installing Rancher server]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#multi-nodes), but with a new Rancher server image tag.
+2. On each node in the HA setup, stop the running Rancher server containers. Then start a new Rancher server container on one host using the same command that you had used when [installing Rancher server]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#multi-nodes), but with a new Rancher server image tag. When the container is fully started (UI and API are responding, and the server is listed under `Admin` -> `High Availability` in the UI), you can start the new Rancher server container.
 
    ```bash
    # On all nodes, stop all Rancher server containers
    $ docker stop <container_name_of_original_server>
-   # Execute the scrip with the latest rancher/server version
-   $ docker run -d --restart=unless-stopped -p 8080:8080 -p 9345:9345 rancher/server --db-host myhost.example.com --db-port 3306 --db-user username --db-pass password --db-name cattle --advertise-address <IP_of_the_Node>
+   # Start a new container with the new version tag
+   $ docker run -d --restart=unless-stopped -p 8080:8080 -p 9345:9345 rancher/server:<tag_of_new_version> --db-host myhost.example.com --db-port 3306 --db-user username --db-pass password --db-name cattle --advertise-address <IP_of_the_Node>
    ```
    <br>
+
    > **Note:** If you are upgrading from an HA setup that was running the [older version of HA]({{site.baseurl}}/rancher/v1.1/{{page.lang}}/installing-rancher/installing-server/multi-nodes/), you would need to remove all running Rancher HA containers. `$ sudo docker rm -f $(sudo docker ps -a | grep rancher | awk {'print $1'})`
 
 ### Rancher Server with No Internet Access
