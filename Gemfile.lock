@@ -86,19 +86,18 @@ GEM
       gemoji (~> 2.0)
       html-pipeline (~> 2.2)
       jekyll (>= 2.0)
-    json (1.8.3)
     kramdown (1.9.0)
     liquid (3.0.6)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     mercenary (0.3.6)
-    mini_portile2 (2.2.0)
+    mini_portile2 (2.3.0)
     minitest (5.10.3)
     multipart-post (2.0.0)
     net-dns (0.8.0)
     nokogiri (1.8.1)
-      mini_portile2 (~> 2.2.0)
+      mini_portile2 (~> 2.3.0)
     octokit (4.2.0)
       sawyer (~> 0.6.0, >= 0.5.3)
     public_suffix (1.5.2)
@@ -129,7 +128,6 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
-  json
 
 BUNDLED WITH
-   1.15.4
+   1.16.0
