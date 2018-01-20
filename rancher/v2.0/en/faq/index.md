@@ -50,23 +50,15 @@ Yes. You can run the exact same Rancher compose and Docker compose files against
 
 #### Can I still create templates for environments and clusters?
 
-Yes. This feature still exists, except that you can no longer select Swarm or Mesos (now available only as Catalog applications).
+No.  Starting with 2.0, the concept of an environment has now been changed to a Kubernetes cluster as going forward, only the Kubernetes orchestration engine is supported.
 
 #### Can you still add an existing host to an environment? (i.e. not provisioned directly from Rancher)
 
 Yes. We still provide you with the same way of executing our Rancher agents directly on hosts.
 
-#### Can you showcase how you share hosts between Rancher environments?
-
-We've introduced the concept of a cluster in v2.0, which is a group of hosts. Rancher allows you to create multiple environments, which translates to a Kubernetes namespace, on a single cluster. [Watch this demo](https://www.youtube.com/watch?v=Ma6FsuWI2Nc&feature=youtu.be) for more information.
-
 #### If I have catalog items set to use managed network, can I deploy them in an imported Kubernetes cluster, or do they have to run on the Rancher-Kubernetes distribution?
 
 Our goal is to have Catalog items run on any Kubernetes clusters, embedded or imported.
-
-#### At what layer do multi-tenancy and access control come in? Is it within a Kubernetes cluster or in an environment?
-
- Initially, Rancher creates a Default cluster and environment for you. Rancher supports grouping resources into multiples clusters and environments. A cluster is a group of physical (or virtual) compute resources. Each environment is tied to one cluster and runs its containers on the cluster's hosts, and you can share a cluster with more than one environment. An environment is a namespace where applications, services, and containers are defined. The containers in an environment can communicate with each other over a shared managed network, and you can give different users/groups access to manage the resources of the environment.
 
 ### Upgrading/Migrating
 
@@ -81,10 +73,6 @@ Yes. We will make it easy to export environments from v1.0 to v2.0. However, we 
 #### Is it possible to upgrade from Rancher v1.0 to v2.0 without any disruption to Cattle and Kubernetes clusters?
 
 At this time, we are still exploring this scenario and taking feedback. We anticipate that you will need to launch a new Rancher instance and then relaunch on v2.0. Once you've moved to v2.0, upgrades will be in place, as they are in v1.6.
-
-#### When deploying mutiple embedded clusters from Rancher v2.0, will the Kubernetes control plane for all clusters run in the same Rancher master? or will the separate clusters have their own Kubernetes masters? How well will it scale?
-
-Please see our [Rancher v2.0 Architecture](https://cdn2.hubspot.net/hubfs/468859/Whitepapers/Rancher%202.0%20Technical%20Architecture%20-%20Sept%202017.pdf) document for more information.
 
 #### Can I import OpenShift Kubernetes clusters into v2.0?
 
@@ -101,11 +89,7 @@ That is definitely the focus of the v1.6 stream. We're continuing to improve tha
 When creating an environment in Rancher v2.0, Swarm and Mesos will no longer be standard options you can select. However, both Swarm and Mesos will continue to be available as Catalog applications you can deploy. It was a tough decision to make but, in the end, it came down to adoption. For example, out of more than 15,000 clusters, only about 200 or so are running Swarm. 
 
 #### Is it possible to manage Azure Container Services with Rancher v2.0?
-Yes. That's exactly what you can do with an imported environment.
-
-#### Which databases does Rancher v2.0 support?
-
-The Rancher database remains MySQL.
+Yes. 
 
 #### What about Windows support?
 
@@ -139,17 +123,7 @@ We don't currently plan on providing embedded Traefik support, but we're still e
 
 #### When will Rancher v2.0 be ready for use in production?
 
-We anticipate Rancher v2.0 will be ready for production use during the first quarter of 2018. Until then, please continue to use v1.6 in production.
-
-#### How does this architectural change impact how we start Rancher?
-
-Unlike Rancher v1.0, Rancher v2.0 includes an embedded Kubernetes master. Therefore, as soon as you start Rancher using this command, for example, you immediately have a Kubernetes cluster up and running:
-
-```bash
-$ docker run -d -p 8080:8080 rancher/server
-```
-
-You simply need to add compute nodes to complete your first Kubernetes cluster.
+We anticipate Rancher v2.0 will be ready for production use during the second quarter of 2018. Until then, please continue to use v1.6 in production.
 
 #### Can I export all of the configuration performed in the UI to config files, to serve as a source for (re)building "infrastructure-as-code"?
 
@@ -165,7 +139,7 @@ Rancher will add a CI/CD pipeline soon after v2.0 launches. We plan to showcase 
 
 #### Will the networking options in Rancher v2.0 change?
 
-With 2.0, our users continue to have the option of using either Rancher’s IPSec or VXLAN overlay solutions, or using any of the third-party CNI networking plugins in embedded clusters. Because an imported cluster already has a networking plugin plugged in, Rancher supports it by default and doesn't force users to install our networking solutions. Users can continue to make their own networking choices.
+Yes. With 2.0, all RKE clusters will have the option to use flannel or Calico.
 
 #### Are you going to integrate Longhorn?
 
@@ -187,21 +161,13 @@ Yes. That will be part of the Volumes work coming soon!
 
 Yes. You can do so by leveraging Kubernetes' network policies.
 
-#### Will there be a function to allow for cross-environment communication while controlling network policies? For example, can we manage egress and ingress controllers in Rancher v2.0?
-
-Yes. Our goal is to leverage Kubernetes' network policies to enable this functionality.
-
-#### Will the access control be a pluggable module in which we can provide our custom ACL control?
-
-Yes. That is the plan, as it is in v1.6.
-
 #### What about the CLI? Will that work the same way with the same features?
 
 Yes. Definitely.
 
 #### Will Rancher compose still work with v2.0?
 
-Yes. You'll be able to use compose in exactly the same way.
+Rancher compose will be updated to support 2.0 features.  As part of the upgrade process, our intention is to provide a way to convert Compose 1.0 to 2.0 format.
 
 #### If we use Kubernetes native YAML files for creating resources, should we expect that to work as expected, or do we need to use Rancher/Docker compose files to deploy infrastructure?
 
