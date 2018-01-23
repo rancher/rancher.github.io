@@ -35,7 +35,7 @@ In the **Infrastructure** -> **Container** page, click on **Add Container**. Any
 
     If you chose to add the container from the **Infrastructure** -> **Containers** page, Rancher will automatically pick a host for you. Otherwise, if you have picked a host to add a container to, the host will be populated in the **Security/Host** tab.
 
-    There is also the ability to add labels to a container as well as apply scheduling rules. More details about labels and scheduling can be read [here]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/scheduling/).
+    There is also the ability to add labels to a container as well as apply scheduling rules. More details about labels and scheduling can be read [here]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/).
 
 5. When you have completed filling out your container options, click **Create**.
 
