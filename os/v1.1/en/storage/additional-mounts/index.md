@@ -21,7 +21,7 @@ mounts:
 As you will use the `ros` cli most probably, it would look like this:
 
 ```
-ros config set mounts '[["/dev/vdb","/mnt/s","ext4"]]'
+ros config set mounts '[["/dev/vdb","/mnt/s","ext4", ""]]'
 ```
 
 **hint**: You need to pre-format the disks, rancher-os will not do this for you. The mount will not work (silently) until you formatted the disk, e.g. using:
