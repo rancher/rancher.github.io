@@ -153,7 +153,7 @@ Yes. Everything in the Rancher UI is always built on the API.
 
 The default roles remain the same in v2.0, but we now take advantage of the Kubernetes RBAC (Role-Based Access Control) capabilities to give you more flexibility.
 
-#### Will the Rancher-NSF driver become available for v2.0?
+#### Will the Rancher-NFS driver become available for v2.0?
 
 Yes. That will be part of the Volumes work coming soon!
 
