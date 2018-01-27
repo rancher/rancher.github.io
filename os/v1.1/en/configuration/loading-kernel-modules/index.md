@@ -38,7 +38,7 @@ configuration or boot, and we can add it to the default kernel modules.
 
 ## Copy the out of tree build method
 
-See https://github.com/rancher/os-services/blob/master/o/open-zfs.yml and 
+See https://github.com/rancher/os-services/blob/master/z/zfs.yml and 
 https://github.com/rancher/os-services/tree/master/images/20-zfs
 
 The build container and build.sh script build the source, and then create a tools image, which is used to
