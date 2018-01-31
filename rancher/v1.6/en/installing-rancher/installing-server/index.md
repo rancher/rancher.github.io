@@ -126,11 +126,11 @@ With this command, the database will persist on the host. If you have an existin
 
 ### Launching Rancher Server - Full Active/Active HA
 
-Running Rancher server in High Availability (HA) is as easy as running [Rancher server using an external database](#using-an-external-database), exposing an additional port, and adding in an additional argument to the command for the external load balancer.
+Running Rancher server in High Availability (HA) is as easy as running [Rancher server using an external database](#using-an-external-database), exposing an additional port, and adding in an additional argument to the command for the external load balancer. Setting up HA requires a minimum of 3 nodes.
 
 #### Requirements for HA
 
-* HA Nodes:
+* HA Nodes (a minimum of 3 nodes is required):
     * Any modern Linux distribution with a [supported version of Docker]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#supported-docker-versions). [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
       * For RHEL/CentOS, the default storage driver, i.e. devicemapper using loopback, is not recommended by [Docker](https://docs.docker.com/engine/reference/commandline/dockerd/#/storage-driver-options). Please refer to the Docker documentation on how to change it.
       * For RHEL/CentOS, if you want to enable SELinux, you will need to [install an additional SELinux module]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/selinux/).
