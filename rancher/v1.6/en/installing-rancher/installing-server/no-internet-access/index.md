@@ -36,9 +36,42 @@ It is assumed you either have your own private registry or other means of distri
 
 #### Pushing Images to Private Registry
 
-It is **very important** that all images (e.g.. `rancher/server`, `rancher/agent`, and any [infrastructure service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) images) are distributed before attempting to install/upgrade Rancher Server. If these versions are not available in your private registry, Rancher Server will become unstable.
+It is **very important** that all images (e.g.. `rancher/server`, `rancher/agent`, `rancher/lb-service-haproxy`, and any [infrastructure service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) images) are distributed before attempting to install/upgrade Rancher Server. If these versions are not available in your private registry, Rancher Server will become unstable.
 
-For each release of Rancher server, the corresponding Rancher agent and Rancher agent instance versions will be available in the release notes. In order to find the images for your infrastructure services, you would need to reference the `infra-templates` folders in our [Rancher catalog](https://github.com/rancher/rancher-catalog) and [community catalog](https://github.com/rancher/community-catalog) to see which infrastructure services that you'd like to include and the associated images in those templates from those [catalogs]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/catalog/).
+For each release of Rancher, the corresponding `rancher/server`, `rancher/agent` and `rancher/lb-service-haproxy` versions will be available in the release notes. In order to find the images for your infrastructure services, you can use the `print-catalog-images.py` script inside the `scripts` directory in the `rancher/rancher` repository. See an example below:
+
+```bash
+# We need python to run the script
+$ docker run -ti python:2.7 bash
+# Clone the rancher repository
+$ git clone https://github.com/rancher/rancher
+# Install required python modules
+$ cd rancher/scripts/print-catalog-images/
+$ pip install -r requirements.txt
+...
+Successfully installed ...
+# Run the script to print the needed images
+$ ./print-catalog-images.py -v 1.6.14
+Rancher Version: 1.6.14
+Catalog URL: https://git.rancher.io/rancher-catalog
+Catalog Branch: v1.6-release
+...
+```
+
+##### Kubernetes
+
+When using Kubernetes, you will need to distribute a few additional images which are used for running pods and running the addons like the kubernetes-dashboard. You can check the [Private Registry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/private-registry/) documentation for instructions how to do this.
+
+##### Options for `print-catalog-images.py`
+
+| Option | Description |
+|---|---|
+| -h, --help | show help |
+| -u URL, --url URL | Rancher catalog URL accessible in airgap environment |
+| -b BRANCH, --branch BRANCH | Rancher catalog branch accessible in airgap environment |
+| -k, --k8saddons | Print k8s addon images |
+| -ku K8SURL, --k8surl K8SURL | Rancher URL for kubernetes-package accessible in airgap environment |
+| -v VERSION, --version VERSION | Rancher Server version |
 
 ##### Commands to Push Images to Private Registry
 
