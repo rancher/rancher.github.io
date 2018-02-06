@@ -2,7 +2,7 @@
 title: Configuring Network Interfaces in RancherOS
 
 redirect_from:
-  - os/v1.1/en/configuration/networking/
+  - os/v1.2/en/configuration/networking/
 ---
 
 ## Interfaces

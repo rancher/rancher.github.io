@@ -2,7 +2,7 @@
 title: Image Preloading
 
 redirect_from:
-  - os/v1.1/en/configuration/prepacking-docker-images/
+  - os/v1.2/en/configuration/prepacking-docker-images/
 
 ---
 

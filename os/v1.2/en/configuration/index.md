@@ -2,7 +2,7 @@
 title: Configuring RancherOS
 
 redirect_from:
-  - os/v1.1/en/cloud-config/
+  - os/v1.2/en/cloud-config/
 ---
 
 ## Configuring RancherOS
