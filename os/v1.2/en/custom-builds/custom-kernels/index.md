@@ -2,7 +2,7 @@
 title: Custom Kernels in RancherOS
 
 redirect_from:
-  - os/v1.1/en/configuration/custom-kernels/
+  - os/v1.2/en/configuration/custom-kernels/
 ---
 
 ## Custom Kernels

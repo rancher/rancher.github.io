@@ -2,7 +2,7 @@
 title: Additional Mounts in RancherOS
 
 redirect_from:
-  - os/v1.1/en/configuration/additional-mounts/
+  - os/v1.2/en/configuration/additional-mounts/
 ---
 
 ## Additional Mounts
