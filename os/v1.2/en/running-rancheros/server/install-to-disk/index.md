@@ -40,6 +40,12 @@ Installing from rancher/os:v0.5.0
 Continue [y/N]:
 ```
 
+For the `cloud-config.yml` file, you can also specify a remote URL, but you need to make sure you can get it:
+
+```
+$ sudo ros install -c https://link/to/cloud-config.yml
+```
+
 You will be prompted to see if you want to continue. Type **y**.
 
 ```
