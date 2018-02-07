@@ -34,3 +34,11 @@ rancher:
       environment:
       - ETCD_*
 ```
+
+There is also a way to extend PATH environment variable, `PATH` or `path` can be set, and multiple values can be comma-separated. Note that need to reboot before taking effect.
+
+```yaml
+rancher:
+  environment:
+    path: /opt/bin,/home/rancher/bin
+```
