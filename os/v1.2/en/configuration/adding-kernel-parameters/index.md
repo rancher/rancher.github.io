@@ -52,3 +52,7 @@ On desktop systems the Syslinux boot menu can be switched to graphical mode by a
 #### Enable/Disable hypervisor service auto-enable
 
 RancherOS v1.1.0 added detection of Hypervisor, and then will try to download the a service called `<hypervisor>-vm-tools`. This may cause boot speed issues, and so can be disabled by setting `rancher.hypervisor_service=false`.
+
+#### Configure docker-sys bridge
+
+RancherOS v1.2.0 added ability to configure docker-sys bridge, this can be used like this `rancher.system_docker.subnet=172.21.43.1/16`.
