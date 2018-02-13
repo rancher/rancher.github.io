@@ -58,13 +58,13 @@ Owners have the ability to change [infrastructure services]({{site.baseurl}}/ran
 
 #### Members
 
-A member of an environment can perform any actions in Rancher that do not affect the environment. They will not be able to add/remove members or change the membership roles of existing members or view any of the [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/).
+A member of an environment can perform any actions in Rancher that do not affect the environment. They will not be able to add/remove members, change the membership roles of existing members or add [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/).
 
 #### Restricted
 
-A restricted role of an environment is able to perform all actions related to stacks/services. For any container of a service, they can perform all actions, i.e. start, stop, delete, upgrade, clone, and edit. There is nothing restricted regarding actions related to stacks, services, and containers.
+A restricted role of an environment is able to perform all actions related to user stacks/services, but is not able to perform all actions for [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/). For any container of an infrastructure service, they can only view the logs of that container. They are not able to delete an infrastructure stack/service. For any container of an user service, they can perform all actions, i.e. start, stop, delete, upgrade, clone, and edit. There is nothing restricted regarding actions related to user stacks, user services, and their containers.
 
-The restriction of their role is regarding **Hosts**. They are only able to view hosts of an environment and will not be able to add/edit/remove hosts in the environment.
+The other restriction for this role is regarding **Hosts**. They are only able to view hosts of an environment and will not be able to add/edit/remove hosts in the environment.
 
 > **Note:** Restricted users will not be able to add/remove host labels and will need to request a member/owner to make any changes to host labels.
 
