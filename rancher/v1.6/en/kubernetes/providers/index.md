@@ -140,6 +140,7 @@ After configuring Kubernetes to use `aws` as a cloud provider and ensuring the h
 #### Configuration
 
 To start Kubernetes using the Azure Cloud Provider, you need to follow these steps:
+
 * Configure the infrastructure template to use the `azure` cloud provider.
 * Complete the configuration by providing the following items:
   * Azure Cloud Environment
