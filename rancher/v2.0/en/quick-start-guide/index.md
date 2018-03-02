@@ -148,3 +148,7 @@ You can generate a Kubernetes configuration file to use `kubectl` on your deskto
 
 1. On the Rancher UI menu, select the cluster.
 2. In the **Dashboard**, click on the **Kubeconfig File** button. A *kubeconfig* file will be generated so you can use `kubectl` on your desktop. Copy and paste the code that displays into your `~/.kube/config` file, and then start using `kubectl`. Click **Close** to return to the Rancher UI.
+
+### Deploying on Canonical Kubernetes
+
+It is possible to use Rancher to control Canonical Kubernetes (cdk) clusters running on Ubuntu. A full set of instructions has been provided by Canonical for doing this [https://github.com/CalvinHartwell/canonical-kubernetes-rancher.git](https://github.com/CalvinHartwell/canonical-kubernetes-rancher.git). 
