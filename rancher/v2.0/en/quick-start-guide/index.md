@@ -45,7 +45,7 @@ It only takes one command and less than a minute to install and launch Rancher S
 
    > **Note:** Rancher only supports HTTPS and is configured, by default, with a self-signed cert.  The ability to replace this cert will be made available before GA.  Due to this, you will be prompted by your browser to trust this cert before continuing.
 
-3.   Start adding clusters into your Rancher server. Select one of the options for adding clusters, and continue to the relevant section below:
+3. Start adding clusters into your Rancher server. Select one of the options for adding clusters, and continue to the relevant section below:
 
     * **Creating a Cloud Cluster** -- Select this option to create and use a new cluster and nodes managed by a cloud Kubernetes provider. To create a new cloud cluster, go to [**Creating Cloud Clusters**](#creating-cloud-clusters).
     * **Creating a [RKE](https://github.com/rancher/rke) Cluster** -- Select this option to have Rancher deploy and automatically manage a Kubernetes cluster for you. To create a RKE cluster, go to [**Creating RKE Clusters**](#creating-rke-clusters).
