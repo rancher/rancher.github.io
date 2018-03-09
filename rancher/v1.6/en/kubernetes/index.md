@@ -35,19 +35,23 @@ After a Kubernetes environment has been created, the [infrastructure services]({
 
 #### Host Requirements for Kubernetes
 
-##### Required Ports
-
- * Hosts that will be used as Kubernetes nodes will require the following TCP ports to be open for `kubectl`: `10250` and `10255`. To access any exposed services, the ports used for the NodePort will also need to be opened. The default ports used by NodePort are TCP ports `30000` - `32767`.
-
 * For [overlapping planes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/resiliency-planes/#overlapping-planes) setup: At least 1 CPU, 2GB RAM. Resource requirements vary depending on workload.
 * For [separated planes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/resiliency-planes/#separated-planes) setup: A minimum of five hosts is required for this deployment type.
- * Data Plane: Add 3 or more hosts with 1 CPU, >=1.5GB RAM, >=20GB DISK. When adding the host, [label these hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) with `etcd=true`.
- * Orchestration Plane: Add 1 or more hosts with >=1 CPU and >=2GB RAM. When adding the host, [label these hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) with `orchestration=true`. You can get away with 1 host, but you sacrifice high availability. In the event of this host failing, some K8s features such as the API, rescheduling pods in the event of failure, etc. will not occur until a new host is provisioned.
- * Compute Plane: Add 1 or more hosts. When adding the host, [label these hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) with `compute=true`.
+ * **Data Plane**: Add 3 or more hosts with 1 CPU, >=1.5GB RAM, >=20GB DISK. When adding the host, [label these hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) with `etcd=true`.
+ * **Orchestration Plane**: Add 1 or more hosts with >=1 CPU and >=2GB RAM. When adding the host, [label these hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) with `orchestration=true`. You can get away with 1 host, but you sacrifice high availability. In the event of this host failing, some K8s features such as the API, rescheduling pods in the event of failure, etc. will not occur until a new host is provisioned.
+ * **Compute Plane**: Add 1 or more hosts. When adding the host, [label these hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#host-labels) with `compute=true`.
 
 > **Note:** Only admins of Rancher or owners of the environment will be able to view the [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/).
 
 When adding hosts to Kubernetes, the hostnames are used as unique identifiers for Kubernetes nodes when using `kubectl get nodes`.
+
+##### Required Ports
+
+> **Important:** Only allow access to the hosts from sources that you trust. Having the `kubelet` exposed to untrusted sources imposes a security risk. See [Kubernetes Security]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/security/) for more information.
+
+ * Hosts labeled as **Compute Plane** will need to have TCP port `10250` inbound opened from all hosts labeled as **Orchestration Plane**. This is for the `kube-apiserver` contacting the `kubelet` for logs and exec.
+ * Hosts labeled as **Compute Plane** will need to have TCP port `10255` inbound opened from all hosts labeled as **Compute Plane**. This is the `kubelet` read-only port needed for `heapster` to get metrics.
+ * To access any exposed services, the ports used for the NodePort will also need to be opened. The default ports used by NodePort are TCP ports `30000` - `32767`.
 
 ### Using Kubernetes
 
