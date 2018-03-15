@@ -25,7 +25,7 @@ In this guide, you'll learn how to get started with Rancher v2.0, including:
 ### Preparing a Linux Host
 
 1. Prepare a Linux host with 64-bit Ubuntu 16.04, at least 4GB of memory.
-2. Install the latest stable version of Docker on the host. To install Docker on the server, follow the instructions from [Docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/).
+2. Install a supported version of Docker on the host, supported Docker versions are `1.12.6`, `1.13.1` or `17.03.2`. To install Docker on the server, follow the instructions from [Docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/).
 
 <a id="launch-rancher"></a>
 
