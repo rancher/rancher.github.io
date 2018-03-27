@@ -273,6 +273,18 @@ Rancher Compose CLI will require the CA certificate as part of the default store
 
 #### Adding Hosts
 
+There are two ways in which hosts can be configured to use the correct certificate. The first one is more convenient when the
+certificate is just issued for `rancher` and the single purpose of the host is to act as a rancher agent. The second takes advantage
+of the host systems root certificates and requires the custom CA to be bundled up in there.
+
+##### Method 1: Mounting the single certificate
+
 1. On the host that you want to add into Rancher, save the CA certificate, which must be in pem format, into the directory `/var/lib/rancher/etc/ssl` with the file name `ca.crt`.
 
 2. Add the [custom host]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/), which is just copying and pasting the command from the UI. The command will already include  `-v /var/lib/rancher:/var/lib/rancher`, so the file will automatically be copied onto your host.
+
+##### Method 2: Adding the systems certificate file
+
+1. Copy the command for adding a custom host from the UI.
+
+2. Add a mount for the systems certificate file (this can be different, depending on your distro) and set an env variable to instruct the agent to use it: `-e REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt -v /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt`
