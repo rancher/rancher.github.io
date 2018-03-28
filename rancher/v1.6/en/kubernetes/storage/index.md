@@ -293,6 +293,44 @@ You can start using a storage class in any pod or claim to make Kubernetes autom
 }
 ```
 
+Or in the case of a `StatefulSet` you can make mention of the `StorageClass` through use of a `volumeClaimTemplate`:
+```
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: postgres
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  serviceName: "postgres"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: postgres
+        image: postgres:10
+        ports:
+        - containerPort: 5432
+          name: postgres
+        volumeMounts:
+        - name: pgdata
+          mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+  - metadata:
+      name: pgdata
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "standard"
+      resources:
+        requests:
+          storage: 1Gi
+```
+
 After using this claim with a pod resource, you should be able to see a new pv is created and bounded to the claim automatically:
 
 ```bash
@@ -305,4 +343,10 @@ pvc/claim2    Bound     pvc-36fcf5dd-f476-11e6-b547-0275ac92095a   1Gi        RW
 
 NAME       READY     STATUS    RESTARTS   AGE
 po/nginx   1/1       Running   0          29s
+```
+
+Additionally you can declare a `StorageClass` as cluster default, in which case claims which do not specify a specific `StorageClass` will be given this one. Just add the following annotation to your StorageClass resource:
+
+```
+storageclass.kubernetes.io/is-default-class: "true"
 ```
