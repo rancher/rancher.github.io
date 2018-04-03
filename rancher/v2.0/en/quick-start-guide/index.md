@@ -41,7 +41,7 @@ Creation of your first cluster is a multi-stage process that we've broken into d
 
 	When your workload finishes deployment, browse to your application to make sure it works.
 
-6.	[What's Next?](#whats-next)
+7.	[What's Next?](#whats-next)
 
 	Now that you've created a cluster and deployed a workload, find out what else you can do with Rancher v2.0.
 
@@ -115,7 +115,10 @@ Begin using Rancher by creating your first cluster! A *cluster* is a group of ph
 
 	**Step Result:** The **Add Cluster** page opens.
 
-2.	From the **Add Cluster** menu, choose a tile to create your first cluster (e.g. **Digital Ocean**, **Azure Container Service**, etc.).
+2.	From the **Add Cluster** menu, choose a service or source from which to create your first cluster.
+
+	* If you're using a virtual machine hosted on a major cloud service, choose the tile for the service you want to use (e.g. **Digital Ocean**, **Azure Container Service**).
+	* If you're using bare-metal server, an on-premise virtual machine, or a cloud service that isn't explicitly listed, choose **Custom**.
 
 	> **Note:**
 	>
@@ -128,15 +131,7 @@ Begin using Rancher by creating your first cluster! A *cluster* is a group of ph
 	>
 	> ![skip member roles](../../../../img/rancher/skip-member-roles.png)
 
-4.	Select **Cluster Options**.
-
-	Use these options to choose things like the version of Kubernetes that's installed in your cluster, along with other Kubernetes options such as pod security policies. Some services have more options than others. If you're unsure of what to choose, use the default options.
-
-	**Using Google Container Engine?** Skip to the next step. GCE doesn't have any cluster options.
-
-	![choose-cluster-options](../../../../img/rancher/choose-cluster-options.png)
-
-5.	**For those using Google Container Engine or Azure Container Service:**
+4.	**For those using Google Container Engine or Azure Container Service:**
 
 	Complete the form asking for account information. The form includes links to instructions detailing how to obtain this info.
 
@@ -144,11 +139,19 @@ Begin using Rancher by creating your first cluster! A *cluster* is a group of ph
 
 	**Did you choose one of the other tiles (like Digital Ocean)?** This step doesn't apply to you. Skip to the next step.
 
+5.	Select **Cluster Options**.
+
+	Use these options to choose things like the version of Kubernetes that's installed in your cluster, along with other Kubernetes options such as pod security policies. Some services have more options than others. If you're unsure of what to choose, use the default options.
+
 6.	Add at least one **Node Pool**.
 
 	A *Node Pool* is a group of nodes that are configured identically. Your cluster can contain as many node pools as you'd like. Each object in the grid represents a single node configuration. You can use the node pool to choose the number (i.e. **Count**) of nodes running a given configuration (i.e. **Template**).
 
-	> **Exception:** The instructions below don't apply to Azure Container Service. Node creation for Azure is a little different. Instead of accessing a template through an API, you must complete the **Nodes** form, which customizes nodes directly from Rancher.
+	> **Note:** The instructions below don't apply to Google Container Engine, Azure Container Service, or the Custom option.
+	>
+	>*	For Azure Container Server, no additional steps are needed. Proceed to this task's [final step](#create-cluster).
+	>*  For Google Container Engine, complete the Nodes form. The options are pretty self-explanatory. When you're done, proceed to this task's [final step](#create-cluster).
+	>*  For Custom, see [Appendix A: Add Custom Cluster](#appendix-a-add-custom-cluster).
 
 	1.	Enter a **Node Prefix**. When the cluster is created, each node in the pool is named after the prefix. An incremented number is appended to each node.
 
@@ -163,7 +166,7 @@ Begin using Rancher by creating your first cluster! A *cluster* is a group of ph
 		![choose template](../../../../img/rancher/choose-template.gif)
 
 	5.	Select roles for the node pool.
-
+		<a name="roles"></a>
 		Kubernetes functions using different [components](https://kubernetes.io/docs/concepts/overview/components/), which are divided into *master components* and *node components*. When setting up your node pool, select a pool to fill each component role. You can install all components one a single pool, or you can spread them around.
 
 		The roles are:
@@ -178,7 +181,7 @@ Begin using Rancher by creating your first cluster! A *cluster* is a group of ph
 
 		![add-second-node-pool](../../../../img/rancher/add-second-node-pool.gif)
 
-	7.	Click **Create**.
+	7.	<a name="create-cluster"></a>Click **Create**.
 
 **Result:**
 
@@ -244,6 +247,29 @@ Now you can use the rest of Rancher v2.0 to orchestrate and manage your pods.
 (Moooooo-re coming soon!)
 
 ![cow](../../../../img/rancher/cow.jpg)
+
+
+### Appendix A: Add Custom Cluster
+
+When creating a custom cluster, follow these instructions to complete its creation. These instructions will create one or more node that will be used to image your cluster.
+
+1. From **Node Roles**, choose the Kubernetes component roles that you want the node to fill. You must fill each role.
+
+	A more detailed description of each [role](#roles) is available earlier in this guide.
+
+	>**Note:** If you want to spread the roles among different nodes, provision additional Linux hosts and enter the command on each of your nodes.
+
+3. **Optional:** Add labels to the node template.
+
+4. Copy the command to your clipboard.
+
+5. Log in to your Linux host using your preferred shell, such as PuTTy or a remote Terminal connection.
+
+6. Enter the command on your Linux host.
+
+7. From you Rancher session, click **Done**.
+
+8. Resume the Quick Start Guide from [Deploy a Workload](#deploy-a-workload).
 
 <!--
 
