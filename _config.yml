@@ -57,3 +57,27 @@ defaults:
       layout: "os-default-v1.2"
       version: v1.2
       osbaseurl: "/docs/os/v1.2/en"
+  -
+    scope:
+      path: "rke"
+    values:
+      layout: "rke-redirect"
+      version: v0.1
+      lang: en
+  -
+    scope:
+      path: "rke/latest"
+    values:
+      layout: "rke-latest-redirect"
+  -
+    scope:
+      path: "rke/latest/en"
+    values:
+      layout: "rke-latest-en-redirect"
+  -
+    scope:
+      path: "rke/v0.1"
+    values:
+      layout: "rke-default-v0.1"
+      version: v0.1
+      rkebaseurl: "/docs/rke/v0.1/en"
