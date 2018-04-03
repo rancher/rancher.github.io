@@ -36,15 +36,13 @@ You do not need to learn both, but you'll have access to both and can easily use
 
 ### Cattle
 
-#### How does Rancher v2.0 affect Cattle? Does this release mean that my knowledge and experience invested in Cattle is about to become deprecated?
+### How does Rancher v2.0 affect Cattle? 
 
-We definitely are NOT deprecating Cattle. On the contrary, we improved it. In v2.0, Rancher now bases its architecture and every cluster/environment on Kubernetes. While v1.0 already supported installing, operating, and managing Kubernetes environments, we've always felt that it didn't mesh with the rest of the Rancher user experience (UX). We remedied that in v2.0. Not only do you get access to the native Kubernetes dashboard UI and `kubectl`, but now the Rancher UX, formerly known as the Cattle UX (CLI, API, and Docker compose) works directly with Kubernetes.
+Cattle will not supported in v2.0 as Rancher has been re-architected to be based on Kubernetes. You can, however, expect majority of Cattle features you use will exist and function similarly on Kubernetes. We will develop migration tools in Rancher v2.1 to help you transform your existing Rancher Compose files into Kubernetes yaml files. 
 
-Think of v2.0 as an enhanced add-on to the Kubernetes platform in which you can continue to use all of the existing Rancher features you know and love, while leveraging the rich Kubernetes ecosystem and its rapid innovations.
+#### Can I migrate existing Cattle workloads into Kubernetes?
 
-#### Can I migrate/import existing Cattle clusters into Kubernetes?
-
-Yes. You can run the exact same Rancher compose and Docker compose files against a new cluster and recreate all of your deployments identically.
+Yes. In the upcoming Rancher v2.1 release we will provide a tool to help translate existing Cattle workloads in Compose format to kubernetes yaml format.  You will then be able to deploy those workloads on the v2.0 platform.
 
 ### Environments & Clusters
 
@@ -64,7 +62,7 @@ Our goal is to have Catalog items run on any Kubernetes clusters, embedded or im
 
 #### How would the migration from v1.x to v2.0 work?
 
-Due to the technical difficulty in transforming a Docker container into a pod running Kubernetes, upgrading will require users to “replay” the same compose files from v1.x into new v2.0 environments. We plan to ship with some tools to make migration as seamless as possible.
+Due to the technical difficulty in transforming a Docker container into a pod running Kubernetes, upgrading will require users to “replay” those workloads from v1.x into new v2.0 environments. We plan to ship with a tool in v2.1 to translate existing Rancher Compose files into Kubernetes yaml files.  You will then be able to deploy those workloads on the v2.0 platform.
 
 #### Will I be able to export my environments from v1.0 and import them into v2.0?
 
