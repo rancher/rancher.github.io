@@ -4,91 +4,274 @@ layout: rancher-default-v2.0
 version: v2.0
 lang: en
 redirect_from:
-  - /rancher/quick-start-guide/
-  - /rancher/v2.0/en/
+ /rancher/quick-start-guide/
+ /rancher/v2.0/en/
 ---
 
-## Quick Start Guide
+Quick Start Guide
 ---
 
-In this guide, you'll learn how to get started with Rancher v2.0, including:
+This tutorial walks you through installation of Rancher v2.0, creation of your first cluster, and deployment of an application.
 
-* Preparing a Linux Host
-* Launching Rancher Server and Accessing the Rancher UI
-* Creating Clusters through the Rancher UI
-* Importing an Existing Kubernetes Cluster
-* Adding a Pod through the Rancher UI
-* Using Kubeconfig file
+### Objectives
 
-<a id="prepare-host"></a>
+Creation of your first cluster is a multi-stage process that we've broken into different tasks.
 
-### Preparing a Linux Host
+1.	[Prepare a Linux Host](#prepare-a-linux-host)
 
-1. Prepare a Linux host with 64-bit Ubuntu 16.04, at least 4GB of memory.
-2. Install a supported version of Docker on the host, supported Docker versions are `1.12.6`, `1.13.1` or `17.03.2`. To install Docker on the server, follow the instructions from [Docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/).
+	First, you need to provision a Linux host.
+
+2.	[Install Rancher](#install-rancher)
+
+	Run the Docker command for installing Rancher.
+
+3.	[Log In](#log-in)
+
+	Browse to your Linux host to access the Rancher UI.
+
+4.	[Create a Cluster](#create-a-cluster)
+
+	Use Rancher to create your first cluster.
+
+5.	[Deploy a Workload](#deploy-a-workload)
+
+	Create a workload so that Kubernetes can distribute an application and its dependencies among your nodes.
+
+6.	[View Your Application](#view-your-application)
+
+	When your workload finishes deployment, browse to your application to make sure it works.
+
+7.	[What's Next?](#whats-next)
+
+	Now that you've created a cluster and deployed a workload, find out what else you can do with Rancher v2.0.
+
+### Prepare a Linux Host
+
+Begin by provisioning a Linux host to be your Rancher server and cluster template. This host can be:
+
+-	A virtual machine hosted by a cloud service.
+-	An on-premise virtual machine.
+-	An on-premise bare-metal server.
+
+Provision the server according to the specifications below.
+
+#### Host Specifications
+
+-	Operating System: Ubuntu 16.04 (64-bit)
+-	Memory: 4GB
+-	Software: [Docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/)
+
+	**Supported Versions:**
+
+	-	`1.12.6`
+	-	`1.13.1`
+	-	`17.03.2`
+
+### Install Rancher
+
+To install Rancher on your host, connect to it and then use a shell to install.
+
+1.	Log in to your Linux host using your preferred shell, such as PuTTy or a remote Terminal connection.
+
+2.	From your shell, enter the following command:
+
+	```
+	$ sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/server:preview
+	```
+
+**Result:** Rancher is installed.
 
 <a id="launch-rancher"></a>
 
-### Launching Rancher Server
+### Log In
 
-It only takes one command and less than a minute to install and launch Rancher Server. Once installed, you can open a web browser to access the Rancher UI.
+Log in to Rancher to begin using the application.
 
-#### To Launch Rancher Server:
+1.	Open a web browser and enter the IP address of your host:
 
-1. Run this Docker command on your host:
+	`https://<SERVER_IP>`
 
-   ```bash
-   $ sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/server:preview
-   ```
+	Replace `<SERVER_IP>` with your host IP address.
 
-2. To access the Rancher UI, go to `https://<SERVER_IP>`, replacing `<SERVER_IP>` with the IP address of your host. Rancher is automatically authenticated with a default admin. You will need to log in with this user (`admin`) and password (`admin`). Upon logging in the first time, you will be asked to change the default admin's password.
+2.	Log in to Rancher using the default credentials below. Update your password when prompted.
 
-   > **Note:** Rancher only supports HTTPS and is configured, by default, with a self-signed cert.  The ability to replace this cert will be made available before GA.  Due to this, you will be prompted by your browser to trust this cert before continuing.
+	-	**Username:** admin
+	-	**Password:** admin
 
-3. Start adding clusters into your Rancher server. Select one of the options for adding clusters, and continue to the relevant section below:
+    ![login](../../../../img/rancher/log-in.png)
 
-    * **Creating a Cloud Cluster** -- Select this option to create and use a new cluster and nodes managed by a cloud Kubernetes provider. To create a new cloud cluster, go to [**Creating Cloud Clusters**](#creating-cloud-clusters).
-    * **Creating a [RKE](https://github.com/rancher/rke) Cluster** -- Select this option to have Rancher deploy and automatically manage a Kubernetes cluster for you. To create a RKE cluster, go to [**Creating RKE Clusters**](#creating-rke-clusters).
-    * **Import an Existing Kubernetes Cluster** – Select this option if you want the cluster provider to manage hosts outside Rancher. To import an existing Kubernetes installation, go to [**Importing Kubernetes Clusters**](#importing-kuberentes-clusters).
+	> **Note:** Rancher v2.0 beta:
+	>
+	> -	Supports only the HTTPS protocol.
+	> -	Uses a self-signed certificate. Due to this signature, the browser prompts you to trust the certificate before login. Following GA, you'll be able to use your own certificate.
 
-### Creating Cloud Clusters
+### Create a Cluster
 
-In Rancher v2.0, you can create new Kubernetes clusters from hosted services like Google Container Engine (GKE).
+Begin using Rancher by creating your first cluster! A *cluster* is a group of physical (or virtual) computers that share resources to accomplish tasks as if they were a single system.
 
-1. Click on the **Add Cluster** button and in "Create a Cloud Cluster", click on **Select**.
+1.	Click **+ Add Cluster**.
 
-2.  Follow the instructions in the Rancher UI to create and add your cluster. The provisioning process might take a few minutes to complete. Once your cluster is ready, you can view its status on the Clusters page. Once your cluster is running, Rancher creates a `Default` project and a `default` namespace. Once the cluster is active, you can start adding pods into your namespace.
+	![add cluster](../../../../img/rancher/click-add-cluster.png)
 
-### Creating RKE Clusters
+	**Step Result:** The **Add Cluster** page opens.
 
-You can create a cluster using [RKE](https://github.com/rancher/rke), which will install Kubernetes on any nodes that you bring into your cluster. You can add node(s) from various cloud providers that Rancher v2.0 support and specify the role for each node for the Kubernetes cluster.
+2.	From the **Add Cluster** menu, choose a service or source from which to create your first cluster.
 
-> **Note:** Currently in the tech preview, only Digital Ocean and AWS nodes are supported, but support for all the cloud providers and adding custom nodes will be added.
+	* If you're using a virtual machine hosted on a major cloud service, choose the tile for the service you want to use (e.g. **Digital Ocean**, **Azure Container Service**).
+	* If you're using bare-metal server, an on-premise virtual machine, or a cloud service that isn't explicitly listed, choose **Custom**.
+
+	> **Note:**
+	>
+	> -	For Rancher v2.0 beta, Amazon EKS is not supported. This option will be available after GA.
+	> -	For this tutorial, the Import option is out of scope. For now, create a cluster using one of the other options. We'll address Import later.
+
+3.	Enter a **Cluster Name**. No spaces allowed.
+
+	> **Tip:** Skip adding **Member Roles** for now. This option isn't essential for your first cluster.
+	>
+	> ![skip member roles](../../../../img/rancher/skip-member-roles.png)
+
+4.	**For those using Google Container Engine or Azure Container Service:**
+
+	Complete the form asking for account information. The form includes links to instructions detailing how to obtain this info.
+
+	![gce-azure-instructions](../../../../img/rancher/gce-azure-instructions.png)
+
+	**Did you choose one of the other tiles (like Digital Ocean)?** This step doesn't apply to you. Skip to the next step.
+
+5.	Select **Cluster Options**.
+
+	Use these options to choose things like the version of Kubernetes that's installed in your cluster, along with other Kubernetes options such as pod security policies. Some services have more options than others. If you're unsure of what to choose, use the default options.
+
+6.	Add at least one **Node Pool**.
+
+	A *Node Pool* is a group of nodes that are configured identically. Your cluster can contain as many node pools as you'd like. Each object in the grid represents a single node configuration. You can use the node pool to choose the number (i.e. **Count**) of nodes running a given configuration (i.e. **Template**).
+
+	> **Note:** The instructions below don't apply to Google Container Engine, Azure Container Service, or the Custom option.
+	>
+	>*	For Azure Container Server, no additional steps are needed. Proceed to this task's [final step](#create-cluster).
+	>*  For Google Container Engine, complete the Nodes form. The options are pretty self-explanatory. When you're done, proceed to this task's [final step](#create-cluster).
+	>*  For Custom, see [Appendix A: Add Custom Cluster](#appendix-a-add-custom-cluster).
+
+	1.	Enter a **Node Prefix**. When the cluster is created, each node in the pool is named after the prefix. An incremented number is appended to each node.
+
+	2.	Enter the node **Count** for the pool.
+
+	3.	Click **Add Node Template**. A node template is just the a virtual machine configuration you're using to create your nodes (i.e. other virtual machines).
+
+		Depending on the cluster option that you choose, the Rancher UI displays instructions on how to create a template. The process is different for each cloud service. You may need to log in to your cloud service to find the data Rancher needs.
+
+	4.	Choose the **Template** that you just added.
+
+		![choose template](../../../../img/rancher/choose-template.gif)
+
+	5.	Select roles for the node pool.
+		<a name="roles"></a>
+		Kubernetes functions using different [components](https://kubernetes.io/docs/concepts/overview/components/), which are divided into *master components* and *node components*. When setting up your node pool, select a pool to fill each component role. You can install all components one a single pool, or you can spread them around.
+
+		The roles are:
+
+		- **etcd**: One of the master components. Etcd is a distributed reliable key-value store that stores all Kubernetes states.
+
+		- **Control**: The remaining master components as well as the node components. These nodes help manage the Kubernetes cluster and where your applications can be launched.
+
+		- **Worker**: On these nodes, only node components are launched. These nodes run only applications.
+
+	6.	**Optional:** Click **+ Add Node Pool** to add more pools.
+
+		![add-second-node-pool](../../../../img/rancher/add-second-node-pool.gif)
+
+	7.	<a name="create-cluster"></a>Click **Create**.
+
+**Result:**
+
+-	Your cluster is created and assigned a state of **Provisioning**. Rancher is standing up your cluster.
+-	You can access your cluster after its state is updated to **Active**.
+-	**Active** clusters are assigned a **Project** and **Namespace**, both of which are named `Default`.
+
+### Deploy a Workload
+
+You're ready to create your first *workload*. A workload is an object that includes pods along with other files and info needed to deploy your application.
+
+1. From the **Clusters** page, open the cluster that you just created.
+
+2. From the main menu of the **Dashboard**, select **Projects**.
+
+3. Open the **Default** project.
+
+4. Click **+ Deploy**.
+
+    ![click-deploy](../../../../img/rancher/click-deploy.png)
+
+    **Step Result:** The **Deploy Workload** page opens.
+
+5. Enter a **Name** for your workload. No spaces allowed.
+
+6. From the **Docker Image** field, enter the name of an image hosted on [Docker Hub](https://hub.docker.com/explore/).
+
+    We're going to use **NGINX** for this guide. You can use something else, but keep it simple. If your app needs other components to run, the deployment won't work.
+
+	![enter-docker-image](../../../../img/rancher/enter-docker-image.png)
+
+7. From the **Container Port** field, enter `80`.
+
+	>**Note:** During Rancher v2.0 beta, only port 80 is supported. Other ports will be supported at GA.
+
+8. Leave the remaining options on their default setting. We'll tell you about them later.
+
+9. Click **Launch**.
+
+**Result:**
+
+* Your workload is deployed. This process might take a few minutes to complete.
+* When your workload completes deployment, it's assigned a state of **Active**. You can view this status from the project's **Workloads** page.
+
+### View Your Application
+
+When your workload completes deployment, browse to your application to confirm that it's working.
+
+From the **Workloads** page, click the link underneath your workload. If your deployment succeeded, your application opens.
+
+![test-deployment](../../../../img/rancher/test-deployment.png)
+
+
+### What's Next?
+
+Congratulations! You have:
+
+-	Created your first cluster.
+-	Deployed an application to your cluster using a workload.
+
+Now you can use the rest of Rancher v2.0 to orchestrate and manage your pods.
+
+(Moooooo-re coming soon!)
+
+![cow](../../../../img/rancher/cow.jpg)
+
+
+### Appendix A: Add Custom Cluster
+
+When creating a custom cluster, follow these instructions to complete its creation. These instructions will create one or more node that will be used to image your cluster.
+
+1. From **Node Roles**, choose the Kubernetes component roles that you want the node to fill. You must fill each role.
+
+	A more detailed description of each [role](#roles) is available earlier in this guide.
+
+	>**Note:** If you want to spread the roles among different nodes, provision additional Linux hosts and enter the command on each of your nodes.
+
+3. **Optional:** Add labels to the node template.
+
+4. Copy the command to your clipboard.
+
+5. Log in to your Linux host using your preferred shell, such as PuTTy or a remote Terminal connection.
+
+6. Enter the command on your Linux host.
+
+7. From you Rancher session, click **Done**.
+
+8. Resume the Quick Start Guide from [Deploy a Workload](#deploy-a-workload).
 
 <!--
-If you're adding a custom host, note these requirements:
-
-* Typically, Rancher automatically detects the IP address to register the host.
-  * If the host is behind a NAT or the same machine that is running the `rancher/server` container, you might need to explicitly specify its IP address. To do so, click **Show advanced options**, and then enter the **Registration IP Address**.
-* The host agent initiates a connection to the server, so make sure firewalls or security groups allow it to reach the URL in the command.
-* All hosts in the environment must to allow traffic between each other for cross-host networking
-  * IPSec: `500/udp` and `4500/udp`
-  * VXLAN: `4789/udp`
--->
-
-1. Follow the instructions in the Rancher UI to create and add your RKE cluster.
-
-2. In the Nodes section, click on **Add a new node** to select which type of node you want to add. You can configure a new node template to launch nodes or select from an existing node template (i.e. if you had previously launched a node). When launching any new nodes, a node template is saved with your configuration to allow you to re-use this configuration for adding additional nodes.
-
-3. After selecting your node(s) to be created, select which roles you want the node(s) to act in the Rancher managed Kubernetes cluster.
-
-    Select from the following roles:
-
-    * **etcd** -- On this node, `etcd` is launched. Etcd is a distributed reliable key-value store which stores all Kubernetes state. We recommend running 1, 3, or 5 nodes with the etcd role.
-    * **management** -- On this node, master components will run (`kube-api`, `kube-scheduler`, `kube-controller`) as well as `kubelet` and `kubeproxy`. These nodes are used to help manage the Kubernetes cluster as well as where your applications (i.e. pods) can be launched.
-    * **worker node** -- On these nodes, only worker components (`kubelet`, `kubeproxy`, `nginx-proxy`) are launched and these nodes will only have your applications (i.e. pods) running.
-
-4. Finish creating your cluster by clicking **Create**. This process might take a few minutes to complete. Once your cluster is ready, you can view its status on the Clusters page. Once the cluster is active, you can start adding pods into your namespace.
 
 ### Importing Kubernetes Clusters
 
@@ -106,41 +289,54 @@ Rancher supports grouping resources into multiples clusters, projects and namesp
 A **cluster** is a group of physical (or virtual) compute resources. Each project is tied to one cluster and runs its pods on the cluster's nodes. You can share a cluster with more than one project as well as give different users access to manage the various resources of a cluster.
 
 A **project** is a group of namespaces where workloads are defined. The pods in a project can communicate with each other over a shared managed network, and you can give different users access to manage the various resources of a project.
-
-### Adding Pods
-
-After at least one cluster with nodes is created and active, you're ready to create your first pod. You can check on your cluster status by clicking on the cluster or viewing the status on the Global view of all clusters.
-
-#### To Add a Pod:
-
-1. Click into the `Default` project of a cluster.
-2. Click **Deploy**. The Add Pod page displays.
-3. Enter a **Name**, such as "first-pod."
-4. Enter a **Docker Image** hosted on Docker Hub.
-5. Click **Launch**. This process might take a few minutes to complete. Once your pod starts running, you can view its status on the Workloads page.
-
-Now that you've added nodes and your first pod is up and running, you can check out the rest of our new features in Rancher v2.0.
-
-<!--
 <a id="catalog"></a>
 
-### Launching Catalog Applications
+### Deploy an Application
 
-To help you deploy complex stacks, Rancher offers a catalog of application templates.
+After your cluster is **Active**, you're ready to add applications to its **Default** project.
 
-#### To Launch a Catalog Application:
+A *project* is an object that fences in namespaces and workloads. We'll describe projects, namespaces, and workloads in more detail later.
 
-1. On the Rancher UI menu, click **Apps**. The Applications page displays.
-2. Click **Launch from Catalog**. The Catalog displays the available application templates.
-3. Search for the template you want to launch, and then click **View Details**.
-4. Complete the required fields.
+Out of the box, Rancher is bundled with a catalog of applications (i.e. a [Helm chart](https://helm.sh/)) that make their deployment easy. Choose an application from the catalog for deployment.
 
-   > **Note:** To review the `docker-compose.yml` and `rancher-compose.yml` files used to generate the stacks, click **Preview** before launching the stack.
+1.	Click the link for the cluster that you just created.
 
-5. Click **Launch**. On the Applications page, you'll see Rancher is creating a stack based on your new application. This process might take a few minutes.
+	![click-cluster-name](../../../../img/rancher/click-cluster-name.png)
 
-Once its services are up and running, the state of your new stack displays in green.
--->
+2.	From the main menu of your cluster **Dashboard**, click **Projects**.
+
+	![select-projects](../../../../img/rancher/select-projects.png)
+
+3.	Open the **Default** project. A default project is added to every cluster created.
+
+4.	From the main menu, click **Catalog Apps**.
+
+	![select-catalog-apps](../../../../img/rancher/select-catalog-apps.png)
+
+5.	Click **+ Launch**.
+
+	**Step Result:** The **Catalog** displays the application templates that are available.
+
+6.	Choose an application to include in your project. Then click **View Details**.
+
+	![choose-app](../../../../img/rancher/choose-app.gif)
+
+7.	Scroll to **New Application**. Click **Show advanced options**.
+
+8.	Click **Use an existing namespace**. Then select **default**.
+
+	![select-default-namespace](../../../../img/rancher/select-default-namespace.gif)
+
+9. **Optional:** Choose other settings.
+
+    > **Note:** To review the `docker-compose.yml` and `rancher-compose.yml` files used to generate the stacks, click **Preview** before launching the stack.
+
+10.	Skip the rest of the options for now. Click **Launch**.
+
+**Result**:
+
+-	The application is added to the project and deployed using a *workload*. A workload is an object that includes pods along with other files and info needed to deploy your application.
+-	When your workload completes deployment, it's assigned a state of **Active**. You can view this status from the project's **Workloads** page.
 
 ### Using Kubeconfig File
 
@@ -151,4 +347,4 @@ You can generate a Kubernetes configuration file to use `kubectl` on your deskto
 
 ### Deploying on Ubuntu
 
-It is possible to use Rancher to control Canonical Kubernetes (cdk) clusters running on Ubuntu. A full set of instructions has been provided by Canonical for doing this here: [https://kubernetes.io/docs/getting-started-guides/ubuntu/rancher/](https://kubernetes.io/docs/getting-started-guides/ubuntu/rancher/). 
+It is possible to use Rancher to control Canonical Kubernetes (cdk) clusters running on Ubuntu. A full set of instructions has been provided by Canonical for doing this here: [https://kubernetes.io/docs/getting-started-guides/ubuntu/rancher/](https://kubernetes.io/docs/getting-started-guides/ubuntu/rancher/).-->
