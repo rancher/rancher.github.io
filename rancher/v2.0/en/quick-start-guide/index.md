@@ -47,25 +47,30 @@ Creation of your first cluster is a multi-stage process that we've broken into d
 
 ### Prepare a Linux Host
 
-Begin by provisioning a Linux host to be your Rancher server and cluster template. This host can be:
+Begin by provisioning a Linux host to be your Rancher server and a template for your cluster nodes. This host can be:
 
 -	A virtual machine hosted by a cloud service.
 -	An on-premise virtual machine.
 -	An on-premise bare-metal server.
 
-Provision the server according to the specifications below.
+Provision the server according to the requirements below.
 
-#### Host Specifications
+#### Host Requirements
 
 -	Operating System: Ubuntu 16.04 (64-bit)
 -	Memory: 4GB
--	Software: [Docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/)
+-	Software: Docker
 
-	**Supported Versions:**
+	<a name="node-requirements"></a>**Supported Versions:**
 
 	-	`1.12.6`
 	-	`1.13.1`
 	-	`17.03.2`
+
+	>**Notes:**
+	>
+	> * For Docker installation instructions, visit their [documentation](https://docs.docker.com/install/).
+	> * Docker requirements apply to both your Linux host and your cluster nodes.
 
 ### Install Rancher
 
@@ -261,7 +266,9 @@ When creating a custom cluster, follow these instructions to complete its creati
 
 3. **Optional:** Add labels to the node template.
 
-4. Copy the command to your clipboard.
+4. Copy the command for installing Docker to your clipboard.
+
+	>**Remember:** The version of Docker installed on your nodes must be [supported](#node-requirements).
 
 5. Log in to your Linux host using your preferred shell, such as PuTTy or a remote Terminal connection.
 
