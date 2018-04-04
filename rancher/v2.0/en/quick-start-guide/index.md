@@ -4,8 +4,8 @@ layout: rancher-default-v2.0
 version: v2.0
 lang: en
 redirect_from:
- /rancher/quick-start-guide/
- /rancher/v2.0/en/
+ - /rancher/quick-start-guide/
+ - /rancher/v2.0/en/
 ---
 
 Quick Start Guide
@@ -257,6 +257,8 @@ Now you can use the rest of Rancher v2.0 to orchestrate and manage your pods.
 ### Appendix A: Add Custom Cluster
 
 When creating a custom cluster, follow these instructions to complete its creation. These instructions will create one or more node that will be used to image your cluster.
+
+>**Note:** When creating a custom cluster, make sure each node meets the [Host Requirements](#host-requirements).
 
 1. From **Node Roles**, choose the Kubernetes component roles that you want the node to fill. You must fill each role.
 
