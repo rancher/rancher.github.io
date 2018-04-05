@@ -98,18 +98,15 @@ Log in to Rancher to begin using the application. After you log in, you'll make 
 
 	Replace `<SERVER_IP>` with your host IP address.
 
-2.	Log in to Rancher using the default credentials below.
-
-	-	**Username:** admin
-	-	**Password:** admin
-
-    ![login](../../../../img/rancher/log-in.png)
-
 	> **Note:** Rancher v2.0 beta:
 	>
 	> -	Supports only the HTTPS protocol.
 	> -	Uses a self-signed certificate. Due to this signature, the browser prompts you to trust the certificate before login. Following GA, you'll be able to use your own certificate.
-3. Update your password. You can either create your own or have Rancher create one for you.
+
+2.	When prompted, create a password for the default `admin` account there cowpoke!
+
+    ![login](../../../../img/rancher/change-password.png)
+
 
 4. Set the **Rancher Server URL**. The URL can either be an IP or a host name. However, each of your cluster nodes must be able to resolve to the URL.
 
