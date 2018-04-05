@@ -90,7 +90,7 @@ To install Rancher on your host, connect to it and then use a shell to install.
 
 ### Log In
 
-Log in to Rancher to begin using the application.
+Log in to Rancher to begin using the application. After you log in, you'll make some one-time configurations.
 
 1.	Open a web browser and enter the IP address of your host:
 
@@ -98,7 +98,7 @@ Log in to Rancher to begin using the application.
 
 	Replace `<SERVER_IP>` with your host IP address.
 
-2.	Log in to Rancher using the default credentials below. Update your password when prompted.
+2.	Log in to Rancher using the default credentials below.
 
 	-	**Username:** admin
 	-	**Password:** admin
@@ -109,6 +109,11 @@ Log in to Rancher to begin using the application.
 	>
 	> -	Supports only the HTTPS protocol.
 	> -	Uses a self-signed certificate. Due to this signature, the browser prompts you to trust the certificate before login. Following GA, you'll be able to use your own certificate.
+3. Update your password. You can either create your own or have Rancher create one for you.
+
+4. Set the **Rancher Server URL**. The URL can either be an IP or a host name. However, each of your cluster nodes must be able to resolve to the URL.
+
+	![login](../../../../img/rancher/server-url.png)
 
 ### Create a Cluster
 
