@@ -19,45 +19,55 @@ This tutorial walks you through installation of Rancher v2.0, creation of your f
 
 Creation of your first cluster is a multi-stage process that we've broken into different tasks.
 
-1. [Review Requirements](#requirements)
-
-2.	[Prepare a Linux Host](#prepare-a-linux-host)
+1.	[Prepare a Linux Host](#prepare-a-linux-host)
 
 	First, you need to provision a Linux host.
 
-3.	[Install Rancher](#install-rancher)
+2.	[Install Rancher](#install-rancher)
 
 	Run the Docker command for installing Rancher.
 
-4.	[Log In](#log-in)
+3.	[Log In](#log-in)
 
 	Browse to your Linux host to access the Rancher UI.
 
-5.	[Create a Cluster](#create-a-cluster)
+4.	[Create a Cluster](#create-a-cluster)
 
 	Use Rancher to create your first cluster.
 
-6.	[Deploy a Workload](#deploy-a-workload)
+5.	[Deploy a Workload](#deploy-a-workload)
 
 	Create a workload so that Kubernetes can distribute an application and its dependencies among your nodes.
 
-7.	[View Your Application](#view-your-application)
+6.	[View Your Application](#view-your-application)
 
 	When your workload finishes deployment, browse to your application to make sure it works.
 
-8.	[What's Next?](#whats-next)
+7.	[What's Next?](#whats-next)
 
 	Now that you've created a cluster and deployed a workload, find out what else you can do with Rancher v2.0.
 
-### Host and Node Requirements
+### Prepare a Linux Host
 
-#### Hardware Requirements
+Begin by provisioning a Linux host to be your Rancher server and a template for your cluster nodes. This host can be:
 
--	Memory: 4GB
+-	A virtual machine hosted by a cloud service.
+-	An on-premise virtual machine.
+-	An on-premise bare-metal server.
 
-#### Software requirements
+Provision the server according to the requirements below.
+
+#### Host and Node Requirements
 
 -	Operating System: Ubuntu 16.04 (64-bit)
+-	Memory: 4GB
+-	Ports:
+
+	- 80
+	- 443
+
+	<br/>Open these ports on both your host and nodes to enable communication between them.
+
 -	Software: Docker
 
 	<a name="node-requirements"></a>**Supported Versions:**
@@ -70,45 +80,6 @@ Creation of your first cluster is a multi-stage process that we've broken into d
 	>
 	> * For Docker installation instructions, visit their [documentation](https://docs.docker.com/install/).
 	> * Docker requirements apply to both your Linux host and your cluster nodes.
-
-#### Port Requirements
-
-When provisioning your Linux host, open the ports listed below so that your master and worker nodes can communicate.
-
-##### Master Nodes (etcd and controlplane nodes)
-
-Protocol  | Direction  | Port Range  | Purpose  
---|---|---|--
-TCP | Inbound | 22  |  SSH server
-TCP | Inbound | 80  | Canal
-TCP | Inbound | 443  | Canal
-TCP | Inbound | 6443  | Kubernetes API server
-TCP | Inbound | 2379-2380  | etcd server client API
-TCP | Inbound | 10250  | kubelet API
-TCP | Inbound | 10251  | scheduler
-TCP | Inbound | 10252  | controller
-TCP | Inbound | 10256  | kubeproxy
-
-##### Worker Nodes
-
-Protocol  | Direction  | Port Range  | Purpose  
---|---|---|--
-TCP | Inbound | 22  |  SSH Server
-TCP | Inbound | 80  | Canal
-TCP | Inbound | 443  | Canal
-TCP | Inbound | 10250  |  kubelet API
-TCP | Inbound | 10256  |  kubeproxy
-TCP | Inbound | 30000-32767  |  NodePort Services
-
-### Prepare a Linux Host
-
-Begin by provisioning a Linux host to be your Rancher server and a template for your cluster nodes. This host can be:
-
--	A virtual machine hosted by a cloud service.
--	An on-premise virtual machine.
--	An on-premise bare-metal server.
-
-Provision the server according to the [requirements above](#requirements).
 
 ### Install Rancher
 
