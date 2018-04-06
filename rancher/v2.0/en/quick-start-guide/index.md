@@ -19,7 +19,9 @@ This tutorial walks you through installation of Rancher v2.0, creation of your f
 
 Creation of your first cluster is a multi-stage process that we've broken into different tasks.
 
-1. [Review Requirements](#requirements)
+1.	[Review Requirements](#host-and-node-requirements)
+
+	Before you do anything, review the requirements.
 
 2.	[Prepare a Linux Host](#prepare-a-linux-host)
 
@@ -108,7 +110,7 @@ Begin by provisioning a Linux host to be your Rancher server and a template for 
 -	An on-premise virtual machine.
 -	An on-premise bare-metal server.
 
-Provision the server according to the [requirements above](#requirements).
+Provision the server according to the [requirements above](#host-and-node-requirements).
 
 ### Install Rancher
 
