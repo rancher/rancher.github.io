@@ -57,16 +57,10 @@ Begin by provisioning a Linux host to be your Rancher server and a template for 
 
 Provision the server according to the requirements below.
 
-#### Host and Node Requirements
+#### Host Requirements
 
 -	Operating System: Ubuntu 16.04 (64-bit)
 -	Memory: 4GB
--	Ports:
-
-	- 80
-	- 443
-
-	<br/>Open these ports on both your host and nodes to enable communication between them.
 -	Software: Docker
 
 	<a name="node-requirements"></a>**Supported Versions:**
