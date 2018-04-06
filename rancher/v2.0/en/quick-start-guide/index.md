@@ -13,6 +13,8 @@ Quick Start Guide
 
 This tutorial walks you through installation of Rancher v2.0, creation of your first cluster, and deployment of an application.
 
+>**Note:** Upgrades are not supported during the Rancher v2.0 beta.
+
 ### Objectives
 
 Creation of your first cluster is a multi-stage process that we've broken into different tasks.
@@ -55,10 +57,17 @@ Begin by provisioning a Linux host to be your Rancher server and a template for 
 
 Provision the server according to the requirements below.
 
-#### Host Requirements
+#### Host and Node Requirements
 
 -	Operating System: Ubuntu 16.04 (64-bit)
 -	Memory: 4GB
+-	Ports:
+
+	- 80
+	- 443
+
+	<br/>Open these ports on both your host and nodes to enable communication between them.
+
 -	Software: Docker
 
 	<a name="node-requirements"></a>**Supported Versions:**
@@ -83,6 +92,9 @@ To install Rancher on your host, connect to it and then use a shell to install.
 	```
 	$ sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/server:preview
 	```
+
+	>**Note:**
+	> Although Rancher v2.0 is in beta, the `preview` tag is still used for installation.
 
 **Result:** Rancher is installed.
 
