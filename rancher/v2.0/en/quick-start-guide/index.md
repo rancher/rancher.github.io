@@ -263,9 +263,11 @@ You're ready to create your first *workload*. A workload is an object that inclu
 
 	![enter-docker-image](../../../../img/rancher/enter-docker-image.png)
 
-7. From the **Container Port** field, enter `80`.
+7. From **Port Mapping**, click **Add Port**. From the **Publish on** drop-down, make sure that **Every node** is selected.
 
-	>**Note:** During Rancher v2.0 beta, only port 80 is supported. Other ports will be supported at GA.
+8.	From the **Source Port** field, leave the **Random** value in place.
+
+7. From the **Container Port** field, port `80`, regardless of what app you're using.
 
 8. Leave the remaining options on their default setting. We'll tell you about them later.
 
@@ -303,7 +305,7 @@ Now you can use the rest of Rancher v2.0 to orchestrate and manage your pods.
 
 When creating a custom cluster, follow these instructions to complete its creation. These instructions will create one or more node that will be used to image your cluster.
 
->**Note:** When creating a custom cluster, make sure each node meets the [Host Requirements](#host-requirements).
+>**Note:** When creating a custom cluster, make sure each node meets the [Host and Node Requirements](#host-and-node-requirements).
 
 1. From **Node Roles**, choose the Kubernetes component roles that you want the node to fill. You must fill each role.
 
