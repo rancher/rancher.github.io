@@ -3,7 +3,9 @@ title: System Services in RancherOS
 
 redirect_from:
   - os/v1.0/en/system-services/
+  - os/v1.1/en/system-services/
   - os/v1.0/en/configuration/system-services/
+  - os/v1.1/en/configuration/system-services/
 ---
 
 ## System Services
@@ -53,5 +55,3 @@ If you want to remove a system service from the list of service, just delete the
 ```
 $ sudo ros service delete <serviceName>
 ```
-
-

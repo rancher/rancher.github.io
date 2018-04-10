@@ -3,6 +3,8 @@ title: Built-in System Services in RancherOS
 
 redirect_from:
   - os/v1.0/en/system-services/built-in-system-services/
+  - os/v1.1/en/system-services/built-in-system-services/
+
 ---
 
 ## Built-in System Services

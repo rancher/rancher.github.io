@@ -99,7 +99,7 @@ To make the container survive during the reboots, you can create the `/opt/ranch
 
 ```
 $ sudo mkdir -p /opt/rancher/bin
-$ echo “sudo system-docker start busydash” | sudo tee -a /opt/rancher/bin/start.sh
+$ echo "sudo system-docker start busydash" | sudo tee -a /opt/rancher/bin/start.sh
 $ sudo chmod 755 /opt/rancher/bin/start.sh
 ```
 

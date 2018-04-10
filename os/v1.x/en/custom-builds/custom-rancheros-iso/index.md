@@ -3,6 +3,7 @@ title: Custom RancherOS ISO
 
 redirect_from:
   - os/v1.0/en/configuration/custom-rancheros-iso/
+  - os/v1.1/en/configuration/custom-rancheros-iso/
 ---
 
 ## Custom RancherOS ISO

@@ -15,7 +15,7 @@ The `ros install` command orchestrates the installation from the `rancher/os` co
 
 The easiest way to log in is to pass a `cloud-config.yml` file containing your public SSH keys. To learn more about what's supported in our cloud-config, please read our [documentation]({{page.osbaseurl}}/configuration/#cloud-config).
 
-The `ros install` command will process your `cloud-config.yml` file specified with the `-c` flag. This file will also be placed onto the disk to `/var/lib/rancher/conf/cloud-config.d/user_config.yml`. It will be evaluated on every boot.
+The `ros install` command will process your `cloud-config.yml` file specified with the `-c` flag. This file will also be placed onto the disk and installed to `/var/lib/rancher/conf/`. It will be evaluated on every boot.
 
 Create a cloud-config file with a SSH key, this allows you to SSH into the box as the rancher user. The yml file would look like this:
 

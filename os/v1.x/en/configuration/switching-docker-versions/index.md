@@ -2,7 +2,7 @@
 title: Changing Docker Versions in RancherOS
 
 redirect_from:
-  - os/v1.0/en/configuration/custom-docker/
+  - os/v1.1/en/configuration/custom-docker/
 
 ---
 
