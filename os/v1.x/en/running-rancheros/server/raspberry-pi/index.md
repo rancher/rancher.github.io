@@ -10,7 +10,7 @@ As of v0.5.0, RancherOS releases include a Raspberry Pi image that can be found 
 
 When installing, there is no ability to pass in a [cloud-config]({{page.osbaseurl}}/configuration/#cloud-config). You will need to boot up, change the configuration and then reboot to apply those changes.
 
-Currently, only Raspberry Pi 2 and 3 are tested and known to work.
+Currently, only Raspberry Pi 3 is tested and known to work.
 
 > **Note:** It is not necessary to run `ros install` after installing RancherOS to an SD card.
 

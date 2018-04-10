@@ -16,7 +16,19 @@ Provides user accessible persistent storage directories, used by console service
 ```
 /home
 /opt
+/var/lib/kubelet - Added as of v1.2
 ```
+
+_Available as of v1.2_
+
+If you want to change user-volumes, for example, add `/etc/kubernetes` directory:
+
+```
+$ sudo ros config set rancher.services.user-volumes.volumes  [/home:/home,/opt:/opt,/var/lib/kubelet:/var/lib/kubelet,/etc/kubernetes:/etc/kubernetes]
+$ sudo reboot
+```
+
+Please note that after the restart, the new persistence directory can take effect.
 
 ### container-data-volumes
 
@@ -74,5 +86,3 @@ Provides necessary persistent directories, used by system services:
 ### all-volumes
 
 Combines all of the above, used by the console service.
-
-
