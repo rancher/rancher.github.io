@@ -25,6 +25,20 @@ By default, the orchestration for Kubernetes is set to `rancher`.
   * **Load Balancers:** Launches an AWS Elastic Load Balancer (ELB) as a Load Balancer service. You can still create Rancher load balancers by using an [ingress]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/ingress/).
   * **Persistent Volumes**: Ability to use AWS Elastic Block Stores (EBS) for [persistent volumes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/storage/).
 
+#### Configuring the ClusterID
+
+> **Note:** Tagging your cluster resources with a `ClusterID` is required when using **Kubernetes 1.10** and higher. In previous versions it is recommended to tag resources with a `ClusterID`, but will not generate an error.
+
+The following resources need to tagged with a `ClusterID`:
+
+  * **Nodes:** All hosts added in Rancher.
+  * **Subnet:** The subnet used for your cluster
+  * **Security Group**: The security group used for your cluster.
+
+> **Note:** Do not tag multiple security groups, as this will generate an error when creating Elastic Load Balancer (ELB).
+
+The tag that should be used is: `kubernetes.io/cluster/CLUSTERID=owned` where `CLUSTERID` can be chosen as you like, as long as it's equal across all tags set. Setting the value of the tag to `owned`, tells the cluster that all resources with this tag are owned and managed by this cluster. If you share resources between clusters, you can change the tag to `kubernetes.io/cluster/CLUSTERID=shared`.
+
 #### Adding Hosts
 
 After Kubernetes has been configured to run with an `aws` cloud provider, any hosts added into the environment will need to be an AWS EC2 instance and have at least the following IAM policy:
