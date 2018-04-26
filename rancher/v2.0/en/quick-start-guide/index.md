@@ -123,6 +123,15 @@ To install Rancher on your host, connect to it and then use a shell to install.
 	```
 	$ sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/server:preview
 	```
+	
+	This will start Rancher with a self-signed certificate. The browser will prompt you to trust
+	the certificate before you can log in in that case. If you already know on which domain
+	Rancher is going to run, you can enable built-in Let's encrypt support to get a fully valid
+	certificate. Enter the following command in that case:
+	
+	```
+	$ sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/server:preview --acme-domain <domain-name>
+	```
 
 	>**Note:**
 	> Although Rancher v2.0 is in beta, the `preview` tag is still used for installation.
@@ -144,7 +153,6 @@ Log in to Rancher to begin using the application. After you log in, you'll make 
 	> **Note:** Rancher v2.0 beta:
 	>
 	> -	Supports only the HTTPS protocol.
-	> -	Uses a self-signed certificate. Due to this signature, the browser prompts you to trust the certificate before login. Following GA, you'll be able to use your own certificate.
 
 2.	When prompted, create a password for the default `admin` account there cowpoke!
 
