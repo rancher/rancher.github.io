@@ -97,6 +97,8 @@ Now, let's see the load balancer in action. In the stack view, there is a link t
 
 ### Load Balancer Options in the UI
 
+> **Note:** When using the Load Balancer, any public ports on the targetted conainer/service will need to be removed and target the service's default port
+
 Rancher provides a load balancer running HAProxy software inside the container to direct traffic to the target services.
 
 > **Note:** Load balancers will only work for services that are using the managed network. If you select any other network choice for your target services, it will **not** work with the load balancer.
