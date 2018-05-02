@@ -17,11 +17,11 @@ Before launching a host on AWS, you'll need to find your AWS account credentials
 
 Under the Infrastructure -> Hosts tab, click **Add Host**. Select the **Amazon EC2** icon. Provide your AWS **Access key** and **Secret Key**, click on **Next: Authenticate & select a network**. Rancher will use your credentials to determine what is available in AWS to launch instances.
 
-![AWS on Rancher 1]({{site.baseurl}}/img/rancher/rancher_aws_1.png)
+![AWS on Rancher 1]({{site.baseurl}}/one-point-x/img/rancher/rancher_aws_1.png)
 
 You'll need to select the available region and zone to create the instance. Depending on which region/zone that you select, the available VPC IDs and Subnet IDs will be displayed. Select a **VPC ID** or **Subnet ID**, and click on **Next: Select a Security Group**. 
 
-![AWS on Rancher 2]({{site.baseurl}}/img/rancher/rancher_aws_2.png)
+![AWS on Rancher 2]({{site.baseurl}}/one-point-x/img/rancher/rancher_aws_2.png)
 
 Next, you'll select a security group to use for the hosts. There are two choices for security groups. The **Standard** option will create or use the existing `rancher-machine` security group. If Rancher creates the `rancher-machine` security group, it will open up all the necessary ports to allow Rancher to work successfully. `docker machine` will automatically open up port `2376`, which is the Docker daemon port. 
 
@@ -38,7 +38,7 @@ In the **Custom** option, you can choose an existing security group, but you wil
 
 After choosing your security option, click on **Next: Set Instance Options**. 
 
-![AWS on Rancher 3]({{site.baseurl}}/img/rancher/rancher_aws_3.png)
+![AWS on Rancher 3]({{site.baseurl}}/one-point-x/img/rancher/rancher_aws_3.png)
 
 Finally, you'll just need to finish filling out the final details of the host(s).
 

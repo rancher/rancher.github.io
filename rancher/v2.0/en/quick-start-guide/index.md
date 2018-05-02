@@ -148,12 +148,12 @@ Log in to Rancher to begin using the application. After you log in, you'll make 
 
 2.	When prompted, create a password for the default `admin` account there cowpoke!
 
-    ![login](../../../../img/rancher/change-password.png)
+    ![login](../../../../one-point-x/one-point-x/img/rancher/change-password.png)
 
 
 4. Set the **Rancher Server URL**. The URL can either be an IP or a host name. However, each of your cluster nodes must be able to resolve to the URL.
 
-	![login](../../../../img/rancher/server-url.png)
+	![login](../../../../one-point-x/one-point-x/img/rancher/server-url.png)
 
 ### Create a Cluster
 
@@ -161,7 +161,7 @@ Begin using Rancher by creating your first cluster! A *cluster* is a group of ph
 
 1.	Click **+ Add Cluster**.
 
-	![add cluster](../../../../img/rancher/click-add-cluster.png)
+	![add cluster](../../../../one-point-x/one-point-x/img/rancher/click-add-cluster.png)
 
 	**Step Result:** The **Add Cluster** page opens.
 
@@ -179,13 +179,13 @@ Begin using Rancher by creating your first cluster! A *cluster* is a group of ph
 
 	> **Tip:** Skip adding **Member Roles** for now. This option isn't essential for your first cluster.
 	>
-	> ![skip member roles](../../../../img/rancher/skip-member-roles.png)
+	> ![skip member roles](../../../../one-point-x/one-point-x/img/rancher/skip-member-roles.png)
 
 4.	**For those using Google Container Engine or Azure Container Service:**
 
 	Complete the form asking for account information. The form includes links to instructions detailing how to obtain this info.
 
-	![gce-azure-instructions](../../../../img/rancher/gce-azure-instructions.png)
+	![gce-azure-instructions](../../../../one-point-x/one-point-x/img/rancher/gce-azure-instructions.png)
 
 	**Did you choose one of the other tiles (like Digital Ocean)?** This step doesn't apply to you. Skip to the next step.
 
@@ -213,7 +213,7 @@ Begin using Rancher by creating your first cluster! A *cluster* is a group of ph
 
 	4.	Choose the **Template** that you just added.
 
-		![choose template](../../../../img/rancher/choose-template.gif)
+		![choose template](../../../../one-point-x/one-point-x/img/rancher/choose-template.gif)
 
 	5.	Select roles for the node pool.
 		<a name="roles"></a>
@@ -229,7 +229,7 @@ Begin using Rancher by creating your first cluster! A *cluster* is a group of ph
 
 	6.	**Optional:** Click **+ Add Node Pool** to add more pools.
 
-		![add-second-node-pool](../../../../img/rancher/add-second-node-pool.gif)
+		![add-second-node-pool](../../../../one-point-x/one-point-x/img/rancher/add-second-node-pool.gif)
 
 	7.	<a name="create-cluster"></a>Click **Create**.
 
@@ -251,7 +251,7 @@ You're ready to create your first *workload*. A workload is an object that inclu
 
 4. Click **+ Deploy**.
 
-    ![click-deploy](../../../../img/rancher/click-deploy.png)
+    ![click-deploy](../../../../one-point-x/one-point-x/img/rancher/click-deploy.png)
 
     **Step Result:** The **Deploy Workload** page opens.
 
@@ -261,7 +261,7 @@ You're ready to create your first *workload*. A workload is an object that inclu
 
     We're going to use **NGINX** for this guide. You can use something else, but keep it simple. If your app needs other components to run, the deployment won't work.
 
-	![enter-docker-image](../../../../img/rancher/enter-docker-image.png)
+	![enter-docker-image](../../../../one-point-x/one-point-x/img/rancher/enter-docker-image.png)
 
 7. From **Port Mapping**, click **Add Port**. From the **Publish on** drop-down, make sure that **Every node** is selected.
 
@@ -284,7 +284,7 @@ When your workload completes deployment, browse to your application to confirm t
 
 From the **Workloads** page, click the link underneath your workload. If your deployment succeeded, your application opens.
 
-![test-deployment](../../../../img/rancher/test-deployment.png)
+![test-deployment](../../../../one-point-x/one-point-x/img/rancher/test-deployment.png)
 
 
 ### What's Next?
@@ -298,7 +298,7 @@ Now you can use the rest of Rancher v2.0 to orchestrate and manage your pods.
 
 (Moooooo-re coming soon!)
 
-![cow](../../../../img/rancher/cow.jpg)
+![cow](../../../../one-point-x/one-point-x/img/rancher/cow.jpg)
 
 
 ### Appendix A: Add Custom Cluster
@@ -357,17 +357,17 @@ Out of the box, Rancher is bundled with a catalog of applications (i.e. a [Helm 
 
 1.	Click the link for the cluster that you just created.
 
-	![click-cluster-name](../../../../img/rancher/click-cluster-name.png)
+	![click-cluster-name](../../../../one-point-x/one-point-x/img/rancher/click-cluster-name.png)
 
 2.	From the main menu of your cluster **Dashboard**, click **Projects**.
 
-	![select-projects](../../../../img/rancher/select-projects.png)
+	![select-projects](../../../../one-point-x/one-point-x/img/rancher/select-projects.png)
 
 3.	Open the **Default** project. A default project is added to every cluster created.
 
 4.	From the main menu, click **Catalog Apps**.
 
-	![select-catalog-apps](../../../../img/rancher/select-catalog-apps.png)
+	![select-catalog-apps](../../../../one-point-x/one-point-x/img/rancher/select-catalog-apps.png)
 
 5.	Click **+ Launch**.
 
@@ -375,13 +375,13 @@ Out of the box, Rancher is bundled with a catalog of applications (i.e. a [Helm 
 
 6.	Choose an application to include in your project. Then click **View Details**.
 
-	![choose-app](../../../../img/rancher/choose-app.gif)
+	![choose-app](../../../../one-point-x/one-point-x/img/rancher/choose-app.gif)
 
 7.	Scroll to **New Application**. Click **Show advanced options**.
 
 8.	Click **Use an existing namespace**. Then select **default**.
 
-	![select-default-namespace](../../../../img/rancher/select-default-namespace.gif)
+	![select-default-namespace](../../../../one-point-x/one-point-x/img/rancher/select-default-namespace.gif)
 
 9. **Optional:** Choose other settings.
 

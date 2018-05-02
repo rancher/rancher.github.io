@@ -46,7 +46,7 @@ Option 1: Download a zip file that contains both `docker-compose.yml` and `ranch
 
 Option 2: Copy the file to your clipboard by clicking the icon next to the filename that you want to copy. You can copy either the `docker-compose.yml` file or the `rancher-compose.yml` file.
 
-![Services Options on Rancher 1]({{site.baseurl}}/img/rancher/rancher_stacks_1.png)
+![Services Options on Rancher 1]({{site.baseurl}}/one-point-x/img/rancher/rancher_stacks_1.png)
 
 ### Graph View
 

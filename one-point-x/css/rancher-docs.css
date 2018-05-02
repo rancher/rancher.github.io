@@ -2,7 +2,7 @@
 ---
 
 header {
-  background-image: url('{{ site.baseurl }}/img/homepage-jumbotron-bg.png');
+  background-image: url('{{ site.baseurl }}/one-point-x/img/homepage-jumbotron-bg.png');
   background-color: #0075A8;
   background-size: cover;
   min-height: 250px;
@@ -17,7 +17,7 @@ header {
 }
 
 .logo {
-  background-image: url('{{ site.baseurl }}/img/rancher-logo-nopadding.svg');
+  background-image: url('{{ site.baseurl }}/one-point-x/img/rancher-logo-nopadding.svg');
   background-size: 180px;
   background-position: center 15px;
   background-repeat: no-repeat;

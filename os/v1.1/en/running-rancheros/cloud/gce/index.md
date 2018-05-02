@@ -81,15 +81,15 @@ After the image is uploaded, it's easy to use the console to create new instance
 
 1. Make sure you are in the project that the image was created in.
 
-    ![RancherOS on GCE 4]({{site.baseurl}}/img/os/Rancher_gce4.png)
+    ![RancherOS on GCE 4]({{site.baseurl}}/one-point-x/img/os/Rancher_gce4.png)
 
 2. In the navigation bar, click on the **VM instances**, which is located at Compute -> Compute Engine -> Metadata.  Click on **Create instance**.
 
-    ![RancherOS on GCE 5]({{site.baseurl}}/img/os/Rancher_gce5.png)
+    ![RancherOS on GCE 5]({{site.baseurl}}/one-point-x/img/os/Rancher_gce5.png)
 
 2.  Fill out the information for your instance. In the **Image** dropdown, your private image will be listed among the public images provided by Google. Select the private image for RancherOS. Click **Create**.
 
-    ![RancherOS on GCE 6]({{site.baseurl}}/img/os/Rancher_gce6.png)
+    ![RancherOS on GCE 6]({{site.baseurl}}/one-point-x/img/os/Rancher_gce6.png)
 
 3. Your instance is being created and will be up and running shortly!
 
@@ -101,7 +101,7 @@ In order to SSH into the GCE instance, you will need to have SSH keys set up in 
 
 In your project, click on **Metadata**, which is located within Compute -> Compute Engine -> Metadata. Click on **SSH Keys**.
 
-![RancherOS on GCE 7]({{site.baseurl}}/img/os/Rancher_gce7.png)
+![RancherOS on GCE 7]({{site.baseurl}}/one-point-x/img/os/Rancher_gce7.png)
 
 Add the SSH keys that you want to have access to any instances within your project.
 
@@ -111,11 +111,11 @@ Note: If you do this after any RancherOS instance is created, you will need to r
 
 After your instance is created, click on the instance name. Scroll down to the **SSH Keys** section and click on **Add SSH key**. This key will only be applicable to the instance.
 
-![RancherOS on GCE 8]({{site.baseurl}}/img/os/Rancher_gce8.png)
+![RancherOS on GCE 8]({{site.baseurl}}/one-point-x/img/os/Rancher_gce8.png)
 
 After the SSH keys have been added, you'll need to reset the machine, by clicking **Reset**.
 
-![RancherOS on GCE 9]({{site.baseurl}}/img/os/Rancher_gce9.png)
+![RancherOS on GCE 9]({{site.baseurl}}/one-point-x/img/os/Rancher_gce9.png)
 
 After a little bit, you will be able to SSH into the box using the **rancher** user.
 

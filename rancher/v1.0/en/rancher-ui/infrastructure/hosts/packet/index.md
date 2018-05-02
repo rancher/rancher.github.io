@@ -16,15 +16,15 @@ In order to launch a Packet host, you'll need an **API Key**. Log in to your Pac
 
 1. Navigate to the [api-key page](https://app.packet.net/portal#/api-keys). If you haven't created an api key, you'll need to add one.
 
-    ![Packet Hosts on Rancher 1]({{site.baseurl}}/img/rancher/rancher_packet_1.png)
+    ![Packet Hosts on Rancher 1]({{site.baseurl}}/one-point-x/img/rancher/rancher_packet_1.png)
 
 2. In the new api key screen, you'll put in a description (e.g. Rancher) and click **Generate**.
 
-    ![Packet Hosts on Rancher 2]({{site.baseurl}}/img/rancher/rancher_packet_2.png)
+    ![Packet Hosts on Rancher 2]({{site.baseurl}}/one-point-x/img/rancher/rancher_packet_2.png)
 
 3. The newly created **Token** will be visible for you to copy and use in Rancher. 
 
-    ![Packet Hosts on Rancher 3]({{site.baseurl}}/img/rancher/rancher_packet_3.png)
+    ![Packet Hosts on Rancher 3]({{site.baseurl}}/one-point-x/img/rancher/rancher_packet_3.png)
 
 ### Launching Packet Host(s)
 

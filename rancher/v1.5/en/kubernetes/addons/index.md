@@ -28,7 +28,7 @@ When installing Kubernetes on Rancher, you'll need to [configure your Kubernetes
 
 Rancher provides shell access directly to a managed `kubectl` instance that can be used to manage Kubernetes clusters and applications. To start using this shell, navigate to **Kubernetes** -> **CLI**. This shell is automatically installed with a Helm client and commands for Helm can be used immediately.
 
-![Kubectl]({{site.baseurl}}/img/kubernetes/kubectl.png)
+![Kubectl]({{site.baseurl}}/one-point-x/img/kubernetes/kubectl.png)
 
 ##### Using `helm` on a Workstation
 

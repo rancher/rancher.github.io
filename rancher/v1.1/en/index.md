@@ -37,4 +37,4 @@ Rancher supports flexible user authentication plugins and comes with pre-built u
 
 The following figure illustrates Rancher’s major components and features.
 
-<img src="{{site.baseurl}}/img/rancher/rancher_overview_2.png" width="800" alt="Rancher Overview">
+<img src="{{site.baseurl}}/one-point-x/img/rancher/rancher_overview_2.png" width="800" alt="Rancher Overview">

@@ -16,11 +16,11 @@ In order to launch a DigitalOcean host, you'll need a **Personal Access Token** 
 
 1. Navigate to the [Apps & API page](https://cloud.digitalocean.com/settings/applications). 
 
-    ![DO Host on Rancher 1]({{site.baseurl}}/img/rancher/rancher_do_1.png)
+    ![DO Host on Rancher 1]({{site.baseurl}}/one-point-x/img/rancher/rancher_do_1.png)
 
 2. In the **Personal Access Tokens**, click on the **Generate New Token** button. Name your token (e.g. Rancher) and click **Generate Token**.
 
-    ![DO Host on Rancher 2]({{site.baseurl}}/img/rancher/rancher_do_2.png)
+    ![DO Host on Rancher 2]({{site.baseurl}}/one-point-x/img/rancher/rancher_do_2.png)
 
 3. Copy your **Access Token** from the UI and save it somewhere safe. This is the only time you will be able to see the access token. Next time you go to the page, the token will no longer be shown and you will not be able to retrieve it.
 
