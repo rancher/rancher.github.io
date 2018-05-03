@@ -464,7 +464,7 @@ services:
 
 ##### Selector
 
-Instead of targeting a specific service, you can set up a [selector](({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/labels/#selector-labels)). By using selectors, you can define the service links and hostname routing rules on the target service instead of on the load balancer. Services with labels matching the selector become a target in the load balancer.
+Instead of targeting a specific service, you can set up a [selector]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/labels/#selector-labels). By using selectors, you can define the service links and hostname routing rules on the target service instead of on the load balancer. Services with labels matching the selector become a target in the load balancer.
 
 When using a selector in a load balancer, the `lb_config` can be set on the load balancer and any  target services that are matching the selector.
 

@@ -18,7 +18,7 @@ All services in the environment are resolvable by `<service_name>` and there is 
 
 In the UI, when [adding a service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#adding-services-in-the-ui), expand the **Service Links** section, select the service, and provide the alias name.
 
-If you're using Rancher Compose to [add the service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/services/#adding-services-with-rancher-compose), the `docker-compose.yml` would use either the `links` or `external_links` directive.
+If you're using Rancher Compose to [add the service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#adding-services-with-rancher-compose), the `docker-compose.yml` would use either the `links` or `external_links` directive.
 
 ```yaml
 service1:

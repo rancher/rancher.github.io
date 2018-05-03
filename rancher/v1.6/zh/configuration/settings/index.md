@@ -33,4 +33,4 @@ Rancher通过该设置确定你的主机连接Rancher API所用的URL。默认�
 
 ### 信息统计
 
-默认情况下，Rancher会询问你是否允许收集匿名统计信息。这些数据使我们更好的了解我们的用户群，帮助改进Rancher产品。点击[这里]({{site.baseurl}}/rancher/telemetry/)了解更多。
+默认情况下，Rancher会询问你是否允许收集匿名统计信息。这些数据使我们更好的了解我们的用户群，帮助改进Rancher产品。点击[这里]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/telemetry/)了解更多。

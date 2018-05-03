@@ -15,7 +15,7 @@ lang: zh
 
 在UI中，[添加服务]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#在ui中添加服务)时，展开**服务链接**部分，选择服务，并提供别名.
 
-如果你使用Rancher Compose[添加服务]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/services/#使用-rancher-compose-添加服务)，`docker-compose.yml`将使用`links`或`external_links`指令.
+如果你使用Rancher Compose[添加服务]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/adding-services/#使用-rancher-compose-添加服务)，`docker-compose.yml`将使用`links`或`external_links`指令.
 
 ```yaml
 version: '2'

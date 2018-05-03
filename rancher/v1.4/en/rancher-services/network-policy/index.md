@@ -20,7 +20,7 @@ Alternatively, if you already have an environment set up, you can select and lau
 
 ### Managing Network Policy Rules via API
 
-In the [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/resources/network/) resource, there is a `defaultPolicyAction` and a `policy` field that define how the communication between containers work. The `policy` field is an ordered array of [network policy rules]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/resources/networkPolicyRule/). Using Rancher's [API]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/), you can manage the network policy for the environment.
+In the [network]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/api-resources/network/) resource, there is a `defaultPolicyAction` and a `policy` field that define how the communication between containers work. The `policy` field is an ordered array of [network policy rules]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/api-resources/networkPolicyRule/). Using Rancher's [API]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/), you can manage the network policy for the environment.
 
 #### Finding the API Endpoint for the Network
 
