@@ -1,14 +1,10 @@
-# Rancher Labs Documentation
+# Rancher Labs 1.6 Documentation
 
-This README file includes information pertaining to the documentation project for both Rancher and Rancher OS.
+This README file includes information pertaining to the documentation project for Rancher 1.6.
 
 ## Rancher
 
-Rancher is an open source project that provides a complete platform for operating Docker in production. It provides infrastructure services such as multi-host networking, global and local load balancing, and volume snapshots. It integrates native Docker management capabilities such as Docker Machine and Docker Swarm. It offers a rich user experience that enables devops admins to operate Docker in production at large scale.
-
-## Rancher OS
-
-Operating system composed entirely of Docker containers. Everything in RancherOS is a container managed by Docker. This includes system services such as udev and syslog. RancherOS includes only the bare minimum amount of software needed to run Docker.
+Rancher 1.6 is an open source project that provides a complete platform for operating Docker in production. It provides infrastructure services such as multi-host networking, global and local load balancing, and volume snapshots. It integrates native Docker management capabilities such as Docker Machine and Docker Swarm. It offers a rich user experience that enables devops admins to operate Docker in production at large scale.
 
 ## Rancher Labs Documentation website
 
@@ -17,8 +13,6 @@ Rancher documentation is available at <http://rancher.com/docs/rancher/>.
 As Rancher has gone GA, we've added in version control. The default Rancher docs site will always be referring to the latest release. We will branch off specific versions of Rancher that are deemed GA, which would also be tagged as `rancher/server:stable`.
 
 Currently, we've added support for Chinese version of the docs site per community request. Currently, Rancher will not be actively translating the docs site, but we welcome PRs.
-
-Rancher OS documentation is available at <http://rancher.com/docs/os/>.
 
 ## Contributing to Rancher Labs Documentation Project
 
