@@ -10,7 +10,7 @@ lang: en
 
 _Available as of Rancher v1.6.3_
 
-By default, any users in a Rancher environment running Kubernetes have access to all the resources within Kubernetes. Enabling [Kubernetes RBAC](https://kubernetes.io/docs/admin/authorization/rbac/) allows [owners of environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#owners) to restrict access to the various resources within Kubernetes to specific users in the environment. 
+By default, any users in a Rancher environment running Kubernetes have access to all the resources within Kubernetes. Enabling [Kubernetes RBAC](https://kubernetes.io/docs/admin/authorization/rbac/) allows [owners of environments]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#owners) to restrict access to the various resources within Kubernetes to specific users in the environment.
 
 Authentication is integrated with [Rancher's access control options](https://docs.rancher.com/rancher/v1.6/en/configuration/access-control/#enabling-access-control), which means any external authentication system supported by Rancher can be used for Kubernetes RBAC roles.
 
@@ -18,7 +18,7 @@ An understanding of namespaces is a requirement to making use of Kubernetes RBAC
 
 ### Enabling Kubernetes RBAC
 
-In order to enable Kubernetes RBAC, you will need to make sure to [configure Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes) and select to enable Kubernetes RBAC. If you've already launched the Kubernetes infrastructure service, you can click on the **Up to Date** to update the configuration options for Kubernetes. 
+In order to enable Kubernetes RBAC, you will need to make sure to [configure Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes) and select to enable Kubernetes RBAC. If you've already launched the Kubernetes infrastructure service, you can click on the **Up to Date** to update the configuration options for Kubernetes.
 
 ### Default Roles
 
@@ -34,27 +34,24 @@ Helm and Tiller do not currently respect RBAC roles. Anyone with access to eithe
 
 ### Applying New Roles to Users/Groups
 
-In order to provide permissions to non-owners to the Kubernetes resources, owners will need to create new roles and apply them to the users. There are two Kubernetes resource types: `RoleBindings` and `ClusterRoleBindings`. `RoleBindings` apply permissions to a specific namespace in an environment while `ClusterRoleBindings` add permissions at the global level (i.e. all namespaces in an environment). 
+In order to provide permissions to non-owners to the Kubernetes resources, owners will need to create new roles and apply them to the users. There are two Kubernetes resource types: `RoleBindings` and `ClusterRoleBindings`. `RoleBindings` apply permissions to a specific namespace in an environment while `ClusterRoleBindings` add permissions at the global level (i.e. all namespaces in an environment).
 
 Role bindings can be applied with the `kubectl apply` command. You can update any permissions by simply adding or removing them from the resource file and re-applying with `kubectl apply`.
 
 ### Group Name Syntax
 
-When applying groups to role bindings, your Rancher [authentication]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) will determine the syntax of the name of your group. 
+When applying groups to role bindings, your Rancher [authentication]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) will determine the syntax of the name of your group.
 
 Authentication Provider | Group Name Syntax
 ---|---
 Active Directory | `ldap_group:<NAME>`
 Azure AD | `azuread_group:<NAME>`
-Github Organizations | `github_org:<NAME>` 
+Github Organizations | `github_org:<NAME>`
 Github Teams | `github_team:<NAME>`
 OpenLDAP | `openldap_group:<NAME>`
 Shibboleth | `shibboleth_group:<NAME>`
 
 <br>
-
-> **Note:** Currently, you can apply permissions to specific groups in kubernetes RBAC, but you must invite the individuals of the group to the environment. Inviting groups to an environment currently does not support kubernetes RBAC. 
-
 
 #### Roles
 
@@ -68,7 +65,7 @@ Custom roles allow more control than built-in roles such as `admin`, `edit`, and
 
 ### Examples
 
-#### Giving edit access to 2 users to a specific namespace 
+#### Giving edit access to 2 users to a specific namespace
 
 In this example, we are granting permissions to two users, `developer1` and `developer2`, so that they have the ability to write and read nearly all resources in the `dev` namespace. We tie the `edit` role to them with the following role binding.
 
@@ -91,7 +88,7 @@ roleRef:
 
 #### Giving read only access to a user to a specific namespace
 
-In this eample, we are granting permissions to one user, `developer2`, so that they have the ability to read nearly all resources in the `qa` namespace. We tie the `view` role to them with the following role binding. 
+In this eample, we are granting permissions to one user, `developer2`, so that they have the ability to read nearly all resources in the `qa` namespace. We tie the `view` role to them with the following role binding.
 
 
 ```yaml
@@ -109,7 +106,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-#### Giving read only access to a group to a specific namepsace 
+#### Giving read only access to a group to a specific namepsace
 
 In this example, we are granting permissions to all users in a specific Github team, `mycompany-research`, so that the team has the ability to read nearly all resources in the `dev` namespace.  We tie the `edit` role to them with the following role binding.
 
@@ -130,8 +127,6 @@ roleRef:
 ```
 
 Any member of the team `mycompany-research` should now have the ability to view, but not modify, most resources in the cluster.
-
-> **Note:** Currently, you can apply permissions to specific groups in kubernetes RBAC, but you must invite the individuals of the group to the environment. Inviting groups to an environment currently does not support kubernetes RBAC. 
 
 #### Giving all users access to list namespaces
 
