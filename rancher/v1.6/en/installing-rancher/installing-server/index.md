@@ -331,15 +331,21 @@ jdbc:mysql://<DB_HOST>:<DB_PORT>/<DB_NAME>?useUnicode=true&characterEncoding=UTF
 
 ```shell
 
-$ export JDBC_URL="jdbc:mysql://<DB_HOST>:<DB_PORT>/<DB_NAME>?useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&prepStmtCacheSize=517&cachePrepStmts=true&prepStmtCacheSqlLimit=4096&socketTimeout=60000&connectTimeout=60000&sslServerCert=/var/lib/rancher/etc/ssl/ca.crt&useSSL=true"
+export DB_HOST="1.2.3.4"
+export DB_PORT=3306
+export DB_NAME="rancherdb"
+export DB_USER="root"
+export DB_PASS="123456"
 
-$ cat <<EOF > docker-compose.yml
+export JDBC_URL="jdbc:mysql://$DB_HOST:$DB_PORT/$DB_NAME?useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&prepStmtCacheSize=517&cachePrepStmts=true&prepStmtCacheSqlLimit=4096&socketTimeout=60000&connectTimeout=60000&sslServerCert=/var/lib/rancher/etc/ssl/ca.crt&useSSL=true"
+
+cat <<EOF > docker-compose.yml
 version: '2'
   services:
     rancher-server:
       image: rancher/server:stable
       restart: unless-stopped
-      command: --db-host <DB_HOST> --db-port <DB_PORT> --db-name <DB_NAME> --db-user <DB_USER> --db-pass <DB_PASS>
+      command: --db-host $DB_HOST --db-port $DB_PORT --db-name $DB_NAME --db-user $DB_USER --db-pass $DB_PASS
       environment:
         CATTLE_DB_LIQUIBASE_MYSQL_URL: $JDBC_URL
         CATTLE_DB_CATTLE_MYSQL_URL: $JDBC_URL
@@ -350,7 +356,7 @@ version: '2'
         - "8080:8080"
 EOF
 
-$ docker-compose up -d
+docker-compose up -d
 ```
 
 *Important*: You have to specify your database parameters both in the JDBC URL as well as in the `--db-xxx` command arguments!
