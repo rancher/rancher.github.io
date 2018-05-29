@@ -154,4 +154,33 @@ If you have launched Rancher server in [High Availability (HA)]({{site.baseurl}}
 
 ### Rancher Server with No Internet Access
 
-Users without internet will need to download the latest [infrastructure service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) images in order for the upgrade to succeed. Without the images in the latest default templates, the infrastructure services will not be able to upgrade.
+Users without internet will need to download the latest [infrastructure service]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) images in order for the upgrade to succeed. Without the images in the latest default templates, the infrastructure services will not be able to upgrade. See [Using a Private Registry]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/no-internet-access/#using-a-private-registry) how to do this.
+
+#### Upgrading Rancher when using private registry with authentication
+
+As described in [Rancher Agents]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/upgrading/#rancher-agents), agents will be automatically upgraded. If the image needed for the Rancher agent is in a private registry with authentication (Docker daemon needs credentials to access the registry), you will need to pre-pull the images before upgrading Rancher. This can be done using the catalog item called `pre-pull-images`.
+
+> **Note:** `pre-pull-images` expects that the setting `registry.default` is configured correctly, as this will be used to pull the images from the correct registry. See [Configuring the default registry for infrastructure stacks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/no-internet-access/#configuring-the-default-registry-for-infrastructure-stacks) how to configure this setting.
+
+##### Setting up pre-pull-images
+
+* Open the catalog
+  * **Cattle**: Navigate to **Catalog** -> **All**
+  * **Kubernetes**: Navigate to **Kubernetes** -> **Infrastructure Stacks** and open **Add from Catalog**
+* Search for `pre-pull-images`, select **View Details** on the catalog item
+* Configure the catalog according to your situation, options are described below:
+
+  | Option | Default | Description |
+  |---|---|---|
+  | CHECK_CPU_USAGE | `True` | Enable checking CPU usage while running to avoid overloading the host |
+  | CPU_USAGE_MAX | `75` | Maximum CPU usage percentage to halt pulling images |
+  | CPU_USAGE_SLEEP | `120` | Amount of seconds to sleep when CPU usage percentage is above CPU_USAGE_MAX |
+  | MOUNT_DOCKER_CONFIG | `False` | Mount the Docker daemon config as a volume (required for registries with authentication) |
+  | DOCKER_CONFIG_LOCATION | `/root/.docker/config.json` | Location of the Docker daemon config on the host (required for registries with authentication) |
+  | PRIVILEGED | `False` | Run pre-pull-images as privileged container (needed when SELinux is in Enforcing mode) |
+  | RANDOM_SLEEP | `False` | Sleep a random interval between pulls |
+  | RANCHER_AGENT_IMAGE | `rancher/agent:v1.2.10` | Rancher agent image to pull (this can be found in the [release notes](https://github.com/rancher/rancher/releases/tag/v1.6.17) of the version you are upgrading to) |
+  | RANCHER_VERSION | `v1.6.17` | Rancher server version you are upgrading to after running pre-pull-images |
+
+* Click **Launch**, this will launch a global start-once service that will pull all the needed images for the `RANCHER_VERSION` you specified. It will also pull the `RANCHER_AGENT_IMAGE` you configured.
+* When all the containers are in `Started-Once` state, the images needed for the upgrade are present on the hosts.
