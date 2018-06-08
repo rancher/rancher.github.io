@@ -69,6 +69,16 @@ By default, the timeout for waiting will be ten minutes, but if you want to chan
 
 You can also define which specific state of a resource to be in before exiting, by using `--wait-state`.
 
+### Using the `--format` Option
+
+If you choose to use the custom `--format` option, the available fields to list are based on the resource field of the object that you are referencing. The resource field needs to be capitalized.
+
+Please refer to the [API docs[({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/)] to find the resource fields for each object.
+
+```
+$ rancher ps -c --format '{{.Container.Name}}, {{.Container.ImageUuid}}'
+```
+
 ### Rancher Catalog Reference
 
 The `rancher catalog` command provides operations around catalog templates.
