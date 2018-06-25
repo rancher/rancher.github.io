@@ -87,7 +87,7 @@ Rancher 支持将资源分组归属到多个环境。每个环境具有自己独
 
 在和其它用户共享环境前， 我们推荐先设置好[访问控制]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/)。用户被加入一个环境后, 他们就拥有了创建服务和管理资源的权限。
 
-> **注意：** 基础设施资源不可夸环境共享。[镜像仓库]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/)、[证书]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/) 和环境[API密钥]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/api-keys/)也不能夸环境。
+> **注意：** 基础设施资源不可跨环境共享。[镜像仓库]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/)、[证书]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/) 和环境[API密钥]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/api-keys/)也不能跨环境。
 
 ### 添加环境模版
 
