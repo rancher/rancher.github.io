@@ -60,7 +60,7 @@ $ export RANCHER_SECRET_KEY=<secretKey_of_account_api_key>
 If there is more than one environment in your Rancher server you'll also need to set an environment variable to select the specific environment, i.e. `RANCHER_ENVIRONMENT`.
 
 ```bash
-# Set the environment to use, you can use either environment ID or environment name
+# Set the environment to use, you can use either environment ID
 $ export RANCHER_ENVIRONMENT=<environment_id>
 ```
 
