@@ -48,7 +48,7 @@ Name | Description
 --- | ---
 `--debug`         |                  Debug logging
 `--config` value, `-c` value    |      Client configuration file (default ${HOME}/.rancher/cli.json) [$RANCHER_CLIENT_CONFIG]
-`--environment` value, `--env` value | Environment name or ID [$RANCHER_ENVIRONMENT]
+`--environment` value, `--env` value | Environment ID [$RANCHER_ENVIRONMENT]
 `--url` value                    |   Specify the Rancher API endpoint URL [$RANCHER_URL]
 `--access-key` value             |   Specify Rancher API access key [$RANCHER_ACCESS_KEY]
 `--secret-key` value             |   Specify Rancher API secret key [$RANCHER_SECRET_KEY]
