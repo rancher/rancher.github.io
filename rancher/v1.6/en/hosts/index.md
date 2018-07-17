@@ -14,6 +14,7 @@ Hosts are the most basic unit of resource within Rancher and is represented as a
   * For RHEL/CentOS, the default storage driver, i.e. devicemapper using loopback, is not recommended by [Docker](https://docs.docker.com/engine/reference/commandline/dockerd/#/storage-driver-options). Please refer to the Docker documentation on how to change it.
   * For RHEL/CentOS, if you want to enable SELinux, you will need to [install an additional SELinux module]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/selinux/).
   * For RHEL/CentOS, please use kernel version `3.10.0-514.2.2.el7.x86_64` or higher. Includes when using release 7.3 or higher.
+  * For host running a local caching nameserver (e.g. Ubuntu 18.04 Bionic Beaver), see [Hosts running a local caching nameserver](#hosts-running-a-local-caching-nameserver)
 * 1GB RAM
 * Recommended CPU w/ AES-NI
 * Ability to communicate with a Rancher server via http or https through the pre-configured port. Default is 8080.
@@ -155,6 +156,30 @@ $  sudo docker run -e CATTLE_SCHEDULER_IPS='1.2.3.4,<IP2>,..<IPN>' -d --privileg
 ### Hosts behind an HTTP Proxy
 
 If you are behind an HTTP proxy, in order to add hosts to Rancher server, you will need to edit the Docker daemon of the host to point to the proxy. The detailed instructions are listed within our [adding custom host page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/custom/#hosts-behind-a-proxy).
+
+### Hosts running a local caching nameserver
+
+Some Linux distributions run a local caching nameserver by default. This means that the configured nameserver in `/etc/resolv.conf` is pointing to address in loopback range (`127.0.0.0/8`). While this will function fine on the host itself, containers are not able to reach this address (unless run with network mode `host`). Our infrastructure services need to be able to resolve DNS to function, so a change to the system is required before adding the host to a Rancher environment. This involves two steps:
+
+* Disabling the local caching nameserver.
+* Modifying the contents of `/etc/resolv.conf` to point to correct nameservers.
+
+For Ubuntu 18.04, you can run the following commands to modify the system:
+
+```
+# Mask the service so it cannot run anymore
+sudo systemctl mask systemd-resolved
+# Remove the original reference and add the correct nameservers
+sudo rm /etc/resolv.conf
+sudo ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
+```
+
+If `/run/systemd/resolve/resolv.conf` is not present on the system, you can create your own `/etc/resolv.conf` as shown below:
+
+```
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
 
 <a id="machine-config"></a>
 
