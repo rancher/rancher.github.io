@@ -51,9 +51,10 @@ Version               | Supported? | Kubernetes Supported? | Windows Supported? 
 `18.02.x-ce`          | No         | No                    |                     | n/a
 `18.03.x-ce`          | **Yes**{::nomarkdown}<p>(v1.6.17 and higher)</p>{:/}   | No                  | No                    | `curl https://releases.rancher.com/install-docker/18.03.sh | sh`
 `18.03.x-ee`          | **Yes**{::nomarkdown}<p>(v1.6.17 and higher)</p>{:/}   | No                  | No                    | n/a
+`18.06.x-ce`          | **Yes**{::nomarkdown}<p>(v1.6.20 and higher)</p>{:/}   | No                  | No                    | `curl https://releases.rancher.com/install-docker/18.06.sh | sh`
+`18.06.x-ee`          | **Yes**{::nomarkdown}<p>(v1.6.20 and higher)</p>{:/}   | No                  | No                    | n/a
 
-
-> **Note:** We will not support the edge releases from Docker, but will support the stable releases of Docker.
+> **Note:** We will not support the test/nightly/edge releases of Docker, but will support the stable releases of Docker.
 
 ### Installing a Specific Docker Version
 
