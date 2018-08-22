@@ -194,7 +194,7 @@ When Rancher Compose starts containers for a service, it also automatically crea
 Label | Value
 ----|-----
 io.rancher.stack.name | `$${stack_name}`
-io.rancher.stack_service.name | `$${stack_name}/$${service_name}`
+io.rancher.stack_service.name | `${stack_name}/${service_name}`
 
 <br>
 
@@ -236,14 +236,14 @@ A typical scheduling policy may be to try to spread the containers of a service 
 
 ```yaml
 labels:
-  io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=${stack_name}/${service_name}
 ```
 
 Since this is a hard anti-affinity rule, we may run into problems if the scale is larger than the number of hosts available.  In this case, we might want to use a soft anti-affinity rule so that the scheduler is still allowed to deploy a container to a host that already has that container running.  Basically, this is a soft rule so it can be ignored if no better alternative exists.
 
 ```yaml
 labels:
-  io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=${stack_name}/${service_name}
 ```
 
 #### Example 2:
@@ -252,7 +252,7 @@ Another example may be to deploy all the containers on the same host regardless 
 
 ```yaml
 labels:
-  io.rancher.scheduler.affinity:container_label_soft: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  io.rancher.scheduler.affinity:container_label_soft: io.rancher.stack_service.name=${stack_name}/${service_name}
 ```
 
 If a hard affinity rule to itself was chosen instead, the deployment of the first container would fail since there would be no host that currently has that service running.
