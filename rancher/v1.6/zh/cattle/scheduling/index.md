@@ -199,7 +199,7 @@ labels:
 标签 | 值
 ----|-----
 io.rancher.stack.name | `$${stack_name}`
-io.rancher.stack_service.name | `$${stack_name}/$${service_name}`
+io.rancher.stack_service.name | `${stack_name}/${service_name}`
 
 <br>
 
@@ -241,13 +241,13 @@ labels:
 
 ```yaml
 labels:
-  io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=${stack_name}/${service_name}
 ```
 
 由于这是一个很强的反相关性规则，如果比例大于可用主机数量，我们可能会遇到问题。 在这种情况下，我们可能需要使用软反相关性规则，以便调度程序仍然允许将容器部署到已经具有该容器的主机。 基本上，这是一个软规则，所以如果没有更好的选择存在，它可以被忽略。
 ```yaml
 labels:
-  io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=${stack_name}/${service_name}
 ```
 
 #### 示例2:
@@ -256,7 +256,7 @@ labels:
 
 ```yaml
 labels:
-  io.rancher.scheduler.affinity:container_label_soft: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  io.rancher.scheduler.affinity:container_label_soft: io.rancher.stack_service.name=${stack_name}/${service_name}
 ```
 
 如果选择了自己的硬约束规则，则第一个容器的部署将失败，因为目前没有运行该服务的主机。
