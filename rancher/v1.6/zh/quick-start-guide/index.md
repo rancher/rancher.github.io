@@ -184,7 +184,7 @@ services:
 <br>
 在Rancher UI中单击**下载CLI**（该按钮位于页面的右下角），即可下载Rancher CLI二进制文件，Windows、Mac和Linux的二进制文件均可下载。
 
-若想使用Rancher CLI在Rancher中启动服务，你需要设置一些环境变量。你需要在Rancher UI中创建一个账户[API Key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/api-keys/)。单击**API** -> **密钥**。单击**添加账户API Key**。填写一个名字，然后单击**创建**。保存**Access Key（用户名）**和**Secret Key（密码）**。通过运行`rancher config`配置RancherCLI，使用Rancher URL、Access Key和Secret Key。
+若想使用Rancher CLI在Rancher中启动服务，你需要设置一些环境变量。你需要在Rancher UI中创建一个账户[API Key]({{site.baseurl}}/rancher/{{page.version}}/en/api/v2-beta/api-keys/)。单击**API** -> **密钥**。单击**添加账户API Key**。填写一个名字，然后单击**创建**。保存**Access Key（用户名）**和**Secret Key（密码）**。通过运行`rancher config`配置RancherCLI，使用Rancher URL、Access Key和Secret Key。
 
 ```bash
 # Configure Rancher CLI

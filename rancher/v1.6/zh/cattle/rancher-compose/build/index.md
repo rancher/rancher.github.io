@@ -80,7 +80,7 @@ RUN pip install -r requirements.txt
 CMD python app.py
 ```
 
-因为你已经运行着Rancher Server了，所以你只需要配置好你 AWS 认证信息，然后用你的 Rancher Server URL 和[API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/api-keys/)来运行 Rancher Compose 。
+因为你已经运行着Rancher Server了，所以你只需要配置好你 AWS 认证信息，然后用你的 Rancher Server URL 和[API key]({{site.baseurl}}/rancher/{{page.version}}/en/api/v2-beta/api-keys/)来运行 Rancher Compose 。
 
 ```bash
 # Set up your AWS credentials

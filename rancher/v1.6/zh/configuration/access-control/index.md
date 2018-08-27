@@ -20,7 +20,7 @@ Rancher认证的第一个账户将成为 **管理员** 账户。 想要获取有
 
 在你配置了Rancher的访问控制后，访问控制将被启用。访问控制使你能够管理不同的[环境]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/)并把它们分享给不同的个人或团队。
 
-当访问控制启用后，Rancher API将被锁定。这时需要用户进行身份认证， 或者使用[API 密钥]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/api-keys/)来访问它。
+当访问控制启用后，Rancher API将被锁定。这时需要用户进行身份认证， 或者使用[API 密钥]({{site.baseurl}}/rancher/{{page.version}}/en/api/v2-beta/api-keys/)来访问它。
 
 #### ACTIVE DIRECTORY
 
