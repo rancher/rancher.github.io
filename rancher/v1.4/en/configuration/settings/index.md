@@ -32,4 +32,4 @@ If you want to create your own private catalog to add, the git repository must b
 
 ### Statistics
 
-By default, Rancher asks you to opt in to collect anonymous statistics about the configuration of Rancher. This data allows us to better understand our user base and how to make Rancher better. Read more about [telemetry in Rancher]({{site.baseurl}}/{{page.version}}/{{page.lang}}/rancher/telemetry/).
+By default, Rancher asks you to opt in to collect anonymous statistics about the configuration of Rancher. This data allows us to better understand our user base and how to make Rancher better. 

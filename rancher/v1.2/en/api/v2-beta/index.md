@@ -21,14 +21,14 @@ Some of the resource type names used in the API do not match the current termino
 
 | UI | API | Description |
 |----|-----|-------------|
-| [Environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) | [project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/project) | A group of physical resources, such as [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/host) |
+| [Environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) | [project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/project) | A group of physical resources, such as [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/host) |
 
 <br>
 In the documentation, we have used the UI term in descriptions and have provided additional disclaimers on the differences.  This confusion will be cleared up in a future version of the API.
 
 ### Authentication
 
-API requests must include authentication information if [Access Control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is enabled.  Authentication is done with HTTP basic authentication using [API Keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/apikey).  API keys can either belong to a single (UI) Environment / (API) [Project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/project/) with access to just that Environment, or to a [Account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account) with access to all Environments the account belongs to, and the ability to create new ones.  There is also a separate JSON Web Token interface primarily for the UI.
+API requests must include authentication information if [Access Control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/) is enabled.  Authentication is done with HTTP basic authentication using [API Keys]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-keys).  API keys can either belong to a single (UI) Environment / (API) [Project]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/project/) with access to just that Environment, or to a [Account]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/{{page.apiVersion}}/api-resources/account) with access to all Environments the account belongs to, and the ability to create new ones.  There is also a separate JSON Web Token interface primarily for the UI.
 
 > **Note:** In our examples, we've assumed that the `${RANCHER_ACCESS_KEY}:${RANCHER_SECRET_KEY}` are Account API Keys, but if you were to use an Environment API Key, you could omit the `projects/${PROJECT_ID}` from the URL.
 

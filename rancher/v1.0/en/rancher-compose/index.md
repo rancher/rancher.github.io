@@ -3,14 +3,16 @@ title: Rancher Compose
 layout: rancher-default-v1.0
 version: v1.0
 lang: en
+redirect_from:
+  - /rancher/v1.0/en/cattle/rancher-compose/
 ---
 
 ## Rancher Compose
 ---
 
-The `rancher-compose` tool is a multi-host version of `docker-compose`. It operates within the scope of a [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/) in the Rancher UI, which belongs to one [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) and has many [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/). The containers started by `rancher-compose` will be deployed on any of the hosts in the environment that satisfy the [scheduling rules]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/scheduling/). If there are no scheduling rules, then the containers of the service are launched on the hosts with the fewest containers. These containers are launched just as if you had started a service in the UI as rancher-compose is making the same API calls. 
+The `rancher-compose` tool is a multi-host version of `docker-compose`. It operates within the scope of a [stack]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/applications/stacks/) in the Rancher UI, which belongs to one [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/environments/) and has many [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-ui/infrastructure/hosts/). The containers started by `rancher-compose` will be deployed on any of the hosts in the environment that satisfy the [scheduling rules]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/scheduling/). If there are no scheduling rules, then the containers of the service are launched on the hosts with the fewest containers. These containers are launched just as if you had started a service in the UI as rancher-compose is making the same API calls.
 
-The `rancher-compose` tool works just like the popular `docker-compose` and supports the V1 version of  `docker-compose.yml` files. To enable features that are supported in Rancher, you can also have a `rancher-compose.yml` which extends and overwrites the `docker-compose.yml`. For example, scale of services and health checks would be in the `rancher-compose.yml` file. 
+The `rancher-compose` tool works just like the popular `docker-compose` and supports the V1 version of  `docker-compose.yml` files. To enable features that are supported in Rancher, you can also have a `rancher-compose.yml` which extends and overwrites the `docker-compose.yml`. For example, scale of services and health checks would be in the `rancher-compose.yml` file.
 
 The documentation for `rancher-compose` expects users to have an understanding of `docker-compose`. Please read through the [docker-compose documentation](https://docs.docker.com/compose/) before starting to work with `rancher-compose`.
 
@@ -21,10 +23,10 @@ The binary can be downloaded directly from the UI. The link can be found in the 
 
 You can also check the [releases page for rancher-compose](https://github.com/rancher/rancher-compose/releases) for direct downloads of the binary.
 
-## Setting up Rancher-Compose with Rancher Server 
+## Setting up Rancher-Compose with Rancher Server
 ---
 
-To enable `rancher-compose` to launch services in a Rancher instance, you'll need to set environment variables or pass these variables as an option in the `rancher-compose` command. The environment variables that are required are`RANCHER_URL`, `RANCHER_ACCESS_KEY`, and `RANCHER_SECRET_KEY`. The access key and secret key will be an [environment API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/api-keys/). 
+To enable `rancher-compose` to launch services in a Rancher instance, you'll need to set environment variables or pass these variables as an option in the `rancher-compose` command. The environment variables that are required are`RANCHER_URL`, `RANCHER_ACCESS_KEY`, and `RANCHER_SECRET_KEY`. The access key and secret key will be an [environment API key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/api-keys/).
 
 ```bash
 # Set the url that Rancher is on
@@ -35,7 +37,7 @@ $ export RANCHER_ACCESS_KEY=<username_of_environment_api_key>
 $ export RANCHER_SECRET_KEY=<password_of_environment_api_key>
 ```
 
-If you choose not to set the environment variables, you'll need to pass the same values as options as part of any `rancher-compose` command. 
+If you choose not to set the environment variables, you'll need to pass the same values as options as part of any `rancher-compose` command.
 
 ```bash
 $ rancher-compose --url http://server_ip:8080 --access-key <username_of_environment_api_key> --secret-key <password_of_environment_api_key> up
@@ -48,7 +50,7 @@ Now, you can use any `docker-compose.yml` file with `rancher-compose` to launch 
 
 ### Launching a Simple Service
 
-To get started, you can create a simple `docker-compose.yml` file and optionally a `rancher-compose.yml` file. If there is no `rancher-compose.yml` file, then all services will start with a scale of 1 container. 
+To get started, you can create a simple `docker-compose.yml` file and optionally a `rancher-compose.yml` file. If there is no `rancher-compose.yml` file, then all services will start with a scale of 1 container.
 
 Sample `docker-compose.yml`
 
@@ -65,10 +67,10 @@ service1:
   scale: 2
 ```
 
-After your files are created, you can launch the services into Rancher server. 
+After your files are created, you can launch the services into Rancher server.
 
 ```bash
-# Creating and starting a service without environment variables and selecting a stack 
+# Creating and starting a service without environment variables and selecting a stack
 # If no stack is provided, the stack name will be the folder name that the command is running from
 # If the stack does not exist in Rancher, it will be created
 $ rancher-compose --url URL_of_Rancher --access-key <username_of_environment_api_key> --secret-key <password_of_environment_api_key> -p stack1 up
@@ -80,9 +82,9 @@ $ rancher-compose -p stack1 up
 $ rancher-compose -p stack1 scale service1=3
 ```
 
-To read more about the different commands and options, please read our [rancher-compose command]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/commands/) documentation. 
+To read more about the different commands and options, please read our [rancher-compose command]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-compose/commands/) documentation.
 
-  
+
 ### Deleting Services/Container
 
 By default, `rancher-compose` will not delete containers/services.  This means that if you do two `up` commands in a row, the second `up` will do nothing.  This is because the first up will create everything and leave it running.  Even if you do not pass `-d` to `up`, `rancher-compose` will not delete your services.  To delete a service you must use `rm`.
@@ -99,7 +101,7 @@ For S3 based builds to work you must [setup AWS credentials](https://github.com/
 
 ### Sidekicks
 
-With services, you may want to have your service use `volumes_from` and `net` to point to another service. In order for these to work, you need to set up a sidekick relationship. The sidekick relationship is how Rancher scales and schedules these services as one unit. Example: B is a sidekick of A, so the services will always deploy as a pair and scale of the services will always be the same. 
+With services, you may want to have your service use `volumes_from` and `net` to point to another service. In order for these to work, you need to set up a sidekick relationship. The sidekick relationship is how Rancher scales and schedules these services as one unit. Example: B is a sidekick of A, so the services will always deploy as a pair and scale of the services will always be the same.
 
 Another time that you may want to define the sidekick relationship is if you have multiple services that always need to be deployed on the same host.
 
@@ -115,7 +117,7 @@ When using [load balancers]({{site.baseurl}}/rancher/{{page.version}}/{{page.lan
 
 #### Example of Sidekicks in Rancher-Compose:
 
-Sample configuration `docker-compose.yml` 
+Sample configuration `docker-compose.yml`
 
 ```yaml
 test:
@@ -146,7 +148,7 @@ test-data:
 
 #### Example of Sidekicks in Rancher-Compose: Multiple services using the same service for `volumes_from`
 
-If you have multiple services that will be using the same container to do a `volumes_from`, you can add the second service as a sidekick of the primary service and use the same data container. Since only the primary service can be a target of a load balancer, please make sure the correct service is chosen as the primary service (i.e. the one that will have the sidekick label). 
+If you have multiple services that will be using the same container to do a `volumes_from`, you can add the second service as a sidekick of the primary service and use the same data container. Since only the primary service can be a target of a load balancer, please make sure the correct service is chosen as the primary service (i.e. the one that will have the sidekick label).
 
 ```yaml
 test-data:
@@ -173,11 +175,11 @@ test2:
 
 ### Linking Services
 
-In Rancher, all services within an environment are DNS resolvable so linking services explicitly is not required, unless you would like to use a specific alias for DNS resolution. 
+In Rancher, all services within an environment are DNS resolvable so linking services explicitly is not required, unless you would like to use a specific alias for DNS resolution.
 
 > **Note:** We currently do not support linking sidekick services to the primary service or vice versa. Read more about how [Rancher's internal DNS works]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/internal-dns-service/).
 
-For services in the same stack, any service is DNS resolvable by it's native `service_name`, if you so wish, you can use links present this service under another alias. 
+For services in the same stack, any service is DNS resolvable by it's native `service_name`, if you so wish, you can use links present this service under another alias.
 
 
 Sample `docker-compose.yml`
@@ -208,6 +210,3 @@ wordpress:
 In this example, the `alldbs` stack has a `db1` service that the wordpress service will link to. In the `wordpress` service, `db1` would be resolvable as `mysql`. Without the external link, `db1` would be resolvable as `db1.alldbs`.
 
 > **Note:** Cross stack discovery is limited by environment (by design). Cross environment discovery is not supported.
-
-
-
