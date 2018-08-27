@@ -25,7 +25,7 @@ The Rancher managed IP address will not be present in Docker metadata, which mea
 
 ### Communication Between Containers
 
-By default, all containers within the same environment are reachable via the `managed` network. If you want to alter the communication between containers, you can set up a [network policy]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/network-policy/).
+By default, all containers within the same environment are reachable via the `managed` network. 
 
 If you are facing issues with cross host communication, please refer to our troubleshooting [documentation]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/faqs/troubleshooting/#cross-host-communication).
 
