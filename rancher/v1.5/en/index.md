@@ -3,6 +3,8 @@ title: Overview of Rancher
 layout: rancher-default-v1.5
 version: v1.5
 lang: en
+redirect_from:
+  - /rancher/v1.5/zh/
 ---
 
 ## Overview of Rancher
