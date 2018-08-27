@@ -77,17 +77,17 @@ Rancher 支持将资源分组归属到多个环境。每个环境具有自己独
 
 > **注意：** 只读成员可以查看容器的日志。
 
-为了使非`所有者`可以设置环境的成员，你可以通过更新API配置[`project.set.member.roles`]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/api-resources/setting/)来实现这一点。
+为了使非`所有者`可以设置环境的成员，你可以通过更新API配置[`project.set.member.roles`]({{site.baseurl}}/rancher/{{page.version}}/en/api/v2-beta/api-resources/setting/)来实现这一点。
 
 ### 什么是环境模版
 
-环境模版可以让用户定义需要部署的基础设施服务组合。基础设施服务包括（但不限于）容器编排 (即Cattle，[Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/)、[Mesos]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/mesos/)、[Swarm]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/swarm/))、[网络]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking/)、Rancher 服务 (即 [健康检查]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks)、[DNS]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/dns-service/)、[Metadata]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/metadata/)、[调度]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/)、服务发现、[存储]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/storage-service/)。
+环境模版可以让用户定义需要部署的基础设施服务组合。基础设施服务包括（但不限于）容器编排 (即Cattle，[Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/)、[Mesos]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/mesos/)、[Swarm]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/swarm/))、[网络]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking/)、Rancher 服务 (即 [健康检查]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks)、[DNS]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/dns-service/)、[Metadata]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/metadata-service/)、[调度]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/scheduling/)、服务发现、[存储]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/storage-service/)。
 
 容器的编排方式很多，Rancher提供了一套默认的模版以及推荐使用的基础设施服务用于容器编排。其中的一些基础设施服务（Rancher调度器只能在Cattle环境下使用 ），其他的编排引擎也依赖他们，因为这些服务被用来启动其它基础设施服务。除了默认的模版，你也可以创建自己的模版。通过自己创建模版，你可以选者环境中任何你想要的基础设施服务组合。只有[所有者](#所有者)或[管理员]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/#管理员)可以查看和编辑环境的基础设施服务。
 
 在和其它用户共享环境前， 我们推荐先设置好[访问控制]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/)。用户被加入一个环境后, 他们就拥有了创建服务和管理资源的权限。
 
-> **注意：** 基础设施资源不可跨环境共享。[镜像仓库]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/)、[证书]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/) 和环境[API密钥]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/api-keys/)也不能跨环境。
+> **注意：** 基础设施资源不可跨环境共享。[镜像仓库]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/registries/)、[证书]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/certificates/) 和环境[API密钥]({{site.baseurl}}/rancher/{{page.version}}/en/api/v2-beta/api-keys/)也不能跨环境。
 
 ### 添加环境模版
 
