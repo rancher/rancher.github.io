@@ -35,7 +35,7 @@ Rancher允许用户在[环境]({{site.baseurl}}/rancher/{{page.version}}/{{page.
 
 ### 通过API管理网络策略规则
 
-对于[网络]({{site.baseurl}}/rancher/{{page.version}}/en/api/v2-beta/resources/network/)资源，`defaultPolicyAction`和`policy` 字段定义了容器间通信的工作规则。`policy`字段是内容为[网络策略规则]({{site.baseurl}}/rancher/{{page.version}}/en/api/v2-api-beta/api-resources/networkPolicyRule/)的有序数组。通过Rancher的[API]({{site.baseurl}}/rancher/{{page.version}}/en/api/v2-beta/)，可以配置环境的网络策略
+对于[网络]({{site.baseurl}}/rancher/{{page.version}}/en/api/v2-beta/api-resources/network/)资源，`defaultPolicyAction`和`policy` 字段定义了容器间通信的工作规则。`policy`字段是内容为[网络策略规则]({{site.baseurl}}/rancher/{{page.version}}/en/api/v2-beta/api-resources/networkPolicyRule/)的有序数组。通过Rancher的[API]({{site.baseurl}}/rancher/{{page.version}}/en/api/v2-beta/)，可以配置环境的网络策略
 
 #### 获取网络的API地址
 
