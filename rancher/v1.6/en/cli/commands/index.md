@@ -73,10 +73,10 @@ You can also define which specific state of a resource to be in before exiting, 
 
 If you choose to use the custom `--format` option, the available fields to list are based on the resource field of the object that you are referencing. The resource field needs to be capitalized.
 
-Please refer to the [API docs[({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/)] to find the resource fields for each object.
+Please refer to the [API docs]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/v2-beta/) to find the resource fields for each object.
 
 ```
-$ rancher ps -c --format '{{.Container.Name}}, {{.Container.ImageUuid}}'
+$ rancher ps -c --format {% raw %}'{{.Container.Name}}, {{.Container.ImageUuid}}'{% endraw %}
 ```
 
 ### Rancher Catalog Reference
@@ -95,9 +95,11 @@ Name | Description
 
 Name | Description
 ----|-----
-`ls` | `List catalog templates`
-`install` |  Install catalog template
-`help`    |  Shows a list of commands or help for one command
+`ls` | List catalog templates
+`show` | Show catalog template versions
+`install` | Install catalog template
+`upgrade` | Upgrade stack with new catalog template version
+`help` | Shows a list of commands or help for one command
 
 #### Rancher Catalog Ls
 
@@ -122,6 +124,33 @@ $ rancher --env k8sEnv catalog ls
 $ rancher catalog ls --system
 ```
 
+#### Rancher Catalog Show
+
+The `rancher catalog show` command lists all the catalog template versions of a given template in the environment.
+
+##### Options
+
+Name | Description
+-----|-----
+`--quiet`, `-q` |     Only display IDs
+`--format` value  | `json` or Custom format: {% raw %}'{{.ID}} {{.Template.Id}}'{% endraw %}
+`--system`, `-s` |   Show system templates, not user
+`--env` | Select a differente environment to query the catalog template versions
+
+<br>
+
+```bash
+# Lists catalog template versions for community:wordpress
+$ rancher catalog show community:wordpress
+ID                      VERSION
+community:wordpress:0   v0.1-educaas1
+community:wordpress:1   v0.2-bitnami
+# Lists all catalog template version in an environment called testenv
+$ rancher --env testenv catalog show community:wordpress
+# Lists the catalog template version of a system template
+$ rancher catalog show --system library:infra*ipsec
+```
+
 #### Rancher Catalog install
 
 The `rancher catalog install` command installs catalog templates into your environment.
@@ -130,17 +159,45 @@ The `rancher catalog install` command installs catalog templates into your envir
 
 Name | Description
 ----|-----
-`-answers` value, `-a` value |  Answer file. Format should be `yaml` or `json` with the appropriate file extension suffixed.
+`--answers` value, `-a` value |  Answer file. Format should be `yaml` or `json` with the appropriate file extension suffixed.
 `--name` value              |  Name of stack to create
 `--system`, `-s`              |  Install a system template
 
 <br>
 
 ```bash
-# Install a catalog
-$ rancher catalog install library/route53:v0.6.0-rancher1 --name route53
-# Install a catalog and label it as a system template
-$ rancher catalog install library/route53:v0.6.0-rancher1 --name route53 --system
+# Install a catalog item
+$ rancher catalog install community:wordpress:v0.1-educaas1
+# Install a catalog item and label it as a system template
+$ rancher catalog install community:wordpress:v0.2-bitnami --system
+```
+
+#### Rancher Catalog Upgrade
+
+The `rancher catalog upgrade` command upgrades stacks templates with new catalog template version.
+
+##### Options
+
+Name | Description
+----|-----
+`--answers` value, `-a` value | Answer file. Format should be `yaml` or `json` with the appropriate file extension suffixed.
+`--stack` value, `-s` value | Stack id to upgrade
+`--confirm` | Wait for upgrade and confirm it
+
+<br>
+
+```bash
+# Check stack upgrades available
+$ rancher stack
+ID        NAME        STATE     CATALOG                           SERVICES   SYSTEM    DETAIL    AVAILABLE UPGRADES
+1st5      wordpress   healthy   catalog://community:wordpress:0   2          false               community:wordpress:1
+# Upgrade stack with id 1st5 with catalog template community:wordpress:1
+$ rancher catalog upgrade community:wordpress:1 --stack 1st5
+1st5
+# Upgrade stack with id 1st5 with catalog template community:wordpress:1 and confirm upgrade 
+$ rancher catalog upgrade community:wordpress:1 --stack 1st6 --confirm                                                                                                                                                                    
+Upgrading stack 1st6 to template version community:wordpress:11st6
+Finishing upgrade of stack 1st6 to template version community:wordpress:11st6
 ```
 
 ### Rancher Config Reference
