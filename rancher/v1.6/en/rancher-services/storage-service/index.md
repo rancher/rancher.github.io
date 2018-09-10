@@ -127,7 +127,6 @@ services:
     - bar:/var/lib/storage
 volumes:
   bar:
-    driver: rancher-nfs
     external: true
 ```
 
