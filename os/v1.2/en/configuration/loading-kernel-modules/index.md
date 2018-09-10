@@ -51,12 +51,12 @@ As an example I'm going build the `intel-ishtp` hid driver using the `rancher/os
   
 
 ```
-sudo docker run --rm -it --privileged -v $(pwd):/data -w /data rancher/os-zfs:$(ros -v | cut -d ' ' -f 3) bash
+sudo docker run --rm -it --privileged -v $(pwd):/data --entrypoint /bin/bash -w /data rancher/os-zfs:$(ros -v | cut -d ' ' -f 2)
 
 apt-get update
 apt-get install -qy libncurses5-dev bc libssh-dev
 curl -SsL -o src.tgz https://github.com/rancher/os-kernel/releases/download/v$(uname -r)/linux-$(uname -r)-src.tgz
-tar zxvf src/tgz
+tar zxvf src.tgz
 zcat /proc/config.gz >.config
 # Yes, ignore the name of the directory :/
 cd v*
@@ -64,7 +64,7 @@ cd v*
 make menuconfig
 # I finally found an Intel sound hub that wasn't enabled yet
 # CONFIG_INTEL_ISH_HID=m
-make modules SUBDIRS=drivers/hid/intel-ish-hid
+make scripts modules M=drivers/hid/intel-ish-hid
 
 # test it
 insmod drivers/hid/intel-ish-hid/intel-ishtp.ko
