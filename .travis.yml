@@ -1,0 +1,51 @@
+# Developer:
+# ---------
+# Name:      Maik Ellerbrock
+# GitHub:    https://github.com/ellerbrock
+# Twitter:   https://twitter.com/frapsoft
+# Docker:    https://hub.docker.com/u/ellerbrock
+# Quay:      https://quay.io/user/ellerbrock
+#
+# Description:
+# -----------
+# Travis Test for rancher.github.io
+
+sudo: false
+
+language: ruby
+
+rvm: 
+  - "2.2.5"
+
+before_script: "chmod +x ./test/jekyll.sh"
+
+env: 
+  global: 
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+
+# Setup SITE_ROOT before running
+script: 
+  - ./test/jekyll.sh
+
+
+# ------------------------------
+# Examples for further Setup ...
+# ------------------------------
+
+#
+# Branch: Run only for gh-pages
+#
+
+# branches:
+#  only:
+#  - gh-pages
+
+#
+# Email Notification
+#
+
+# notifications:
+#  email:
+#    on_success: never
+#    on_failure: always
+
