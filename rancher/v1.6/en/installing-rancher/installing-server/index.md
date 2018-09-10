@@ -175,7 +175,7 @@ Running Rancher server in High Availability (HA) is as easy as running [Rancher 
 | Option | Example | Description |
 |---|---|---|
 | IP address | `--advertise-address 192.168.100.100` | Uses the give IP address |
-| Interface | `--advertise-address eth0` | Retrieves the IP of the given interface |
+| Interface | `--advertise-address eth0` | Retrieves the IP of the given interface (use with --network host) |
 | awslocal | `--advertise-address awslocal` | Retrieves the IP from `http://169.254.169.254/latest/meta-data/local-ipv4` |
 | ipify | `--advertise-address ipify` | Retrieves the IP from `https://api.ipify.org` |
 
