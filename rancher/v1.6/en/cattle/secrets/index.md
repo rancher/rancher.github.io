@@ -118,7 +118,7 @@ For default usage of secrets, you can reference the secret by name in the secret
 
 ##### Example basic `docker-compose.yml`
 ```yaml
-version: '2'
+version: '3'
 services:
   web:
     image: sdelements/lets-chat
@@ -136,7 +136,7 @@ If you want to change the default values of secrets, you can use `target` for th
 
 ##### Example changing parameters `docker-compose.yml`
 ```yaml
-version: '2'
+version: '3'
 services:
   web:
     image: sdelements/lets-chat
@@ -158,7 +158,7 @@ You can also specify multiple secrets, and create the secret while starting the 
 
 ##### Example multiple secrets `docker-compose.yml`
 ```yaml
-version: '2'
+version: '3'
 services:
   web:
     image: sdelements/lets-chat
