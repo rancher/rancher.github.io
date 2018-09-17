@@ -28,6 +28,9 @@ Rancher is deployed as a set of Docker containers. Running Rancher is as simple 
 * Any modern Linux distribution with a [supported version of Docker]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#supported-docker-versions). [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
   * For RHEL/CentOS, the default storage driver, i.e. devicemapper using loopback, is not recommended by [Docker](https://docs.docker.com/engine/reference/commandline/dockerd/#/storage-driver-options). Please refer to the Docker documentation on how to change it.
   * For RHEL/CentOS, if you want to enable SELinux, you will need to [install an additional SELinux module]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/selinux/).
+
+> **Note:** Currently, Docker for Mac is not supported in Rancher.
+
 * A minimum of 1GB RAM available on the host to be used (excluding OS resources)
 * Accurate time synchronization (e.g. `ntpd`)
 * MySQL server should have a max_connections setting > 150
@@ -40,7 +43,7 @@ Rancher is deployed as a set of Docker containers. Running Rancher is as simple 
     * `innodb_file_per_table=1`
     * `innodb_buffer_pool_size` >= 1GB (For larger installs, 4-8G pools on dedicated MySQL servers) 
 
-> **Note:** Currently, Docker for Mac is not supported in Rancher.
+> **Note:** Currently, MariaDB 10.3 and MySQL 8.x are not supported.
 
 ### Rancher Server Tags
 
@@ -136,16 +139,21 @@ Running Rancher server in High Availability (HA) is as easy as running [Rancher 
       * For RHEL/CentOS, if you want to enable SELinux, you will need to [install an additional SELinux module]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/selinux/).
     * Ports that needs to be opened between nodes: `9345`, `8080`
     * A minimum of 1GB RAM available on the host to be used (excluding OS resources)
+
+> **Note:** Currently, Docker for Mac is not supported in Rancher.
+
 * MySQL database
     * A minimum of 1GB RAM available on the host to be used (excluding OS resources)
     * 50 connections per Rancher server node (e.g. A 3 node setup will need to support at least 150 connections)
     * MYSQL Configuration Requirements   
       * Option 1: Run with Antelope with default of `COMPACT`
       * Option 2: Run MySQL 5.7 with Barracuda where the default `ROW_FORMAT` is `Dynamic`
+
+> **Note:** Currently, MariaDB 10.3 and MySQL 8.x are not supported.
+
 * External Load Balancer
     * Port that needs to be opened between nodes and external load balancer: `8080`
 
-> **Note:** Currently, Docker for Mac is not supported in Rancher.
 
 #### Recommendations for Larger Deployments
 
