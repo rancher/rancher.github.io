@@ -33,9 +33,9 @@ Rancher Server当前版本中有2个不同的标签。对于每一个主要的re
 你只需要一条命令就可以启动Rancher Server。当Rancher Server容器启动以后，我们将能查看到相关的日志。
 
 ```bash
-$ sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server:stable
+$ sudo docker container run -d --restart=unless-stopped -p 8080:8080 rancher/server:stable
 # Tail the logs to show Rancher
-$ sudo docker logs -f <CONTAINER_ID>
+$ sudo docker container logs -f <CONTAINER_ID>
 ```
 
 启动Rancher Server只需要几分钟时间。当日志中显示 `.... Startup Succeeded, Listening on port...`的时候，Rancher UI就能正常访问了。配置一旦完成，这行日志就会立刻出现。需要注意的是，这一输出之后也许还会有其他日志，因此，在初始化过程中这不一定是最后一行日志。
@@ -77,7 +77,7 @@ Rancher UI会给你提供一些指示，比如你的主机上应该开放的端�
 Rancher会显示主机之上的所有容器，即使有些容器是在UI之外创建的。在主机的shell终端中创建一个容器。
 
 ```bash
-$ docker run -d -it --name=second-container ubuntu:14.04.2
+$ docker container run -d -it --name=second-container ubuntu:14.04.2
 ```
 
 在UI中，你将看到***第二个容器***在你的主机上出现！
@@ -89,7 +89,7 @@ Rancher会对Docker守护进程中发生的事件做出反应，调整自己以�
 如果我们想通过CLI创建一个Docker容器，但仍希望它使用Rancher托管网络的IP地址，该怎么做呢？我们只需要在命令中添加一个标签(`io.rancher.container.network=true`)，让Rancher知道你希望此容器成为`托管`网络的一部分。
 
 ```bash
-$ docker run -d -it --label io.rancher.container.network=true ubuntu:14.04.2
+$ docker container run -d -it --label io.rancher.container.network=true ubuntu:14.04.2
 ```
 
 ### 创建一个多容器应用
