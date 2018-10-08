@@ -187,7 +187,7 @@ Secrets can be added into a service/container under the **Secrets** tab during s
 
 ### Docker Hub Images
 
-Docker has provided support in many of their official repositories to enable passing secrets through files. To take advantage of this, append `_FILE` to the environment variable name and the value would be `/run/secrets/NAME>`. When the container starts up, the value in the file will be assigned to the environment variable.
+Docker has provided support in many of their official repositories to enable passing secrets through files. To take advantage of this, append `_FILE` to the environment variable name and the value would be `/run/secrets/<NAME>`. When the container starts up, the value in the file will be assigned to the environment variable.
 
 For example, when launching a MySQL container you can set environment variables to:
 
