@@ -46,8 +46,8 @@ Version               | Supported? | Kubernetes Supported? | Windows Supported? 
 `17.09.x-ee`          | **Yes**{::nomarkdown}<p>(v1.6.11 and higher)</p>{:/}   | No                  | No                    | n/a
 `17.10.x-ce`          | No         | No                    |                     | `curl https://releases.rancher.com/install-docker/17.10.sh | sh`
 `17.11.x-ce`          | No         | No                    |                     | n/a
-`17.12.x-ce`          | **Yes**{::nomarkdown}<p>(v1.6.15 and higher)</p>{:/}   | No                  | No                    | `curl https://releases.rancher.com/install-docker/17.12.sh | sh`
-`17.12.x-ee`          | **Yes**{::nomarkdown}<p>(v1.6.15 and higher)</p>{:/}   | No                  | No                    | n/a
+`17.12.x-ce`          | **Yes**{::nomarkdown}<p>(v1.6.14 and higher)</p>{:/}   | No                  | No                    | `curl https://releases.rancher.com/install-docker/17.12.sh | sh`
+`17.12.x-ee`          | **Yes**{::nomarkdown}<p>(v1.6.14 and higher)</p>{:/}   | No                  | No                    | n/a
 `18.01.x-ce`          | No         | No                    |                     | n/a
 `18.02.x-ce`          | No         | No                    |                     | n/a
 `18.03.x-ce`          | **Yes**{::nomarkdown}<p>(v1.6.17 and higher)</p>{:/}   | No                  | No                    | `curl https://releases.rancher.com/install-docker/18.03.sh | sh`
