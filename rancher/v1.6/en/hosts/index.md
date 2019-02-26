@@ -35,9 +35,9 @@ Version               | Supported? | Kubernetes Supported? | Windows Supported? 
 `1.11.x`              | No         |                     |                     | `curl https://releases.rancher.com/install-docker/1.11.sh | sh`
 `1.12.0` - `1.12.2`   | No         |                     |
 `1.12.3` (and higher) | **Yes**    | **Yes**             | No                    | `curl https://releases.rancher.com/install-docker/1.12.sh | sh`
-`1.13.x`              | **Yes**    | **Yes**{::nomarkdown}<p>(Kubernetes version 1.8)</p>{:/}                   | No                    | `curl https://releases.rancher.com/install-docker/1.13.sh | sh`
-`17.03.x-ce`          | **Yes**    | **Yes**{::nomarkdown}<p>(Kubernetes version 1.8)</p>{:/}                  | No                    | `curl https://releases.rancher.com/install-docker/17.03.sh | sh`
-`17.03.x-ee`          | **Yes**    | **Yes**{::nomarkdown}<p>(Kubernetes version 1.8)</p>{:/}                  | No                    | n/a
+`1.13.x`              | **Yes**    | **Yes**{::nomarkdown}<p>(Kubernetes version 1.8, 1.9, 1.10, 1.11)</p>{:/}                   | No                    | `curl https://releases.rancher.com/install-docker/1.13.sh | sh`
+`17.03.x-ce`          | **Yes**    | **Yes**{::nomarkdown}<p>(Kubernetes version 1.8, 1.9, 1.10, 1.11)</p>{:/}                  | No                    | `curl https://releases.rancher.com/install-docker/17.03.sh | sh`
+`17.03.x-ee`          | **Yes**    | **Yes**{::nomarkdown}<p>(Kubernetes version 1.8, 1.9, 1.10, 1.11)</p>{:/}                  | No                    | n/a
 `17.04.x-ce`          | No         | No                    | No                    | `curl https://releases.rancher.com/install-docker/17.04.sh | sh`
 `17.05.x-ce`          | No         | No                  | No                    | `curl https://releases.rancher.com/install-docker/17.05.sh | sh`
 `17.06.x-ce`          | **Yes**{::nomarkdown}<p>(v1.6.3 and higher)</p>{:/}    | No                  | No                    | `curl https://releases.rancher.com/install-docker/17.06.sh | sh`
@@ -52,8 +52,10 @@ Version               | Supported? | Kubernetes Supported? | Windows Supported? 
 `18.02.x-ce`          | No         | No                    |                     | n/a
 `18.03.x-ce`          | **Yes**{::nomarkdown}<p>(v1.6.17 and higher)</p>{:/}   | No                  | No                    | `curl https://releases.rancher.com/install-docker/18.03.sh | sh`
 `18.03.x-ee`          | **Yes**{::nomarkdown}<p>(v1.6.17 and higher)</p>{:/}   | No                  | No                    | n/a
-`18.06.x-ce`          | **Yes**{::nomarkdown}<p>(v1.6.20 and higher)</p>{:/}   | No                  | No                    | `curl https://releases.rancher.com/install-docker/18.06.sh | sh`
-`18.06.x-ee`          | **Yes**{::nomarkdown}<p>(v1.6.20 and higher)</p>{:/}   | No                  | No                    | n/a
+`18.06.x-ce`          | **Yes**{::nomarkdown}<p>(v1.6.20 and higher)</p>{:/}   | **Yes**{::nomarkdown}<p>(Kubernetes version 1.12)</p>{:/}                  | No                    | `curl https://releases.rancher.com/install-docker/18.06.sh | sh`
+`18.06.x-ee`          | **Yes**{::nomarkdown}<p>(v1.6.20 and higher)</p>{:/}   | **Yes**{::nomarkdown}<p>(Kubernetes version 1.12)</p>{:/}                  | No                    | n/a
+`18.09.x-ce`          | **Yes**{::nomarkdown}<p>(v1.6.26 and higher)</p>{:/}   | **Yes**{::nomarkdown}<p>(Kubernetes version 1.12)</p>{:/}                  | No                    | `curl https://releases.rancher.com/install-docker/18.09.sh | sh`
+`18.09.x-ee`          | **Yes**{::nomarkdown}<p>(v1.6.26 and higher)</p>{:/}   | **Yes**{::nomarkdown}<p>(Kubernetes version 1.12)</p>{:/}                  | No                    | n/a
 
 > **Note:** We will not support the test/nightly/edge releases of Docker, but will support the stable releases of Docker.
 
