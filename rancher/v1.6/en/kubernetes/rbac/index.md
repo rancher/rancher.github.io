@@ -1,5 +1,6 @@
 ---
 title: Kubernetes RBAC Integration in Rancher
+metaTitle: "Kubernetes RBAC | RBAC Implementation | Rancher"
 layout: rancher-default-v1.6
 version: v1.6
 lang: en
@@ -16,7 +17,7 @@ Authentication is integrated with [Rancher's access control options](https://doc
 
 An understanding of namespaces is a requirement to making use of Kubernetes RBAC permissions. To learn more about namespaces please reference the [Kubernetes docs](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/).
 
-### Enabling Kubernetes RBAC
+### Enabling Kubernetes RBAC Implementation
 
 In order to enable Kubernetes RBAC, you will need to make sure to [configure Kubernetes]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/kubernetes/#configuring-kubernetes) and select to enable Kubernetes RBAC. If you've already launched the Kubernetes infrastructure service, you can click on the **Up to Date** to update the configuration options for Kubernetes.
 
