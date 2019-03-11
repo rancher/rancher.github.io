@@ -220,5 +220,5 @@ Communication between only containers of with the same `com.rancher.department` 
 There are two distinct label pairs with the same key (i.e. `com.rancher.department`).
 
 * Containers with the `com.rancher.department = engineering` would be able to communicate with each other, but no other container. In our example, any containers from `stack_one.service_two` and `stack_three.service_one` would be able to communicate to each other, but no other containers.
-* Containers with the `com.rancher.department = qa` would be able to communicate with each other but no other container. In this example, any containers from `stack_one.service_three` and `stack_two.service_two` would be able to communicate with each other, but no other containers.
+* Containers with the `com.rancher.department = qa` would be able to communicate with each other but no other container. In this example, any containers from `stack_one.service_one` and `stack_two.service_one` would be able to communicate with each other, but no other containers.
 * Containers without a label with a key `com.rancher.department` would not be able to communicate with any other containers.
