@@ -1,4 +1,5 @@
 ---
+metaTitle: "Infrastructure Orchestration | Container Scheduler | Rancher"
 title: Rancher Documentation
 description: Rancher is a complete container management platform that makes it easy to deploy and run Docker and Kubernetes. These documents describe how to install and use Rancher.
 layout: rancher-default-v1.6
@@ -20,7 +21,7 @@ Rancher software consists of four major components:
 
 Rancher takes in raw computing resources from any public or private cloud in the form of Linux [hosts]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/). Each Linux host can be a virtual machine or physical machine. Rancher does not expect more from each host than CPU, memory, local disk storage, and network connectivity. From Rancher’s perspective, a VM instance from a cloud provider and a bare metal server hosted at a colo facility are indistinguishable.
 
-Rancher implements a portable layer of [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) designed specifically to power containerized applications. Rancher infrastructure services include [networking]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking), [storage]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/storage-service/), [load balancer]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/load-balancer/), [DNS]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/dns-service/), and security. Rancher infrastructure services are typically deployed as containers themselves, so that the same Rancher infrastructure service can run on any Linux hosts from any cloud.
+Rancher implements a portable layer of [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/) designed specifically to power containerized applications. Rancher infrastructure orchestration services include [networking]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking), [storage]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/storage-service/), [load balancer]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/load-balancer/), [DNS]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/dns-service/), and security. Rancher infrastructure services are typically deployed as containers themselves, so that the same Rancher infrastructure service can run on any Linux hosts from any cloud.
 
 ### Container Orchestration and Scheduling
 
