@@ -1,4 +1,5 @@
 ---
+metaTitle: "Docker Container Hosting | Linux Distribution | Rancher"
 title: Hosts in Rancher
 layout: rancher-default-v1.6
 version: v1.6
@@ -8,7 +9,7 @@ lang: en
 ## Getting Started with Hosts
 ---
 
-Hosts are the most basic unit of resource within Rancher and is represented as any Linux server, virtual or physical, with the following minimum requirements:
+Docker container hosting is the most basic unit of resource within Rancher and is represented as any Linux server, virtual or physical, with the following minimum requirements:
 
 * x86 CPU architecture
 * Any modern Linux distribution with a [supported version of Docker](#supported-docker-versions). [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
