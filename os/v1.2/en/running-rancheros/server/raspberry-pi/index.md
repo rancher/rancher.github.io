@@ -22,7 +22,7 @@ RancherOS does not currently expand the root partition to fill the remainder of 
 2. Create a `n`ew partition
 3. Press `[Enter]` four (4x) times to accept the defaults
 4. Then `w`rite the table and exit
-5. `sudo reboot` to reboot and reload the new partition table
+5. `sudo partprobe /dev/mmcblk0` to reload the new partition table
 6. `sudo mkdir /mnt/docker` to create the directory to be used as the new Docker root
 7. `sudo ros config set rancher.docker.extra_args [-g,/mnt/docker]` to configure Docker to use the new root
 8. `sudo mkfs.ext4 /dev/mmcblk0p3` to format the disk
