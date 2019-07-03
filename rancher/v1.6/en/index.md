@@ -9,10 +9,8 @@ redirect_from:
   - /rancher/
 ---
 
-## Overview of Rancher 1.6
+## Overview of Rancher
 ---
-
-> **Note:** This is for Rancher's 1.6 product. If you are looking for our latest Rancher product, please refer to our [Rancher 2.x docs]({{site.baseurl}}/rancher/v2.x/en/).
 
 Rancher is an open source software platform that enables organizations to run and manage Docker and Kubernetes in production. With Rancher, organizations no longer have to build a container services platform from scratch using a distinct set of open source technologies. Rancher supplies the entire software stack needed to manage containers in production.
 
