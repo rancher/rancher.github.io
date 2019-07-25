@@ -21,7 +21,7 @@ To edit the kernel boot parameters of an already installed RancherOS system, use
 If you want to set the extra kernel parameters when you are [Installing RancherOS to Disk]({{page.osbaseurl}}/running-rancheros/server/install-to-disk/) please use the `--append` parameter.
 
 ```bash
-$ sudo ros install -d /dev/sda --append "rancheros.autologin=tty1"
+$ sudo ros install -d /dev/sda --append "rancher.autologin=tty1"
 ```
 
 ### Graphical boot screen
