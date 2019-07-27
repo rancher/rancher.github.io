@@ -29,7 +29,7 @@ lang: zh
 
 ### 应用配置
 
-当应用被创建时，Rancher同事生成了`docker-compose.yml`文件和`rancher-compose.yml`文件。`docker-compose`文件可以用在Rancher之外。你可以通过原生的`docker-compose`命令来启动服务。更多文档请查看[docker-compose](https://docs.docker.com/compose/).
+当应用被创建时，Rancher同时生成了`docker-compose.yml`文件和`rancher-compose.yml`文件。`docker-compose`文件可以用在Rancher之外。你可以通过原生的`docker-compose`命令来启动服务。更多文档请查看[docker-compose](https://docs.docker.com/compose/).
 
 `rancher-compose.yml`文件包含了Rancher启动服务时所需的额外信息。`docker-compose`文件内并不支持这些参数。
 
