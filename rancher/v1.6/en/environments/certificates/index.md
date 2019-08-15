@@ -18,7 +18,7 @@ In order to add certificates to your [environment]({{site.baseurl}}/rancher/{{pa
 
 3. Provide the **Certificate**. You can either click on **Read from File** to import from your computer or paste the certificate into the text box.
 
-4. (Optional) If you have additional chained certificates, you can add them as well using the *Read from File** to import from your computer or paste the certificate into the text box.
+4. (Optional) If you have additional chained certificates, you can add them as well using the **Read from File** to import from your computer or paste the certificate into the text box.
 
 ### Using Certificates
 
