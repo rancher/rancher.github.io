@@ -4,7 +4,7 @@ title: Running Commands in RancherOS
 
 ---
 
-## Running Commands
+# Running Commands
 ---
 
 You can automate running commands on boot using the `runcmd` cloud-config directive. Commands can be specified as either a list or a string. In the latter case, the command is executed with `sh`.

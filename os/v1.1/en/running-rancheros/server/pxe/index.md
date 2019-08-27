@@ -3,7 +3,7 @@ title: Booting RancherOS with iPXE
 
 
 ---
-## Booting RancherOS via iPXE
+# Booting RancherOS via iPXE
 ----
 
 ```

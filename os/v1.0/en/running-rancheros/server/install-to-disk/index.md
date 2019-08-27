@@ -3,7 +3,7 @@ title: Installing RancherOS to Disk
 
 ---
 
-## Installing RancherOS to Disk
+# Installing RancherOS to Disk
 ---
 RancherOS comes with a simple installer that will install RancherOS on a given target disk. To install RancherOS on a new disk, you can use the `ros install` command. Before installing, you'll need to have already [booted RancherOS from ISO]({{page.osbaseurl}}/running-rancheros/workstation/boot-from-iso). Please be sure to pick the `rancheros.iso` from our release [page](https://github.com/rancher/os/releases).
 

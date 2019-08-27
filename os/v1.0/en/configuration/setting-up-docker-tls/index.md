@@ -4,7 +4,7 @@ title: Configuring TLS in RancherOS
 
 ---
 
-## Setting up Docker TLS
+# Setting up Docker TLS
 
 `ros tls generate` is used to generate both the client and server TLS certificates for Docker.
 

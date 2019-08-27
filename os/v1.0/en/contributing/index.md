@@ -4,7 +4,7 @@ title: Contributing to RancherOS
 
 ---
 
-## Contributing to RancherOS
+# Contributing to RancherOS
 ---
 
 ## Developing

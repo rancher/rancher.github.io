@@ -5,7 +5,7 @@ redirect_from:
   - os/v1.0/en/configuration/storage/
 ---
 
-## Using ZFS
+# Using ZFS
 ---
 
 #### Installing the ZFS service

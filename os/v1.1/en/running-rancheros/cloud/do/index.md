@@ -4,7 +4,7 @@ title: Running RancherOS on Digital Ocean
 
 ---
 
-## Running RancherOS on DigitalOcean
+# Running RancherOS on DigitalOcean
 ---
 
 Running RancherOS on DigitalOcean is not yet supported, but there is a `rancheros` image now available from the commandline tools, so you can run:

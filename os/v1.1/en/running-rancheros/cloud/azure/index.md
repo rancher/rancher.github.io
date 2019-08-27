@@ -4,7 +4,7 @@ title: Running RancherOS on Azure
 
 ---
 
-## Running RancherOS on Azure
+# Running RancherOS on Azure
 ---
 
 RancherOS is available as an image with Azure Resource Management. Please note that RancherOS is only offered in Azure Resource Management and not available in the Azure Service Management.

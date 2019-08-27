@@ -4,7 +4,7 @@ title: Extra Kernel Modules for RancherOS
 
 ---
 
-## Loading kernel modules
+# Loading kernel modules
 ---
 
 Since RancherOS v0.8, we build our own kernels using an unmodified kernel.org LTS kernel.

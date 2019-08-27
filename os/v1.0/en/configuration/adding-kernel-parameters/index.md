@@ -4,7 +4,7 @@ title: Adding kernel parameters
 
 ---
 
-## Kernel parameters
+# Kernel parameters
 
 There are two ways to edit the kernel parameters, in-place (editing the file and reboot) or during installation to disk.
 

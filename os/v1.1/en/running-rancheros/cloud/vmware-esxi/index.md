@@ -3,7 +3,7 @@ title: Rancher RancherOS in VMware OSXi
 
 ---
 
-## VMware ESXi
+# VMware ESXi
 ---
 
 As of v1.1.0, RancherOS automatically detects that it is running on VMware ESXi, and automatically adds the `open-vm-tools` service to be downloaded and started, and uses `guestinfo` keys to set the cloud-init data.

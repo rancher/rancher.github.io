@@ -6,7 +6,7 @@ redirect_from:
 
 ---
 
-## Changing Docker Versions
+# Changing Docker Versions
 
 The version of User Docker used in RancherOS can be configured using a [cloud-config]({{page.osbaseurl}}/configuration/#cloud-config) file or by using the `ros engine` command.
 

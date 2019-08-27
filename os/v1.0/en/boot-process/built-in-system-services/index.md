@@ -5,7 +5,7 @@ redirect_from:
   - os/v1.0/en/system-services/built-in-system-services/
 ---
 
-## Built-in System Services
+# Built-in System Services
 
 To launch RancherOS, we have built-in system services. They are defined in the [Docker Compose](https://docs.docker.com/compose/compose-file/) format, and can be found in the default system config file, `/usr/share/ros/os-config.yml`. You can [add your own system services]({{page.osbaseurl}}/system-services/) or override services in the cloud-config.
 

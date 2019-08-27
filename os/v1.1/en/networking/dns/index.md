@@ -5,7 +5,7 @@ redirect_from:
   - os/v1.1/en/configuration/networking/#dns
 ---
 
-## DNS
+# DNS
 ---
 
 If you wanted to configure the DNS through the cloud config file, you'll need to place DNS configurations within the `rancher` key.

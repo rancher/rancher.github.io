@@ -4,7 +4,7 @@ title: Running RancherOS
 
 ---
 
-## Running RancherOS
+# Running RancherOS
 ---
 
 RancherOS runs on virtualization platforms, cloud providers and bare metal servers. We also support running a local VM on your laptop. To start running RancherOS as quickly as possible, follow our [Quick Start Guide]({{page.osbaseurl}}/quick-start-guide/).

@@ -4,7 +4,7 @@ title: Resizing a Device Partition in RancherOS
 
 ---
 
-## Resizing a Device Partition
+# Resizing a Device Partition
 ---
 
 The `resize_device` cloud config option can be used to automatically extend the first partition (assuming its `ext4`) to fill the size of it's device.

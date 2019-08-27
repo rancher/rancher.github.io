@@ -4,7 +4,7 @@ title: Configuring Docker in RancherOS
 
 ---
 
-## Configuring Docker or System Docker
+# Configuring Docker or System Docker
 ---
 
 In RancherOS, you can configure System Docker and Docker daemons by using [cloud-config]({{page.osbaseurl}}/configuration/#cloud-config).

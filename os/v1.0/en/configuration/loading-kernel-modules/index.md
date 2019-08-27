@@ -4,7 +4,7 @@ title: DKMS / Loadable Kernel Modules in RancherOS
 
 ---
 
-## Dynamic Kernel Module Support (DKMS) / Loadable Kernel Modules (LKM)
+# Dynamic Kernel Module Support (DKMS) / Loadable Kernel Modules (LKM)
 
 To compile any Kernel Modules, you first need to [deploy the Kernel Headers]({{page.osbaseurl}}/configuration/kernel-modules-kernel-headers/).
 

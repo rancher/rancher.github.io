@@ -4,7 +4,7 @@ title: Getting Started on Amazon EC2
 
 ---
 
-## Running RancherOS on AWS
+# Running RancherOS on AWS
 ----
 
 RancherOS is available as an Amazon Web Services AMI, and can be easily run on EC2. You can launch RancherOS either using the AWS Command Line Interface (CLI) or using the AWS console.

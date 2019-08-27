@@ -4,7 +4,7 @@ title: RancherOS security
 
 ---
 
-## RancherOS security
+# RancherOS security
 ---
 
 

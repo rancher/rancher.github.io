@@ -4,7 +4,7 @@ title: Upgrading RancherOS
 
 ---
 
-## Upgrading
+# Upgrading
 ---
 
 If RancherOS has released a new version and you want to learn how to upgrade your OS, we make it easy using the `ros os` command.

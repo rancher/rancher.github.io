@@ -4,7 +4,7 @@ title: Users in RancherOS
 
 ---
 
-## Configuring RancherOS Users
+# Configuring RancherOS Users
 ---
 
 Currently, we don't support adding other users besides `rancher`.
