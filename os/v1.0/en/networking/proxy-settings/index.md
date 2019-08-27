@@ -4,7 +4,7 @@ title: Configuring Proxy Settings in RancherOS
 
 ---
 
-## Proxy settings
+# Proxy settings
 ---
 
 HTTP proxy settings can be set directly under the `network` key. This will automatically configure proxy settings for both Docker and System Docker.

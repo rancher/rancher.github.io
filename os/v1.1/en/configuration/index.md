@@ -5,7 +5,7 @@ redirect_from:
   - os/v1.1/en/cloud-config/
 ---
 
-## Configuring RancherOS
+# Configuring RancherOS
 ---
 There are two ways that RancherOS can be configured.
 

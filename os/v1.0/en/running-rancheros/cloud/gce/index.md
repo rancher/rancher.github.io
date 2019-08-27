@@ -3,7 +3,7 @@ title: Running RancherOS on GCE
 
 
 ---
-## Running RancherOS on Google Compute Engine (GCE)
+# Running RancherOS on Google Compute Engine (GCE)
 ----
 
 ### Adding the RancherOS Image into GCE

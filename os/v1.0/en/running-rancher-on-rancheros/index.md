@@ -4,7 +4,7 @@ title: Running Rancher on RancherOS
 
 ---
 
-## Tips on using Rancher with RancherOS
+# Tips on using Rancher with RancherOS
 ---
 
 RancherOS can be used to launch [Rancher]({{site.baseurl}}/rancher/latest/en/) and be used as the OS to [add hosts]({{site.baseurl}}/rancher/latest/en/hosts/) to Rancher.

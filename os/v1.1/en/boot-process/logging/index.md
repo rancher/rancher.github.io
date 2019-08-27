@@ -4,7 +4,7 @@ layout: os-default
 
 ---
 
-## RancherOS system logging
+# RancherOS system logging
 
 ### System services
 

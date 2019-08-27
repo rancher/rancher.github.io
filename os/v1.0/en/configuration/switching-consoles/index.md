@@ -6,7 +6,7 @@ redirect_from:
 
 ---
 
-## Switching Consoles
+# Switching Consoles
 ---
 
 When [booting from the ISO]({{page.osbaseurl}}/running-rancheros/workstation/boot-from-iso/), RancherOS starts with the default console, which is based on busybox.

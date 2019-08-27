@@ -3,7 +3,7 @@ title: Booting from ISO
 
 ---
 
-## Boot from ISO
+# Boot from ISO
 ---
 The RancherOS ISO file can be used to create a fresh RancherOS install on KVM, VMware, VirtualBox, or bare metal servers. You can download the `rancheros.iso` file from our [releases page](https://github.com/rancher/os/releases/).
 

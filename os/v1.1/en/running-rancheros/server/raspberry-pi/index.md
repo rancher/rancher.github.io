@@ -3,7 +3,7 @@ title: Running RancherOS on Raspberry Pi
 
 ---
 
-## Raspberry Pi
+# Raspberry Pi
 ---
 
 As of v0.5.0, RancherOS releases include a Raspberry Pi image that can be found on our [releases page](https://github.com/rancher/os/releases). The official Raspberry Pi documentation contains instructions on how to [install operating system images](https://www.raspberrypi.org/documentation/installation/installing-images/).

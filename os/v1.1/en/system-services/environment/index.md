@@ -4,7 +4,7 @@ title: Environment
 
 ---
 
-## Environment
+# Environment
 ---
 
 The [environment key](https://docs.docker.com/compose/yml/#environment) can be used to customize system services. When a value is not assigned, RancherOS looks up the value from the `rancher.environment` key.

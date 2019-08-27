@@ -5,7 +5,7 @@ redirect_from:
   - os/v1.1/en/configuration/custom-kernels/
 ---
 
-## Custom Kernels
+# Custom Kernels
 
 ### Building and Packaging a Kernel to be used in RancherOS
 

@@ -4,7 +4,7 @@ title: Using Docker Machine to run RancherOS
 
 ---
 
-## Docker Machine
+# Docker Machine
 ---
 
 Before we get started, you'll need to make sure that you have docker machine installed. Download it directly from the docker machine [releases](https://github.com/docker/machine/releases).

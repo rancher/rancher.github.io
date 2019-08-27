@@ -6,7 +6,7 @@ redirect_from:
 
 ---
 
-## Image Preloading
+# Image Preloading
 ---
 
 On boot, RancherOS scans `/var/lib/rancher/preload/docker` and `/var/lib/rancher/preload/system-docker` directories and tries to load container image archives it finds there, with `docker load` and `system-docker load`.

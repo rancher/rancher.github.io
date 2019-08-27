@@ -4,7 +4,7 @@ title: Quick Start Guide for RancherOS
 
 ---
 
-## Quick Start Guide
+# Quick Start Guide
 ---
 
 If you have a specific RanchersOS machine requirements, please check out our [guides on running RancherOS]({{page.osbaseurl}}/running-rancheros/). With the rest of this guide, we'll start up a RancherOS using [Docker machine]({{page.osbaseurl}}/running-rancheros/workstation/docker-machine/) and show you some of what RancherOS can do.

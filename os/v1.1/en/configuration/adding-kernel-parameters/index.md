@@ -4,7 +4,7 @@ title: Adding kernel parameters
 
 ---
 
-## Kernel boot parameters
+# Kernel boot parameters
 
 RancherOS parses the Linux kernel boot cmdline to add any keys it understands to its configuration. This allows you to modify what cloud-init sources it will use on boot, to enable `rancher.debug` logging, or to almost any other configuration setting.
 

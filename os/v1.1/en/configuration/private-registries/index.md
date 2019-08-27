@@ -4,7 +4,7 @@ title: Private Registries in RancherOS
 
 ---
 
-## Private Registries
+# Private Registries
 ---
 
 When launching services through a [cloud-config]({{page.osbaseurl}}/configuration/#cloud-config), it is sometimes necessary to pull a private image from DockerHub or from a private registry. Authentication for these can be embedded in your cloud-config.
