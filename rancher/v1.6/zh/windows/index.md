@@ -37,7 +37,7 @@ lang: zh
 ```
 
 ### Windows 中的网络
-我们默认支持NAT和[透明网络](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/container-networking).
+我们默认支持NAT和[透明网络](https://docs.microsoft.com/en-us/virtualization/windowscontainers/container-networking/architecture).
 
 目前，默认的 **Windows** 环境模版支持名为transparent的透明网络
 这个透明网络是在运行 `docker network create -d transparent transparent`时创建的。
