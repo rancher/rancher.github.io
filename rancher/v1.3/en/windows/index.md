@@ -42,7 +42,7 @@ As part of adding a host into Rancher, the Rancher agent is installed and regist
 
 ### Networking in Windows
 
-By default, we support NAT and transparent [networking](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/container-networking).
+By default, we support NAT and transparent [networking](https://docs.microsoft.com/en-us/virtualization/windowscontainers/container-networking/architecture).
 
 Currently, the default **Windows** environment template supports a transparent network named `transparent`, which is created by running `docker network create -d transparent transparent`.
 

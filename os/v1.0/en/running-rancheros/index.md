@@ -26,11 +26,11 @@ RancherOS runs on virtualization platforms, cloud providers and bare metal serve
 
 [DigitalOcean]({{page.osbaseurl}}/running-rancheros/cloud/do)
 
-[Azure]({{page.osbaseurl}}/running-rancheros/cloud/azure)
+Azure
 
 #### Bare Metal & Virtual Servers
 
-[iPXE]({{page.osbaseurl}}/running-rancheros/server/ipxe)
+iPXE
 
 [PXE]({{page.osbaseurl}}/running-rancheros/server/pxe)
 

@@ -45,7 +45,7 @@ First, create `gce-qemu.json`:
    {
      "type": "qemu",
      "name": "qemu-googlecompute",
-     "iso_url": "https://github.com/rancherio/os/releases/download/<RancherOS-Version>/rancheros.iso",
+     "iso_url": "https://github.com/rancher/os/releases/download/<RancherOS-Version>/rancheros.iso",
      "iso_checksum": "<rancheros.iso-MD5-hash>",
      "iso_checksum_type": "md5",
      "ssh_wait_timeout": "360s",
