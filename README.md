@@ -8,7 +8,7 @@ Rancher 1.6 is an open source project that provides a complete platform for oper
 
 ## Rancher Labs Documentation website
 
-Rancher documentation is available at <http://rancher.com/docs/rancher/>.
+Rancher documentation is available at <https://rancher.com/docs/rancher/>.
 
 As Rancher has gone GA, we've added in version control. The default Rancher docs site will always be referring to the latest release. We will branch off specific versions of Rancher that are deemed GA, which would also be tagged as `rancher/server:stable`.
 
