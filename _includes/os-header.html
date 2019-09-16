@@ -4,7 +4,7 @@
       <meta charset="utf-8">
       <title>{{ page.title }}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="{{ site.description }}">
+      <meta name="description" content="os-header {% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
       <link href="{{site.baseurl}}/favicon.png" rel="shortcut icon" type="image/png" sizes="16x16">
       <link href="{{site.baseurl}}/one-point-x/css/syntax.css?t={{site.time}}" rel="stylesheet">
       <link href="{{site.baseurl}}/one-point-x/vendor/font-awesome/css/font-awesome.min.css?t={{site.time}}" rel="stylesheet">
