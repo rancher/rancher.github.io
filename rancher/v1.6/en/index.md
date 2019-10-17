@@ -1,6 +1,6 @@
 ---
-title: Rancher Documentation
-description: Rancher is a complete container management platform that makes it easy to deploy and run Docker and Kubernetes. These documents describe how to install and use Rancher.
+title: "Rancher: Manage Docker and Kubernetes in Production" 
+description: Read this overview of Rancher 1.6, an open source platform that enables organizations to run and manage Docker and Kubernetes in production. 
 layout: rancher-default-v1.6
 version: v1.6
 lang: en
