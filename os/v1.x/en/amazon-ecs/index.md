@@ -15,7 +15,7 @@ Prior to launching RancherOS EC2 instances, the [ECS Container Instance IAM Role
 
 ### Launching an instance with ECS
 
-RancherOS makes it easy to join your ECS cluster. The ECS agent is a [system service]({{page.osbaseurl}}/system-services/adding-system-services/) that is enabled in the ECS enabled AMI. There may be other RancherOS AMIs that don't have the ECS agent enabled by default, but it can easily be added in the user data on any RancherOS AMI.
+RancherOS makes it easy to join your ECS cluster. The ECS agent is a system service that is enabled in the ECS enabled AMI. There may be other RancherOS AMIs that don't have the ECS agent enabled by default, but it can easily be added in the user data on any RancherOS AMI.
 
 When launching the RancherOS AMI, you'll need to specify the **IAM Role** and **Advanced Details** -> **User Data** in the **Configure Instance Details** step.
 
