@@ -17,7 +17,7 @@ Read more about [image preloading]({{page.osbaseurl}}/boot-process/image-preload
 
 During this service, networking is set up, e.g. hostname, interfaces, and DNS.
 
-It is configured by `hostname` and `rancher.network`[settings]({{page.osbaseurl}}/networking/) in [cloud-config]({{page.osbaseurl}}/configuration/#cloud-config).
+It is configured by `hostname` and `rancher.network`settings in [cloud-config]({{page.osbaseurl}}/configuration/#cloud-config).
 
 ### ntp
 

@@ -1,5 +1,6 @@
 ---
 title: Rancher Command Line Interface (CLI)
+description: "The Rancher CLI is a unified tool to manage your Rancher server. With this tool, you can control your environments, hosts, stacks, services and containers."
 layout: rancher-default-v1.2
 version: v1.2
 lang: en

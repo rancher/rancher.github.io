@@ -1,6 +1,6 @@
 ---
-title: RancherOS Documentation
-description: RancherOS is a simplified Linux distribution built from containers, for containers. These documents describe how to install and use RancherOS.
+title: Overview of RancherOS
+description: RancherOS is the smallest, easiest way to run Docker in production. Learn how it's designed, what its benefits are, and how it works. 
 
 ---
 
@@ -23,7 +23,7 @@ Docker is an open-source platform designed for developers, system admins, and De
 
 ### How this works
 
-Everything in RancherOS is a Docker container. We accomplish this by launching two instances of Docker. One is what we call **System Docker**, the first process on the system. All other system services, like `ntpd`, `syslog`, and `console`, are running in Docker containers. System Docker replaces traditional init systems like `systemd`, and can be used to launch [additional system services]({{page.osbaseurl}}/system-services/adding-system-services/).
+Everything in RancherOS is a Docker container. We accomplish this by launching two instances of Docker. One is what we call **System Docker**, the first process on the system. All other system services, like `ntpd`, `syslog`, and `console`, are running in Docker containers. System Docker replaces traditional init systems like `systemd`, and can be used to launch additional system services.
 
 System Docker runs a special container called **Docker**, which is another Docker daemon responsible for managing all of the user’s containers. Any containers that you launch as a user from the console will run inside this Docker. This creates isolation from the System Docker containers, and ensures normal user commands don’t impact system services.
 

@@ -1,5 +1,6 @@
 ---
 title: Installing Rancher Server
+description: Running Rancher 1.6 is as simple as launching two containers. Read to learn how to install, launch and run Rancher server under various conditions.
 layout: rancher-default-v1.6
 version: v1.6
 lang: en
