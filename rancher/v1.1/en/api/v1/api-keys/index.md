@@ -23,7 +23,7 @@ If [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/conf
 
 Once access control is enabled and not logged in, an environment API key will need to be created for each [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/) in order to access the API for the specific environment.
 
-Within Rancher, all objects can be viewed in the API by selecting the **View in API** option in the object's dropdown menu. The endpoint URL provided when creating the environment API key also gives all the links to the various portions of the API. Read more about how to use our [API]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/).
+Within Rancher, all objects can be viewed in the API by selecting the **View in API** option in the object's dropdown menu. The endpoint URL provided when creating the environment API key also gives all the links to the various portions of the API.
 
 #### Adding Environment API Keys
 
