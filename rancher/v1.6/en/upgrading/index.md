@@ -136,7 +136,9 @@ If you launched Rancher server using an external database, you can stop the orig
 
 If you have launched Rancher server in [High Availability (HA)]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/#multi-nodes), the new Rancher HA set up will continue using the external database that was used to install the original HA setup.
 
-> **Note:** When upgrading an HA setup, all `rancher/server` containers have to be stopped. The Rancher server setup will be down during the upgrade.
+> **Important:** When upgrading an HA setup, all `rancher/server` containers have to be stopped. The Rancher server setup will be down during the upgrade.
+
+> **Note:** Ensure Rancher server containers, as they are brought up, are allowed sufficient "settling-down" time before starting the next Rancher server container. A baseline for the database's CPU usage could be used as a gauge to determine how much time is sufficient time. As a new Rancher server comes up, watch spikes in CPU usage to settle down to near-baseline levels before starting the next Rancher server. Additionally, Rancher logs can be monitored to see if a server has had sufficient time to settle down before starting the next one.
 
 1. Before upgrading your Rancher server, we recommend backing up your external database.
 
