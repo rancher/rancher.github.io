@@ -139,6 +139,7 @@ Running Rancher server in High Availability (HA) is as easy as running [Rancher 
       * For RHEL/CentOS, if you want to enable SELinux, you will need to [install an additional SELinux module]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/selinux/).
     * Ports that needs to be opened between nodes: `9345`, `8080`
     * A minimum of 1GB RAM available on the host to be used (excluding OS resources)
+    * The node's short name (`nodename` in [`nodename`].example.com) must be in the `/etc/hosts` file.
 
 > **Note:** Currently, Docker for Mac is not supported in Rancher.
 
