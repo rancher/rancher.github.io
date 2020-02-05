@@ -3,8 +3,6 @@ title: Certificates
 layout: rancher-default-v1.0
 version: v1.0
 lang: en
-redirect_from:
-  - /rancher/v1.0/en/environments/certificates/
 ---
 
 ## Certificates
