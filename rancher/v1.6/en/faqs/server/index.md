@@ -114,6 +114,16 @@ To update these settings in your API, navigate to the `http://<rancher-server-ip
 
 <a id="databaselock"></a>
 
+### Why does the kubelet not start?
+
+If a node's short name (`nodename` in [`nodename`].example.com) isn't in the `/etc/hosts` file, the kubelet will not properly start and you will see the following errors:
+
+```
+I1029 20:57:42.098088   48431 rancher.go:702] InstanceID [nodename.example.com]
+E1029 20:57:42.114286   48431 kubelet.go:2236] node "nodename.example.com" not found
+F1029 20:57:42.132778   48431 kubelet.go:1354] Kubelet failed to get node info: failed to get instance ID from cloud provider: instance not found
+```
+
 ### Why is Rancher Server frozen? OR Why could my upgrade have failed?
 
 If you are starting Rancher and it freezes forever, there might be a liquibase database lock. On startup, liquibase does a schema migration. There is a race condition where it might leave a lock entry, which will prevent subsequent boots.
