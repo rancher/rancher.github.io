@@ -5,7 +5,6 @@ version: v1.3
 lang: en
 apiVersion: v2-beta
 redirect_from:
-  - /rancher/v1.3/en/api/api-keys/
   - /rancher/v1.3/zh/api/v2-beta/api-keys/
 ---
 
