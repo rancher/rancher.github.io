@@ -34,14 +34,14 @@ Rancher is deployed as a set of Docker containers. Running Rancher is as simple 
 * A minimum of 1GB RAM available on the host to be used (excluding OS resources)
 * Accurate time synchronization (e.g. `ntpd`)
 * MySQL server should have a max_connections setting > 150
-  * MYSQL Configuration Requirements   
+  * MYSQL Configuration Requirements
     * Option 1: Run with Antelope with default of `COMPACT`
     * Option 2: Run MySQL 5.7 with Barracuda where the default `ROW_FORMAT` is `Dynamic`
   * Recommended settings:
     * `max_allowed_packet` >= 32M (default is usually 16M)
     * `innodb_log_file_size` >= 256M (If you have an existing DB, please make sure to appropriate plan how to change this setting.)
     * `innodb_file_per_table=1`
-    * `innodb_buffer_pool_size` >= 1GB (For larger installs, 4-8G pools on dedicated MySQL servers) 
+    * `innodb_buffer_pool_size` >= 1GB (For larger installs, 4-8G pools on dedicated MySQL servers)
 
 > **Note:** Currently, MariaDB 10.3 and MySQL 8.x are not supported.
 
@@ -50,7 +50,7 @@ Rancher is deployed as a set of Docker containers. Running Rancher is as simple 
 Rancher server has 2 different tags. For each major release tag, we will provide documentation for the specific version.
 
 * `rancher/server:latest` tag will be our latest development builds. These builds will have been validated through our CI automation framework. These releases are not meant for deployment in production.
-* `rancher/server:stable` tag will be our latest stable release builds. This tag is the version that we recommend for production.  
+* `rancher/server:stable` tag will be our latest stable release builds. This tag is the version that we recommend for production.
 
 Please do not use any release with a `rc{n}` suffix. These `rc` builds are meant for the Rancher team to test out builds.
 
@@ -145,7 +145,7 @@ Running Rancher server in High Availability (HA) is as easy as running [Rancher 
 * MySQL database
     * A minimum of 1GB RAM available on the host to be used (excluding OS resources)
     * 50 connections per Rancher server node (e.g. A 3 node setup will need to support at least 150 connections)
-    * MYSQL Configuration Requirements   
+    * MYSQL Configuration Requirements
       * Option 1: Run with Antelope with default of `COMPACT`
       * Option 2: Run MySQL 5.7 with Barracuda where the default `ROW_FORMAT` is `Dynamic`
 
@@ -176,7 +176,7 @@ Running Rancher server in High Availability (HA) is as easy as running [Rancher 
 
    > **Note:** You can get the help for the commands by running `docker run rancher/server --help`
 
-2. Configure an external load balancer that will balance traffic on ports `80` and `443` across a pool of nodes that will be running Rancher server and target the nodes on port `8080`. Your load balancer must support websockets and forwarded-for headers, in order for Rancher to function properly. See [SSL settings page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}//installing-rancher/installing-server/basic-ssl-config/) for example configuration settings.
+2. Configure an external load balancer that will balance traffic on ports `80` and `443` across a pool of nodes that will be running Rancher server and target the nodes on port `8080`. Your load balancer must support websockets and forwarded-for headers, in order for Rancher to function properly. See [SSL settings page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/basic-ssl-config/) for example configuration settings.
 
 #### Options for advertise-address
 
@@ -332,7 +332,7 @@ If you are using a LDAP/AD authentication backend with Rancher whose certificate
 ```
 jdbc:mysql://<DB_HOST>:<DB_PORT>/<DB_NAME>?useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&prepStmtCacheSize=517&cachePrepStmts=true&prepStmtCacheSqlLimit=4096&socketTimeout=60000&connectTimeout=60000&sslServerCert=/var/lib/rancher/etc/ssl/ca.crt&useSSL=true
 ```
-3. Export this JDBC URL to the container in both the `CATTLE_DB_CATTLE_MYSQL_URL` and `CATTLE_DB_LIQUIBASE_MYSQL_URL` environment variables 
+3. Export this JDBC URL to the container in both the `CATTLE_DB_CATTLE_MYSQL_URL` and `CATTLE_DB_LIQUIBASE_MYSQL_URL` environment variables
 4. Export `CATTLE_DB_CATTLE_GO_PARAMS="tls=true"` to the container. If the subject field of the server's certificate does not match the server's hostname, you will need to use `CATTLE_DB_CATTLE_GO_PARAMS="tls=skip-verify"` instead.
 
 #### Example

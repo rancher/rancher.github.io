@@ -25,7 +25,7 @@ Rancher is deployed as a set of Docker containers. Running Rancher is as simple 
   * For RHEL/CentOS, the default storage driver, i.e. devicemapper using loopback, is not recommended by [Docker](https://docs.docker.com/engine/reference/commandline/dockerd/#/storage-driver-options). Please refer to the Docker documentation on how to change it.
 * 1GB RAM
 * MySQL server should have a max_connections setting > 150
-  * MYSQL Configuration Requirements   
+  * MYSQL Configuration Requirements
     * Option 1: Run with Antelope with default of `COMPACT`
     * Option 2: Run MySQL 5.7 with Barracuda where the default `ROW_FORMAT` is `Dynamic`
 
@@ -36,7 +36,7 @@ Rancher is deployed as a set of Docker containers. Running Rancher is as simple 
 Rancher server has 2 different tags. For each major release tag, we will provide documentation for the specific version.
 
 * `rancher/server:latest` tag will be our latest development builds. These builds will have been validated through our CI automation framework. These releases are not meant for deployment in production.
-* `rancher/server:stable` tag will be our latest stable release builds. This tag is the version that we recommend for production.  
+* `rancher/server:stable` tag will be our latest stable release builds. This tag is the version that we recommend for production.
 
 Please do not use any release with a `rc{n}` suffix. These `rc` builds are meant for the Rancher team to test out builds.
 
@@ -122,7 +122,7 @@ Running Rancher server in High Availability (HA) is as easy as running [Rancher 
 * MySQL database
     * At least 1 GB RAM
     * 50 connections per Rancher server node (e.g. A 3 node setup will need to support at least 150 connections)
-    * MYSQL Configuration Requirements   
+    * MYSQL Configuration Requirements
       * Option 1: Run with Antelope with default of `COMPACT`
       * Option 2: Run MySQL 5.7 with Barracuda where the default `ROW_FORMAT` is `Dynamic`
 * External Load Balancer
@@ -151,7 +151,7 @@ Running Rancher server in High Availability (HA) is as easy as running [Rancher 
 
    > **Note:** You can get the help for the commands by running `docker run rancher/server --help`
 
-2. Configure an external load balancer that will balance traffic on ports `80` and `443` across a pool of nodes that will be running Rancher server and target the nodes on port `8080`. Your load balancer must support websockets and forwarded-for headers, in order for Rancher to function properly. See [SSL settings page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}//installing-rancher/installing-server/basic-ssl-config/) for example configuration settings.
+2. Configure an external load balancer that will balance traffic on ports `80` and `443` across a pool of nodes that will be running Rancher server and target the nodes on port `8080`. Your load balancer must support websockets and forwarded-for headers, in order for Rancher to function properly. See [SSL settings page]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/basic-ssl-config/) for example configuration settings.
 
 #### Options for advertise-address
 
