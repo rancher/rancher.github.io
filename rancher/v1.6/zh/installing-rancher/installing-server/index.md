@@ -160,7 +160,7 @@ $ sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=unless-stopped -p 80
 
    > **注意：** 你可以使用 `docker run rancher/server --help` 获得命令的帮助信息
 
-2. 配置一个外部的负载均衡器，这个负责均衡负责将例如`80`或`443`端口的流量，转发到运行Rancher Server的节点的`8080`端口中。负载均衡器必须支持websockets 以及 forwarded-for 的Http请求头以支持Rancher的功能。参考 [使用SSL]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}//installing-rancher/installing-server/basic-ssl-config/) 这个配置的例子。
+2. 配置一个外部的负载均衡器，这个负责均衡负责将例如`80`或`443`端口的流量，转发到运行Rancher Server的节点的`8080`端口中。负载均衡器必须支持websockets 以及 forwarded-for 的Http请求头以支持Rancher的功能。参考 [使用SSL]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/installing-server/basic-ssl-config/) 这个配置的例子。
 
 #### advertise-address选项
 
