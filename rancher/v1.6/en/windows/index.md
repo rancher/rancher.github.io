@@ -34,7 +34,7 @@ AWS Instance Requirements
 
 ### Launching Rancher Server in AWS
 
-1. Launch Rancher Server in an AWS EC2 instance that is in `Subnet A`. Ensure the instance meets the [Rancher server requirements](https://rancher.com/docs/rancher/v1.6/en/installing-rancher/installing-server/#requirements).
+1. Launch Rancher Server in an AWS EC2 instance that is in `Subnet A`. Ensure the instance meets the [Rancher server requirements](https://www.rancher.com/docs/rancher/v1.6/en/installing-rancher/installing-server/#requirements).
 2. In Rancher, create a new Windows environment.
 
 ### Launching AWS EC2 Hosts with Windows and setting Networking up
