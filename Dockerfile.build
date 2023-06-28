@@ -13,4 +13,4 @@ RUN mkdir -p os/latest/en \
     && cp -r os/v1.0/en/* os/latest/ \
     && cp -r os/v1.0/en/* os/
 
-RUN jekyll build
+RUN chown -R jekyll:jekyll /build && jekyll build
