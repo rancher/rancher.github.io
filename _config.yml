@@ -11,7 +11,7 @@ permalink: pretty
 gems:
   - jekyll-redirect-from
 
-URL: "https://rancher.com"
+URL: "https://www.rancher.com"
 baseurl: "/docs"
 
 # RancherOS defaults
