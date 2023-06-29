@@ -12,7 +12,7 @@ redirect_from:
 
 Hosts are the most basic unit of resource within Rancher and is represented as any Linux server, virtual or physical, with the following minimum requirements:
 
-* Any modern Linux distribution with a [supported version of Docker](#supported-docker-versions). [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
+* Any modern Linux distribution with a [supported version of Docker](#supported-docker-versions). [RancherOS](https://rancher.com/docs/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
   * For RHEL/CentOS, the default storage driver, i.e. devicemapper using loopback, is not recommended by [Docker](https://docs.docker.com/engine/reference/commandline/dockerd/#/storage-driver-options). Please refer to the Docker documentation on how to change it.
   * For RHEL/CentOS, please use kernel version `3.10.0-514.2.2.el7.x86_64` or higher. Includes when using release 7.3 or higher.
 * 1GB RAM

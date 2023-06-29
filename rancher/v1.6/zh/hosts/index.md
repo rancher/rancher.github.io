@@ -11,7 +11,7 @@ lang: zh
 在Rancher中，主机是调度资源的基本单位（直观的理解就是所发生的操作最终都会落到某台主机上），它可以是虚拟的或者物理的Linux服务器。Rancher管理的主机需要满足以下的条件：
 
 
-* 任何可以运行[支持的Docker版本](#docker版本适用对比)的 Linux 发行版本，例如：[RancherOS](http://docs.rancher.com/os/)，Ubuntu，RHEL/CentOS 7。不过针对RHEL/CentOS系列，有些需要注意的地方：
+* 任何可以运行[支持的Docker版本](#docker版本适用对比)的 Linux 发行版本，例如：[RancherOS](https://rancher.com/docs/os/)，Ubuntu，RHEL/CentOS 7。不过针对RHEL/CentOS系列，有些需要注意的地方：
     * Docker 并不推荐使用 RHEL/CentOS 默认的存储驱动（devicemapper），可以参考[这篇文档](https://docs.docker.com/engine/reference/commandline/dockerd/#/storage-driver-options)来修改。
     * 如果启用 SELinux，[需要安装额外的模块]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/selinux/)。
     * 内核版本要求是 `3.10.0-514.2.2.el7.x86_64` 及以上，建议使用 RHEL/CentOS 7.3 或者更高的发行版本。

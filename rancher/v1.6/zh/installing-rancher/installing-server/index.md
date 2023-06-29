@@ -22,7 +22,7 @@ Rancher是使用一系列的Docker容器进行部署的。运行Rancher跟启动
 
 ### 安装需求
 
-* 所有安装有[支持的Docker版本]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#docker版本适用对比)的现代Linux发行版。 [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 都是经过严格的测试。
+* 所有安装有[支持的Docker版本]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#docker版本适用对比)的现代Linux发行版。 [RancherOS](https://rancher.com/docs/os/), Ubuntu, RHEL/CentOS 7 都是经过严格的测试。
   * 对于 RHEL/CentOS, 默认的 storage driver, 例如 devicemapper using loopback, 并不被[Docker](https://docs.docker.com/engine/reference/commandline/dockerd/#/storage-driver-options)推荐。 请参考Docker的文档去修改使用其他的storage driver。
   * 对于 RHEL/CentOS, 如果你想使用 SELinux, 你需要[安装额外的 SELinux 组件]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/selinux/).
 * 1GB内存
@@ -123,7 +123,7 @@ $ sudo docker run -d -v <host_vol>:/var/lib/mysql --restart=unless-stopped -p 80
 #### HA部署需求
 
 * HA 节点:
-    * 所有安装有[支持的Docker版本]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#docker版本适用对比)的现代Linux发行版 [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 都是经过严格的测试。
+    * 所有安装有[支持的Docker版本]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#docker版本适用对比)的现代Linux发行版 [RancherOS](https://rancher.com/docs/os/), Ubuntu, RHEL/CentOS 7 都是经过严格的测试。
 	  * 对于 RHEL/CentOS, 默认的 storage driver, 例如 devicemapper using loopback, 并不被[Docker](https://docs.docker.com/engine/reference/commandline/dockerd/#/storage-driver-options)推荐。 请参考Docker的文档去修改使用其他的storage driver。
 	  * 对于 RHEL/CentOS, 如果你想使用 SELinux, 你需要 [安装额外的 SELinux 组件]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/installing-rancher/selinux/).
     * `9345`, `8080` 端口需要在各个节点之间能够互相访问
