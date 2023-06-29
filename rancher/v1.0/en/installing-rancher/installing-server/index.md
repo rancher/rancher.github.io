@@ -11,7 +11,7 @@ Rancher is deployed as a set of Docker containers. Running Rancher is a simple a
 
 ### Requirements
 
-* Any modern Linux distribution that supports Docker 1.10.3. [RancherOS](http://docs.rancher.com/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
+* Any modern Linux distribution that supports Docker 1.10.3. [RancherOS](https://rancher.com/docs/os/), Ubuntu, RHEL/CentOS 7 are more heavily tested.
   * For RHEL/CentOS, the default storage driver, i.e. devicemapper using loopback, is not recommended by [Docker](https://docs.docker.com/engine/reference/commandline/dockerd/#/storage-driver-options). Please refer to the Docker documentation on how to change it.
 * 1GB RAM
 * MySQL server should have a max_connections setting > 150
