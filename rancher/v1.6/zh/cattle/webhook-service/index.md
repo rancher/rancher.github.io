@@ -30,6 +30,7 @@ lang: zh
 * [服务扩缩容](#服务扩缩容)
 * [主机数量增减](#主机弹性伸缩)
 * [基于 DockerHub 标签的更新来更新一个服务](#基于-docker-hub-webhooks-升级服务)
+* [基于私有仓库标签更新一个服务](#基于私有仓库升级服务)
 
 <a id="scaling-service-example"></a>
 
@@ -154,3 +155,21 @@ Rancher 可以通过克隆用 Rancherc 创建的， 并且已经存在的主机�
     }
 }
 ```
+
+#### 基于私有仓库升级服务
+
+默认是 <address> 地址是 Docker Hub 地址。 <address> 需要替换成私有仓库地址。
+  
+使用 Rancher 的 webhook , `POST` 请求中需要包含以下字段:
+
+```json
+{
+    "push_data": {
+        "tag": <pushedTag>
+    },
+    "repository": {
+        "repo_name": <address>/<image>
+    }
+}
+```
+  
