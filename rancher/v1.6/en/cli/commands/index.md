@@ -505,7 +505,7 @@ Name | Description
 `--system`, `-s`     |  Show system resources
 `--containers`, `-c` |  Display containers
 `--quiet`, `-q` |		Only display IDs
-`--format` value |	`json` or Custom format: {% raw %}'{{.Service.Id}} {{.Service.Name}} {{.Service.LaunchConfig.ImageUuid}}'{% endraw %}
+`--format` value |	`json` or Custom format: {% raw %}'{{.Container.Id}} {{.Container.Name}}'{% endraw %}
 
 <br>
 
